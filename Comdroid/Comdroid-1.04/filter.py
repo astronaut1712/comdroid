@@ -3,7 +3,6 @@ import sys
 from os import listdir, makedirs
 from os.path import isfile, join
 
-#MYPATH = "output/fshare2/IntentResults"
 PATTERN = ".*(com/google|android/support/v4).*\n"
 
 MYPATH = sys.argv[1]
