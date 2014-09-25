@@ -1,0 +1,180 @@
+.class public abstract com/squareup/okhttp/Request$Body
+.super java/lang/Object
+.source Request.java
+
+.inner class Body inner com/squareup/okhttp/Request$Body outer com/squareup/okhttp/Request
+
+.method public <init>()V
+.limit registers 1
+; this: v0 (Lcom/squareup/okhttp/Request$Body;)
+.line 108
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Lcom/squareup/okhttp/Request$Body;
+	return-void	
+.end method
+
+.method public static create(Lcom/squareup/okhttp/MediaType;Ljava/io/File;)Lcom/squareup/okhttp/Request$Body;
+.limit registers 4
+; parameter[0] : v2 (Lcom/squareup/okhttp/MediaType;)
+; parameter[1] : v3 (Ljava/io/File;)
+.line 161
+	if-nez	v2,lb4ef0
+; v2 : Lcom/squareup/okhttp/MediaType;
+	new-instance	v0,java/lang/NullPointerException
+; v0 : Ljava/lang/NullPointerException;
+	const-string	v1,"contentType == null"
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/NullPointerException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/NullPointerException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/NullPointerException;
+lb4ef0:
+.line 162
+	if-nez	v3,lb4f04
+; v3 : Ljava/io/File;
+	new-instance	v0,java/lang/NullPointerException
+; v0 : Ljava/lang/NullPointerException;
+	const-string	v1,"content == null"
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/NullPointerException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/NullPointerException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/NullPointerException;
+lb4f04:
+.line 164
+	new-instance	v0,com/squareup/okhttp/Request$Body$2
+; v0 : Lcom/squareup/okhttp/Request$Body$2;
+	invoke-direct	{v0,v2,v3},com/squareup/okhttp/Request$Body$2/<init>	; <init>(Lcom/squareup/okhttp/MediaType;Ljava/io/File;)V
+; v0 : Lcom/squareup/okhttp/Request$Body$2; , v2 : Lcom/squareup/okhttp/MediaType; , v3 : Ljava/io/File;
+	return-object	v0
+; v0 : Lcom/squareup/okhttp/Request$Body$2;
+.end method
+
+.method public static create(Lcom/squareup/okhttp/MediaType;Ljava/lang/String;)Lcom/squareup/okhttp/Request$Body;
+.limit registers 6
+; parameter[0] : v4 (Lcom/squareup/okhttp/MediaType;)
+; parameter[1] : v5 (Ljava/lang/String;)
+.catch java/io/UnsupportedEncodingException from lb4f2c to lb4f4a using lb4f7e
+.var 0 is bytes [B from lb4f44 to lb4f4e
+.line 128
+	invoke-virtual	{v4},com/squareup/okhttp/MediaType/charset	; charset()Ljava/nio/charset/Charset;
+; v4 : Lcom/squareup/okhttp/MediaType;
+	move-result-object	v2
+; v2 : Ljava/nio/charset/Charset;
+	if-eqz	v2,lb4f4e
+; v2 : Ljava/nio/charset/Charset;
+lb4f2c:
+.line 132
+	invoke-virtual	{v4},com/squareup/okhttp/MediaType/charset	; charset()Ljava/nio/charset/Charset;
+; v4 : Lcom/squareup/okhttp/MediaType;
+	move-result-object	v2
+; v2 : Ljava/nio/charset/Charset;
+	invoke-virtual	{v2},java/nio/charset/Charset/name	; name()Ljava/lang/String;
+; v2 : Ljava/nio/charset/Charset;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v5,v2},java/lang/String/getBytes	; getBytes(Ljava/lang/String;)[B
+; v5 : Ljava/lang/String; , v2 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : [B
+.line 133
+	invoke-static	{v4,v0},com/squareup/okhttp/Request$Body/create	; create(Lcom/squareup/okhttp/MediaType;[B)Lcom/squareup/okhttp/Request$Body;
+; v4 : Lcom/squareup/okhttp/MediaType; , v0 : [B
+lb4f4a:
+	move-result-object	v2
+; v2 : Lcom/squareup/okhttp/Request$Body;
+	return-object	v2
+; v2 : Lcom/squareup/okhttp/Request$Body;
+lb4f4e:
+.line 128
+	new-instance	v2,java/lang/StringBuilder
+; v2 : Ljava/lang/StringBuilder;
+	invoke-direct	{v2},java/lang/StringBuilder/<init>	; <init>()V
+; v2 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v2,v4},java/lang/StringBuilder/append	; append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v4 : Lcom/squareup/okhttp/MediaType;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	const-string	v3,"; charset=utf-8"
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v2},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v2 : Ljava/lang/StringBuilder;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-static	{v2},com/squareup/okhttp/MediaType/parse	; parse(Ljava/lang/String;)Lcom/squareup/okhttp/MediaType;
+; v2 : Ljava/lang/String;
+	move-result-object	v4
+; v4 : Lcom/squareup/okhttp/MediaType;
+	goto	lb4f2c
+lb4f7e:
+.line 134
+	move-exception	v1
+; v1 : java/io/UnsupportedEncodingException
+.line 135
+	new-instance	v2,java/lang/AssertionError
+; v2 : Ljava/lang/AssertionError;
+	invoke-direct	{v2},java/lang/AssertionError/<init>	; <init>()V
+; v2 : Ljava/lang/AssertionError;
+	throw	v2
+; v2 : Ljava/lang/AssertionError;
+.end method
+
+.method public static create(Lcom/squareup/okhttp/MediaType;[B)Lcom/squareup/okhttp/Request$Body;
+.limit registers 4
+; parameter[0] : v2 (Lcom/squareup/okhttp/MediaType;)
+; parameter[1] : v3 ([B)
+.line 141
+	if-nez	v2,lb4fc0
+; v2 : Lcom/squareup/okhttp/MediaType;
+	new-instance	v0,java/lang/NullPointerException
+; v0 : Ljava/lang/NullPointerException;
+	const-string	v1,"contentType == null"
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/NullPointerException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/NullPointerException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/NullPointerException;
+lb4fc0:
+.line 142
+	if-nez	v3,lb4fd4
+; v3 : [B
+	new-instance	v0,java/lang/NullPointerException
+; v0 : Ljava/lang/NullPointerException;
+	const-string	v1,"content == null"
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/NullPointerException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/NullPointerException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/NullPointerException;
+lb4fd4:
+.line 144
+	new-instance	v0,com/squareup/okhttp/Request$Body$1
+; v0 : Lcom/squareup/okhttp/Request$Body$1;
+	invoke-direct	{v0,v2,v3},com/squareup/okhttp/Request$Body$1/<init>	; <init>(Lcom/squareup/okhttp/MediaType;[B)V
+; v0 : Lcom/squareup/okhttp/Request$Body$1; , v2 : Lcom/squareup/okhttp/MediaType; , v3 : [B
+	return-object	v0
+; v0 : Lcom/squareup/okhttp/Request$Body$1;
+.end method
+
+.method public contentLength()J
+.limit registers 3
+; this: v2 (Lcom/squareup/okhttp/Request$Body;)
+.line 117
+	const-wide/16	v0,65535
+; v0 : double-length
+	return-wide	v0
+; v0 : double-length
+.end method
+
+.method public abstract contentType()Lcom/squareup/okhttp/MediaType;
+.end method
+
+.method public abstract writeTo(Ljava/io/OutputStream;)V
+.throws Ljava/io/IOException;
+.end method
+
+

@@ -1,0 +1,569 @@
+.class final com/squareup/picasso/PicassoDrawable
+.super android/graphics/drawable/Drawable
+.source PicassoDrawable.java
+
+.field private static final DEBUG_PAINT Landroid/graphics/Paint; = null
+.field private static final FADE_DURATION F = 200.0
+.field alpha I
+.field animating Z
+.field private final debugging Z
+.field private final density F
+.field final image Landroid/graphics/drawable/BitmapDrawable;
+.field private final loadedFrom Lcom/squareup/picasso/Picasso$LoadedFrom;
+.field placeholder Landroid/graphics/drawable/Drawable;
+.field startTimeMillis J
+
+.method static <clinit>()V
+.limit registers 1
+.line 38
+	new-instance	v0,android/graphics/Paint
+; v0 : Landroid/graphics/Paint;
+	invoke-direct	{v0},android/graphics/Paint/<init>	; <init>()V
+; v0 : Landroid/graphics/Paint;
+	sput-object	v0,com/squareup/picasso/PicassoDrawable.DEBUG_PAINT Landroid/graphics/Paint;
+; v0 : Landroid/graphics/Paint;
+	return-void	
+.end method
+
+.method <init>(Landroid/content/Context;Landroid/graphics/drawable/Drawable;Landroid/graphics/Bitmap;Lcom/squareup/picasso/Picasso$LoadedFrom;ZZ)V
+.limit registers 11
+; this: v4 (Lcom/squareup/picasso/PicassoDrawable;)
+; parameter[0] : v5 (Landroid/content/Context;)
+; parameter[1] : v6 (Landroid/graphics/drawable/Drawable;)
+; parameter[2] : v7 (Landroid/graphics/Bitmap;)
+; parameter[3] : v8 (Lcom/squareup/picasso/Picasso$LoadedFrom;)
+; parameter[4] : v9 (Z)
+; parameter[5] : v10 (Z)
+.var 0 is fade Z from lc4a54 to lc4a6e
+	const/4	v2,1
+; v2 : single-length
+.line 84
+	invoke-direct	{v4},android/graphics/drawable/Drawable/<init>	; <init>()V
+; v4 : Lcom/squareup/picasso/PicassoDrawable;
+.line 81
+	const/16	v3,255
+; v3 : single-length
+	iput	v3,v4,com/squareup/picasso/PicassoDrawable.alpha I
+; v3 : single-length , v4 : Lcom/squareup/picasso/PicassoDrawable;
+.line 85
+	invoke-virtual	{v5},android/content/Context/getResources	; getResources()Landroid/content/res/Resources;
+; v5 : Landroid/content/Context;
+	move-result-object	v1
+; v1 : Landroid/content/res/Resources;
+.line 87
+	iput-boolean	v10,v4,com/squareup/picasso/PicassoDrawable.debugging Z
+; v10 : single-length , v4 : Lcom/squareup/picasso/PicassoDrawable;
+.line 88
+	invoke-virtual	{v1},android/content/res/Resources/getDisplayMetrics	; getDisplayMetrics()Landroid/util/DisplayMetrics;
+; v1 : Landroid/content/res/Resources;
+	move-result-object	v3
+; v3 : Landroid/util/DisplayMetrics;
+	iget	v3,v3,android/util/DisplayMetrics.density F
+; v3 : single-length , v3 : single-length
+	iput	v3,v4,com/squareup/picasso/PicassoDrawable.density F
+; v3 : single-length , v4 : Lcom/squareup/picasso/PicassoDrawable;
+.line 90
+	iput-object	v8,v4,com/squareup/picasso/PicassoDrawable.loadedFrom Lcom/squareup/picasso/Picasso$LoadedFrom;
+; v8 : Lcom/squareup/picasso/Picasso$LoadedFrom; , v4 : Lcom/squareup/picasso/PicassoDrawable;
+.line 92
+	new-instance	v3,android/graphics/drawable/BitmapDrawable
+; v3 : Landroid/graphics/drawable/BitmapDrawable;
+	invoke-direct	{v3,v1,v7},android/graphics/drawable/BitmapDrawable/<init>	; <init>(Landroid/content/res/Resources;Landroid/graphics/Bitmap;)V
+; v3 : Landroid/graphics/drawable/BitmapDrawable; , v1 : Landroid/content/res/Resources; , v7 : Landroid/graphics/Bitmap;
+	iput-object	v3,v4,com/squareup/picasso/PicassoDrawable.image Landroid/graphics/drawable/BitmapDrawable;
+; v3 : Landroid/graphics/drawable/BitmapDrawable; , v4 : Lcom/squareup/picasso/PicassoDrawable;
+.line 94
+	sget-object	v3,com/squareup/picasso/Picasso$LoadedFrom.MEMORY Lcom/squareup/picasso/Picasso$LoadedFrom;
+; v3 : Lcom/squareup/picasso/Picasso$LoadedFrom;
+	if-eq	v8,v3,lc4a6e
+; v8 : Lcom/squareup/picasso/Picasso$LoadedFrom; , v3 : Lcom/squareup/picasso/Picasso$LoadedFrom;
+	if-nez	v9,lc4a6e
+; v9 : single-length
+	move	v0,v2
+; v0 : single-length , v2 : single-length
+lc4a54:
+.line 95
+	if-eqz	v0,lc4a6c
+; v0 : single-length
+.line 96
+	iput-object	v6,v4,com/squareup/picasso/PicassoDrawable.placeholder Landroid/graphics/drawable/Drawable;
+; v6 : Landroid/graphics/drawable/Drawable; , v4 : Lcom/squareup/picasso/PicassoDrawable;
+.line 97
+	iput-boolean	v2,v4,com/squareup/picasso/PicassoDrawable.animating Z
+; v2 : single-length , v4 : Lcom/squareup/picasso/PicassoDrawable;
+.line 98
+	invoke-static	{},android/os/SystemClock/uptimeMillis	; uptimeMillis()J
+; 
+	nop	
+	move-result-wide	v2
+; v2 : double-length
+	iput-wide	v2,v4,com/squareup/picasso/PicassoDrawable.startTimeMillis J
+; v2 : double-length , v4 : Lcom/squareup/picasso/PicassoDrawable;
+lc4a6c:
+.line 100
+	return-void	
+lc4a6e:
+.line 94
+	const/4	v0,0
+; v0 : single-length
+	goto	lc4a54
+.end method
+
+.method private drawDebugIndicator(Landroid/graphics/Canvas;)V
+.limit registers 7
+; this: v5 (Lcom/squareup/picasso/PicassoDrawable;)
+; parameter[0] : v6 (Landroid/graphics/Canvas;)
+	const/4	v4,0
+; v4 : single-length
+.line 166
+	sget-object	v1,com/squareup/picasso/PicassoDrawable.DEBUG_PAINT Landroid/graphics/Paint;
+; v1 : Landroid/graphics/Paint;
+	const/4	v2,15
+; v2 : single-length
+	invoke-virtual	{v1,v2},android/graphics/Paint/setColor	; setColor(I)V
+; v1 : Landroid/graphics/Paint; , v2 : single-length
+.line 167
+	new-instance	v1,android/graphics/Point
+; v1 : Landroid/graphics/Point;
+	invoke-direct	{v1,v4,v4},android/graphics/Point/<init>	; <init>(II)V
+; v1 : Landroid/graphics/Point; , v4 : single-length , v4 : single-length
+	const/high16	v2,16768
+; v2 : single-length
+	iget	v3,v5,com/squareup/picasso/PicassoDrawable.density F
+; v3 : single-length , v5 : Lcom/squareup/picasso/PicassoDrawable;
+	mul-float/2addr	v2,v3
+; v2 : single-length , v3 : single-length
+	float-to-int	v2,v2
+; v2 : single-length , v2 : single-length
+	invoke-static	{v1,v2},com/squareup/picasso/PicassoDrawable/getTrianglePath	; getTrianglePath(Landroid/graphics/Point;I)Landroid/graphics/Path;
+; v1 : Landroid/graphics/Point; , v2 : single-length
+	move-result-object	v0
+; v0 : Landroid/graphics/Path;
+.line 168
+	sget-object	v1,com/squareup/picasso/PicassoDrawable.DEBUG_PAINT Landroid/graphics/Paint;
+; v1 : Landroid/graphics/Paint;
+	invoke-virtual	{v6,v0,v1},android/graphics/Canvas/drawPath	; drawPath(Landroid/graphics/Path;Landroid/graphics/Paint;)V
+; v6 : Landroid/graphics/Canvas; , v0 : Landroid/graphics/Path; , v1 : Landroid/graphics/Paint;
+.line 170
+	sget-object	v1,com/squareup/picasso/PicassoDrawable.DEBUG_PAINT Landroid/graphics/Paint;
+; v1 : Landroid/graphics/Paint;
+	iget-object	v2,v5,com/squareup/picasso/PicassoDrawable.loadedFrom Lcom/squareup/picasso/Picasso$LoadedFrom;
+; v2 : Lcom/squareup/picasso/Picasso$LoadedFrom; , v5 : Lcom/squareup/picasso/PicassoDrawable;
+	iget	v2,v2,com/squareup/picasso/Picasso$LoadedFrom.debugColor I
+; v2 : single-length , v2 : single-length
+	invoke-virtual	{v1,v2},android/graphics/Paint/setColor	; setColor(I)V
+; v1 : Landroid/graphics/Paint; , v2 : single-length
+.line 171
+	new-instance	v1,android/graphics/Point
+; v1 : Landroid/graphics/Point;
+	invoke-direct	{v1,v4,v4},android/graphics/Point/<init>	; <init>(II)V
+; v1 : Landroid/graphics/Point; , v4 : single-length , v4 : single-length
+	const/high16	v2,16752
+; v2 : single-length
+	iget	v3,v5,com/squareup/picasso/PicassoDrawable.density F
+; v3 : single-length , v5 : Lcom/squareup/picasso/PicassoDrawable;
+	mul-float/2addr	v2,v3
+; v2 : single-length , v3 : single-length
+	float-to-int	v2,v2
+; v2 : single-length , v2 : single-length
+	invoke-static	{v1,v2},com/squareup/picasso/PicassoDrawable/getTrianglePath	; getTrianglePath(Landroid/graphics/Point;I)Landroid/graphics/Path;
+; v1 : Landroid/graphics/Point; , v2 : single-length
+	move-result-object	v0
+; v0 : Landroid/graphics/Path;
+.line 172
+	sget-object	v1,com/squareup/picasso/PicassoDrawable.DEBUG_PAINT Landroid/graphics/Paint;
+; v1 : Landroid/graphics/Paint;
+	invoke-virtual	{v6,v0,v1},android/graphics/Canvas/drawPath	; drawPath(Landroid/graphics/Path;Landroid/graphics/Paint;)V
+; v6 : Landroid/graphics/Canvas; , v0 : Landroid/graphics/Path; , v1 : Landroid/graphics/Paint;
+.line 173
+	return-void	
+.end method
+
+.method private static getTrianglePath(Landroid/graphics/Point;I)Landroid/graphics/Path;
+.limit registers 7
+; parameter[0] : v5 (Landroid/graphics/Point;)
+; parameter[1] : v6 (I)
+.line 176
+	new-instance	v0,android/graphics/Point
+; v0 : Landroid/graphics/Point;
+	iget	v3,v5,android/graphics/Point.x I
+; v3 : single-length , v5 : Landroid/graphics/Point;
+	add-int/2addr	v3,v6
+; v3 : single-length , v6 : single-length
+	iget	v4,v5,android/graphics/Point.y I
+; v4 : single-length , v5 : Landroid/graphics/Point;
+	invoke-direct	{v0,v3,v4},android/graphics/Point/<init>	; <init>(II)V
+; v0 : Landroid/graphics/Point; , v3 : single-length , v4 : single-length
+.line 177
+	new-instance	v1,android/graphics/Point
+; v1 : Landroid/graphics/Point;
+	iget	v3,v5,android/graphics/Point.x I
+; v3 : single-length , v5 : Landroid/graphics/Point;
+	iget	v4,v5,android/graphics/Point.y I
+; v4 : single-length , v5 : Landroid/graphics/Point;
+	add-int/2addr	v4,v6
+; v4 : single-length , v6 : single-length
+	invoke-direct	{v1,v3,v4},android/graphics/Point/<init>	; <init>(II)V
+; v1 : Landroid/graphics/Point; , v3 : single-length , v4 : single-length
+.line 179
+	new-instance	v2,android/graphics/Path
+; v2 : Landroid/graphics/Path;
+	invoke-direct	{v2},android/graphics/Path/<init>	; <init>()V
+; v2 : Landroid/graphics/Path;
+.line 180
+	iget	v3,v5,android/graphics/Point.x I
+; v3 : single-length , v5 : Landroid/graphics/Point;
+	int-to-float	v3,v3
+; v3 : single-length , v3 : single-length
+	iget	v4,v5,android/graphics/Point.y I
+; v4 : single-length , v5 : Landroid/graphics/Point;
+	int-to-float	v4,v4
+; v4 : single-length , v4 : single-length
+	invoke-virtual	{v2,v3,v4},android/graphics/Path/moveTo	; moveTo(FF)V
+; v2 : Landroid/graphics/Path; , v3 : single-length , v4 : single-length
+.line 181
+	iget	v3,v0,android/graphics/Point.x I
+; v3 : single-length , v0 : Landroid/graphics/Point;
+	int-to-float	v3,v3
+; v3 : single-length , v3 : single-length
+	iget	v4,v0,android/graphics/Point.y I
+; v4 : single-length , v0 : Landroid/graphics/Point;
+	int-to-float	v4,v4
+; v4 : single-length , v4 : single-length
+	invoke-virtual	{v2,v3,v4},android/graphics/Path/lineTo	; lineTo(FF)V
+; v2 : Landroid/graphics/Path; , v3 : single-length , v4 : single-length
+.line 182
+	iget	v3,v1,android/graphics/Point.x I
+; v3 : single-length , v1 : Landroid/graphics/Point;
+	int-to-float	v3,v3
+; v3 : single-length , v3 : single-length
+	iget	v4,v1,android/graphics/Point.y I
+; v4 : single-length , v1 : Landroid/graphics/Point;
+	int-to-float	v4,v4
+; v4 : single-length , v4 : single-length
+	invoke-virtual	{v2,v3,v4},android/graphics/Path/lineTo	; lineTo(FF)V
+; v2 : Landroid/graphics/Path; , v3 : single-length , v4 : single-length
+.line 184
+	return-object	v2
+; v2 : Landroid/graphics/Path;
+.end method
+
+.method static setBitmap(Landroid/widget/ImageView;Landroid/content/Context;Landroid/graphics/Bitmap;Lcom/squareup/picasso/Picasso$LoadedFrom;ZZ)V
+.limit registers 13
+; parameter[0] : v7 (Landroid/widget/ImageView;)
+; parameter[1] : v8 (Landroid/content/Context;)
+; parameter[2] : v9 (Landroid/graphics/Bitmap;)
+; parameter[3] : v10 (Lcom/squareup/picasso/Picasso$LoadedFrom;)
+; parameter[4] : v11 (Z)
+; parameter[5] : v12 (Z)
+.line 48
+	invoke-virtual	{v7},android/widget/ImageView/getDrawable	; getDrawable()Landroid/graphics/drawable/Drawable;
+; v7 : Landroid/widget/ImageView;
+	move-result-object	v2
+; v2 : Landroid/graphics/drawable/Drawable;
+.line 49
+	instance-of	v1,v2,android/graphics/drawable/AnimationDrawable
+; v1 : single-length , v2 : Landroid/graphics/drawable/Drawable;
+	if-eqz	v1,lc4ba0
+; v1 : single-length
+	move-object	v1,v2
+; v1 : Landroid/graphics/drawable/Drawable; , v2 : Landroid/graphics/drawable/Drawable;
+.line 50
+	check-cast	v1,android/graphics/drawable/AnimationDrawable
+; v1 : Landroid/graphics/drawable/AnimationDrawable;
+	invoke-virtual	{v1},android/graphics/drawable/AnimationDrawable/stop	; stop()V
+; v1 : Landroid/graphics/drawable/AnimationDrawable;
+lc4ba0:
+.line 52
+	new-instance	v0,com/squareup/picasso/PicassoDrawable
+; v0 : Lcom/squareup/picasso/PicassoDrawable;
+	move-object	v1,v8
+; v1 : Landroid/content/Context; , v8 : Landroid/content/Context;
+	move-object	v3,v9
+; v3 : Landroid/graphics/Bitmap; , v9 : Landroid/graphics/Bitmap;
+	move-object	v4,v10
+; v4 : Lcom/squareup/picasso/Picasso$LoadedFrom; , v10 : Lcom/squareup/picasso/Picasso$LoadedFrom;
+	move	v5,v11
+; v5 : single-length , v11 : single-length
+	move	v6,v12
+; v6 : single-length , v12 : single-length
+	invoke-direct/range	{v0..v6},com/squareup/picasso/PicassoDrawable/<init>;	<init>(Landroid/content/Context;Landroid/graphics/drawable/Drawable;Landroid/graphics/Bitmap;Lcom/squareup/picasso/Picasso$LoadedFrom;ZZ)V
+; v0 : Lcom/squareup/picasso/PicassoDrawable; , v1 : Landroid/content/Context; , v2 : Landroid/graphics/drawable/Drawable; , v3 : Landroid/graphics/Bitmap; , v4 : Lcom/squareup/picasso/Picasso$LoadedFrom; , v5 : single-length , v6 : single-length
+.line 54
+	invoke-virtual	{v7,v0},android/widget/ImageView/setImageDrawable	; setImageDrawable(Landroid/graphics/drawable/Drawable;)V
+; v7 : Landroid/widget/ImageView; , v0 : Lcom/squareup/picasso/PicassoDrawable;
+.line 55
+	return-void	
+.end method
+
+.method static setPlaceholder(Landroid/widget/ImageView;ILandroid/graphics/drawable/Drawable;)V
+.limit registers 4
+; parameter[0] : v1 (Landroid/widget/ImageView;)
+; parameter[1] : v2 (I)
+; parameter[2] : v3 (Landroid/graphics/drawable/Drawable;)
+.line 62
+	if-eqz	v2,lc4bfa
+; v2 : single-length
+.line 63
+	invoke-virtual	{v1,v2},android/widget/ImageView/setImageResource	; setImageResource(I)V
+; v1 : Landroid/widget/ImageView; , v2 : single-length
+lc4bd6:
+.line 67
+	invoke-virtual	{v1},android/widget/ImageView/getDrawable	; getDrawable()Landroid/graphics/drawable/Drawable;
+; v1 : Landroid/widget/ImageView;
+	move-result-object	v0
+; v0 : Landroid/graphics/drawable/Drawable;
+	instance-of	v0,v0,android/graphics/drawable/AnimationDrawable
+; v0 : single-length , v0 : single-length
+	if-eqz	v0,lc4bf8
+; v0 : single-length
+.line 68
+	invoke-virtual	{v1},android/widget/ImageView/getDrawable	; getDrawable()Landroid/graphics/drawable/Drawable;
+; v1 : Landroid/widget/ImageView;
+	move-result-object	v0
+; v0 : Landroid/graphics/drawable/Drawable;
+	check-cast	v0,android/graphics/drawable/AnimationDrawable
+; v0 : Landroid/graphics/drawable/AnimationDrawable;
+	invoke-virtual	{v0},android/graphics/drawable/AnimationDrawable/start	; start()V
+; v0 : Landroid/graphics/drawable/AnimationDrawable;
+lc4bf8:
+.line 70
+	return-void	
+lc4bfa:
+.line 65
+	invoke-virtual	{v1,v3},android/widget/ImageView/setImageDrawable	; setImageDrawable(Landroid/graphics/drawable/Drawable;)V
+; v1 : Landroid/widget/ImageView; , v3 : Landroid/graphics/drawable/Drawable;
+	goto	lc4bd6
+.end method
+
+.method public draw(Landroid/graphics/Canvas;)V
+.limit registers 8
+; this: v6 (Lcom/squareup/picasso/PicassoDrawable;)
+; parameter[0] : v7 (Landroid/graphics/Canvas;)
+.line 103
+	iget-boolean	v2,v6,com/squareup/picasso/PicassoDrawable.animating Z
+; v2 : single-length , v6 : Lcom/squareup/picasso/PicassoDrawable;
+	if-nez	v2,lc4c36
+; v2 : single-length
+.line 104
+	iget-object	v2,v6,com/squareup/picasso/PicassoDrawable.image Landroid/graphics/drawable/BitmapDrawable;
+; v2 : Landroid/graphics/drawable/BitmapDrawable; , v6 : Lcom/squareup/picasso/PicassoDrawable;
+	invoke-virtual	{v2,v7},android/graphics/drawable/BitmapDrawable/draw	; draw(Landroid/graphics/Canvas;)V
+; v2 : Landroid/graphics/drawable/BitmapDrawable; , v7 : Landroid/graphics/Canvas;
+lc4c26:
+.line 124
+	iget-boolean	v2,v6,com/squareup/picasso/PicassoDrawable.debugging Z
+; v2 : single-length , v6 : Lcom/squareup/picasso/PicassoDrawable;
+	if-eqz	v2,lc4c34
+; v2 : single-length
+.line 125
+	invoke-direct	{v6,v7},com/squareup/picasso/PicassoDrawable/drawDebugIndicator	; drawDebugIndicator(Landroid/graphics/Canvas;)V
+; v6 : Lcom/squareup/picasso/PicassoDrawable; , v7 : Landroid/graphics/Canvas;
+lc4c34:
+.line 127
+	return-void	
+lc4c36:
+.line 106
+	invoke-static	{},android/os/SystemClock/uptimeMillis	; uptimeMillis()J
+; 
+	nop	
+	move-result-wide	v2
+; v2 : double-length
+	iget-wide	v4,v6,com/squareup/picasso/PicassoDrawable.startTimeMillis J
+; v4 : double-length , v6 : Lcom/squareup/picasso/PicassoDrawable;
+	sub-long/2addr	v2,v4
+; v2 : double-length , v4 : double-length
+	long-to-float	v2,v2
+; v2 : single-length , v2 : single-length
+	const/high16	v3,17224
+; v3 : single-length
+	div-float	v0,v2,v3
+; v0 : single-length , v2 : single-length , v3 : single-length
+.line 107
+	const/high16	v2,16256
+; v2 : single-length
+	cmpl-float	v2,v0,v2
+; v2 : single-length , v0 : single-length , v2 : single-length
+	if-ltz	v2,lc4c72
+; v2 : single-length
+.line 108
+	const/4	v2,0
+; v2 : single-length
+	iput-boolean	v2,v6,com/squareup/picasso/PicassoDrawable.animating Z
+; v2 : single-length , v6 : Lcom/squareup/picasso/PicassoDrawable;
+.line 109
+	const/4	v2,0
+; v2 : single-length
+	iput-object	v2,v6,com/squareup/picasso/PicassoDrawable.placeholder Landroid/graphics/drawable/Drawable;
+; v2 : single-length , v6 : Lcom/squareup/picasso/PicassoDrawable;
+.line 110
+	iget-object	v2,v6,com/squareup/picasso/PicassoDrawable.image Landroid/graphics/drawable/BitmapDrawable;
+; v2 : Landroid/graphics/drawable/BitmapDrawable; , v6 : Lcom/squareup/picasso/PicassoDrawable;
+	invoke-virtual	{v2,v7},android/graphics/drawable/BitmapDrawable/draw	; draw(Landroid/graphics/Canvas;)V
+; v2 : Landroid/graphics/drawable/BitmapDrawable; , v7 : Landroid/graphics/Canvas;
+	goto	lc4c26
+lc4c72:
+.line 112
+	iget-object	v2,v6,com/squareup/picasso/PicassoDrawable.placeholder Landroid/graphics/drawable/Drawable;
+; v2 : Landroid/graphics/drawable/Drawable; , v6 : Lcom/squareup/picasso/PicassoDrawable;
+	if-eqz	v2,lc4c84
+; v2 : Landroid/graphics/drawable/Drawable;
+.line 113
+	iget-object	v2,v6,com/squareup/picasso/PicassoDrawable.placeholder Landroid/graphics/drawable/Drawable;
+; v2 : Landroid/graphics/drawable/Drawable; , v6 : Lcom/squareup/picasso/PicassoDrawable;
+	invoke-virtual	{v2,v7},android/graphics/drawable/Drawable/draw	; draw(Landroid/graphics/Canvas;)V
+; v2 : Landroid/graphics/drawable/Drawable; , v7 : Landroid/graphics/Canvas;
+lc4c84:
+.line 116
+	iget	v2,v6,com/squareup/picasso/PicassoDrawable.alpha I
+; v2 : single-length , v6 : Lcom/squareup/picasso/PicassoDrawable;
+	int-to-float	v2,v2
+; v2 : single-length , v2 : single-length
+	mul-float/2addr	v2,v0
+; v2 : single-length , v0 : single-length
+	float-to-int	v1,v2
+; v1 : single-length , v2 : single-length
+.line 117
+	iget-object	v2,v6,com/squareup/picasso/PicassoDrawable.image Landroid/graphics/drawable/BitmapDrawable;
+; v2 : Landroid/graphics/drawable/BitmapDrawable; , v6 : Lcom/squareup/picasso/PicassoDrawable;
+	invoke-virtual	{v2,v1},android/graphics/drawable/BitmapDrawable/setAlpha	; setAlpha(I)V
+; v2 : Landroid/graphics/drawable/BitmapDrawable; , v1 : single-length
+.line 118
+	iget-object	v2,v6,com/squareup/picasso/PicassoDrawable.image Landroid/graphics/drawable/BitmapDrawable;
+; v2 : Landroid/graphics/drawable/BitmapDrawable; , v6 : Lcom/squareup/picasso/PicassoDrawable;
+	invoke-virtual	{v2,v7},android/graphics/drawable/BitmapDrawable/draw	; draw(Landroid/graphics/Canvas;)V
+; v2 : Landroid/graphics/drawable/BitmapDrawable; , v7 : Landroid/graphics/Canvas;
+.line 119
+	iget-object	v2,v6,com/squareup/picasso/PicassoDrawable.image Landroid/graphics/drawable/BitmapDrawable;
+; v2 : Landroid/graphics/drawable/BitmapDrawable; , v6 : Lcom/squareup/picasso/PicassoDrawable;
+	iget	v3,v6,com/squareup/picasso/PicassoDrawable.alpha I
+; v3 : single-length , v6 : Lcom/squareup/picasso/PicassoDrawable;
+	invoke-virtual	{v2,v3},android/graphics/drawable/BitmapDrawable/setAlpha	; setAlpha(I)V
+; v2 : Landroid/graphics/drawable/BitmapDrawable; , v3 : single-length
+.line 120
+	invoke-virtual	{v6},com/squareup/picasso/PicassoDrawable/invalidateSelf	; invalidateSelf()V
+; v6 : Lcom/squareup/picasso/PicassoDrawable;
+	goto	lc4c26
+.end method
+
+.method public getIntrinsicHeight()I
+.limit registers 2
+; this: v1 (Lcom/squareup/picasso/PicassoDrawable;)
+.line 134
+	iget-object	v0,v1,com/squareup/picasso/PicassoDrawable.image Landroid/graphics/drawable/BitmapDrawable;
+; v0 : Landroid/graphics/drawable/BitmapDrawable; , v1 : Lcom/squareup/picasso/PicassoDrawable;
+	invoke-virtual	{v0},android/graphics/drawable/BitmapDrawable/getIntrinsicHeight	; getIntrinsicHeight()I
+; v0 : Landroid/graphics/drawable/BitmapDrawable;
+	move-result	v0
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public getIntrinsicWidth()I
+.limit registers 2
+; this: v1 (Lcom/squareup/picasso/PicassoDrawable;)
+.line 130
+	iget-object	v0,v1,com/squareup/picasso/PicassoDrawable.image Landroid/graphics/drawable/BitmapDrawable;
+; v0 : Landroid/graphics/drawable/BitmapDrawable; , v1 : Lcom/squareup/picasso/PicassoDrawable;
+	invoke-virtual	{v0},android/graphics/drawable/BitmapDrawable/getIntrinsicWidth	; getIntrinsicWidth()I
+; v0 : Landroid/graphics/drawable/BitmapDrawable;
+	move-result	v0
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public getOpacity()I
+.limit registers 2
+; this: v1 (Lcom/squareup/picasso/PicassoDrawable;)
+.line 153
+	iget-object	v0,v1,com/squareup/picasso/PicassoDrawable.image Landroid/graphics/drawable/BitmapDrawable;
+; v0 : Landroid/graphics/drawable/BitmapDrawable; , v1 : Lcom/squareup/picasso/PicassoDrawable;
+	invoke-virtual	{v0},android/graphics/drawable/BitmapDrawable/getOpacity	; getOpacity()I
+; v0 : Landroid/graphics/drawable/BitmapDrawable;
+	move-result	v0
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method protected onBoundsChange(Landroid/graphics/Rect;)V
+.limit registers 3
+; this: v1 (Lcom/squareup/picasso/PicassoDrawable;)
+; parameter[0] : v2 (Landroid/graphics/Rect;)
+.line 157
+	invoke-super	{v1,v2},android/graphics/drawable/Drawable/onBoundsChange	; onBoundsChange(Landroid/graphics/Rect;)V
+; v1 : Lcom/squareup/picasso/PicassoDrawable; , v2 : Landroid/graphics/Rect;
+.line 159
+	iget-object	v0,v1,com/squareup/picasso/PicassoDrawable.image Landroid/graphics/drawable/BitmapDrawable;
+; v0 : Landroid/graphics/drawable/BitmapDrawable; , v1 : Lcom/squareup/picasso/PicassoDrawable;
+	invoke-virtual	{v0,v2},android/graphics/drawable/BitmapDrawable/setBounds	; setBounds(Landroid/graphics/Rect;)V
+; v0 : Landroid/graphics/drawable/BitmapDrawable; , v2 : Landroid/graphics/Rect;
+.line 160
+	iget-object	v0,v1,com/squareup/picasso/PicassoDrawable.placeholder Landroid/graphics/drawable/Drawable;
+; v0 : Landroid/graphics/drawable/Drawable; , v1 : Lcom/squareup/picasso/PicassoDrawable;
+	if-eqz	v0,lc4d4a
+; v0 : Landroid/graphics/drawable/Drawable;
+.line 161
+	iget-object	v0,v1,com/squareup/picasso/PicassoDrawable.placeholder Landroid/graphics/drawable/Drawable;
+; v0 : Landroid/graphics/drawable/Drawable; , v1 : Lcom/squareup/picasso/PicassoDrawable;
+	invoke-virtual	{v0,v2},android/graphics/drawable/Drawable/setBounds	; setBounds(Landroid/graphics/Rect;)V
+; v0 : Landroid/graphics/drawable/Drawable; , v2 : Landroid/graphics/Rect;
+lc4d4a:
+.line 163
+	return-void	
+.end method
+
+.method public setAlpha(I)V
+.limit registers 3
+; this: v1 (Lcom/squareup/picasso/PicassoDrawable;)
+; parameter[0] : v2 (I)
+.line 138
+	iput	v2,v1,com/squareup/picasso/PicassoDrawable.alpha I
+; v2 : single-length , v1 : Lcom/squareup/picasso/PicassoDrawable;
+.line 139
+	iget-object	v0,v1,com/squareup/picasso/PicassoDrawable.placeholder Landroid/graphics/drawable/Drawable;
+; v0 : Landroid/graphics/drawable/Drawable; , v1 : Lcom/squareup/picasso/PicassoDrawable;
+	if-eqz	v0,lc4d72
+; v0 : Landroid/graphics/drawable/Drawable;
+.line 140
+	iget-object	v0,v1,com/squareup/picasso/PicassoDrawable.placeholder Landroid/graphics/drawable/Drawable;
+; v0 : Landroid/graphics/drawable/Drawable; , v1 : Lcom/squareup/picasso/PicassoDrawable;
+	invoke-virtual	{v0,v2},android/graphics/drawable/Drawable/setAlpha	; setAlpha(I)V
+; v0 : Landroid/graphics/drawable/Drawable; , v2 : single-length
+lc4d72:
+.line 142
+	iget-object	v0,v1,com/squareup/picasso/PicassoDrawable.image Landroid/graphics/drawable/BitmapDrawable;
+; v0 : Landroid/graphics/drawable/BitmapDrawable; , v1 : Lcom/squareup/picasso/PicassoDrawable;
+	invoke-virtual	{v0,v2},android/graphics/drawable/BitmapDrawable/setAlpha	; setAlpha(I)V
+; v0 : Landroid/graphics/drawable/BitmapDrawable; , v2 : single-length
+.line 143
+	return-void	
+.end method
+
+.method public setColorFilter(Landroid/graphics/ColorFilter;)V
+.limit registers 3
+; this: v1 (Lcom/squareup/picasso/PicassoDrawable;)
+; parameter[0] : v2 (Landroid/graphics/ColorFilter;)
+.line 146
+	iget-object	v0,v1,com/squareup/picasso/PicassoDrawable.placeholder Landroid/graphics/drawable/Drawable;
+; v0 : Landroid/graphics/drawable/Drawable; , v1 : Lcom/squareup/picasso/PicassoDrawable;
+	if-eqz	v0,lc4da2
+; v0 : Landroid/graphics/drawable/Drawable;
+.line 147
+	iget-object	v0,v1,com/squareup/picasso/PicassoDrawable.placeholder Landroid/graphics/drawable/Drawable;
+; v0 : Landroid/graphics/drawable/Drawable; , v1 : Lcom/squareup/picasso/PicassoDrawable;
+	invoke-virtual	{v0,v2},android/graphics/drawable/Drawable/setColorFilter	; setColorFilter(Landroid/graphics/ColorFilter;)V
+; v0 : Landroid/graphics/drawable/Drawable; , v2 : Landroid/graphics/ColorFilter;
+lc4da2:
+.line 149
+	iget-object	v0,v1,com/squareup/picasso/PicassoDrawable.image Landroid/graphics/drawable/BitmapDrawable;
+; v0 : Landroid/graphics/drawable/BitmapDrawable; , v1 : Lcom/squareup/picasso/PicassoDrawable;
+	invoke-virtual	{v0,v2},android/graphics/drawable/BitmapDrawable/setColorFilter	; setColorFilter(Landroid/graphics/ColorFilter;)V
+; v0 : Landroid/graphics/drawable/BitmapDrawable; , v2 : Landroid/graphics/ColorFilter;
+.line 150
+	return-void	
+.end method
+
+

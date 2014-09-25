@@ -1,0 +1,95 @@
+.class public final com/squareup/okhttp/internal/http/OkResponseCacheAdapter
+.super java/lang/Object
+.source OkResponseCacheAdapter.java
+.implements com/squareup/okhttp/OkResponseCache
+
+.field private final responseCache Ljava/net/ResponseCache;
+
+.method public <init>(Ljava/net/ResponseCache;)V
+.limit registers 2
+; this: v0 (Lcom/squareup/okhttp/internal/http/OkResponseCacheAdapter;)
+; parameter[0] : v1 (Ljava/net/ResponseCache;)
+.line 32
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Lcom/squareup/okhttp/internal/http/OkResponseCacheAdapter;
+.line 33
+	iput-object	v1,v0,com/squareup/okhttp/internal/http/OkResponseCacheAdapter.responseCache Ljava/net/ResponseCache;
+; v1 : Ljava/net/ResponseCache; , v0 : Lcom/squareup/okhttp/internal/http/OkResponseCacheAdapter;
+.line 34
+	return-void	
+.end method
+
+.method public get(Ljava/net/URI;Ljava/lang/String;Ljava/util/Map;)Ljava/net/CacheResponse;
+.throws Ljava/io/IOException;
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "(" , "Ljava/net/URI;" , "Ljava/lang/String;" , "Ljava/util/Map" , "<" , "Ljava/lang/String;" , "Ljava/util/List" , "<" , "Ljava/lang/String;" , ">;>;)" , "Ljava/net/CacheResponse;" }
+.end annotation
+.limit registers 5
+; this: v1 (Lcom/squareup/okhttp/internal/http/OkResponseCacheAdapter;)
+; parameter[0] : v2 (Ljava/net/URI;)
+; parameter[1] : v3 (Ljava/lang/String;)
+; parameter[2] : v4 (Ljava/util/Map;)
+.line 38
+	iget-object	v0,v1,com/squareup/okhttp/internal/http/OkResponseCacheAdapter.responseCache Ljava/net/ResponseCache;
+; v0 : Ljava/net/ResponseCache; , v1 : Lcom/squareup/okhttp/internal/http/OkResponseCacheAdapter;
+	invoke-virtual	{v0,v2,v3,v4},java/net/ResponseCache/get	; get(Ljava/net/URI;Ljava/lang/String;Ljava/util/Map;)Ljava/net/CacheResponse;
+; v0 : Ljava/net/ResponseCache; , v2 : Ljava/net/URI; , v3 : Ljava/lang/String; , v4 : Ljava/util/Map;
+	move-result-object	v0
+; v0 : Ljava/net/CacheResponse;
+	return-object	v0
+; v0 : Ljava/net/CacheResponse;
+.end method
+
+.method public maybeRemove(Ljava/lang/String;Ljava/net/URI;)V
+.throws Ljava/io/IOException;
+.limit registers 3
+; this: v0 (Lcom/squareup/okhttp/internal/http/OkResponseCacheAdapter;)
+; parameter[0] : v1 (Ljava/lang/String;)
+; parameter[1] : v2 (Ljava/net/URI;)
+.line 46
+	return-void	
+.end method
+
+.method public put(Ljava/net/URI;Ljava/net/URLConnection;)Ljava/net/CacheRequest;
+.throws Ljava/io/IOException;
+.limit registers 4
+; this: v1 (Lcom/squareup/okhttp/internal/http/OkResponseCacheAdapter;)
+; parameter[0] : v2 (Ljava/net/URI;)
+; parameter[1] : v3 (Ljava/net/URLConnection;)
+.line 42
+	iget-object	v0,v1,com/squareup/okhttp/internal/http/OkResponseCacheAdapter.responseCache Ljava/net/ResponseCache;
+; v0 : Ljava/net/ResponseCache; , v1 : Lcom/squareup/okhttp/internal/http/OkResponseCacheAdapter;
+	invoke-virtual	{v0,v2,v3},java/net/ResponseCache/put	; put(Ljava/net/URI;Ljava/net/URLConnection;)Ljava/net/CacheRequest;
+; v0 : Ljava/net/ResponseCache; , v2 : Ljava/net/URI; , v3 : Ljava/net/URLConnection;
+	move-result-object	v0
+; v0 : Ljava/net/CacheRequest;
+	return-object	v0
+; v0 : Ljava/net/CacheRequest;
+.end method
+
+.method public trackConditionalCacheHit()V
+.limit registers 1
+; this: v0 (Lcom/squareup/okhttp/internal/http/OkResponseCacheAdapter;)
+.line 53
+	return-void	
+.end method
+
+.method public trackResponse(Lcom/squareup/okhttp/ResponseSource;)V
+.limit registers 2
+; this: v0 (Lcom/squareup/okhttp/internal/http/OkResponseCacheAdapter;)
+; parameter[0] : v1 (Lcom/squareup/okhttp/ResponseSource;)
+.line 56
+	return-void	
+.end method
+
+.method public update(Ljava/net/CacheResponse;Ljava/net/HttpURLConnection;)V
+.throws Ljava/io/IOException;
+.limit registers 3
+; this: v0 (Lcom/squareup/okhttp/internal/http/OkResponseCacheAdapter;)
+; parameter[0] : v1 (Ljava/net/CacheResponse;)
+; parameter[1] : v2 (Ljava/net/HttpURLConnection;)
+.line 50
+	return-void	
+.end method
+
+

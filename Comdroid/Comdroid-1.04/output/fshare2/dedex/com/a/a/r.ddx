@@ -1,0 +1,824 @@
+.class public final com/a/a/r
+.super java/lang/Object
+.source MyApplication
+.implements java/net/URLStreamHandlerFactory
+
+.field private static final a Ljava/util/List;
+.field private final b Lcom/a/a/w;
+.field private final c Lcom/a/a/e;
+.field private d Ljava/net/Proxy;
+.field private e Ljava/util/List;
+.field private f Ljava/net/ProxySelector;
+.field private g Ljava/net/CookieHandler;
+.field private h Ljava/net/ResponseCache;
+.field private i Ljavax/net/ssl/SSLSocketFactory;
+.field private j Ljavax/net/ssl/HostnameVerifier;
+.field private k Lcom/a/a/o;
+.field private l Lcom/a/a/c;
+.field private m Z
+.field private n I
+.field private o I
+
+.method static <clinit>()V
+.limit registers 3
+.line 42
+	const/4	v0,2
+; v0 : single-length
+	new-array	v0,v0,[Ljava/lang/String;
+; v0 : [Ljava/lang/String; , v0 : [Ljava/lang/String;
+	const/4	v1,0
+; v1 : single-length
+	const-string	v2,"spdy/3"
+; v2 : Ljava/lang/String;
+	aput-object	v2,v0,v1
+; v2 : Ljava/lang/String; , v0 : [Ljava/lang/String; , v1 : single-length
+	const/4	v1,1
+; v1 : single-length
+	const-string	v2,"http/1.1"
+; v2 : Ljava/lang/String;
+	aput-object	v2,v0,v1
+; v2 : Ljava/lang/String; , v0 : [Ljava/lang/String; , v1 : single-length
+	invoke-static	{v0},java/util/Arrays/asList	; asList([Ljava/lang/Object;)Ljava/util/List;
+; v0 : [Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/util/List;
+	invoke-static	{v0},com/a/a/a/u/a	; a(Ljava/util/List;)Ljava/util/List;
+; v0 : Ljava/util/List;
+	move-result-object	v0
+; v0 : Ljava/util/List;
+	sput-object	v0,com/a/a/r.a Ljava/util/List;
+; v0 : Ljava/util/List;
+	return-void	
+.end method
+
+.method public <init>()V
+.limit registers 2
+; this: v1 (Lcom/a/a/r;)
+.line 60
+	invoke-direct	{v1},java/lang/Object/<init>	; <init>()V
+; v1 : Lcom/a/a/r;
+.line 56
+	const/4	v0,1
+; v0 : single-length
+	iput-boolean	v0,v1,com/a/a/r.m Z
+; v0 : single-length , v1 : Lcom/a/a/r;
+.line 61
+	new-instance	v0,com/a/a/w
+; v0 : Lcom/a/a/w;
+	invoke-direct	{v0},com/a/a/w/<init>	; <init>()V
+; v0 : Lcom/a/a/w;
+	iput-object	v0,v1,com/a/a/r.b Lcom/a/a/w;
+; v0 : Lcom/a/a/w; , v1 : Lcom/a/a/r;
+.line 62
+	new-instance	v0,com/a/a/e
+; v0 : Lcom/a/a/e;
+	invoke-direct	{v0},com/a/a/e/<init>	; <init>()V
+; v0 : Lcom/a/a/e;
+	iput-object	v0,v1,com/a/a/r.c Lcom/a/a/e;
+; v0 : Lcom/a/a/e; , v1 : Lcom/a/a/r;
+.line 63
+	return-void	
+.end method
+
+.method private <init>(Lcom/a/a/r;)V
+.limit registers 3
+; this: v1 (Lcom/a/a/r;)
+; parameter[0] : v2 (Lcom/a/a/r;)
+.line 65
+	invoke-direct	{v1},java/lang/Object/<init>	; <init>()V
+; v1 : Lcom/a/a/r;
+.line 56
+	const/4	v0,1
+; v0 : single-length
+	iput-boolean	v0,v1,com/a/a/r.m Z
+; v0 : single-length , v1 : Lcom/a/a/r;
+.line 66
+	iget-object	v0,v2,com/a/a/r.b Lcom/a/a/w;
+; v0 : Lcom/a/a/w; , v2 : Lcom/a/a/r;
+	iput-object	v0,v1,com/a/a/r.b Lcom/a/a/w;
+; v0 : Lcom/a/a/w; , v1 : Lcom/a/a/r;
+.line 67
+	iget-object	v0,v2,com/a/a/r.c Lcom/a/a/e;
+; v0 : Lcom/a/a/e; , v2 : Lcom/a/a/r;
+	iput-object	v0,v1,com/a/a/r.c Lcom/a/a/e;
+; v0 : Lcom/a/a/e; , v1 : Lcom/a/a/r;
+.line 68
+	return-void	
+.end method
+
+.method private n()Lcom/a/a/r;
+.limit registers 3
+; this: v2 (Lcom/a/a/r;)
+.line 357
+	new-instance	v1,com/a/a/r
+; v1 : Lcom/a/a/r;
+	invoke-direct	{v1,v2},com/a/a/r/<init>	; <init>(Lcom/a/a/r;)V
+; v1 : Lcom/a/a/r; , v2 : Lcom/a/a/r;
+.line 358
+	iget-object	v0,v2,com/a/a/r.d Ljava/net/Proxy;
+; v0 : Ljava/net/Proxy; , v2 : Lcom/a/a/r;
+	iput-object	v0,v1,com/a/a/r.d Ljava/net/Proxy;
+; v0 : Ljava/net/Proxy; , v1 : Lcom/a/a/r;
+.line 359
+	iget-object	v0,v2,com/a/a/r.f Ljava/net/ProxySelector;
+; v0 : Ljava/net/ProxySelector; , v2 : Lcom/a/a/r;
+	if-eqz	v0,l772c4
+; v0 : Ljava/net/ProxySelector;
+	iget-object	v0,v2,com/a/a/r.f Ljava/net/ProxySelector;
+; v0 : Ljava/net/ProxySelector; , v2 : Lcom/a/a/r;
+l77236:
+	iput-object	v0,v1,com/a/a/r.f Ljava/net/ProxySelector;
+; v0 : Ljava/net/ProxySelector; , v1 : Lcom/a/a/r;
+.line 360
+	iget-object	v0,v2,com/a/a/r.g Ljava/net/CookieHandler;
+; v0 : Ljava/net/CookieHandler; , v2 : Lcom/a/a/r;
+	if-eqz	v0,l772ce
+; v0 : Ljava/net/CookieHandler;
+	iget-object	v0,v2,com/a/a/r.g Ljava/net/CookieHandler;
+; v0 : Ljava/net/CookieHandler; , v2 : Lcom/a/a/r;
+l77246:
+	iput-object	v0,v1,com/a/a/r.g Ljava/net/CookieHandler;
+; v0 : Ljava/net/CookieHandler; , v1 : Lcom/a/a/r;
+.line 361
+	iget-object	v0,v2,com/a/a/r.h Ljava/net/ResponseCache;
+; v0 : Ljava/net/ResponseCache; , v2 : Lcom/a/a/r;
+	if-eqz	v0,l772d8
+; v0 : Ljava/net/ResponseCache;
+	iget-object	v0,v2,com/a/a/r.h Ljava/net/ResponseCache;
+; v0 : Ljava/net/ResponseCache; , v2 : Lcom/a/a/r;
+l77256:
+	iput-object	v0,v1,com/a/a/r.h Ljava/net/ResponseCache;
+; v0 : Ljava/net/ResponseCache; , v1 : Lcom/a/a/r;
+.line 362
+	iget-object	v0,v2,com/a/a/r.i Ljavax/net/ssl/SSLSocketFactory;
+; v0 : Ljavax/net/ssl/SSLSocketFactory; , v2 : Lcom/a/a/r;
+	if-eqz	v0,l772e2
+; v0 : Ljavax/net/ssl/SSLSocketFactory;
+	iget-object	v0,v2,com/a/a/r.i Ljavax/net/ssl/SSLSocketFactory;
+; v0 : Ljavax/net/ssl/SSLSocketFactory; , v2 : Lcom/a/a/r;
+l77266:
+	iput-object	v0,v1,com/a/a/r.i Ljavax/net/ssl/SSLSocketFactory;
+; v0 : Ljavax/net/ssl/SSLSocketFactory; , v1 : Lcom/a/a/r;
+.line 365
+	iget-object	v0,v2,com/a/a/r.j Ljavax/net/ssl/HostnameVerifier;
+; v0 : Ljavax/net/ssl/HostnameVerifier; , v2 : Lcom/a/a/r;
+	if-eqz	v0,l772ec
+; v0 : Ljavax/net/ssl/HostnameVerifier;
+	iget-object	v0,v2,com/a/a/r.j Ljavax/net/ssl/HostnameVerifier;
+; v0 : Ljavax/net/ssl/HostnameVerifier; , v2 : Lcom/a/a/r;
+l77276:
+	iput-object	v0,v1,com/a/a/r.j Ljavax/net/ssl/HostnameVerifier;
+; v0 : Ljava/lang/Object; , v1 : Lcom/a/a/r;
+.line 368
+	iget-object	v0,v2,com/a/a/r.k Lcom/a/a/o;
+; v0 : Lcom/a/a/o; , v2 : Lcom/a/a/r;
+	if-eqz	v0,l772f2
+; v0 : Lcom/a/a/o;
+	iget-object	v0,v2,com/a/a/r.k Lcom/a/a/o;
+; v0 : Lcom/a/a/o; , v2 : Lcom/a/a/r;
+l77286:
+	iput-object	v0,v1,com/a/a/r.k Lcom/a/a/o;
+; v0 : Lcom/a/a/o; , v1 : Lcom/a/a/r;
+.line 371
+	iget-object	v0,v2,com/a/a/r.l Lcom/a/a/c;
+; v0 : Lcom/a/a/c; , v2 : Lcom/a/a/r;
+	if-eqz	v0,l772f8
+; v0 : Lcom/a/a/c;
+	iget-object	v0,v2,com/a/a/r.l Lcom/a/a/c;
+; v0 : Lcom/a/a/c; , v2 : Lcom/a/a/r;
+l77296:
+	iput-object	v0,v1,com/a/a/r.l Lcom/a/a/c;
+; v0 : Lcom/a/a/c; , v1 : Lcom/a/a/r;
+.line 372
+	iget-boolean	v0,v2,com/a/a/r.m Z
+; v0 : single-length , v2 : Lcom/a/a/r;
+	iput-boolean	v0,v1,com/a/a/r.m Z
+; v0 : single-length , v1 : Lcom/a/a/r;
+.line 373
+	iget-object	v0,v2,com/a/a/r.e Ljava/util/List;
+; v0 : Ljava/util/List; , v2 : Lcom/a/a/r;
+	if-eqz	v0,l77302
+; v0 : Ljava/util/List;
+	iget-object	v0,v2,com/a/a/r.e Ljava/util/List;
+; v0 : Ljava/util/List; , v2 : Lcom/a/a/r;
+l772ae:
+	iput-object	v0,v1,com/a/a/r.e Ljava/util/List;
+; v0 : Ljava/util/List; , v1 : Lcom/a/a/r;
+.line 374
+	iget	v0,v2,com/a/a/r.n I
+; v0 : single-length , v2 : Lcom/a/a/r;
+	iput	v0,v1,com/a/a/r.n I
+; v0 : single-length , v1 : Lcom/a/a/r;
+.line 375
+	iget	v0,v2,com/a/a/r.o I
+; v0 : single-length , v2 : Lcom/a/a/r;
+	iput	v0,v1,com/a/a/r.o I
+; v0 : single-length , v1 : Lcom/a/a/r;
+.line 376
+	return-object	v1
+; v1 : Lcom/a/a/r;
+l772c4:
+.line 359
+	invoke-static	{},java/net/ProxySelector/getDefault	; getDefault()Ljava/net/ProxySelector;
+; 
+	nop	
+	move-result-object	v0
+; v0 : Ljava/net/ProxySelector;
+	goto	l77236
+l772ce:
+.line 360
+	invoke-static	{},java/net/CookieHandler/getDefault	; getDefault()Ljava/net/CookieHandler;
+; 
+	nop	
+	move-result-object	v0
+; v0 : Ljava/net/CookieHandler;
+	goto	l77246
+l772d8:
+.line 361
+	invoke-static	{},java/net/ResponseCache/getDefault	; getDefault()Ljava/net/ResponseCache;
+; 
+	nop	
+	move-result-object	v0
+; v0 : Ljava/net/ResponseCache;
+	goto	l77256
+l772e2:
+.line 362
+	invoke-static	{},javax/net/ssl/HttpsURLConnection/getDefaultSSLSocketFactory	; getDefaultSSLSocketFactory()Ljavax/net/ssl/SSLSocketFactory;
+; 
+	nop	
+	move-result-object	v0
+; v0 : Ljavax/net/ssl/SSLSocketFactory;
+	goto	l77266
+l772ec:
+.line 365
+	sget-object	v0,com/a/a/a/c/b.a Lcom/a/a/a/c/b;
+; v0 : Lcom/a/a/a/c/b;
+	goto	l77276
+l772f2:
+.line 368
+	sget-object	v0,com/a/a/a/a/d.a Lcom/a/a/o;
+; v0 : Lcom/a/a/o;
+	goto	l77286
+l772f8:
+.line 371
+	invoke-static	{},com/a/a/c/a	; a()Lcom/a/a/c;
+; 
+	nop	
+	move-result-object	v0
+; v0 : Lcom/a/a/c;
+	goto	l77296
+l77302:
+.line 373
+	sget-object	v0,com/a/a/r.a Ljava/util/List;
+; v0 : Ljava/util/List;
+	goto	l772ae
+.end method
+
+.method public a()I
+.limit registers 2
+; this: v1 (Lcom/a/a/r;)
+.line 91
+	iget	v0,v1,com/a/a/r.n I
+; v0 : single-length , v1 : Lcom/a/a/r;
+	return	v0
+; v0 : single-length
+.end method
+
+.method public a(Ljava/net/ResponseCache;)Lcom/a/a/r;
+.limit registers 2
+; this: v0 (Lcom/a/a/r;)
+; parameter[0] : v1 (Ljava/net/ResponseCache;)
+.line 174
+	iput-object	v1,v0,com/a/a/r.h Ljava/net/ResponseCache;
+; v1 : Ljava/net/ResponseCache; , v0 : Lcom/a/a/r;
+.line 175
+	return-object	v0
+; v0 : Lcom/a/a/r;
+.end method
+
+.method public a(Ljava/util/List;)Lcom/a/a/r;
+.limit registers 6
+; this: v4 (Lcom/a/a/r;)
+; parameter[0] : v5 (Ljava/util/List;)
+.line 302
+	invoke-static	{v5},com/a/a/a/u/a	; a(Ljava/util/List;)Ljava/util/List;
+; v5 : Ljava/util/List;
+	move-result-object	v0
+; v0 : Ljava/util/List;
+.line 303
+	const-string	v1,"http/1.1"
+; v1 : Ljava/lang/String;
+	invoke-interface	{v0,v1},java/util/List/contains	; contains(Ljava/lang/Object;)Z
+; v0 : Ljava/util/List; , v1 : Ljava/lang/String;
+	move-result	v1
+; v1 : single-length
+	if-nez	v1,l77392
+; v1 : single-length
+.line 304
+	new-instance	v1,java/lang/IllegalArgumentException
+; v1 : Ljava/lang/IllegalArgumentException;
+	new-instance	v2,java/lang/StringBuilder
+; v2 : Ljava/lang/StringBuilder;
+	invoke-direct	{v2},java/lang/StringBuilder/<init>	; <init>()V
+; v2 : Ljava/lang/StringBuilder;
+	const-string	v3,"transports doesn't contain http/1.1: "
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v2,v0},java/lang/StringBuilder/append	; append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v0 : Ljava/util/List;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v0},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v0 : Ljava/lang/StringBuilder;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	invoke-direct	{v1,v0},java/lang/IllegalArgumentException/<init>	; <init>(Ljava/lang/String;)V
+; v1 : Ljava/lang/IllegalArgumentException; , v0 : Ljava/lang/String;
+	throw	v1
+; v1 : Ljava/lang/IllegalArgumentException;
+l77392:
+.line 306
+	const/4	v1,0
+; v1 : single-length
+	invoke-interface	{v0,v1},java/util/List/contains	; contains(Ljava/lang/Object;)Z
+; v0 : Ljava/util/List; , v1 : single-length
+	move-result	v1
+; v1 : single-length
+	if-eqz	v1,l773b0
+; v1 : single-length
+.line 307
+	new-instance	v0,java/lang/IllegalArgumentException
+; v0 : Ljava/lang/IllegalArgumentException;
+	const-string	v1,"transports must not contain null"
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/IllegalArgumentException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/IllegalArgumentException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/IllegalArgumentException;
+l773b0:
+.line 309
+	const-string	v1,""
+; v1 : Ljava/lang/String;
+	invoke-interface	{v0,v1},java/util/List/contains	; contains(Ljava/lang/Object;)Z
+; v0 : Ljava/util/List; , v1 : Ljava/lang/String;
+	move-result	v1
+; v1 : single-length
+	if-eqz	v1,l773d0
+; v1 : single-length
+.line 310
+	new-instance	v0,java/lang/IllegalArgumentException
+; v0 : Ljava/lang/IllegalArgumentException;
+	const-string	v1,"transports contains an empty string"
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/IllegalArgumentException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/IllegalArgumentException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/IllegalArgumentException;
+l773d0:
+.line 312
+	iput-object	v0,v4,com/a/a/r.e Ljava/util/List;
+; v0 : Ljava/util/List; , v4 : Lcom/a/a/r;
+.line 313
+	return-object	v4
+; v4 : Lcom/a/a/r;
+.end method
+
+.method public a(Ljavax/net/ssl/HostnameVerifier;)Lcom/a/a/r;
+.limit registers 2
+; this: v0 (Lcom/a/a/r;)
+; parameter[0] : v1 (Ljavax/net/ssl/HostnameVerifier;)
+.line 215
+	iput-object	v1,v0,com/a/a/r.j Ljavax/net/ssl/HostnameVerifier;
+; v1 : Ljavax/net/ssl/HostnameVerifier; , v0 : Lcom/a/a/r;
+.line 216
+	return-object	v0
+; v0 : Lcom/a/a/r;
+.end method
+
+.method public a(Ljavax/net/ssl/SSLSocketFactory;)Lcom/a/a/r;
+.limit registers 2
+; this: v0 (Lcom/a/a/r;)
+; parameter[0] : v1 (Ljavax/net/ssl/SSLSocketFactory;)
+.line 199
+	iput-object	v1,v0,com/a/a/r.i Ljavax/net/ssl/SSLSocketFactory;
+; v1 : Ljavax/net/ssl/SSLSocketFactory; , v0 : Lcom/a/a/r;
+.line 200
+	return-object	v0
+; v0 : Lcom/a/a/r;
+.end method
+
+.method public a(Ljava/net/URL;)Ljava/net/HttpURLConnection;
+.limit registers 3
+; this: v1 (Lcom/a/a/r;)
+; parameter[0] : v2 (Ljava/net/URL;)
+.line 339
+	iget-object	v0,v1,com/a/a/r.d Ljava/net/Proxy;
+; v0 : Ljava/net/Proxy; , v1 : Lcom/a/a/r;
+	invoke-virtual	{v1,v2,v0},com/a/a/r/a	; a(Ljava/net/URL;Ljava/net/Proxy;)Ljava/net/HttpURLConnection;
+; v1 : Lcom/a/a/r; , v2 : Ljava/net/URL; , v0 : Ljava/net/Proxy;
+	move-result-object	v0
+; v0 : Ljava/net/HttpURLConnection;
+	return-object	v0
+; v0 : Ljava/net/HttpURLConnection;
+.end method
+
+.method a(Ljava/net/URL;Ljava/net/Proxy;)Ljava/net/HttpURLConnection;
+.limit registers 7
+; this: v4 (Lcom/a/a/r;)
+; parameter[0] : v5 (Ljava/net/URL;)
+; parameter[1] : v6 (Ljava/net/Proxy;)
+.line 343
+	invoke-virtual	{v5},java/net/URL/getProtocol	; getProtocol()Ljava/lang/String;
+; v5 : Ljava/net/URL;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+.line 344
+	invoke-direct	{v4},com/a/a/r/n	; n()Lcom/a/a/r;
+; v4 : Lcom/a/a/r;
+	move-result-object	v1
+; v1 : Lcom/a/a/r;
+.line 345
+	iput-object	v6,v1,com/a/a/r.d Ljava/net/Proxy;
+; v6 : Ljava/net/Proxy; , v1 : Lcom/a/a/r;
+.line 347
+	const-string	v2,"http"
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v0,v2},java/lang/String/equals	; equals(Ljava/lang/Object;)Z
+; v0 : Ljava/lang/String; , v2 : Ljava/lang/String;
+	move-result	v2
+; v2 : single-length
+	if-eqz	v2,l77468
+; v2 : single-length
+	new-instance	v0,com/a/a/a/a/p
+; v0 : Lcom/a/a/a/a/p;
+	invoke-direct	{v0,v5,v1},com/a/a/a/a/p/<init>	; <init>(Ljava/net/URL;Lcom/a/a/r;)V
+; v0 : Lcom/a/a/a/a/p; , v5 : Ljava/net/URL; , v1 : Lcom/a/a/r;
+l77466:
+.line 348
+	return-object	v0
+; v0 : Lcom/a/a/a/a/s;
+l77468:
+	const-string	v2,"https"
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v0,v2},java/lang/String/equals	; equals(Ljava/lang/Object;)Z
+; v0 : Ljava/lang/String; , v2 : Ljava/lang/String;
+	move-result	v2
+; v2 : single-length
+	if-eqz	v2,l77484
+; v2 : single-length
+	new-instance	v0,com/a/a/a/a/s
+; v0 : Lcom/a/a/a/a/s;
+	invoke-direct	{v0,v5,v1},com/a/a/a/a/s/<init>	; <init>(Ljava/net/URL;Lcom/a/a/r;)V
+; v0 : Lcom/a/a/a/a/s; , v5 : Ljava/net/URL; , v1 : Lcom/a/a/r;
+	goto	l77466
+l77484:
+.line 349
+	new-instance	v1,java/lang/IllegalArgumentException
+; v1 : Ljava/lang/IllegalArgumentException;
+	new-instance	v2,java/lang/StringBuilder
+; v2 : Ljava/lang/StringBuilder;
+	invoke-direct	{v2},java/lang/StringBuilder/<init>	; <init>()V
+; v2 : Ljava/lang/StringBuilder;
+	const-string	v3,"Unexpected protocol: "
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v2,v0},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v0 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v0},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v0 : Ljava/lang/StringBuilder;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	invoke-direct	{v1,v0},java/lang/IllegalArgumentException/<init>	; <init>(Ljava/lang/String;)V
+; v1 : Ljava/lang/IllegalArgumentException; , v0 : Ljava/lang/String;
+	throw	v1
+; v1 : Ljava/lang/IllegalArgumentException;
+.end method
+
+.method public a(JLjava/util/concurrent/TimeUnit;)V
+.limit registers 8
+; this: v4 (Lcom/a/a/r;)
+; parameter[0] : v5 (J)
+; parameter[1] : v7 (Ljava/util/concurrent/TimeUnit;)
+.line 76
+	const-wide/16	v0,0
+; v0 : double-length
+	cmp-long	v0,v5,v0
+; v0 : single-length , v5 : double-length , v0 : single-length
+	if-gez	v0,l774e4
+; v0 : single-length
+.line 77
+	new-instance	v0,java/lang/IllegalArgumentException
+; v0 : Ljava/lang/IllegalArgumentException;
+	const-string	v1,"timeout < 0"
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/IllegalArgumentException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/IllegalArgumentException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/IllegalArgumentException;
+l774e4:
+.line 79
+	if-nez	v7,l774f8
+; v7 : Ljava/util/concurrent/TimeUnit;
+.line 80
+	new-instance	v0,java/lang/IllegalArgumentException
+; v0 : Ljava/lang/IllegalArgumentException;
+	const-string	v1,"unit == null"
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/IllegalArgumentException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/IllegalArgumentException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/IllegalArgumentException;
+l774f8:
+.line 82
+	invoke-virtual	{v7,v5,v6},java/util/concurrent/TimeUnit/toMillis	; toMillis(J)J
+; v7 : Ljava/util/concurrent/TimeUnit; , v5 : double-length
+	move-result-wide	v0
+; v0 : double-length
+.line 83
+	const-wide/32	v2,2147483647	; 0x7fffffff
+; v2 : double-length
+	cmp-long	v2,v0,v2
+; v2 : single-length , v0 : double-length , v2 : single-length
+	if-lez	v2,l7751e
+; v2 : single-length
+.line 84
+	new-instance	v0,java/lang/IllegalArgumentException
+; v0 : Ljava/lang/IllegalArgumentException;
+	const-string	v1,"Timeout too large."
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/IllegalArgumentException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/IllegalArgumentException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/IllegalArgumentException;
+l7751e:
+.line 86
+	long-to-int	v0,v0
+; v0 : single-length , v0 : single-length
+	iput	v0,v4,com/a/a/r.n I
+; v0 : single-length , v4 : Lcom/a/a/r;
+.line 87
+	return-void	
+.end method
+
+.method public b()I
+.limit registers 2
+; this: v1 (Lcom/a/a/r;)
+.line 115
+	iget	v0,v1,com/a/a/r.o I
+; v0 : single-length , v1 : Lcom/a/a/r;
+	return	v0
+; v0 : single-length
+.end method
+
+.method public b(JLjava/util/concurrent/TimeUnit;)V
+.limit registers 8
+; this: v4 (Lcom/a/a/r;)
+; parameter[0] : v5 (J)
+; parameter[1] : v7 (Ljava/util/concurrent/TimeUnit;)
+.line 100
+	const-wide/16	v0,0
+; v0 : double-length
+	cmp-long	v0,v5,v0
+; v0 : single-length , v5 : double-length , v0 : single-length
+	if-gez	v0,l7756c
+; v0 : single-length
+.line 101
+	new-instance	v0,java/lang/IllegalArgumentException
+; v0 : Ljava/lang/IllegalArgumentException;
+	const-string	v1,"timeout < 0"
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/IllegalArgumentException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/IllegalArgumentException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/IllegalArgumentException;
+l7756c:
+.line 103
+	if-nez	v7,l77580
+; v7 : Ljava/util/concurrent/TimeUnit;
+.line 104
+	new-instance	v0,java/lang/IllegalArgumentException
+; v0 : Ljava/lang/IllegalArgumentException;
+	const-string	v1,"unit == null"
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/IllegalArgumentException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/IllegalArgumentException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/IllegalArgumentException;
+l77580:
+.line 106
+	invoke-virtual	{v7,v5,v6},java/util/concurrent/TimeUnit/toMillis	; toMillis(J)J
+; v7 : Ljava/util/concurrent/TimeUnit; , v5 : double-length
+	move-result-wide	v0
+; v0 : double-length
+.line 107
+	const-wide/32	v2,2147483647	; 0x7fffffff
+; v2 : double-length
+	cmp-long	v2,v0,v2
+; v2 : single-length , v0 : double-length , v2 : single-length
+	if-lez	v2,l775a6
+; v2 : single-length
+.line 108
+	new-instance	v0,java/lang/IllegalArgumentException
+; v0 : Ljava/lang/IllegalArgumentException;
+	const-string	v1,"Timeout too large."
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/IllegalArgumentException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/IllegalArgumentException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/IllegalArgumentException;
+l775a6:
+.line 110
+	long-to-int	v0,v0
+; v0 : single-length , v0 : single-length
+	iput	v0,v4,com/a/a/r.o I
+; v0 : single-length , v4 : Lcom/a/a/r;
+.line 111
+	return-void	
+.end method
+
+.method public c()Ljava/net/Proxy;
+.limit registers 2
+; this: v1 (Lcom/a/a/r;)
+.line 130
+	iget-object	v0,v1,com/a/a/r.d Ljava/net/Proxy;
+; v0 : Ljava/net/Proxy; , v1 : Lcom/a/a/r;
+	return-object	v0
+; v0 : Ljava/net/Proxy;
+.end method
+
+.method public createURLStreamHandler(Ljava/lang/String;)Ljava/net/URLStreamHandler;
+.limit registers 3
+; this: v1 (Lcom/a/a/r;)
+; parameter[0] : v2 (Ljava/lang/String;)
+.line 390
+	const-string	v0,"http"
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v2,v0},java/lang/String/equals	; equals(Ljava/lang/Object;)Z
+; v2 : Ljava/lang/String; , v0 : Ljava/lang/String;
+	move-result	v0
+; v0 : single-length
+	if-nez	v0,l775fc
+; v0 : single-length
+	const-string	v0,"https"
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v2,v0},java/lang/String/equals	; equals(Ljava/lang/Object;)Z
+; v2 : Ljava/lang/String; , v0 : Ljava/lang/String;
+	move-result	v0
+; v0 : single-length
+	if-nez	v0,l775fc
+; v0 : single-length
+	const/4	v0,0
+; v0 : single-length
+l775fa:
+.line 392
+	return-object	v0
+; v0 : Lcom/a/a/s;
+l775fc:
+	new-instance	v0,com/a/a/s
+; v0 : Lcom/a/a/s;
+	invoke-direct	{v0,v1,v2},com/a/a/s/<init>	; <init>(Lcom/a/a/r;Ljava/lang/String;)V
+; v0 : Lcom/a/a/s; , v1 : Lcom/a/a/r; , v2 : Ljava/lang/String;
+	goto	l775fa
+.end method
+
+.method public d()Ljava/net/ProxySelector;
+.limit registers 2
+; this: v1 (Lcom/a/a/r;)
+.line 148
+	iget-object	v0,v1,com/a/a/r.f Ljava/net/ProxySelector;
+; v0 : Ljava/net/ProxySelector; , v1 : Lcom/a/a/r;
+	return-object	v0
+; v0 : Ljava/net/ProxySelector;
+.end method
+
+.method public e()Ljava/net/CookieHandler;
+.limit registers 2
+; this: v1 (Lcom/a/a/r;)
+.line 164
+	iget-object	v0,v1,com/a/a/r.g Ljava/net/CookieHandler;
+; v0 : Ljava/net/CookieHandler; , v1 : Lcom/a/a/r;
+	return-object	v0
+; v0 : Ljava/net/CookieHandler;
+.end method
+
+.method public f()Lcom/a/a/t;
+.limit registers 3
+; this: v2 (Lcom/a/a/r;)
+.line 183
+	iget-object	v0,v2,com/a/a/r.h Ljava/net/ResponseCache;
+; v0 : Ljava/net/ResponseCache; , v2 : Lcom/a/a/r;
+	instance-of	v0,v0,com/a/a/f
+; v0 : single-length , v0 : single-length
+	if-eqz	v0,l77662
+; v0 : single-length
+.line 184
+	iget-object	v0,v2,com/a/a/r.h Ljava/net/ResponseCache;
+; v0 : Ljava/net/ResponseCache; , v2 : Lcom/a/a/r;
+	check-cast	v0,com/a/a/f
+; v0 : Lcom/a/a/f;
+	iget-object	v0,v0,com/a/a/f.a Lcom/a/a/t;
+; v0 : Lcom/a/a/t; , v0 : Lcom/a/a/t;
+l77660:
+.line 188
+	return-object	v0
+; v0 : Lcom/a/a/a/a/v;
+l77662:
+.line 185
+	iget-object	v0,v2,com/a/a/r.h Ljava/net/ResponseCache;
+; v0 : Ljava/net/ResponseCache; , v2 : Lcom/a/a/r;
+	if-eqz	v0,l7767a
+; v0 : Ljava/net/ResponseCache;
+.line 186
+	new-instance	v0,com/a/a/a/a/v
+; v0 : Lcom/a/a/a/a/v;
+	iget-object	v1,v2,com/a/a/r.h Ljava/net/ResponseCache;
+; v1 : Ljava/net/ResponseCache; , v2 : Lcom/a/a/r;
+	invoke-direct	{v0,v1},com/a/a/a/a/v/<init>	; <init>(Ljava/net/ResponseCache;)V
+; v0 : Lcom/a/a/a/a/v; , v1 : Ljava/net/ResponseCache;
+	goto	l77660
+l7767a:
+.line 188
+	const/4	v0,0
+; v0 : single-length
+	goto	l77660
+.end method
+
+.method public g()Ljavax/net/ssl/SSLSocketFactory;
+.limit registers 2
+; this: v1 (Lcom/a/a/r;)
+.line 204
+	iget-object	v0,v1,com/a/a/r.i Ljavax/net/ssl/SSLSocketFactory;
+; v0 : Ljavax/net/ssl/SSLSocketFactory; , v1 : Lcom/a/a/r;
+	return-object	v0
+; v0 : Ljavax/net/ssl/SSLSocketFactory;
+.end method
+
+.method public h()Ljavax/net/ssl/HostnameVerifier;
+.limit registers 2
+; this: v1 (Lcom/a/a/r;)
+.line 220
+	iget-object	v0,v1,com/a/a/r.j Ljavax/net/ssl/HostnameVerifier;
+; v0 : Ljavax/net/ssl/HostnameVerifier; , v1 : Lcom/a/a/r;
+	return-object	v0
+; v0 : Ljavax/net/ssl/HostnameVerifier;
+.end method
+
+.method public i()Lcom/a/a/o;
+.limit registers 2
+; this: v1 (Lcom/a/a/r;)
+.line 236
+	iget-object	v0,v1,com/a/a/r.k Lcom/a/a/o;
+; v0 : Lcom/a/a/o; , v1 : Lcom/a/a/r;
+	return-object	v0
+; v0 : Lcom/a/a/o;
+.end method
+
+.method public j()Lcom/a/a/c;
+.limit registers 2
+; this: v1 (Lcom/a/a/r;)
+.line 251
+	iget-object	v0,v1,com/a/a/r.l Lcom/a/a/c;
+; v0 : Lcom/a/a/c; , v1 : Lcom/a/a/r;
+	return-object	v0
+; v0 : Lcom/a/a/c;
+.end method
+
+.method public k()Z
+.limit registers 2
+; this: v1 (Lcom/a/a/r;)
+.line 267
+	iget-boolean	v0,v1,com/a/a/r.m Z
+; v0 : single-length , v1 : Lcom/a/a/r;
+	return	v0
+; v0 : single-length
+.end method
+
+.method public l()Lcom/a/a/w;
+.limit registers 2
+; this: v1 (Lcom/a/a/r;)
+.line 271
+	iget-object	v0,v1,com/a/a/r.b Lcom/a/a/w;
+; v0 : Lcom/a/a/w; , v1 : Lcom/a/a/r;
+	return-object	v0
+; v0 : Lcom/a/a/w;
+.end method
+
+.method public m()Ljava/util/List;
+.limit registers 2
+; this: v1 (Lcom/a/a/r;)
+.line 317
+	iget-object	v0,v1,com/a/a/r.e Ljava/util/List;
+; v0 : Ljava/util/List; , v1 : Lcom/a/a/r;
+	return-object	v0
+; v0 : Ljava/util/List;
+.end method
+
+

@@ -1,0 +1,855 @@
+.class public final com/google/analytics/containertag/proto/Debug$EventInfo
+.super com/google/tagmanager/protobuf/nano/ExtendableMessageNano
+.source Debug.java
+
+.inner class EventInfo inner com/google/analytics/containertag/proto/Debug$EventInfo outer com/google/analytics/containertag/proto/Debug
+.inner class EventType inner com/google/analytics/containertag/proto/Debug$EventInfo$EventType outer com/google/analytics/containertag/proto/Debug$EventInfo
+.field public static final EMPTY_ARRAY [Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+.field public containerId Ljava/lang/String;
+.field public containerVersion Ljava/lang/String;
+.field public dataLayerEventResult Lcom/google/analytics/containertag/proto/Debug$DataLayerEventEvaluationInfo;
+.field public eventType I
+.field public key Ljava/lang/String;
+.field public macroResult Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+
+.method static <clinit>()V
+.limit registers 1
+.line 126
+	const/4	v0,0
+; v0 : single-length
+	new-array	v0,v0,[Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+; v0 : [Lcom/google/analytics/containertag/proto/Debug$EventInfo; , v0 : [Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	sput-object	v0,com/google/analytics/containertag/proto/Debug$EventInfo.EMPTY_ARRAY [Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+; v0 : [Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	return-void	
+.end method
+
+.method public <init>()V
+.limit registers 3
+; this: v2 (Lcom/google/analytics/containertag/proto/Debug$EventInfo;)
+	const/4	v1,0
+; v1 : single-length
+.line 127
+	invoke-direct	{v2},com/google/tagmanager/protobuf/nano/ExtendableMessageNano/<init>	; <init>()V
+; v2 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+.line 135
+	const/4	v0,1
+; v0 : single-length
+	iput	v0,v2,com/google/analytics/containertag/proto/Debug$EventInfo.eventType I
+; v0 : single-length , v2 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+.line 138
+	const-string	v0,""
+; v0 : Ljava/lang/String;
+	iput-object	v0,v2,com/google/analytics/containertag/proto/Debug$EventInfo.containerVersion Ljava/lang/String;
+; v0 : Ljava/lang/String; , v2 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+.line 141
+	const-string	v0,""
+; v0 : Ljava/lang/String;
+	iput-object	v0,v2,com/google/analytics/containertag/proto/Debug$EventInfo.containerId Ljava/lang/String;
+; v0 : Ljava/lang/String; , v2 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+.line 144
+	const-string	v0,""
+; v0 : Ljava/lang/String;
+	iput-object	v0,v2,com/google/analytics/containertag/proto/Debug$EventInfo.key Ljava/lang/String;
+; v0 : Ljava/lang/String; , v2 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+.line 147
+	iput-object	v1,v2,com/google/analytics/containertag/proto/Debug$EventInfo.macroResult Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+; v1 : single-length , v2 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+.line 150
+	iput-object	v1,v2,com/google/analytics/containertag/proto/Debug$EventInfo.dataLayerEventResult Lcom/google/analytics/containertag/proto/Debug$DataLayerEventEvaluationInfo;
+; v1 : single-length , v2 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+.line 127
+	return-void	
+.end method
+
+.method public static parseFrom(Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+.throws Lcom/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException;
+.limit registers 2
+; parameter[0] : v1 (Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)
+.line 310
+	new-instance	v0,com/google/analytics/containertag/proto/Debug$EventInfo
+; v0 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	invoke-direct	{v0},com/google/analytics/containertag/proto/Debug$EventInfo/<init>	; <init>()V
+; v0 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	invoke-virtual	{v0,v1},com/google/analytics/containertag/proto/Debug$EventInfo/mergeFrom	; mergeFrom(Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+; v0 : Lcom/google/analytics/containertag/proto/Debug$EventInfo; , v1 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result-object	v0
+; v0 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	return-object	v0
+; v0 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+.end method
+
+.method public static parseFrom([B)Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+.throws Lcom/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException;
+.limit registers 2
+; parameter[0] : v1 ([B)
+.line 304
+	new-instance	v0,com/google/analytics/containertag/proto/Debug$EventInfo
+; v0 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	invoke-direct	{v0},com/google/analytics/containertag/proto/Debug$EventInfo/<init>	; <init>()V
+; v0 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	invoke-static	{v0,v1},com/google/tagmanager/protobuf/nano/MessageNano/mergeFrom	; mergeFrom(Lcom/google/tagmanager/protobuf/nano/MessageNano;[B)Lcom/google/tagmanager/protobuf/nano/MessageNano;
+; v0 : Lcom/google/analytics/containertag/proto/Debug$EventInfo; , v1 : [B
+	move-result-object	v0
+; v0 : Lcom/google/tagmanager/protobuf/nano/MessageNano;
+	check-cast	v0,com/google/analytics/containertag/proto/Debug$EventInfo
+; v0 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	return-object	v0
+; v0 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+.end method
+
+.method public final clear()Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+.limit registers 3
+; this: v2 (Lcom/google/analytics/containertag/proto/Debug$EventInfo;)
+	const/4	v1,0
+; v1 : single-length
+.line 153
+	const/4	v0,1
+; v0 : single-length
+	iput	v0,v2,com/google/analytics/containertag/proto/Debug$EventInfo.eventType I
+; v0 : single-length , v2 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+.line 154
+	const-string	v0,""
+; v0 : Ljava/lang/String;
+	iput-object	v0,v2,com/google/analytics/containertag/proto/Debug$EventInfo.containerVersion Ljava/lang/String;
+; v0 : Ljava/lang/String; , v2 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+.line 155
+	const-string	v0,""
+; v0 : Ljava/lang/String;
+	iput-object	v0,v2,com/google/analytics/containertag/proto/Debug$EventInfo.containerId Ljava/lang/String;
+; v0 : Ljava/lang/String; , v2 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+.line 156
+	const-string	v0,""
+; v0 : Ljava/lang/String;
+	iput-object	v0,v2,com/google/analytics/containertag/proto/Debug$EventInfo.key Ljava/lang/String;
+; v0 : Ljava/lang/String; , v2 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+.line 157
+	iput-object	v1,v2,com/google/analytics/containertag/proto/Debug$EventInfo.macroResult Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+; v1 : single-length , v2 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+.line 158
+	iput-object	v1,v2,com/google/analytics/containertag/proto/Debug$EventInfo.dataLayerEventResult Lcom/google/analytics/containertag/proto/Debug$DataLayerEventEvaluationInfo;
+; v1 : single-length , v2 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+.line 159
+	iput-object	v1,v2,com/google/analytics/containertag/proto/Debug$EventInfo.unknownFieldData Ljava/util/List;
+; v1 : single-length , v2 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+.line 160
+	const/4	v0,15
+; v0 : single-length
+	iput	v0,v2,com/google/analytics/containertag/proto/Debug$EventInfo.cachedSize I
+; v0 : single-length , v2 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+.line 161
+	return-object	v2
+; v2 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+.end method
+
+.method public final equals(Ljava/lang/Object;)Z
+.limit registers 7
+; this: v5 (Lcom/google/analytics/containertag/proto/Debug$EventInfo;)
+; parameter[0] : v6 (Ljava/lang/Object;)
+	const/4	v1,1
+; v1 : single-length
+	const/4	v2,0
+; v2 : single-length
+.line 166
+	if-ne	v6,v5,lf7fea
+; v6 : Ljava/lang/Object; , v5 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+lf7fe8:
+.line 169
+	return	v1
+; v1 : single-length
+lf7fea:
+.line 167
+	instance-of	v3,v6,com/google/analytics/containertag/proto/Debug$EventInfo
+; v3 : single-length , v6 : Ljava/lang/Object;
+	if-nez	v3,lf7ff6
+; v3 : single-length
+	move	v1,v2
+; v1 : single-length , v2 : single-length
+	goto	lf7fe8
+lf7ff6:
+	move-object	v0,v6
+; v0 : Ljava/lang/Object; , v6 : Ljava/lang/Object;
+.line 168
+	check-cast	v0,com/google/analytics/containertag/proto/Debug$EventInfo
+; v0 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+.line 169
+	iget	v3,v5,com/google/analytics/containertag/proto/Debug$EventInfo.eventType I
+; v3 : single-length , v5 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	iget	v4,v0,com/google/analytics/containertag/proto/Debug$EventInfo.eventType I
+; v4 : single-length , v0 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	if-ne	v3,v4,lf8068
+; v3 : single-length , v4 : single-length
+	iget-object	v3,v5,com/google/analytics/containertag/proto/Debug$EventInfo.containerVersion Ljava/lang/String;
+; v3 : Ljava/lang/String; , v5 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	if-nez	v3,lf806c
+; v3 : Ljava/lang/String;
+	iget-object	v3,v0,com/google/analytics/containertag/proto/Debug$EventInfo.containerVersion Ljava/lang/String;
+; v3 : Ljava/lang/String; , v0 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	if-nez	v3,lf8068
+; v3 : Ljava/lang/String;
+lf8018:
+	iget-object	v3,v5,com/google/analytics/containertag/proto/Debug$EventInfo.containerId Ljava/lang/String;
+; v3 : Ljava/lang/String; , v5 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	if-nez	v3,lf8082
+; v3 : Ljava/lang/String;
+	iget-object	v3,v0,com/google/analytics/containertag/proto/Debug$EventInfo.containerId Ljava/lang/String;
+; v3 : Ljava/lang/String; , v0 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	if-nez	v3,lf8068
+; v3 : Ljava/lang/String;
+lf8028:
+	iget-object	v3,v5,com/google/analytics/containertag/proto/Debug$EventInfo.key Ljava/lang/String;
+; v3 : Ljava/lang/String; , v5 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	if-nez	v3,lf8098
+; v3 : Ljava/lang/String;
+	iget-object	v3,v0,com/google/analytics/containertag/proto/Debug$EventInfo.key Ljava/lang/String;
+; v3 : Ljava/lang/String; , v0 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	if-nez	v3,lf8068
+; v3 : Ljava/lang/String;
+lf8038:
+	iget-object	v3,v5,com/google/analytics/containertag/proto/Debug$EventInfo.macroResult Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+; v3 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo; , v5 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	if-nez	v3,lf80ae
+; v3 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+	iget-object	v3,v0,com/google/analytics/containertag/proto/Debug$EventInfo.macroResult Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+; v3 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo; , v0 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	if-nez	v3,lf8068
+; v3 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+lf8048:
+	iget-object	v3,v5,com/google/analytics/containertag/proto/Debug$EventInfo.dataLayerEventResult Lcom/google/analytics/containertag/proto/Debug$DataLayerEventEvaluationInfo;
+; v3 : Lcom/google/analytics/containertag/proto/Debug$DataLayerEventEvaluationInfo; , v5 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	if-nez	v3,lf80c4
+; v3 : Lcom/google/analytics/containertag/proto/Debug$DataLayerEventEvaluationInfo;
+	iget-object	v3,v0,com/google/analytics/containertag/proto/Debug$EventInfo.dataLayerEventResult Lcom/google/analytics/containertag/proto/Debug$DataLayerEventEvaluationInfo;
+; v3 : Lcom/google/analytics/containertag/proto/Debug$DataLayerEventEvaluationInfo; , v0 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	if-nez	v3,lf8068
+; v3 : Lcom/google/analytics/containertag/proto/Debug$DataLayerEventEvaluationInfo;
+lf8058:
+	iget-object	v3,v5,com/google/analytics/containertag/proto/Debug$EventInfo.unknownFieldData Ljava/util/List;
+; v3 : Ljava/util/List; , v5 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	if-nez	v3,lf80da
+; v3 : Ljava/util/List;
+	iget-object	v3,v0,com/google/analytics/containertag/proto/Debug$EventInfo.unknownFieldData Ljava/util/List;
+; v3 : Ljava/util/List; , v0 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	if-eqz	v3,lf7fe8
+; v3 : Ljava/util/List;
+lf8068:
+	move	v1,v2
+; v1 : single-length , v2 : single-length
+	goto	lf7fe8
+lf806c:
+	iget-object	v3,v5,com/google/analytics/containertag/proto/Debug$EventInfo.containerVersion Ljava/lang/String;
+; v3 : Ljava/lang/String; , v5 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	iget-object	v4,v0,com/google/analytics/containertag/proto/Debug$EventInfo.containerVersion Ljava/lang/String;
+; v4 : Ljava/lang/String; , v0 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	invoke-virtual	{v3,v4},java/lang/String/equals	; equals(Ljava/lang/Object;)Z
+; v3 : Ljava/lang/String; , v4 : Ljava/lang/String;
+	move-result	v3
+; v3 : single-length
+	if-eqz	v3,lf8068
+; v3 : single-length
+	goto	lf8018
+lf8082:
+	iget-object	v3,v5,com/google/analytics/containertag/proto/Debug$EventInfo.containerId Ljava/lang/String;
+; v3 : Ljava/lang/String; , v5 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	iget-object	v4,v0,com/google/analytics/containertag/proto/Debug$EventInfo.containerId Ljava/lang/String;
+; v4 : Ljava/lang/String; , v0 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	invoke-virtual	{v3,v4},java/lang/String/equals	; equals(Ljava/lang/Object;)Z
+; v3 : Ljava/lang/String; , v4 : Ljava/lang/String;
+	move-result	v3
+; v3 : single-length
+	if-eqz	v3,lf8068
+; v3 : single-length
+	goto	lf8028
+lf8098:
+	iget-object	v3,v5,com/google/analytics/containertag/proto/Debug$EventInfo.key Ljava/lang/String;
+; v3 : Ljava/lang/String; , v5 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	iget-object	v4,v0,com/google/analytics/containertag/proto/Debug$EventInfo.key Ljava/lang/String;
+; v4 : Ljava/lang/String; , v0 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	invoke-virtual	{v3,v4},java/lang/String/equals	; equals(Ljava/lang/Object;)Z
+; v3 : Ljava/lang/String; , v4 : Ljava/lang/String;
+	move-result	v3
+; v3 : single-length
+	if-eqz	v3,lf8068
+; v3 : single-length
+	goto	lf8038
+lf80ae:
+	iget-object	v3,v5,com/google/analytics/containertag/proto/Debug$EventInfo.macroResult Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+; v3 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo; , v5 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	iget-object	v4,v0,com/google/analytics/containertag/proto/Debug$EventInfo.macroResult Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+; v4 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo; , v0 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	invoke-virtual	{v3,v4},com/google/analytics/containertag/proto/Debug$MacroEvaluationInfo/equals	; equals(Ljava/lang/Object;)Z
+; v3 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo; , v4 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+	move-result	v3
+; v3 : single-length
+	if-eqz	v3,lf8068
+; v3 : single-length
+	goto	lf8048
+lf80c4:
+	iget-object	v3,v5,com/google/analytics/containertag/proto/Debug$EventInfo.dataLayerEventResult Lcom/google/analytics/containertag/proto/Debug$DataLayerEventEvaluationInfo;
+; v3 : Lcom/google/analytics/containertag/proto/Debug$DataLayerEventEvaluationInfo; , v5 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	iget-object	v4,v0,com/google/analytics/containertag/proto/Debug$EventInfo.dataLayerEventResult Lcom/google/analytics/containertag/proto/Debug$DataLayerEventEvaluationInfo;
+; v4 : Lcom/google/analytics/containertag/proto/Debug$DataLayerEventEvaluationInfo; , v0 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	invoke-virtual	{v3,v4},com/google/analytics/containertag/proto/Debug$DataLayerEventEvaluationInfo/equals	; equals(Ljava/lang/Object;)Z
+; v3 : Lcom/google/analytics/containertag/proto/Debug$DataLayerEventEvaluationInfo; , v4 : Lcom/google/analytics/containertag/proto/Debug$DataLayerEventEvaluationInfo;
+	move-result	v3
+; v3 : single-length
+	if-eqz	v3,lf8068
+; v3 : single-length
+	goto	lf8058
+lf80da:
+	iget-object	v3,v5,com/google/analytics/containertag/proto/Debug$EventInfo.unknownFieldData Ljava/util/List;
+; v3 : Ljava/util/List; , v5 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	iget-object	v4,v0,com/google/analytics/containertag/proto/Debug$EventInfo.unknownFieldData Ljava/util/List;
+; v4 : Ljava/util/List; , v0 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	invoke-interface	{v3,v4},java/util/List/equals	; equals(Ljava/lang/Object;)Z
+; v3 : Ljava/util/List; , v4 : Ljava/util/List;
+	move-result	v3
+; v3 : single-length
+	if-eqz	v3,lf8068
+; v3 : single-length
+	goto/16	lf7fe8
+.end method
+
+.method public getSerializedSize()I
+.limit registers 4
+; this: v3 (Lcom/google/analytics/containertag/proto/Debug$EventInfo;)
+	const/4	v2,1
+; v2 : single-length
+.line 216
+	const/4	v0,0
+; v0 : single-length
+.line 217
+	iget	v1,v3,com/google/analytics/containertag/proto/Debug$EventInfo.eventType I
+; v1 : single-length , v3 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	if-eq	v1,v2,lf811e
+; v1 : single-length , v2 : single-length
+.line 218
+	iget	v1,v3,com/google/analytics/containertag/proto/Debug$EventInfo.eventType I
+; v1 : single-length , v3 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	invoke-static	{v2,v1},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/computeInt32Size	; computeInt32Size(II)I
+; v2 : single-length , v1 : single-length
+	move-result	v1
+; v1 : single-length
+	add-int/2addr	v0,v1
+; v0 : single-length , v1 : single-length
+lf811e:
+.line 221
+	iget-object	v1,v3,com/google/analytics/containertag/proto/Debug$EventInfo.containerVersion Ljava/lang/String;
+; v1 : Ljava/lang/String; , v3 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	const-string	v2,""
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/String/equals	; equals(Ljava/lang/Object;)Z
+; v1 : Ljava/lang/String; , v2 : Ljava/lang/String;
+	move-result	v1
+; v1 : single-length
+	if-nez	v1,lf8142
+; v1 : single-length
+.line 222
+	const/4	v1,2
+; v1 : single-length
+	iget-object	v2,v3,com/google/analytics/containertag/proto/Debug$EventInfo.containerVersion Ljava/lang/String;
+; v2 : Ljava/lang/String; , v3 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	invoke-static	{v1,v2},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/computeStringSize	; computeStringSize(ILjava/lang/String;)I
+; v1 : single-length , v2 : Ljava/lang/String;
+	move-result	v1
+; v1 : single-length
+	add-int/2addr	v0,v1
+; v0 : single-length , v1 : single-length
+lf8142:
+.line 225
+	iget-object	v1,v3,com/google/analytics/containertag/proto/Debug$EventInfo.containerId Ljava/lang/String;
+; v1 : Ljava/lang/String; , v3 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	const-string	v2,""
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/String/equals	; equals(Ljava/lang/Object;)Z
+; v1 : Ljava/lang/String; , v2 : Ljava/lang/String;
+	move-result	v1
+; v1 : single-length
+	if-nez	v1,lf8166
+; v1 : single-length
+.line 226
+	const/4	v1,3
+; v1 : single-length
+	iget-object	v2,v3,com/google/analytics/containertag/proto/Debug$EventInfo.containerId Ljava/lang/String;
+; v2 : Ljava/lang/String; , v3 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	invoke-static	{v1,v2},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/computeStringSize	; computeStringSize(ILjava/lang/String;)I
+; v1 : single-length , v2 : Ljava/lang/String;
+	move-result	v1
+; v1 : single-length
+	add-int/2addr	v0,v1
+; v0 : single-length , v1 : single-length
+lf8166:
+.line 229
+	iget-object	v1,v3,com/google/analytics/containertag/proto/Debug$EventInfo.key Ljava/lang/String;
+; v1 : Ljava/lang/String; , v3 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	const-string	v2,""
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/String/equals	; equals(Ljava/lang/Object;)Z
+; v1 : Ljava/lang/String; , v2 : Ljava/lang/String;
+	move-result	v1
+; v1 : single-length
+	if-nez	v1,lf818a
+; v1 : single-length
+.line 230
+	const/4	v1,4
+; v1 : single-length
+	iget-object	v2,v3,com/google/analytics/containertag/proto/Debug$EventInfo.key Ljava/lang/String;
+; v2 : Ljava/lang/String; , v3 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	invoke-static	{v1,v2},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/computeStringSize	; computeStringSize(ILjava/lang/String;)I
+; v1 : single-length , v2 : Ljava/lang/String;
+	move-result	v1
+; v1 : single-length
+	add-int/2addr	v0,v1
+; v0 : single-length , v1 : single-length
+lf818a:
+.line 233
+	iget-object	v1,v3,com/google/analytics/containertag/proto/Debug$EventInfo.macroResult Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+; v1 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo; , v3 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	if-eqz	v1,lf81a2
+; v1 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+.line 234
+	const/4	v1,6
+; v1 : single-length
+	iget-object	v2,v3,com/google/analytics/containertag/proto/Debug$EventInfo.macroResult Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+; v2 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo; , v3 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	invoke-static	{v1,v2},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/computeMessageSize	; computeMessageSize(ILcom/google/tagmanager/protobuf/nano/MessageNano;)I
+; v1 : single-length , v2 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+	move-result	v1
+; v1 : single-length
+	add-int/2addr	v0,v1
+; v0 : single-length , v1 : single-length
+lf81a2:
+.line 237
+	iget-object	v1,v3,com/google/analytics/containertag/proto/Debug$EventInfo.dataLayerEventResult Lcom/google/analytics/containertag/proto/Debug$DataLayerEventEvaluationInfo;
+; v1 : Lcom/google/analytics/containertag/proto/Debug$DataLayerEventEvaluationInfo; , v3 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	if-eqz	v1,lf81ba
+; v1 : Lcom/google/analytics/containertag/proto/Debug$DataLayerEventEvaluationInfo;
+.line 238
+	const/4	v1,7
+; v1 : single-length
+	iget-object	v2,v3,com/google/analytics/containertag/proto/Debug$EventInfo.dataLayerEventResult Lcom/google/analytics/containertag/proto/Debug$DataLayerEventEvaluationInfo;
+; v2 : Lcom/google/analytics/containertag/proto/Debug$DataLayerEventEvaluationInfo; , v3 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	invoke-static	{v1,v2},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/computeMessageSize	; computeMessageSize(ILcom/google/tagmanager/protobuf/nano/MessageNano;)I
+; v1 : single-length , v2 : Lcom/google/analytics/containertag/proto/Debug$DataLayerEventEvaluationInfo;
+	move-result	v1
+; v1 : single-length
+	add-int/2addr	v0,v1
+; v0 : single-length , v1 : single-length
+lf81ba:
+.line 241
+	iget-object	v1,v3,com/google/analytics/containertag/proto/Debug$EventInfo.unknownFieldData Ljava/util/List;
+; v1 : Ljava/util/List; , v3 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	invoke-static	{v1},com/google/tagmanager/protobuf/nano/WireFormatNano/computeWireSize	; computeWireSize(Ljava/util/List;)I
+; v1 : Ljava/util/List;
+	move-result	v1
+; v1 : single-length
+	add-int/2addr	v0,v1
+; v0 : single-length , v1 : single-length
+.line 242
+	iput	v0,v3,com/google/analytics/containertag/proto/Debug$EventInfo.cachedSize I
+; v0 : single-length , v3 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+.line 243
+	return	v0
+; v0 : single-length
+.end method
+
+.method public hashCode()I
+.limit registers 5
+; this: v4 (Lcom/google/analytics/containertag/proto/Debug$EventInfo;)
+	const/4	v2,0
+; v2 : single-length
+.line 179
+	const/16	v0,17
+; v0 : single-length
+.line 180
+	iget	v1,v4,com/google/analytics/containertag/proto/Debug$EventInfo.eventType I
+; v1 : single-length , v4 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	add-int/lit16	v0,v1,527
+; v0 : single-length , v1 : single-length
+.line 181
+	mul-int/lit-8	v3,v0,31
+; v3 : single-length , v0 : single-length
+	iget-object	v1,v4,com/google/analytics/containertag/proto/Debug$EventInfo.containerVersion Ljava/lang/String;
+; v1 : Ljava/lang/String; , v4 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	if-nez	v1,lf825a
+; v1 : Ljava/lang/String;
+	move	v1,v2
+; v1 : single-length , v2 : single-length
+lf81fc:
+	add-int	v0,v3,v1
+; v0 : single-length , v3 : single-length , v1 : single-length
+.line 182
+	mul-int/lit-8	v3,v0,31
+; v3 : single-length , v0 : single-length
+	iget-object	v1,v4,com/google/analytics/containertag/proto/Debug$EventInfo.containerId Ljava/lang/String;
+; v1 : Ljava/lang/String; , v4 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	if-nez	v1,lf8268
+; v1 : Ljava/lang/String;
+	move	v1,v2
+; v1 : single-length , v2 : single-length
+lf820e:
+	add-int	v0,v3,v1
+; v0 : single-length , v3 : single-length , v1 : single-length
+.line 183
+	mul-int/lit-8	v3,v0,31
+; v3 : single-length , v0 : single-length
+	iget-object	v1,v4,com/google/analytics/containertag/proto/Debug$EventInfo.key Ljava/lang/String;
+; v1 : Ljava/lang/String; , v4 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	if-nez	v1,lf8276
+; v1 : Ljava/lang/String;
+	move	v1,v2
+; v1 : single-length , v2 : single-length
+lf8220:
+	add-int	v0,v3,v1
+; v0 : single-length , v3 : single-length , v1 : single-length
+.line 184
+	mul-int/lit-8	v3,v0,31
+; v3 : single-length , v0 : single-length
+	iget-object	v1,v4,com/google/analytics/containertag/proto/Debug$EventInfo.macroResult Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+; v1 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo; , v4 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	if-nez	v1,lf8284
+; v1 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+	move	v1,v2
+; v1 : single-length , v2 : single-length
+lf8232:
+	add-int	v0,v3,v1
+; v0 : single-length , v3 : single-length , v1 : single-length
+.line 185
+	mul-int/lit-8	v3,v0,31
+; v3 : single-length , v0 : single-length
+	iget-object	v1,v4,com/google/analytics/containertag/proto/Debug$EventInfo.dataLayerEventResult Lcom/google/analytics/containertag/proto/Debug$DataLayerEventEvaluationInfo;
+; v1 : Lcom/google/analytics/containertag/proto/Debug$DataLayerEventEvaluationInfo; , v4 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	if-nez	v1,lf8292
+; v1 : Lcom/google/analytics/containertag/proto/Debug$DataLayerEventEvaluationInfo;
+	move	v1,v2
+; v1 : single-length , v2 : single-length
+lf8244:
+	add-int	v0,v3,v1
+; v0 : single-length , v3 : single-length , v1 : single-length
+.line 186
+	mul-int/lit-8	v1,v0,31
+; v1 : single-length , v0 : single-length
+	iget-object	v3,v4,com/google/analytics/containertag/proto/Debug$EventInfo.unknownFieldData Ljava/util/List;
+; v3 : Ljava/util/List; , v4 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	if-nez	v3,lf82a0
+; v3 : Ljava/util/List;
+lf8254:
+	add-int	v0,v1,v2
+; v0 : single-length , v1 : single-length , v2 : single-length
+.line 187
+	return	v0
+; v0 : single-length
+lf825a:
+.line 181
+	iget-object	v1,v4,com/google/analytics/containertag/proto/Debug$EventInfo.containerVersion Ljava/lang/String;
+; v1 : Ljava/lang/String; , v4 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	invoke-virtual	{v1},java/lang/String/hashCode	; hashCode()I
+; v1 : Ljava/lang/String;
+	move-result	v1
+; v1 : single-length
+	goto	lf81fc
+lf8268:
+.line 182
+	iget-object	v1,v4,com/google/analytics/containertag/proto/Debug$EventInfo.containerId Ljava/lang/String;
+; v1 : Ljava/lang/String; , v4 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	invoke-virtual	{v1},java/lang/String/hashCode	; hashCode()I
+; v1 : Ljava/lang/String;
+	move-result	v1
+; v1 : single-length
+	goto	lf820e
+lf8276:
+.line 183
+	iget-object	v1,v4,com/google/analytics/containertag/proto/Debug$EventInfo.key Ljava/lang/String;
+; v1 : Ljava/lang/String; , v4 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	invoke-virtual	{v1},java/lang/String/hashCode	; hashCode()I
+; v1 : Ljava/lang/String;
+	move-result	v1
+; v1 : single-length
+	goto	lf8220
+lf8284:
+.line 184
+	iget-object	v1,v4,com/google/analytics/containertag/proto/Debug$EventInfo.macroResult Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+; v1 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo; , v4 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	invoke-virtual	{v1},com/google/analytics/containertag/proto/Debug$MacroEvaluationInfo/hashCode	; hashCode()I
+; v1 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+	move-result	v1
+; v1 : single-length
+	goto	lf8232
+lf8292:
+.line 185
+	iget-object	v1,v4,com/google/analytics/containertag/proto/Debug$EventInfo.dataLayerEventResult Lcom/google/analytics/containertag/proto/Debug$DataLayerEventEvaluationInfo;
+; v1 : Lcom/google/analytics/containertag/proto/Debug$DataLayerEventEvaluationInfo; , v4 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	invoke-virtual	{v1},com/google/analytics/containertag/proto/Debug$DataLayerEventEvaluationInfo/hashCode	; hashCode()I
+; v1 : Lcom/google/analytics/containertag/proto/Debug$DataLayerEventEvaluationInfo;
+	move-result	v1
+; v1 : single-length
+	goto	lf8244
+lf82a0:
+.line 186
+	iget-object	v2,v4,com/google/analytics/containertag/proto/Debug$EventInfo.unknownFieldData Ljava/util/List;
+; v2 : Ljava/util/List; , v4 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	invoke-interface	{v2},java/util/List/hashCode	; hashCode()I
+; v2 : Ljava/util/List;
+	move-result	v2
+; v2 : single-length
+	goto	lf8254
+.end method
+
+.method public mergeFrom(Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+.throws Ljava/io/IOException;
+.limit registers 6
+; this: v4 (Lcom/google/analytics/containertag/proto/Debug$EventInfo;)
+; parameter[0] : v5 (Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)
+.var 1 is temp I from lf8300 to lf8316
+	const/4	v3,1
+; v3 : single-length
+lf82c2:
+.line 251
+	invoke-virtual	{v5},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readTag	; readTag()I
+; v5 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result	v0
+; v0 : single-length
+.line 252
+	sparse-switch	v0
+		0 : spf82ca_f82f6
+		8 : spf82ca_f82f8
+		18 : spf82ca_f8316
+		26 : spf82ca_f8324
+		34 : spf82ca_f8332
+		50 : spf82ca_f8340
+		58 : spf82ca_f835a
+		default: spf82ca_default
+; v0 : single-length
+spf82ca_default:
+.line 256
+	iget-object	v2,v4,com/google/analytics/containertag/proto/Debug$EventInfo.unknownFieldData Ljava/util/List;
+; v2 : Ljava/util/List; , v4 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	if-nez	v2,lf82e6
+; v2 : Ljava/util/List;
+.line 257
+	new-instance	v2,java/util/ArrayList
+; v2 : Ljava/util/ArrayList;
+	invoke-direct	{v2},java/util/ArrayList/<init>	; <init>()V
+; v2 : Ljava/util/ArrayList;
+	iput-object	v2,v4,com/google/analytics/containertag/proto/Debug$EventInfo.unknownFieldData Ljava/util/List;
+; v2 : Ljava/util/ArrayList; , v4 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+lf82e6:
+.line 260
+	iget-object	v2,v4,com/google/analytics/containertag/proto/Debug$EventInfo.unknownFieldData Ljava/util/List;
+; v2 : Ljava/util/List; , v4 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	invoke-static	{v2,v5,v0},com/google/tagmanager/protobuf/nano/WireFormatNano/storeUnknownField	; storeUnknownField(Ljava/util/List;Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;I)Z
+; v2 : Ljava/util/List; , v5 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano; , v0 : single-length
+	move-result	v2
+; v2 : single-length
+	if-nez	v2,lf82c2
+; v2 : single-length
+spf82ca_f82f6:
+.line 262
+	return-object	v4
+; v4 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+spf82ca_f82f8:
+.line 267
+	invoke-virtual	{v5},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readInt32	; readInt32()I
+; v5 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result	v1
+; v1 : single-length
+.line 268
+	if-eq	v1,v3,lf830a
+; v1 : single-length , v3 : single-length
+	const/4	v2,2
+; v2 : single-length
+	if-ne	v1,v2,lf8310
+; v1 : single-length , v2 : single-length
+lf830a:
+.line 270
+	iput	v1,v4,com/google/analytics/containertag/proto/Debug$EventInfo.eventType I
+; v1 : single-length , v4 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	goto	lf82c2
+lf8310:
+.line 272
+	iput	v3,v4,com/google/analytics/containertag/proto/Debug$EventInfo.eventType I
+; v3 : single-length , v4 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	goto	lf82c2
+spf82ca_f8316:
+.line 277
+	invoke-virtual	{v5},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readString	; readString()Ljava/lang/String;
+; v5 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	iput-object	v2,v4,com/google/analytics/containertag/proto/Debug$EventInfo.containerVersion Ljava/lang/String;
+; v2 : Ljava/lang/String; , v4 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	goto	lf82c2
+spf82ca_f8324:
+.line 281
+	invoke-virtual	{v5},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readString	; readString()Ljava/lang/String;
+; v5 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	iput-object	v2,v4,com/google/analytics/containertag/proto/Debug$EventInfo.containerId Ljava/lang/String;
+; v2 : Ljava/lang/String; , v4 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	goto	lf82c2
+spf82ca_f8332:
+.line 285
+	invoke-virtual	{v5},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readString	; readString()Ljava/lang/String;
+; v5 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	iput-object	v2,v4,com/google/analytics/containertag/proto/Debug$EventInfo.key Ljava/lang/String;
+; v2 : Ljava/lang/String; , v4 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	goto	lf82c2
+spf82ca_f8340:
+.line 289
+	new-instance	v2,com/google/analytics/containertag/proto/Debug$MacroEvaluationInfo
+; v2 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+	invoke-direct	{v2},com/google/analytics/containertag/proto/Debug$MacroEvaluationInfo/<init>	; <init>()V
+; v2 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+	iput-object	v2,v4,com/google/analytics/containertag/proto/Debug$EventInfo.macroResult Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+; v2 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo; , v4 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+.line 290
+	iget-object	v2,v4,com/google/analytics/containertag/proto/Debug$EventInfo.macroResult Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+; v2 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo; , v4 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	invoke-virtual	{v5,v2},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readMessage	; readMessage(Lcom/google/tagmanager/protobuf/nano/MessageNano;)V
+; v5 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano; , v2 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+	goto	lf82c2
+spf82ca_f835a:
+.line 294
+	new-instance	v2,com/google/analytics/containertag/proto/Debug$DataLayerEventEvaluationInfo
+; v2 : Lcom/google/analytics/containertag/proto/Debug$DataLayerEventEvaluationInfo;
+	invoke-direct	{v2},com/google/analytics/containertag/proto/Debug$DataLayerEventEvaluationInfo/<init>	; <init>()V
+; v2 : Lcom/google/analytics/containertag/proto/Debug$DataLayerEventEvaluationInfo;
+	iput-object	v2,v4,com/google/analytics/containertag/proto/Debug$EventInfo.dataLayerEventResult Lcom/google/analytics/containertag/proto/Debug$DataLayerEventEvaluationInfo;
+; v2 : Lcom/google/analytics/containertag/proto/Debug$DataLayerEventEvaluationInfo; , v4 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+.line 295
+	iget-object	v2,v4,com/google/analytics/containertag/proto/Debug$EventInfo.dataLayerEventResult Lcom/google/analytics/containertag/proto/Debug$DataLayerEventEvaluationInfo;
+; v2 : Lcom/google/analytics/containertag/proto/Debug$DataLayerEventEvaluationInfo; , v4 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	invoke-virtual	{v5,v2},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readMessage	; readMessage(Lcom/google/tagmanager/protobuf/nano/MessageNano;)V
+; v5 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano; , v2 : Lcom/google/analytics/containertag/proto/Debug$DataLayerEventEvaluationInfo;
+	goto	lf82c2
+.line 252
+.end method
+
+.method public mergeFrom(Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)Lcom/google/tagmanager/protobuf/nano/MessageNano;
+.throws Ljava/io/IOException;
+.limit registers 3
+; this: v1 (Lcom/google/analytics/containertag/proto/Debug$EventInfo;)
+; parameter[0] : v2 (Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)
+.line 123
+	invoke-virtual	{v1,v2},com/google/analytics/containertag/proto/Debug$EventInfo/mergeFrom	; mergeFrom(Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+; v1 : Lcom/google/analytics/containertag/proto/Debug$EventInfo; , v2 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result-object	v0
+; v0 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	return-object	v0
+; v0 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+.end method
+
+.method public writeTo(Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;)V
+.throws Ljava/io/IOException;
+.limit registers 4
+; this: v2 (Lcom/google/analytics/containertag/proto/Debug$EventInfo;)
+; parameter[0] : v3 (Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;)
+	const/4	v1,1
+; v1 : single-length
+.line 192
+	iget	v0,v2,com/google/analytics/containertag/proto/Debug$EventInfo.eventType I
+; v0 : single-length , v2 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	if-eq	v0,v1,lf83f0
+; v0 : single-length , v1 : single-length
+.line 193
+	iget	v0,v2,com/google/analytics/containertag/proto/Debug$EventInfo.eventType I
+; v0 : single-length , v2 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	invoke-virtual	{v3,v1,v0},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeInt32	; writeInt32(II)V
+; v3 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v1 : single-length , v0 : single-length
+lf83f0:
+.line 195
+	iget-object	v0,v2,com/google/analytics/containertag/proto/Debug$EventInfo.containerVersion Ljava/lang/String;
+; v0 : Ljava/lang/String; , v2 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	const-string	v1,""
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/String/equals	; equals(Ljava/lang/Object;)Z
+; v0 : Ljava/lang/String; , v1 : Ljava/lang/String;
+	move-result	v0
+; v0 : single-length
+	if-nez	v0,lf8410
+; v0 : single-length
+.line 196
+	const/4	v0,2
+; v0 : single-length
+	iget-object	v1,v2,com/google/analytics/containertag/proto/Debug$EventInfo.containerVersion Ljava/lang/String;
+; v1 : Ljava/lang/String; , v2 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	invoke-virtual	{v3,v0,v1},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeString	; writeString(ILjava/lang/String;)V
+; v3 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v0 : single-length , v1 : Ljava/lang/String;
+lf8410:
+.line 198
+	iget-object	v0,v2,com/google/analytics/containertag/proto/Debug$EventInfo.containerId Ljava/lang/String;
+; v0 : Ljava/lang/String; , v2 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	const-string	v1,""
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/String/equals	; equals(Ljava/lang/Object;)Z
+; v0 : Ljava/lang/String; , v1 : Ljava/lang/String;
+	move-result	v0
+; v0 : single-length
+	if-nez	v0,lf8430
+; v0 : single-length
+.line 199
+	const/4	v0,3
+; v0 : single-length
+	iget-object	v1,v2,com/google/analytics/containertag/proto/Debug$EventInfo.containerId Ljava/lang/String;
+; v1 : Ljava/lang/String; , v2 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	invoke-virtual	{v3,v0,v1},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeString	; writeString(ILjava/lang/String;)V
+; v3 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v0 : single-length , v1 : Ljava/lang/String;
+lf8430:
+.line 201
+	iget-object	v0,v2,com/google/analytics/containertag/proto/Debug$EventInfo.key Ljava/lang/String;
+; v0 : Ljava/lang/String; , v2 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	const-string	v1,""
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/String/equals	; equals(Ljava/lang/Object;)Z
+; v0 : Ljava/lang/String; , v1 : Ljava/lang/String;
+	move-result	v0
+; v0 : single-length
+	if-nez	v0,lf8450
+; v0 : single-length
+.line 202
+	const/4	v0,4
+; v0 : single-length
+	iget-object	v1,v2,com/google/analytics/containertag/proto/Debug$EventInfo.key Ljava/lang/String;
+; v1 : Ljava/lang/String; , v2 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	invoke-virtual	{v3,v0,v1},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeString	; writeString(ILjava/lang/String;)V
+; v3 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v0 : single-length , v1 : Ljava/lang/String;
+lf8450:
+.line 204
+	iget-object	v0,v2,com/google/analytics/containertag/proto/Debug$EventInfo.macroResult Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+; v0 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo; , v2 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	if-eqz	v0,lf8464
+; v0 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+.line 205
+	const/4	v0,6
+; v0 : single-length
+	iget-object	v1,v2,com/google/analytics/containertag/proto/Debug$EventInfo.macroResult Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+; v1 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo; , v2 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	invoke-virtual	{v3,v0,v1},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeMessage	; writeMessage(ILcom/google/tagmanager/protobuf/nano/MessageNano;)V
+; v3 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v0 : single-length , v1 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+lf8464:
+.line 207
+	iget-object	v0,v2,com/google/analytics/containertag/proto/Debug$EventInfo.dataLayerEventResult Lcom/google/analytics/containertag/proto/Debug$DataLayerEventEvaluationInfo;
+; v0 : Lcom/google/analytics/containertag/proto/Debug$DataLayerEventEvaluationInfo; , v2 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	if-eqz	v0,lf8478
+; v0 : Lcom/google/analytics/containertag/proto/Debug$DataLayerEventEvaluationInfo;
+.line 208
+	const/4	v0,7
+; v0 : single-length
+	iget-object	v1,v2,com/google/analytics/containertag/proto/Debug$EventInfo.dataLayerEventResult Lcom/google/analytics/containertag/proto/Debug$DataLayerEventEvaluationInfo;
+; v1 : Lcom/google/analytics/containertag/proto/Debug$DataLayerEventEvaluationInfo; , v2 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	invoke-virtual	{v3,v0,v1},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeMessage	; writeMessage(ILcom/google/tagmanager/protobuf/nano/MessageNano;)V
+; v3 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v0 : single-length , v1 : Lcom/google/analytics/containertag/proto/Debug$DataLayerEventEvaluationInfo;
+lf8478:
+.line 210
+	iget-object	v0,v2,com/google/analytics/containertag/proto/Debug$EventInfo.unknownFieldData Ljava/util/List;
+; v0 : Ljava/util/List; , v2 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	invoke-static	{v0,v3},com/google/tagmanager/protobuf/nano/WireFormatNano/writeUnknownFields	; writeUnknownFields(Ljava/util/List;Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;)V
+; v0 : Ljava/util/List; , v3 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;
+.line 212
+	return-void	
+.end method
+
+

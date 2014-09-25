@@ -1,0 +1,188 @@
+.class public final com/squareup/okhttp/TunnelRequest
+.super java/lang/Object
+.source TunnelRequest.java
+
+.field final host Ljava/lang/String;
+.field final port I
+.field final proxyAuthorization Ljava/lang/String;
+.field final userAgent Ljava/lang/String;
+
+.method public <init>(Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;)V
+.limit registers 7
+; this: v2 (Lcom/squareup/okhttp/TunnelRequest;)
+; parameter[0] : v3 (Ljava/lang/String;)
+; parameter[1] : v4 (I)
+; parameter[2] : v5 (Ljava/lang/String;)
+; parameter[3] : v6 (Ljava/lang/String;)
+.line 43
+	invoke-direct	{v2},java/lang/Object/<init>	; <init>()V
+; v2 : Lcom/squareup/okhttp/TunnelRequest;
+.line 44
+	if-nez	v3,lb5dd2
+; v3 : Ljava/lang/String;
+	new-instance	v0,java/lang/NullPointerException
+; v0 : Ljava/lang/NullPointerException;
+	const-string	v1,"host == null"
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/NullPointerException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/NullPointerException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/NullPointerException;
+lb5dd2:
+.line 45
+	if-nez	v5,lb5de6
+; v5 : Ljava/lang/String;
+	new-instance	v0,java/lang/NullPointerException
+; v0 : Ljava/lang/NullPointerException;
+	const-string	v1,"userAgent == null"
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/NullPointerException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/NullPointerException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/NullPointerException;
+lb5de6:
+.line 46
+	iput-object	v3,v2,com/squareup/okhttp/TunnelRequest.host Ljava/lang/String;
+; v3 : Ljava/lang/String; , v2 : Lcom/squareup/okhttp/TunnelRequest;
+.line 47
+	iput	v4,v2,com/squareup/okhttp/TunnelRequest.port I
+; v4 : single-length , v2 : Lcom/squareup/okhttp/TunnelRequest;
+.line 48
+	iput-object	v5,v2,com/squareup/okhttp/TunnelRequest.userAgent Ljava/lang/String;
+; v5 : Ljava/lang/String; , v2 : Lcom/squareup/okhttp/TunnelRequest;
+.line 49
+	iput-object	v6,v2,com/squareup/okhttp/TunnelRequest.proxyAuthorization Ljava/lang/String;
+; v6 : Ljava/lang/String; , v2 : Lcom/squareup/okhttp/TunnelRequest;
+.line 50
+	return-void	
+.end method
+
+.method getRequestHeaders()Lcom/squareup/okhttp/internal/http/RawHeaders;
+.limit registers 5
+; this: v4 (Lcom/squareup/okhttp/TunnelRequest;)
+.line 58
+	new-instance	v0,com/squareup/okhttp/internal/http/RawHeaders
+; v0 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+	invoke-direct	{v0},com/squareup/okhttp/internal/http/RawHeaders/<init>	; <init>()V
+; v0 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+.line 59
+	new-instance	v1,java/lang/StringBuilder
+; v1 : Ljava/lang/StringBuilder;
+	invoke-direct	{v1},java/lang/StringBuilder/<init>	; <init>()V
+; v1 : Ljava/lang/StringBuilder;
+	const-string	v2,"CONNECT "
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	iget-object	v2,v4,com/squareup/okhttp/TunnelRequest.host Ljava/lang/String;
+; v2 : Ljava/lang/String; , v4 : Lcom/squareup/okhttp/TunnelRequest;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	const-string	v2,":"
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	iget	v2,v4,com/squareup/okhttp/TunnelRequest.port I
+; v2 : single-length , v4 : Lcom/squareup/okhttp/TunnelRequest;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(I)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : single-length
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	const-string	v2," HTTP/1.1"
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v1},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v1 : Ljava/lang/StringBuilder;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},com/squareup/okhttp/internal/http/RawHeaders/setRequestLine	; setRequestLine(Ljava/lang/String;)V
+; v0 : Lcom/squareup/okhttp/internal/http/RawHeaders; , v1 : Ljava/lang/String;
+.line 62
+	const-string	v2,"Host"
+; v2 : Ljava/lang/String;
+	iget	v1,v4,com/squareup/okhttp/TunnelRequest.port I
+; v1 : single-length , v4 : Lcom/squareup/okhttp/TunnelRequest;
+	const-string	v3,"https"
+; v3 : Ljava/lang/String;
+	invoke-static	{v3},com/squareup/okhttp/internal/Util/getDefaultPort	; getDefaultPort(Ljava/lang/String;)I
+; v3 : Ljava/lang/String;
+	move-result	v3
+; v3 : single-length
+	if-ne	v1,v3,lb5ebc
+; v1 : single-length , v3 : single-length
+	iget-object	v1,v4,com/squareup/okhttp/TunnelRequest.host Ljava/lang/String;
+; v1 : Ljava/lang/String; , v4 : Lcom/squareup/okhttp/TunnelRequest;
+lb5e82:
+	invoke-virtual	{v0,v2,v1},com/squareup/okhttp/internal/http/RawHeaders/set	; set(Ljava/lang/String;Ljava/lang/String;)V
+; v0 : Lcom/squareup/okhttp/internal/http/RawHeaders; , v2 : Ljava/lang/String; , v1 : Ljava/lang/String;
+.line 63
+	const-string	v1,"User-Agent"
+; v1 : Ljava/lang/String;
+	iget-object	v2,v4,com/squareup/okhttp/TunnelRequest.userAgent Ljava/lang/String;
+; v2 : Ljava/lang/String; , v4 : Lcom/squareup/okhttp/TunnelRequest;
+	invoke-virtual	{v0,v1,v2},com/squareup/okhttp/internal/http/RawHeaders/set	; set(Ljava/lang/String;Ljava/lang/String;)V
+; v0 : Lcom/squareup/okhttp/internal/http/RawHeaders; , v1 : Ljava/lang/String; , v2 : Ljava/lang/String;
+.line 66
+	iget-object	v1,v4,com/squareup/okhttp/TunnelRequest.proxyAuthorization Ljava/lang/String;
+; v1 : Ljava/lang/String; , v4 : Lcom/squareup/okhttp/TunnelRequest;
+	if-eqz	v1,lb5eac
+; v1 : Ljava/lang/String;
+.line 67
+	const-string	v1,"Proxy-Authorization"
+; v1 : Ljava/lang/String;
+	iget-object	v2,v4,com/squareup/okhttp/TunnelRequest.proxyAuthorization Ljava/lang/String;
+; v2 : Ljava/lang/String; , v4 : Lcom/squareup/okhttp/TunnelRequest;
+	invoke-virtual	{v0,v1,v2},com/squareup/okhttp/internal/http/RawHeaders/set	; set(Ljava/lang/String;Ljava/lang/String;)V
+; v0 : Lcom/squareup/okhttp/internal/http/RawHeaders; , v1 : Ljava/lang/String; , v2 : Ljava/lang/String;
+lb5eac:
+.line 72
+	const-string	v1,"Proxy-Connection"
+; v1 : Ljava/lang/String;
+	const-string	v2,"Keep-Alive"
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v0,v1,v2},com/squareup/okhttp/internal/http/RawHeaders/set	; set(Ljava/lang/String;Ljava/lang/String;)V
+; v0 : Lcom/squareup/okhttp/internal/http/RawHeaders; , v1 : Ljava/lang/String; , v2 : Ljava/lang/String;
+.line 73
+	return-object	v0
+; v0 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+lb5ebc:
+.line 62
+	new-instance	v1,java/lang/StringBuilder
+; v1 : Ljava/lang/StringBuilder;
+	invoke-direct	{v1},java/lang/StringBuilder/<init>	; <init>()V
+; v1 : Ljava/lang/StringBuilder;
+	iget-object	v3,v4,com/squareup/okhttp/TunnelRequest.host Ljava/lang/String;
+; v3 : Ljava/lang/String; , v4 : Lcom/squareup/okhttp/TunnelRequest;
+	invoke-virtual	{v1,v3},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	const-string	v3,":"
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v1,v3},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	iget	v3,v4,com/squareup/okhttp/TunnelRequest.port I
+; v3 : single-length , v4 : Lcom/squareup/okhttp/TunnelRequest;
+	invoke-virtual	{v1,v3},java/lang/StringBuilder/append	; append(I)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v3 : single-length
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v1},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v1 : Ljava/lang/StringBuilder;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	goto	lb5e82
+.end method
+
+

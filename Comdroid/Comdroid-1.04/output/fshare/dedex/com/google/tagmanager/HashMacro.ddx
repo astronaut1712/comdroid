@@ -1,0 +1,320 @@
+.class com/google/tagmanager/HashMacro
+.super com/google/tagmanager/FunctionCallImplementation
+.source HashMacro.java
+
+.field private static final ALGORITHM Ljava/lang/String; = null
+.field private static final ARG0 Ljava/lang/String; = null
+.field private static final DEFAULT_ALGORITHM Ljava/lang/String; = "MD5"
+.field private static final DEFAULT_INPUT_FORMAT Ljava/lang/String; = "text"
+.field private static final ID Ljava/lang/String;
+.field private static final INPUT_FORMAT Ljava/lang/String;
+
+.method static <clinit>()V
+.limit registers 1
+.line 18
+	sget-object	v0,com/google/analytics/containertag/common/FunctionType.HASH Lcom/google/analytics/containertag/common/FunctionType;
+; v0 : Lcom/google/analytics/containertag/common/FunctionType;
+	invoke-virtual	{v0},com/google/analytics/containertag/common/FunctionType/toString	; toString()Ljava/lang/String;
+; v0 : Lcom/google/analytics/containertag/common/FunctionType;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	sput-object	v0,com/google/tagmanager/HashMacro.ID Ljava/lang/String;
+; v0 : Ljava/lang/String;
+.line 19
+	sget-object	v0,com/google/analytics/containertag/common/Key.ARG0 Lcom/google/analytics/containertag/common/Key;
+; v0 : Lcom/google/analytics/containertag/common/Key;
+	invoke-virtual	{v0},com/google/analytics/containertag/common/Key/toString	; toString()Ljava/lang/String;
+; v0 : Lcom/google/analytics/containertag/common/Key;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	sput-object	v0,com/google/tagmanager/HashMacro.ARG0 Ljava/lang/String;
+; v0 : Ljava/lang/String;
+.line 20
+	sget-object	v0,com/google/analytics/containertag/common/Key.ALGORITHM Lcom/google/analytics/containertag/common/Key;
+; v0 : Lcom/google/analytics/containertag/common/Key;
+	invoke-virtual	{v0},com/google/analytics/containertag/common/Key/toString	; toString()Ljava/lang/String;
+; v0 : Lcom/google/analytics/containertag/common/Key;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	sput-object	v0,com/google/tagmanager/HashMacro.ALGORITHM Ljava/lang/String;
+; v0 : Ljava/lang/String;
+.line 21
+	sget-object	v0,com/google/analytics/containertag/common/Key.INPUT_FORMAT Lcom/google/analytics/containertag/common/Key;
+; v0 : Lcom/google/analytics/containertag/common/Key;
+	invoke-virtual	{v0},com/google/analytics/containertag/common/Key/toString	; toString()Ljava/lang/String;
+; v0 : Lcom/google/analytics/containertag/common/Key;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	sput-object	v0,com/google/tagmanager/HashMacro.INPUT_FORMAT Ljava/lang/String;
+; v0 : Ljava/lang/String;
+	return-void	
+.end method
+
+.method public <init>()V
+.limit registers 5
+; this: v4 (Lcom/google/tagmanager/HashMacro;)
+.line 30
+	sget-object	v0,com/google/tagmanager/HashMacro.ID Ljava/lang/String;
+; v0 : Ljava/lang/String;
+	const/4	v1,1
+; v1 : single-length
+	new-array	v1,v1,[Ljava/lang/String;
+; v1 : [Ljava/lang/String; , v1 : [Ljava/lang/String;
+	const/4	v2,0
+; v2 : single-length
+	sget-object	v3,com/google/tagmanager/HashMacro.ARG0 Ljava/lang/String;
+; v3 : Ljava/lang/String;
+	aput-object	v3,v1,v2
+; v3 : Ljava/lang/String; , v1 : [Ljava/lang/String; , v2 : single-length
+	invoke-direct	{v4,v0,v1},com/google/tagmanager/FunctionCallImplementation/<init>	; <init>(Ljava/lang/String;[Ljava/lang/String;)V
+; v4 : Lcom/google/tagmanager/HashMacro; , v0 : Ljava/lang/String; , v1 : [Ljava/lang/String;
+.line 31
+	return-void	
+.end method
+
+.method public static getFunctionId()Ljava/lang/String;
+.limit registers 1
+.line 26
+	sget-object	v0,com/google/tagmanager/HashMacro.ID Ljava/lang/String;
+; v0 : Ljava/lang/String;
+	return-object	v0
+; v0 : Ljava/lang/String;
+.end method
+
+.method private hash(Ljava/lang/String;[B)[B
+.throws Ljava/security/NoSuchAlgorithmException;
+.limit registers 5
+; this: v2 (Lcom/google/tagmanager/HashMacro;)
+; parameter[0] : v3 (Ljava/lang/String;)
+; parameter[1] : v4 ([B)
+.line 73
+	invoke-static	{v3},java/security/MessageDigest/getInstance	; getInstance(Ljava/lang/String;)Ljava/security/MessageDigest;
+; v3 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/security/MessageDigest;
+.line 75
+	invoke-virtual	{v0,v4},java/security/MessageDigest/update	; update([B)V
+; v0 : Ljava/security/MessageDigest; , v4 : [B
+.line 76
+	invoke-virtual	{v0},java/security/MessageDigest/digest	; digest()[B
+; v0 : Ljava/security/MessageDigest;
+	move-result-object	v1
+; v1 : [B
+	return-object	v1
+; v1 : [B
+.end method
+
+.method public evaluate(Ljava/util/Map;)Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "(" , "Ljava/util/Map" , "<" , "Ljava/lang/String;" , "Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;" , ">;)" , "Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;" }
+.end annotation
+.limit registers 12
+; this: v10 (Lcom/google/tagmanager/HashMacro;)
+; parameter[0] : v11 (Ljava/util/Map;)
+.catch java/security/NoSuchAlgorithmException from le933a to le9350 using le93b8
+.var 0 is algorithm Ljava/lang/String; from le930a to le9354
+.var 4 is bytesToHash [B from le933a to le9354
+.var 6 is inputFormat Ljava/lang/String; from le9322 to le9354
+.var 7 is inputFormatParameter Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; from le931a to le9354
+.var 4 is bytesToHash [B from le9380 to le9382
+.line 38
+	sget-object	v8,com/google/tagmanager/HashMacro.ARG0 Ljava/lang/String;
+; v8 : Ljava/lang/String;
+	invoke-interface	{v11,v8},java/util/Map/get	; get(Ljava/lang/Object;)Ljava/lang/Object;
+; v11 : Ljava/util/Map; , v8 : Ljava/lang/String;
+	move-result-object	v3
+; v3 : Ljava/lang/Object;
+	check-cast	v3,com/google/analytics/midtier/proto/containertag/TypeSystem$Value
+; v3 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+.line 39
+	if-eqz	v3,le92e0
+; v3 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	invoke-static	{},com/google/tagmanager/Types/getDefaultValue	; getDefaultValue()Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+; 
+	nop	
+	move-result-object	v8
+; v8 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	if-ne	v3,v8,le92ea
+; v3 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v8 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+le92e0:
+.line 40
+	invoke-static	{},com/google/tagmanager/Types/getDefaultValue	; getDefaultValue()Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+; 
+	nop	
+	move-result-object	v8
+; v8 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+le92e8:
+.line 68
+	return-object	v8
+; v8 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+le92ea:
+.line 42
+	invoke-static	{v3},com/google/tagmanager/Types/valueToString	; valueToString(Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;)Ljava/lang/String;
+; v3 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+.line 44
+	sget-object	v8,com/google/tagmanager/HashMacro.ALGORITHM Ljava/lang/String;
+; v8 : Ljava/lang/String;
+	invoke-interface	{v11,v8},java/util/Map/get	; get(Ljava/lang/Object;)Ljava/lang/Object;
+; v11 : Ljava/util/Map; , v8 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/Object;
+	check-cast	v1,com/google/analytics/midtier/proto/containertag/TypeSystem$Value
+; v1 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+.line 45
+	if-nez	v1,le9354
+; v1 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	const-string	v0,"MD5"
+; v0 : Ljava/lang/String;
+le930a:
+.line 49
+	sget-object	v8,com/google/tagmanager/HashMacro.INPUT_FORMAT Ljava/lang/String;
+; v8 : Ljava/lang/String;
+	invoke-interface	{v11,v8},java/util/Map/get	; get(Ljava/lang/Object;)Ljava/lang/Object;
+; v11 : Ljava/util/Map; , v8 : Ljava/lang/String;
+	move-result-object	v7
+; v7 : Ljava/lang/Object;
+	check-cast	v7,com/google/analytics/midtier/proto/containertag/TypeSystem$Value
+; v7 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+.line 50
+	if-nez	v7,le935e
+; v7 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	const-string	v6,"text"
+; v6 : Ljava/lang/String;
+le9322:
+.line 55
+	const-string	v8,"text"
+; v8 : Ljava/lang/String;
+	invoke-virtual	{v8,v6},java/lang/String/equals	; equals(Ljava/lang/Object;)Z
+; v8 : Ljava/lang/String; , v6 : Ljava/lang/String;
+	move-result	v8
+; v8 : single-length
+	if-eqz	v8,le9368
+; v8 : single-length
+.line 56
+	invoke-virtual	{v2},java/lang/String/getBytes	; getBytes()[B
+; v2 : Ljava/lang/String;
+	move-result-object	v4
+; v4 : [B
+le933a:
+.line 65
+	invoke-direct	{v10,v0,v4},com/google/tagmanager/HashMacro/hash	; hash(Ljava/lang/String;[B)[B
+; v10 : Lcom/google/tagmanager/HashMacro; , v0 : Ljava/lang/String; , v4 : [B
+	move-result-object	v8
+; v8 : [B
+	invoke-static	{v8},com/google/tagmanager/Base16/encode	; encode([B)Ljava/lang/String;
+; v8 : [B
+	move-result-object	v8
+; v8 : Ljava/lang/String;
+	invoke-static	{v8},com/google/tagmanager/Types/objectToValue	; objectToValue(Ljava/lang/Object;)Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+; v8 : Ljava/lang/String;
+le9350:
+	move-result-object	v8
+; v8 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	goto	le92e8
+le9354:
+.line 45
+	invoke-static	{v1},com/google/tagmanager/Types/valueToString	; valueToString(Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;)Ljava/lang/String;
+; v1 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	goto	le930a
+le935e:
+.line 50
+	invoke-static	{v7},com/google/tagmanager/Types/valueToString	; valueToString(Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;)Ljava/lang/String;
+; v7 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	move-result-object	v6
+; v6 : Ljava/lang/String;
+	goto	le9322
+le9368:
+.line 57
+	const-string	v8,"base16"
+; v8 : Ljava/lang/String;
+	invoke-virtual	{v8,v6},java/lang/String/equals	; equals(Ljava/lang/Object;)Z
+; v8 : Ljava/lang/String; , v6 : Ljava/lang/String;
+	move-result	v8
+; v8 : single-length
+	if-eqz	v8,le9382
+; v8 : single-length
+.line 58
+	invoke-static	{v2},com/google/tagmanager/Base16/decode	; decode(Ljava/lang/String;)[B
+; v2 : Ljava/lang/String;
+	move-result-object	v4
+; v4 : [B
+le9380:
+	goto	le933a
+le9382:
+.line 60
+	new-instance	v8,java/lang/StringBuilder
+; v8 : Ljava/lang/StringBuilder;
+	invoke-direct	{v8},java/lang/StringBuilder/<init>	; <init>()V
+; v8 : Ljava/lang/StringBuilder;
+	const-string	v9,"Hash: unknown input format: "
+; v9 : Ljava/lang/String;
+	invoke-virtual	{v8,v9},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v8 : Ljava/lang/StringBuilder; , v9 : Ljava/lang/String;
+	move-result-object	v8
+; v8 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v8,v6},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v8 : Ljava/lang/StringBuilder; , v6 : Ljava/lang/String;
+	move-result-object	v8
+; v8 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v8},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v8 : Ljava/lang/StringBuilder;
+	move-result-object	v8
+; v8 : Ljava/lang/String;
+	invoke-static	{v8},com/google/tagmanager/Log/e	; e(Ljava/lang/String;)V
+; v8 : Ljava/lang/String;
+.line 61
+	invoke-static	{},com/google/tagmanager/Types/getDefaultValue	; getDefaultValue()Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+; 
+	nop	
+	move-result-object	v8
+; v8 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	goto	le92e8
+le93b8:
+.line 66
+	move-exception	v5
+; v5 : java/security/NoSuchAlgorithmException
+.line 67
+	new-instance	v8,java/lang/StringBuilder
+; v8 : Ljava/lang/StringBuilder;
+	invoke-direct	{v8},java/lang/StringBuilder/<init>	; <init>()V
+; v8 : Ljava/lang/StringBuilder;
+	const-string	v9,"Hash: unknown algorithm: "
+; v9 : Ljava/lang/String;
+	invoke-virtual	{v8,v9},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v8 : Ljava/lang/StringBuilder; , v9 : Ljava/lang/String;
+	move-result-object	v8
+; v8 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v8,v0},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v8 : Ljava/lang/StringBuilder; , v0 : Ljava/lang/String;
+	move-result-object	v8
+; v8 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v8},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v8 : Ljava/lang/StringBuilder;
+	move-result-object	v8
+; v8 : Ljava/lang/String;
+	invoke-static	{v8},com/google/tagmanager/Log/e	; e(Ljava/lang/String;)V
+; v8 : Ljava/lang/String;
+.line 68
+	invoke-static	{},com/google/tagmanager/Types/getDefaultValue	; getDefaultValue()Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+; 
+	nop	
+	move-result-object	v8
+; v8 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	goto/16	le92e8
+.end method
+
+.method public isCacheable()Z
+.limit registers 2
+; this: v1 (Lcom/google/tagmanager/HashMacro;)
+.line 34
+	const/4	v0,1
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+

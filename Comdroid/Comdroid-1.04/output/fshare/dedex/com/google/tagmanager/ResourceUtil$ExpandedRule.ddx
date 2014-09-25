@@ -1,0 +1,416 @@
+.class public com/google/tagmanager/ResourceUtil$ExpandedRule
+.super java/lang/Object
+.source ResourceUtil.java
+
+.inner class ExpandedRule inner com/google/tagmanager/ResourceUtil$ExpandedRule outer com/google/tagmanager/ResourceUtil
+.field private final mAddMacroRuleNames Ljava/util/List;
+  .annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "Ljava/util/List" , "<" , "Ljava/lang/String;" , ">;" }
+  .end annotation
+.end field
+.field private final mAddMacros Ljava/util/List;
+  .annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "Ljava/util/List" , "<" , "Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;" , ">;" }
+  .end annotation
+.end field
+.field private final mAddTagRuleNames Ljava/util/List;
+  .annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "Ljava/util/List" , "<" , "Ljava/lang/String;" , ">;" }
+  .end annotation
+.end field
+.field private final mAddTags Ljava/util/List;
+  .annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "Ljava/util/List" , "<" , "Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;" , ">;" }
+  .end annotation
+.end field
+.field private final mNegativePredicates Ljava/util/List;
+  .annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "Ljava/util/List" , "<" , "Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;" , ">;" }
+  .end annotation
+.end field
+.field private final mPositivePredicates Ljava/util/List;
+  .annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "Ljava/util/List" , "<" , "Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;" , ">;" }
+  .end annotation
+.end field
+.field private final mRemoveMacroRuleNames Ljava/util/List;
+  .annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "Ljava/util/List" , "<" , "Ljava/lang/String;" , ">;" }
+  .end annotation
+.end field
+.field private final mRemoveMacros Ljava/util/List;
+  .annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "Ljava/util/List" , "<" , "Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;" , ">;" }
+  .end annotation
+.end field
+.field private final mRemoveTagRuleNames Ljava/util/List;
+  .annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "Ljava/util/List" , "<" , "Ljava/lang/String;" , ">;" }
+  .end annotation
+.end field
+.field private final mRemoveTags Ljava/util/List;
+  .annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "Ljava/util/List" , "<" , "Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;" , ">;" }
+  .end annotation
+.end field
+
+.method private <init>(Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;)V
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "(" , "Ljava/util/List" , "<" , "Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;" , ">;" , "Ljava/util/List" , "<" , "Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;" , ">;" , "Ljava/util/List" , "<" , "Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;" , ">;" , "Ljava/util/List" , "<" , "Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;" , ">;" , "Ljava/util/List" , "<" , "Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;" , ">;" , "Ljava/util/List" , "<" , "Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;" , ">;" , "Ljava/util/List" , "<" , "Ljava/lang/String;" , ">;" , "Ljava/util/List" , "<" , "Ljava/lang/String;" , ">;" , "Ljava/util/List" , "<" , "Ljava/lang/String;" , ">;" , "Ljava/util/List" , "<" , "Ljava/lang/String;" , ">;)V" }
+.end annotation
+.limit registers 12
+; this: v1 (Lcom/google/tagmanager/ResourceUtil$ExpandedRule;)
+; parameter[0] : v2 (Ljava/util/List;)
+; parameter[1] : v3 (Ljava/util/List;)
+; parameter[2] : v4 (Ljava/util/List;)
+; parameter[3] : v5 (Ljava/util/List;)
+; parameter[4] : v6 (Ljava/util/List;)
+; parameter[5] : v7 (Ljava/util/List;)
+; parameter[6] : v8 (Ljava/util/List;)
+; parameter[7] : v9 (Ljava/util/List;)
+; parameter[8] : v10 (Ljava/util/List;)
+; parameter[9] : v11 (Ljava/util/List;)
+.line 231
+	invoke-direct	{v1},java/lang/Object/<init>	; <init>()V
+; v1 : Lcom/google/tagmanager/ResourceUtil$ExpandedRule;
+.line 232
+	invoke-static	{v2},java/util/Collections/unmodifiableList	; unmodifiableList(Ljava/util/List;)Ljava/util/List;
+; v2 : Ljava/util/List;
+	move-result-object	v0
+; v0 : Ljava/util/List;
+	iput-object	v0,v1,com/google/tagmanager/ResourceUtil$ExpandedRule.mPositivePredicates Ljava/util/List;
+; v0 : Ljava/util/List; , v1 : Lcom/google/tagmanager/ResourceUtil$ExpandedRule;
+.line 233
+	invoke-static	{v3},java/util/Collections/unmodifiableList	; unmodifiableList(Ljava/util/List;)Ljava/util/List;
+; v3 : Ljava/util/List;
+	move-result-object	v0
+; v0 : Ljava/util/List;
+	iput-object	v0,v1,com/google/tagmanager/ResourceUtil$ExpandedRule.mNegativePredicates Ljava/util/List;
+; v0 : Ljava/util/List; , v1 : Lcom/google/tagmanager/ResourceUtil$ExpandedRule;
+.line 234
+	invoke-static	{v4},java/util/Collections/unmodifiableList	; unmodifiableList(Ljava/util/List;)Ljava/util/List;
+; v4 : Ljava/util/List;
+	move-result-object	v0
+; v0 : Ljava/util/List;
+	iput-object	v0,v1,com/google/tagmanager/ResourceUtil$ExpandedRule.mAddTags Ljava/util/List;
+; v0 : Ljava/util/List; , v1 : Lcom/google/tagmanager/ResourceUtil$ExpandedRule;
+.line 235
+	invoke-static	{v5},java/util/Collections/unmodifiableList	; unmodifiableList(Ljava/util/List;)Ljava/util/List;
+; v5 : Ljava/util/List;
+	move-result-object	v0
+; v0 : Ljava/util/List;
+	iput-object	v0,v1,com/google/tagmanager/ResourceUtil$ExpandedRule.mRemoveTags Ljava/util/List;
+; v0 : Ljava/util/List; , v1 : Lcom/google/tagmanager/ResourceUtil$ExpandedRule;
+.line 236
+	invoke-static	{v6},java/util/Collections/unmodifiableList	; unmodifiableList(Ljava/util/List;)Ljava/util/List;
+; v6 : Ljava/util/List;
+	move-result-object	v0
+; v0 : Ljava/util/List;
+	iput-object	v0,v1,com/google/tagmanager/ResourceUtil$ExpandedRule.mAddMacros Ljava/util/List;
+; v0 : Ljava/util/List; , v1 : Lcom/google/tagmanager/ResourceUtil$ExpandedRule;
+.line 237
+	invoke-static	{v7},java/util/Collections/unmodifiableList	; unmodifiableList(Ljava/util/List;)Ljava/util/List;
+; v7 : Ljava/util/List;
+	move-result-object	v0
+; v0 : Ljava/util/List;
+	iput-object	v0,v1,com/google/tagmanager/ResourceUtil$ExpandedRule.mRemoveMacros Ljava/util/List;
+; v0 : Ljava/util/List; , v1 : Lcom/google/tagmanager/ResourceUtil$ExpandedRule;
+.line 238
+	invoke-static	{v8},java/util/Collections/unmodifiableList	; unmodifiableList(Ljava/util/List;)Ljava/util/List;
+; v8 : Ljava/util/List;
+	move-result-object	v0
+; v0 : Ljava/util/List;
+	iput-object	v0,v1,com/google/tagmanager/ResourceUtil$ExpandedRule.mAddMacroRuleNames Ljava/util/List;
+; v0 : Ljava/util/List; , v1 : Lcom/google/tagmanager/ResourceUtil$ExpandedRule;
+.line 239
+	invoke-static	{v9},java/util/Collections/unmodifiableList	; unmodifiableList(Ljava/util/List;)Ljava/util/List;
+; v9 : Ljava/util/List;
+	move-result-object	v0
+; v0 : Ljava/util/List;
+	iput-object	v0,v1,com/google/tagmanager/ResourceUtil$ExpandedRule.mRemoveMacroRuleNames Ljava/util/List;
+; v0 : Ljava/util/List; , v1 : Lcom/google/tagmanager/ResourceUtil$ExpandedRule;
+.line 240
+	invoke-static	{v10},java/util/Collections/unmodifiableList	; unmodifiableList(Ljava/util/List;)Ljava/util/List;
+; v10 : Ljava/util/List;
+	move-result-object	v0
+; v0 : Ljava/util/List;
+	iput-object	v0,v1,com/google/tagmanager/ResourceUtil$ExpandedRule.mAddTagRuleNames Ljava/util/List;
+; v0 : Ljava/util/List; , v1 : Lcom/google/tagmanager/ResourceUtil$ExpandedRule;
+.line 241
+	invoke-static	{v11},java/util/Collections/unmodifiableList	; unmodifiableList(Ljava/util/List;)Ljava/util/List;
+; v11 : Ljava/util/List;
+	move-result-object	v0
+; v0 : Ljava/util/List;
+	iput-object	v0,v1,com/google/tagmanager/ResourceUtil$ExpandedRule.mRemoveTagRuleNames Ljava/util/List;
+; v0 : Ljava/util/List; , v1 : Lcom/google/tagmanager/ResourceUtil$ExpandedRule;
+.line 242
+	return-void	
+.end method
+
+.method <init>(Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Lcom/google/tagmanager/ResourceUtil$1;)V
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "(" , "Ljava/util/List" , "<" , "Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;" , ">;" , "Ljava/util/List" , "<" , "Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;" , ">;" , "Ljava/util/List" , "<" , "Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;" , ">;" , "Ljava/util/List" , "<" , "Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;" , ">;" , "Ljava/util/List" , "<" , "Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;" , ">;" , "Ljava/util/List" , "<" , "Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;" , ">;" , "Ljava/util/List" , "<" , "Ljava/lang/String;" , ">;" , "Ljava/util/List" , "<" , "Ljava/lang/String;" , ">;" , "Ljava/util/List" , "<" , "Ljava/lang/String;" , ">;" , "Ljava/util/List" , "<" , "Ljava/lang/String;" , ">;)V" }
+.end annotation
+.limit registers 12
+; this: v0 (Lcom/google/tagmanager/ResourceUtil$ExpandedRule;)
+; parameter[0] : v1 (Ljava/util/List;)
+; parameter[1] : v2 (Ljava/util/List;)
+; parameter[2] : v3 (Ljava/util/List;)
+; parameter[3] : v4 (Ljava/util/List;)
+; parameter[4] : v5 (Ljava/util/List;)
+; parameter[5] : v6 (Ljava/util/List;)
+; parameter[6] : v7 (Ljava/util/List;)
+; parameter[7] : v8 (Ljava/util/List;)
+; parameter[8] : v9 (Ljava/util/List;)
+; parameter[9] : v10 (Ljava/util/List;)
+; parameter[10] : v11 (Lcom/google/tagmanager/ResourceUtil$1;)
+.line 208
+	invoke-direct/range	{v0..v10},com/google/tagmanager/ResourceUtil$ExpandedRule/<init>;	<init>(Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;Ljava/util/List;)V
+; v0 : Lcom/google/tagmanager/ResourceUtil$ExpandedRule; , v1 : Ljava/util/List; , v2 : Ljava/util/List; , v3 : Ljava/util/List; , v4 : Ljava/util/List; , v5 : Ljava/util/List; , v6 : Ljava/util/List; , v7 : Ljava/util/List; , v8 : Ljava/util/List; , v9 : Ljava/util/List; , v10 : Ljava/util/List;
+	return-void	
+.end method
+
+.method public static newBuilder()Lcom/google/tagmanager/ResourceUtil$ExpandedRuleBuilder;
+.limit registers 2
+.line 245
+	new-instance	v0,com/google/tagmanager/ResourceUtil$ExpandedRuleBuilder
+; v0 : Lcom/google/tagmanager/ResourceUtil$ExpandedRuleBuilder;
+	const/4	v1,0
+; v1 : single-length
+	invoke-direct	{v0,v1},com/google/tagmanager/ResourceUtil$ExpandedRuleBuilder/<init>	; <init>(Lcom/google/tagmanager/ResourceUtil$1;)V
+; v0 : Lcom/google/tagmanager/ResourceUtil$ExpandedRuleBuilder; , v1 : single-length
+	return-object	v0
+; v0 : Lcom/google/tagmanager/ResourceUtil$ExpandedRuleBuilder;
+.end method
+
+.method public getAddMacroRuleNames()Ljava/util/List;
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "()" , "Ljava/util/List" , "<" , "Ljava/lang/String;" , ">;" }
+.end annotation
+.limit registers 2
+; this: v1 (Lcom/google/tagmanager/ResourceUtil$ExpandedRule;)
+.line 276
+	iget-object	v0,v1,com/google/tagmanager/ResourceUtil$ExpandedRule.mAddMacroRuleNames Ljava/util/List;
+; v0 : Ljava/util/List; , v1 : Lcom/google/tagmanager/ResourceUtil$ExpandedRule;
+	return-object	v0
+; v0 : Ljava/util/List;
+.end method
+
+.method public getAddMacros()Ljava/util/List;
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "()" , "Ljava/util/List" , "<" , "Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;" , ">;" }
+.end annotation
+.limit registers 2
+; this: v1 (Lcom/google/tagmanager/ResourceUtil$ExpandedRule;)
+.line 271
+	iget-object	v0,v1,com/google/tagmanager/ResourceUtil$ExpandedRule.mAddMacros Ljava/util/List;
+; v0 : Ljava/util/List; , v1 : Lcom/google/tagmanager/ResourceUtil$ExpandedRule;
+	return-object	v0
+; v0 : Ljava/util/List;
+.end method
+
+.method public getAddTagRuleNames()Ljava/util/List;
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "()" , "Ljava/util/List" , "<" , "Ljava/lang/String;" , ">;" }
+.end annotation
+.limit registers 2
+; this: v1 (Lcom/google/tagmanager/ResourceUtil$ExpandedRule;)
+.line 286
+	iget-object	v0,v1,com/google/tagmanager/ResourceUtil$ExpandedRule.mAddTagRuleNames Ljava/util/List;
+; v0 : Ljava/util/List; , v1 : Lcom/google/tagmanager/ResourceUtil$ExpandedRule;
+	return-object	v0
+; v0 : Ljava/util/List;
+.end method
+
+.method public getAddTags()Ljava/util/List;
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "()" , "Ljava/util/List" , "<" , "Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;" , ">;" }
+.end annotation
+.limit registers 2
+; this: v1 (Lcom/google/tagmanager/ResourceUtil$ExpandedRule;)
+.line 261
+	iget-object	v0,v1,com/google/tagmanager/ResourceUtil$ExpandedRule.mAddTags Ljava/util/List;
+; v0 : Ljava/util/List; , v1 : Lcom/google/tagmanager/ResourceUtil$ExpandedRule;
+	return-object	v0
+; v0 : Ljava/util/List;
+.end method
+
+.method public getNegativePredicates()Ljava/util/List;
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "()" , "Ljava/util/List" , "<" , "Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;" , ">;" }
+.end annotation
+.limit registers 2
+; this: v1 (Lcom/google/tagmanager/ResourceUtil$ExpandedRule;)
+.line 256
+	iget-object	v0,v1,com/google/tagmanager/ResourceUtil$ExpandedRule.mNegativePredicates Ljava/util/List;
+; v0 : Ljava/util/List; , v1 : Lcom/google/tagmanager/ResourceUtil$ExpandedRule;
+	return-object	v0
+; v0 : Ljava/util/List;
+.end method
+
+.method public getPositivePredicates()Ljava/util/List;
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "()" , "Ljava/util/List" , "<" , "Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;" , ">;" }
+.end annotation
+.limit registers 2
+; this: v1 (Lcom/google/tagmanager/ResourceUtil$ExpandedRule;)
+.line 251
+	iget-object	v0,v1,com/google/tagmanager/ResourceUtil$ExpandedRule.mPositivePredicates Ljava/util/List;
+; v0 : Ljava/util/List; , v1 : Lcom/google/tagmanager/ResourceUtil$ExpandedRule;
+	return-object	v0
+; v0 : Ljava/util/List;
+.end method
+
+.method public getRemoveMacroRuleNames()Ljava/util/List;
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "()" , "Ljava/util/List" , "<" , "Ljava/lang/String;" , ">;" }
+.end annotation
+.limit registers 2
+; this: v1 (Lcom/google/tagmanager/ResourceUtil$ExpandedRule;)
+.line 281
+	iget-object	v0,v1,com/google/tagmanager/ResourceUtil$ExpandedRule.mRemoveMacroRuleNames Ljava/util/List;
+; v0 : Ljava/util/List; , v1 : Lcom/google/tagmanager/ResourceUtil$ExpandedRule;
+	return-object	v0
+; v0 : Ljava/util/List;
+.end method
+
+.method public getRemoveMacros()Ljava/util/List;
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "()" , "Ljava/util/List" , "<" , "Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;" , ">;" }
+.end annotation
+.limit registers 2
+; this: v1 (Lcom/google/tagmanager/ResourceUtil$ExpandedRule;)
+.line 296
+	iget-object	v0,v1,com/google/tagmanager/ResourceUtil$ExpandedRule.mRemoveMacros Ljava/util/List;
+; v0 : Ljava/util/List; , v1 : Lcom/google/tagmanager/ResourceUtil$ExpandedRule;
+	return-object	v0
+; v0 : Ljava/util/List;
+.end method
+
+.method public getRemoveTagRuleNames()Ljava/util/List;
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "()" , "Ljava/util/List" , "<" , "Ljava/lang/String;" , ">;" }
+.end annotation
+.limit registers 2
+; this: v1 (Lcom/google/tagmanager/ResourceUtil$ExpandedRule;)
+.line 291
+	iget-object	v0,v1,com/google/tagmanager/ResourceUtil$ExpandedRule.mRemoveTagRuleNames Ljava/util/List;
+; v0 : Ljava/util/List; , v1 : Lcom/google/tagmanager/ResourceUtil$ExpandedRule;
+	return-object	v0
+; v0 : Ljava/util/List;
+.end method
+
+.method public getRemoveTags()Ljava/util/List;
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "()" , "Ljava/util/List" , "<" , "Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;" , ">;" }
+.end annotation
+.limit registers 2
+; this: v1 (Lcom/google/tagmanager/ResourceUtil$ExpandedRule;)
+.line 266
+	iget-object	v0,v1,com/google/tagmanager/ResourceUtil$ExpandedRule.mRemoveTags Ljava/util/List;
+; v0 : Ljava/util/List; , v1 : Lcom/google/tagmanager/ResourceUtil$ExpandedRule;
+	return-object	v0
+; v0 : Ljava/util/List;
+.end method
+
+.method public toString()Ljava/lang/String;
+.limit registers 3
+; this: v2 (Lcom/google/tagmanager/ResourceUtil$ExpandedRule;)
+.line 300
+	new-instance	v0,java/lang/StringBuilder
+; v0 : Ljava/lang/StringBuilder;
+	invoke-direct	{v0},java/lang/StringBuilder/<init>	; <init>()V
+; v0 : Ljava/lang/StringBuilder;
+	const-string	v1,"Positive predicates: "
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v1 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v2},com/google/tagmanager/ResourceUtil$ExpandedRule/getPositivePredicates	; getPositivePredicates()Ljava/util/List;
+; v2 : Lcom/google/tagmanager/ResourceUtil$ExpandedRule;
+	move-result-object	v1
+; v1 : Ljava/util/List;
+	invoke-virtual	{v0,v1},java/lang/StringBuilder/append	; append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v1 : Ljava/util/List;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	const-string	v1,"  Negative predicates: "
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v1 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v2},com/google/tagmanager/ResourceUtil$ExpandedRule/getNegativePredicates	; getNegativePredicates()Ljava/util/List;
+; v2 : Lcom/google/tagmanager/ResourceUtil$ExpandedRule;
+	move-result-object	v1
+; v1 : Ljava/util/List;
+	invoke-virtual	{v0,v1},java/lang/StringBuilder/append	; append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v1 : Ljava/util/List;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	const-string	v1,"  Add tags: "
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v1 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v2},com/google/tagmanager/ResourceUtil$ExpandedRule/getAddTags	; getAddTags()Ljava/util/List;
+; v2 : Lcom/google/tagmanager/ResourceUtil$ExpandedRule;
+	move-result-object	v1
+; v1 : Ljava/util/List;
+	invoke-virtual	{v0,v1},java/lang/StringBuilder/append	; append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v1 : Ljava/util/List;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	const-string	v1,"  Remove tags: "
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v1 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v2},com/google/tagmanager/ResourceUtil$ExpandedRule/getRemoveTags	; getRemoveTags()Ljava/util/List;
+; v2 : Lcom/google/tagmanager/ResourceUtil$ExpandedRule;
+	move-result-object	v1
+; v1 : Ljava/util/List;
+	invoke-virtual	{v0,v1},java/lang/StringBuilder/append	; append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v1 : Ljava/util/List;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	const-string	v1,"  Add macros: "
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v1 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v2},com/google/tagmanager/ResourceUtil$ExpandedRule/getAddMacros	; getAddMacros()Ljava/util/List;
+; v2 : Lcom/google/tagmanager/ResourceUtil$ExpandedRule;
+	move-result-object	v1
+; v1 : Ljava/util/List;
+	invoke-virtual	{v0,v1},java/lang/StringBuilder/append	; append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v1 : Ljava/util/List;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	const-string	v1,"  Remove macros: "
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v1 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v2},com/google/tagmanager/ResourceUtil$ExpandedRule/getRemoveMacros	; getRemoveMacros()Ljava/util/List;
+; v2 : Lcom/google/tagmanager/ResourceUtil$ExpandedRule;
+	move-result-object	v1
+; v1 : Ljava/util/List;
+	invoke-virtual	{v0,v1},java/lang/StringBuilder/append	; append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v1 : Ljava/util/List;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v0},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v0 : Ljava/lang/StringBuilder;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	return-object	v0
+; v0 : Ljava/lang/String;
+.end method
+
+

@@ -1,0 +1,1201 @@
+.class public final com/squareup/okhttp/internal/http/HttpsURLConnectionImpl
+.super javax/net/ssl/HttpsURLConnection
+.source HttpsURLConnectionImpl.java
+
+.inner class 1 inner com/squareup/okhttp/internal/http/HttpsURLConnectionImpl$1 outer com/squareup/okhttp/internal/http/HttpsURLConnectionImpl
+.inner class HttpUrlConnectionDelegate inner com/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate outer com/squareup/okhttp/internal/http/HttpsURLConnectionImpl
+.field private final delegate Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+
+.method public <init>(Ljava/net/URL;Lcom/squareup/okhttp/OkHttpClient;)V
+.limit registers 5
+; this: v2 (Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;)
+; parameter[0] : v3 (Ljava/net/URL;)
+; parameter[1] : v4 (Lcom/squareup/okhttp/OkHttpClient;)
+.line 44
+	invoke-direct	{v2,v3},javax/net/ssl/HttpsURLConnection/<init>	; <init>(Ljava/net/URL;)V
+; v2 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl; , v3 : Ljava/net/URL;
+.line 45
+	new-instance	v0,com/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+	const/4	v1,0
+; v1 : single-length
+	invoke-direct	{v0,v2,v3,v4,v1},com/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate/<init>	; <init>(Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;Ljava/net/URL;Lcom/squareup/okhttp/OkHttpClient;Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$1;)V
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v2 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl; , v3 : Ljava/net/URL; , v4 : Lcom/squareup/okhttp/OkHttpClient; , v1 : single-length
+	iput-object	v0,v2,com/squareup/okhttp/internal/http/HttpsURLConnectionImpl.delegate Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v2 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;
+.line 46
+	return-void	
+.end method
+
+.method private getSslSocket()Ljavax/net/ssl/SSLSocket;
+.limit registers 3
+; this: v2 (Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;)
+.line 115
+	iget-object	v0,v2,com/squareup/okhttp/internal/http/HttpsURLConnectionImpl.delegate Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v2 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;
+	iget-object	v0,v0,com/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate.httpEngine Lcom/squareup/okhttp/internal/http/HttpEngine;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpEngine; , v0 : Lcom/squareup/okhttp/internal/http/HttpEngine;
+	if-eqz	v0,lba9c4
+; v0 : Lcom/squareup/okhttp/internal/http/HttpEngine;
+	iget-object	v0,v2,com/squareup/okhttp/internal/http/HttpsURLConnectionImpl.delegate Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v2 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;
+	iget-object	v0,v0,com/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate.httpEngine Lcom/squareup/okhttp/internal/http/HttpEngine;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpEngine; , v0 : Lcom/squareup/okhttp/internal/http/HttpEngine;
+	iget-boolean	v0,v0,com/squareup/okhttp/internal/http/HttpEngine.connected Z
+; v0 : single-length , v0 : single-length
+	if-nez	v0,lba9d4
+; v0 : single-length
+lba9c4:
+.line 116
+	new-instance	v0,java/lang/IllegalStateException
+; v0 : Ljava/lang/IllegalStateException;
+	const-string	v1,"Connection has not yet been established"
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/IllegalStateException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/IllegalStateException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/IllegalStateException;
+lba9d4:
+.line 118
+	iget-object	v0,v2,com/squareup/okhttp/internal/http/HttpsURLConnectionImpl.delegate Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v2 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;
+	iget-object	v0,v0,com/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate.httpEngine Lcom/squareup/okhttp/internal/http/HttpEngine;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpEngine; , v0 : Lcom/squareup/okhttp/internal/http/HttpEngine;
+	instance-of	v0,v0,com/squareup/okhttp/internal/http/HttpsEngine
+; v0 : single-length , v0 : single-length
+	if-eqz	v0,lba9fa
+; v0 : single-length
+	iget-object	v0,v2,com/squareup/okhttp/internal/http/HttpsURLConnectionImpl.delegate Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v2 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;
+	iget-object	v0,v0,com/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate.httpEngine Lcom/squareup/okhttp/internal/http/HttpEngine;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpEngine; , v0 : Lcom/squareup/okhttp/internal/http/HttpEngine;
+	check-cast	v0,com/squareup/okhttp/internal/http/HttpsEngine
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsEngine;
+	invoke-virtual	{v0},com/squareup/okhttp/internal/http/HttpsEngine/getSslSocket	; getSslSocket()Ljavax/net/ssl/SSLSocket;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsEngine;
+	move-result-object	v0
+; v0 : Ljavax/net/ssl/SSLSocket;
+lba9f8:
+	return-object	v0
+; v0 : single-length
+lba9fa:
+	const/4	v0,0
+; v0 : single-length
+	goto	lba9f8
+.end method
+
+.method public addRequestProperty(Ljava/lang/String;Ljava/lang/String;)V
+.limit registers 4
+; this: v1 (Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;)
+; parameter[0] : v2 (Ljava/lang/String;)
+; parameter[1] : v3 (Ljava/lang/String;)
+.line 222
+	iget-object	v0,v1,com/squareup/okhttp/internal/http/HttpsURLConnectionImpl.delegate Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v1 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;
+	invoke-virtual	{v0,v2,v3},com/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate/addRequestProperty	; addRequestProperty(Ljava/lang/String;Ljava/lang/String;)V
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v2 : Ljava/lang/String; , v3 : Ljava/lang/String;
+.line 223
+	return-void	
+.end method
+
+.method public connect()V
+.throws Ljava/io/IOException;
+.limit registers 2
+; this: v1 (Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;)
+.line 160
+	const/4	v0,1
+; v0 : single-length
+	iput-boolean	v0,v1,com/squareup/okhttp/internal/http/HttpsURLConnectionImpl.connected Z
+; v0 : single-length , v1 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;
+.line 161
+	iget-object	v0,v1,com/squareup/okhttp/internal/http/HttpsURLConnectionImpl.delegate Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v1 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;
+	invoke-virtual	{v0},com/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate/connect	; connect()V
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+.line 162
+	return-void	
+.end method
+
+.method public disconnect()V
+.limit registers 2
+; this: v1 (Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;)
+.line 124
+	iget-object	v0,v1,com/squareup/okhttp/internal/http/HttpsURLConnectionImpl.delegate Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v1 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;
+	invoke-virtual	{v0},com/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate/disconnect	; disconnect()V
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+.line 125
+	return-void	
+.end method
+
+.method public getAllowUserInteraction()Z
+.limit registers 2
+; this: v1 (Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;)
+.line 165
+	iget-object	v0,v1,com/squareup/okhttp/internal/http/HttpsURLConnectionImpl.delegate Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v1 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;
+	invoke-virtual	{v0},com/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate/getAllowUserInteraction	; getAllowUserInteraction()Z
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+	move-result	v0
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public getCipherSuite()Ljava/lang/String;
+.limit registers 4
+; this: v3 (Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;)
+.line 49
+	iget-object	v2,v3,com/squareup/okhttp/internal/http/HttpsURLConnectionImpl.delegate Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+; v2 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v3 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;
+	invoke-virtual	{v2},com/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate/getSecureCacheResponse	; getSecureCacheResponse()Ljava/net/SecureCacheResponse;
+; v2 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+	move-result-object	v0
+; v0 : Ljava/net/SecureCacheResponse;
+.line 50
+	if-eqz	v0,lbaaa6
+; v0 : Ljava/net/SecureCacheResponse;
+.line 51
+	invoke-virtual	{v0},java/net/SecureCacheResponse/getCipherSuite	; getCipherSuite()Ljava/lang/String;
+; v0 : Ljava/net/SecureCacheResponse;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+lbaaa4:
+.line 57
+	return-object	v2
+; v2 : Ljava/lang/String;
+lbaaa6:
+.line 53
+	invoke-direct	{v3},com/squareup/okhttp/internal/http/HttpsURLConnectionImpl/getSslSocket	; getSslSocket()Ljavax/net/ssl/SSLSocket;
+; v3 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;
+	move-result-object	v1
+; v1 : Ljavax/net/ssl/SSLSocket;
+.line 54
+	if-eqz	v1,lbaac4
+; v1 : Ljavax/net/ssl/SSLSocket;
+.line 55
+	invoke-virtual	{v1},javax/net/ssl/SSLSocket/getSession	; getSession()Ljavax/net/ssl/SSLSession;
+; v1 : Ljavax/net/ssl/SSLSocket;
+	move-result-object	v2
+; v2 : Ljavax/net/ssl/SSLSession;
+	invoke-interface	{v2},javax/net/ssl/SSLSession/getCipherSuite	; getCipherSuite()Ljava/lang/String;
+; v2 : Ljavax/net/ssl/SSLSession;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	goto	lbaaa4
+lbaac4:
+.line 57
+	const/4	v2,0
+; v2 : single-length
+	goto	lbaaa4
+.end method
+
+.method public getConnectTimeout()I
+.limit registers 2
+; this: v1 (Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;)
+.line 306
+	iget-object	v0,v1,com/squareup/okhttp/internal/http/HttpsURLConnectionImpl.delegate Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v1 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;
+	invoke-virtual	{v0},com/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate/getConnectTimeout	; getConnectTimeout()I
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+	move-result	v0
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public getContent()Ljava/lang/Object;
+.throws Ljava/io/IOException;
+.limit registers 2
+; this: v1 (Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;)
+.line 169
+	iget-object	v0,v1,com/squareup/okhttp/internal/http/HttpsURLConnectionImpl.delegate Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v1 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;
+	invoke-virtual	{v0},com/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate/getContent	; getContent()Ljava/lang/Object;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	return-object	v0
+; v0 : Ljava/lang/Object;
+.end method
+
+.method public getContent([Ljava/lang/Class;)Ljava/lang/Object;
+.throws Ljava/io/IOException;
+.limit registers 3
+; this: v1 (Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;)
+; parameter[0] : v2 ([Ljava/lang/Class;)
+.line 174
+	iget-object	v0,v1,com/squareup/okhttp/internal/http/HttpsURLConnectionImpl.delegate Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v1 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;
+	invoke-virtual	{v0,v2},com/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate/getContent	; getContent([Ljava/lang/Class;)Ljava/lang/Object;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v2 : [Ljava/lang/Class;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	return-object	v0
+; v0 : Ljava/lang/Object;
+.end method
+
+.method public getContentEncoding()Ljava/lang/String;
+.limit registers 2
+; this: v1 (Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;)
+.line 178
+	iget-object	v0,v1,com/squareup/okhttp/internal/http/HttpsURLConnectionImpl.delegate Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v1 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;
+	invoke-virtual	{v0},com/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate/getContentEncoding	; getContentEncoding()Ljava/lang/String;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	return-object	v0
+; v0 : Ljava/lang/String;
+.end method
+
+.method public getContentLength()I
+.limit registers 2
+; this: v1 (Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;)
+.line 182
+	iget-object	v0,v1,com/squareup/okhttp/internal/http/HttpsURLConnectionImpl.delegate Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v1 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;
+	invoke-virtual	{v0},com/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate/getContentLength	; getContentLength()I
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+	move-result	v0
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public getContentLengthLong()J
+.limit registers 3
+; this: v2 (Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;)
+.line 350
+	iget-object	v0,v2,com/squareup/okhttp/internal/http/HttpsURLConnectionImpl.delegate Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v2 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;
+	invoke-virtual	{v0},com/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate/getContentLengthLong	; getContentLengthLong()J
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+	move-result-wide	v0
+; v0 : double-length
+	return-wide	v0
+; v0 : double-length
+.end method
+
+.method public getContentType()Ljava/lang/String;
+.limit registers 2
+; this: v1 (Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;)
+.line 186
+	iget-object	v0,v1,com/squareup/okhttp/internal/http/HttpsURLConnectionImpl.delegate Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v1 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;
+	invoke-virtual	{v0},com/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate/getContentType	; getContentType()Ljava/lang/String;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	return-object	v0
+; v0 : Ljava/lang/String;
+.end method
+
+.method public getDate()J
+.limit registers 3
+; this: v2 (Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;)
+.line 190
+	iget-object	v0,v2,com/squareup/okhttp/internal/http/HttpsURLConnectionImpl.delegate Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v2 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;
+	invoke-virtual	{v0},com/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate/getDate	; getDate()J
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+	move-result-wide	v0
+; v0 : double-length
+	return-wide	v0
+; v0 : double-length
+.end method
+
+.method public getDefaultUseCaches()Z
+.limit registers 2
+; this: v1 (Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;)
+.line 194
+	iget-object	v0,v1,com/squareup/okhttp/internal/http/HttpsURLConnectionImpl.delegate Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v1 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;
+	invoke-virtual	{v0},com/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate/getDefaultUseCaches	; getDefaultUseCaches()Z
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+	move-result	v0
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public getDoInput()Z
+.limit registers 2
+; this: v1 (Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;)
+.line 198
+	iget-object	v0,v1,com/squareup/okhttp/internal/http/HttpsURLConnectionImpl.delegate Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v1 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;
+	invoke-virtual	{v0},com/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate/getDoInput	; getDoInput()Z
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+	move-result	v0
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public getDoOutput()Z
+.limit registers 2
+; this: v1 (Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;)
+.line 202
+	iget-object	v0,v1,com/squareup/okhttp/internal/http/HttpsURLConnectionImpl.delegate Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v1 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;
+	invoke-virtual	{v0},com/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate/getDoOutput	; getDoOutput()Z
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+	move-result	v0
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public getErrorStream()Ljava/io/InputStream;
+.limit registers 2
+; this: v1 (Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;)
+.line 128
+	iget-object	v0,v1,com/squareup/okhttp/internal/http/HttpsURLConnectionImpl.delegate Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v1 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;
+	invoke-virtual	{v0},com/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate/getErrorStream	; getErrorStream()Ljava/io/InputStream;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+	move-result-object	v0
+; v0 : Ljava/io/InputStream;
+	return-object	v0
+; v0 : Ljava/io/InputStream;
+.end method
+
+.method public getExpiration()J
+.limit registers 3
+; this: v2 (Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;)
+.line 206
+	iget-object	v0,v2,com/squareup/okhttp/internal/http/HttpsURLConnectionImpl.delegate Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v2 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;
+	invoke-virtual	{v0},com/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate/getExpiration	; getExpiration()J
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+	move-result-wide	v0
+; v0 : double-length
+	return-wide	v0
+; v0 : double-length
+.end method
+
+.method public getHeaderField(I)Ljava/lang/String;
+.limit registers 3
+; this: v1 (Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;)
+; parameter[0] : v2 (I)
+.line 210
+	iget-object	v0,v1,com/squareup/okhttp/internal/http/HttpsURLConnectionImpl.delegate Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v1 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;
+	invoke-virtual	{v0,v2},com/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate/getHeaderField	; getHeaderField(I)Ljava/lang/String;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v2 : single-length
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	return-object	v0
+; v0 : Ljava/lang/String;
+.end method
+
+.method public getHeaderField(Ljava/lang/String;)Ljava/lang/String;
+.limit registers 3
+; this: v1 (Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;)
+; parameter[0] : v2 (Ljava/lang/String;)
+.line 226
+	iget-object	v0,v1,com/squareup/okhttp/internal/http/HttpsURLConnectionImpl.delegate Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v1 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;
+	invoke-virtual	{v0,v2},com/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate/getHeaderField	; getHeaderField(Ljava/lang/String;)Ljava/lang/String;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v2 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	return-object	v0
+; v0 : Ljava/lang/String;
+.end method
+
+.method public getHeaderFieldDate(Ljava/lang/String;J)J
+.limit registers 6
+; this: v2 (Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;)
+; parameter[0] : v3 (Ljava/lang/String;)
+; parameter[1] : v4 (J)
+.line 230
+	iget-object	v0,v2,com/squareup/okhttp/internal/http/HttpsURLConnectionImpl.delegate Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v2 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;
+	invoke-virtual	{v0,v3,v4,v5},com/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate/getHeaderFieldDate	; getHeaderFieldDate(Ljava/lang/String;J)J
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v3 : Ljava/lang/String; , v4 : double-length
+	move-result-wide	v0
+; v0 : double-length
+	return-wide	v0
+; v0 : double-length
+.end method
+
+.method public getHeaderFieldInt(Ljava/lang/String;I)I
+.limit registers 4
+; this: v1 (Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;)
+; parameter[0] : v2 (Ljava/lang/String;)
+; parameter[1] : v3 (I)
+.line 234
+	iget-object	v0,v1,com/squareup/okhttp/internal/http/HttpsURLConnectionImpl.delegate Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v1 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;
+	invoke-virtual	{v0,v2,v3},com/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate/getHeaderFieldInt	; getHeaderFieldInt(Ljava/lang/String;I)I
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v2 : Ljava/lang/String; , v3 : single-length
+	move-result	v0
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public getHeaderFieldKey(I)Ljava/lang/String;
+.limit registers 3
+; this: v1 (Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;)
+; parameter[0] : v2 (I)
+.line 238
+	iget-object	v0,v1,com/squareup/okhttp/internal/http/HttpsURLConnectionImpl.delegate Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v1 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;
+	invoke-virtual	{v0,v2},com/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate/getHeaderFieldKey	; getHeaderFieldKey(I)Ljava/lang/String;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v2 : single-length
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	return-object	v0
+; v0 : Ljava/lang/String;
+.end method
+
+.method public getHeaderFieldLong(Ljava/lang/String;J)J
+.limit registers 6
+; this: v2 (Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;)
+; parameter[0] : v3 (Ljava/lang/String;)
+; parameter[1] : v4 (J)
+.line 354
+	iget-object	v0,v2,com/squareup/okhttp/internal/http/HttpsURLConnectionImpl.delegate Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v2 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;
+	invoke-virtual	{v0,v3,v4,v5},com/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate/getHeaderFieldLong	; getHeaderFieldLong(Ljava/lang/String;J)J
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v3 : Ljava/lang/String; , v4 : double-length
+	move-result-wide	v0
+; v0 : double-length
+	return-wide	v0
+; v0 : double-length
+.end method
+
+.method public getHeaderFields()Ljava/util/Map;
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "()" , "Ljava/util/Map" , "<" , "Ljava/lang/String;" , "Ljava/util/List" , "<" , "Ljava/lang/String;" , ">;>;" }
+.end annotation
+.limit registers 2
+; this: v1 (Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;)
+.line 214
+	iget-object	v0,v1,com/squareup/okhttp/internal/http/HttpsURLConnectionImpl.delegate Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v1 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;
+	invoke-virtual	{v0},com/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate/getHeaderFields	; getHeaderFields()Ljava/util/Map;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+	move-result-object	v0
+; v0 : Ljava/util/Map;
+	return-object	v0
+; v0 : Ljava/util/Map;
+.end method
+
+.method public getHostnameVerifier()Ljavax/net/ssl/HostnameVerifier;
+.limit registers 2
+; this: v1 (Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;)
+.line 334
+	iget-object	v0,v1,com/squareup/okhttp/internal/http/HttpsURLConnectionImpl.delegate Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v1 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;
+	iget-object	v0,v0,com/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate.client Lcom/squareup/okhttp/OkHttpClient;
+; v0 : Lcom/squareup/okhttp/OkHttpClient; , v0 : Lcom/squareup/okhttp/OkHttpClient;
+	invoke-virtual	{v0},com/squareup/okhttp/OkHttpClient/getHostnameVerifier	; getHostnameVerifier()Ljavax/net/ssl/HostnameVerifier;
+; v0 : Lcom/squareup/okhttp/OkHttpClient;
+	move-result-object	v0
+; v0 : Ljavax/net/ssl/HostnameVerifier;
+	return-object	v0
+; v0 : Ljavax/net/ssl/HostnameVerifier;
+.end method
+
+.method public getHttpEngine()Lcom/squareup/okhttp/internal/http/HttpEngine;
+.limit registers 2
+; this: v1 (Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;)
+.line 111
+	iget-object	v0,v1,com/squareup/okhttp/internal/http/HttpsURLConnectionImpl.delegate Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v1 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;
+	invoke-virtual	{v0},com/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate/getHttpEngine	; getHttpEngine()Lcom/squareup/okhttp/internal/http/HttpEngine;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+	move-result-object	v0
+; v0 : Lcom/squareup/okhttp/internal/http/HttpEngine;
+	return-object	v0
+; v0 : Lcom/squareup/okhttp/internal/http/HttpEngine;
+.end method
+
+.method public getIfModifiedSince()J
+.limit registers 3
+; this: v2 (Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;)
+.line 242
+	iget-object	v0,v2,com/squareup/okhttp/internal/http/HttpsURLConnectionImpl.delegate Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v2 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;
+	invoke-virtual	{v0},com/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate/getIfModifiedSince	; getIfModifiedSince()J
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+	move-result-wide	v0
+; v0 : double-length
+	return-wide	v0
+; v0 : double-length
+.end method
+
+.method public getInputStream()Ljava/io/InputStream;
+.throws Ljava/io/IOException;
+.limit registers 2
+; this: v1 (Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;)
+.line 246
+	iget-object	v0,v1,com/squareup/okhttp/internal/http/HttpsURLConnectionImpl.delegate Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v1 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;
+	invoke-virtual	{v0},com/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate/getInputStream	; getInputStream()Ljava/io/InputStream;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+	move-result-object	v0
+; v0 : Ljava/io/InputStream;
+	return-object	v0
+; v0 : Ljava/io/InputStream;
+.end method
+
+.method public getInstanceFollowRedirects()Z
+.limit registers 2
+; this: v1 (Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;)
+.line 152
+	iget-object	v0,v1,com/squareup/okhttp/internal/http/HttpsURLConnectionImpl.delegate Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v1 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;
+	invoke-virtual	{v0},com/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate/getInstanceFollowRedirects	; getInstanceFollowRedirects()Z
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+	move-result	v0
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public getLastModified()J
+.limit registers 3
+; this: v2 (Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;)
+.line 250
+	iget-object	v0,v2,com/squareup/okhttp/internal/http/HttpsURLConnectionImpl.delegate Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v2 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;
+	invoke-virtual	{v0},com/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate/getLastModified	; getLastModified()J
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+	move-result-wide	v0
+; v0 : double-length
+	return-wide	v0
+; v0 : double-length
+.end method
+
+.method public getLocalCertificates()[Ljava/security/cert/Certificate;
+.limit registers 6
+; this: v5 (Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;)
+.var 1 is result Ljava/util/List; from lbae36 to lbae52
+	const/4	v3,0
+; v3 : single-length
+.line 61
+	iget-object	v4,v5,com/squareup/okhttp/internal/http/HttpsURLConnectionImpl.delegate Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+; v4 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v5 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;
+	invoke-virtual	{v4},com/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate/getSecureCacheResponse	; getSecureCacheResponse()Ljava/net/SecureCacheResponse;
+; v4 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+	move-result-object	v0
+; v0 : Ljava/net/SecureCacheResponse;
+.line 62
+	if-eqz	v0,lbae54
+; v0 : Ljava/net/SecureCacheResponse;
+.line 63
+	invoke-virtual	{v0},java/net/SecureCacheResponse/getLocalCertificateChain	; getLocalCertificateChain()Ljava/util/List;
+; v0 : Ljava/net/SecureCacheResponse;
+	move-result-object	v1
+; v1 : Ljava/util/List;
+.line 64
+	if-eqz	v1,lbae52
+; v1 : Ljava/util/List;
+	invoke-interface	{v1},java/util/List/size	; size()I
+; v1 : Ljava/util/List;
+	move-result	v3
+; v3 : single-length
+	new-array	v3,v3,[Ljava/security/cert/Certificate;
+; v3 : [Ljava/security/cert/Certificate; , v3 : [Ljava/security/cert/Certificate;
+	invoke-interface	{v1,v3},java/util/List/toArray	; toArray([Ljava/lang/Object;)[Ljava/lang/Object;
+; v1 : Ljava/util/List; , v3 : [Ljava/security/cert/Certificate;
+	move-result-object	v3
+; v3 : [Ljava/lang/Object;
+	check-cast	v3,[Ljava/security/cert/Certificate
+; v3 : [Ljava/security/cert/Certificate
+lbae52:
+.line 70
+	return-object	v3
+; v3 : [Ljava/security/cert/Certificate;
+lbae54:
+.line 66
+	invoke-direct	{v5},com/squareup/okhttp/internal/http/HttpsURLConnectionImpl/getSslSocket	; getSslSocket()Ljavax/net/ssl/SSLSocket;
+; v5 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;
+	move-result-object	v2
+; v2 : Ljavax/net/ssl/SSLSocket;
+.line 67
+	if-eqz	v2,lbae52
+; v2 : Ljavax/net/ssl/SSLSocket;
+.line 68
+	invoke-virtual	{v2},javax/net/ssl/SSLSocket/getSession	; getSession()Ljavax/net/ssl/SSLSession;
+; v2 : Ljavax/net/ssl/SSLSocket;
+	move-result-object	v3
+; v3 : Ljavax/net/ssl/SSLSession;
+	invoke-interface	{v3},javax/net/ssl/SSLSession/getLocalCertificates	; getLocalCertificates()[Ljava/security/cert/Certificate;
+; v3 : Ljavax/net/ssl/SSLSession;
+	move-result-object	v3
+; v3 : [Ljava/security/cert/Certificate;
+	goto	lbae52
+.end method
+
+.method public getLocalPrincipal()Ljava/security/Principal;
+.limit registers 4
+; this: v3 (Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;)
+.line 99
+	iget-object	v2,v3,com/squareup/okhttp/internal/http/HttpsURLConnectionImpl.delegate Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+; v2 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v3 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;
+	invoke-virtual	{v2},com/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate/getSecureCacheResponse	; getSecureCacheResponse()Ljava/net/SecureCacheResponse;
+; v2 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+	move-result-object	v0
+; v0 : Ljava/net/SecureCacheResponse;
+.line 100
+	if-eqz	v0,lbae9e
+; v0 : Ljava/net/SecureCacheResponse;
+.line 101
+	invoke-virtual	{v0},java/net/SecureCacheResponse/getLocalPrincipal	; getLocalPrincipal()Ljava/security/Principal;
+; v0 : Ljava/net/SecureCacheResponse;
+	move-result-object	v2
+; v2 : Ljava/security/Principal;
+lbae9c:
+.line 107
+	return-object	v2
+; v2 : Ljava/security/Principal;
+lbae9e:
+.line 103
+	invoke-direct	{v3},com/squareup/okhttp/internal/http/HttpsURLConnectionImpl/getSslSocket	; getSslSocket()Ljavax/net/ssl/SSLSocket;
+; v3 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;
+	move-result-object	v1
+; v1 : Ljavax/net/ssl/SSLSocket;
+.line 104
+	if-eqz	v1,lbaebc
+; v1 : Ljavax/net/ssl/SSLSocket;
+.line 105
+	invoke-virtual	{v1},javax/net/ssl/SSLSocket/getSession	; getSession()Ljavax/net/ssl/SSLSession;
+; v1 : Ljavax/net/ssl/SSLSocket;
+	move-result-object	v2
+; v2 : Ljavax/net/ssl/SSLSession;
+	invoke-interface	{v2},javax/net/ssl/SSLSession/getLocalPrincipal	; getLocalPrincipal()Ljava/security/Principal;
+; v2 : Ljavax/net/ssl/SSLSession;
+	move-result-object	v2
+; v2 : Ljava/security/Principal;
+	goto	lbae9c
+lbaebc:
+.line 107
+	const/4	v2,0
+; v2 : single-length
+	goto	lbae9c
+.end method
+
+.method public getOutputStream()Ljava/io/OutputStream;
+.throws Ljava/io/IOException;
+.limit registers 2
+; this: v1 (Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;)
+.line 254
+	iget-object	v0,v1,com/squareup/okhttp/internal/http/HttpsURLConnectionImpl.delegate Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v1 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;
+	invoke-virtual	{v0},com/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate/getOutputStream	; getOutputStream()Ljava/io/OutputStream;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+	move-result-object	v0
+; v0 : Ljava/io/OutputStream;
+	return-object	v0
+; v0 : Ljava/io/OutputStream;
+.end method
+
+.method public getPeerPrincipal()Ljava/security/Principal;
+.throws Ljavax/net/ssl/SSLPeerUnverifiedException;
+.limit registers 4
+; this: v3 (Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;)
+.line 87
+	iget-object	v2,v3,com/squareup/okhttp/internal/http/HttpsURLConnectionImpl.delegate Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+; v2 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v3 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;
+	invoke-virtual	{v2},com/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate/getSecureCacheResponse	; getSecureCacheResponse()Ljava/net/SecureCacheResponse;
+; v2 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+	move-result-object	v0
+; v0 : Ljava/net/SecureCacheResponse;
+.line 88
+	if-eqz	v0,lbaf0a
+; v0 : Ljava/net/SecureCacheResponse;
+.line 89
+	invoke-virtual	{v0},java/net/SecureCacheResponse/getPeerPrincipal	; getPeerPrincipal()Ljava/security/Principal;
+; v0 : Ljava/net/SecureCacheResponse;
+	move-result-object	v2
+; v2 : Ljava/security/Principal;
+lbaf08:
+.line 95
+	return-object	v2
+; v2 : Ljava/security/Principal;
+lbaf0a:
+.line 91
+	invoke-direct	{v3},com/squareup/okhttp/internal/http/HttpsURLConnectionImpl/getSslSocket	; getSslSocket()Ljavax/net/ssl/SSLSocket;
+; v3 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;
+	move-result-object	v1
+; v1 : Ljavax/net/ssl/SSLSocket;
+.line 92
+	if-eqz	v1,lbaf28
+; v1 : Ljavax/net/ssl/SSLSocket;
+.line 93
+	invoke-virtual	{v1},javax/net/ssl/SSLSocket/getSession	; getSession()Ljavax/net/ssl/SSLSession;
+; v1 : Ljavax/net/ssl/SSLSocket;
+	move-result-object	v2
+; v2 : Ljavax/net/ssl/SSLSession;
+	invoke-interface	{v2},javax/net/ssl/SSLSession/getPeerPrincipal	; getPeerPrincipal()Ljava/security/Principal;
+; v2 : Ljavax/net/ssl/SSLSession;
+	move-result-object	v2
+; v2 : Ljava/security/Principal;
+	goto	lbaf08
+lbaf28:
+.line 95
+	const/4	v2,0
+; v2 : single-length
+	goto	lbaf08
+.end method
+
+.method public getPermission()Ljava/security/Permission;
+.throws Ljava/io/IOException;
+.limit registers 2
+; this: v1 (Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;)
+.line 258
+	iget-object	v0,v1,com/squareup/okhttp/internal/http/HttpsURLConnectionImpl.delegate Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v1 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;
+	invoke-virtual	{v0},com/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate/getPermission	; getPermission()Ljava/security/Permission;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+	move-result-object	v0
+; v0 : Ljava/security/Permission;
+	return-object	v0
+; v0 : Ljava/security/Permission;
+.end method
+
+.method public getReadTimeout()I
+.limit registers 2
+; this: v1 (Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;)
+.line 314
+	iget-object	v0,v1,com/squareup/okhttp/internal/http/HttpsURLConnectionImpl.delegate Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v1 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;
+	invoke-virtual	{v0},com/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate/getReadTimeout	; getReadTimeout()I
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+	move-result	v0
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public getRequestMethod()Ljava/lang/String;
+.limit registers 2
+; this: v1 (Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;)
+.line 132
+	iget-object	v0,v1,com/squareup/okhttp/internal/http/HttpsURLConnectionImpl.delegate Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v1 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;
+	invoke-virtual	{v0},com/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate/getRequestMethod	; getRequestMethod()Ljava/lang/String;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	return-object	v0
+; v0 : Ljava/lang/String;
+.end method
+
+.method public getRequestProperties()Ljava/util/Map;
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "()" , "Ljava/util/Map" , "<" , "Ljava/lang/String;" , "Ljava/util/List" , "<" , "Ljava/lang/String;" , ">;>;" }
+.end annotation
+.limit registers 2
+; this: v1 (Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;)
+.line 218
+	iget-object	v0,v1,com/squareup/okhttp/internal/http/HttpsURLConnectionImpl.delegate Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v1 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;
+	invoke-virtual	{v0},com/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate/getRequestProperties	; getRequestProperties()Ljava/util/Map;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+	move-result-object	v0
+; v0 : Ljava/util/Map;
+	return-object	v0
+; v0 : Ljava/util/Map;
+.end method
+
+.method public getRequestProperty(Ljava/lang/String;)Ljava/lang/String;
+.limit registers 3
+; this: v1 (Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;)
+; parameter[0] : v2 (Ljava/lang/String;)
+.line 262
+	iget-object	v0,v1,com/squareup/okhttp/internal/http/HttpsURLConnectionImpl.delegate Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v1 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;
+	invoke-virtual	{v0,v2},com/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate/getRequestProperty	; getRequestProperty(Ljava/lang/String;)Ljava/lang/String;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v2 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	return-object	v0
+; v0 : Ljava/lang/String;
+.end method
+
+.method public getResponseCode()I
+.throws Ljava/io/IOException;
+.limit registers 2
+; this: v1 (Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;)
+.line 136
+	iget-object	v0,v1,com/squareup/okhttp/internal/http/HttpsURLConnectionImpl.delegate Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v1 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;
+	invoke-virtual	{v0},com/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate/getResponseCode	; getResponseCode()I
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+	move-result	v0
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public getResponseMessage()Ljava/lang/String;
+.throws Ljava/io/IOException;
+.limit registers 2
+; this: v1 (Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;)
+.line 140
+	iget-object	v0,v1,com/squareup/okhttp/internal/http/HttpsURLConnectionImpl.delegate Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v1 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;
+	invoke-virtual	{v0},com/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate/getResponseMessage	; getResponseMessage()Ljava/lang/String;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	return-object	v0
+; v0 : Ljava/lang/String;
+.end method
+
+.method public getSSLSocketFactory()Ljavax/net/ssl/SSLSocketFactory;
+.limit registers 2
+; this: v1 (Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;)
+.line 342
+	iget-object	v0,v1,com/squareup/okhttp/internal/http/HttpsURLConnectionImpl.delegate Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v1 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;
+	iget-object	v0,v0,com/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate.client Lcom/squareup/okhttp/OkHttpClient;
+; v0 : Lcom/squareup/okhttp/OkHttpClient; , v0 : Lcom/squareup/okhttp/OkHttpClient;
+	invoke-virtual	{v0},com/squareup/okhttp/OkHttpClient/getSslSocketFactory	; getSslSocketFactory()Ljavax/net/ssl/SSLSocketFactory;
+; v0 : Lcom/squareup/okhttp/OkHttpClient;
+	move-result-object	v0
+; v0 : Ljavax/net/ssl/SSLSocketFactory;
+	return-object	v0
+; v0 : Ljavax/net/ssl/SSLSocketFactory;
+.end method
+
+.method public getServerCertificates()[Ljava/security/cert/Certificate;
+.throws Ljavax/net/ssl/SSLPeerUnverifiedException;
+.limit registers 6
+; this: v5 (Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;)
+.var 1 is result Ljava/util/List; from lbb05a to lbb076
+	const/4	v3,0
+; v3 : single-length
+.line 74
+	iget-object	v4,v5,com/squareup/okhttp/internal/http/HttpsURLConnectionImpl.delegate Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+; v4 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v5 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;
+	invoke-virtual	{v4},com/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate/getSecureCacheResponse	; getSecureCacheResponse()Ljava/net/SecureCacheResponse;
+; v4 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+	move-result-object	v0
+; v0 : Ljava/net/SecureCacheResponse;
+.line 75
+	if-eqz	v0,lbb078
+; v0 : Ljava/net/SecureCacheResponse;
+.line 76
+	invoke-virtual	{v0},java/net/SecureCacheResponse/getServerCertificateChain	; getServerCertificateChain()Ljava/util/List;
+; v0 : Ljava/net/SecureCacheResponse;
+	move-result-object	v1
+; v1 : Ljava/util/List;
+.line 77
+	if-eqz	v1,lbb076
+; v1 : Ljava/util/List;
+	invoke-interface	{v1},java/util/List/size	; size()I
+; v1 : Ljava/util/List;
+	move-result	v3
+; v3 : single-length
+	new-array	v3,v3,[Ljava/security/cert/Certificate;
+; v3 : [Ljava/security/cert/Certificate; , v3 : [Ljava/security/cert/Certificate;
+	invoke-interface	{v1,v3},java/util/List/toArray	; toArray([Ljava/lang/Object;)[Ljava/lang/Object;
+; v1 : Ljava/util/List; , v3 : [Ljava/security/cert/Certificate;
+	move-result-object	v3
+; v3 : [Ljava/lang/Object;
+	check-cast	v3,[Ljava/security/cert/Certificate
+; v3 : [Ljava/security/cert/Certificate
+lbb076:
+.line 83
+	return-object	v3
+; v3 : [Ljava/security/cert/Certificate;
+lbb078:
+.line 79
+	invoke-direct	{v5},com/squareup/okhttp/internal/http/HttpsURLConnectionImpl/getSslSocket	; getSslSocket()Ljavax/net/ssl/SSLSocket;
+; v5 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;
+	move-result-object	v2
+; v2 : Ljavax/net/ssl/SSLSocket;
+.line 80
+	if-eqz	v2,lbb076
+; v2 : Ljavax/net/ssl/SSLSocket;
+.line 81
+	invoke-virtual	{v2},javax/net/ssl/SSLSocket/getSession	; getSession()Ljavax/net/ssl/SSLSession;
+; v2 : Ljavax/net/ssl/SSLSocket;
+	move-result-object	v3
+; v3 : Ljavax/net/ssl/SSLSession;
+	invoke-interface	{v3},javax/net/ssl/SSLSession/getPeerCertificates	; getPeerCertificates()[Ljava/security/cert/Certificate;
+; v3 : Ljavax/net/ssl/SSLSession;
+	move-result-object	v3
+; v3 : [Ljava/security/cert/Certificate;
+	goto	lbb076
+.end method
+
+.method public getURL()Ljava/net/URL;
+.limit registers 2
+; this: v1 (Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;)
+.line 266
+	iget-object	v0,v1,com/squareup/okhttp/internal/http/HttpsURLConnectionImpl.delegate Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v1 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;
+	invoke-virtual	{v0},com/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate/getURL	; getURL()Ljava/net/URL;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+	move-result-object	v0
+; v0 : Ljava/net/URL;
+	return-object	v0
+; v0 : Ljava/net/URL;
+.end method
+
+.method public getUseCaches()Z
+.limit registers 2
+; this: v1 (Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;)
+.line 270
+	iget-object	v0,v1,com/squareup/okhttp/internal/http/HttpsURLConnectionImpl.delegate Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v1 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;
+	invoke-virtual	{v0},com/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate/getUseCaches	; getUseCaches()Z
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+	move-result	v0
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public setAllowUserInteraction(Z)V
+.limit registers 3
+; this: v1 (Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;)
+; parameter[0] : v2 (Z)
+.line 274
+	iget-object	v0,v1,com/squareup/okhttp/internal/http/HttpsURLConnectionImpl.delegate Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v1 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;
+	invoke-virtual	{v0,v2},com/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate/setAllowUserInteraction	; setAllowUserInteraction(Z)V
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v2 : single-length
+.line 275
+	return-void	
+.end method
+
+.method public setChunkedStreamingMode(I)V
+.limit registers 3
+; this: v1 (Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;)
+; parameter[0] : v2 (I)
+.line 326
+	iget-object	v0,v1,com/squareup/okhttp/internal/http/HttpsURLConnectionImpl.delegate Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v1 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;
+	invoke-virtual	{v0,v2},com/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate/setChunkedStreamingMode	; setChunkedStreamingMode(I)V
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v2 : single-length
+.line 327
+	return-void	
+.end method
+
+.method public setConnectTimeout(I)V
+.limit registers 3
+; this: v1 (Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;)
+; parameter[0] : v2 (I)
+.line 302
+	iget-object	v0,v1,com/squareup/okhttp/internal/http/HttpsURLConnectionImpl.delegate Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v1 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;
+	invoke-virtual	{v0,v2},com/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate/setConnectTimeout	; setConnectTimeout(I)V
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v2 : single-length
+.line 303
+	return-void	
+.end method
+
+.method public setDefaultUseCaches(Z)V
+.limit registers 3
+; this: v1 (Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;)
+; parameter[0] : v2 (Z)
+.line 278
+	iget-object	v0,v1,com/squareup/okhttp/internal/http/HttpsURLConnectionImpl.delegate Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v1 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;
+	invoke-virtual	{v0,v2},com/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate/setDefaultUseCaches	; setDefaultUseCaches(Z)V
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v2 : single-length
+.line 279
+	return-void	
+.end method
+
+.method public setDoInput(Z)V
+.limit registers 3
+; this: v1 (Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;)
+; parameter[0] : v2 (Z)
+.line 282
+	iget-object	v0,v1,com/squareup/okhttp/internal/http/HttpsURLConnectionImpl.delegate Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v1 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;
+	invoke-virtual	{v0,v2},com/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate/setDoInput	; setDoInput(Z)V
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v2 : single-length
+.line 283
+	return-void	
+.end method
+
+.method public setDoOutput(Z)V
+.limit registers 3
+; this: v1 (Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;)
+; parameter[0] : v2 (Z)
+.line 286
+	iget-object	v0,v1,com/squareup/okhttp/internal/http/HttpsURLConnectionImpl.delegate Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v1 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;
+	invoke-virtual	{v0,v2},com/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate/setDoOutput	; setDoOutput(Z)V
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v2 : single-length
+.line 287
+	return-void	
+.end method
+
+.method public setFixedLengthStreamingMode(I)V
+.limit registers 3
+; this: v1 (Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;)
+; parameter[0] : v2 (I)
+.line 322
+	iget-object	v0,v1,com/squareup/okhttp/internal/http/HttpsURLConnectionImpl.delegate Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v1 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;
+	invoke-virtual	{v0,v2},com/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate/setFixedLengthStreamingMode	; setFixedLengthStreamingMode(I)V
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v2 : single-length
+.line 323
+	return-void	
+.end method
+
+.method public setFixedLengthStreamingMode(J)V
+.limit registers 4
+; this: v1 (Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;)
+; parameter[0] : v2 (J)
+.line 346
+	iget-object	v0,v1,com/squareup/okhttp/internal/http/HttpsURLConnectionImpl.delegate Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v1 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;
+	invoke-virtual	{v0,v2,v3},com/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate/setFixedLengthStreamingMode	; setFixedLengthStreamingMode(J)V
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v2 : double-length
+.line 347
+	return-void	
+.end method
+
+.method public setHostnameVerifier(Ljavax/net/ssl/HostnameVerifier;)V
+.limit registers 3
+; this: v1 (Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;)
+; parameter[0] : v2 (Ljavax/net/ssl/HostnameVerifier;)
+.line 330
+	iget-object	v0,v1,com/squareup/okhttp/internal/http/HttpsURLConnectionImpl.delegate Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v1 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;
+	iget-object	v0,v0,com/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate.client Lcom/squareup/okhttp/OkHttpClient;
+; v0 : Lcom/squareup/okhttp/OkHttpClient; , v0 : Lcom/squareup/okhttp/OkHttpClient;
+	invoke-virtual	{v0,v2},com/squareup/okhttp/OkHttpClient/setHostnameVerifier	; setHostnameVerifier(Ljavax/net/ssl/HostnameVerifier;)Lcom/squareup/okhttp/OkHttpClient;
+; v0 : Lcom/squareup/okhttp/OkHttpClient; , v2 : Ljavax/net/ssl/HostnameVerifier;
+.line 331
+	return-void	
+.end method
+
+.method public setIfModifiedSince(J)V
+.limit registers 4
+; this: v1 (Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;)
+; parameter[0] : v2 (J)
+.line 290
+	iget-object	v0,v1,com/squareup/okhttp/internal/http/HttpsURLConnectionImpl.delegate Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v1 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;
+	invoke-virtual	{v0,v2,v3},com/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate/setIfModifiedSince	; setIfModifiedSince(J)V
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v2 : double-length
+.line 291
+	return-void	
+.end method
+
+.method public setInstanceFollowRedirects(Z)V
+.limit registers 3
+; this: v1 (Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;)
+; parameter[0] : v2 (Z)
+.line 156
+	iget-object	v0,v1,com/squareup/okhttp/internal/http/HttpsURLConnectionImpl.delegate Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v1 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;
+	invoke-virtual	{v0,v2},com/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate/setInstanceFollowRedirects	; setInstanceFollowRedirects(Z)V
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v2 : single-length
+.line 157
+	return-void	
+.end method
+
+.method public setReadTimeout(I)V
+.limit registers 3
+; this: v1 (Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;)
+; parameter[0] : v2 (I)
+.line 310
+	iget-object	v0,v1,com/squareup/okhttp/internal/http/HttpsURLConnectionImpl.delegate Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v1 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;
+	invoke-virtual	{v0,v2},com/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate/setReadTimeout	; setReadTimeout(I)V
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v2 : single-length
+.line 311
+	return-void	
+.end method
+
+.method public setRequestMethod(Ljava/lang/String;)V
+.throws Ljava/net/ProtocolException;
+.limit registers 3
+; this: v1 (Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;)
+; parameter[0] : v2 (Ljava/lang/String;)
+.line 144
+	iget-object	v0,v1,com/squareup/okhttp/internal/http/HttpsURLConnectionImpl.delegate Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v1 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;
+	invoke-virtual	{v0,v2},com/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate/setRequestMethod	; setRequestMethod(Ljava/lang/String;)V
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v2 : Ljava/lang/String;
+.line 145
+	return-void	
+.end method
+
+.method public setRequestProperty(Ljava/lang/String;Ljava/lang/String;)V
+.limit registers 4
+; this: v1 (Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;)
+; parameter[0] : v2 (Ljava/lang/String;)
+; parameter[1] : v3 (Ljava/lang/String;)
+.line 294
+	iget-object	v0,v1,com/squareup/okhttp/internal/http/HttpsURLConnectionImpl.delegate Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v1 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;
+	invoke-virtual	{v0,v2,v3},com/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate/setRequestProperty	; setRequestProperty(Ljava/lang/String;Ljava/lang/String;)V
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v2 : Ljava/lang/String; , v3 : Ljava/lang/String;
+.line 295
+	return-void	
+.end method
+
+.method public setSSLSocketFactory(Ljavax/net/ssl/SSLSocketFactory;)V
+.limit registers 3
+; this: v1 (Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;)
+; parameter[0] : v2 (Ljavax/net/ssl/SSLSocketFactory;)
+.line 338
+	iget-object	v0,v1,com/squareup/okhttp/internal/http/HttpsURLConnectionImpl.delegate Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v1 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;
+	iget-object	v0,v0,com/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate.client Lcom/squareup/okhttp/OkHttpClient;
+; v0 : Lcom/squareup/okhttp/OkHttpClient; , v0 : Lcom/squareup/okhttp/OkHttpClient;
+	invoke-virtual	{v0,v2},com/squareup/okhttp/OkHttpClient/setSslSocketFactory	; setSslSocketFactory(Ljavax/net/ssl/SSLSocketFactory;)Lcom/squareup/okhttp/OkHttpClient;
+; v0 : Lcom/squareup/okhttp/OkHttpClient; , v2 : Ljavax/net/ssl/SSLSocketFactory;
+.line 339
+	return-void	
+.end method
+
+.method public setUseCaches(Z)V
+.limit registers 3
+; this: v1 (Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;)
+; parameter[0] : v2 (Z)
+.line 298
+	iget-object	v0,v1,com/squareup/okhttp/internal/http/HttpsURLConnectionImpl.delegate Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v1 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;
+	invoke-virtual	{v0,v2},com/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate/setUseCaches	; setUseCaches(Z)V
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v2 : single-length
+.line 299
+	return-void	
+.end method
+
+.method public toString()Ljava/lang/String;
+.limit registers 2
+; this: v1 (Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;)
+.line 318
+	iget-object	v0,v1,com/squareup/okhttp/internal/http/HttpsURLConnectionImpl.delegate Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v1 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;
+	invoke-virtual	{v0},com/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate/toString	; toString()Ljava/lang/String;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	return-object	v0
+; v0 : Ljava/lang/String;
+.end method
+
+.method public usingProxy()Z
+.limit registers 2
+; this: v1 (Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;)
+.line 148
+	iget-object	v0,v1,com/squareup/okhttp/internal/http/HttpsURLConnectionImpl.delegate Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate; , v1 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl;
+	invoke-virtual	{v0},com/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate/usingProxy	; usingProxy()Z
+; v0 : Lcom/squareup/okhttp/internal/http/HttpsURLConnectionImpl$HttpUrlConnectionDelegate;
+	move-result	v0
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+

@@ -1,0 +1,73 @@
+.class com/fsharemobile/c/c
+.super java/lang/Object
+.source MyApplication
+.implements com/fsharemobile/a/r
+
+.field final a Lcom/fsharemobile/c/b;
+
+.method <init>(Lcom/fsharemobile/c/b;)V
+.limit registers 2
+; this: v0 (Lcom/fsharemobile/c/c;)
+; parameter[0] : v1 (Lcom/fsharemobile/c/b;)
+.line 1
+	iput-object	v1,v0,com/fsharemobile/c/c.a Lcom/fsharemobile/c/b;
+; v1 : Lcom/fsharemobile/c/b; , v0 : Lcom/fsharemobile/c/c;
+.line 319
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Lcom/fsharemobile/c/c;
+	return-void	
+.end method
+
+.method public a(ILjava/util/List;)V
+.limit registers 5
+; this: v2 (Lcom/fsharemobile/c/c;)
+; parameter[0] : v3 (I)
+; parameter[1] : v4 (Ljava/util/List;)
+.line 324
+	if-nez	v3,l8e2ac
+; v3 : single-length
+	if-eqz	v4,l8e2ac
+; v4 : Ljava/util/List;
+.line 325
+	iget-object	v0,v2,com/fsharemobile/c/c.a Lcom/fsharemobile/c/b;
+; v0 : Lcom/fsharemobile/c/b; , v2 : Lcom/fsharemobile/c/c;
+	invoke-static	{v0},com/fsharemobile/c/b/a	; a(Lcom/fsharemobile/c/b;)Lcom/fsharemobile/c/a;
+; v0 : Lcom/fsharemobile/c/b;
+	move-result-object	v0
+; v0 : Lcom/fsharemobile/c/a;
+	iput-object	v4,v0,com/fsharemobile/c/a.t Ljava/util/List;
+; v4 : Ljava/util/List; , v0 : Lcom/fsharemobile/c/a;
+l8e2ac:
+.line 327
+	iget-object	v0,v2,com/fsharemobile/c/c.a Lcom/fsharemobile/c/b;
+; v0 : Lcom/fsharemobile/c/b; , v2 : Lcom/fsharemobile/c/c;
+	invoke-static	{v0},com/fsharemobile/c/b/a	; a(Lcom/fsharemobile/c/b;)Lcom/fsharemobile/c/a;
+; v0 : Lcom/fsharemobile/c/b;
+	move-result-object	v0
+; v0 : Lcom/fsharemobile/c/a;
+	iget-object	v0,v0,com/fsharemobile/c/a.l Landroid/app/ProgressDialog;
+; v0 : Landroid/app/ProgressDialog; , v0 : Landroid/app/ProgressDialog;
+	invoke-virtual	{v0},android/app/ProgressDialog/dismiss	; dismiss()V
+; v0 : Landroid/app/ProgressDialog;
+.line 328
+	iget-object	v0,v2,com/fsharemobile/c/c.a Lcom/fsharemobile/c/b;
+; v0 : Lcom/fsharemobile/c/b; , v2 : Lcom/fsharemobile/c/c;
+	invoke-static	{v0},com/fsharemobile/c/b/a	; a(Lcom/fsharemobile/c/b;)Lcom/fsharemobile/c/a;
+; v0 : Lcom/fsharemobile/c/b;
+	move-result-object	v0
+; v0 : Lcom/fsharemobile/c/a;
+	iget-object	v1,v2,com/fsharemobile/c/c.a Lcom/fsharemobile/c/b;
+; v1 : Lcom/fsharemobile/c/b; , v2 : Lcom/fsharemobile/c/c;
+	invoke-static	{v1},com/fsharemobile/c/b/a	; a(Lcom/fsharemobile/c/b;)Lcom/fsharemobile/c/a;
+; v1 : Lcom/fsharemobile/c/b;
+	move-result-object	v1
+; v1 : Lcom/fsharemobile/c/a;
+	iget-object	v1,v1,com/fsharemobile/c/a.t Ljava/util/List;
+; v1 : Ljava/util/List; , v1 : Ljava/util/List;
+	invoke-static	{v0,v1},com/fsharemobile/c/a/a	; a(Lcom/fsharemobile/c/a;Ljava/util/List;)V
+; v0 : Lcom/fsharemobile/c/a; , v1 : Ljava/util/List;
+.line 329
+	return-void	
+.end method
+
+

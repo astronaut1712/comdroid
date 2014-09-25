@@ -1,0 +1,536 @@
+.class com/google/analytics/tracking/android/j
+.super java/lang/Object
+.source MyApplication
+.implements com/google/analytics/tracking/android/n
+
+.field private static a Lcom/google/analytics/tracking/android/j;
+.field private static final b Ljava/lang/Object;
+.field private final c Landroid/content/Context;
+.field private d Ljava/lang/String;
+.field private e Z
+.field private final f Ljava/lang/Object;
+
+.method static <clinit>()V
+.limit registers 1
+.line 23
+	new-instance	v0,java/lang/Object
+; v0 : Ljava/lang/Object;
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Ljava/lang/Object;
+	sput-object	v0,com/google/analytics/tracking/android/j.b Ljava/lang/Object;
+; v0 : Ljava/lang/Object;
+	return-void	
+.end method
+
+.method protected <init>(Landroid/content/Context;)V
+.limit registers 3
+; this: v1 (Lcom/google/analytics/tracking/android/j;)
+; parameter[0] : v2 (Landroid/content/Context;)
+.line 51
+	invoke-direct	{v1},java/lang/Object/<init>	; <init>()V
+; v1 : Lcom/google/analytics/tracking/android/j;
+.line 27
+	const/4	v0,0
+; v0 : single-length
+	iput-boolean	v0,v1,com/google/analytics/tracking/android/j.e Z
+; v0 : single-length , v1 : Lcom/google/analytics/tracking/android/j;
+.line 28
+	new-instance	v0,java/lang/Object
+; v0 : Ljava/lang/Object;
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Ljava/lang/Object;
+	iput-object	v0,v1,com/google/analytics/tracking/android/j.f Ljava/lang/Object;
+; v0 : Ljava/lang/Object; , v1 : Lcom/google/analytics/tracking/android/j;
+.line 52
+	iput-object	v2,v1,com/google/analytics/tracking/android/j.c Landroid/content/Context;
+; v2 : Landroid/content/Context; , v1 : Lcom/google/analytics/tracking/android/j;
+.line 53
+	invoke-direct	{v1},com/google/analytics/tracking/android/j/e	; e()V
+; v1 : Lcom/google/analytics/tracking/android/j;
+.line 54
+	return-void	
+.end method
+
+.method public static a()Lcom/google/analytics/tracking/android/j;
+.limit registers 2
+.catch java/lang/Exception from l9d95e to l9d96a using l9d966
+.line 46
+	sget-object	v1,com/google/analytics/tracking/android/j.b Ljava/lang/Object;
+; v1 : Ljava/lang/Object;
+	monitor-enter	v1
+; v1 : Ljava/lang/Object;
+l9d95e:
+.line 47
+	sget-object	v0,com/google/analytics/tracking/android/j.a Lcom/google/analytics/tracking/android/j;
+; v0 : Lcom/google/analytics/tracking/android/j;
+	monitor-exit	v1
+; v1 : Ljava/lang/Object;
+	return-object	v0
+; v0 : Lcom/google/analytics/tracking/android/j;
+l9d966:
+.line 48
+	move-exception	v0
+; v0 : java/lang/Exception
+	monitor-exit	v1
+; v1 : Ljava/lang/Object;
+l9d96a:
+	throw	v0
+; v0 : java/lang/Exception
+.end method
+
+.method static a(Lcom/google/analytics/tracking/android/j;)Ljava/lang/Object;
+.limit registers 2
+; parameter[0] : v1 (Lcom/google/analytics/tracking/android/j;)
+.line 20
+	iget-object	v0,v1,com/google/analytics/tracking/android/j.f Ljava/lang/Object;
+; v0 : Ljava/lang/Object; , v1 : Lcom/google/analytics/tracking/android/j;
+	return-object	v0
+; v0 : Ljava/lang/Object;
+.end method
+
+.method static a(Lcom/google/analytics/tracking/android/j;Ljava/lang/String;)Ljava/lang/String;
+.limit registers 2
+; parameter[0] : v0 (Lcom/google/analytics/tracking/android/j;)
+; parameter[1] : v1 (Ljava/lang/String;)
+.line 20
+	iput-object	v1,v0,com/google/analytics/tracking/android/j.d Ljava/lang/String;
+; v1 : Ljava/lang/String; , v0 : Lcom/google/analytics/tracking/android/j;
+	return-object	v1
+; v1 : Ljava/lang/String;
+.end method
+
+.method public static a(Landroid/content/Context;)V
+.limit registers 3
+; parameter[0] : v2 (Landroid/content/Context;)
+.catch java/lang/Exception from l9d9be to l9d9dc using l9d9d8
+.line 31
+	sget-object	v1,com/google/analytics/tracking/android/j.b Ljava/lang/Object;
+; v1 : Ljava/lang/Object;
+	monitor-enter	v1
+; v1 : Ljava/lang/Object;
+l9d9be:
+.line 32
+	sget-object	v0,com/google/analytics/tracking/android/j.a Lcom/google/analytics/tracking/android/j;
+; v0 : Lcom/google/analytics/tracking/android/j;
+	if-nez	v0,l9d9d4
+; v0 : Lcom/google/analytics/tracking/android/j;
+.line 33
+	new-instance	v0,com/google/analytics/tracking/android/j
+; v0 : Lcom/google/analytics/tracking/android/j;
+	invoke-direct	{v0,v2},com/google/analytics/tracking/android/j/<init>	; <init>(Landroid/content/Context;)V
+; v0 : Lcom/google/analytics/tracking/android/j; , v2 : Landroid/content/Context;
+	sput-object	v0,com/google/analytics/tracking/android/j.a Lcom/google/analytics/tracking/android/j;
+; v0 : Lcom/google/analytics/tracking/android/j;
+l9d9d4:
+.line 35
+	monitor-exit	v1
+; v1 : Ljava/lang/Object;
+.line 36
+	return-void	
+l9d9d8:
+.line 35
+	move-exception	v0
+; v0 : java/lang/Exception
+	monitor-exit	v1
+; v1 : Ljava/lang/Object;
+l9d9dc:
+	throw	v0
+; v0 : java/lang/Exception
+.end method
+
+.method static a(Lcom/google/analytics/tracking/android/j;Z)Z
+.limit registers 2
+; parameter[0] : v0 (Lcom/google/analytics/tracking/android/j;)
+; parameter[1] : v1 (Z)
+.line 20
+	iput-boolean	v1,v0,com/google/analytics/tracking/android/j.e Z
+; v1 : single-length , v0 : Lcom/google/analytics/tracking/android/j;
+	return	v1
+; v1 : single-length
+.end method
+
+.method private b(Ljava/lang/String;)Z
+.limit registers 6
+; this: v4 (Lcom/google/analytics/tracking/android/j;)
+; parameter[0] : v5 (Ljava/lang/String;)
+.catch java/io/FileNotFoundException from l9da16 to l9da46 using l9da4a
+.catch java/io/IOException from l9da16 to l9da46 using l9da58
+	const/4	v0,0
+; v0 : single-length
+l9da16:
+.line 101
+	const-string	v1,"Storing clientId."
+; v1 : Ljava/lang/String;
+	invoke-static	{v1},com/google/analytics/tracking/android/aq/c	; c(Ljava/lang/String;)V
+; v1 : Ljava/lang/String;
+.line 102
+	iget-object	v1,v4,com/google/analytics/tracking/android/j.c Landroid/content/Context;
+; v1 : Landroid/content/Context; , v4 : Lcom/google/analytics/tracking/android/j;
+	const-string	v2,"gaClientId"
+; v2 : Ljava/lang/String;
+	const/4	v3,0
+; v3 : single-length
+	invoke-virtual	{v1,v2,v3},android/content/Context/openFileOutput	; openFileOutput(Ljava/lang/String;I)Ljava/io/FileOutputStream;
+; v1 : Landroid/content/Context; , v2 : Ljava/lang/String; , v3 : single-length
+	move-result-object	v1
+; v1 : Ljava/io/FileOutputStream;
+.line 104
+	invoke-virtual	{v5},java/lang/String/getBytes	; getBytes()[B
+; v5 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : [B
+	invoke-virtual	{v1,v2},java/io/FileOutputStream/write	; write([B)V
+; v1 : Ljava/io/FileOutputStream; , v2 : [B
+.line 105
+	invoke-virtual	{v1},java/io/FileOutputStream/close	; close()V
+; v1 : Ljava/io/FileOutputStream;
+l9da46:
+.line 106
+	const/4	v0,1
+; v0 : single-length
+l9da48:
+.line 112
+	return	v0
+; v0 : single-length
+l9da4a:
+.line 107
+	move-exception	v1
+; v1 : java/io/FileNotFoundException
+.line 108
+	const-string	v1,"Error creating clientId file."
+; v1 : Ljava/lang/String;
+	invoke-static	{v1},com/google/analytics/tracking/android/aq/a	; a(Ljava/lang/String;)V
+; v1 : Ljava/lang/String;
+	goto	l9da48
+l9da58:
+.line 110
+	move-exception	v1
+; v1 : java/io/IOException
+.line 111
+	const-string	v1,"Error writing to clientId file."
+; v1 : Ljava/lang/String;
+	invoke-static	{v1},com/google/analytics/tracking/android/aq/a	; a(Ljava/lang/String;)V
+; v1 : Ljava/lang/String;
+	goto	l9da48
+.end method
+
+.method private d()Ljava/lang/String;
+.limit registers 5
+; this: v4 (Lcom/google/analytics/tracking/android/j;)
+.catch java/lang/Exception from l9dace to l9db00 using l9dafc
+.catch java/lang/Exception from l9dab2 to l9dabc using l9dafc
+.catch java/lang/InterruptedException from l9daa8 to l9dab2 using l9dacc
+.catch java/lang/Exception from l9daa8 to l9dab2 using l9dafc
+.catch java/lang/Exception from l9da96 to l9daa8 using l9dafc
+.line 74
+	iget-boolean	v0,v4,com/google/analytics/tracking/android/j.e Z
+; v0 : single-length , v4 : Lcom/google/analytics/tracking/android/j;
+	if-nez	v0,l9dabc
+; v0 : single-length
+.line 75
+	iget-object	v1,v4,com/google/analytics/tracking/android/j.f Ljava/lang/Object;
+; v1 : Ljava/lang/Object; , v4 : Lcom/google/analytics/tracking/android/j;
+	monitor-enter	v1
+; v1 : Ljava/lang/Object;
+l9da96:
+.line 76
+	iget-boolean	v0,v4,com/google/analytics/tracking/android/j.e Z
+; v0 : single-length , v4 : Lcom/google/analytics/tracking/android/j;
+	if-nez	v0,l9daba
+; v0 : single-length
+.line 77
+	const-string	v0,"Waiting for clientId to load"
+; v0 : Ljava/lang/String;
+	invoke-static	{v0},com/google/analytics/tracking/android/aq/c	; c(Ljava/lang/String;)V
+; v0 : Ljava/lang/String;
+l9daa8:
+.line 80
+	iget-object	v0,v4,com/google/analytics/tracking/android/j.f Ljava/lang/Object;
+; v0 : Ljava/lang/Object; , v4 : Lcom/google/analytics/tracking/android/j;
+	invoke-virtual	{v0},java/lang/Object/wait	; wait()V
+; v0 : Ljava/lang/Object;
+l9dab2:
+.line 84
+	iget-boolean	v0,v4,com/google/analytics/tracking/android/j.e Z
+; v0 : single-length , v4 : Lcom/google/analytics/tracking/android/j;
+	if-eqz	v0,l9daa8
+; v0 : single-length
+l9daba:
+.line 86
+	monitor-exit	v1
+; v1 : Ljava/lang/Object;
+l9dabc:
+.line 89
+	const-string	v0,"Loaded clientId"
+; v0 : Ljava/lang/String;
+	invoke-static	{v0},com/google/analytics/tracking/android/aq/c	; c(Ljava/lang/String;)V
+; v0 : Ljava/lang/String;
+.line 90
+	iget-object	v0,v4,com/google/analytics/tracking/android/j.d Ljava/lang/String;
+; v0 : Ljava/lang/String; , v4 : Lcom/google/analytics/tracking/android/j;
+	return-object	v0
+; v0 : Ljava/lang/String;
+l9dacc:
+.line 81
+	move-exception	v0
+; v0 : java/lang/InterruptedException
+l9dace:
+.line 82
+	new-instance	v2,java/lang/StringBuilder
+; v2 : Ljava/lang/StringBuilder;
+	invoke-direct	{v2},java/lang/StringBuilder/<init>	; <init>()V
+; v2 : Ljava/lang/StringBuilder;
+	const-string	v3,"Exception while waiting for clientId: "
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v2,v0},java/lang/StringBuilder/append	; append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v0 : java/lang/InterruptedException
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v0},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v0 : Ljava/lang/StringBuilder;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	invoke-static	{v0},com/google/analytics/tracking/android/aq/a	; a(Ljava/lang/String;)V
+; v0 : Ljava/lang/String;
+	goto	l9dab2
+l9dafc:
+.line 86
+	move-exception	v0
+; v0 : java/lang/Exception
+	monitor-exit	v1
+; v1 : Ljava/lang/Object;
+l9db00:
+	throw	v0
+; v0 : java/lang/Exception
+.end method
+
+.method private e()V
+.limit registers 3
+; this: v2 (Lcom/google/analytics/tracking/android/j;)
+.line 130
+	new-instance	v0,com/google/analytics/tracking/android/k
+; v0 : Lcom/google/analytics/tracking/android/k;
+	const-string	v1,"client_id_fetcher"
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v2,v1},com/google/analytics/tracking/android/k/<init>	; <init>(Lcom/google/analytics/tracking/android/j;Ljava/lang/String;)V
+; v0 : Lcom/google/analytics/tracking/android/k; , v2 : Lcom/google/analytics/tracking/android/j; , v1 : Ljava/lang/String;
+.line 140
+	invoke-virtual	{v0},java/lang/Thread/start	; start()V
+; v0 : Lcom/google/analytics/tracking/android/k;
+.line 141
+	return-void	
+.end method
+
+.method public a(Ljava/lang/String;)Ljava/lang/String;
+.limit registers 3
+; this: v1 (Lcom/google/analytics/tracking/android/j;)
+; parameter[0] : v2 (Ljava/lang/String;)
+.line 67
+	const-string	v0,"&cid"
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v0,v2},java/lang/String/equals	; equals(Ljava/lang/Object;)Z
+; v0 : Ljava/lang/String; , v2 : Ljava/lang/String;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,l9db7e
+; v0 : single-length
+.line 68
+	invoke-direct	{v1},com/google/analytics/tracking/android/j/d	; d()Ljava/lang/String;
+; v1 : Lcom/google/analytics/tracking/android/j;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+l9db7c:
+.line 70
+	return-object	v0
+; v0 : single-length
+l9db7e:
+	const/4	v0,0
+; v0 : single-length
+	goto	l9db7c
+.end method
+
+.method protected b()Ljava/lang/String;
+.limit registers 3
+; this: v2 (Lcom/google/analytics/tracking/android/j;)
+.line 122
+	invoke-static	{},java/util/UUID/randomUUID	; randomUUID()Ljava/util/UUID;
+; 
+	nop	
+	move-result-object	v0
+; v0 : Ljava/util/UUID;
+	invoke-virtual	{v0},java/util/UUID/toString	; toString()Ljava/lang/String;
+; v0 : Ljava/util/UUID;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v0},java/lang/String/toLowerCase	; toLowerCase()Ljava/lang/String;
+; v0 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+.line 123
+	invoke-direct	{v2,v0},com/google/analytics/tracking/android/j/b	; b(Ljava/lang/String;)Z
+; v2 : Lcom/google/analytics/tracking/android/j; , v0 : Ljava/lang/String;
+	move-result	v1
+; v1 : single-length
+	if-nez	v1,l9dbbc
+; v1 : single-length
+.line 124
+	const-string	v0,"0"
+; v0 : Ljava/lang/String;
+l9dbbc:
+.line 126
+	return-object	v0
+; v0 : Ljava/lang/String;
+.end method
+
+.method c()Ljava/lang/String;
+.limit registers 7
+; this: v6 (Lcom/google/analytics/tracking/android/j;)
+.catch java/io/FileNotFoundException from l9dc64 to l9dc6a using l9dc90
+.catch java/io/IOException from l9dc64 to l9dc6a using l9dc8a
+.catch java/io/FileNotFoundException from l9dc34 to l9dc64 using l9dc54
+.catch java/io/IOException from l9dc34 to l9dc64 using l9dc6e
+.catch java/io/FileNotFoundException from l9dbd2 to l9dc22 using l9dc54
+.catch java/io/IOException from l9dbd2 to l9dc22 using l9dc6e
+.line 152
+	const/4	v0,0
+; v0 : single-length
+l9dbd2:
+.line 154
+	iget-object	v1,v6,com/google/analytics/tracking/android/j.c Landroid/content/Context;
+; v1 : Landroid/content/Context; , v6 : Lcom/google/analytics/tracking/android/j;
+	const-string	v2,"gaClientId"
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},android/content/Context/openFileInput	; openFileInput(Ljava/lang/String;)Ljava/io/FileInputStream;
+; v1 : Landroid/content/Context; , v2 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/io/FileInputStream;
+.line 155
+	const/16	v1,128
+; v1 : single-length
+	new-array	v3,v1,[B
+; v3 : [B , v1 : single-length
+.line 156
+	const/4	v1,0
+; v1 : single-length
+	const/16	v4,128
+; v4 : single-length
+	invoke-virtual	{v2,v3,v1,v4},java/io/FileInputStream/read	; read([BII)I
+; v2 : Ljava/io/FileInputStream; , v3 : [B , v1 : single-length , v4 : single-length
+	move-result	v4
+; v4 : single-length
+.line 157
+	invoke-virtual	{v2},java/io/FileInputStream/available	; available()I
+; v2 : Ljava/io/FileInputStream;
+	move-result	v1
+; v1 : single-length
+	if-lez	v1,l9dc30
+; v1 : single-length
+.line 160
+	const-string	v1,"clientId file seems corrupted, deleting it."
+; v1 : Ljava/lang/String;
+	invoke-static	{v1},com/google/analytics/tracking/android/aq/a	; a(Ljava/lang/String;)V
+; v1 : Ljava/lang/String;
+.line 161
+	invoke-virtual	{v2},java/io/FileInputStream/close	; close()V
+; v2 : Ljava/io/FileInputStream;
+.line 162
+	iget-object	v1,v6,com/google/analytics/tracking/android/j.c Landroid/content/Context;
+; v1 : Landroid/content/Context; , v6 : Lcom/google/analytics/tracking/android/j;
+	const-string	v2,"gaClientId"
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},android/content/Context/deleteFile	; deleteFile(Ljava/lang/String;)Z
+; v1 : Landroid/content/Context; , v2 : Ljava/lang/String;
+l9dc22:
+.line 178
+	if-nez	v0,l9dc2e
+; v0 : Ljava/lang/String;
+.line 179
+	invoke-virtual	{v6},com/google/analytics/tracking/android/j/b	; b()Ljava/lang/String;
+; v6 : Lcom/google/analytics/tracking/android/j;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+l9dc2e:
+.line 181
+	return-object	v0
+; v0 : Ljava/lang/String;
+l9dc30:
+.line 163
+	if-gtz	v4,l9dc58
+; v4 : single-length
+l9dc34:
+.line 164
+	const-string	v1,"clientId file seems empty, deleting it."
+; v1 : Ljava/lang/String;
+	invoke-static	{v1},com/google/analytics/tracking/android/aq/a	; a(Ljava/lang/String;)V
+; v1 : Ljava/lang/String;
+.line 165
+	invoke-virtual	{v2},java/io/FileInputStream/close	; close()V
+; v2 : Ljava/io/FileInputStream;
+.line 166
+	iget-object	v1,v6,com/google/analytics/tracking/android/j.c Landroid/content/Context;
+; v1 : Landroid/content/Context; , v6 : Lcom/google/analytics/tracking/android/j;
+	const-string	v2,"gaClientId"
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},android/content/Context/deleteFile	; deleteFile(Ljava/lang/String;)Z
+; v1 : Landroid/content/Context; , v2 : Ljava/lang/String;
+	goto	l9dc22
+l9dc54:
+.line 171
+	move-exception	v1
+; v1 : java/io/FileNotFoundException
+	goto	l9dc22
+l9dc58:
+.line 168
+	new-instance	v1,java/lang/String
+; v1 : Ljava/lang/String;
+	const/4	v5,0
+; v5 : single-length
+	invoke-direct	{v1,v3,v5,v4},java/lang/String/<init>	; <init>([BII)V
+; v1 : Ljava/lang/String; , v3 : [B , v5 : single-length , v4 : single-length
+l9dc64:
+.line 169
+	invoke-virtual	{v2},java/io/FileInputStream/close	; close()V
+; v2 : Ljava/io/FileInputStream;
+l9dc6a:
+	move-object	v0,v1
+; v0 : Ljava/lang/String; , v1 : Ljava/lang/String;
+	goto	l9dc22
+l9dc6e:
+.line 173
+	move-exception	v1
+; v1 : java/io/IOException
+l9dc70:
+.line 174
+	const-string	v1,"Error reading clientId file, deleting it."
+; v1 : Ljava/lang/String;
+	invoke-static	{v1},com/google/analytics/tracking/android/aq/a	; a(Ljava/lang/String;)V
+; v1 : Ljava/lang/String;
+.line 175
+	iget-object	v1,v6,com/google/analytics/tracking/android/j.c Landroid/content/Context;
+; v1 : Landroid/content/Context; , v6 : Lcom/google/analytics/tracking/android/j;
+	const-string	v2,"gaClientId"
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},android/content/Context/deleteFile	; deleteFile(Ljava/lang/String;)Z
+; v1 : Landroid/content/Context; , v2 : Ljava/lang/String;
+	goto	l9dc22
+l9dc8a:
+.line 173
+	move-exception	v0
+; v0 : java/io/IOException
+	move-object	v0,v1
+; v0 : Ljava/lang/String; , v1 : Ljava/lang/String;
+	goto	l9dc70
+l9dc90:
+.line 171
+	move-exception	v0
+; v0 : java/io/FileNotFoundException
+	move-object	v0,v1
+; v0 : Ljava/lang/String; , v1 : Ljava/lang/String;
+	goto	l9dc22
+.end method
+
+

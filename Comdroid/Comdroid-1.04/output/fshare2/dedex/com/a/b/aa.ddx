@@ -1,0 +1,309 @@
+.class com/a/b/aa
+.super com/a/b/m
+.source MyApplication
+
+.field private static final o [Ljava/lang/String;
+
+.method static <clinit>()V
+.limit registers 3
+.line 37
+	const/4	v0,1
+; v0 : single-length
+	new-array	v0,v0,[Ljava/lang/String;
+; v0 : [Ljava/lang/String; , v0 : [Ljava/lang/String;
+	const/4	v1,0
+; v1 : single-length
+	const-string	v2,"orientation"
+; v2 : Ljava/lang/String;
+	aput-object	v2,v0,v1
+; v2 : Ljava/lang/String; , v0 : [Ljava/lang/String; , v1 : single-length
+	sput-object	v0,com/a/b/aa.o [Ljava/lang/String;
+; v0 : [Ljava/lang/String;
+	return-void	
+.end method
+
+.method <init>(Landroid/content/Context;Lcom/a/b/ae;Lcom/a/b/o;Lcom/a/b/h;Lcom/a/b/au;Lcom/a/b/a;)V
+.limit registers 7
+; this: v0 (Lcom/a/b/aa;)
+; parameter[0] : v1 (Landroid/content/Context;)
+; parameter[1] : v2 (Lcom/a/b/ae;)
+; parameter[2] : v3 (Lcom/a/b/o;)
+; parameter[3] : v4 (Lcom/a/b/h;)
+; parameter[4] : v5 (Lcom/a/b/au;)
+; parameter[5] : v6 (Lcom/a/b/a;)
+.line 43
+	invoke-direct/range	{v0..v6},com/a/b/m/<init>;	<init>(Landroid/content/Context;Lcom/a/b/ae;Lcom/a/b/o;Lcom/a/b/h;Lcom/a/b/au;Lcom/a/b/a;)V
+; v0 : Lcom/a/b/aa; , v1 : Landroid/content/Context; , v2 : Lcom/a/b/ae; , v3 : Lcom/a/b/o; , v4 : Lcom/a/b/h; , v5 : Lcom/a/b/au; , v6 : Lcom/a/b/a;
+.line 44
+	return-void	
+.end method
+
+.method static a(Landroid/content/ContentResolver;Landroid/net/Uri;)I
+.limit registers 10
+; parameter[0] : v8 (Landroid/content/ContentResolver;)
+; parameter[1] : v9 (Landroid/net/Uri;)
+.catch java/lang/RuntimeException from l78876 to l7887c using l788b0
+.catch java/lang/Exception from l78876 to l7887c using l788ac
+.catch java/lang/RuntimeException from l7885a to l78860 using l788b0
+.catch java/lang/Exception from l7885a to l78860 using l788ac
+.catch java/lang/RuntimeException from l78840 to l78854 using l7888a
+.catch java/lang/Exception from l78840 to l78854 using l7889c
+	const/4	v6,0
+; v6 : single-length
+	const/4	v7,0
+; v7 : single-length
+l78840:
+.line 84
+.line 86
+	sget-object	v2,com/a/b/aa.o [Ljava/lang/String;
+; v2 : [Ljava/lang/String;
+	const/4	v3,0
+; v3 : single-length
+	const/4	v4,0
+; v4 : single-length
+	const/4	v5,0
+; v5 : single-length
+	move-object	v0,v8
+; v0 : Landroid/content/ContentResolver; , v8 : Landroid/content/ContentResolver;
+	move-object	v1,v9
+; v1 : Landroid/net/Uri; , v9 : Landroid/net/Uri;
+	invoke-virtual/range	{v0..v5},android/content/ContentResolver/query;	query(Landroid/net/Uri;[Ljava/lang/String;Ljava/lang/String;[Ljava/lang/String;Ljava/lang/String;)Landroid/database/Cursor;
+; v0 : Landroid/content/ContentResolver; , v1 : Landroid/net/Uri; , v2 : [Ljava/lang/String; , v3 : single-length , v4 : single-length , v5 : single-length
+l78854:
+	move-result-object	v1
+; v1 : Landroid/database/Cursor;
+.line 87
+	if-eqz	v1,l78866
+; v1 : Landroid/database/Cursor;
+l7885a:
+	invoke-interface	{v1},android/database/Cursor/moveToFirst	; moveToFirst()Z
+; v1 : Landroid/database/Cursor;
+l78860:
+	move-result	v0
+; v0 : single-length
+	if-nez	v0,l78874
+; v0 : single-length
+l78866:
+.line 95
+	if-eqz	v1,l78870
+; v1 : Landroid/database/Cursor;
+.line 96
+	invoke-interface	{v1},android/database/Cursor/close	; close()V
+; v1 : Landroid/database/Cursor;
+l78870:
+	move	v0,v6
+; v0 : single-length , v6 : single-length
+l78872:
+	return	v0
+; v0 : single-length
+l78874:
+.line 90
+	const/4	v0,0
+; v0 : single-length
+l78876:
+	invoke-interface	{v1,v0},android/database/Cursor/getInt	; getInt(I)I
+; v1 : Landroid/database/Cursor; , v0 : single-length
+l7887c:
+	move-result	v0
+; v0 : single-length
+.line 95
+	if-eqz	v1,l78872
+; v1 : Landroid/database/Cursor;
+.line 96
+	invoke-interface	{v1},android/database/Cursor/close	; close()V
+; v1 : Landroid/database/Cursor;
+	goto	l78872
+l7888a:
+.line 91
+	move-exception	v0
+; v0 : java/lang/RuntimeException
+	move-object	v0,v7
+; v0 : single-length , v7 : single-length
+l7888e:
+.line 95
+	if-eqz	v0,l78898
+; v0 : Landroid/database/Cursor;
+.line 96
+	invoke-interface	{v0},android/database/Cursor/close	; close()V
+; v0 : Landroid/database/Cursor;
+l78898:
+	move	v0,v6
+; v0 : single-length , v6 : single-length
+	goto	l78872
+l7889c:
+.line 95
+	move-exception	v0
+; v0 : java/lang/Exception
+	move-object	v1,v7
+; v1 : single-length , v7 : single-length
+l788a0:
+	if-eqz	v1,l788aa
+; v1 : Landroid/database/Cursor;
+.line 96
+	invoke-interface	{v1},android/database/Cursor/close	; close()V
+; v1 : Landroid/database/Cursor;
+l788aa:
+	throw	v0
+; v0 : java/lang/Exception
+l788ac:
+.line 95
+	move-exception	v0
+; v0 : java/lang/Exception
+	goto	l788a0
+l788b0:
+.line 91
+	move-exception	v0
+; v0 : java/lang/RuntimeException
+	move-object	v0,v1
+; v0 : Landroid/database/Cursor; , v1 : Landroid/database/Cursor;
+	goto	l7888e
+.end method
+
+.method static a(II)Lcom/a/b/ab;
+.limit registers 3
+; parameter[0] : v1 (I)
+; parameter[1] : v2 (I)
+.line 75
+	sget-object	v0,com/a/b/ab.a Lcom/a/b/ab;
+; v0 : Lcom/a/b/ab;
+	iget	v0,v0,com/a/b/ab.e I
+; v0 : single-length , v0 : single-length
+	if-gt	v1,v0,l7890a
+; v1 : single-length , v0 : single-length
+	sget-object	v0,com/a/b/ab.a Lcom/a/b/ab;
+; v0 : Lcom/a/b/ab;
+	iget	v0,v0,com/a/b/ab.f I
+; v0 : single-length , v0 : single-length
+	if-gt	v2,v0,l7890a
+; v2 : single-length , v0 : single-length
+.line 76
+	sget-object	v0,com/a/b/ab.a Lcom/a/b/ab;
+; v0 : Lcom/a/b/ab;
+l78908:
+.line 80
+	return-object	v0
+; v0 : Lcom/a/b/ab;
+l7890a:
+.line 77
+	sget-object	v0,com/a/b/ab.b Lcom/a/b/ab;
+; v0 : Lcom/a/b/ab;
+	iget	v0,v0,com/a/b/ab.e I
+; v0 : single-length , v0 : single-length
+	if-gt	v1,v0,l78928
+; v1 : single-length , v0 : single-length
+	sget-object	v0,com/a/b/ab.b Lcom/a/b/ab;
+; v0 : Lcom/a/b/ab;
+	iget	v0,v0,com/a/b/ab.f I
+; v0 : single-length , v0 : single-length
+	if-gt	v2,v0,l78928
+; v2 : single-length , v0 : single-length
+.line 78
+	sget-object	v0,com/a/b/ab.b Lcom/a/b/ab;
+; v0 : Lcom/a/b/ab;
+	goto	l78908
+l78928:
+.line 80
+	sget-object	v0,com/a/b/ab.c Lcom/a/b/ab;
+; v0 : Lcom/a/b/ab;
+	goto	l78908
+.end method
+
+.method a(Lcom/a/b/ap;)Landroid/graphics/Bitmap;
+.limit registers 11
+; this: v9 (Lcom/a/b/aa;)
+; parameter[0] : v10 (Lcom/a/b/ap;)
+.line 47
+	iget-object	v0,v9,com/a/b/aa.n Landroid/content/Context;
+; v0 : Landroid/content/Context; , v9 : Lcom/a/b/aa;
+	invoke-virtual	{v0},android/content/Context/getContentResolver	; getContentResolver()Landroid/content/ContentResolver;
+; v0 : Landroid/content/Context;
+	move-result-object	v0
+; v0 : Landroid/content/ContentResolver;
+.line 48
+	iget-object	v1,v10,com/a/b/ap.a Landroid/net/Uri;
+; v1 : Landroid/net/Uri; , v10 : Lcom/a/b/ap;
+	invoke-static	{v0,v1},com/a/b/aa/a	; a(Landroid/content/ContentResolver;Landroid/net/Uri;)I
+; v0 : Landroid/content/ContentResolver; , v1 : Landroid/net/Uri;
+	move-result	v1
+; v1 : single-length
+	invoke-virtual	{v9,v1},com/a/b/aa/a	; a(I)V
+; v9 : Lcom/a/b/aa; , v1 : single-length
+.line 50
+	invoke-virtual	{v10},com/a/b/ap/b	; b()Z
+; v10 : Lcom/a/b/ap;
+	move-result	v1
+; v1 : single-length
+	if-eqz	v1,l789cc
+; v1 : single-length
+.line 51
+	iget	v1,v10,com/a/b/ap.d I
+; v1 : single-length , v10 : Lcom/a/b/ap;
+	iget	v2,v10,com/a/b/ap.e I
+; v2 : single-length , v10 : Lcom/a/b/ap;
+	invoke-static	{v1,v2},com/a/b/aa/a	; a(II)Lcom/a/b/ab;
+; v1 : single-length , v2 : single-length
+	move-result-object	v1
+; v1 : Lcom/a/b/ab;
+.line 52
+	sget-object	v2,com/a/b/ab.c Lcom/a/b/ab;
+; v2 : Lcom/a/b/ab;
+	if-ne	v1,v2,l7898c
+; v1 : Lcom/a/b/ab; , v2 : Lcom/a/b/ab;
+.line 53
+	invoke-super	{v9,v10},com/a/b/m/a	; a(Lcom/a/b/ap;)Landroid/graphics/Bitmap;
+; v9 : Lcom/a/b/aa; , v10 : Lcom/a/b/ap;
+	move-result-object	v0
+; v0 : Landroid/graphics/Bitmap;
+l7898a:
+.line 71
+	return-object	v0
+; v0 : Landroid/graphics/Bitmap;
+l7898c:
+.line 56
+	iget-object	v2,v10,com/a/b/ap.a Landroid/net/Uri;
+; v2 : Landroid/net/Uri; , v10 : Lcom/a/b/ap;
+	invoke-static	{v2},android/content/ContentUris/parseId	; parseId(Landroid/net/Uri;)J
+; v2 : Landroid/net/Uri;
+	move-result-wide	v2
+; v2 : double-length
+.line 58
+	invoke-static	{v10},com/a/b/aa/b	; b(Lcom/a/b/ap;)Landroid/graphics/BitmapFactory$Options;
+; v10 : Lcom/a/b/ap;
+	move-result-object	v4
+; v4 : Landroid/graphics/BitmapFactory$Options;
+.line 59
+	const/4	v5,1
+; v5 : single-length
+	iput-boolean	v5,v4,android/graphics/BitmapFactory$Options.inJustDecodeBounds Z
+; v5 : single-length , v4 : Landroid/graphics/BitmapFactory$Options;
+.line 61
+	iget	v5,v10,com/a/b/ap.d I
+; v5 : single-length , v10 : Lcom/a/b/ap;
+	iget	v6,v10,com/a/b/ap.e I
+; v6 : single-length , v10 : Lcom/a/b/ap;
+	iget	v7,v1,com/a/b/ab.e I
+; v7 : single-length , v1 : Lcom/a/b/ab;
+	iget	v8,v1,com/a/b/ab.f I
+; v8 : single-length , v1 : Lcom/a/b/ab;
+	invoke-static	{v5,v6,v7,v8,v4},com/a/b/aa/a	; a(IIIILandroid/graphics/BitmapFactory$Options;)V
+; v5 : single-length , v6 : single-length , v7 : single-length , v8 : single-length , v4 : Landroid/graphics/BitmapFactory$Options;
+.line 64
+	iget	v1,v1,com/a/b/ab.d I
+; v1 : single-length , v1 : single-length
+	invoke-static	{v0,v2,v3,v1,v4},android/provider/MediaStore$Images$Thumbnails/getThumbnail	; getThumbnail(Landroid/content/ContentResolver;JILandroid/graphics/BitmapFactory$Options;)Landroid/graphics/Bitmap;
+; v0 : Landroid/content/ContentResolver; , v2 : double-length , v1 : single-length , v4 : Landroid/graphics/BitmapFactory$Options;
+	move-result-object	v0
+; v0 : Landroid/graphics/Bitmap;
+.line 66
+	if-nez	v0,l7898a
+; v0 : Landroid/graphics/Bitmap;
+l789cc:
+.line 71
+	invoke-super	{v9,v10},com/a/b/m/a	; a(Lcom/a/b/ap;)Landroid/graphics/Bitmap;
+; v9 : Lcom/a/b/aa; , v10 : Lcom/a/b/ap;
+	move-result-object	v0
+; v0 : Landroid/graphics/Bitmap;
+	goto	l7898a
+.end method
+
+

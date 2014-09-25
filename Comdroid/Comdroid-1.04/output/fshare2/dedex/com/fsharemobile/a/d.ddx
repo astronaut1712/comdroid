@@ -1,0 +1,1739 @@
+.class public com/fsharemobile/a/d
+.super java/lang/Object
+.source MyApplication
+
+.field private a Lcom/fsharemobile/f/a;
+.field private b Lcom/fsharemobile/a/c;
+
+.method public <init>(Lcom/fsharemobile/a/c;)V
+.limit registers 2
+; this: v0 (Lcom/fsharemobile/a/d;)
+; parameter[0] : v1 (Lcom/fsharemobile/a/c;)
+.line 30
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Lcom/fsharemobile/a/d;
+.line 31
+	iput-object	v1,v0,com/fsharemobile/a/d.b Lcom/fsharemobile/a/c;
+; v1 : Lcom/fsharemobile/a/c; , v0 : Lcom/fsharemobile/a/d;
+.line 32
+	return-void	
+.end method
+
+.method static a(Lcom/fsharemobile/a/d;)Lcom/fsharemobile/f/a;
+.limit registers 2
+; parameter[0] : v1 (Lcom/fsharemobile/a/d;)
+.line 73
+	iget-object	v0,v1,com/fsharemobile/a/d.a Lcom/fsharemobile/f/a;
+; v0 : Lcom/fsharemobile/f/a; , v1 : Lcom/fsharemobile/a/d;
+	return-object	v0
+; v0 : Lcom/fsharemobile/f/a;
+.end method
+
+.method static a(Lcom/fsharemobile/a/d;Lcom/fsharemobile/f/a;)V
+.limit registers 2
+; parameter[0] : v0 (Lcom/fsharemobile/a/d;)
+; parameter[1] : v1 (Lcom/fsharemobile/f/a;)
+.line 73
+	iput-object	v1,v0,com/fsharemobile/a/d.a Lcom/fsharemobile/f/a;
+; v1 : Lcom/fsharemobile/f/a; , v0 : Lcom/fsharemobile/a/d;
+	return-void	
+.end method
+
+.method public a(IILjava/lang/String;Lcom/fsharemobile/a/s;Landroid/content/Context;)V
+.limit registers 13
+; this: v7 (Lcom/fsharemobile/a/d;)
+; parameter[0] : v8 (I)
+; parameter[1] : v9 (I)
+; parameter[2] : v10 (Ljava/lang/String;)
+; parameter[3] : v11 (Lcom/fsharemobile/a/s;)
+; parameter[4] : v12 (Landroid/content/Context;)
+	const/4	v6,1
+; v6 : single-length
+	const/4	v5,0
+; v5 : single-length
+.line 146
+.line 148
+	new-instance	v0,java/lang/StringBuffer
+; v0 : Ljava/lang/StringBuffer;
+	const-string	v1,""
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/StringBuffer/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/StringBuffer; , v1 : Ljava/lang/String;
+.line 149
+	const-string	v1,"%s?pageIndex=%d&dirOnly=%d"
+; v1 : Ljava/lang/String;
+	const/4	v2,3
+; v2 : single-length
+	new-array	v2,v2,[Ljava/lang/Object;
+; v2 : [Ljava/lang/Object; , v2 : [Ljava/lang/Object;
+.line 150
+	const-string	v3,"UTF-8"
+; v3 : Ljava/lang/String;
+	invoke-static	{v10,v3},java/net/URLEncoder/encode	; encode(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+; v10 : Ljava/lang/String; , v3 : Ljava/lang/String;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	aput-object	v3,v2,v5
+; v3 : Ljava/lang/String; , v2 : [Ljava/lang/Object; , v5 : single-length
+	invoke-static	{v9},java/lang/Integer/valueOf	; valueOf(I)Ljava/lang/Integer;
+; v9 : single-length
+	move-result-object	v3
+; v3 : Ljava/lang/Integer;
+	aput-object	v3,v2,v6
+; v3 : Ljava/lang/Integer; , v2 : [Ljava/lang/Object; , v6 : single-length
+	const/4	v3,2
+; v3 : single-length
+	invoke-static	{v8},java/lang/Integer/valueOf	; valueOf(I)Ljava/lang/Integer;
+; v8 : single-length
+	move-result-object	v4
+; v4 : Ljava/lang/Integer;
+	aput-object	v4,v2,v3
+; v4 : Ljava/lang/Integer; , v2 : [Ljava/lang/Object; , v3 : single-length
+.line 149
+	invoke-static	{v1,v2},java/lang/String/format	; format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+; v1 : Ljava/lang/String; , v2 : [Ljava/lang/Object;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuffer/append	; append(Ljava/lang/String;)Ljava/lang/StringBuffer;
+; v0 : Ljava/lang/StringBuffer; , v1 : Ljava/lang/String;
+.line 153
+	new-instance	v1,com/fsharemobile/a/x
+; v1 : Lcom/fsharemobile/a/x;
+	invoke-direct	{v1},com/fsharemobile/a/x/<init>	; <init>()V
+; v1 : Lcom/fsharemobile/a/x;
+.line 154
+	new-instance	v2,java/net/URL
+; v2 : Ljava/net/URL;
+	new-instance	v3,java/lang/StringBuilder
+; v3 : Ljava/lang/StringBuilder;
+	const-string	v4,"http://api2.fshare.vn/api/fileops/list"
+; v4 : Ljava/lang/String;
+	invoke-direct	{v3,v4},java/lang/StringBuilder/<init>	; <init>(Ljava/lang/String;)V
+; v3 : Ljava/lang/StringBuilder; , v4 : Ljava/lang/String;
+	invoke-virtual	{v0},java/lang/StringBuffer/toString	; toString()Ljava/lang/String;
+; v0 : Ljava/lang/StringBuffer;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v3,v0},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v3 : Ljava/lang/StringBuilder; , v0 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v0},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v0 : Ljava/lang/StringBuilder;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	invoke-direct	{v2,v0},java/net/URL/<init>	; <init>(Ljava/lang/String;)V
+; v2 : Ljava/net/URL; , v0 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},com/fsharemobile/a/x/a	; a(Ljava/net/URL;)V
+; v1 : Lcom/fsharemobile/a/x; , v2 : Ljava/net/URL;
+.line 157
+	invoke-virtual	{v1},com/fsharemobile/a/x/b	; b()Ljava/util/Map;
+; v1 : Lcom/fsharemobile/a/x;
+	move-result-object	v0
+; v0 : Ljava/util/Map;
+.line 158
+	const-string	v2,"Cookie"
+; v2 : Ljava/lang/String;
+.line 159
+	const-string	v3,";"
+; v3 : Ljava/lang/String;
+	iget-object	v4,v7,com/fsharemobile/a/d.b Lcom/fsharemobile/a/c;
+; v4 : Lcom/fsharemobile/a/c; , v7 : Lcom/fsharemobile/a/d;
+	invoke-virtual	{v4},com/fsharemobile/a/c/c	; c()Ljava/util/List;
+; v4 : Lcom/fsharemobile/a/c;
+	move-result-object	v4
+; v4 : Ljava/util/List;
+	invoke-interface	{v4},java/util/List/toArray	; toArray()[Ljava/lang/Object;
+; v4 : Ljava/util/List;
+	move-result-object	v4
+; v4 : [Ljava/lang/Object;
+	invoke-static	{v3,v4},android/text/TextUtils/join	; join(Ljava/lang/CharSequence;[Ljava/lang/Object;)Ljava/lang/String;
+; v3 : Ljava/lang/String; , v4 : [Ljava/lang/Object;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+.line 158
+	invoke-interface	{v0,v2,v3},java/util/Map/put	; put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+; v0 : Ljava/util/Map; , v2 : Ljava/lang/String; , v3 : Ljava/lang/String;
+.line 160
+	const-string	v0,"File_Cooki"
+; v0 : Ljava/lang/String;
+	new-instance	v2,java/lang/StringBuilder
+; v2 : Ljava/lang/StringBuilder;
+	invoke-direct	{v2},java/lang/StringBuilder/<init>	; <init>()V
+; v2 : Ljava/lang/StringBuilder;
+	iget-object	v3,v7,com/fsharemobile/a/d.b Lcom/fsharemobile/a/c;
+; v3 : Lcom/fsharemobile/a/c; , v7 : Lcom/fsharemobile/a/d;
+	invoke-virtual	{v3},com/fsharemobile/a/c/c	; c()Ljava/util/List;
+; v3 : Lcom/fsharemobile/a/c;
+	move-result-object	v3
+; v3 : Ljava/util/List;
+	invoke-virtual	{v2,v3},java/lang/StringBuilder/append	; append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/util/List;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	const-string	v3,"...unknowns"
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v2},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v2 : Ljava/lang/StringBuilder;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-static	{v0,v2},android/util/Log/i	; i(Ljava/lang/String;Ljava/lang/String;)I
+; v0 : Ljava/lang/String; , v2 : Ljava/lang/String;
+.line 161
+	const-string	v0,"File_Token"
+; v0 : Ljava/lang/String;
+	new-instance	v2,java/lang/StringBuilder
+; v2 : Ljava/lang/StringBuilder;
+	iget-object	v3,v7,com/fsharemobile/a/d.b Lcom/fsharemobile/a/c;
+; v3 : Lcom/fsharemobile/a/c; , v7 : Lcom/fsharemobile/a/d;
+	invoke-virtual	{v3},com/fsharemobile/a/c/a	; a()Ljava/lang/String;
+; v3 : Lcom/fsharemobile/a/c;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-static	{v3},java/lang/String/valueOf	; valueOf(Ljava/lang/Object;)Ljava/lang/String;
+; v3 : Ljava/lang/String;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-direct	{v2,v3},java/lang/StringBuilder/<init>	; <init>(Ljava/lang/String;)V
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	const-string	v3,"...unknowns"
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v2},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v2 : Ljava/lang/StringBuilder;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-static	{v0,v2},android/util/Log/i	; i(Ljava/lang/String;Ljava/lang/String;)I
+; v0 : Ljava/lang/String; , v2 : Ljava/lang/String;
+.line 162
+	const-string	v0,"FileProxy_GetList_Header_IN"
+; v0 : Ljava/lang/String;
+.line 163
+	const-string	v2,";"
+; v2 : Ljava/lang/String;
+	iget-object	v3,v7,com/fsharemobile/a/d.b Lcom/fsharemobile/a/c;
+; v3 : Lcom/fsharemobile/a/c; , v7 : Lcom/fsharemobile/a/d;
+	invoke-virtual	{v3},com/fsharemobile/a/c/c	; c()Ljava/util/List;
+; v3 : Lcom/fsharemobile/a/c;
+	move-result-object	v3
+; v3 : Ljava/util/List;
+	invoke-interface	{v3},java/util/List/toArray	; toArray()[Ljava/lang/Object;
+; v3 : Ljava/util/List;
+	move-result-object	v3
+; v3 : [Ljava/lang/Object;
+	invoke-static	{v2,v3},android/text/TextUtils/join	; join(Ljava/lang/CharSequence;[Ljava/lang/Object;)Ljava/lang/String;
+; v2 : Ljava/lang/String; , v3 : [Ljava/lang/Object;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+.line 162
+	invoke-static	{v0,v2},android/util/Log/i	; i(Ljava/lang/String;Ljava/lang/String;)I
+; v0 : Ljava/lang/String; , v2 : Ljava/lang/String;
+.line 166
+	new-instance	v0,com/fsharemobile/a/a
+; v0 : Lcom/fsharemobile/a/a;
+	iget-object	v2,v7,com/fsharemobile/a/d.b Lcom/fsharemobile/a/c;
+; v2 : Lcom/fsharemobile/a/c; , v7 : Lcom/fsharemobile/a/d;
+	invoke-virtual	{v2},com/fsharemobile/a/c/g	; g()Lcom/fsharemobile/a/z;
+; v2 : Lcom/fsharemobile/a/c;
+	move-result-object	v2
+; v2 : Lcom/fsharemobile/a/z;
+	new-instance	v3,com/fsharemobile/a/h
+; v3 : Lcom/fsharemobile/a/h;
+	invoke-direct	{v3,v7,v11,v12,v10},com/fsharemobile/a/h/<init>	; <init>(Lcom/fsharemobile/a/d;Lcom/fsharemobile/a/s;Landroid/content/Context;Ljava/lang/String;)V
+; v3 : Lcom/fsharemobile/a/h; , v7 : Lcom/fsharemobile/a/d; , v11 : Lcom/fsharemobile/a/s; , v12 : Landroid/content/Context; , v10 : Ljava/lang/String;
+	invoke-direct	{v0,v2,v3},com/fsharemobile/a/a/<init>	; <init>(Lcom/fsharemobile/a/z;Lcom/fsharemobile/a/b;)V
+; v0 : Lcom/fsharemobile/a/a; , v2 : Lcom/fsharemobile/a/z; , v3 : Lcom/fsharemobile/a/h;
+	new-array	v2,v6,[Ljava/lang/Object;
+; v2 : [Ljava/lang/Object; , v6 : single-length
+.line 220
+	aput-object	v1,v2,v5
+; v1 : Lcom/fsharemobile/a/x; , v2 : [Ljava/lang/Object; , v5 : single-length
+	invoke-virtual	{v0,v2},com/fsharemobile/a/a/execute	; execute([Ljava/lang/Object;)Landroid/os/AsyncTask;
+; v0 : Lcom/fsharemobile/a/a; , v2 : [Ljava/lang/Object;
+.line 221
+	return-void	
+.end method
+
+.method public a(Ljava/lang/String;ILcom/fsharemobile/a/v;)V
+.limit registers 12
+; this: v8 (Lcom/fsharemobile/a/d;)
+; parameter[0] : v9 (Ljava/lang/String;)
+; parameter[1] : v10 (I)
+; parameter[2] : v11 (Lcom/fsharemobile/a/v;)
+	const/4	v7,1
+; v7 : single-length
+	const/4	v6,0
+; v6 : single-length
+.line 78
+	new-instance	v0,java/lang/StringBuffer
+; v0 : Ljava/lang/StringBuffer;
+	const-string	v1,""
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/StringBuffer/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/StringBuffer; , v1 : Ljava/lang/String;
+.line 79
+	const-string	v1,"?pageIndex=%d"
+; v1 : Ljava/lang/String;
+	new-array	v2,v7,[Ljava/lang/Object;
+; v2 : [Ljava/lang/Object; , v7 : single-length
+	invoke-static	{v10},java/lang/Integer/valueOf	; valueOf(I)Ljava/lang/Integer;
+; v10 : single-length
+	move-result-object	v3
+; v3 : Ljava/lang/Integer;
+	aput-object	v3,v2,v6
+; v3 : Ljava/lang/Integer; , v2 : [Ljava/lang/Object; , v6 : single-length
+	invoke-static	{v1,v2},java/lang/String/format	; format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+; v1 : Ljava/lang/String; , v2 : [Ljava/lang/Object;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuffer/append	; append(Ljava/lang/String;)Ljava/lang/StringBuffer;
+; v0 : Ljava/lang/StringBuffer; , v1 : Ljava/lang/String;
+.line 81
+	new-instance	v1,java/lang/StringBuffer
+; v1 : Ljava/lang/StringBuffer;
+	const-string	v2,""
+; v2 : Ljava/lang/String;
+	invoke-direct	{v1,v2},java/lang/StringBuffer/<init>	; <init>(Ljava/lang/String;)V
+; v1 : Ljava/lang/StringBuffer; , v2 : Ljava/lang/String;
+.line 82
+	const-string	v2,"{"
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuffer/append	; append(Ljava/lang/String;)Ljava/lang/StringBuffer;
+; v1 : Ljava/lang/StringBuffer; , v2 : Ljava/lang/String;
+.line 84
+	const-string	v2,""token":"%s""
+; v2 : Ljava/lang/String;
+	new-array	v3,v7,[Ljava/lang/Object;
+; v3 : [Ljava/lang/Object; , v7 : single-length
+	iget-object	v4,v8,com/fsharemobile/a/d.b Lcom/fsharemobile/a/c;
+; v4 : Lcom/fsharemobile/a/c; , v8 : Lcom/fsharemobile/a/d;
+	invoke-virtual	{v4},com/fsharemobile/a/c/a	; a()Ljava/lang/String;
+; v4 : Lcom/fsharemobile/a/c;
+	move-result-object	v4
+; v4 : Ljava/lang/String;
+	aput-object	v4,v3,v6
+; v4 : Ljava/lang/String; , v3 : [Ljava/lang/Object; , v6 : single-length
+	invoke-static	{v2,v3},java/lang/String/format	; format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+; v2 : Ljava/lang/String; , v3 : [Ljava/lang/Object;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuffer/append	; append(Ljava/lang/String;)Ljava/lang/StringBuffer;
+; v1 : Ljava/lang/StringBuffer; , v2 : Ljava/lang/String;
+.line 85
+	const-string	v2,","keyword":"%s""
+; v2 : Ljava/lang/String;
+	new-array	v3,v7,[Ljava/lang/Object;
+; v3 : [Ljava/lang/Object; , v7 : single-length
+	aput-object	v9,v3,v6
+; v9 : Ljava/lang/String; , v3 : [Ljava/lang/Object; , v6 : single-length
+	invoke-static	{v2,v3},java/lang/String/format	; format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+; v2 : Ljava/lang/String; , v3 : [Ljava/lang/Object;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuffer/append	; append(Ljava/lang/String;)Ljava/lang/StringBuffer;
+; v1 : Ljava/lang/StringBuffer; , v2 : Ljava/lang/String;
+.line 86
+	const-string	v2,"}"
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuffer/append	; append(Ljava/lang/String;)Ljava/lang/StringBuffer;
+; v1 : Ljava/lang/StringBuffer; , v2 : Ljava/lang/String;
+.line 88
+	new-instance	v2,com/fsharemobile/a/x
+; v2 : Lcom/fsharemobile/a/x;
+	invoke-direct	{v2},com/fsharemobile/a/x/<init>	; <init>()V
+; v2 : Lcom/fsharemobile/a/x;
+.line 89
+	new-instance	v3,java/net/URL
+; v3 : Ljava/net/URL;
+	new-instance	v4,java/lang/StringBuilder
+; v4 : Ljava/lang/StringBuilder;
+	const-string	v5,"http://api2.fshare.vn/api/fileops/search"
+; v5 : Ljava/lang/String;
+	invoke-direct	{v4,v5},java/lang/StringBuilder/<init>	; <init>(Ljava/lang/String;)V
+; v4 : Ljava/lang/StringBuilder; , v5 : Ljava/lang/String;
+	invoke-virtual	{v0},java/lang/StringBuffer/toString	; toString()Ljava/lang/String;
+; v0 : Ljava/lang/StringBuffer;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v4,v0},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v4 : Ljava/lang/StringBuilder; , v0 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v0},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v0 : Ljava/lang/StringBuilder;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	invoke-direct	{v3,v0},java/net/URL/<init>	; <init>(Ljava/lang/String;)V
+; v3 : Ljava/net/URL; , v0 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},com/fsharemobile/a/x/a	; a(Ljava/net/URL;)V
+; v2 : Lcom/fsharemobile/a/x; , v3 : Ljava/net/URL;
+.line 90
+	invoke-virtual	{v1},java/lang/StringBuffer/toString	; toString()Ljava/lang/String;
+; v1 : Ljava/lang/StringBuffer;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v2,v0},com/fsharemobile/a/x/a	; a(Ljava/lang/String;)V
+; v2 : Lcom/fsharemobile/a/x; , v0 : Ljava/lang/String;
+.line 91
+	const-string	v0,"SEARCH_REQUEST"
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v1},java/lang/StringBuffer/toString	; toString()Ljava/lang/String;
+; v1 : Ljava/lang/StringBuffer;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-static	{v0,v1},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v0 : Ljava/lang/String; , v1 : Ljava/lang/String;
+.line 93
+	invoke-virtual	{v2},com/fsharemobile/a/x/b	; b()Ljava/util/Map;
+; v2 : Lcom/fsharemobile/a/x;
+	move-result-object	v0
+; v0 : Ljava/util/Map;
+.line 94
+	const-string	v1,"Cookie"
+; v1 : Ljava/lang/String;
+.line 95
+	const-string	v3,";"
+; v3 : Ljava/lang/String;
+	iget-object	v4,v8,com/fsharemobile/a/d.b Lcom/fsharemobile/a/c;
+; v4 : Lcom/fsharemobile/a/c; , v8 : Lcom/fsharemobile/a/d;
+	invoke-virtual	{v4},com/fsharemobile/a/c/c	; c()Ljava/util/List;
+; v4 : Lcom/fsharemobile/a/c;
+	move-result-object	v4
+; v4 : Ljava/util/List;
+	invoke-interface	{v4},java/util/List/toArray	; toArray()[Ljava/lang/Object;
+; v4 : Ljava/util/List;
+	move-result-object	v4
+; v4 : [Ljava/lang/Object;
+	invoke-static	{v3,v4},android/text/TextUtils/join	; join(Ljava/lang/CharSequence;[Ljava/lang/Object;)Ljava/lang/String;
+; v3 : Ljava/lang/String; , v4 : [Ljava/lang/Object;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+.line 94
+	invoke-interface	{v0,v1,v3},java/util/Map/put	; put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+; v0 : Ljava/util/Map; , v1 : Ljava/lang/String; , v3 : Ljava/lang/String;
+.line 96
+	new-instance	v0,com/fsharemobile/a/a
+; v0 : Lcom/fsharemobile/a/a;
+	iget-object	v1,v8,com/fsharemobile/a/d.b Lcom/fsharemobile/a/c;
+; v1 : Lcom/fsharemobile/a/c; , v8 : Lcom/fsharemobile/a/d;
+	invoke-virtual	{v1},com/fsharemobile/a/c/g	; g()Lcom/fsharemobile/a/z;
+; v1 : Lcom/fsharemobile/a/c;
+	move-result-object	v1
+; v1 : Lcom/fsharemobile/a/z;
+	new-instance	v3,com/fsharemobile/a/e
+; v3 : Lcom/fsharemobile/a/e;
+	invoke-direct	{v3,v8,v11},com/fsharemobile/a/e/<init>	; <init>(Lcom/fsharemobile/a/d;Lcom/fsharemobile/a/v;)V
+; v3 : Lcom/fsharemobile/a/e; , v8 : Lcom/fsharemobile/a/d; , v11 : Lcom/fsharemobile/a/v;
+	invoke-direct	{v0,v1,v3},com/fsharemobile/a/a/<init>	; <init>(Lcom/fsharemobile/a/z;Lcom/fsharemobile/a/b;)V
+; v0 : Lcom/fsharemobile/a/a; , v1 : Lcom/fsharemobile/a/z; , v3 : Lcom/fsharemobile/a/e;
+	new-array	v1,v7,[Ljava/lang/Object;
+; v1 : [Ljava/lang/Object; , v7 : single-length
+.line 139
+	aput-object	v2,v1,v6
+; v2 : Lcom/fsharemobile/a/x; , v1 : [Ljava/lang/Object; , v6 : single-length
+	invoke-virtual	{v0,v1},com/fsharemobile/a/a/execute	; execute([Ljava/lang/Object;)Landroid/os/AsyncTask;
+; v0 : Lcom/fsharemobile/a/a; , v1 : [Ljava/lang/Object;
+.line 140
+	return-void	
+.end method
+
+.method public a(Ljava/lang/String;Ljava/lang/String;Lcom/fsharemobile/a/o;)V
+.limit registers 11
+; this: v7 (Lcom/fsharemobile/a/d;)
+; parameter[0] : v8 (Ljava/lang/String;)
+; parameter[1] : v9 (Ljava/lang/String;)
+; parameter[2] : v10 (Lcom/fsharemobile/a/o;)
+	const/4	v6,1
+; v6 : single-length
+	const/4	v5,0
+; v5 : single-length
+.line 722
+	new-instance	v0,java/lang/StringBuffer
+; v0 : Ljava/lang/StringBuffer;
+	const-string	v1,""
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/StringBuffer/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/StringBuffer; , v1 : Ljava/lang/String;
+.line 723
+	const-string	v1,"{"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuffer/append	; append(Ljava/lang/String;)Ljava/lang/StringBuffer;
+; v0 : Ljava/lang/StringBuffer; , v1 : Ljava/lang/String;
+.line 724
+	const-string	v1,""url":"%s""
+; v1 : Ljava/lang/String;
+	new-array	v2,v6,[Ljava/lang/Object;
+; v2 : [Ljava/lang/Object; , v6 : single-length
+	aput-object	v8,v2,v5
+; v8 : Ljava/lang/String; , v2 : [Ljava/lang/Object; , v5 : single-length
+	invoke-static	{v1,v2},java/lang/String/format	; format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+; v1 : Ljava/lang/String; , v2 : [Ljava/lang/Object;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuffer/append	; append(Ljava/lang/String;)Ljava/lang/StringBuffer;
+; v0 : Ljava/lang/StringBuffer; , v1 : Ljava/lang/String;
+.line 725
+	const-string	v1,","in_dir":"%s""
+; v1 : Ljava/lang/String;
+	new-array	v2,v6,[Ljava/lang/Object;
+; v2 : [Ljava/lang/Object; , v6 : single-length
+	aput-object	v9,v2,v5
+; v9 : Ljava/lang/String; , v2 : [Ljava/lang/Object; , v5 : single-length
+	invoke-static	{v1,v2},java/lang/String/format	; format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+; v1 : Ljava/lang/String; , v2 : [Ljava/lang/Object;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuffer/append	; append(Ljava/lang/String;)Ljava/lang/StringBuffer;
+; v0 : Ljava/lang/StringBuffer; , v1 : Ljava/lang/String;
+.line 727
+	const-string	v1,","token":"%s""
+; v1 : Ljava/lang/String;
+	new-array	v2,v6,[Ljava/lang/Object;
+; v2 : [Ljava/lang/Object; , v6 : single-length
+	iget-object	v3,v7,com/fsharemobile/a/d.b Lcom/fsharemobile/a/c;
+; v3 : Lcom/fsharemobile/a/c; , v7 : Lcom/fsharemobile/a/d;
+	invoke-virtual	{v3},com/fsharemobile/a/c/a	; a()Ljava/lang/String;
+; v3 : Lcom/fsharemobile/a/c;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	aput-object	v3,v2,v5
+; v3 : Ljava/lang/String; , v2 : [Ljava/lang/Object; , v5 : single-length
+	invoke-static	{v1,v2},java/lang/String/format	; format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+; v1 : Ljava/lang/String; , v2 : [Ljava/lang/Object;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuffer/append	; append(Ljava/lang/String;)Ljava/lang/StringBuffer;
+; v0 : Ljava/lang/StringBuffer; , v1 : Ljava/lang/String;
+.line 729
+	const-string	v1,"}"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuffer/append	; append(Ljava/lang/String;)Ljava/lang/StringBuffer;
+; v0 : Ljava/lang/StringBuffer; , v1 : Ljava/lang/String;
+.line 732
+	new-instance	v1,com/fsharemobile/a/x
+; v1 : Lcom/fsharemobile/a/x;
+	invoke-direct	{v1},com/fsharemobile/a/x/<init>	; <init>()V
+; v1 : Lcom/fsharemobile/a/x;
+.line 733
+	new-instance	v2,java/net/URL
+; v2 : Ljava/net/URL;
+	const-string	v3,"http://api2.fshare.vn/api/fileops/cloneFromUrl"
+; v3 : Ljava/lang/String;
+	invoke-direct	{v2,v3},java/net/URL/<init>	; <init>(Ljava/lang/String;)V
+; v2 : Ljava/net/URL; , v3 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},com/fsharemobile/a/x/a	; a(Ljava/net/URL;)V
+; v1 : Lcom/fsharemobile/a/x; , v2 : Ljava/net/URL;
+.line 734
+	invoke-virtual	{v0},java/lang/StringBuffer/toString	; toString()Ljava/lang/String;
+; v0 : Ljava/lang/StringBuffer;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},com/fsharemobile/a/x/a	; a(Ljava/lang/String;)V
+; v1 : Lcom/fsharemobile/a/x; , v2 : Ljava/lang/String;
+.line 735
+	const-string	v2,"REQUEST_Clone_FROM_URL_BODY"
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v0},java/lang/StringBuffer/toString	; toString()Ljava/lang/String;
+; v0 : Ljava/lang/StringBuffer;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	invoke-static	{v2,v0},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v2 : Ljava/lang/String; , v0 : Ljava/lang/String;
+.line 738
+	invoke-virtual	{v1},com/fsharemobile/a/x/b	; b()Ljava/util/Map;
+; v1 : Lcom/fsharemobile/a/x;
+	move-result-object	v0
+; v0 : Ljava/util/Map;
+.line 739
+	const-string	v2,"Cookie"
+; v2 : Ljava/lang/String;
+.line 740
+	const-string	v3,";"
+; v3 : Ljava/lang/String;
+	iget-object	v4,v7,com/fsharemobile/a/d.b Lcom/fsharemobile/a/c;
+; v4 : Lcom/fsharemobile/a/c; , v7 : Lcom/fsharemobile/a/d;
+	invoke-virtual	{v4},com/fsharemobile/a/c/c	; c()Ljava/util/List;
+; v4 : Lcom/fsharemobile/a/c;
+	move-result-object	v4
+; v4 : Ljava/util/List;
+	invoke-interface	{v4},java/util/List/toArray	; toArray()[Ljava/lang/Object;
+; v4 : Ljava/util/List;
+	move-result-object	v4
+; v4 : [Ljava/lang/Object;
+	invoke-static	{v3,v4},android/text/TextUtils/join	; join(Ljava/lang/CharSequence;[Ljava/lang/Object;)Ljava/lang/String;
+; v3 : Ljava/lang/String; , v4 : [Ljava/lang/Object;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+.line 739
+	invoke-interface	{v0,v2,v3},java/util/Map/put	; put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+; v0 : Ljava/util/Map; , v2 : Ljava/lang/String; , v3 : Ljava/lang/String;
+.line 745
+	new-instance	v0,com/fsharemobile/a/a
+; v0 : Lcom/fsharemobile/a/a;
+	iget-object	v2,v7,com/fsharemobile/a/d.b Lcom/fsharemobile/a/c;
+; v2 : Lcom/fsharemobile/a/c; , v7 : Lcom/fsharemobile/a/d;
+	invoke-virtual	{v2},com/fsharemobile/a/c/g	; g()Lcom/fsharemobile/a/z;
+; v2 : Lcom/fsharemobile/a/c;
+	move-result-object	v2
+; v2 : Lcom/fsharemobile/a/z;
+	new-instance	v3,com/fsharemobile/a/g
+; v3 : Lcom/fsharemobile/a/g;
+	invoke-direct	{v3,v7,v10},com/fsharemobile/a/g/<init>	; <init>(Lcom/fsharemobile/a/d;Lcom/fsharemobile/a/o;)V
+; v3 : Lcom/fsharemobile/a/g; , v7 : Lcom/fsharemobile/a/d; , v10 : Lcom/fsharemobile/a/o;
+	invoke-direct	{v0,v2,v3},com/fsharemobile/a/a/<init>	; <init>(Lcom/fsharemobile/a/z;Lcom/fsharemobile/a/b;)V
+; v0 : Lcom/fsharemobile/a/a; , v2 : Lcom/fsharemobile/a/z; , v3 : Lcom/fsharemobile/a/g;
+	new-array	v2,v6,[Ljava/lang/Object;
+; v2 : [Ljava/lang/Object; , v6 : single-length
+.line 778
+	aput-object	v1,v2,v5
+; v1 : Lcom/fsharemobile/a/x; , v2 : [Ljava/lang/Object; , v5 : single-length
+	invoke-virtual	{v0,v2},com/fsharemobile/a/a/execute	; execute([Ljava/lang/Object;)Landroid/os/AsyncTask;
+; v0 : Lcom/fsharemobile/a/a; , v2 : [Ljava/lang/Object;
+.line 779
+	return-void	
+.end method
+
+.method public a(Ljava/lang/String;Ljava/lang/String;Lcom/fsharemobile/a/p;)V
+.limit registers 11
+; this: v7 (Lcom/fsharemobile/a/d;)
+; parameter[0] : v8 (Ljava/lang/String;)
+; parameter[1] : v9 (Ljava/lang/String;)
+; parameter[2] : v10 (Lcom/fsharemobile/a/p;)
+	const/4	v6,1
+; v6 : single-length
+	const/4	v5,0
+; v5 : single-length
+.line 553
+	new-instance	v0,java/lang/StringBuffer
+; v0 : Ljava/lang/StringBuffer;
+	const-string	v1,""
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/StringBuffer/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/StringBuffer; , v1 : Ljava/lang/String;
+.line 554
+	const-string	v1,"{"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuffer/append	; append(Ljava/lang/String;)Ljava/lang/StringBuffer;
+; v0 : Ljava/lang/StringBuffer; , v1 : Ljava/lang/String;
+.line 556
+	const-string	v1,""token":"%s""
+; v1 : Ljava/lang/String;
+	new-array	v2,v6,[Ljava/lang/Object;
+; v2 : [Ljava/lang/Object; , v6 : single-length
+	iget-object	v3,v7,com/fsharemobile/a/d.b Lcom/fsharemobile/a/c;
+; v3 : Lcom/fsharemobile/a/c; , v7 : Lcom/fsharemobile/a/d;
+	invoke-virtual	{v3},com/fsharemobile/a/c/a	; a()Ljava/lang/String;
+; v3 : Lcom/fsharemobile/a/c;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	aput-object	v3,v2,v5
+; v3 : Ljava/lang/String; , v2 : [Ljava/lang/Object; , v5 : single-length
+	invoke-static	{v1,v2},java/lang/String/format	; format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+; v1 : Ljava/lang/String; , v2 : [Ljava/lang/Object;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuffer/append	; append(Ljava/lang/String;)Ljava/lang/StringBuffer;
+; v0 : Ljava/lang/StringBuffer; , v1 : Ljava/lang/String;
+.line 557
+	const-string	v1,","name":"%s""
+; v1 : Ljava/lang/String;
+	new-array	v2,v6,[Ljava/lang/Object;
+; v2 : [Ljava/lang/Object; , v6 : single-length
+	aput-object	v8,v2,v5
+; v8 : Ljava/lang/String; , v2 : [Ljava/lang/Object; , v5 : single-length
+	invoke-static	{v1,v2},java/lang/String/format	; format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+; v1 : Ljava/lang/String; , v2 : [Ljava/lang/Object;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuffer/append	; append(Ljava/lang/String;)Ljava/lang/StringBuffer;
+; v0 : Ljava/lang/StringBuffer; , v1 : Ljava/lang/String;
+.line 558
+	const-string	v1,","in_dir":"%s""
+; v1 : Ljava/lang/String;
+	new-array	v2,v6,[Ljava/lang/Object;
+; v2 : [Ljava/lang/Object; , v6 : single-length
+	aput-object	v9,v2,v5
+; v9 : Ljava/lang/String; , v2 : [Ljava/lang/Object; , v5 : single-length
+	invoke-static	{v1,v2},java/lang/String/format	; format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+; v1 : Ljava/lang/String; , v2 : [Ljava/lang/Object;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuffer/append	; append(Ljava/lang/String;)Ljava/lang/StringBuffer;
+; v0 : Ljava/lang/StringBuffer; , v1 : Ljava/lang/String;
+.line 559
+	const-string	v1,"}"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuffer/append	; append(Ljava/lang/String;)Ljava/lang/StringBuffer;
+; v0 : Ljava/lang/StringBuffer; , v1 : Ljava/lang/String;
+.line 560
+	new-instance	v1,com/fsharemobile/a/x
+; v1 : Lcom/fsharemobile/a/x;
+	invoke-direct	{v1},com/fsharemobile/a/x/<init>	; <init>()V
+; v1 : Lcom/fsharemobile/a/x;
+.line 561
+	new-instance	v2,java/net/URL
+; v2 : Ljava/net/URL;
+	const-string	v3,"http://api2.fshare.vn/api/fileops/createFolder"
+; v3 : Ljava/lang/String;
+	invoke-direct	{v2,v3},java/net/URL/<init>	; <init>(Ljava/lang/String;)V
+; v2 : Ljava/net/URL; , v3 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},com/fsharemobile/a/x/a	; a(Ljava/net/URL;)V
+; v1 : Lcom/fsharemobile/a/x; , v2 : Ljava/net/URL;
+.line 562
+	invoke-virtual	{v0},java/lang/StringBuffer/toString	; toString()Ljava/lang/String;
+; v0 : Ljava/lang/StringBuffer;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},com/fsharemobile/a/x/a	; a(Ljava/lang/String;)V
+; v1 : Lcom/fsharemobile/a/x; , v2 : Ljava/lang/String;
+.line 563
+	const-string	v2,"REQUEST_CREATE_IN_ID_FOLDER_BODY"
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v0},java/lang/StringBuffer/toString	; toString()Ljava/lang/String;
+; v0 : Ljava/lang/StringBuffer;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	invoke-static	{v2,v0},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v2 : Ljava/lang/String; , v0 : Ljava/lang/String;
+.line 565
+	invoke-virtual	{v1},com/fsharemobile/a/x/b	; b()Ljava/util/Map;
+; v1 : Lcom/fsharemobile/a/x;
+	move-result-object	v0
+; v0 : Ljava/util/Map;
+.line 566
+	const-string	v2,"Cookie"
+; v2 : Ljava/lang/String;
+.line 567
+	const-string	v3,";"
+; v3 : Ljava/lang/String;
+	iget-object	v4,v7,com/fsharemobile/a/d.b Lcom/fsharemobile/a/c;
+; v4 : Lcom/fsharemobile/a/c; , v7 : Lcom/fsharemobile/a/d;
+	invoke-virtual	{v4},com/fsharemobile/a/c/c	; c()Ljava/util/List;
+; v4 : Lcom/fsharemobile/a/c;
+	move-result-object	v4
+; v4 : Ljava/util/List;
+	invoke-interface	{v4},java/util/List/toArray	; toArray()[Ljava/lang/Object;
+; v4 : Ljava/util/List;
+	move-result-object	v4
+; v4 : [Ljava/lang/Object;
+	invoke-static	{v3,v4},android/text/TextUtils/join	; join(Ljava/lang/CharSequence;[Ljava/lang/Object;)Ljava/lang/String;
+; v3 : Ljava/lang/String; , v4 : [Ljava/lang/Object;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+.line 566
+	invoke-interface	{v0,v2,v3},java/util/Map/put	; put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+; v0 : Ljava/util/Map; , v2 : Ljava/lang/String; , v3 : Ljava/lang/String;
+.line 569
+	new-instance	v0,com/fsharemobile/a/a
+; v0 : Lcom/fsharemobile/a/a;
+	iget-object	v2,v7,com/fsharemobile/a/d.b Lcom/fsharemobile/a/c;
+; v2 : Lcom/fsharemobile/a/c; , v7 : Lcom/fsharemobile/a/d;
+	invoke-virtual	{v2},com/fsharemobile/a/c/g	; g()Lcom/fsharemobile/a/z;
+; v2 : Lcom/fsharemobile/a/c;
+	move-result-object	v2
+; v2 : Lcom/fsharemobile/a/z;
+	new-instance	v3,com/fsharemobile/a/n
+; v3 : Lcom/fsharemobile/a/n;
+	invoke-direct	{v3,v7,v10},com/fsharemobile/a/n/<init>	; <init>(Lcom/fsharemobile/a/d;Lcom/fsharemobile/a/p;)V
+; v3 : Lcom/fsharemobile/a/n; , v7 : Lcom/fsharemobile/a/d; , v10 : Lcom/fsharemobile/a/p;
+	invoke-direct	{v0,v2,v3},com/fsharemobile/a/a/<init>	; <init>(Lcom/fsharemobile/a/z;Lcom/fsharemobile/a/b;)V
+; v0 : Lcom/fsharemobile/a/a; , v2 : Lcom/fsharemobile/a/z; , v3 : Lcom/fsharemobile/a/n;
+	new-array	v2,v6,[Ljava/lang/Object;
+; v2 : [Ljava/lang/Object; , v6 : single-length
+.line 601
+	aput-object	v1,v2,v5
+; v1 : Lcom/fsharemobile/a/x; , v2 : [Ljava/lang/Object; , v5 : single-length
+	invoke-virtual	{v0,v2},com/fsharemobile/a/a/execute	; execute([Ljava/lang/Object;)Landroid/os/AsyncTask;
+; v0 : Lcom/fsharemobile/a/a; , v2 : [Ljava/lang/Object;
+.line 602
+	return-void	
+.end method
+
+.method public a(Ljava/lang/String;Ljava/lang/String;Lcom/fsharemobile/a/u;)V
+.limit registers 11
+; this: v7 (Lcom/fsharemobile/a/d;)
+; parameter[0] : v8 (Ljava/lang/String;)
+; parameter[1] : v9 (Ljava/lang/String;)
+; parameter[2] : v10 (Lcom/fsharemobile/a/u;)
+	const/4	v6,1
+; v6 : single-length
+	const/4	v5,0
+; v5 : single-length
+.line 347
+	new-instance	v0,java/lang/StringBuffer
+; v0 : Ljava/lang/StringBuffer;
+	const-string	v1,""
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/StringBuffer/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/StringBuffer; , v1 : Ljava/lang/String;
+.line 348
+	const-string	v1,"{"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuffer/append	; append(Ljava/lang/String;)Ljava/lang/StringBuffer;
+; v0 : Ljava/lang/StringBuffer; , v1 : Ljava/lang/String;
+.line 350
+	const-string	v1,""token":"%s""
+; v1 : Ljava/lang/String;
+	new-array	v2,v6,[Ljava/lang/Object;
+; v2 : [Ljava/lang/Object; , v6 : single-length
+	iget-object	v3,v7,com/fsharemobile/a/d.b Lcom/fsharemobile/a/c;
+; v3 : Lcom/fsharemobile/a/c; , v7 : Lcom/fsharemobile/a/d;
+	invoke-virtual	{v3},com/fsharemobile/a/c/a	; a()Ljava/lang/String;
+; v3 : Lcom/fsharemobile/a/c;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	aput-object	v3,v2,v5
+; v3 : Ljava/lang/String; , v2 : [Ljava/lang/Object; , v5 : single-length
+	invoke-static	{v1,v2},java/lang/String/format	; format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+; v1 : Ljava/lang/String; , v2 : [Ljava/lang/Object;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuffer/append	; append(Ljava/lang/String;)Ljava/lang/StringBuffer;
+; v0 : Ljava/lang/StringBuffer; , v1 : Ljava/lang/String;
+.line 353
+	const-string	v1,","new_name":"%s""
+; v1 : Ljava/lang/String;
+	new-array	v2,v6,[Ljava/lang/Object;
+; v2 : [Ljava/lang/Object; , v6 : single-length
+	aput-object	v8,v2,v5
+; v8 : Ljava/lang/String; , v2 : [Ljava/lang/Object; , v5 : single-length
+	invoke-static	{v1,v2},java/lang/String/format	; format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+; v1 : Ljava/lang/String; , v2 : [Ljava/lang/Object;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuffer/append	; append(Ljava/lang/String;)Ljava/lang/StringBuffer;
+; v0 : Ljava/lang/StringBuffer; , v1 : Ljava/lang/String;
+.line 354
+	const-string	v1,","file":"%s""
+; v1 : Ljava/lang/String;
+	new-array	v2,v6,[Ljava/lang/Object;
+; v2 : [Ljava/lang/Object; , v6 : single-length
+	aput-object	v9,v2,v5
+; v9 : Ljava/lang/String; , v2 : [Ljava/lang/Object; , v5 : single-length
+	invoke-static	{v1,v2},java/lang/String/format	; format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+; v1 : Ljava/lang/String; , v2 : [Ljava/lang/Object;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuffer/append	; append(Ljava/lang/String;)Ljava/lang/StringBuffer;
+; v0 : Ljava/lang/StringBuffer; , v1 : Ljava/lang/String;
+.line 355
+	const-string	v1,"}"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuffer/append	; append(Ljava/lang/String;)Ljava/lang/StringBuffer;
+; v0 : Ljava/lang/StringBuffer; , v1 : Ljava/lang/String;
+.line 356
+	new-instance	v1,com/fsharemobile/a/x
+; v1 : Lcom/fsharemobile/a/x;
+	invoke-direct	{v1},com/fsharemobile/a/x/<init>	; <init>()V
+; v1 : Lcom/fsharemobile/a/x;
+.line 357
+	new-instance	v2,java/net/URL
+; v2 : Ljava/net/URL;
+	const-string	v3,"http://api2.fshare.vn/api/fileops/rename"
+; v3 : Ljava/lang/String;
+	invoke-direct	{v2,v3},java/net/URL/<init>	; <init>(Ljava/lang/String;)V
+; v2 : Ljava/net/URL; , v3 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},com/fsharemobile/a/x/a	; a(Ljava/net/URL;)V
+; v1 : Lcom/fsharemobile/a/x; , v2 : Ljava/net/URL;
+.line 358
+	const-string	v2,"HTTP_Rename_Body_BE"
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v0},java/lang/StringBuffer/toString	; toString()Ljava/lang/String;
+; v0 : Ljava/lang/StringBuffer;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-static	{v2,v3},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v2 : Ljava/lang/String; , v3 : Ljava/lang/String;
+.line 359
+	invoke-virtual	{v0},java/lang/StringBuffer/toString	; toString()Ljava/lang/String;
+; v0 : Ljava/lang/StringBuffer;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},com/fsharemobile/a/x/a	; a(Ljava/lang/String;)V
+; v1 : Lcom/fsharemobile/a/x; , v2 : Ljava/lang/String;
+.line 360
+	const-string	v2,"HTTP_Rename_Body"
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v0},java/lang/StringBuffer/toString	; toString()Ljava/lang/String;
+; v0 : Ljava/lang/StringBuffer;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	invoke-static	{v2,v0},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v2 : Ljava/lang/String; , v0 : Ljava/lang/String;
+.line 362
+	invoke-virtual	{v1},com/fsharemobile/a/x/b	; b()Ljava/util/Map;
+; v1 : Lcom/fsharemobile/a/x;
+	move-result-object	v0
+; v0 : Ljava/util/Map;
+.line 363
+	const-string	v2,"Cookie"
+; v2 : Ljava/lang/String;
+.line 364
+	const-string	v3,";"
+; v3 : Ljava/lang/String;
+	iget-object	v4,v7,com/fsharemobile/a/d.b Lcom/fsharemobile/a/c;
+; v4 : Lcom/fsharemobile/a/c; , v7 : Lcom/fsharemobile/a/d;
+	invoke-virtual	{v4},com/fsharemobile/a/c/c	; c()Ljava/util/List;
+; v4 : Lcom/fsharemobile/a/c;
+	move-result-object	v4
+; v4 : Ljava/util/List;
+	invoke-interface	{v4},java/util/List/toArray	; toArray()[Ljava/lang/Object;
+; v4 : Ljava/util/List;
+	move-result-object	v4
+; v4 : [Ljava/lang/Object;
+	invoke-static	{v3,v4},android/text/TextUtils/join	; join(Ljava/lang/CharSequence;[Ljava/lang/Object;)Ljava/lang/String;
+; v3 : Ljava/lang/String; , v4 : [Ljava/lang/Object;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+.line 363
+	invoke-interface	{v0,v2,v3},java/util/Map/put	; put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+; v0 : Ljava/util/Map; , v2 : Ljava/lang/String; , v3 : Ljava/lang/String;
+.line 366
+	new-instance	v0,com/fsharemobile/a/a
+; v0 : Lcom/fsharemobile/a/a;
+	iget-object	v2,v7,com/fsharemobile/a/d.b Lcom/fsharemobile/a/c;
+; v2 : Lcom/fsharemobile/a/c; , v7 : Lcom/fsharemobile/a/d;
+	invoke-virtual	{v2},com/fsharemobile/a/c/g	; g()Lcom/fsharemobile/a/z;
+; v2 : Lcom/fsharemobile/a/c;
+	move-result-object	v2
+; v2 : Lcom/fsharemobile/a/z;
+	new-instance	v3,com/fsharemobile/a/k
+; v3 : Lcom/fsharemobile/a/k;
+	invoke-direct	{v3,v7,v10},com/fsharemobile/a/k/<init>	; <init>(Lcom/fsharemobile/a/d;Lcom/fsharemobile/a/u;)V
+; v3 : Lcom/fsharemobile/a/k; , v7 : Lcom/fsharemobile/a/d; , v10 : Lcom/fsharemobile/a/u;
+	invoke-direct	{v0,v2,v3},com/fsharemobile/a/a/<init>	; <init>(Lcom/fsharemobile/a/z;Lcom/fsharemobile/a/b;)V
+; v0 : Lcom/fsharemobile/a/a; , v2 : Lcom/fsharemobile/a/z; , v3 : Lcom/fsharemobile/a/k;
+	new-array	v2,v6,[Ljava/lang/Object;
+; v2 : [Ljava/lang/Object; , v6 : single-length
+.line 394
+	aput-object	v1,v2,v5
+; v1 : Lcom/fsharemobile/a/x; , v2 : [Ljava/lang/Object; , v5 : single-length
+	invoke-virtual	{v0,v2},com/fsharemobile/a/a/execute	; execute([Ljava/lang/Object;)Landroid/os/AsyncTask;
+; v0 : Lcom/fsharemobile/a/a; , v2 : [Ljava/lang/Object;
+.line 395
+	return-void	
+.end method
+
+.method public a(Ljava/util/List;Lcom/fsharemobile/a/q;)V
+.limit registers 10
+; this: v7 (Lcom/fsharemobile/a/d;)
+; parameter[0] : v8 (Ljava/util/List;)
+; parameter[1] : v9 (Lcom/fsharemobile/a/q;)
+	const/4	v6,1
+; v6 : single-length
+	const/4	v5,0
+; v5 : single-length
+.line 400
+	new-instance	v0,java/lang/StringBuffer
+; v0 : Ljava/lang/StringBuffer;
+	const-string	v1,""
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/StringBuffer/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/StringBuffer; , v1 : Ljava/lang/String;
+.line 401
+	const-string	v1,"{"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuffer/append	; append(Ljava/lang/String;)Ljava/lang/StringBuffer;
+; v0 : Ljava/lang/StringBuffer; , v1 : Ljava/lang/String;
+.line 403
+	const-string	v1,""token":"%s""
+; v1 : Ljava/lang/String;
+	new-array	v2,v6,[Ljava/lang/Object;
+; v2 : [Ljava/lang/Object; , v6 : single-length
+	iget-object	v3,v7,com/fsharemobile/a/d.b Lcom/fsharemobile/a/c;
+; v3 : Lcom/fsharemobile/a/c; , v7 : Lcom/fsharemobile/a/d;
+	invoke-virtual	{v3},com/fsharemobile/a/c/a	; a()Ljava/lang/String;
+; v3 : Lcom/fsharemobile/a/c;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	aput-object	v3,v2,v5
+; v3 : Ljava/lang/String; , v2 : [Ljava/lang/Object; , v5 : single-length
+	invoke-static	{v1,v2},java/lang/String/format	; format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+; v1 : Ljava/lang/String; , v2 : [Ljava/lang/Object;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuffer/append	; append(Ljava/lang/String;)Ljava/lang/StringBuffer;
+; v0 : Ljava/lang/StringBuffer; , v1 : Ljava/lang/String;
+.line 405
+	const-string	v1,","items":%s"
+; v1 : Ljava/lang/String;
+	new-array	v2,v6,[Ljava/lang/Object;
+; v2 : [Ljava/lang/Object; , v6 : single-length
+	new-instance	v3,org/json/JSONArray
+; v3 : Lorg/json/JSONArray;
+	invoke-direct	{v3,v8},org/json/JSONArray/<init>	; <init>(Ljava/util/Collection;)V
+; v3 : Lorg/json/JSONArray; , v8 : Ljava/util/List;
+	aput-object	v3,v2,v5
+; v3 : Lorg/json/JSONArray; , v2 : [Ljava/lang/Object; , v5 : single-length
+	invoke-static	{v1,v2},java/lang/String/format	; format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+; v1 : Ljava/lang/String; , v2 : [Ljava/lang/Object;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuffer/append	; append(Ljava/lang/String;)Ljava/lang/StringBuffer;
+; v0 : Ljava/lang/StringBuffer; , v1 : Ljava/lang/String;
+.line 406
+	const-string	v1,"}"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuffer/append	; append(Ljava/lang/String;)Ljava/lang/StringBuffer;
+; v0 : Ljava/lang/StringBuffer; , v1 : Ljava/lang/String;
+.line 407
+	new-instance	v1,com/fsharemobile/a/x
+; v1 : Lcom/fsharemobile/a/x;
+	invoke-direct	{v1},com/fsharemobile/a/x/<init>	; <init>()V
+; v1 : Lcom/fsharemobile/a/x;
+.line 408
+	new-instance	v2,java/net/URL
+; v2 : Ljava/net/URL;
+	const-string	v3,"http://api2.fshare.vn/api/fileops/delete"
+; v3 : Ljava/lang/String;
+	invoke-direct	{v2,v3},java/net/URL/<init>	; <init>(Ljava/lang/String;)V
+; v2 : Ljava/net/URL; , v3 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},com/fsharemobile/a/x/a	; a(Ljava/net/URL;)V
+; v1 : Lcom/fsharemobile/a/x; , v2 : Ljava/net/URL;
+.line 409
+	invoke-virtual	{v0},java/lang/StringBuffer/toString	; toString()Ljava/lang/String;
+; v0 : Ljava/lang/StringBuffer;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},com/fsharemobile/a/x/a	; a(Ljava/lang/String;)V
+; v1 : Lcom/fsharemobile/a/x; , v2 : Ljava/lang/String;
+.line 410
+	const-string	v2,"Delete_ReQuest_Body"
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v0},java/lang/StringBuffer/toString	; toString()Ljava/lang/String;
+; v0 : Ljava/lang/StringBuffer;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	invoke-static	{v2,v0},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v2 : Ljava/lang/String; , v0 : Ljava/lang/String;
+.line 412
+	invoke-virtual	{v1},com/fsharemobile/a/x/b	; b()Ljava/util/Map;
+; v1 : Lcom/fsharemobile/a/x;
+	move-result-object	v0
+; v0 : Ljava/util/Map;
+.line 413
+	const-string	v2,"Cookie"
+; v2 : Ljava/lang/String;
+.line 414
+	const-string	v3,";"
+; v3 : Ljava/lang/String;
+	iget-object	v4,v7,com/fsharemobile/a/d.b Lcom/fsharemobile/a/c;
+; v4 : Lcom/fsharemobile/a/c; , v7 : Lcom/fsharemobile/a/d;
+	invoke-virtual	{v4},com/fsharemobile/a/c/c	; c()Ljava/util/List;
+; v4 : Lcom/fsharemobile/a/c;
+	move-result-object	v4
+; v4 : Ljava/util/List;
+	invoke-interface	{v4},java/util/List/toArray	; toArray()[Ljava/lang/Object;
+; v4 : Ljava/util/List;
+	move-result-object	v4
+; v4 : [Ljava/lang/Object;
+	invoke-static	{v3,v4},android/text/TextUtils/join	; join(Ljava/lang/CharSequence;[Ljava/lang/Object;)Ljava/lang/String;
+; v3 : Ljava/lang/String; , v4 : [Ljava/lang/Object;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+.line 413
+	invoke-interface	{v0,v2,v3},java/util/Map/put	; put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+; v0 : Ljava/util/Map; , v2 : Ljava/lang/String; , v3 : Ljava/lang/String;
+.line 416
+	new-instance	v0,com/fsharemobile/a/a
+; v0 : Lcom/fsharemobile/a/a;
+	iget-object	v2,v7,com/fsharemobile/a/d.b Lcom/fsharemobile/a/c;
+; v2 : Lcom/fsharemobile/a/c; , v7 : Lcom/fsharemobile/a/d;
+	invoke-virtual	{v2},com/fsharemobile/a/c/g	; g()Lcom/fsharemobile/a/z;
+; v2 : Lcom/fsharemobile/a/c;
+	move-result-object	v2
+; v2 : Lcom/fsharemobile/a/z;
+	new-instance	v3,com/fsharemobile/a/l
+; v3 : Lcom/fsharemobile/a/l;
+	invoke-direct	{v3,v7,v9},com/fsharemobile/a/l/<init>	; <init>(Lcom/fsharemobile/a/d;Lcom/fsharemobile/a/q;)V
+; v3 : Lcom/fsharemobile/a/l; , v7 : Lcom/fsharemobile/a/d; , v9 : Lcom/fsharemobile/a/q;
+	invoke-direct	{v0,v2,v3},com/fsharemobile/a/a/<init>	; <init>(Lcom/fsharemobile/a/z;Lcom/fsharemobile/a/b;)V
+; v0 : Lcom/fsharemobile/a/a; , v2 : Lcom/fsharemobile/a/z; , v3 : Lcom/fsharemobile/a/l;
+	new-array	v2,v6,[Ljava/lang/Object;
+; v2 : [Ljava/lang/Object; , v6 : single-length
+.line 443
+	aput-object	v1,v2,v5
+; v1 : Lcom/fsharemobile/a/x; , v2 : [Ljava/lang/Object; , v5 : single-length
+	invoke-virtual	{v0,v2},com/fsharemobile/a/a/execute	; execute([Ljava/lang/Object;)Landroid/os/AsyncTask;
+; v0 : Lcom/fsharemobile/a/a; , v2 : [Ljava/lang/Object;
+.line 444
+	return-void	
+.end method
+
+.method public a(Ljava/util/List;Ljava/lang/String;Lcom/fsharemobile/a/t;)V
+.limit registers 11
+; this: v7 (Lcom/fsharemobile/a/d;)
+; parameter[0] : v8 (Ljava/util/List;)
+; parameter[1] : v9 (Ljava/lang/String;)
+; parameter[2] : v10 (Lcom/fsharemobile/a/t;)
+	const/4	v6,1
+; v6 : single-length
+	const/4	v5,0
+; v5 : single-length
+.line 449
+	new-instance	v0,java/lang/StringBuffer
+; v0 : Ljava/lang/StringBuffer;
+	const-string	v1,""
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/StringBuffer/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/StringBuffer; , v1 : Ljava/lang/String;
+.line 450
+	const-string	v1,"{"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuffer/append	; append(Ljava/lang/String;)Ljava/lang/StringBuffer;
+; v0 : Ljava/lang/StringBuffer; , v1 : Ljava/lang/String;
+.line 452
+	const-string	v1,""token":"%s""
+; v1 : Ljava/lang/String;
+	new-array	v2,v6,[Ljava/lang/Object;
+; v2 : [Ljava/lang/Object; , v6 : single-length
+	iget-object	v3,v7,com/fsharemobile/a/d.b Lcom/fsharemobile/a/c;
+; v3 : Lcom/fsharemobile/a/c; , v7 : Lcom/fsharemobile/a/d;
+	invoke-virtual	{v3},com/fsharemobile/a/c/a	; a()Ljava/lang/String;
+; v3 : Lcom/fsharemobile/a/c;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	aput-object	v3,v2,v5
+; v3 : Ljava/lang/String; , v2 : [Ljava/lang/Object; , v5 : single-length
+	invoke-static	{v1,v2},java/lang/String/format	; format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+; v1 : Ljava/lang/String; , v2 : [Ljava/lang/Object;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuffer/append	; append(Ljava/lang/String;)Ljava/lang/StringBuffer;
+; v0 : Ljava/lang/StringBuffer; , v1 : Ljava/lang/String;
+.line 454
+	const-string	v1,","items":%s"
+; v1 : Ljava/lang/String;
+	new-array	v2,v6,[Ljava/lang/Object;
+; v2 : [Ljava/lang/Object; , v6 : single-length
+	new-instance	v3,org/json/JSONArray
+; v3 : Lorg/json/JSONArray;
+	invoke-direct	{v3,v8},org/json/JSONArray/<init>	; <init>(Ljava/util/Collection;)V
+; v3 : Lorg/json/JSONArray; , v8 : Ljava/util/List;
+	aput-object	v3,v2,v5
+; v3 : Lorg/json/JSONArray; , v2 : [Ljava/lang/Object; , v5 : single-length
+	invoke-static	{v1,v2},java/lang/String/format	; format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+; v1 : Ljava/lang/String; , v2 : [Ljava/lang/Object;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuffer/append	; append(Ljava/lang/String;)Ljava/lang/StringBuffer;
+; v0 : Ljava/lang/StringBuffer; , v1 : Ljava/lang/String;
+.line 455
+	const-string	v1,","to":"%s""
+; v1 : Ljava/lang/String;
+	new-array	v2,v6,[Ljava/lang/Object;
+; v2 : [Ljava/lang/Object; , v6 : single-length
+	aput-object	v9,v2,v5
+; v9 : Ljava/lang/String; , v2 : [Ljava/lang/Object; , v5 : single-length
+	invoke-static	{v1,v2},java/lang/String/format	; format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+; v1 : Ljava/lang/String; , v2 : [Ljava/lang/Object;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuffer/append	; append(Ljava/lang/String;)Ljava/lang/StringBuffer;
+; v0 : Ljava/lang/StringBuffer; , v1 : Ljava/lang/String;
+.line 456
+	const-string	v1,"}"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuffer/append	; append(Ljava/lang/String;)Ljava/lang/StringBuffer;
+; v0 : Ljava/lang/StringBuffer; , v1 : Ljava/lang/String;
+.line 457
+	new-instance	v1,com/fsharemobile/a/x
+; v1 : Lcom/fsharemobile/a/x;
+	invoke-direct	{v1},com/fsharemobile/a/x/<init>	; <init>()V
+; v1 : Lcom/fsharemobile/a/x;
+.line 458
+	new-instance	v2,java/net/URL
+; v2 : Ljava/net/URL;
+	const-string	v3,"http://api2.fshare.vn/api/fileops/move"
+; v3 : Ljava/lang/String;
+	invoke-direct	{v2,v3},java/net/URL/<init>	; <init>(Ljava/lang/String;)V
+; v2 : Ljava/net/URL; , v3 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},com/fsharemobile/a/x/a	; a(Ljava/net/URL;)V
+; v1 : Lcom/fsharemobile/a/x; , v2 : Ljava/net/URL;
+.line 459
+	invoke-virtual	{v0},java/lang/StringBuffer/toString	; toString()Ljava/lang/String;
+; v0 : Ljava/lang/StringBuffer;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},com/fsharemobile/a/x/a	; a(Ljava/lang/String;)V
+; v1 : Lcom/fsharemobile/a/x; , v2 : Ljava/lang/String;
+.line 461
+	const-string	v2,"REQUEST_MOVE_BODY"
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v0},java/lang/StringBuffer/toString	; toString()Ljava/lang/String;
+; v0 : Ljava/lang/StringBuffer;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	invoke-static	{v2,v0},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v2 : Ljava/lang/String; , v0 : Ljava/lang/String;
+.line 464
+	invoke-virtual	{v1},com/fsharemobile/a/x/b	; b()Ljava/util/Map;
+; v1 : Lcom/fsharemobile/a/x;
+	move-result-object	v0
+; v0 : Ljava/util/Map;
+.line 465
+	const-string	v2,"Cookie"
+; v2 : Ljava/lang/String;
+.line 466
+	const-string	v3,";"
+; v3 : Ljava/lang/String;
+	iget-object	v4,v7,com/fsharemobile/a/d.b Lcom/fsharemobile/a/c;
+; v4 : Lcom/fsharemobile/a/c; , v7 : Lcom/fsharemobile/a/d;
+	invoke-virtual	{v4},com/fsharemobile/a/c/c	; c()Ljava/util/List;
+; v4 : Lcom/fsharemobile/a/c;
+	move-result-object	v4
+; v4 : Ljava/util/List;
+	invoke-interface	{v4},java/util/List/toArray	; toArray()[Ljava/lang/Object;
+; v4 : Ljava/util/List;
+	move-result-object	v4
+; v4 : [Ljava/lang/Object;
+	invoke-static	{v3,v4},android/text/TextUtils/join	; join(Ljava/lang/CharSequence;[Ljava/lang/Object;)Ljava/lang/String;
+; v3 : Ljava/lang/String; , v4 : [Ljava/lang/Object;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+.line 465
+	invoke-interface	{v0,v2,v3},java/util/Map/put	; put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+; v0 : Ljava/util/Map; , v2 : Ljava/lang/String; , v3 : Ljava/lang/String;
+.line 468
+	new-instance	v0,com/fsharemobile/a/a
+; v0 : Lcom/fsharemobile/a/a;
+	iget-object	v2,v7,com/fsharemobile/a/d.b Lcom/fsharemobile/a/c;
+; v2 : Lcom/fsharemobile/a/c; , v7 : Lcom/fsharemobile/a/d;
+	invoke-virtual	{v2},com/fsharemobile/a/c/g	; g()Lcom/fsharemobile/a/z;
+; v2 : Lcom/fsharemobile/a/c;
+	move-result-object	v2
+; v2 : Lcom/fsharemobile/a/z;
+	new-instance	v3,com/fsharemobile/a/m
+; v3 : Lcom/fsharemobile/a/m;
+	invoke-direct	{v3,v7,v10},com/fsharemobile/a/m/<init>	; <init>(Lcom/fsharemobile/a/d;Lcom/fsharemobile/a/t;)V
+; v3 : Lcom/fsharemobile/a/m; , v7 : Lcom/fsharemobile/a/d; , v10 : Lcom/fsharemobile/a/t;
+	invoke-direct	{v0,v2,v3},com/fsharemobile/a/a/<init>	; <init>(Lcom/fsharemobile/a/z;Lcom/fsharemobile/a/b;)V
+; v0 : Lcom/fsharemobile/a/a; , v2 : Lcom/fsharemobile/a/z; , v3 : Lcom/fsharemobile/a/m;
+	new-array	v2,v6,[Ljava/lang/Object;
+; v2 : [Ljava/lang/Object; , v6 : single-length
+.line 497
+	aput-object	v1,v2,v5
+; v1 : Lcom/fsharemobile/a/x; , v2 : [Ljava/lang/Object; , v5 : single-length
+	invoke-virtual	{v0,v2},com/fsharemobile/a/a/execute	; execute([Ljava/lang/Object;)Landroid/os/AsyncTask;
+; v0 : Lcom/fsharemobile/a/a; , v2 : [Ljava/lang/Object;
+.line 498
+	return-void	
+.end method
+
+.method public a(Ljava/util/List;Ljava/util/List;Ljava/lang/String;Lcom/fsharemobile/a/r;)V
+.limit registers 12
+; this: v7 (Lcom/fsharemobile/a/d;)
+; parameter[0] : v8 (Ljava/util/List;)
+; parameter[1] : v9 (Ljava/util/List;)
+; parameter[2] : v10 (Ljava/lang/String;)
+; parameter[3] : v11 (Lcom/fsharemobile/a/r;)
+	const/4	v6,1
+; v6 : single-length
+	const/4	v5,0
+; v5 : single-length
+.line 291
+	new-instance	v0,java/lang/StringBuffer
+; v0 : Ljava/lang/StringBuffer;
+	const-string	v1,""
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/StringBuffer/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/StringBuffer; , v1 : Ljava/lang/String;
+.line 292
+	const-string	v1,"{"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuffer/append	; append(Ljava/lang/String;)Ljava/lang/StringBuffer;
+; v0 : Ljava/lang/StringBuffer; , v1 : Ljava/lang/String;
+.line 294
+	const-string	v1,""token":"%s""
+; v1 : Ljava/lang/String;
+	new-array	v2,v6,[Ljava/lang/Object;
+; v2 : [Ljava/lang/Object; , v6 : single-length
+	iget-object	v3,v7,com/fsharemobile/a/d.b Lcom/fsharemobile/a/c;
+; v3 : Lcom/fsharemobile/a/c; , v7 : Lcom/fsharemobile/a/d;
+	invoke-virtual	{v3},com/fsharemobile/a/c/a	; a()Ljava/lang/String;
+; v3 : Lcom/fsharemobile/a/c;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	aput-object	v3,v2,v5
+; v3 : Ljava/lang/String; , v2 : [Ljava/lang/Object; , v5 : single-length
+	invoke-static	{v1,v2},java/lang/String/format	; format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+; v1 : Ljava/lang/String; , v2 : [Ljava/lang/Object;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuffer/append	; append(Ljava/lang/String;)Ljava/lang/StringBuffer;
+; v0 : Ljava/lang/StringBuffer; , v1 : Ljava/lang/String;
+.line 296
+	const-string	v1,","items":%s"
+; v1 : Ljava/lang/String;
+	new-array	v2,v6,[Ljava/lang/Object;
+; v2 : [Ljava/lang/Object; , v6 : single-length
+	new-instance	v3,org/json/JSONArray
+; v3 : Lorg/json/JSONArray;
+	invoke-direct	{v3,v8},org/json/JSONArray/<init>	; <init>(Ljava/util/Collection;)V
+; v3 : Lorg/json/JSONArray; , v8 : Ljava/util/List;
+	aput-object	v3,v2,v5
+; v3 : Lorg/json/JSONArray; , v2 : [Ljava/lang/Object; , v5 : single-length
+	invoke-static	{v1,v2},java/lang/String/format	; format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+; v1 : Ljava/lang/String; , v2 : [Ljava/lang/Object;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuffer/append	; append(Ljava/lang/String;)Ljava/lang/StringBuffer;
+; v0 : Ljava/lang/StringBuffer; , v1 : Ljava/lang/String;
+.line 297
+	const-string	v1,","emails":%s"
+; v1 : Ljava/lang/String;
+	new-array	v2,v6,[Ljava/lang/Object;
+; v2 : [Ljava/lang/Object; , v6 : single-length
+	new-instance	v3,org/json/JSONArray
+; v3 : Lorg/json/JSONArray;
+.line 298
+	invoke-direct	{v3,v9},org/json/JSONArray/<init>	; <init>(Ljava/util/Collection;)V
+; v3 : Lorg/json/JSONArray; , v9 : Ljava/util/List;
+	aput-object	v3,v2,v5
+; v3 : Lorg/json/JSONArray; , v2 : [Ljava/lang/Object; , v5 : single-length
+.line 297
+	invoke-static	{v1,v2},java/lang/String/format	; format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+; v1 : Ljava/lang/String; , v2 : [Ljava/lang/Object;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuffer/append	; append(Ljava/lang/String;)Ljava/lang/StringBuffer;
+; v0 : Ljava/lang/StringBuffer; , v1 : Ljava/lang/String;
+.line 299
+	const-string	v1,","content":"%s""
+; v1 : Ljava/lang/String;
+	new-array	v2,v6,[Ljava/lang/Object;
+; v2 : [Ljava/lang/Object; , v6 : single-length
+	aput-object	v10,v2,v5
+; v10 : Ljava/lang/String; , v2 : [Ljava/lang/Object; , v5 : single-length
+	invoke-static	{v1,v2},java/lang/String/format	; format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+; v1 : Ljava/lang/String; , v2 : [Ljava/lang/Object;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuffer/append	; append(Ljava/lang/String;)Ljava/lang/StringBuffer;
+; v0 : Ljava/lang/StringBuffer; , v1 : Ljava/lang/String;
+.line 300
+	const-string	v1,"}"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuffer/append	; append(Ljava/lang/String;)Ljava/lang/StringBuffer;
+; v0 : Ljava/lang/StringBuffer; , v1 : Ljava/lang/String;
+.line 301
+	new-instance	v1,com/fsharemobile/a/x
+; v1 : Lcom/fsharemobile/a/x;
+	invoke-direct	{v1},com/fsharemobile/a/x/<init>	; <init>()V
+; v1 : Lcom/fsharemobile/a/x;
+.line 302
+	new-instance	v2,java/net/URL
+; v2 : Ljava/net/URL;
+	const-string	v3,"http://api2.fshare.vn/api/share/createsharelink"
+; v3 : Ljava/lang/String;
+	invoke-direct	{v2,v3},java/net/URL/<init>	; <init>(Ljava/lang/String;)V
+; v2 : Ljava/net/URL; , v3 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},com/fsharemobile/a/x/a	; a(Ljava/net/URL;)V
+; v1 : Lcom/fsharemobile/a/x; , v2 : Ljava/net/URL;
+.line 303
+	invoke-virtual	{v0},java/lang/StringBuffer/toString	; toString()Ljava/lang/String;
+; v0 : Ljava/lang/StringBuffer;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v1,v0},com/fsharemobile/a/x/a	; a(Ljava/lang/String;)V
+; v1 : Lcom/fsharemobile/a/x; , v0 : Ljava/lang/String;
+.line 305
+	invoke-virtual	{v1},com/fsharemobile/a/x/b	; b()Ljava/util/Map;
+; v1 : Lcom/fsharemobile/a/x;
+	move-result-object	v0
+; v0 : Ljava/util/Map;
+.line 306
+	const-string	v2,"Cookie"
+; v2 : Ljava/lang/String;
+.line 307
+	const-string	v3,";"
+; v3 : Ljava/lang/String;
+	iget-object	v4,v7,com/fsharemobile/a/d.b Lcom/fsharemobile/a/c;
+; v4 : Lcom/fsharemobile/a/c; , v7 : Lcom/fsharemobile/a/d;
+	invoke-virtual	{v4},com/fsharemobile/a/c/c	; c()Ljava/util/List;
+; v4 : Lcom/fsharemobile/a/c;
+	move-result-object	v4
+; v4 : Ljava/util/List;
+	invoke-interface	{v4},java/util/List/toArray	; toArray()[Ljava/lang/Object;
+; v4 : Ljava/util/List;
+	move-result-object	v4
+; v4 : [Ljava/lang/Object;
+	invoke-static	{v3,v4},android/text/TextUtils/join	; join(Ljava/lang/CharSequence;[Ljava/lang/Object;)Ljava/lang/String;
+; v3 : Ljava/lang/String; , v4 : [Ljava/lang/Object;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+.line 306
+	invoke-interface	{v0,v2,v3},java/util/Map/put	; put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+; v0 : Ljava/util/Map; , v2 : Ljava/lang/String; , v3 : Ljava/lang/String;
+.line 309
+	new-instance	v0,com/fsharemobile/a/a
+; v0 : Lcom/fsharemobile/a/a;
+	iget-object	v2,v7,com/fsharemobile/a/d.b Lcom/fsharemobile/a/c;
+; v2 : Lcom/fsharemobile/a/c; , v7 : Lcom/fsharemobile/a/d;
+	invoke-virtual	{v2},com/fsharemobile/a/c/g	; g()Lcom/fsharemobile/a/z;
+; v2 : Lcom/fsharemobile/a/c;
+	move-result-object	v2
+; v2 : Lcom/fsharemobile/a/z;
+	new-instance	v3,com/fsharemobile/a/j
+; v3 : Lcom/fsharemobile/a/j;
+	invoke-direct	{v3,v7,v11},com/fsharemobile/a/j/<init>	; <init>(Lcom/fsharemobile/a/d;Lcom/fsharemobile/a/r;)V
+; v3 : Lcom/fsharemobile/a/j; , v7 : Lcom/fsharemobile/a/d; , v11 : Lcom/fsharemobile/a/r;
+	invoke-direct	{v0,v2,v3},com/fsharemobile/a/a/<init>	; <init>(Lcom/fsharemobile/a/z;Lcom/fsharemobile/a/b;)V
+; v0 : Lcom/fsharemobile/a/a; , v2 : Lcom/fsharemobile/a/z; , v3 : Lcom/fsharemobile/a/j;
+	new-array	v2,v6,[Ljava/lang/Object;
+; v2 : [Ljava/lang/Object; , v6 : single-length
+.line 341
+	aput-object	v1,v2,v5
+; v1 : Lcom/fsharemobile/a/x; , v2 : [Ljava/lang/Object; , v5 : single-length
+	invoke-virtual	{v0,v2},com/fsharemobile/a/a/execute	; execute([Ljava/lang/Object;)Landroid/os/AsyncTask;
+; v0 : Lcom/fsharemobile/a/a; , v2 : [Ljava/lang/Object;
+.line 342
+	return-void	
+.end method
+
+.method public a(Ljava/util/List;Ljava/util/List;Ljava/lang/String;Lcom/fsharemobile/a/w;)V
+.limit registers 12
+; this: v7 (Lcom/fsharemobile/a/d;)
+; parameter[0] : v8 (Ljava/util/List;)
+; parameter[1] : v9 (Ljava/util/List;)
+; parameter[2] : v10 (Ljava/lang/String;)
+; parameter[3] : v11 (Lcom/fsharemobile/a/w;)
+	const/4	v6,1
+; v6 : single-length
+	const/4	v5,0
+; v5 : single-length
+.line 226
+	invoke-virtual	{v10},java/lang/String/length	; length()I
+; v10 : Ljava/lang/String;
+	move-result	v0
+; v0 : single-length
+	if-nez	v0,l82850
+; v0 : single-length
+.line 227
+	const-string	v10," "
+; v10 : Ljava/lang/String;
+l82850:
+.line 229
+	new-instance	v0,java/lang/StringBuffer
+; v0 : Ljava/lang/StringBuffer;
+	const-string	v1,""
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/StringBuffer/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/StringBuffer; , v1 : Ljava/lang/String;
+.line 230
+	const-string	v1,"{"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuffer/append	; append(Ljava/lang/String;)Ljava/lang/StringBuffer;
+; v0 : Ljava/lang/StringBuffer; , v1 : Ljava/lang/String;
+.line 232
+	const-string	v1,""token":"%s""
+; v1 : Ljava/lang/String;
+	new-array	v2,v6,[Ljava/lang/Object;
+; v2 : [Ljava/lang/Object; , v6 : single-length
+	iget-object	v3,v7,com/fsharemobile/a/d.b Lcom/fsharemobile/a/c;
+; v3 : Lcom/fsharemobile/a/c; , v7 : Lcom/fsharemobile/a/d;
+	invoke-virtual	{v3},com/fsharemobile/a/c/a	; a()Ljava/lang/String;
+; v3 : Lcom/fsharemobile/a/c;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	aput-object	v3,v2,v5
+; v3 : Ljava/lang/String; , v2 : [Ljava/lang/Object; , v5 : single-length
+	invoke-static	{v1,v2},java/lang/String/format	; format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+; v1 : Ljava/lang/String; , v2 : [Ljava/lang/Object;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuffer/append	; append(Ljava/lang/String;)Ljava/lang/StringBuffer;
+; v0 : Ljava/lang/StringBuffer; , v1 : Ljava/lang/String;
+.line 234
+	const-string	v1,","items":%s"
+; v1 : Ljava/lang/String;
+	new-array	v2,v6,[Ljava/lang/Object;
+; v2 : [Ljava/lang/Object; , v6 : single-length
+	new-instance	v3,org/json/JSONArray
+; v3 : Lorg/json/JSONArray;
+	invoke-direct	{v3,v8},org/json/JSONArray/<init>	; <init>(Ljava/util/Collection;)V
+; v3 : Lorg/json/JSONArray; , v8 : Ljava/util/List;
+	aput-object	v3,v2,v5
+; v3 : Lorg/json/JSONArray; , v2 : [Ljava/lang/Object; , v5 : single-length
+	invoke-static	{v1,v2},java/lang/String/format	; format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+; v1 : Ljava/lang/String; , v2 : [Ljava/lang/Object;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuffer/append	; append(Ljava/lang/String;)Ljava/lang/StringBuffer;
+; v0 : Ljava/lang/StringBuffer; , v1 : Ljava/lang/String;
+.line 235
+	const-string	v1,","emails":%s"
+; v1 : Ljava/lang/String;
+	new-array	v2,v6,[Ljava/lang/Object;
+; v2 : [Ljava/lang/Object; , v6 : single-length
+	new-instance	v3,org/json/JSONArray
+; v3 : Lorg/json/JSONArray;
+.line 236
+	invoke-direct	{v3,v9},org/json/JSONArray/<init>	; <init>(Ljava/util/Collection;)V
+; v3 : Lorg/json/JSONArray; , v9 : Ljava/util/List;
+	aput-object	v3,v2,v5
+; v3 : Lorg/json/JSONArray; , v2 : [Ljava/lang/Object; , v5 : single-length
+.line 235
+	invoke-static	{v1,v2},java/lang/String/format	; format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+; v1 : Ljava/lang/String; , v2 : [Ljava/lang/Object;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuffer/append	; append(Ljava/lang/String;)Ljava/lang/StringBuffer;
+; v0 : Ljava/lang/StringBuffer; , v1 : Ljava/lang/String;
+.line 237
+	const-string	v1,","content":"%s""
+; v1 : Ljava/lang/String;
+	new-array	v2,v6,[Ljava/lang/Object;
+; v2 : [Ljava/lang/Object; , v6 : single-length
+	aput-object	v10,v2,v5
+; v10 : Ljava/lang/String; , v2 : [Ljava/lang/Object; , v5 : single-length
+	invoke-static	{v1,v2},java/lang/String/format	; format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+; v1 : Ljava/lang/String; , v2 : [Ljava/lang/Object;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuffer/append	; append(Ljava/lang/String;)Ljava/lang/StringBuffer;
+; v0 : Ljava/lang/StringBuffer; , v1 : Ljava/lang/String;
+.line 238
+	const-string	v1,"}"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuffer/append	; append(Ljava/lang/String;)Ljava/lang/StringBuffer;
+; v0 : Ljava/lang/StringBuffer; , v1 : Ljava/lang/String;
+.line 239
+	new-instance	v1,com/fsharemobile/a/x
+; v1 : Lcom/fsharemobile/a/x;
+	invoke-direct	{v1},com/fsharemobile/a/x/<init>	; <init>()V
+; v1 : Lcom/fsharemobile/a/x;
+.line 240
+	new-instance	v2,java/net/URL
+; v2 : Ljava/net/URL;
+	const-string	v3,"http://api2.fshare.vn/api/share/createsharelink"
+; v3 : Ljava/lang/String;
+	invoke-direct	{v2,v3},java/net/URL/<init>	; <init>(Ljava/lang/String;)V
+; v2 : Ljava/net/URL; , v3 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},com/fsharemobile/a/x/a	; a(Ljava/net/URL;)V
+; v1 : Lcom/fsharemobile/a/x; , v2 : Ljava/net/URL;
+.line 241
+	invoke-virtual	{v0},java/lang/StringBuffer/toString	; toString()Ljava/lang/String;
+; v0 : Ljava/lang/StringBuffer;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v1,v0},com/fsharemobile/a/x/a	; a(Ljava/lang/String;)V
+; v1 : Lcom/fsharemobile/a/x; , v0 : Ljava/lang/String;
+.line 243
+	invoke-virtual	{v1},com/fsharemobile/a/x/b	; b()Ljava/util/Map;
+; v1 : Lcom/fsharemobile/a/x;
+	move-result-object	v0
+; v0 : Ljava/util/Map;
+.line 244
+	const-string	v2,"Cookie"
+; v2 : Ljava/lang/String;
+.line 245
+	const-string	v3,";"
+; v3 : Ljava/lang/String;
+	iget-object	v4,v7,com/fsharemobile/a/d.b Lcom/fsharemobile/a/c;
+; v4 : Lcom/fsharemobile/a/c; , v7 : Lcom/fsharemobile/a/d;
+	invoke-virtual	{v4},com/fsharemobile/a/c/c	; c()Ljava/util/List;
+; v4 : Lcom/fsharemobile/a/c;
+	move-result-object	v4
+; v4 : Ljava/util/List;
+	invoke-interface	{v4},java/util/List/toArray	; toArray()[Ljava/lang/Object;
+; v4 : Ljava/util/List;
+	move-result-object	v4
+; v4 : [Ljava/lang/Object;
+	invoke-static	{v3,v4},android/text/TextUtils/join	; join(Ljava/lang/CharSequence;[Ljava/lang/Object;)Ljava/lang/String;
+; v3 : Ljava/lang/String; , v4 : [Ljava/lang/Object;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+.line 244
+	invoke-interface	{v0,v2,v3},java/util/Map/put	; put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+; v0 : Ljava/util/Map; , v2 : Ljava/lang/String; , v3 : Ljava/lang/String;
+.line 247
+	new-instance	v0,com/fsharemobile/a/a
+; v0 : Lcom/fsharemobile/a/a;
+	iget-object	v2,v7,com/fsharemobile/a/d.b Lcom/fsharemobile/a/c;
+; v2 : Lcom/fsharemobile/a/c; , v7 : Lcom/fsharemobile/a/d;
+	invoke-virtual	{v2},com/fsharemobile/a/c/g	; g()Lcom/fsharemobile/a/z;
+; v2 : Lcom/fsharemobile/a/c;
+	move-result-object	v2
+; v2 : Lcom/fsharemobile/a/z;
+	new-instance	v3,com/fsharemobile/a/i
+; v3 : Lcom/fsharemobile/a/i;
+	invoke-direct	{v3,v7,v11},com/fsharemobile/a/i/<init>	; <init>(Lcom/fsharemobile/a/d;Lcom/fsharemobile/a/w;)V
+; v3 : Lcom/fsharemobile/a/i; , v7 : Lcom/fsharemobile/a/d; , v11 : Lcom/fsharemobile/a/w;
+	invoke-direct	{v0,v2,v3},com/fsharemobile/a/a/<init>	; <init>(Lcom/fsharemobile/a/z;Lcom/fsharemobile/a/b;)V
+; v0 : Lcom/fsharemobile/a/a; , v2 : Lcom/fsharemobile/a/z; , v3 : Lcom/fsharemobile/a/i;
+	new-array	v2,v6,[Ljava/lang/Object;
+; v2 : [Ljava/lang/Object; , v6 : single-length
+.line 285
+	aput-object	v1,v2,v5
+; v1 : Lcom/fsharemobile/a/x; , v2 : [Ljava/lang/Object; , v5 : single-length
+	invoke-virtual	{v0,v2},com/fsharemobile/a/a/execute	; execute([Ljava/lang/Object;)Landroid/os/AsyncTask;
+; v0 : Lcom/fsharemobile/a/a; , v2 : [Ljava/lang/Object;
+.line 286
+	return-void	
+.end method
+
+.method public b(Ljava/lang/String;Ljava/lang/String;Lcom/fsharemobile/a/p;)V
+.limit registers 11
+; this: v7 (Lcom/fsharemobile/a/d;)
+; parameter[0] : v8 (Ljava/lang/String;)
+; parameter[1] : v9 (Ljava/lang/String;)
+; parameter[2] : v10 (Lcom/fsharemobile/a/p;)
+	const/4	v6,1
+; v6 : single-length
+	const/4	v5,0
+; v5 : single-length
+.line 663
+	new-instance	v0,java/lang/StringBuffer
+; v0 : Ljava/lang/StringBuffer;
+	const-string	v1,""
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/StringBuffer/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/StringBuffer; , v1 : Ljava/lang/String;
+.line 664
+	const-string	v1,"{"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuffer/append	; append(Ljava/lang/String;)Ljava/lang/StringBuffer;
+; v0 : Ljava/lang/StringBuffer; , v1 : Ljava/lang/String;
+.line 666
+	const-string	v1,""token":"%s""
+; v1 : Ljava/lang/String;
+	new-array	v2,v6,[Ljava/lang/Object;
+; v2 : [Ljava/lang/Object; , v6 : single-length
+	iget-object	v3,v7,com/fsharemobile/a/d.b Lcom/fsharemobile/a/c;
+; v3 : Lcom/fsharemobile/a/c; , v7 : Lcom/fsharemobile/a/d;
+	invoke-virtual	{v3},com/fsharemobile/a/c/a	; a()Ljava/lang/String;
+; v3 : Lcom/fsharemobile/a/c;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	aput-object	v3,v2,v5
+; v3 : Ljava/lang/String; , v2 : [Ljava/lang/Object; , v5 : single-length
+	invoke-static	{v1,v2},java/lang/String/format	; format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+; v1 : Ljava/lang/String; , v2 : [Ljava/lang/Object;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuffer/append	; append(Ljava/lang/String;)Ljava/lang/StringBuffer;
+; v0 : Ljava/lang/StringBuffer; , v1 : Ljava/lang/String;
+.line 667
+	const-string	v1,","name":"%s""
+; v1 : Ljava/lang/String;
+	new-array	v2,v6,[Ljava/lang/Object;
+; v2 : [Ljava/lang/Object; , v6 : single-length
+	aput-object	v8,v2,v5
+; v8 : Ljava/lang/String; , v2 : [Ljava/lang/Object; , v5 : single-length
+	invoke-static	{v1,v2},java/lang/String/format	; format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+; v1 : Ljava/lang/String; , v2 : [Ljava/lang/Object;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuffer/append	; append(Ljava/lang/String;)Ljava/lang/StringBuffer;
+; v0 : Ljava/lang/StringBuffer; , v1 : Ljava/lang/String;
+.line 668
+	const-string	v1,","in_dir":"%s""
+; v1 : Ljava/lang/String;
+	new-array	v2,v6,[Ljava/lang/Object;
+; v2 : [Ljava/lang/Object; , v6 : single-length
+	aput-object	v9,v2,v5
+; v9 : Ljava/lang/String; , v2 : [Ljava/lang/Object; , v5 : single-length
+	invoke-static	{v1,v2},java/lang/String/format	; format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+; v1 : Ljava/lang/String; , v2 : [Ljava/lang/Object;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuffer/append	; append(Ljava/lang/String;)Ljava/lang/StringBuffer;
+; v0 : Ljava/lang/StringBuffer; , v1 : Ljava/lang/String;
+.line 669
+	const-string	v1,"}"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuffer/append	; append(Ljava/lang/String;)Ljava/lang/StringBuffer;
+; v0 : Ljava/lang/StringBuffer; , v1 : Ljava/lang/String;
+.line 672
+	new-instance	v1,com/fsharemobile/a/x
+; v1 : Lcom/fsharemobile/a/x;
+	invoke-direct	{v1},com/fsharemobile/a/x/<init>	; <init>()V
+; v1 : Lcom/fsharemobile/a/x;
+.line 673
+	new-instance	v2,java/net/URL
+; v2 : Ljava/net/URL;
+	const-string	v3,"http://api2.fshare.vn/api/fileops/createFolderInPath"
+; v3 : Ljava/lang/String;
+	invoke-direct	{v2,v3},java/net/URL/<init>	; <init>(Ljava/lang/String;)V
+; v2 : Ljava/net/URL; , v3 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},com/fsharemobile/a/x/a	; a(Ljava/net/URL;)V
+; v1 : Lcom/fsharemobile/a/x; , v2 : Ljava/net/URL;
+.line 674
+	invoke-virtual	{v0},java/lang/StringBuffer/toString	; toString()Ljava/lang/String;
+; v0 : Ljava/lang/StringBuffer;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},com/fsharemobile/a/x/a	; a(Ljava/lang/String;)V
+; v1 : Lcom/fsharemobile/a/x; , v2 : Ljava/lang/String;
+.line 675
+	const-string	v2,"REQUEST_CREATE_IN_PATH_FOLDER_BODY"
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v0},java/lang/StringBuffer/toString	; toString()Ljava/lang/String;
+; v0 : Ljava/lang/StringBuffer;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	invoke-static	{v2,v0},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v2 : Ljava/lang/String; , v0 : Ljava/lang/String;
+.line 678
+	invoke-virtual	{v1},com/fsharemobile/a/x/b	; b()Ljava/util/Map;
+; v1 : Lcom/fsharemobile/a/x;
+	move-result-object	v0
+; v0 : Ljava/util/Map;
+.line 679
+	const-string	v2,"Cookie"
+; v2 : Ljava/lang/String;
+.line 680
+	const-string	v3,";"
+; v3 : Ljava/lang/String;
+	iget-object	v4,v7,com/fsharemobile/a/d.b Lcom/fsharemobile/a/c;
+; v4 : Lcom/fsharemobile/a/c; , v7 : Lcom/fsharemobile/a/d;
+	invoke-virtual	{v4},com/fsharemobile/a/c/c	; c()Ljava/util/List;
+; v4 : Lcom/fsharemobile/a/c;
+	move-result-object	v4
+; v4 : Ljava/util/List;
+	invoke-interface	{v4},java/util/List/toArray	; toArray()[Ljava/lang/Object;
+; v4 : Ljava/util/List;
+	move-result-object	v4
+; v4 : [Ljava/lang/Object;
+	invoke-static	{v3,v4},android/text/TextUtils/join	; join(Ljava/lang/CharSequence;[Ljava/lang/Object;)Ljava/lang/String;
+; v3 : Ljava/lang/String; , v4 : [Ljava/lang/Object;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+.line 679
+	invoke-interface	{v0,v2,v3},java/util/Map/put	; put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+; v0 : Ljava/util/Map; , v2 : Ljava/lang/String; , v3 : Ljava/lang/String;
+.line 683
+	new-instance	v0,com/fsharemobile/a/a
+; v0 : Lcom/fsharemobile/a/a;
+	iget-object	v2,v7,com/fsharemobile/a/d.b Lcom/fsharemobile/a/c;
+; v2 : Lcom/fsharemobile/a/c; , v7 : Lcom/fsharemobile/a/d;
+	invoke-virtual	{v2},com/fsharemobile/a/c/g	; g()Lcom/fsharemobile/a/z;
+; v2 : Lcom/fsharemobile/a/c;
+	move-result-object	v2
+; v2 : Lcom/fsharemobile/a/z;
+	new-instance	v3,com/fsharemobile/a/f
+; v3 : Lcom/fsharemobile/a/f;
+	invoke-direct	{v3,v7,v10},com/fsharemobile/a/f/<init>	; <init>(Lcom/fsharemobile/a/d;Lcom/fsharemobile/a/p;)V
+; v3 : Lcom/fsharemobile/a/f; , v7 : Lcom/fsharemobile/a/d; , v10 : Lcom/fsharemobile/a/p;
+	invoke-direct	{v0,v2,v3},com/fsharemobile/a/a/<init>	; <init>(Lcom/fsharemobile/a/z;Lcom/fsharemobile/a/b;)V
+; v0 : Lcom/fsharemobile/a/a; , v2 : Lcom/fsharemobile/a/z; , v3 : Lcom/fsharemobile/a/f;
+	new-array	v2,v6,[Ljava/lang/Object;
+; v2 : [Ljava/lang/Object; , v6 : single-length
+.line 716
+	aput-object	v1,v2,v5
+; v1 : Lcom/fsharemobile/a/x; , v2 : [Ljava/lang/Object; , v5 : single-length
+	invoke-virtual	{v0,v2},com/fsharemobile/a/a/execute	; execute([Ljava/lang/Object;)Landroid/os/AsyncTask;
+; v0 : Lcom/fsharemobile/a/a; , v2 : [Ljava/lang/Object;
+.line 717
+	return-void	
+.end method
+
+

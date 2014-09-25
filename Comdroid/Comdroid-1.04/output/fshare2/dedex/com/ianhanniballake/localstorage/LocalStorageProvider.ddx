@@ -1,0 +1,890 @@
+.class public com/ianhanniballake/localstorage/LocalStorageProvider
+.super android/provider/DocumentsProvider
+.source MyApplication
+
+.field public static final AUTHORITY Ljava/lang/String; = "com.ianhanniballake.localstorage.documents"
+.field private static final DEFAULT_DOCUMENT_PROJECTION [Ljava/lang/String;
+.field private static final DEFAULT_ROOT_PROJECTION [Ljava/lang/String;
+
+.method static <clinit>()V
+.limit registers 8
+	const/4	v7,4
+; v7 : single-length
+	const/4	v6,3
+; v6 : single-length
+	const/4	v5,2
+; v5 : single-length
+	const/4	v4,1
+; v4 : single-length
+	const/4	v3,0
+; v3 : single-length
+.line 33
+	const/4	v0,6
+; v0 : single-length
+	new-array	v0,v0,[Ljava/lang/String;
+; v0 : [Ljava/lang/String; , v0 : [Ljava/lang/String;
+.line 34
+	const-string	v1,"root_id"
+; v1 : Ljava/lang/String;
+	aput-object	v1,v0,v3
+; v1 : Ljava/lang/String; , v0 : [Ljava/lang/String; , v3 : single-length
+.line 35
+	const-string	v1,"flags"
+; v1 : Ljava/lang/String;
+	aput-object	v1,v0,v4
+; v1 : Ljava/lang/String; , v0 : [Ljava/lang/String; , v4 : single-length
+	const-string	v1,"title"
+; v1 : Ljava/lang/String;
+	aput-object	v1,v0,v5
+; v1 : Ljava/lang/String; , v0 : [Ljava/lang/String; , v5 : single-length
+	const-string	v1,"document_id"
+; v1 : Ljava/lang/String;
+	aput-object	v1,v0,v6
+; v1 : Ljava/lang/String; , v0 : [Ljava/lang/String; , v6 : single-length
+	const-string	v1,"icon"
+; v1 : Ljava/lang/String;
+	aput-object	v1,v0,v7
+; v1 : Ljava/lang/String; , v0 : [Ljava/lang/String; , v7 : single-length
+	const/4	v1,5
+; v1 : single-length
+.line 36
+	const-string	v2,"available_bytes"
+; v2 : Ljava/lang/String;
+	aput-object	v2,v0,v1
+; v2 : Ljava/lang/String; , v0 : [Ljava/lang/String; , v1 : single-length
+.line 33
+	sput-object	v0,com/ianhanniballake/localstorage/LocalStorageProvider.DEFAULT_ROOT_PROJECTION [Ljava/lang/String;
+; v0 : [Ljava/lang/String;
+.line 42
+	const/4	v0,6
+; v0 : single-length
+	new-array	v0,v0,[Ljava/lang/String;
+; v0 : [Ljava/lang/String; , v0 : [Ljava/lang/String;
+.line 43
+	const-string	v1,"document_id"
+; v1 : Ljava/lang/String;
+	aput-object	v1,v0,v3
+; v1 : Ljava/lang/String; , v0 : [Ljava/lang/String; , v3 : single-length
+.line 44
+	const-string	v1,"_display_name"
+; v1 : Ljava/lang/String;
+	aput-object	v1,v0,v4
+; v1 : Ljava/lang/String; , v0 : [Ljava/lang/String; , v4 : single-length
+	const-string	v1,"flags"
+; v1 : Ljava/lang/String;
+	aput-object	v1,v0,v5
+; v1 : Ljava/lang/String; , v0 : [Ljava/lang/String; , v5 : single-length
+	const-string	v1,"mime_type"
+; v1 : Ljava/lang/String;
+	aput-object	v1,v0,v6
+; v1 : Ljava/lang/String; , v0 : [Ljava/lang/String; , v6 : single-length
+.line 45
+	const-string	v1,"_size"
+; v1 : Ljava/lang/String;
+	aput-object	v1,v0,v7
+; v1 : Ljava/lang/String; , v0 : [Ljava/lang/String; , v7 : single-length
+	const/4	v1,5
+; v1 : single-length
+.line 46
+	const-string	v2,"last_modified"
+; v2 : Ljava/lang/String;
+	aput-object	v2,v0,v1
+; v2 : Ljava/lang/String; , v0 : [Ljava/lang/String; , v1 : single-length
+.line 42
+	sput-object	v0,com/ianhanniballake/localstorage/LocalStorageProvider.DEFAULT_DOCUMENT_PROJECTION [Ljava/lang/String;
+; v0 : [Ljava/lang/String;
+.line 47
+	return-void	
+.end method
+
+.method public <init>()V
+.limit registers 1
+; this: v0 (Lcom/ianhanniballake/localstorage/LocalStorageProvider;)
+.line 26
+	invoke-direct	{v0},android/provider/DocumentsProvider/<init>	; <init>()V
+; v0 : Lcom/ianhanniballake/localstorage/LocalStorageProvider;
+	return-void	
+.end method
+
+.method private includeFile(Landroid/database/MatrixCursor;Ljava/io/File;)V
+.limit registers 7
+; this: v4 (Lcom/ianhanniballake/localstorage/LocalStorageProvider;)
+; parameter[0] : v5 (Landroid/database/MatrixCursor;)
+; parameter[1] : v6 (Ljava/io/File;)
+.line 170
+	invoke-virtual	{v5},android/database/MatrixCursor/newRow	; newRow()Landroid/database/MatrixCursor$RowBuilder;
+; v5 : Landroid/database/MatrixCursor;
+	move-result-object	v1
+; v1 : Landroid/database/MatrixCursor$RowBuilder;
+.line 172
+	const-string	v0,"document_id"
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v6},java/io/File/getAbsolutePath	; getAbsolutePath()Ljava/lang/String;
+; v6 : Ljava/io/File;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v0,v2},android/database/MatrixCursor$RowBuilder/add	; add(Ljava/lang/String;Ljava/lang/Object;)Landroid/database/MatrixCursor$RowBuilder;
+; v1 : Landroid/database/MatrixCursor$RowBuilder; , v0 : Ljava/lang/String; , v2 : Ljava/lang/String;
+.line 173
+	const-string	v0,"_display_name"
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v6},java/io/File/getName	; getName()Ljava/lang/String;
+; v6 : Ljava/io/File;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v0,v2},android/database/MatrixCursor$RowBuilder/add	; add(Ljava/lang/String;Ljava/lang/Object;)Landroid/database/MatrixCursor$RowBuilder;
+; v1 : Landroid/database/MatrixCursor$RowBuilder; , v0 : Ljava/lang/String; , v2 : Ljava/lang/String;
+.line 174
+	invoke-virtual	{v6},java/io/File/getAbsolutePath	; getAbsolutePath()Ljava/lang/String;
+; v6 : Ljava/io/File;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v4,v0},com/ianhanniballake/localstorage/LocalStorageProvider/getDocumentType	; getDocumentType(Ljava/lang/String;)Ljava/lang/String;
+; v4 : Lcom/ianhanniballake/localstorage/LocalStorageProvider; , v0 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+.line 175
+	const-string	v0,"mime_type"
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v1,v0,v2},android/database/MatrixCursor$RowBuilder/add	; add(Ljava/lang/String;Ljava/lang/Object;)Landroid/database/MatrixCursor$RowBuilder;
+; v1 : Landroid/database/MatrixCursor$RowBuilder; , v0 : Ljava/lang/String; , v2 : Ljava/lang/String;
+.line 176
+	invoke-virtual	{v6},java/io/File/canWrite	; canWrite()Z
+; v6 : Ljava/io/File;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,la5078
+; v0 : single-length
+	const/4	v0,6
+; v0 : single-length
+la501c:
+.line 181
+	const-string	v3,"image/"
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/lang/String/startsWith	; startsWith(Ljava/lang/String;)Z
+; v2 : Ljava/lang/String; , v3 : Ljava/lang/String;
+	move-result	v2
+; v2 : single-length
+	if-eqz	v2,la5030
+; v2 : single-length
+.line 182
+	or-int/lit8	v0,v0,1
+; v0 : single-length , v0 : single-length
+la5030:
+.line 183
+	const-string	v2,"flags"
+; v2 : Ljava/lang/String;
+	invoke-static	{v0},java/lang/Integer/valueOf	; valueOf(I)Ljava/lang/Integer;
+; v0 : single-length
+	move-result-object	v0
+; v0 : Ljava/lang/Integer;
+	invoke-virtual	{v1,v2,v0},android/database/MatrixCursor$RowBuilder/add	; add(Ljava/lang/String;Ljava/lang/Object;)Landroid/database/MatrixCursor$RowBuilder;
+; v1 : Landroid/database/MatrixCursor$RowBuilder; , v2 : Ljava/lang/String; , v0 : Ljava/lang/Integer;
+.line 185
+	const-string	v0,"_size"
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v6},java/io/File/length	; length()J
+; v6 : Ljava/io/File;
+	move-result-wide	v2
+; v2 : double-length
+	invoke-static	{v2,v3},java/lang/Long/valueOf	; valueOf(J)Ljava/lang/Long;
+; v2 : double-length
+	move-result-object	v2
+; v2 : Ljava/lang/Long;
+	invoke-virtual	{v1,v0,v2},android/database/MatrixCursor$RowBuilder/add	; add(Ljava/lang/String;Ljava/lang/Object;)Landroid/database/MatrixCursor$RowBuilder;
+; v1 : Landroid/database/MatrixCursor$RowBuilder; , v0 : Ljava/lang/String; , v2 : Ljava/lang/Long;
+.line 187
+	const-string	v0,"last_modified"
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v6},java/io/File/lastModified	; lastModified()J
+; v6 : Ljava/io/File;
+	move-result-wide	v2
+; v2 : double-length
+	invoke-static	{v2,v3},java/lang/Long/valueOf	; valueOf(J)Ljava/lang/Long;
+; v2 : double-length
+	move-result-object	v2
+; v2 : Ljava/lang/Long;
+	invoke-virtual	{v1,v0,v2},android/database/MatrixCursor$RowBuilder/add	; add(Ljava/lang/String;Ljava/lang/Object;)Landroid/database/MatrixCursor$RowBuilder;
+; v1 : Landroid/database/MatrixCursor$RowBuilder; , v0 : Ljava/lang/String; , v2 : Ljava/lang/Long;
+.line 193
+	return-void	
+la5078:
+.line 177
+	const/4	v0,0
+; v0 : single-length
+	goto	la501c
+.end method
+
+.method public createDocument(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+.limit registers 8
+; this: v4 (Lcom/ianhanniballake/localstorage/LocalStorageProvider;)
+; parameter[0] : v5 (Ljava/lang/String;)
+; parameter[1] : v6 (Ljava/lang/String;)
+; parameter[2] : v7 (Ljava/lang/String;)
+.catch java/io/IOException from la5096 to la50a2 using la50a6
+.line 76
+	new-instance	v0,java/io/File
+; v0 : Ljava/io/File;
+	invoke-direct	{v0,v5,v7},java/io/File/<init>	; <init>(Ljava/lang/String;Ljava/lang/String;)V
+; v0 : Ljava/io/File; , v5 : Ljava/lang/String; , v7 : Ljava/lang/String;
+la5096:
+.line 78
+	invoke-virtual	{v0},java/io/File/createNewFile	; createNewFile()Z
+; v0 : Ljava/io/File;
+.line 79
+	invoke-virtual	{v0},java/io/File/getAbsolutePath	; getAbsolutePath()Ljava/lang/String;
+; v0 : Ljava/io/File;
+la50a2:
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+la50a4:
+.line 83
+	return-object	v0
+; v0 : single-length
+la50a6:
+.line 80
+	move-exception	v1
+; v1 : java/io/IOException
+.line 81
+	const-class	v1,com/ianhanniballake/localstorage/LocalStorageProvider
+; v1 : Ljava/lang/Class;
+	invoke-virtual	{v1},java/lang/Class/getSimpleName	; getSimpleName()Ljava/lang/String;
+; v1 : Ljava/lang/Class;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	new-instance	v2,java/lang/StringBuilder
+; v2 : Ljava/lang/StringBuilder;
+	const-string	v3,"Error creating new file "
+; v3 : Ljava/lang/String;
+	invoke-direct	{v2,v3},java/lang/StringBuilder/<init>	; <init>(Ljava/lang/String;)V
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v0},java/lang/StringBuilder/append	; append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v0 : Ljava/io/File;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v0},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v0 : Ljava/lang/StringBuilder;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	invoke-static	{v1,v0},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v1 : Ljava/lang/String; , v0 : Ljava/lang/String;
+.line 83
+	const/4	v0,0
+; v0 : single-length
+	goto	la50a4
+.end method
+
+.method public deleteDocument(Ljava/lang/String;)V
+.limit registers 3
+; this: v1 (Lcom/ianhanniballake/localstorage/LocalStorageProvider;)
+; parameter[0] : v2 (Ljava/lang/String;)
+.line 214
+	new-instance	v0,java/io/File
+; v0 : Ljava/io/File;
+	invoke-direct	{v0,v2},java/io/File/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/io/File; , v2 : Ljava/lang/String;
+	invoke-virtual	{v0},java/io/File/delete	; delete()Z
+; v0 : Ljava/io/File;
+.line 215
+	return-void	
+.end method
+
+.method public getDocumentType(Ljava/lang/String;)Ljava/lang/String;
+.limit registers 5
+; this: v3 (Lcom/ianhanniballake/localstorage/LocalStorageProvider;)
+; parameter[0] : v4 (Ljava/lang/String;)
+.line 197
+	new-instance	v0,java/io/File
+; v0 : Ljava/io/File;
+	invoke-direct	{v0,v4},java/io/File/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/io/File; , v4 : Ljava/lang/String;
+.line 198
+	invoke-virtual	{v0},java/io/File/isDirectory	; isDirectory()Z
+; v0 : Ljava/io/File;
+	move-result	v1
+; v1 : single-length
+	if-eqz	v1,la513c
+; v1 : single-length
+.line 199
+	const-string	v0,"vnd.android.document/directory"
+; v0 : Ljava/lang/String;
+la513a:
+.line 209
+	return-object	v0
+; v0 : Ljava/lang/String;
+la513c:
+.line 201
+	invoke-virtual	{v0},java/io/File/getName	; getName()Ljava/lang/String;
+; v0 : Ljava/io/File;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	const/16	v2,46
+; v2 : single-length
+	invoke-virtual	{v1,v2},java/lang/String/lastIndexOf	; lastIndexOf(I)I
+; v1 : Ljava/lang/String; , v2 : single-length
+	move-result	v1
+; v1 : single-length
+.line 202
+	if-ltz	v1,la517c
+; v1 : single-length
+.line 203
+	invoke-virtual	{v0},java/io/File/getName	; getName()Ljava/lang/String;
+; v0 : Ljava/io/File;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	add-int/lit8	v1,v1,1
+; v1 : single-length , v1 : single-length
+	invoke-virtual	{v0,v1},java/lang/String/substring	; substring(I)Ljava/lang/String;
+; v0 : Ljava/lang/String; , v1 : single-length
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+.line 204
+	invoke-static	{},android/webkit/MimeTypeMap/getSingleton	; getSingleton()Landroid/webkit/MimeTypeMap;
+; 
+	nop	
+	move-result-object	v1
+; v1 : Landroid/webkit/MimeTypeMap;
+	invoke-virtual	{v1,v0},android/webkit/MimeTypeMap/getMimeTypeFromExtension	; getMimeTypeFromExtension(Ljava/lang/String;)Ljava/lang/String;
+; v1 : Landroid/webkit/MimeTypeMap; , v0 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+.line 205
+	if-nez	v0,la513a
+; v0 : Ljava/lang/String;
+la517c:
+.line 209
+	const-string	v0,"application/octet-stream"
+; v0 : Ljava/lang/String;
+	goto	la513a
+.end method
+
+.method public onCreate()Z
+.limit registers 2
+; this: v1 (Lcom/ianhanniballake/localstorage/LocalStorageProvider;)
+.line 231
+	const/4	v0,1
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public openDocument(Ljava/lang/String;Ljava/lang/String;Landroid/os/CancellationSignal;)Landroid/os/ParcelFileDescriptor;
+.limit registers 7
+; this: v3 (Lcom/ianhanniballake/localstorage/LocalStorageProvider;)
+; parameter[0] : v4 (Ljava/lang/String;)
+; parameter[1] : v5 (Ljava/lang/String;)
+; parameter[2] : v6 (Landroid/os/CancellationSignal;)
+.line 220
+	new-instance	v1,java/io/File
+; v1 : Ljava/io/File;
+	invoke-direct	{v1,v4},java/io/File/<init>	; <init>(Ljava/lang/String;)V
+; v1 : Ljava/io/File; , v4 : Ljava/lang/String;
+.line 221
+	const/16	v0,119
+; v0 : single-length
+	invoke-virtual	{v5,v0},java/lang/String/indexOf	; indexOf(I)I
+; v5 : Ljava/lang/String; , v0 : single-length
+	move-result	v0
+; v0 : single-length
+	const/4	v2,15
+; v2 : single-length
+	if-eq	v0,v2,la51d8
+; v0 : single-length , v2 : single-length
+	const/4	v0,1
+; v0 : single-length
+la51c6:
+.line 222
+	if-eqz	v0,la51dc
+; v0 : single-length
+.line 223
+	const/high16	v0,12288
+; v0 : single-length
+	invoke-static	{v1,v0},android/os/ParcelFileDescriptor/open	; open(Ljava/io/File;I)Landroid/os/ParcelFileDescriptor;
+; v1 : Ljava/io/File; , v0 : single-length
+	move-result-object	v0
+; v0 : Landroid/os/ParcelFileDescriptor;
+la51d6:
+.line 225
+	return-object	v0
+; v0 : Landroid/os/ParcelFileDescriptor;
+la51d8:
+.line 221
+	const/4	v0,0
+; v0 : single-length
+	goto	la51c6
+la51dc:
+.line 225
+	const/high16	v0,4096
+; v0 : single-length
+	invoke-static	{v1,v0},android/os/ParcelFileDescriptor/open	; open(Ljava/io/File;I)Landroid/os/ParcelFileDescriptor;
+; v1 : Ljava/io/File; , v0 : single-length
+	move-result-object	v0
+; v0 : Landroid/os/ParcelFileDescriptor;
+	goto	la51d6
+.end method
+
+.method public openDocumentThumbnail(Ljava/lang/String;Landroid/graphics/Point;Landroid/os/CancellationSignal;)Landroid/content/res/AssetFileDescriptor;
+.limit registers 11
+; this: v7 (Lcom/ianhanniballake/localstorage/LocalStorageProvider;)
+; parameter[0] : v8 (Ljava/lang/String;)
+; parameter[1] : v9 (Landroid/graphics/Point;)
+; parameter[2] : v10 (Landroid/os/CancellationSignal;)
+.catch java/io/IOException from la531e to la5324 using la5326
+.catch java/io/IOException from la52f2 to la52f8 using la52fa
+.catch java/lang/Exception from la52d8 to la52ee using la535a
+.catch java/io/IOException from la52a0 to la52a6 using la5340
+.catch java/io/IOException from la528e to la529c using la535e
+.catch java/lang/Exception from la528e to la529c using la535a
+.catch java/io/IOException from la5266 to la528e using la52d4
+.catch java/lang/Exception from la5266 to la528e using la5314
+	const/4	v6,1
+; v6 : single-length
+	const/4	v0,0
+; v0 : single-length
+.line 91
+	new-instance	v1,android/graphics/BitmapFactory$Options
+; v1 : Landroid/graphics/BitmapFactory$Options;
+	invoke-direct	{v1},android/graphics/BitmapFactory$Options/<init>	; <init>()V
+; v1 : Landroid/graphics/BitmapFactory$Options;
+.line 92
+	iput-boolean	v6,v1,android/graphics/BitmapFactory$Options.inJustDecodeBounds Z
+; v6 : single-length , v1 : Landroid/graphics/BitmapFactory$Options;
+.line 93
+	invoke-static	{v8,v1},android/graphics/BitmapFactory/decodeFile	; decodeFile(Ljava/lang/String;Landroid/graphics/BitmapFactory$Options;)Landroid/graphics/Bitmap;
+; v8 : Ljava/lang/String; , v1 : Landroid/graphics/BitmapFactory$Options;
+.line 94
+	iget	v2,v9,android/graphics/Point.y I
+; v2 : single-length , v9 : Landroid/graphics/Point;
+	mul-int/lit-8	v2,v2,2
+; v2 : single-length , v2 : single-length
+.line 95
+	iget	v3,v9,android/graphics/Point.x I
+; v3 : single-length , v9 : Landroid/graphics/Point;
+	mul-int/lit-8	v3,v3,2
+; v3 : single-length , v3 : single-length
+.line 96
+	iget	v4,v1,android/graphics/BitmapFactory$Options.outHeight I
+; v4 : single-length , v1 : Landroid/graphics/BitmapFactory$Options;
+.line 97
+	iget	v5,v1,android/graphics/BitmapFactory$Options.outWidth I
+; v5 : single-length , v1 : Landroid/graphics/BitmapFactory$Options;
+.line 98
+	iput	v6,v1,android/graphics/BitmapFactory$Options.inSampleSize I
+; v6 : single-length , v1 : Landroid/graphics/BitmapFactory$Options;
+.line 99
+	if-gt	v4,v2,la5238
+; v4 : single-length , v2 : single-length
+	if-le	v5,v3,la5258
+; v5 : single-length , v3 : single-length
+la5238:
+.line 100
+	div-int/lit8	v4,v4,2
+; v4 : single-length , v4 : single-length
+.line 101
+	div-int/lit8	v5,v5,2
+; v5 : single-length , v5 : single-length
+la5240:
+.line 105
+	iget	v6,v1,android/graphics/BitmapFactory$Options.inSampleSize I
+; v6 : single-length , v1 : Landroid/graphics/BitmapFactory$Options;
+	div-int	v6,v4,v6
+; v6 : single-length , v4 : single-length , v6 : single-length
+	if-gt	v6,v2,la52c6
+; v6 : single-length , v2 : single-length
+.line 106
+	iget	v6,v1,android/graphics/BitmapFactory$Options.inSampleSize I
+; v6 : single-length , v1 : Landroid/graphics/BitmapFactory$Options;
+	div-int	v6,v5,v6
+; v6 : single-length , v5 : single-length , v6 : single-length
+.line 105
+	if-gt	v6,v3,la52c6
+; v6 : single-length , v3 : single-length
+la5258:
+.line 110
+	const/4	v2,0
+; v2 : single-length
+	iput-boolean	v2,v1,android/graphics/BitmapFactory$Options.inJustDecodeBounds Z
+; v2 : single-length , v1 : Landroid/graphics/BitmapFactory$Options;
+.line 111
+	invoke-static	{v8,v1},android/graphics/BitmapFactory/decodeFile	; decodeFile(Ljava/lang/String;Landroid/graphics/BitmapFactory$Options;)Landroid/graphics/Bitmap;
+; v8 : Ljava/lang/String; , v1 : Landroid/graphics/BitmapFactory$Options;
+	move-result-object	v1
+; v1 : Landroid/graphics/Bitmap;
+la5266:
+.line 116
+	const-string	v2,"thumbnail"
+; v2 : Ljava/lang/String;
+	const/4	v3,0
+; v3 : single-length
+	invoke-virtual	{v7},com/ianhanniballake/localstorage/LocalStorageProvider/getContext	; getContext()Landroid/content/Context;
+; v7 : Lcom/ianhanniballake/localstorage/LocalStorageProvider;
+	move-result-object	v4
+; v4 : Landroid/content/Context;
+	invoke-virtual	{v4},android/content/Context/getCacheDir	; getCacheDir()Ljava/io/File;
+; v4 : Landroid/content/Context;
+	move-result-object	v4
+; v4 : Ljava/io/File;
+	invoke-static	{v2,v3,v4},java/io/File/createTempFile	; createTempFile(Ljava/lang/String;Ljava/lang/String;Ljava/io/File;)Ljava/io/File;
+; v2 : Ljava/lang/String; , v3 : single-length , v4 : Ljava/io/File;
+	move-result-object	v3
+; v3 : Ljava/io/File;
+.line 117
+	new-instance	v2,java/io/FileOutputStream
+; v2 : Ljava/io/FileOutputStream;
+	invoke-direct	{v2,v3},java/io/FileOutputStream/<init>	; <init>(Ljava/io/File;)V
+; v2 : Ljava/io/FileOutputStream; , v3 : Ljava/io/File;
+la528e:
+.line 118
+	sget-object	v4,android/graphics/Bitmap$CompressFormat.PNG Landroid/graphics/Bitmap$CompressFormat;
+; v4 : Landroid/graphics/Bitmap$CompressFormat;
+	const/16	v5,90
+; v5 : single-length
+	invoke-virtual	{v1,v4,v5,v2},android/graphics/Bitmap/compress	; compress(Landroid/graphics/Bitmap$CompressFormat;ILjava/io/OutputStream;)Z
+; v1 : Landroid/graphics/Bitmap; , v4 : Landroid/graphics/Bitmap$CompressFormat; , v5 : single-length , v2 : Ljava/io/FileOutputStream;
+la529c:
+.line 123
+	if-eqz	v2,la52a6
+; v2 : Ljava/io/FileOutputStream;
+la52a0:
+.line 125
+	invoke-virtual	{v2},java/io/FileOutputStream/close	; close()V
+; v2 : Ljava/io/FileOutputStream;
+la52a6:
+.line 134
+	new-instance	v0,android/content/res/AssetFileDescriptor
+; v0 : Landroid/content/res/AssetFileDescriptor;
+.line 135
+	const/high16	v1,4096
+; v1 : single-length
+.line 134
+	invoke-static	{v3,v1},android/os/ParcelFileDescriptor/open	; open(Ljava/io/File;I)Landroid/os/ParcelFileDescriptor;
+; v3 : Ljava/io/File; , v1 : single-length
+	move-result-object	v1
+; v1 : Landroid/os/ParcelFileDescriptor;
+.line 135
+	const-wide/16	v2,0
+; v2 : double-length
+.line 136
+	const-wide/16	v4,65535
+; v4 : double-length
+.line 134
+	invoke-direct/range	{v0..v5},android/content/res/AssetFileDescriptor/<init>;	<init>(Landroid/os/ParcelFileDescriptor;JJ)V
+; v0 : Landroid/content/res/AssetFileDescriptor; , v1 : Landroid/os/ParcelFileDescriptor; , v2 : double-length , v4 : double-length
+la52c4:
+	return-object	v0
+; v0 : single-length
+la52c6:
+.line 107
+	iget	v6,v1,android/graphics/BitmapFactory$Options.inSampleSize I
+; v6 : single-length , v1 : Landroid/graphics/BitmapFactory$Options;
+	mul-int/lit-8	v6,v6,2
+; v6 : single-length , v6 : single-length
+	iput	v6,v1,android/graphics/BitmapFactory$Options.inSampleSize I
+; v6 : single-length , v1 : Landroid/graphics/BitmapFactory$Options;
+	goto	la5240
+la52d4:
+.line 119
+	move-exception	v1
+; v1 : java/io/IOException
+	move-object	v2,v0
+; v2 : single-length , v0 : single-length
+la52d8:
+.line 120
+	const-class	v3,com/ianhanniballake/localstorage/LocalStorageProvider
+; v3 : Ljava/lang/Class;
+	invoke-virtual	{v3},java/lang/Class/getSimpleName	; getSimpleName()Ljava/lang/String;
+; v3 : Ljava/lang/Class;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	const-string	v4,"Error writing thumbnail"
+; v4 : Ljava/lang/String;
+	invoke-static	{v3,v4,v1},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
+; v3 : Ljava/lang/String; , v4 : Ljava/lang/String; , v1 : java/io/IOException
+la52ee:
+.line 123
+	if-eqz	v2,la52c4
+; v2 : Ljava/io/FileOutputStream;
+la52f2:
+.line 125
+	invoke-virtual	{v2},java/io/FileOutputStream/close	; close()V
+; v2 : Ljava/io/FileOutputStream;
+la52f8:
+	goto	la52c4
+la52fa:
+.line 126
+	move-exception	v1
+; v1 : java/io/IOException
+.line 127
+	const-class	v2,com/ianhanniballake/localstorage/LocalStorageProvider
+; v2 : Ljava/lang/Class;
+	invoke-virtual	{v2},java/lang/Class/getSimpleName	; getSimpleName()Ljava/lang/String;
+; v2 : Ljava/lang/Class;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	const-string	v3,"Error closing thumbnail"
+; v3 : Ljava/lang/String;
+	invoke-static	{v2,v3,v1},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
+; v2 : Ljava/lang/String; , v3 : Ljava/lang/String; , v1 : java/io/IOException
+	goto	la52c4
+la5314:
+.line 122
+	move-exception	v1
+; v1 : java/lang/Exception
+	move-object	v2,v0
+; v2 : single-length , v0 : single-length
+	move-object	v0,v1
+; v0 : java/lang/Exception , v1 : java/lang/Exception
+la531a:
+.line 123
+	if-eqz	v2,la5324
+; v2 : Ljava/io/FileOutputStream;
+la531e:
+.line 125
+	invoke-virtual	{v2},java/io/FileOutputStream/close	; close()V
+; v2 : Ljava/io/FileOutputStream;
+la5324:
+.line 129
+	throw	v0
+; v0 : java/lang/Exception
+la5326:
+.line 126
+	move-exception	v1
+; v1 : java/io/IOException
+.line 127
+	const-class	v2,com/ianhanniballake/localstorage/LocalStorageProvider
+; v2 : Ljava/lang/Class;
+	invoke-virtual	{v2},java/lang/Class/getSimpleName	; getSimpleName()Ljava/lang/String;
+; v2 : Ljava/lang/Class;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	const-string	v3,"Error closing thumbnail"
+; v3 : Ljava/lang/String;
+	invoke-static	{v2,v3,v1},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
+; v2 : Ljava/lang/String; , v3 : Ljava/lang/String; , v1 : java/io/IOException
+	goto	la5324
+la5340:
+.line 126
+	move-exception	v0
+; v0 : java/io/IOException
+.line 127
+	const-class	v1,com/ianhanniballake/localstorage/LocalStorageProvider
+; v1 : Ljava/lang/Class;
+	invoke-virtual	{v1},java/lang/Class/getSimpleName	; getSimpleName()Ljava/lang/String;
+; v1 : Ljava/lang/Class;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	const-string	v2,"Error closing thumbnail"
+; v2 : Ljava/lang/String;
+	invoke-static	{v1,v2,v0},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
+; v1 : Ljava/lang/String; , v2 : Ljava/lang/String; , v0 : java/io/IOException
+	goto	la52a6
+la535a:
+.line 122
+	move-exception	v0
+; v0 : java/lang/Exception
+	goto	la531a
+la535e:
+.line 119
+	move-exception	v1
+; v1 : java/io/IOException
+	goto	la52d8
+.end method
+
+.method public queryChildDocuments(Ljava/lang/String;[Ljava/lang/String;Ljava/lang/String;)Landroid/database/Cursor;
+.limit registers 11
+; this: v7 (Lcom/ianhanniballake/localstorage/LocalStorageProvider;)
+; parameter[0] : v8 (Ljava/lang/String;)
+; parameter[1] : v9 ([Ljava/lang/String;)
+; parameter[2] : v10 (Ljava/lang/String;)
+.line 144
+	new-instance	v1,android/database/MatrixCursor
+; v1 : Landroid/database/MatrixCursor;
+	if-eqz	v9,la53ee
+; v9 : [Ljava/lang/String;
+la53cc:
+	invoke-direct	{v1,v9},android/database/MatrixCursor/<init>	; <init>([Ljava/lang/String;)V
+; v1 : Landroid/database/MatrixCursor; , v9 : [Ljava/lang/String;
+.line 146
+	new-instance	v0,java/io/File
+; v0 : Ljava/io/File;
+	invoke-direct	{v0,v8},java/io/File/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/io/File; , v8 : Ljava/lang/String;
+.line 147
+	invoke-virtual	{v0},java/io/File/listFiles	; listFiles()[Ljava/io/File;
+; v0 : Ljava/io/File;
+	move-result-object	v2
+; v2 : [Ljava/io/File;
+	array-length	v3,v2
+; v3 : single-length , v2 : [Ljava/io/File;
+	const/4	v0,0
+; v0 : single-length
+la53e8:
+	if-lt	v0,v3,la53f4
+; v0 : single-length , v3 : single-length
+.line 154
+	return-object	v1
+; v1 : Landroid/database/MatrixCursor;
+la53ee:
+.line 145
+	sget-object	v9,com/ianhanniballake/localstorage/LocalStorageProvider.DEFAULT_DOCUMENT_PROJECTION [Ljava/lang/String;
+; v9 : [Ljava/lang/String;
+	goto	la53cc
+la53f4:
+.line 147
+	aget-object	v4,v2,v0
+; v4 : Ljava/io/File; , v2 : [Ljava/io/File; , v0 : single-length
+.line 149
+	invoke-virtual	{v4},java/io/File/getName	; getName()Ljava/lang/String;
+; v4 : Ljava/io/File;
+	move-result-object	v5
+; v5 : Ljava/lang/String;
+	const-string	v6,"."
+; v6 : Ljava/lang/String;
+	invoke-virtual	{v5,v6},java/lang/String/startsWith	; startsWith(Ljava/lang/String;)Z
+; v5 : Ljava/lang/String; , v6 : Ljava/lang/String;
+	move-result	v5
+; v5 : single-length
+	if-nez	v5,la5416
+; v5 : single-length
+.line 151
+	invoke-direct	{v7,v1,v4},com/ianhanniballake/localstorage/LocalStorageProvider/includeFile	; includeFile(Landroid/database/MatrixCursor;Ljava/io/File;)V
+; v7 : Lcom/ianhanniballake/localstorage/LocalStorageProvider; , v1 : Landroid/database/MatrixCursor; , v4 : Ljava/io/File;
+la5416:
+.line 147
+	add-int/lit8	v0,v0,1
+; v0 : single-length , v0 : single-length
+	goto	la53e8
+.end method
+
+.method public queryDocument(Ljava/lang/String;[Ljava/lang/String;)Landroid/database/Cursor;
+.limit registers 5
+; this: v2 (Lcom/ianhanniballake/localstorage/LocalStorageProvider;)
+; parameter[0] : v3 (Ljava/lang/String;)
+; parameter[1] : v4 ([Ljava/lang/String;)
+.line 162
+	new-instance	v0,android/database/MatrixCursor
+; v0 : Landroid/database/MatrixCursor;
+	if-eqz	v4,la544c
+; v4 : [Ljava/lang/String;
+la5434:
+	invoke-direct	{v0,v4},android/database/MatrixCursor/<init>	; <init>([Ljava/lang/String;)V
+; v0 : Landroid/database/MatrixCursor; , v4 : [Ljava/lang/String;
+.line 164
+	new-instance	v1,java/io/File
+; v1 : Ljava/io/File;
+	invoke-direct	{v1,v3},java/io/File/<init>	; <init>(Ljava/lang/String;)V
+; v1 : Ljava/io/File; , v3 : Ljava/lang/String;
+	invoke-direct	{v2,v0,v1},com/ianhanniballake/localstorage/LocalStorageProvider/includeFile	; includeFile(Landroid/database/MatrixCursor;Ljava/io/File;)V
+; v2 : Lcom/ianhanniballake/localstorage/LocalStorageProvider; , v0 : Landroid/database/MatrixCursor; , v1 : Ljava/io/File;
+.line 165
+	return-object	v0
+; v0 : Landroid/database/MatrixCursor;
+la544c:
+.line 163
+	sget-object	v4,com/ianhanniballake/localstorage/LocalStorageProvider.DEFAULT_DOCUMENT_PROJECTION [Ljava/lang/String;
+; v4 : [Ljava/lang/String;
+	goto	la5434
+.end method
+
+.method public queryRoots([Ljava/lang/String;)Landroid/database/Cursor;
+.limit registers 8
+; this: v6 (Lcom/ianhanniballake/localstorage/LocalStorageProvider;)
+; parameter[0] : v7 ([Ljava/lang/String;)
+.line 53
+	new-instance	v0,android/database/MatrixCursor
+; v0 : Landroid/database/MatrixCursor;
+	if-eqz	v7,la550a
+; v7 : [Ljava/lang/String;
+la546c:
+	invoke-direct	{v0,v7},android/database/MatrixCursor/<init>	; <init>([Ljava/lang/String;)V
+; v0 : Landroid/database/MatrixCursor; , v7 : [Ljava/lang/String;
+.line 56
+	invoke-static	{},android/os/Environment/getExternalStorageDirectory	; getExternalStorageDirectory()Ljava/io/File;
+; 
+	nop	
+	move-result-object	v1
+; v1 : Ljava/io/File;
+.line 57
+	invoke-virtual	{v0},android/database/MatrixCursor/newRow	; newRow()Landroid/database/MatrixCursor$RowBuilder;
+; v0 : Landroid/database/MatrixCursor;
+	move-result-object	v2
+; v2 : Landroid/database/MatrixCursor$RowBuilder;
+.line 59
+	const-string	v3,"root_id"
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v1},java/io/File/getAbsolutePath	; getAbsolutePath()Ljava/lang/String;
+; v1 : Ljava/io/File;
+	move-result-object	v4
+; v4 : Ljava/lang/String;
+	invoke-virtual	{v2,v3,v4},android/database/MatrixCursor$RowBuilder/add	; add(Ljava/lang/String;Ljava/lang/Object;)Landroid/database/MatrixCursor$RowBuilder;
+; v2 : Landroid/database/MatrixCursor$RowBuilder; , v3 : Ljava/lang/String; , v4 : Ljava/lang/String;
+.line 60
+	const-string	v3,"document_id"
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v1},java/io/File/getAbsolutePath	; getAbsolutePath()Ljava/lang/String;
+; v1 : Ljava/io/File;
+	move-result-object	v4
+; v4 : Ljava/lang/String;
+	invoke-virtual	{v2,v3,v4},android/database/MatrixCursor$RowBuilder/add	; add(Ljava/lang/String;Ljava/lang/Object;)Landroid/database/MatrixCursor$RowBuilder;
+; v2 : Landroid/database/MatrixCursor$RowBuilder; , v3 : Ljava/lang/String; , v4 : Ljava/lang/String;
+.line 61
+	const-string	v3,"title"
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v6},com/ianhanniballake/localstorage/LocalStorageProvider/getContext	; getContext()Landroid/content/Context;
+; v6 : Lcom/ianhanniballake/localstorage/LocalStorageProvider;
+	move-result-object	v4
+; v4 : Landroid/content/Context;
+	sget	v5,com/ipaulpro/afilechooser/R$string.internal_storage I
+; v5 : single-length
+	invoke-virtual	{v4,v5},android/content/Context/getString	; getString(I)Ljava/lang/String;
+; v4 : Landroid/content/Context; , v5 : single-length
+	move-result-object	v4
+; v4 : Ljava/lang/String;
+	invoke-virtual	{v2,v3,v4},android/database/MatrixCursor$RowBuilder/add	; add(Ljava/lang/String;Ljava/lang/Object;)Landroid/database/MatrixCursor$RowBuilder;
+; v2 : Landroid/database/MatrixCursor$RowBuilder; , v3 : Ljava/lang/String; , v4 : Ljava/lang/String;
+.line 62
+	const-string	v3,"flags"
+; v3 : Ljava/lang/String;
+	const/4	v4,3
+; v4 : single-length
+	invoke-static	{v4},java/lang/Integer/valueOf	; valueOf(I)Ljava/lang/Integer;
+; v4 : single-length
+	move-result-object	v4
+; v4 : Ljava/lang/Integer;
+	invoke-virtual	{v2,v3,v4},android/database/MatrixCursor$RowBuilder/add	; add(Ljava/lang/String;Ljava/lang/Object;)Landroid/database/MatrixCursor$RowBuilder;
+; v2 : Landroid/database/MatrixCursor$RowBuilder; , v3 : Ljava/lang/String; , v4 : Ljava/lang/Integer;
+.line 63
+	const-string	v3,"icon"
+; v3 : Ljava/lang/String;
+	sget	v4,com/ipaulpro/afilechooser/R$drawable.ic_provider I
+; v4 : single-length
+	invoke-static	{v4},java/lang/Integer/valueOf	; valueOf(I)Ljava/lang/Integer;
+; v4 : single-length
+	move-result-object	v4
+; v4 : Ljava/lang/Integer;
+	invoke-virtual	{v2,v3,v4},android/database/MatrixCursor$RowBuilder/add	; add(Ljava/lang/String;Ljava/lang/Object;)Landroid/database/MatrixCursor$RowBuilder;
+; v2 : Landroid/database/MatrixCursor$RowBuilder; , v3 : Ljava/lang/String; , v4 : Ljava/lang/Integer;
+.line 65
+	const-string	v3,"available_bytes"
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v1},java/io/File/getFreeSpace	; getFreeSpace()J
+; v1 : Ljava/io/File;
+	move-result-wide	v4
+; v4 : double-length
+	invoke-static	{v4,v5},java/lang/Long/valueOf	; valueOf(J)Ljava/lang/Long;
+; v4 : double-length
+	move-result-object	v1
+; v1 : Ljava/lang/Long;
+	invoke-virtual	{v2,v3,v1},android/database/MatrixCursor$RowBuilder/add	; add(Ljava/lang/String;Ljava/lang/Object;)Landroid/database/MatrixCursor$RowBuilder;
+; v2 : Landroid/database/MatrixCursor$RowBuilder; , v3 : Ljava/lang/String; , v1 : Ljava/lang/Long;
+.line 70
+	return-object	v0
+; v0 : Landroid/database/MatrixCursor;
+la550a:
+.line 54
+	sget-object	v7,com/ianhanniballake/localstorage/LocalStorageProvider.DEFAULT_ROOT_PROJECTION [Ljava/lang/String;
+; v7 : [Ljava/lang/String;
+	goto	la546c
+.end method
+
+

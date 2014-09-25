@@ -1,0 +1,142 @@
+.class public final com/squareup/okhttp/internal/http/HttpsEngine
+.super com/squareup/okhttp/internal/http/HttpEngine
+.source HttpsEngine.java
+
+.field private sslSocket Ljavax/net/ssl/SSLSocket;
+
+.method public <init>(Lcom/squareup/okhttp/OkHttpClient;Lcom/squareup/okhttp/internal/http/Policy;Ljava/lang/String;Lcom/squareup/okhttp/internal/http/RawHeaders;Lcom/squareup/okhttp/Connection;Lcom/squareup/okhttp/internal/http/RetryableOutputStream;)V
+.throws Ljava/io/IOException;
+.limit registers 8
+; this: v1 (Lcom/squareup/okhttp/internal/http/HttpsEngine;)
+; parameter[0] : v2 (Lcom/squareup/okhttp/OkHttpClient;)
+; parameter[1] : v3 (Lcom/squareup/okhttp/internal/http/Policy;)
+; parameter[2] : v4 (Ljava/lang/String;)
+; parameter[3] : v5 (Lcom/squareup/okhttp/internal/http/RawHeaders;)
+; parameter[4] : v6 (Lcom/squareup/okhttp/Connection;)
+; parameter[5] : v7 (Lcom/squareup/okhttp/internal/http/RetryableOutputStream;)
+.line 40
+	invoke-direct/range	{v1..v7},com/squareup/okhttp/internal/http/HttpEngine/<init>;	<init>(Lcom/squareup/okhttp/OkHttpClient;Lcom/squareup/okhttp/internal/http/Policy;Ljava/lang/String;Lcom/squareup/okhttp/internal/http/RawHeaders;Lcom/squareup/okhttp/Connection;Lcom/squareup/okhttp/internal/http/RetryableOutputStream;)V
+; v1 : Lcom/squareup/okhttp/internal/http/HttpsEngine; , v2 : Lcom/squareup/okhttp/OkHttpClient; , v3 : Lcom/squareup/okhttp/internal/http/Policy; , v4 : Ljava/lang/String; , v5 : Lcom/squareup/okhttp/internal/http/RawHeaders; , v6 : Lcom/squareup/okhttp/Connection; , v7 : Lcom/squareup/okhttp/internal/http/RetryableOutputStream;
+.line 41
+	if-eqz	v6,lf1048
+; v6 : Lcom/squareup/okhttp/Connection;
+	invoke-virtual	{v6},com/squareup/okhttp/Connection/getSocket	; getSocket()Ljava/net/Socket;
+; v6 : Lcom/squareup/okhttp/Connection;
+	move-result-object	v0
+; v0 : Ljava/net/Socket;
+	check-cast	v0,javax/net/ssl/SSLSocket
+; v0 : Ljavax/net/ssl/SSLSocket;
+lf1042:
+	iput-object	v0,v1,com/squareup/okhttp/internal/http/HttpsEngine.sslSocket Ljavax/net/ssl/SSLSocket;
+; v0 : single-length , v1 : Lcom/squareup/okhttp/internal/http/HttpsEngine;
+.line 42
+	return-void	
+lf1048:
+.line 41
+	const/4	v0,0
+; v0 : single-length
+	goto	lf1042
+.end method
+
+.method protected acceptCacheResponseType(Ljava/net/CacheResponse;)Z
+.limit registers 3
+; this: v1 (Lcom/squareup/okhttp/internal/http/HttpsEngine;)
+; parameter[0] : v2 (Ljava/net/CacheResponse;)
+.line 50
+	instance-of	v0,v2,java/net/SecureCacheResponse
+; v0 : single-length , v2 : Ljava/net/CacheResponse;
+	return	v0
+; v0 : single-length
+.end method
+
+.method protected connected(Lcom/squareup/okhttp/Connection;)V
+.limit registers 3
+; this: v1 (Lcom/squareup/okhttp/internal/http/HttpsEngine;)
+; parameter[0] : v2 (Lcom/squareup/okhttp/Connection;)
+.line 45
+	invoke-virtual	{v2},com/squareup/okhttp/Connection/getSocket	; getSocket()Ljava/net/Socket;
+; v2 : Lcom/squareup/okhttp/Connection;
+	move-result-object	v0
+; v0 : Ljava/net/Socket;
+	check-cast	v0,javax/net/ssl/SSLSocket
+; v0 : Ljavax/net/ssl/SSLSocket;
+	iput-object	v0,v1,com/squareup/okhttp/internal/http/HttpsEngine.sslSocket Ljavax/net/ssl/SSLSocket;
+; v0 : Ljavax/net/ssl/SSLSocket; , v1 : Lcom/squareup/okhttp/internal/http/HttpsEngine;
+.line 46
+	invoke-super	{v1,v2},com/squareup/okhttp/internal/http/HttpEngine/connected	; connected(Lcom/squareup/okhttp/Connection;)V
+; v1 : Lcom/squareup/okhttp/internal/http/HttpsEngine; , v2 : Lcom/squareup/okhttp/Connection;
+.line 47
+	return-void	
+.end method
+
+.method public getSslSocket()Ljavax/net/ssl/SSLSocket;
+.limit registers 2
+; this: v1 (Lcom/squareup/okhttp/internal/http/HttpsEngine;)
+.line 59
+	iget-object	v0,v1,com/squareup/okhttp/internal/http/HttpsEngine.sslSocket Ljavax/net/ssl/SSLSocket;
+; v0 : Ljavax/net/ssl/SSLSocket; , v1 : Lcom/squareup/okhttp/internal/http/HttpsEngine;
+	return-object	v0
+; v0 : Ljavax/net/ssl/SSLSocket;
+.end method
+
+.method protected getTunnelConfig()Lcom/squareup/okhttp/TunnelRequest;
+.limit registers 7
+; this: v6 (Lcom/squareup/okhttp/internal/http/HttpsEngine;)
+.line 63
+	iget-object	v2,v6,com/squareup/okhttp/internal/http/HttpsEngine.requestHeaders Lcom/squareup/okhttp/internal/http/RequestHeaders;
+; v2 : Lcom/squareup/okhttp/internal/http/RequestHeaders; , v6 : Lcom/squareup/okhttp/internal/http/HttpsEngine;
+	invoke-virtual	{v2},com/squareup/okhttp/internal/http/RequestHeaders/getUserAgent	; getUserAgent()Ljava/lang/String;
+; v2 : Lcom/squareup/okhttp/internal/http/RequestHeaders;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+.line 64
+	if-nez	v1,lf10cc
+; v1 : Ljava/lang/String;
+.line 65
+	invoke-static	{},com/squareup/okhttp/internal/http/HttpsEngine/getDefaultUserAgent	; getDefaultUserAgent()Ljava/lang/String;
+; 
+	nop	
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+lf10cc:
+.line 68
+	iget-object	v2,v6,com/squareup/okhttp/internal/http/HttpsEngine.policy Lcom/squareup/okhttp/internal/http/Policy;
+; v2 : Lcom/squareup/okhttp/internal/http/Policy; , v6 : Lcom/squareup/okhttp/internal/http/HttpsEngine;
+	invoke-interface	{v2},com/squareup/okhttp/internal/http/Policy/getURL	; getURL()Ljava/net/URL;
+; v2 : Lcom/squareup/okhttp/internal/http/Policy;
+	move-result-object	v0
+; v0 : Ljava/net/URL;
+.line 69
+	new-instance	v2,com/squareup/okhttp/TunnelRequest
+; v2 : Lcom/squareup/okhttp/TunnelRequest;
+	invoke-virtual	{v0},java/net/URL/getHost	; getHost()Ljava/lang/String;
+; v0 : Ljava/net/URL;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-static	{v0},com/squareup/okhttp/internal/Util/getEffectivePort	; getEffectivePort(Ljava/net/URL;)I
+; v0 : Ljava/net/URL;
+	move-result	v4
+; v4 : single-length
+	iget-object	v5,v6,com/squareup/okhttp/internal/http/HttpsEngine.requestHeaders Lcom/squareup/okhttp/internal/http/RequestHeaders;
+; v5 : Lcom/squareup/okhttp/internal/http/RequestHeaders; , v6 : Lcom/squareup/okhttp/internal/http/HttpsEngine;
+	invoke-virtual	{v5},com/squareup/okhttp/internal/http/RequestHeaders/getProxyAuthorization	; getProxyAuthorization()Ljava/lang/String;
+; v5 : Lcom/squareup/okhttp/internal/http/RequestHeaders;
+	move-result-object	v5
+; v5 : Ljava/lang/String;
+	invoke-direct	{v2,v3,v4,v1,v5},com/squareup/okhttp/TunnelRequest/<init>	; <init>(Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;)V
+; v2 : Lcom/squareup/okhttp/TunnelRequest; , v3 : Ljava/lang/String; , v4 : single-length , v1 : Ljava/lang/String; , v5 : Ljava/lang/String;
+	return-object	v2
+; v2 : Lcom/squareup/okhttp/TunnelRequest;
+.end method
+
+.method protected includeAuthorityInRequestLine()Z
+.limit registers 2
+; this: v1 (Lcom/squareup/okhttp/internal/http/HttpsEngine;)
+.line 55
+	const/4	v0,0
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+

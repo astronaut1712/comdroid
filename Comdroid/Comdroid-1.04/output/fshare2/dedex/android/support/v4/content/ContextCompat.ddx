@@ -1,0 +1,381 @@
+.class public android/support/v4/content/ContextCompat
+.super java/lang/Object
+.source MyApplication
+
+.field private static final DIR_ANDROID Ljava/lang/String; = "Android"
+.field private static final DIR_CACHE Ljava/lang/String; = "cache"
+.field private static final DIR_DATA Ljava/lang/String; = "data"
+.field private static final DIR_FILES Ljava/lang/String; = "files"
+.field private static final DIR_OBB Ljava/lang/String; = "obb"
+
+.method public <init>()V
+.limit registers 1
+; this: v0 (Landroid/support/v4/content/ContextCompat;)
+.line 33
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Landroid/support/v4/content/ContextCompat;
+	return-void	
+.end method
+
+.method private static buildPath(Ljava/io/File;[Ljava/lang/String;)Ljava/io/File;
+.limit registers 7
+; parameter[0] : v5 (Ljava/io/File;)
+; parameter[1] : v6 ([Ljava/lang/String;)
+.line 290
+.line 291
+	array-length	v3,v6
+; v3 : single-length , v6 : [Ljava/lang/String;
+	const/4	v0,0
+; v0 : single-length
+	move	v2,v0
+; v2 : single-length , v0 : single-length
+	move-object	v1,v5
+; v1 : Ljava/io/File; , v5 : Ljava/io/File;
+l34bec:
+	if-ge	v2,v3,l34c1c
+; v2 : single-length , v3 : single-length
+	aget-object	v4,v6,v2
+; v4 : Ljava/lang/String; , v6 : [Ljava/lang/String; , v2 : single-length
+.line 292
+	if-nez	v1,l34c0c
+; v1 : Ljava/io/File;
+.line 293
+	new-instance	v0,java/io/File
+; v0 : Ljava/io/File;
+	invoke-direct	{v0,v4},java/io/File/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/io/File; , v4 : Ljava/lang/String;
+l34c02:
+.line 291
+	add-int/lit8	v1,v2,1
+; v1 : single-length , v2 : single-length
+	move	v2,v1
+; v2 : single-length , v1 : single-length
+	move-object	v1,v0
+; v1 : Ljava/io/File; , v0 : Ljava/io/File;
+	goto	l34bec
+l34c0c:
+.line 294
+	if-eqz	v4,l34c1e
+; v4 : Ljava/lang/String;
+.line 295
+	new-instance	v0,java/io/File
+; v0 : Ljava/io/File;
+	invoke-direct	{v0,v1,v4},java/io/File/<init>	; <init>(Ljava/io/File;Ljava/lang/String;)V
+; v0 : Ljava/io/File; , v1 : Ljava/io/File; , v4 : Ljava/lang/String;
+	goto	l34c02
+l34c1c:
+.line 298
+	return-object	v1
+; v1 : Ljava/io/File;
+l34c1e:
+	move-object	v0,v1
+; v0 : Ljava/io/File; , v1 : Ljava/io/File;
+	goto	l34c02
+.end method
+
+.method public static getExternalCacheDirs(Landroid/content/Context;)[Ljava/io/File;
+.limit registers 7
+; parameter[0] : v6 (Landroid/content/Context;)
+	const/4	v5,1
+; v5 : single-length
+	const/4	v4,0
+; v4 : single-length
+.line 274
+	sget	v0,android/os/Build$VERSION.SDK_INT I
+; v0 : single-length
+.line 275
+	const/16	v1,19
+; v1 : single-length
+	if-lt	v0,v1,l34c4e
+; v0 : single-length , v1 : single-length
+.line 276
+	invoke-static	{v6},android/support/v4/content/ContextCompatKitKat/getExternalCacheDirs	; getExternalCacheDirs(Landroid/content/Context;)[Ljava/io/File;
+; v6 : Landroid/content/Context;
+	move-result-object	v0
+; v0 : [Ljava/io/File;
+l34c4c:
+.line 285
+	return-object	v0
+; v0 : [Ljava/io/File;
+l34c4e:
+.line 279
+	const/16	v1,8
+; v1 : single-length
+	if-lt	v0,v1,l34c6a
+; v0 : single-length , v1 : single-length
+.line 280
+	invoke-static	{v6},android/support/v4/content/ContextCompatFroyo/getExternalCacheDir	; getExternalCacheDir(Landroid/content/Context;)Ljava/io/File;
+; v6 : Landroid/content/Context;
+	move-result-object	v0
+; v0 : Ljava/io/File;
+l34c5e:
+.line 285
+	new-array	v1,v5,[Ljava/io/File;
+; v1 : [Ljava/io/File; , v5 : single-length
+	aput-object	v0,v1,v4
+; v0 : Ljava/io/File; , v1 : [Ljava/io/File; , v4 : single-length
+	move-object	v0,v1
+; v0 : [Ljava/io/File; , v1 : [Ljava/io/File;
+	goto	l34c4c
+l34c6a:
+.line 282
+	invoke-static	{},android/os/Environment/getExternalStorageDirectory	; getExternalStorageDirectory()Ljava/io/File;
+; 
+	nop	
+	move-result-object	v0
+; v0 : Ljava/io/File;
+	const/4	v1,4
+; v1 : single-length
+	new-array	v1,v1,[Ljava/lang/String;
+; v1 : [Ljava/lang/String; , v1 : [Ljava/lang/String;
+	const-string	v2,"Android"
+; v2 : Ljava/lang/String;
+	aput-object	v2,v1,v4
+; v2 : Ljava/lang/String; , v1 : [Ljava/lang/String; , v4 : single-length
+	const-string	v2,"data"
+; v2 : Ljava/lang/String;
+	aput-object	v2,v1,v5
+; v2 : Ljava/lang/String; , v1 : [Ljava/lang/String; , v5 : single-length
+	const/4	v2,2
+; v2 : single-length
+	invoke-virtual	{v6},android/content/Context/getPackageName	; getPackageName()Ljava/lang/String;
+; v6 : Landroid/content/Context;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	aput-object	v3,v1,v2
+; v3 : Ljava/lang/String; , v1 : [Ljava/lang/String; , v2 : single-length
+	const/4	v2,3
+; v2 : single-length
+	const-string	v3,"cache"
+; v3 : Ljava/lang/String;
+	aput-object	v3,v1,v2
+; v3 : Ljava/lang/String; , v1 : [Ljava/lang/String; , v2 : single-length
+	invoke-static	{v0,v1},android/support/v4/content/ContextCompat/buildPath	; buildPath(Ljava/io/File;[Ljava/lang/String;)Ljava/io/File;
+; v0 : Ljava/io/File; , v1 : [Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/io/File;
+	goto	l34c5e
+.end method
+
+.method public static getExternalFilesDirs(Landroid/content/Context;Ljava/lang/String;)[Ljava/io/File;
+.limit registers 8
+; parameter[0] : v6 (Landroid/content/Context;)
+; parameter[1] : v7 (Ljava/lang/String;)
+	const/4	v5,1
+; v5 : single-length
+	const/4	v4,0
+; v4 : single-length
+.line 214
+	sget	v0,android/os/Build$VERSION.SDK_INT I
+; v0 : single-length
+.line 215
+	const/16	v1,19
+; v1 : single-length
+	if-lt	v0,v1,l34cd6
+; v0 : single-length , v1 : single-length
+.line 216
+	invoke-static	{v6,v7},android/support/v4/content/ContextCompatKitKat/getExternalFilesDirs	; getExternalFilesDirs(Landroid/content/Context;Ljava/lang/String;)[Ljava/io/File;
+; v6 : Landroid/content/Context; , v7 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : [Ljava/io/File;
+l34cd4:
+.line 225
+	return-object	v0
+; v0 : [Ljava/io/File;
+l34cd6:
+.line 219
+	const/16	v1,8
+; v1 : single-length
+	if-lt	v0,v1,l34cf2
+; v0 : single-length , v1 : single-length
+.line 220
+	invoke-static	{v6,v7},android/support/v4/content/ContextCompatFroyo/getExternalFilesDir	; getExternalFilesDir(Landroid/content/Context;Ljava/lang/String;)Ljava/io/File;
+; v6 : Landroid/content/Context; , v7 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/io/File;
+l34ce6:
+.line 225
+	new-array	v1,v5,[Ljava/io/File;
+; v1 : [Ljava/io/File; , v5 : single-length
+	aput-object	v0,v1,v4
+; v0 : Ljava/io/File; , v1 : [Ljava/io/File; , v4 : single-length
+	move-object	v0,v1
+; v0 : [Ljava/io/File; , v1 : [Ljava/io/File;
+	goto	l34cd4
+l34cf2:
+.line 222
+	invoke-static	{},android/os/Environment/getExternalStorageDirectory	; getExternalStorageDirectory()Ljava/io/File;
+; 
+	nop	
+	move-result-object	v0
+; v0 : Ljava/io/File;
+	const/4	v1,5
+; v1 : single-length
+	new-array	v1,v1,[Ljava/lang/String;
+; v1 : [Ljava/lang/String; , v1 : [Ljava/lang/String;
+	const-string	v2,"Android"
+; v2 : Ljava/lang/String;
+	aput-object	v2,v1,v4
+; v2 : Ljava/lang/String; , v1 : [Ljava/lang/String; , v4 : single-length
+	const-string	v2,"data"
+; v2 : Ljava/lang/String;
+	aput-object	v2,v1,v5
+; v2 : Ljava/lang/String; , v1 : [Ljava/lang/String; , v5 : single-length
+	const/4	v2,2
+; v2 : single-length
+	invoke-virtual	{v6},android/content/Context/getPackageName	; getPackageName()Ljava/lang/String;
+; v6 : Landroid/content/Context;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	aput-object	v3,v1,v2
+; v3 : Ljava/lang/String; , v1 : [Ljava/lang/String; , v2 : single-length
+	const/4	v2,3
+; v2 : single-length
+	const-string	v3,"files"
+; v3 : Ljava/lang/String;
+	aput-object	v3,v1,v2
+; v3 : Ljava/lang/String; , v1 : [Ljava/lang/String; , v2 : single-length
+	const/4	v2,4
+; v2 : single-length
+	aput-object	v7,v1,v2
+; v7 : Ljava/lang/String; , v1 : [Ljava/lang/String; , v2 : single-length
+	invoke-static	{v0,v1},android/support/v4/content/ContextCompat/buildPath	; buildPath(Ljava/io/File;[Ljava/lang/String;)Ljava/io/File;
+; v0 : Ljava/io/File; , v1 : [Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/io/File;
+	goto	l34ce6
+.end method
+
+.method public static getObbDirs(Landroid/content/Context;)[Ljava/io/File;
+.limit registers 7
+; parameter[0] : v6 (Landroid/content/Context;)
+	const/4	v5,1
+; v5 : single-length
+	const/4	v4,0
+; v4 : single-length
+.line 154
+	sget	v0,android/os/Build$VERSION.SDK_INT I
+; v0 : single-length
+.line 155
+	const/16	v1,19
+; v1 : single-length
+	if-lt	v0,v1,l34d62
+; v0 : single-length , v1 : single-length
+.line 156
+	invoke-static	{v6},android/support/v4/content/ContextCompatKitKat/getObbDirs	; getObbDirs(Landroid/content/Context;)[Ljava/io/File;
+; v6 : Landroid/content/Context;
+	move-result-object	v0
+; v0 : [Ljava/io/File;
+l34d60:
+.line 165
+	return-object	v0
+; v0 : [Ljava/io/File;
+l34d62:
+.line 159
+	const/16	v1,11
+; v1 : single-length
+	if-lt	v0,v1,l34d7e
+; v0 : single-length , v1 : single-length
+.line 160
+	invoke-static	{v6},android/support/v4/content/ContextCompatHoneycomb/getObbDir	; getObbDir(Landroid/content/Context;)Ljava/io/File;
+; v6 : Landroid/content/Context;
+	move-result-object	v0
+; v0 : Ljava/io/File;
+l34d72:
+.line 165
+	new-array	v1,v5,[Ljava/io/File;
+; v1 : [Ljava/io/File; , v5 : single-length
+	aput-object	v0,v1,v4
+; v0 : Ljava/io/File; , v1 : [Ljava/io/File; , v4 : single-length
+	move-object	v0,v1
+; v0 : [Ljava/io/File; , v1 : [Ljava/io/File;
+	goto	l34d60
+l34d7e:
+.line 162
+	invoke-static	{},android/os/Environment/getExternalStorageDirectory	; getExternalStorageDirectory()Ljava/io/File;
+; 
+	nop	
+	move-result-object	v0
+; v0 : Ljava/io/File;
+	const/4	v1,3
+; v1 : single-length
+	new-array	v1,v1,[Ljava/lang/String;
+; v1 : [Ljava/lang/String; , v1 : [Ljava/lang/String;
+	const-string	v2,"Android"
+; v2 : Ljava/lang/String;
+	aput-object	v2,v1,v4
+; v2 : Ljava/lang/String; , v1 : [Ljava/lang/String; , v4 : single-length
+	const-string	v2,"obb"
+; v2 : Ljava/lang/String;
+	aput-object	v2,v1,v5
+; v2 : Ljava/lang/String; , v1 : [Ljava/lang/String; , v5 : single-length
+	const/4	v2,2
+; v2 : single-length
+	invoke-virtual	{v6},android/content/Context/getPackageName	; getPackageName()Ljava/lang/String;
+; v6 : Landroid/content/Context;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	aput-object	v3,v1,v2
+; v3 : Ljava/lang/String; , v1 : [Ljava/lang/String; , v2 : single-length
+	invoke-static	{v0,v1},android/support/v4/content/ContextCompat/buildPath	; buildPath(Ljava/io/File;[Ljava/lang/String;)Ljava/io/File;
+; v0 : Ljava/io/File; , v1 : [Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/io/File;
+	goto	l34d72
+.end method
+
+.method public static startActivities(Landroid/content/Context;[Landroid/content/Intent;)Z
+.limit registers 3
+; parameter[0] : v1 (Landroid/content/Context;)
+; parameter[1] : v2 ([Landroid/content/Intent;)
+.line 67
+	const/4	v0,0
+; v0 : single-length
+	invoke-static	{v1,v2,v0},android/support/v4/content/ContextCompat/startActivities	; startActivities(Landroid/content/Context;[Landroid/content/Intent;Landroid/os/Bundle;)Z
+; v1 : Landroid/content/Context; , v2 : [Landroid/content/Intent; , v0 : single-length
+	move-result	v0
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public static startActivities(Landroid/content/Context;[Landroid/content/Intent;Landroid/os/Bundle;)Z
+.limit registers 6
+; parameter[0] : v3 (Landroid/content/Context;)
+; parameter[1] : v4 ([Landroid/content/Intent;)
+; parameter[2] : v5 (Landroid/os/Bundle;)
+	const/4	v0,1
+; v0 : single-length
+.line 99
+	sget	v1,android/os/Build$VERSION.SDK_INT I
+; v1 : single-length
+.line 100
+	const/16	v2,16
+; v2 : single-length
+	if-lt	v1,v2,l34df6
+; v1 : single-length , v2 : single-length
+.line 101
+	invoke-static	{v3,v4,v5},android/support/v4/content/ContextCompatJellybean/startActivities	; startActivities(Landroid/content/Context;[Landroid/content/Intent;Landroid/os/Bundle;)V
+; v3 : Landroid/content/Context; , v4 : [Landroid/content/Intent; , v5 : Landroid/os/Bundle;
+l34df4:
+.line 107
+	return	v0
+; v0 : single-length
+l34df6:
+.line 103
+	const/16	v2,11
+; v2 : single-length
+	if-lt	v1,v2,l34e06
+; v1 : single-length , v2 : single-length
+.line 104
+	invoke-static	{v3,v4},android/support/v4/content/ContextCompatHoneycomb/startActivities	; startActivities(Landroid/content/Context;[Landroid/content/Intent;)V
+; v3 : Landroid/content/Context; , v4 : [Landroid/content/Intent;
+	goto	l34df4
+l34e06:
+.line 107
+	const/4	v0,0
+; v0 : single-length
+	goto	l34df4
+.end method
+
+

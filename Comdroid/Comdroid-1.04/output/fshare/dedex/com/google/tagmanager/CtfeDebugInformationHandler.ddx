@@ -1,0 +1,210 @@
+.class com/google/tagmanager/CtfeDebugInformationHandler
+.super java/lang/Object
+.source CtfeDebugInformationHandler.java
+.implements com/google/tagmanager/DebugInformationHandler
+
+.field static final CTFE_URL_PATH_PREFIX Ljava/lang/String; = "/d?"
+  .annotation buildVisibility Lcom/google/android/gms/common/util/VisibleForTesting;
+  .end annotation
+.end field
+.field static final NUM_EVENTS_PER_SEND I = 1	; 0x1
+  .annotation buildVisibility Lcom/google/android/gms/common/util/VisibleForTesting;
+  .end annotation
+.end field
+.field private currentDebugEventNumber I
+.field private mClient Lcom/google/tagmanager/NetworkClient;
+.field private mCtfeHost Lcom/google/tagmanager/CtfeHost;
+.field private mDebugEvents Lcom/google/analytics/containertag/proto/Debug$DebugEvents;
+
+.method public <init>(Lcom/google/tagmanager/CtfeHost;)V
+.annotation buildVisibility Lcom/google/android/gms/common/util/VisibleForTesting;
+.end annotation
+.limit registers 3
+; this: v1 (Lcom/google/tagmanager/CtfeDebugInformationHandler;)
+; parameter[0] : v2 (Lcom/google/tagmanager/CtfeHost;)
+.line 35
+	new-instance	v0,com/google/tagmanager/NetworkClientFactory
+; v0 : Lcom/google/tagmanager/NetworkClientFactory;
+	invoke-direct	{v0},com/google/tagmanager/NetworkClientFactory/<init>	; <init>()V
+; v0 : Lcom/google/tagmanager/NetworkClientFactory;
+	invoke-virtual	{v0},com/google/tagmanager/NetworkClientFactory/createNetworkClient	; createNetworkClient()Lcom/google/tagmanager/NetworkClient;
+; v0 : Lcom/google/tagmanager/NetworkClientFactory;
+	move-result-object	v0
+; v0 : Lcom/google/tagmanager/NetworkClient;
+	invoke-direct	{v1,v0,v2},com/google/tagmanager/CtfeDebugInformationHandler/<init>	; <init>(Lcom/google/tagmanager/NetworkClient;Lcom/google/tagmanager/CtfeHost;)V
+; v1 : Lcom/google/tagmanager/CtfeDebugInformationHandler; , v0 : Lcom/google/tagmanager/NetworkClient; , v2 : Lcom/google/tagmanager/CtfeHost;
+.line 36
+	return-void	
+.end method
+
+.method <init>(Lcom/google/tagmanager/NetworkClient;Lcom/google/tagmanager/CtfeHost;)V
+.annotation buildVisibility Lcom/google/android/gms/common/util/VisibleForTesting;
+.end annotation
+.limit registers 4
+; this: v1 (Lcom/google/tagmanager/CtfeDebugInformationHandler;)
+; parameter[0] : v2 (Lcom/google/tagmanager/NetworkClient;)
+; parameter[1] : v3 (Lcom/google/tagmanager/CtfeHost;)
+.line 28
+	invoke-direct	{v1},java/lang/Object/<init>	; <init>()V
+; v1 : Lcom/google/tagmanager/CtfeDebugInformationHandler;
+.line 29
+	iput-object	v3,v1,com/google/tagmanager/CtfeDebugInformationHandler.mCtfeHost Lcom/google/tagmanager/CtfeHost;
+; v3 : Lcom/google/tagmanager/CtfeHost; , v1 : Lcom/google/tagmanager/CtfeDebugInformationHandler;
+.line 30
+	iput-object	v2,v1,com/google/tagmanager/CtfeDebugInformationHandler.mClient Lcom/google/tagmanager/NetworkClient;
+; v2 : Lcom/google/tagmanager/NetworkClient; , v1 : Lcom/google/tagmanager/CtfeDebugInformationHandler;
+.line 31
+	new-instance	v0,com/google/analytics/containertag/proto/Debug$DebugEvents
+; v0 : Lcom/google/analytics/containertag/proto/Debug$DebugEvents;
+	invoke-direct	{v0},com/google/analytics/containertag/proto/Debug$DebugEvents/<init>	; <init>()V
+; v0 : Lcom/google/analytics/containertag/proto/Debug$DebugEvents;
+	iput-object	v0,v1,com/google/tagmanager/CtfeDebugInformationHandler.mDebugEvents Lcom/google/analytics/containertag/proto/Debug$DebugEvents;
+; v0 : Lcom/google/analytics/containertag/proto/Debug$DebugEvents; , v1 : Lcom/google/tagmanager/CtfeDebugInformationHandler;
+.line 32
+	return-void	
+.end method
+
+.method private getDebugEventsAsBytes()[B
+.throws Ljava/io/IOException;
+.limit registers 2
+; this: v1 (Lcom/google/tagmanager/CtfeDebugInformationHandler;)
+.line 51
+	iget-object	v0,v1,com/google/tagmanager/CtfeDebugInformationHandler.mDebugEvents Lcom/google/analytics/containertag/proto/Debug$DebugEvents;
+; v0 : Lcom/google/analytics/containertag/proto/Debug$DebugEvents; , v1 : Lcom/google/tagmanager/CtfeDebugInformationHandler;
+	invoke-static	{v0},com/google/tagmanager/protobuf/nano/MessageNano/toByteArray	; toByteArray(Lcom/google/tagmanager/protobuf/nano/MessageNano;)[B
+; v0 : Lcom/google/analytics/containertag/proto/Debug$DebugEvents;
+	move-result-object	v0
+; v0 : [B
+	return-object	v0
+; v0 : [B
+.end method
+
+.method private sendDebugInformationtoCtfe()Z
+.limit registers 6
+; this: v5 (Lcom/google/tagmanager/CtfeDebugInformationHandler;)
+.catch java/io/IOException from le6e10 to le6e3a using le6e3e
+le6e10:
+.line 56
+	iget-object	v1,v5,com/google/tagmanager/CtfeDebugInformationHandler.mClient Lcom/google/tagmanager/NetworkClient;
+; v1 : Lcom/google/tagmanager/NetworkClient; , v5 : Lcom/google/tagmanager/CtfeDebugInformationHandler;
+	iget-object	v2,v5,com/google/tagmanager/CtfeDebugInformationHandler.mCtfeHost Lcom/google/tagmanager/CtfeHost;
+; v2 : Lcom/google/tagmanager/CtfeHost; , v5 : Lcom/google/tagmanager/CtfeDebugInformationHandler;
+	iget	v3,v5,com/google/tagmanager/CtfeDebugInformationHandler.currentDebugEventNumber I
+; v3 : single-length , v5 : Lcom/google/tagmanager/CtfeDebugInformationHandler;
+	add-int/lit8	v4,v3,1
+; v4 : single-length , v3 : single-length
+	iput	v4,v5,com/google/tagmanager/CtfeDebugInformationHandler.currentDebugEventNumber I
+; v4 : single-length , v5 : Lcom/google/tagmanager/CtfeDebugInformationHandler;
+	invoke-virtual	{v2,v3},com/google/tagmanager/CtfeHost/constructCtfeDebugUrl	; constructCtfeDebugUrl(I)Ljava/lang/String;
+; v2 : Lcom/google/tagmanager/CtfeHost; , v3 : single-length
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-direct	{v5},com/google/tagmanager/CtfeDebugInformationHandler/getDebugEventsAsBytes	; getDebugEventsAsBytes()[B
+; v5 : Lcom/google/tagmanager/CtfeDebugInformationHandler;
+	move-result-object	v3
+; v3 : [B
+	invoke-interface	{v1,v2,v3},com/google/tagmanager/NetworkClient/sendPostRequest	; sendPostRequest(Ljava/lang/String;[B)V
+; v1 : Lcom/google/tagmanager/NetworkClient; , v2 : Ljava/lang/String; , v3 : [B
+le6e3a:
+.line 59
+	const/4	v1,1
+; v1 : single-length
+le6e3c:
+.line 63
+	return	v1
+; v1 : single-length
+le6e3e:
+.line 60
+	move-exception	v0
+; v0 : java/io/IOException
+.line 61
+	new-instance	v1,java/lang/StringBuilder
+; v1 : Ljava/lang/StringBuilder;
+	invoke-direct	{v1},java/lang/StringBuilder/<init>	; <init>()V
+; v1 : Ljava/lang/StringBuilder;
+	const-string	v2,"CtfeDebugInformationHandler: Error sending information to server that handles debug information: "
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v0},java/io/IOException/getMessage	; getMessage()Ljava/lang/String;
+; v0 : java/io/IOException
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v1},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v1 : Ljava/lang/StringBuilder;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-static	{v1},com/google/tagmanager/Log/e	; e(Ljava/lang/String;)V
+; v1 : Ljava/lang/String;
+.line 63
+	const/4	v1,0
+; v1 : single-length
+	goto	le6e3c
+.end method
+
+.method public synchronized receiveEventInfo(Lcom/google/analytics/containertag/proto/Debug$EventInfo;)V
+.limit registers 4
+; this: v2 (Lcom/google/tagmanager/CtfeDebugInformationHandler;)
+; parameter[0] : v3 (Lcom/google/analytics/containertag/proto/Debug$EventInfo;)
+.catch java/lang/Exception from le6e9a to le6ed8 using le6edc
+.line 42
+	monitor-enter	v2
+; v2 : Lcom/google/tagmanager/CtfeDebugInformationHandler;
+le6e9a:
+	iget-object	v0,v2,com/google/tagmanager/CtfeDebugInformationHandler.mDebugEvents Lcom/google/analytics/containertag/proto/Debug$DebugEvents;
+; v0 : Lcom/google/analytics/containertag/proto/Debug$DebugEvents; , v2 : Lcom/google/tagmanager/CtfeDebugInformationHandler;
+	iget-object	v1,v2,com/google/tagmanager/CtfeDebugInformationHandler.mDebugEvents Lcom/google/analytics/containertag/proto/Debug$DebugEvents;
+; v1 : Lcom/google/analytics/containertag/proto/Debug$DebugEvents; , v2 : Lcom/google/tagmanager/CtfeDebugInformationHandler;
+	iget-object	v1,v1,com/google/analytics/containertag/proto/Debug$DebugEvents.event [Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+; v1 : [Lcom/google/analytics/containertag/proto/Debug$EventInfo; , v1 : [Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	invoke-static	{v1,v3},com/google/tagmanager/ArrayUtils/appendToArray	; appendToArray([Lcom/google/analytics/containertag/proto/Debug$EventInfo;Lcom/google/analytics/containertag/proto/Debug$EventInfo;)[Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+; v1 : [Lcom/google/analytics/containertag/proto/Debug$EventInfo; , v3 : Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	move-result-object	v1
+; v1 : [Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	iput-object	v1,v0,com/google/analytics/containertag/proto/Debug$DebugEvents.event [Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+; v1 : [Lcom/google/analytics/containertag/proto/Debug$EventInfo; , v0 : Lcom/google/analytics/containertag/proto/Debug$DebugEvents;
+.line 43
+	iget-object	v0,v2,com/google/tagmanager/CtfeDebugInformationHandler.mDebugEvents Lcom/google/analytics/containertag/proto/Debug$DebugEvents;
+; v0 : Lcom/google/analytics/containertag/proto/Debug$DebugEvents; , v2 : Lcom/google/tagmanager/CtfeDebugInformationHandler;
+	iget-object	v0,v0,com/google/analytics/containertag/proto/Debug$DebugEvents.event [Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+; v0 : [Lcom/google/analytics/containertag/proto/Debug$EventInfo; , v0 : [Lcom/google/analytics/containertag/proto/Debug$EventInfo;
+	array-length	v0,v0
+; v0 : single-length , v0 : single-length
+	const/4	v1,1
+; v1 : single-length
+	if-lt	v0,v1,le6ed8
+; v0 : single-length , v1 : single-length
+.line 44
+	invoke-direct	{v2},com/google/tagmanager/CtfeDebugInformationHandler/sendDebugInformationtoCtfe	; sendDebugInformationtoCtfe()Z
+; v2 : Lcom/google/tagmanager/CtfeDebugInformationHandler;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,le6ed8
+; v0 : single-length
+.line 45
+	iget-object	v0,v2,com/google/tagmanager/CtfeDebugInformationHandler.mDebugEvents Lcom/google/analytics/containertag/proto/Debug$DebugEvents;
+; v0 : Lcom/google/analytics/containertag/proto/Debug$DebugEvents; , v2 : Lcom/google/tagmanager/CtfeDebugInformationHandler;
+	invoke-virtual	{v0},com/google/analytics/containertag/proto/Debug$DebugEvents/clear	; clear()Lcom/google/analytics/containertag/proto/Debug$DebugEvents;
+; v0 : Lcom/google/analytics/containertag/proto/Debug$DebugEvents;
+le6ed8:
+.line 48
+	monitor-exit	v2
+; v2 : Lcom/google/tagmanager/CtfeDebugInformationHandler;
+	return-void	
+le6edc:
+.line 42
+	move-exception	v0
+; v0 : java/lang/Exception
+	monitor-exit	v2
+; v2 : Lcom/google/tagmanager/CtfeDebugInformationHandler;
+	throw	v0
+; v0 : java/lang/Exception
+.end method
+
+

@@ -1,0 +1,196 @@
+.class com/fsharemobile/fragments/PicturesFragment$6
+.super java/lang/Object
+.source PicturesFragment.java
+.implements com/fsharemobile/client/PhotoProxy$OnGetListCompleted
+
+.enclosing method com/loadPicture(ILjava/lang/String;)V
+.field final this$0 Lcom/fsharemobile/fragments/PicturesFragment;
+
+.method <init>(Lcom/fsharemobile/fragments/PicturesFragment;)V
+.limit registers 2
+; this: v0 (Lcom/fsharemobile/fragments/PicturesFragment$6;)
+; parameter[0] : v1 (Lcom/fsharemobile/fragments/PicturesFragment;)
+.line 1
+	iput-object	v1,v0,com/fsharemobile/fragments/PicturesFragment$6.this$0 Lcom/fsharemobile/fragments/PicturesFragment;
+; v1 : Lcom/fsharemobile/fragments/PicturesFragment; , v0 : Lcom/fsharemobile/fragments/PicturesFragment$6;
+.line 657
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Lcom/fsharemobile/fragments/PicturesFragment$6;
+	return-void	
+.end method
+
+.method public onGetListCompleted(ILjava/util/List;)V
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "(I" , "Ljava/util/List" , "<" , "Lcom/fsharemobile/client/Photo;" , ">;)V" }
+.end annotation
+.limit registers 8
+; this: v5 (Lcom/fsharemobile/fragments/PicturesFragment$6;)
+; parameter[0] : v6 (I)
+; parameter[1] : v7 (Ljava/util/List;)
+.var 0 is i Landroid/content/Intent; from lddc0e to lddc22
+.line 662
+	if-eqz	v6,lddbbc
+; v6 : single-length
+.line 663
+	iget-object	v2,v5,com/fsharemobile/fragments/PicturesFragment$6.this$0 Lcom/fsharemobile/fragments/PicturesFragment;
+; v2 : Lcom/fsharemobile/fragments/PicturesFragment; , v5 : Lcom/fsharemobile/fragments/PicturesFragment$6;
+	invoke-static	{v2,v6},com/fsharemobile/fragments/PicturesFragment/access$12	; access$12(Lcom/fsharemobile/fragments/PicturesFragment;I)V
+; v2 : Lcom/fsharemobile/fragments/PicturesFragment; , v6 : single-length
+lddbba:
+.line 692
+	return-void	
+lddbbc:
+.line 665
+	const/16	v2,201
+; v2 : single-length
+	if-ne	v6,v2,lddc22
+; v6 : single-length , v2 : single-length
+.line 666
+	const-string	v2,"PICTUREFRAGMENT_LOG"
+; v2 : Ljava/lang/String;
+	const-string	v3,"Not Login Yet ,  RELOGIN"
+; v3 : Ljava/lang/String;
+	invoke-static	{v2,v3},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v2 : Ljava/lang/String; , v3 : Ljava/lang/String;
+.line 667
+	iget-object	v2,v5,com/fsharemobile/fragments/PicturesFragment$6.this$0 Lcom/fsharemobile/fragments/PicturesFragment;
+; v2 : Lcom/fsharemobile/fragments/PicturesFragment; , v5 : Lcom/fsharemobile/fragments/PicturesFragment$6;
+	iget-object	v2,v2,com/fsharemobile/fragments/PicturesFragment.dialogPic Landroid/app/ProgressDialog;
+; v2 : Landroid/app/ProgressDialog; , v2 : Landroid/app/ProgressDialog;
+	if-eqz	v2,lddc00
+; v2 : Landroid/app/ProgressDialog;
+	iget-object	v2,v5,com/fsharemobile/fragments/PicturesFragment$6.this$0 Lcom/fsharemobile/fragments/PicturesFragment;
+; v2 : Lcom/fsharemobile/fragments/PicturesFragment; , v5 : Lcom/fsharemobile/fragments/PicturesFragment$6;
+	iget-object	v2,v2,com/fsharemobile/fragments/PicturesFragment.dialogPic Landroid/app/ProgressDialog;
+; v2 : Landroid/app/ProgressDialog; , v2 : Landroid/app/ProgressDialog;
+	invoke-virtual	{v2},android/app/ProgressDialog/isShowing	; isShowing()Z
+; v2 : Landroid/app/ProgressDialog;
+	move-result	v2
+; v2 : single-length
+	if-eqz	v2,lddc00
+; v2 : single-length
+.line 668
+	iget-object	v2,v5,com/fsharemobile/fragments/PicturesFragment$6.this$0 Lcom/fsharemobile/fragments/PicturesFragment;
+; v2 : Lcom/fsharemobile/fragments/PicturesFragment; , v5 : Lcom/fsharemobile/fragments/PicturesFragment$6;
+	iget-object	v2,v2,com/fsharemobile/fragments/PicturesFragment.dialogPic Landroid/app/ProgressDialog;
+; v2 : Landroid/app/ProgressDialog; , v2 : Landroid/app/ProgressDialog;
+	invoke-virtual	{v2},android/app/ProgressDialog/dismiss	; dismiss()V
+; v2 : Landroid/app/ProgressDialog;
+lddc00:
+.line 670
+	new-instance	v0,android/content/Intent
+; v0 : Landroid/content/Intent;
+.line 671
+	const-string	v2,"com.fsharemobile.service.Relogin"
+; v2 : Ljava/lang/String;
+.line 670
+	invoke-direct	{v0,v2},android/content/Intent/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Landroid/content/Intent; , v2 : Ljava/lang/String;
+.line 672
+	iget-object	v2,v5,com/fsharemobile/fragments/PicturesFragment$6.this$0 Lcom/fsharemobile/fragments/PicturesFragment;
+; v2 : Lcom/fsharemobile/fragments/PicturesFragment; , v5 : Lcom/fsharemobile/fragments/PicturesFragment$6;
+	invoke-virtual	{v2},com/fsharemobile/fragments/PicturesFragment/getActivity	; getActivity()Landroid/support/v4/app/FragmentActivity;
+; v2 : Lcom/fsharemobile/fragments/PicturesFragment;
+	move-result-object	v2
+; v2 : Landroid/support/v4/app/FragmentActivity;
+	invoke-virtual	{v2,v0},android/support/v4/app/FragmentActivity/sendBroadcast	; sendBroadcast(Landroid/content/Intent;)V
+; v2 : Landroid/support/v4/app/FragmentActivity; , v0 : Landroid/content/Intent;
+	goto	lddbba
+lddc22:
+.line 675
+	iget-object	v2,v5,com/fsharemobile/fragments/PicturesFragment$6.this$0 Lcom/fsharemobile/fragments/PicturesFragment;
+; v2 : Lcom/fsharemobile/fragments/PicturesFragment; , v5 : Lcom/fsharemobile/fragments/PicturesFragment$6;
+	invoke-virtual	{v2},com/fsharemobile/fragments/PicturesFragment/isAdded	; isAdded()Z
+; v2 : Lcom/fsharemobile/fragments/PicturesFragment;
+	move-result	v2
+; v2 : single-length
+	if-eqz	v2,lddbba
+; v2 : single-length
+.line 676
+	const/4	v1,0
+; v1 : single-length
+.line 680
+	iget-object	v2,v5,com/fsharemobile/fragments/PicturesFragment$6.this$0 Lcom/fsharemobile/fragments/PicturesFragment;
+; v2 : Lcom/fsharemobile/fragments/PicturesFragment; , v5 : Lcom/fsharemobile/fragments/PicturesFragment$6;
+	iget-object	v2,v2,com/fsharemobile/fragments/PicturesFragment.picturesAdapter Lcom/fsharemobile/adapter/PictureArrayAdapter;
+; v2 : Lcom/fsharemobile/adapter/PictureArrayAdapter; , v2 : Lcom/fsharemobile/adapter/PictureArrayAdapter;
+	invoke-virtual	{v2,v7},com/fsharemobile/adapter/PictureArrayAdapter/addAll	; addAll(Ljava/util/Collection;)V
+; v2 : Lcom/fsharemobile/adapter/PictureArrayAdapter; , v7 : Ljava/util/List;
+.line 681
+	iget-object	v2,v5,com/fsharemobile/fragments/PicturesFragment$6.this$0 Lcom/fsharemobile/fragments/PicturesFragment;
+; v2 : Lcom/fsharemobile/fragments/PicturesFragment; , v5 : Lcom/fsharemobile/fragments/PicturesFragment$6;
+	iget-object	v2,v2,com/fsharemobile/fragments/PicturesFragment.picturesAdapter Lcom/fsharemobile/adapter/PictureArrayAdapter;
+; v2 : Lcom/fsharemobile/adapter/PictureArrayAdapter; , v2 : Lcom/fsharemobile/adapter/PictureArrayAdapter;
+	invoke-virtual	{v2},com/fsharemobile/adapter/PictureArrayAdapter/getArrLink	; getArrLink()Ljava/util/List;
+; v2 : Lcom/fsharemobile/adapter/PictureArrayAdapter;
+	move-result-object	v2
+; v2 : Ljava/util/List;
+	invoke-interface	{v2},java/util/List/size	; size()I
+; v2 : Ljava/util/List;
+	move-result	v2
+; v2 : single-length
+	if-eqz	v2,lddc60
+; v2 : single-length
+.line 682
+	const/4	v1,1
+; v1 : single-length
+lddc60:
+.line 684
+	invoke-interface	{v7},java/util/List/size	; size()I
+; v7 : Ljava/util/List;
+	move-result	v2
+; v2 : single-length
+	const/16	v3,50
+; v3 : single-length
+	if-ge	v2,v3,lddc7c
+; v2 : single-length , v3 : single-length
+.line 685
+	iget-object	v2,v5,com/fsharemobile/fragments/PicturesFragment$6.this$0 Lcom/fsharemobile/fragments/PicturesFragment;
+; v2 : Lcom/fsharemobile/fragments/PicturesFragment; , v5 : Lcom/fsharemobile/fragments/PicturesFragment$6;
+	const/4	v3,1
+; v3 : single-length
+	invoke-static	{v2,v3},com/fsharemobile/fragments/PicturesFragment/access$6	; access$6(Lcom/fsharemobile/fragments/PicturesFragment;Z)V
+; v2 : Lcom/fsharemobile/fragments/PicturesFragment; , v3 : single-length
+lddc7c:
+.line 687
+	const-string	v2,"IS_EMTPTY"
+; v2 : Ljava/lang/String;
+	new-instance	v3,java/lang/StringBuilder
+; v3 : Ljava/lang/StringBuilder;
+	invoke-static	{v1},java/lang/String/valueOf	; valueOf(Z)Ljava/lang/String;
+; v1 : single-length
+	move-result-object	v4
+; v4 : Ljava/lang/String;
+	invoke-direct	{v3,v4},java/lang/StringBuilder/<init>	; <init>(Ljava/lang/String;)V
+; v3 : Ljava/lang/StringBuilder; , v4 : Ljava/lang/String;
+	const-string	v4,"----"
+; v4 : Ljava/lang/String;
+	invoke-virtual	{v3,v4},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v3 : Ljava/lang/StringBuilder; , v4 : Ljava/lang/String;
+	move-result-object	v3
+; v3 : Ljava/lang/StringBuilder;
+.line 688
+	invoke-interface	{v7},java/util/List/size	; size()I
+; v7 : Ljava/util/List;
+	move-result	v4
+; v4 : single-length
+	invoke-virtual	{v3,v4},java/lang/StringBuilder/append	; append(I)Ljava/lang/StringBuilder;
+; v3 : Ljava/lang/StringBuilder; , v4 : single-length
+	move-result-object	v3
+; v3 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v3},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v3 : Ljava/lang/StringBuilder;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+.line 687
+	invoke-static	{v2,v3},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v2 : Ljava/lang/String; , v3 : Ljava/lang/String;
+.line 689
+	iget-object	v2,v5,com/fsharemobile/fragments/PicturesFragment$6.this$0 Lcom/fsharemobile/fragments/PicturesFragment;
+; v2 : Lcom/fsharemobile/fragments/PicturesFragment; , v5 : Lcom/fsharemobile/fragments/PicturesFragment$6;
+	invoke-static	{v2,v6,v1},com/fsharemobile/fragments/PicturesFragment/access$13	; access$13(Lcom/fsharemobile/fragments/PicturesFragment;IZ)V
+; v2 : Lcom/fsharemobile/fragments/PicturesFragment; , v6 : single-length , v1 : single-length
+	goto/16	lddbba
+.end method
+
+

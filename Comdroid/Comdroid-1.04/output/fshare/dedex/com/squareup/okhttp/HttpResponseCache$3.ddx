@@ -1,0 +1,80 @@
+.class com/squareup/okhttp/HttpResponseCache$3
+.super java/lang/Object
+.source HttpResponseCache.java
+
+.inner class 3 inner com/squareup/okhttp/HttpResponseCache$3 outer com/squareup/okhttp/HttpResponseCache
+.field static final $SwitchMap$com$squareup$okhttp$ResponseSource [I
+
+.method static <clinit>()V
+.limit registers 3
+.catch java/lang/NoSuchFieldError from lb2fd6 to lb2fec using lb2fee
+.catch java/lang/NoSuchFieldError from lb2fc0 to lb2fd6 using lb2ff2
+.catch java/lang/NoSuchFieldError from lb2faa to lb2fc0 using lb2ff6
+.line 351
+	invoke-static	{},com/squareup/okhttp/ResponseSource/values	; values()[Lcom/squareup/okhttp/ResponseSource;
+; 
+	nop	
+	move-result-object	v0
+; v0 : [Lcom/squareup/okhttp/ResponseSource;
+	array-length	v0,v0
+; v0 : single-length , v0 : single-length
+	new-array	v0,v0,[I
+; v0 : [I , v0 : [I
+	sput-object	v0,com/squareup/okhttp/HttpResponseCache$3.$SwitchMap$com$squareup$okhttp$ResponseSource [I
+; v0 : [I
+lb2faa:
+	sget-object	v0,com/squareup/okhttp/HttpResponseCache$3.$SwitchMap$com$squareup$okhttp$ResponseSource [I
+; v0 : [I
+	sget-object	v1,com/squareup/okhttp/ResponseSource.CACHE Lcom/squareup/okhttp/ResponseSource;
+; v1 : Lcom/squareup/okhttp/ResponseSource;
+	invoke-virtual	{v1},com/squareup/okhttp/ResponseSource/ordinal	; ordinal()I
+; v1 : Lcom/squareup/okhttp/ResponseSource;
+	move-result	v1
+; v1 : single-length
+	const/4	v2,1
+; v2 : single-length
+	aput	v2,v0,v1
+; v2 : single-length , v0 : [I , v1 : single-length
+lb2fc0:
+	sget-object	v0,com/squareup/okhttp/HttpResponseCache$3.$SwitchMap$com$squareup$okhttp$ResponseSource [I
+; v0 : [I
+	sget-object	v1,com/squareup/okhttp/ResponseSource.CONDITIONAL_CACHE Lcom/squareup/okhttp/ResponseSource;
+; v1 : Lcom/squareup/okhttp/ResponseSource;
+	invoke-virtual	{v1},com/squareup/okhttp/ResponseSource/ordinal	; ordinal()I
+; v1 : Lcom/squareup/okhttp/ResponseSource;
+	move-result	v1
+; v1 : single-length
+	const/4	v2,2
+; v2 : single-length
+	aput	v2,v0,v1
+; v2 : single-length , v0 : [I , v1 : single-length
+lb2fd6:
+	sget-object	v0,com/squareup/okhttp/HttpResponseCache$3.$SwitchMap$com$squareup$okhttp$ResponseSource [I
+; v0 : [I
+	sget-object	v1,com/squareup/okhttp/ResponseSource.NETWORK Lcom/squareup/okhttp/ResponseSource;
+; v1 : Lcom/squareup/okhttp/ResponseSource;
+	invoke-virtual	{v1},com/squareup/okhttp/ResponseSource/ordinal	; ordinal()I
+; v1 : Lcom/squareup/okhttp/ResponseSource;
+	move-result	v1
+; v1 : single-length
+	const/4	v2,3
+; v2 : single-length
+	aput	v2,v0,v1
+; v2 : single-length , v0 : [I , v1 : single-length
+lb2fec:
+	return-void	
+lb2fee:
+	move-exception	v0
+; v0 : java/lang/NoSuchFieldError
+	goto	lb2fec
+lb2ff2:
+	move-exception	v0
+; v0 : java/lang/NoSuchFieldError
+	goto	lb2fd6
+lb2ff6:
+	move-exception	v0
+; v0 : java/lang/NoSuchFieldError
+	goto	lb2fc0
+.end method
+
+

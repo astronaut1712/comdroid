@@ -1,0 +1,100 @@
+.class com/fsharemobile/aq
+.super java/lang/Object
+.source MyApplication
+.implements com/fsharemobile/a/ap
+
+.field final a Lcom/fsharemobile/LoginActivity;
+
+.method <init>(Lcom/fsharemobile/LoginActivity;)V
+.limit registers 2
+; this: v0 (Lcom/fsharemobile/aq;)
+; parameter[0] : v1 (Lcom/fsharemobile/LoginActivity;)
+.line 1
+	iput-object	v1,v0,com/fsharemobile/aq.a Lcom/fsharemobile/LoginActivity;
+; v1 : Lcom/fsharemobile/LoginActivity; , v0 : Lcom/fsharemobile/aq;
+.line 238
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Lcom/fsharemobile/aq;
+	return-void	
+.end method
+
+.method public a(I)V
+.limit registers 5
+; this: v3 (Lcom/fsharemobile/aq;)
+; parameter[0] : v4 (I)
+.line 242
+	sget-object	v0,java/lang/System.out Ljava/io/PrintStream;
+; v0 : Ljava/io/PrintStream;
+	invoke-virtual	{v0,v4},java/io/PrintStream/println	; println(I)V
+; v0 : Ljava/io/PrintStream; , v4 : single-length
+.line 243
+	sget-object	v0,java/lang/System.out Ljava/io/PrintStream;
+; v0 : Ljava/io/PrintStream;
+	iget-object	v1,v3,com/fsharemobile/aq.a Lcom/fsharemobile/LoginActivity;
+; v1 : Lcom/fsharemobile/LoginActivity; , v3 : Lcom/fsharemobile/aq;
+	invoke-static	{v1},com/fsharemobile/LoginActivity/a	; a(Lcom/fsharemobile/LoginActivity;)Lcom/fsharemobile/a/c;
+; v1 : Lcom/fsharemobile/LoginActivity;
+	move-result-object	v1
+; v1 : Lcom/fsharemobile/a/c;
+	invoke-virtual	{v1},com/fsharemobile/a/c/b	; b()Ljava/lang/String;
+; v1 : Lcom/fsharemobile/a/c;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/io/PrintStream/println	; println(Ljava/lang/String;)V
+; v0 : Ljava/io/PrintStream; , v1 : Ljava/lang/String;
+.line 245
+	const-string	v0,"Login_errCode_UI"
+; v0 : Ljava/lang/String;
+	new-instance	v1,java/lang/StringBuilder
+; v1 : Ljava/lang/StringBuilder;
+	invoke-static	{v4},java/lang/String/valueOf	; valueOf(I)Ljava/lang/String;
+; v4 : single-length
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-direct	{v1,v2},java/lang/StringBuilder/<init>	; <init>(Ljava/lang/String;)V
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	invoke-virtual	{v1},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v1 : Ljava/lang/StringBuilder;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-static	{v0,v1},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v0 : Ljava/lang/String; , v1 : Ljava/lang/String;
+.line 247
+	if-eqz	v4,l88246
+; v4 : single-length
+.line 248
+	iget-object	v0,v3,com/fsharemobile/aq.a Lcom/fsharemobile/LoginActivity;
+; v0 : Lcom/fsharemobile/LoginActivity; , v3 : Lcom/fsharemobile/aq;
+	iget-object	v0,v0,com/fsharemobile/LoginActivity.k Landroid/widget/LinearLayout;
+; v0 : Landroid/widget/LinearLayout; , v0 : Landroid/widget/LinearLayout;
+	const/4	v1,0
+; v1 : single-length
+	invoke-virtual	{v0,v1},android/widget/LinearLayout/setVisibility	; setVisibility(I)V
+; v0 : Landroid/widget/LinearLayout; , v1 : single-length
+.line 249
+	iget-object	v0,v3,com/fsharemobile/aq.a Lcom/fsharemobile/LoginActivity;
+; v0 : Lcom/fsharemobile/LoginActivity; , v3 : Lcom/fsharemobile/aq;
+	iget-object	v0,v0,com/fsharemobile/LoginActivity.l Landroid/widget/RelativeLayout;
+; v0 : Landroid/widget/RelativeLayout; , v0 : Landroid/widget/RelativeLayout;
+	const/16	v1,8
+; v1 : single-length
+	invoke-virtual	{v0,v1},android/widget/RelativeLayout/setVisibility	; setVisibility(I)V
+; v0 : Landroid/widget/RelativeLayout; , v1 : single-length
+.line 250
+	iget-object	v0,v3,com/fsharemobile/aq.a Lcom/fsharemobile/LoginActivity;
+; v0 : Lcom/fsharemobile/LoginActivity; , v3 : Lcom/fsharemobile/aq;
+	invoke-static	{v0,v4},com/fsharemobile/LoginActivity/a	; a(Lcom/fsharemobile/LoginActivity;I)V
+; v0 : Lcom/fsharemobile/LoginActivity; , v4 : single-length
+l88244:
+.line 257
+	return-void	
+l88246:
+.line 254
+	iget-object	v0,v3,com/fsharemobile/aq.a Lcom/fsharemobile/LoginActivity;
+; v0 : Lcom/fsharemobile/LoginActivity; , v3 : Lcom/fsharemobile/aq;
+	invoke-static	{v0,v4},com/fsharemobile/LoginActivity/b	; b(Lcom/fsharemobile/LoginActivity;I)V
+; v0 : Lcom/fsharemobile/LoginActivity; , v4 : single-length
+	goto	l88244
+.end method
+
+

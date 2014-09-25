@@ -1,0 +1,479 @@
+.class final com/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream
+.super com/squareup/okhttp/internal/AbstractOutputStream
+.source HttpTransport.java
+
+.inner class ChunkedOutputStream inner com/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream outer com/squareup/okhttp/internal/http/HttpTransport
+.field private static final CRLF [B
+.field private static final FINAL_CHUNK [B
+.field private static final HEX_DIGITS [B
+.field private final bufferedChunk Ljava/io/ByteArrayOutputStream;
+.field private final hex [B
+.field private final maxChunkLength I
+.field private final socketOut Ljava/io/OutputStream;
+
+.method static <clinit>()V
+.limit registers 1
+.line 268
+	const/4	v0,2
+; v0 : single-length
+	new-array	v0,v0,[B
+; v0 : [B , v0 : [B
+	fill-array-data	v0,lef7cc
+; v0 : [B
+	sput-object	v0,com/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream.CRLF [B
+; v0 : [B
+.line 269
+	const/16	v0,16
+; v0 : single-length
+	new-array	v0,v0,[B
+; v0 : [B , v0 : [B
+	fill-array-data	v0,lef7d8
+; v0 : [B
+	sput-object	v0,com/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream.HEX_DIGITS [B
+; v0 : [B
+.line 272
+	const/4	v0,5
+; v0 : single-length
+	new-array	v0,v0,[B
+; v0 : [B , v0 : [B
+	fill-array-data	v0,lef7f0
+; v0 : [B
+	sput-object	v0,com/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream.FINAL_CHUNK [B
+; v0 : [B
+	return-void	
+.line 268
+lef7cc:	data-array
+		0x0D	; #0
+		0x0A	; #1
+	end data-array
+.line 269
+lef7d6:	data-array
+		0x00, 0x00
+	end data-array
+lef7d8:	data-array
+		0x30	; #0
+		0x31	; #1
+		0x32	; #2
+		0x33	; #3
+		0x34	; #4
+		0x35	; #5
+		0x36	; #6
+		0x37	; #7
+		0x38	; #8
+		0x39	; #9
+		0x61	; #10
+		0x62	; #11
+		0x63	; #12
+		0x64	; #13
+		0x65	; #14
+		0x66	; #15
+	end data-array
+.line 272
+lef7f0:	data-array
+		0x30	; #0
+		0x0D	; #1
+		0x0A	; #2
+		0x0D	; #3
+		0x0A	; #4
+	end data-array
+lef7fd:	data-array
+		0x00
+	end data-array
+.end method
+
+.method private <init>(Ljava/io/OutputStream;I)V
+.limit registers 5
+; this: v2 (Lcom/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream;)
+; parameter[0] : v3 (Ljava/io/OutputStream;)
+; parameter[1] : v4 (I)
+.line 281
+	invoke-direct	{v2},com/squareup/okhttp/internal/AbstractOutputStream/<init>	; <init>()V
+; v2 : Lcom/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream;
+.line 275
+	const/16	v0,10
+; v0 : single-length
+	new-array	v0,v0,[B
+; v0 : [B , v0 : [B
+	fill-array-data	v0,lef854
+; v0 : [B
+	iput-object	v0,v2,com/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream.hex [B
+; v0 : [B , v2 : Lcom/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream;
+.line 282
+	iput-object	v3,v2,com/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream.socketOut Ljava/io/OutputStream;
+; v3 : Ljava/io/OutputStream; , v2 : Lcom/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream;
+.line 283
+	const/4	v0,1
+; v0 : single-length
+	invoke-direct	{v2,v4},com/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream/dataLength	; dataLength(I)I
+; v2 : Lcom/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream; , v4 : single-length
+	move-result	v1
+; v1 : single-length
+	invoke-static	{v0,v1},java/lang/Math/max	; max(II)I
+; v0 : single-length , v1 : single-length
+	move-result	v0
+; v0 : single-length
+	iput	v0,v2,com/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream.maxChunkLength I
+; v0 : single-length , v2 : Lcom/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream;
+.line 284
+	new-instance	v0,java/io/ByteArrayOutputStream
+; v0 : Ljava/io/ByteArrayOutputStream;
+	invoke-direct	{v0,v4},java/io/ByteArrayOutputStream/<init>	; <init>(I)V
+; v0 : Ljava/io/ByteArrayOutputStream; , v4 : single-length
+	iput-object	v0,v2,com/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream.bufferedChunk Ljava/io/ByteArrayOutputStream;
+; v0 : Ljava/io/ByteArrayOutputStream; , v2 : Lcom/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream;
+.line 285
+	return-void	
+.line 275
+lef852:	data-array
+		0x00, 0x00
+	end data-array
+lef854:	data-array
+		0x00	; #0
+		0x00	; #1
+		0x00	; #2
+		0x00	; #3
+		0x00	; #4
+		0x00	; #5
+		0x00	; #6
+		0x00	; #7
+		0x0D	; #8
+		0x0A	; #9
+	end data-array
+.end method
+
+.method <init>(Ljava/io/OutputStream;ILcom/squareup/okhttp/internal/http/HttpTransport$1;)V
+.limit registers 4
+; this: v0 (Lcom/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream;)
+; parameter[0] : v1 (Ljava/io/OutputStream;)
+; parameter[1] : v2 (I)
+; parameter[2] : v3 (Lcom/squareup/okhttp/internal/http/HttpTransport$1;)
+.line 267
+	invoke-direct	{v0,v1,v2},com/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream/<init>	; <init>(Ljava/io/OutputStream;I)V
+; v0 : Lcom/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream; , v1 : Ljava/io/OutputStream; , v2 : single-length
+	return-void	
+.end method
+
+.method private dataLength(I)I
+.limit registers 5
+; this: v3 (Lcom/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream;)
+; parameter[0] : v4 (I)
+.line 293
+	const/4	v0,4
+; v0 : single-length
+.line 294
+	sub-int	v1,v4,v0
+; v1 : single-length , v4 : single-length , v0 : single-length
+lef896:
+	if-lez	v1,lef8a4
+; v1 : single-length
+.line 295
+	add-int/lit8	v0,v0,1
+; v0 : single-length , v0 : single-length
+.line 294
+	shr-int/lit8	v1,v1,4
+; v1 : single-length , v1 : single-length
+	goto	lef896
+lef8a4:
+.line 297
+	sub-int	v2,v4,v0
+; v2 : single-length , v4 : single-length , v0 : single-length
+	return	v2
+; v2 : single-length
+.end method
+
+.method private writeBufferedChunkToSocket()V
+.throws Ljava/io/IOException;
+.limit registers 4
+; this: v3 (Lcom/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream;)
+.line 359
+	iget-object	v1,v3,com/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream.bufferedChunk Ljava/io/ByteArrayOutputStream;
+; v1 : Ljava/io/ByteArrayOutputStream; , v3 : Lcom/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream;
+	invoke-virtual	{v1},java/io/ByteArrayOutputStream/size	; size()I
+; v1 : Ljava/io/ByteArrayOutputStream;
+	move-result	v0
+; v0 : single-length
+.line 360
+	if-gtz	v0,lef8ce
+; v0 : single-length
+lef8cc:
+.line 368
+	return-void	
+lef8ce:
+.line 364
+	invoke-direct	{v3,v0},com/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream/writeHex	; writeHex(I)V
+; v3 : Lcom/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream; , v0 : single-length
+.line 365
+	iget-object	v1,v3,com/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream.bufferedChunk Ljava/io/ByteArrayOutputStream;
+; v1 : Ljava/io/ByteArrayOutputStream; , v3 : Lcom/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream;
+	iget-object	v2,v3,com/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream.socketOut Ljava/io/OutputStream;
+; v2 : Ljava/io/OutputStream; , v3 : Lcom/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream;
+	invoke-virtual	{v1,v2},java/io/ByteArrayOutputStream/writeTo	; writeTo(Ljava/io/OutputStream;)V
+; v1 : Ljava/io/ByteArrayOutputStream; , v2 : Ljava/io/OutputStream;
+.line 366
+	iget-object	v1,v3,com/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream.bufferedChunk Ljava/io/ByteArrayOutputStream;
+; v1 : Ljava/io/ByteArrayOutputStream; , v3 : Lcom/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream;
+	invoke-virtual	{v1},java/io/ByteArrayOutputStream/reset	; reset()V
+; v1 : Ljava/io/ByteArrayOutputStream;
+.line 367
+	iget-object	v1,v3,com/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream.socketOut Ljava/io/OutputStream;
+; v1 : Ljava/io/OutputStream; , v3 : Lcom/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream;
+	sget-object	v2,com/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream.CRLF [B
+; v2 : [B
+	invoke-virtual	{v1,v2},java/io/OutputStream/write	; write([B)V
+; v1 : Ljava/io/OutputStream; , v2 : [B
+	goto	lef8cc
+.end method
+
+.method private writeHex(I)V
+.throws Ljava/io/IOException;
+.limit registers 6
+; this: v4 (Lcom/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream;)
+; parameter[0] : v5 (I)
+.line 334
+	const/16	v0,8
+; v0 : single-length
+lef910:
+.line 336
+	iget-object	v1,v4,com/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream.hex [B
+; v1 : [B , v4 : Lcom/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream;
+	add-int/lit8	v0,v0,255
+; v0 : single-length , v0 : single-length
+	sget-object	v2,com/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream.HEX_DIGITS [B
+; v2 : [B
+	and-int/lit8	v3,v5,15
+; v3 : single-length , v5 : single-length
+	aget-byte	v2,v2,v3
+; v2 : single-length , v2 : single-length , v3 : single-length
+	aput-byte	v2,v1,v0
+; v2 : single-length , v1 : [B , v0 : single-length
+.line 337
+	ushr-int/lit8	v5,v5,4
+; v5 : single-length , v5 : single-length
+	if-nez	v5,lef910
+; v5 : single-length
+.line 338
+	iget-object	v1,v4,com/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream.socketOut Ljava/io/OutputStream;
+; v1 : Ljava/io/OutputStream; , v4 : Lcom/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream;
+	iget-object	v2,v4,com/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream.hex [B
+; v2 : [B , v4 : Lcom/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream;
+	iget-object	v3,v4,com/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream.hex [B
+; v3 : [B , v4 : Lcom/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream;
+	array-length	v3,v3
+; v3 : single-length , v3 : single-length
+	sub-int/2addr	v3,v0
+; v3 : single-length , v0 : single-length
+	invoke-virtual	{v1,v2,v0,v3},java/io/OutputStream/write	; write([BII)V
+; v1 : Ljava/io/OutputStream; , v2 : [B , v0 : single-length , v3 : single-length
+.line 339
+	return-void	
+.end method
+
+.method public synchronized close()V
+.throws Ljava/io/IOException;
+.limit registers 3
+; this: v2 (Lcom/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream;)
+.catch java/lang/Exception from lef968 to lef980 using lef982
+.catch java/lang/Exception from lef95a to lef95e using lef982
+.line 350
+	monitor-enter	v2
+; v2 : Lcom/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream;
+lef95a:
+	iget-boolean	v0,v2,com/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream.closed Z
+; v0 : single-length , v2 : Lcom/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream;
+lef95e:
+	if-eqz	v0,lef966
+; v0 : single-length
+lef962:
+.line 356
+	monitor-exit	v2
+; v2 : Lcom/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream;
+	return-void	
+lef966:
+.line 353
+	const/4	v0,1
+; v0 : single-length
+lef968:
+	iput-boolean	v0,v2,com/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream.closed Z
+; v0 : single-length , v2 : Lcom/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream;
+.line 354
+	invoke-direct	{v2},com/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream/writeBufferedChunkToSocket	; writeBufferedChunkToSocket()V
+; v2 : Lcom/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream;
+.line 355
+	iget-object	v0,v2,com/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream.socketOut Ljava/io/OutputStream;
+; v0 : Ljava/io/OutputStream; , v2 : Lcom/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream;
+	sget-object	v1,com/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream.FINAL_CHUNK [B
+; v1 : [B
+	invoke-virtual	{v0,v1},java/io/OutputStream/write	; write([B)V
+; v0 : Ljava/io/OutputStream; , v1 : [B
+lef980:
+	goto	lef962
+lef982:
+.line 350
+	move-exception	v0
+; v0 : java/lang/Exception
+	monitor-exit	v2
+; v2 : Lcom/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream;
+	throw	v0
+; v0 : java/lang/Exception
+.end method
+
+.method public synchronized flush()V
+.throws Ljava/io/IOException;
+.limit registers 2
+; this: v1 (Lcom/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream;)
+.catch java/lang/Exception from lef9ba to lef9ca using lef9cc
+.catch java/lang/Exception from lef9ae to lef9b2 using lef9cc
+.line 342
+	monitor-enter	v1
+; v1 : Lcom/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream;
+lef9ae:
+	iget-boolean	v0,v1,com/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream.closed Z
+; v0 : single-length , v1 : Lcom/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream;
+lef9b2:
+	if-eqz	v0,lef9ba
+; v0 : single-length
+lef9b6:
+.line 347
+	monitor-exit	v1
+; v1 : Lcom/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream;
+	return-void	
+lef9ba:
+.line 345
+	invoke-direct	{v1},com/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream/writeBufferedChunkToSocket	; writeBufferedChunkToSocket()V
+; v1 : Lcom/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream;
+.line 346
+	iget-object	v0,v1,com/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream.socketOut Ljava/io/OutputStream;
+; v0 : Ljava/io/OutputStream; , v1 : Lcom/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream;
+	invoke-virtual	{v0},java/io/OutputStream/flush	; flush()V
+; v0 : Ljava/io/OutputStream;
+lef9ca:
+	goto	lef9b6
+lef9cc:
+.line 342
+	move-exception	v0
+; v0 : java/lang/Exception
+	monitor-exit	v1
+; v1 : Lcom/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream;
+	throw	v0
+; v0 : java/lang/Exception
+.end method
+
+.method public synchronized write([BII)V
+.throws Ljava/io/IOException;
+.limit registers 7
+; this: v3 (Lcom/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream;)
+; parameter[0] : v4 ([B)
+; parameter[1] : v5 (I)
+; parameter[2] : v6 (I)
+.catch java/lang/Exception from lef9fa to lefa8a using lefa8c
+.var 0 is numBytesWritten I from lefa3e to lefa68
+.var 0 is numBytesWritten I from lefa6c to lefa8c
+.line 302
+	monitor-enter	v3
+; v3 : Lcom/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream;
+lef9fa:
+	invoke-virtual	{v3},com/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream/checkNotClosed	; checkNotClosed()V
+; v3 : Lcom/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream;
+.line 303
+	array-length	v1,v4
+; v1 : single-length , v4 : [B
+	invoke-static	{v1,v5,v6},com/squareup/okhttp/internal/Util/checkOffsetAndCount	; checkOffsetAndCount(III)V
+; v1 : single-length , v5 : single-length , v6 : single-length
+lefa08:
+.line 305
+	if-lez	v6,lefa92
+; v6 : single-length
+.line 308
+	iget-object	v1,v3,com/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream.bufferedChunk Ljava/io/ByteArrayOutputStream;
+; v1 : Ljava/io/ByteArrayOutputStream; , v3 : Lcom/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream;
+	invoke-virtual	{v1},java/io/ByteArrayOutputStream/size	; size()I
+; v1 : Ljava/io/ByteArrayOutputStream;
+	move-result	v1
+; v1 : single-length
+	if-gtz	v1,lefa24
+; v1 : single-length
+	iget	v1,v3,com/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream.maxChunkLength I
+; v1 : single-length , v3 : Lcom/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream;
+	if-ge	v6,v1,lefa68
+; v6 : single-length , v1 : single-length
+lefa24:
+.line 310
+	iget	v1,v3,com/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream.maxChunkLength I
+; v1 : single-length , v3 : Lcom/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream;
+	iget-object	v2,v3,com/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream.bufferedChunk Ljava/io/ByteArrayOutputStream;
+; v2 : Ljava/io/ByteArrayOutputStream; , v3 : Lcom/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream;
+	invoke-virtual	{v2},java/io/ByteArrayOutputStream/size	; size()I
+; v2 : Ljava/io/ByteArrayOutputStream;
+	move-result	v2
+; v2 : single-length
+	sub-int/2addr	v1,v2
+; v1 : single-length , v2 : single-length
+	invoke-static	{v6,v1},java/lang/Math/min	; min(II)I
+; v6 : single-length , v1 : single-length
+	move-result	v0
+; v0 : single-length
+.line 312
+	iget-object	v1,v3,com/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream.bufferedChunk Ljava/io/ByteArrayOutputStream;
+; v1 : Ljava/io/ByteArrayOutputStream; , v3 : Lcom/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream;
+	invoke-virtual	{v1,v4,v5,v0},java/io/ByteArrayOutputStream/write	; write([BII)V
+; v1 : Ljava/io/ByteArrayOutputStream; , v4 : [B , v5 : single-length , v0 : single-length
+.line 313
+	iget-object	v1,v3,com/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream.bufferedChunk Ljava/io/ByteArrayOutputStream;
+; v1 : Ljava/io/ByteArrayOutputStream; , v3 : Lcom/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream;
+	invoke-virtual	{v1},java/io/ByteArrayOutputStream/size	; size()I
+; v1 : Ljava/io/ByteArrayOutputStream;
+	move-result	v1
+; v1 : single-length
+	iget	v2,v3,com/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream.maxChunkLength I
+; v2 : single-length , v3 : Lcom/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream;
+	if-ne	v1,v2,lefa62
+; v1 : single-length , v2 : single-length
+.line 314
+	invoke-direct	{v3},com/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream/writeBufferedChunkToSocket	; writeBufferedChunkToSocket()V
+; v3 : Lcom/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream;
+lefa62:
+.line 324
+	add-int/2addr	v5,v0
+; v5 : single-length , v0 : single-length
+.line 325
+	sub-int/2addr	v6,v0
+; v6 : single-length , v0 : single-length
+.line 326
+	goto	lefa08
+lefa68:
+.line 318
+	iget	v0,v3,com/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream.maxChunkLength I
+; v0 : single-length , v3 : Lcom/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream;
+.line 319
+	invoke-direct	{v3,v0},com/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream/writeHex	; writeHex(I)V
+; v3 : Lcom/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream; , v0 : single-length
+.line 320
+	iget-object	v1,v3,com/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream.socketOut Ljava/io/OutputStream;
+; v1 : Ljava/io/OutputStream; , v3 : Lcom/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream;
+	invoke-virtual	{v1,v4,v5,v0},java/io/OutputStream/write	; write([BII)V
+; v1 : Ljava/io/OutputStream; , v4 : [B , v5 : single-length , v0 : single-length
+.line 321
+	iget-object	v1,v3,com/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream.socketOut Ljava/io/OutputStream;
+; v1 : Ljava/io/OutputStream; , v3 : Lcom/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream;
+	sget-object	v2,com/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream.CRLF [B
+; v2 : [B
+	invoke-virtual	{v1,v2},java/io/OutputStream/write	; write([B)V
+; v1 : Ljava/io/OutputStream; , v2 : [B
+lefa8a:
+	goto	lefa62
+lefa8c:
+.line 302
+	move-exception	v1
+; v1 : java/lang/Exception
+	monitor-exit	v3
+; v3 : Lcom/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream;
+	throw	v1
+; v1 : java/lang/Exception
+lefa92:
+.line 327
+	monitor-exit	v3
+; v3 : Lcom/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream;
+	return-void	
+.end method
+
+

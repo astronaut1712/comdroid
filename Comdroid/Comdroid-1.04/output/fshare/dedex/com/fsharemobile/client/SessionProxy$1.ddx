@@ -1,0 +1,129 @@
+.class com/fsharemobile/client/SessionProxy$1
+.super java/lang/Object
+.source SessionProxy.java
+.implements com/fsharemobile/client/APICallTask$OnAPICallCompleted
+
+.enclosing method com/createDownloadSession(Ljava/lang/String;Lcom/fsharemobile/client/SessionProxy$OnCreateDLSessionCompleted;)V
+.field final this$0 Lcom/fsharemobile/client/SessionProxy;
+.field private final val$callback Lcom/fsharemobile/client/SessionProxy$OnCreateDLSessionCompleted;
+
+.method <init>(Lcom/fsharemobile/client/SessionProxy;Lcom/fsharemobile/client/SessionProxy$OnCreateDLSessionCompleted;)V
+.limit registers 3
+; this: v0 (Lcom/fsharemobile/client/SessionProxy$1;)
+; parameter[0] : v1 (Lcom/fsharemobile/client/SessionProxy;)
+; parameter[1] : v2 (Lcom/fsharemobile/client/SessionProxy$OnCreateDLSessionCompleted;)
+.line 1
+	iput-object	v1,v0,com/fsharemobile/client/SessionProxy$1.this$0 Lcom/fsharemobile/client/SessionProxy;
+; v1 : Lcom/fsharemobile/client/SessionProxy; , v0 : Lcom/fsharemobile/client/SessionProxy$1;
+	iput-object	v2,v0,com/fsharemobile/client/SessionProxy$1.val$callback Lcom/fsharemobile/client/SessionProxy$OnCreateDLSessionCompleted;
+; v2 : Lcom/fsharemobile/client/SessionProxy$OnCreateDLSessionCompleted; , v0 : Lcom/fsharemobile/client/SessionProxy$1;
+.line 61
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Lcom/fsharemobile/client/SessionProxy$1;
+	return-void	
+.end method
+
+.method public onAPICallCompleted(Lcom/fsharemobile/client/HttpResponse;)V
+.limit registers 9
+; this: v7 (Lcom/fsharemobile/client/SessionProxy$1;)
+; parameter[0] : v8 (Lcom/fsharemobile/client/HttpResponse;)
+.catch java/lang/Exception from ldb068 to ldb072 using ldb09a
+.catch java/lang/Exception from ldb030 to ldb066 using ldb082
+.var 3 is jso Lorg/json/JSONObject; from ldb02c to ldb066
+.var 4 is jso Lorg/json/JSONObject; from ldb066 to ldb076
+.var 2 is jex Ljava/lang/Exception; from ldb084 to ldb09a
+.var 3 is jso Lorg/json/JSONObject; from ldb076 to ldb09a
+.var 4 is jso Lorg/json/JSONObject; from ldb09a to ldb09e
+.line 65
+	const/4	v1,0
+; v1 : single-length
+.line 66
+	const/4	v3,0
+; v3 : single-length
+.line 67
+	const-string	v0,""
+; v0 : Ljava/lang/String;
+ldb030:
+.line 70
+	invoke-virtual	{v8},com/fsharemobile/client/HttpResponse/getHttpCode	; getHttpCode()I
+; v8 : Lcom/fsharemobile/client/HttpResponse;
+	move-result	v1
+; v1 : single-length
+.line 72
+	invoke-virtual	{v8},com/fsharemobile/client/HttpResponse/getHttpCode	; getHttpCode()I
+; v8 : Lcom/fsharemobile/client/HttpResponse;
+	move-result	v5
+; v5 : single-length
+	const/16	v6,200
+; v6 : single-length
+	if-eq	v5,v6,ldb054
+; v5 : single-length , v6 : single-length
+.line 73
+	iget-object	v5,v7,com/fsharemobile/client/SessionProxy$1.val$callback Lcom/fsharemobile/client/SessionProxy$OnCreateDLSessionCompleted;
+; v5 : Lcom/fsharemobile/client/SessionProxy$OnCreateDLSessionCompleted; , v7 : Lcom/fsharemobile/client/SessionProxy$1;
+	invoke-interface	{v5,v1,v0},com/fsharemobile/client/SessionProxy$OnCreateDLSessionCompleted/onCreateDLSessionCompleted	; onCreateDLSessionCompleted(ILjava/lang/String;)V
+; v5 : Lcom/fsharemobile/client/SessionProxy$OnCreateDLSessionCompleted; , v1 : single-length , v0 : Ljava/lang/String;
+ldb052:
+.line 86
+	return-void	
+ldb054:
+.line 77
+	new-instance	v4,org/json/JSONObject
+; v4 : Lorg/json/JSONObject;
+	invoke-virtual	{v8},com/fsharemobile/client/HttpResponse/getBodyAsString	; getBodyAsString()Ljava/lang/String;
+; v8 : Lcom/fsharemobile/client/HttpResponse;
+	move-result-object	v5
+; v5 : Ljava/lang/String;
+	invoke-direct	{v4,v5},org/json/JSONObject/<init>	; <init>(Ljava/lang/String;)V
+; v4 : Lorg/json/JSONObject; , v5 : Ljava/lang/String;
+ldb066:
+.line 78
+	const/4	v1,0
+; v1 : single-length
+ldb068:
+.line 79
+	const-string	v5,"location"
+; v5 : Ljava/lang/String;
+	invoke-virtual	{v4,v5},org/json/JSONObject/getString	; getString(Ljava/lang/String;)Ljava/lang/String;
+; v4 : Lorg/json/JSONObject; , v5 : Ljava/lang/String;
+ldb072:
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	move-object	v3,v4
+; v3 : Lorg/json/JSONObject; , v4 : Lorg/json/JSONObject;
+ldb076:
+.line 84
+	iget-object	v5,v7,com/fsharemobile/client/SessionProxy$1.val$callback Lcom/fsharemobile/client/SessionProxy$OnCreateDLSessionCompleted;
+; v5 : Lcom/fsharemobile/client/SessionProxy$OnCreateDLSessionCompleted; , v7 : Lcom/fsharemobile/client/SessionProxy$1;
+	invoke-interface	{v5,v1,v0},com/fsharemobile/client/SessionProxy$OnCreateDLSessionCompleted/onCreateDLSessionCompleted	; onCreateDLSessionCompleted(ILjava/lang/String;)V
+; v5 : Lcom/fsharemobile/client/SessionProxy$OnCreateDLSessionCompleted; , v1 : single-length , v0 : Ljava/lang/String;
+	goto	ldb052
+ldb082:
+.line 80
+	move-exception	v2
+; v2 : java/lang/Exception
+ldb084:
+.line 81
+	sget-object	v5,java/lang/System.out Ljava/io/PrintStream;
+; v5 : Ljava/io/PrintStream;
+	invoke-virtual	{v2},java/lang/Exception/toString	; toString()Ljava/lang/String;
+; v2 : java/lang/Exception
+	move-result-object	v6
+; v6 : Ljava/lang/String;
+	invoke-virtual	{v5,v6},java/io/PrintStream/println	; println(Ljava/lang/String;)V
+; v5 : Ljava/io/PrintStream; , v6 : Ljava/lang/String;
+.line 82
+	const/4	v1,2
+; v1 : single-length
+	goto	ldb076
+ldb09a:
+.line 80
+	move-exception	v2
+; v2 : java/lang/Exception
+	move-object	v3,v4
+; v3 : Lorg/json/JSONObject; , v4 : Lorg/json/JSONObject;
+ldb09e:
+	goto	ldb084
+.end method
+
+

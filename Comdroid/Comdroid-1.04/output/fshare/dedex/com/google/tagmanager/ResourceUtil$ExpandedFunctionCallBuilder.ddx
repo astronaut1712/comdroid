@@ -1,0 +1,85 @@
+.class public com/google/tagmanager/ResourceUtil$ExpandedFunctionCallBuilder
+.super java/lang/Object
+.source ResourceUtil.java
+
+.inner class ExpandedFunctionCallBuilder inner com/google/tagmanager/ResourceUtil$ExpandedFunctionCallBuilder outer com/google/tagmanager/ResourceUtil
+.field private final mPropertiesMap Ljava/util/Map;
+  .annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "Ljava/util/Map" , "<" , "Ljava/lang/String;" , "Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;" , ">;" }
+  .end annotation
+.end field
+.field private mPushAfterEvaluate Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+
+.method private <init>()V
+.limit registers 2
+; this: v1 (Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCallBuilder;)
+.line 49
+	invoke-direct	{v1},java/lang/Object/<init>	; <init>()V
+; v1 : Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCallBuilder;
+.line 50
+	new-instance	v0,java/util/HashMap
+; v0 : Ljava/util/HashMap;
+	invoke-direct	{v0},java/util/HashMap/<init>	; <init>()V
+; v0 : Ljava/util/HashMap;
+	iput-object	v0,v1,com/google/tagmanager/ResourceUtil$ExpandedFunctionCallBuilder.mPropertiesMap Ljava/util/Map;
+; v0 : Ljava/util/HashMap; , v1 : Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCallBuilder;
+.line 51
+	return-void	
+.end method
+
+.method <init>(Lcom/google/tagmanager/ResourceUtil$1;)V
+.limit registers 2
+; this: v0 (Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCallBuilder;)
+; parameter[0] : v1 (Lcom/google/tagmanager/ResourceUtil$1;)
+.line 44
+	invoke-direct	{v0},com/google/tagmanager/ResourceUtil$ExpandedFunctionCallBuilder/<init>	; <init>()V
+; v0 : Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCallBuilder;
+	return-void	
+.end method
+
+.method public addProperty(Ljava/lang/String;Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;)Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCallBuilder;
+.limit registers 4
+; this: v1 (Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCallBuilder;)
+; parameter[0] : v2 (Ljava/lang/String;)
+; parameter[1] : v3 (Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;)
+.line 54
+	iget-object	v0,v1,com/google/tagmanager/ResourceUtil$ExpandedFunctionCallBuilder.mPropertiesMap Ljava/util/Map;
+; v0 : Ljava/util/Map; , v1 : Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCallBuilder;
+	invoke-interface	{v0,v2,v3},java/util/Map/put	; put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+; v0 : Ljava/util/Map; , v2 : Ljava/lang/String; , v3 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+.line 55
+	return-object	v1
+; v1 : Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCallBuilder;
+.end method
+
+.method public build()Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;
+.limit registers 5
+; this: v4 (Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCallBuilder;)
+.line 64
+	new-instance	v0,com/google/tagmanager/ResourceUtil$ExpandedFunctionCall
+; v0 : Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;
+	iget-object	v1,v4,com/google/tagmanager/ResourceUtil$ExpandedFunctionCallBuilder.mPropertiesMap Ljava/util/Map;
+; v1 : Ljava/util/Map; , v4 : Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCallBuilder;
+	iget-object	v2,v4,com/google/tagmanager/ResourceUtil$ExpandedFunctionCallBuilder.mPushAfterEvaluate Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+; v2 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v4 : Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCallBuilder;
+	const/4	v3,0
+; v3 : single-length
+	invoke-direct	{v0,v1,v2,v3},com/google/tagmanager/ResourceUtil$ExpandedFunctionCall/<init>	; <init>(Ljava/util/Map;Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;Lcom/google/tagmanager/ResourceUtil$1;)V
+; v0 : Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall; , v1 : Ljava/util/Map; , v2 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v3 : single-length
+	return-object	v0
+; v0 : Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;
+.end method
+
+.method public setPushAfterEvaluate(Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;)Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCallBuilder;
+.limit registers 2
+; this: v0 (Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCallBuilder;)
+; parameter[0] : v1 (Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;)
+.line 59
+	iput-object	v1,v0,com/google/tagmanager/ResourceUtil$ExpandedFunctionCallBuilder.mPushAfterEvaluate Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+; v1 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v0 : Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCallBuilder;
+.line 60
+	return-object	v0
+; v0 : Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCallBuilder;
+.end method
+
+

@@ -1,0 +1,57 @@
+.class com/squareup/okhttp/internal/spdy/NameValueBlockReader$2
+.super java/util/zip/Inflater
+.source NameValueBlockReader.java
+
+.enclosing method com/<init>(Ljava/io/InputStream;)V
+.field final this$0 Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader;
+
+.method <init>(Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader;)V
+.limit registers 2
+; this: v0 (Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader$2;)
+; parameter[0] : v1 (Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader;)
+.line 47
+	iput-object	v1,v0,com/squareup/okhttp/internal/spdy/NameValueBlockReader$2.this$0 Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader;
+; v1 : Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader; , v0 : Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader$2;
+	invoke-direct	{v0},java/util/zip/Inflater/<init>	; <init>()V
+; v0 : Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader$2;
+	return-void	
+.end method
+
+.method public inflate([BII)I
+.throws Ljava/util/zip/DataFormatException;
+.limit registers 6
+; this: v2 (Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader$2;)
+; parameter[0] : v3 ([B)
+; parameter[1] : v4 (I)
+; parameter[2] : v5 (I)
+.line 50
+	invoke-super	{v2,v3,v4,v5},java/util/zip/Inflater/inflate	; inflate([BII)I
+; v2 : Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader$2; , v3 : [B , v4 : single-length , v5 : single-length
+	move-result	v0
+; v0 : single-length
+.line 51
+	if-nez	v0,lbed8e
+; v0 : single-length
+	invoke-virtual	{v2},com/squareup/okhttp/internal/spdy/NameValueBlockReader$2/needsDictionary	; needsDictionary()Z
+; v2 : Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader$2;
+	move-result	v1
+; v1 : single-length
+	if-eqz	v1,lbed8e
+; v1 : single-length
+.line 52
+	sget-object	v1,com/squareup/okhttp/internal/spdy/Spdy3.DICTIONARY [B
+; v1 : [B
+	invoke-virtual	{v2,v1},com/squareup/okhttp/internal/spdy/NameValueBlockReader$2/setDictionary	; setDictionary([B)V
+; v2 : Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader$2; , v1 : [B
+.line 53
+	invoke-super	{v2,v3,v4,v5},java/util/zip/Inflater/inflate	; inflate([BII)I
+; v2 : Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader$2; , v3 : [B , v4 : single-length , v5 : single-length
+	move-result	v0
+; v0 : single-length
+lbed8e:
+.line 55
+	return	v0
+; v0 : single-length
+.end method
+
+

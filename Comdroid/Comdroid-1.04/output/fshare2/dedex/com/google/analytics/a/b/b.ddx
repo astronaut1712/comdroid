@@ -1,0 +1,167 @@
+.class public final com/google/analytics/a/b/b
+.super com/google/tagmanager/a/a/a
+.source MyApplication
+
+.field public static final a [Lcom/google/analytics/a/b/b;
+.field public b I
+.field public c I
+.field public d I
+
+.method static <clinit>()V
+.limit registers 1
+.line 1206
+	const/4	v0,0
+; v0 : single-length
+	new-array	v0,v0,[Lcom/google/analytics/a/b/b;
+; v0 : [Lcom/google/analytics/a/b/b; , v0 : [Lcom/google/analytics/a/b/b;
+	sput-object	v0,com/google/analytics/a/b/b.a [Lcom/google/analytics/a/b/b;
+; v0 : [Lcom/google/analytics/a/b/b;
+	return-void	
+.end method
+
+.method public <init>()V
+.limit registers 3
+; this: v2 (Lcom/google/analytics/a/b/b;)
+	const/4	v1,0
+; v1 : single-length
+.line 1207
+	invoke-direct	{v2},com/google/tagmanager/a/a/a/<init>	; <init>()V
+; v2 : Lcom/google/analytics/a/b/b;
+.line 1216
+	const/4	v0,1
+; v0 : single-length
+	iput	v0,v2,com/google/analytics/a/b/b.b I
+; v0 : single-length , v2 : Lcom/google/analytics/a/b/b;
+.line 1219
+	iput	v1,v2,com/google/analytics/a/b/b.c I
+; v1 : single-length , v2 : Lcom/google/analytics/a/b/b;
+.line 1222
+	iput	v1,v2,com/google/analytics/a/b/b.d I
+; v1 : single-length , v2 : Lcom/google/analytics/a/b/b;
+.line 1207
+	return-void	
+.end method
+
+.method public final equals(Ljava/lang/Object;)Z
+.limit registers 6
+; this: v4 (Lcom/google/analytics/a/b/b;)
+; parameter[0] : v5 (Ljava/lang/Object;)
+	const/4	v0,1
+; v0 : single-length
+	const/4	v1,0
+; v1 : single-length
+.line 1235
+	if-ne	v5,v4,l971f6
+; v5 : Ljava/lang/Object; , v4 : Lcom/google/analytics/a/b/b;
+l971f4:
+.line 1238
+	return	v0
+; v0 : single-length
+l971f6:
+.line 1236
+	instance-of	v2,v5,com/google/analytics/a/b/b
+; v2 : single-length , v5 : Ljava/lang/Object;
+	if-nez	v2,l97202
+; v2 : single-length
+	move	v0,v1
+; v0 : single-length , v1 : single-length
+	goto	l971f4
+l97202:
+.line 1237
+	check-cast	v5,com/google/analytics/a/b/b
+; v5 : Lcom/google/analytics/a/b/b;
+.line 1238
+	iget	v2,v4,com/google/analytics/a/b/b.b I
+; v2 : single-length , v4 : Lcom/google/analytics/a/b/b;
+	iget	v3,v5,com/google/analytics/a/b/b.b I
+; v3 : single-length , v5 : Lcom/google/analytics/a/b/b;
+	if-ne	v2,v3,l9723a
+; v2 : single-length , v3 : single-length
+	iget	v2,v4,com/google/analytics/a/b/b.c I
+; v2 : single-length , v4 : Lcom/google/analytics/a/b/b;
+	iget	v3,v5,com/google/analytics/a/b/b.c I
+; v3 : single-length , v5 : Lcom/google/analytics/a/b/b;
+	if-ne	v2,v3,l9723a
+; v2 : single-length , v3 : single-length
+	iget	v2,v4,com/google/analytics/a/b/b.d I
+; v2 : single-length , v4 : Lcom/google/analytics/a/b/b;
+	iget	v3,v5,com/google/analytics/a/b/b.d I
+; v3 : single-length , v5 : Lcom/google/analytics/a/b/b;
+	if-ne	v2,v3,l9723a
+; v2 : single-length , v3 : single-length
+	iget-object	v2,v4,com/google/analytics/a/b/b.s Ljava/util/List;
+; v2 : Ljava/util/List; , v4 : Lcom/google/analytics/a/b/b;
+	if-nez	v2,l9723e
+; v2 : Ljava/util/List;
+	iget-object	v2,v5,com/google/analytics/a/b/b.s Ljava/util/List;
+; v2 : Ljava/util/List; , v5 : Lcom/google/analytics/a/b/b;
+	if-eqz	v2,l971f4
+; v2 : Ljava/util/List;
+l9723a:
+	move	v0,v1
+; v0 : single-length , v1 : single-length
+	goto	l971f4
+l9723e:
+	iget-object	v2,v4,com/google/analytics/a/b/b.s Ljava/util/List;
+; v2 : Ljava/util/List; , v4 : Lcom/google/analytics/a/b/b;
+	iget-object	v3,v5,com/google/analytics/a/b/b.s Ljava/util/List;
+; v3 : Ljava/util/List; , v5 : Lcom/google/analytics/a/b/b;
+	invoke-interface	{v2,v3},java/util/List/equals	; equals(Ljava/lang/Object;)Z
+; v2 : Ljava/util/List; , v3 : Ljava/util/List;
+	move-result	v2
+; v2 : single-length
+	if-eqz	v2,l9723a
+; v2 : single-length
+	goto	l971f4
+.end method
+
+.method public hashCode()I
+.limit registers 3
+; this: v2 (Lcom/google/analytics/a/b/b;)
+.line 1245
+.line 1246
+	iget	v0,v2,com/google/analytics/a/b/b.b I
+; v0 : single-length , v2 : Lcom/google/analytics/a/b/b;
+	add-int/lit16	v0,v0,527
+; v0 : single-length , v0 : single-length
+.line 1247
+	mul-int/lit-8	v0,v0,31
+; v0 : single-length , v0 : single-length
+	iget	v1,v2,com/google/analytics/a/b/b.c I
+; v1 : single-length , v2 : Lcom/google/analytics/a/b/b;
+	add-int/2addr	v0,v1
+; v0 : single-length , v1 : single-length
+.line 1248
+	mul-int/lit-8	v0,v0,31
+; v0 : single-length , v0 : single-length
+	iget	v1,v2,com/google/analytics/a/b/b.d I
+; v1 : single-length , v2 : Lcom/google/analytics/a/b/b;
+	add-int/2addr	v0,v1
+; v0 : single-length , v1 : single-length
+.line 1249
+	mul-int/lit-8	v1,v0,31
+; v1 : single-length , v0 : single-length
+	iget-object	v0,v2,com/google/analytics/a/b/b.s Ljava/util/List;
+; v0 : Ljava/util/List; , v2 : Lcom/google/analytics/a/b/b;
+	if-nez	v0,l97292
+; v0 : Ljava/util/List;
+	const/4	v0,0
+; v0 : single-length
+l9728e:
+	add-int/2addr	v0,v1
+; v0 : single-length , v1 : single-length
+.line 1250
+	return	v0
+; v0 : single-length
+l97292:
+.line 1249
+	iget-object	v0,v2,com/google/analytics/a/b/b.s Ljava/util/List;
+; v0 : Ljava/util/List; , v2 : Lcom/google/analytics/a/b/b;
+	invoke-interface	{v0},java/util/List/hashCode	; hashCode()I
+; v0 : Ljava/util/List;
+	move-result	v0
+; v0 : single-length
+	goto	l9728e
+.end method
+
+

@@ -1,0 +1,1732 @@
+.class public com/fsharemobile/fragments/SettingFragment
+.super android/support/v4/app/Fragment
+.source SettingFragment.java
+.implements android/view/View$OnClickListener
+
+.inner class MyReceiver inner com/fsharemobile/fragments/SettingFragment$MyReceiver outer com/fsharemobile/fragments/SettingFragment
+.field btnLogOut Landroid/widget/Button;
+.field btnReChager Landroid/widget/Button;
+.field constants Lcom/fsharemobile/utils/Constants;
+.field dialogSetting Landroid/app/ProgressDialog;
+.field private fclient Lcom/fsharemobile/client/FClient;
+.field fileData Lcom/fsharemobile/database/FilesDataSource;
+.field private mConnection Landroid/content/ServiceConnection;
+.field private myReceiver Lcom/fsharemobile/fragments/SettingFragment$MyReceiver;
+.field myUser Lcom/fsharemobile/model/User;
+.field switchCameraUpload Landroid/widget/Switch;
+.field txtCode Landroid/widget/TextView;
+.field txtDate Landroid/widget/TextView;
+.field txtEmail Landroid/widget/TextView;
+.field txtLinkFshare Landroid/widget/TextView;
+.field txtPoint Landroid/widget/TextView;
+.field txtSecure Landroid/widget/TextView;
+.field txtSecureUse Landroid/widget/TextView;
+.field txtToTal Landroid/widget/TextView;
+.field txtType Landroid/widget/TextView;
+.field txtVer Landroid/widget/TextView;
+.field txtWebSpace Landroid/widget/TextView;
+.field txtWebSpaceUse Landroid/widget/TextView;
+.field private uploadService Lcom/fsharemobile/service/UploadService;
+.field userData Lcom/fsharemobile/database/FilesDataSource;
+.field userID Ljava/lang/String;
+.field userProxy Lcom/fsharemobile/client/UserProxy;
+
+.method public <init>()V
+.limit registers 2
+; this: v1 (Lcom/fsharemobile/fragments/SettingFragment;)
+.line 53
+	invoke-direct	{v1},android/support/v4/app/Fragment/<init>	; <init>()V
+; v1 : Lcom/fsharemobile/fragments/SettingFragment;
+.line 60
+	const/4	v0,0
+; v0 : single-length
+	iput-object	v0,v1,com/fsharemobile/fragments/SettingFragment.fclient Lcom/fsharemobile/client/FClient;
+; v0 : single-length , v1 : Lcom/fsharemobile/fragments/SettingFragment;
+.line 484
+	new-instance	v0,com/fsharemobile/fragments/SettingFragment$1
+; v0 : Lcom/fsharemobile/fragments/SettingFragment$1;
+	invoke-direct	{v0,v1},com/fsharemobile/fragments/SettingFragment$1/<init>	; <init>(Lcom/fsharemobile/fragments/SettingFragment;)V
+; v0 : Lcom/fsharemobile/fragments/SettingFragment$1; , v1 : Lcom/fsharemobile/fragments/SettingFragment;
+	iput-object	v0,v1,com/fsharemobile/fragments/SettingFragment.mConnection Landroid/content/ServiceConnection;
+; v0 : Lcom/fsharemobile/fragments/SettingFragment$1; , v1 : Lcom/fsharemobile/fragments/SettingFragment;
+.line 53
+	return-void	
+.end method
+
+.method static access$0(Lcom/fsharemobile/fragments/SettingFragment;Lcom/fsharemobile/service/UploadService;)V
+.limit registers 2
+; parameter[0] : v0 (Lcom/fsharemobile/fragments/SettingFragment;)
+; parameter[1] : v1 (Lcom/fsharemobile/service/UploadService;)
+.line 72
+	iput-object	v1,v0,com/fsharemobile/fragments/SettingFragment.uploadService Lcom/fsharemobile/service/UploadService;
+; v1 : Lcom/fsharemobile/service/UploadService; , v0 : Lcom/fsharemobile/fragments/SettingFragment;
+	return-void	
+.end method
+
+.method static access$1(Lcom/fsharemobile/fragments/SettingFragment;Z)V
+.limit registers 2
+; parameter[0] : v0 (Lcom/fsharemobile/fragments/SettingFragment;)
+; parameter[1] : v1 (Z)
+.line 453
+	invoke-direct	{v0,v1},com/fsharemobile/fragments/SettingFragment/setCameraUploadPre	; setCameraUploadPre(Z)V
+; v0 : Lcom/fsharemobile/fragments/SettingFragment; , v1 : single-length
+	return-void	
+.end method
+
+.method static access$2(Lcom/fsharemobile/fragments/SettingFragment;)Lcom/fsharemobile/client/FClient;
+.limit registers 2
+; parameter[0] : v1 (Lcom/fsharemobile/fragments/SettingFragment;)
+.line 60
+	iget-object	v0,v1,com/fsharemobile/fragments/SettingFragment.fclient Lcom/fsharemobile/client/FClient;
+; v0 : Lcom/fsharemobile/client/FClient; , v1 : Lcom/fsharemobile/fragments/SettingFragment;
+	return-object	v0
+; v0 : Lcom/fsharemobile/client/FClient;
+.end method
+
+.method static access$3(Lcom/fsharemobile/fragments/SettingFragment;)V
+.limit registers 1
+; parameter[0] : v0 (Lcom/fsharemobile/fragments/SettingFragment;)
+.line 440
+	invoke-direct	{v0},com/fsharemobile/fragments/SettingFragment/clearPreferences	; clearPreferences()V
+; v0 : Lcom/fsharemobile/fragments/SettingFragment;
+	return-void	
+.end method
+
+.method static access$4(Lcom/fsharemobile/fragments/SettingFragment;I)V
+.limit registers 2
+; parameter[0] : v0 (Lcom/fsharemobile/fragments/SettingFragment;)
+; parameter[1] : v1 (I)
+.line 326
+	invoke-direct	{v0,v1},com/fsharemobile/fragments/SettingFragment/handlerError	; handlerError(I)V
+; v0 : Lcom/fsharemobile/fragments/SettingFragment; , v1 : single-length
+	return-void	
+.end method
+
+.method static access$5(Lcom/fsharemobile/fragments/SettingFragment;Lcom/fsharemobile/model/User;)V
+.limit registers 2
+; parameter[0] : v0 (Lcom/fsharemobile/fragments/SettingFragment;)
+; parameter[1] : v1 (Lcom/fsharemobile/model/User;)
+.line 371
+	invoke-direct	{v0,v1},com/fsharemobile/fragments/SettingFragment/renderUser	; renderUser(Lcom/fsharemobile/model/User;)V
+; v0 : Lcom/fsharemobile/fragments/SettingFragment; , v1 : Lcom/fsharemobile/model/User;
+	return-void	
+.end method
+
+.method private clearPreferences()V
+.limit registers 6
+; this: v5 (Lcom/fsharemobile/fragments/SettingFragment;)
+.line 441
+	invoke-virtual	{v5},com/fsharemobile/fragments/SettingFragment/getActivity	; getActivity()Landroid/support/v4/app/FragmentActivity;
+; v5 : Lcom/fsharemobile/fragments/SettingFragment;
+.line 443
+	invoke-virtual	{v5},com/fsharemobile/fragments/SettingFragment/getActivity	; getActivity()Landroid/support/v4/app/FragmentActivity;
+; v5 : Lcom/fsharemobile/fragments/SettingFragment;
+	move-result-object	v2
+; v2 : Landroid/support/v4/app/FragmentActivity;
+.line 444
+	const-string	v3,"login_catch"
+; v3 : Ljava/lang/String;
+	const/4	v4,0
+; v4 : single-length
+.line 443
+	invoke-virtual	{v2,v3,v4},android/support/v4/app/FragmentActivity/getSharedPreferences	; getSharedPreferences(Ljava/lang/String;I)Landroid/content/SharedPreferences;
+; v2 : Landroid/support/v4/app/FragmentActivity; , v3 : Ljava/lang/String; , v4 : single-length
+	move-result-object	v1
+; v1 : Landroid/content/SharedPreferences;
+.line 446
+	invoke-interface	{v1},android/content/SharedPreferences/edit	; edit()Landroid/content/SharedPreferences$Editor;
+; v1 : Landroid/content/SharedPreferences;
+	move-result-object	v0
+; v0 : Landroid/content/SharedPreferences$Editor;
+.line 448
+	invoke-interface	{v0},android/content/SharedPreferences$Editor/clear	; clear()Landroid/content/SharedPreferences$Editor;
+; v0 : Landroid/content/SharedPreferences$Editor;
+.line 449
+	invoke-interface	{v0},android/content/SharedPreferences$Editor/commit	; commit()Z
+; v0 : Landroid/content/SharedPreferences$Editor;
+.line 450
+	return-void	
+.end method
+
+.method private getCameraUploadPre()Z
+.limit registers 6
+; this: v5 (Lcom/fsharemobile/fragments/SettingFragment;)
+	const/4	v4,0
+; v4 : single-length
+.line 465
+	invoke-virtual	{v5},com/fsharemobile/fragments/SettingFragment/getActivity	; getActivity()Landroid/support/v4/app/FragmentActivity;
+; v5 : Lcom/fsharemobile/fragments/SettingFragment;
+	move-result-object	v2
+; v2 : Landroid/support/v4/app/FragmentActivity;
+.line 466
+	const-string	v3,"camera_upload"
+; v3 : Ljava/lang/String;
+.line 465
+	invoke-virtual	{v2,v3,v4},android/support/v4/app/FragmentActivity/getSharedPreferences	; getSharedPreferences(Ljava/lang/String;I)Landroid/content/SharedPreferences;
+; v2 : Landroid/support/v4/app/FragmentActivity; , v3 : Ljava/lang/String; , v4 : single-length
+	move-result-object	v1
+; v1 : Landroid/content/SharedPreferences;
+.line 469
+	const-string	v2,"camera_upload_stt"
+; v2 : Ljava/lang/String;
+	invoke-interface	{v1,v2,v4},android/content/SharedPreferences/getBoolean	; getBoolean(Ljava/lang/String;Z)Z
+; v1 : Landroid/content/SharedPreferences; , v2 : Ljava/lang/String; , v4 : single-length
+	move-result	v0
+; v0 : single-length
+.line 471
+	return	v0
+; v0 : single-length
+.end method
+
+.method private getDate(Ljava/lang/String;)Ljava/lang/String;
+.annotation buildVisibility Landroid/annotation/SuppressLint;
+    value [Ljava/lang/String; = { "SimpleDateFormat" }
+.end annotation
+.limit registers 11
+; this: v9 (Lcom/fsharemobile/fragments/SettingFragment;)
+; parameter[0] : v10 (Ljava/lang/String;)
+.line 405
+	const-string	v0,""
+; v0 : Ljava/lang/String;
+.line 407
+	invoke-static	{v10},java/lang/Long/valueOf	; valueOf(Ljava/lang/String;)Ljava/lang/Long;
+; v10 : Ljava/lang/String;
+	move-result-object	v5
+; v5 : Ljava/lang/Long;
+	invoke-virtual	{v5},java/lang/Long/longValue	; longValue()J
+; v5 : Ljava/lang/Long;
+	move-result-wide	v5
+; v5 : double-length
+	const-wide/16	v7,1000
+; v7 : double-length
+	mul-long	v2,v5,v7
+; v2 : double-length , v5 : double-length , v7 : double-length
+.line 409
+	new-instance	v1,java/util/Date
+; v1 : Ljava/util/Date;
+	invoke-direct	{v1,v2,v3},java/util/Date/<init>	; <init>(J)V
+; v1 : Ljava/util/Date; , v2 : double-length
+.line 410
+	new-instance	v4,java/text/SimpleDateFormat
+; v4 : Ljava/text/SimpleDateFormat;
+	const-string	v5,"dd MMM, yyyy hh:mm a"
+; v5 : Ljava/lang/String;
+	invoke-direct	{v4,v5},java/text/SimpleDateFormat/<init>	; <init>(Ljava/lang/String;)V
+; v4 : Ljava/text/SimpleDateFormat; , v5 : Ljava/lang/String;
+.line 413
+	invoke-virtual	{v4,v1},java/text/SimpleDateFormat/format	; format(Ljava/util/Date;)Ljava/lang/String;
+; v4 : Ljava/text/SimpleDateFormat; , v1 : Ljava/util/Date;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+.line 414
+	return-object	v0
+; v0 : Ljava/lang/String;
+.end method
+
+.method private getGB(Ljava/lang/String;)Ljava/lang/Double;
+.limit registers 14
+; this: v12 (Lcom/fsharemobile/fragments/SettingFragment;)
+; parameter[0] : v13 (Ljava/lang/String;)
+.line 418
+	if-eqz	v13,ldf248
+; v13 : Ljava/lang/String;
+	const-string	v8,"null"
+; v8 : Ljava/lang/String;
+	invoke-virtual	{v13,v8},java/lang/String/compareTo	; compareTo(Ljava/lang/String;)I
+; v13 : Ljava/lang/String; , v8 : Ljava/lang/String;
+	move-result	v8
+; v8 : single-length
+	if-nez	v8,ldf24c
+; v8 : single-length
+ldf248:
+.line 419
+	const-string	v13,"0"
+; v13 : Ljava/lang/String;
+ldf24c:
+.line 421
+	const-wide/16	v8,0
+; v8 : double-length
+	invoke-static	{v8,v9},java/lang/Double/valueOf	; valueOf(D)Ljava/lang/Double;
+; v8 : double-length
+	move-result-object	v4
+; v4 : Ljava/lang/Double;
+.line 422
+	const-wide/high16	v8,16848
+; v8 : double-length
+	invoke-static	{v8,v9},java/lang/Double/valueOf	; valueOf(D)Ljava/lang/Double;
+; v8 : double-length
+	move-result-object	v2
+; v2 : Ljava/lang/Double;
+.line 423
+	invoke-static	{v13},java/lang/Double/parseDouble	; parseDouble(Ljava/lang/String;)D
+; v13 : Ljava/lang/String;
+	move-result-wide	v8
+; v8 : double-length
+	invoke-static	{v8,v9},java/lang/Double/valueOf	; valueOf(D)Ljava/lang/Double;
+; v8 : double-length
+	move-result-object	v3
+; v3 : Ljava/lang/Double;
+.line 424
+	invoke-virtual	{v3},java/lang/Double/doubleValue	; doubleValue()D
+; v3 : Ljava/lang/Double;
+	move-result-wide	v8
+; v8 : double-length
+	invoke-virtual	{v2},java/lang/Double/doubleValue	; doubleValue()D
+; v2 : Ljava/lang/Double;
+	move-result-wide	v10
+; v10 : double-length
+	div-double/2addr	v8,v10
+; v8 : double-length , v10 : double-length
+	invoke-static	{v8,v9},java/lang/Double/valueOf	; valueOf(D)Ljava/lang/Double;
+; v8 : double-length
+	move-result-object	v4
+; v4 : Ljava/lang/Double;
+.line 428
+	new-instance	v0,java/text/DecimalFormat
+; v0 : Ljava/text/DecimalFormat;
+	const-string	v8,"#.#"
+; v8 : Ljava/lang/String;
+	invoke-direct	{v0,v8},java/text/DecimalFormat/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/text/DecimalFormat; , v8 : Ljava/lang/String;
+.line 429
+	new-instance	v1,java/text/DecimalFormatSymbols
+; v1 : Ljava/text/DecimalFormatSymbols;
+	sget-object	v8,java/util/Locale.ENGLISH Ljava/util/Locale;
+; v8 : Ljava/util/Locale;
+	invoke-direct	{v1,v8},java/text/DecimalFormatSymbols/<init>	; <init>(Ljava/util/Locale;)V
+; v1 : Ljava/text/DecimalFormatSymbols; , v8 : Ljava/util/Locale;
+.line 430
+	const/16	v8,46
+; v8 : single-length
+	invoke-virtual	{v1,v8},java/text/DecimalFormatSymbols/setDecimalSeparator	; setDecimalSeparator(C)V
+; v1 : Ljava/text/DecimalFormatSymbols; , v8 : single-length
+.line 431
+	invoke-virtual	{v0,v1},java/text/DecimalFormat/setDecimalFormatSymbols	; setDecimalFormatSymbols(Ljava/text/DecimalFormatSymbols;)V
+; v0 : Ljava/text/DecimalFormat; , v1 : Ljava/text/DecimalFormatSymbols;
+.line 433
+	invoke-virtual	{v0,v4},java/text/DecimalFormat/format	; format(Ljava/lang/Object;)Ljava/lang/String;
+; v0 : Ljava/text/DecimalFormat; , v4 : Ljava/lang/Double;
+	move-result-object	v7
+; v7 : Ljava/lang/String;
+.line 434
+	invoke-static	{v7},java/lang/Double/valueOf	; valueOf(Ljava/lang/String;)Ljava/lang/Double;
+; v7 : Ljava/lang/String;
+	move-result-object	v8
+; v8 : Ljava/lang/Double;
+	invoke-virtual	{v8},java/lang/Double/doubleValue	; doubleValue()D
+; v8 : Ljava/lang/Double;
+	move-result-wide	v5
+; v5 : double-length
+.line 435
+	invoke-static	{v5,v6},java/lang/Double/valueOf	; valueOf(D)Ljava/lang/Double;
+; v5 : double-length
+	move-result-object	v8
+; v8 : Ljava/lang/Double;
+	return-object	v8
+; v8 : Ljava/lang/Double;
+.end method
+
+.method private handlerError(I)V
+.limit registers 12
+; this: v10 (Lcom/fsharemobile/fragments/SettingFragment;)
+; parameter[0] : v11 (I)
+.var 0 is btnAgree Landroid/widget/Button; from ldf374 to ldf3c4
+.var 1 is dialog Landroid/app/Dialog; from ldf332 to ldf3c4
+.var 5 is txtWarning Landroid/widget/TextView; from ldf362 to ldf3c4
+	const/4	v9,3
+; v9 : single-length
+.line 327
+	iget-object	v6,v10,com/fsharemobile/fragments/SettingFragment.dialogSetting Landroid/app/ProgressDialog;
+; v6 : Landroid/app/ProgressDialog; , v10 : Lcom/fsharemobile/fragments/SettingFragment;
+	invoke-virtual	{v6},android/app/ProgressDialog/dismiss	; dismiss()V
+; v6 : Landroid/app/ProgressDialog;
+.line 328
+	const-string	v3,""
+; v3 : Ljava/lang/String;
+.line 329
+	const/4	v6,1
+; v6 : single-length
+	if-ne	v11,v6,ldf3c4
+; v11 : single-length , v6 : single-length
+.line 330
+	invoke-virtual	{v10},com/fsharemobile/fragments/SettingFragment/getActivity	; getActivity()Landroid/support/v4/app/FragmentActivity;
+; v10 : Lcom/fsharemobile/fragments/SettingFragment;
+	move-result-object	v6
+; v6 : Landroid/support/v4/app/FragmentActivity;
+	invoke-virtual	{v6},android/support/v4/app/FragmentActivity/getResources	; getResources()Landroid/content/res/Resources;
+; v6 : Landroid/support/v4/app/FragmentActivity;
+	move-result-object	v6
+; v6 : Landroid/content/res/Resources;
+.line 331
+	const	v7,2131230807	; 0x7f080057
+; v7 : single-length
+.line 330
+	invoke-virtual	{v6,v7},android/content/res/Resources/getString	; getString(I)Ljava/lang/String;
+; v6 : Landroid/content/res/Resources; , v7 : single-length
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+ldf320:
+.line 341
+	new-instance	v1,android/app/Dialog
+; v1 : Landroid/app/Dialog;
+	invoke-virtual	{v10},com/fsharemobile/fragments/SettingFragment/getActivity	; getActivity()Landroid/support/v4/app/FragmentActivity;
+; v10 : Lcom/fsharemobile/fragments/SettingFragment;
+	move-result-object	v6
+; v6 : Landroid/support/v4/app/FragmentActivity;
+	invoke-direct	{v1,v6},android/app/Dialog/<init>	; <init>(Landroid/content/Context;)V
+; v1 : Landroid/app/Dialog; , v6 : Landroid/support/v4/app/FragmentActivity;
+.line 344
+	invoke-virtual	{v1,v9},android/app/Dialog/requestWindowFeature	; requestWindowFeature(I)Z
+; v1 : Landroid/app/Dialog; , v9 : single-length
+.line 345
+	const	v6,2130903072	; 0x7f030020
+; v6 : single-length
+	invoke-virtual	{v1,v6},android/app/Dialog/setContentView	; setContentView(I)V
+; v1 : Landroid/app/Dialog; , v6 : single-length
+.line 346
+	const	v6,2131230863	; 0x7f08008f
+; v6 : single-length
+	invoke-virtual	{v1,v6},android/app/Dialog/setTitle	; setTitle(I)V
+; v1 : Landroid/app/Dialog; , v6 : single-length
+.line 352
+	const	v6,2131427464	; 0x7f0b0088
+; v6 : single-length
+	invoke-virtual	{v1,v6},android/app/Dialog/findViewById	; findViewById(I)Landroid/view/View;
+; v1 : Landroid/app/Dialog; , v6 : single-length
+	move-result-object	v5
+; v5 : Landroid/view/View;
+.line 351
+	check-cast	v5,android/widget/TextView
+; v5 : Landroid/widget/TextView;
+.line 353
+	const	v6,2131427465	; 0x7f0b0089
+; v6 : single-length
+	invoke-virtual	{v1,v6},android/app/Dialog/findViewById	; findViewById(I)Landroid/view/View;
+; v1 : Landroid/app/Dialog; , v6 : single-length
+	move-result-object	v0
+; v0 : Landroid/view/View;
+	check-cast	v0,android/widget/Button
+; v0 : Landroid/widget/Button;
+.line 355
+	new-instance	v6,java/lang/StringBuilder
+; v6 : Ljava/lang/StringBuilder;
+	invoke-static	{v3},java/lang/String/valueOf	; valueOf(Ljava/lang/Object;)Ljava/lang/String;
+; v3 : Ljava/lang/String;
+	move-result-object	v7
+; v7 : Ljava/lang/String;
+	invoke-direct	{v6,v7},java/lang/StringBuilder/<init>	; <init>(Ljava/lang/String;)V
+; v6 : Ljava/lang/StringBuilder; , v7 : Ljava/lang/String;
+	const-string	v7,"."
+; v7 : Ljava/lang/String;
+	invoke-virtual	{v6,v7},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v6 : Ljava/lang/StringBuilder; , v7 : Ljava/lang/String;
+	move-result-object	v6
+; v6 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v6},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v6 : Ljava/lang/StringBuilder;
+	move-result-object	v6
+; v6 : Ljava/lang/String;
+	invoke-virtual	{v5,v6},android/widget/TextView/setText	; setText(Ljava/lang/CharSequence;)V
+; v5 : Landroid/widget/TextView; , v6 : Ljava/lang/String;
+.line 356
+	new-instance	v6,com/fsharemobile/fragments/SettingFragment$6
+; v6 : Lcom/fsharemobile/fragments/SettingFragment$6;
+	invoke-direct	{v6,v10,v1},com/fsharemobile/fragments/SettingFragment$6/<init>	; <init>(Lcom/fsharemobile/fragments/SettingFragment;Landroid/app/Dialog;)V
+; v6 : Lcom/fsharemobile/fragments/SettingFragment$6; , v10 : Lcom/fsharemobile/fragments/SettingFragment; , v1 : Landroid/app/Dialog;
+	invoke-virtual	{v0,v6},android/widget/Button/setOnClickListener	; setOnClickListener(Landroid/view/View$OnClickListener;)V
+; v0 : Landroid/widget/Button; , v6 : Lcom/fsharemobile/fragments/SettingFragment$6;
+.line 365
+	invoke-virtual	{v1},android/app/Dialog/show	; show()V
+; v1 : Landroid/app/Dialog;
+.line 368
+	const	v6,2130837548	; 0x7f02002c
+; v6 : single-length
+.line 367
+	invoke-virtual	{v1,v9,v6},android/app/Dialog/setFeatureDrawableResource	; setFeatureDrawableResource(II)V
+; v1 : Landroid/app/Dialog; , v9 : single-length , v6 : single-length
+.line 369
+	return-void	
+ldf3c4:
+.line 333
+	new-instance	v6,java/lang/StringBuilder
+; v6 : Ljava/lang/StringBuilder;
+	const-string	v7,"err_"
+; v7 : Ljava/lang/String;
+	invoke-direct	{v6,v7},java/lang/StringBuilder/<init>	; <init>(Ljava/lang/String;)V
+; v6 : Ljava/lang/StringBuilder; , v7 : Ljava/lang/String;
+	invoke-virtual	{v6,v11},java/lang/StringBuilder/append	; append(I)Ljava/lang/StringBuilder;
+; v6 : Ljava/lang/StringBuilder; , v11 : single-length
+	move-result-object	v6
+; v6 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v6},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v6 : Ljava/lang/StringBuilder;
+	move-result-object	v4
+; v4 : Ljava/lang/String;
+.line 334
+	invoke-virtual	{v10},com/fsharemobile/fragments/SettingFragment/getActivity	; getActivity()Landroid/support/v4/app/FragmentActivity;
+; v10 : Lcom/fsharemobile/fragments/SettingFragment;
+	move-result-object	v6
+; v6 : Landroid/support/v4/app/FragmentActivity;
+	invoke-virtual	{v6},android/support/v4/app/FragmentActivity/getResources	; getResources()Landroid/content/res/Resources;
+; v6 : Landroid/support/v4/app/FragmentActivity;
+	move-result-object	v6
+; v6 : Landroid/content/res/Resources;
+.line 335
+	const-string	v7,"string"
+; v7 : Ljava/lang/String;
+	invoke-virtual	{v10},com/fsharemobile/fragments/SettingFragment/getActivity	; getActivity()Landroid/support/v4/app/FragmentActivity;
+; v10 : Lcom/fsharemobile/fragments/SettingFragment;
+	move-result-object	v8
+; v8 : Landroid/support/v4/app/FragmentActivity;
+	invoke-virtual	{v8},android/support/v4/app/FragmentActivity/getPackageName	; getPackageName()Ljava/lang/String;
+; v8 : Landroid/support/v4/app/FragmentActivity;
+	move-result-object	v8
+; v8 : Ljava/lang/String;
+.line 334
+	invoke-virtual	{v6,v4,v7,v8},android/content/res/Resources/getIdentifier	; getIdentifier(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)I
+; v6 : Landroid/content/res/Resources; , v4 : Ljava/lang/String; , v7 : Ljava/lang/String; , v8 : Ljava/lang/String;
+	move-result	v2
+; v2 : single-length
+.line 336
+	const-string	v6,"ERR"
+; v6 : Ljava/lang/String;
+	new-instance	v7,java/lang/StringBuilder
+; v7 : Ljava/lang/StringBuilder;
+	invoke-static	{v2},java/lang/String/valueOf	; valueOf(I)Ljava/lang/String;
+; v2 : single-length
+	move-result-object	v8
+; v8 : Ljava/lang/String;
+	invoke-direct	{v7,v8},java/lang/StringBuilder/<init>	; <init>(Ljava/lang/String;)V
+; v7 : Ljava/lang/StringBuilder; , v8 : Ljava/lang/String;
+	invoke-virtual	{v7},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v7 : Ljava/lang/StringBuilder;
+	move-result-object	v7
+; v7 : Ljava/lang/String;
+	invoke-static	{v6,v7},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v6 : Ljava/lang/String; , v7 : Ljava/lang/String;
+.line 337
+	const-string	v6,"ERR"
+; v6 : Ljava/lang/String;
+	new-instance	v7,java/lang/StringBuilder
+; v7 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v10},com/fsharemobile/fragments/SettingFragment/getActivity	; getActivity()Landroid/support/v4/app/FragmentActivity;
+; v10 : Lcom/fsharemobile/fragments/SettingFragment;
+	move-result-object	v8
+; v8 : Landroid/support/v4/app/FragmentActivity;
+	invoke-virtual	{v8},android/support/v4/app/FragmentActivity/getResources	; getResources()Landroid/content/res/Resources;
+; v8 : Landroid/support/v4/app/FragmentActivity;
+	move-result-object	v8
+; v8 : Landroid/content/res/Resources;
+	invoke-virtual	{v8,v2},android/content/res/Resources/getString	; getString(I)Ljava/lang/String;
+; v8 : Landroid/content/res/Resources; , v2 : single-length
+	move-result-object	v8
+; v8 : Ljava/lang/String;
+	invoke-static	{v8},java/lang/String/valueOf	; valueOf(Ljava/lang/Object;)Ljava/lang/String;
+; v8 : Ljava/lang/String;
+	move-result-object	v8
+; v8 : Ljava/lang/String;
+	invoke-direct	{v7,v8},java/lang/StringBuilder/<init>	; <init>(Ljava/lang/String;)V
+; v7 : Ljava/lang/StringBuilder; , v8 : Ljava/lang/String;
+	invoke-virtual	{v7},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v7 : Ljava/lang/StringBuilder;
+	move-result-object	v7
+; v7 : Ljava/lang/String;
+	invoke-static	{v6,v7},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v6 : Ljava/lang/String; , v7 : Ljava/lang/String;
+.line 338
+	new-instance	v6,java/lang/StringBuilder
+; v6 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v10},com/fsharemobile/fragments/SettingFragment/getActivity	; getActivity()Landroid/support/v4/app/FragmentActivity;
+; v10 : Lcom/fsharemobile/fragments/SettingFragment;
+	move-result-object	v7
+; v7 : Landroid/support/v4/app/FragmentActivity;
+	invoke-virtual	{v7},android/support/v4/app/FragmentActivity/getResources	; getResources()Landroid/content/res/Resources;
+; v7 : Landroid/support/v4/app/FragmentActivity;
+	move-result-object	v7
+; v7 : Landroid/content/res/Resources;
+	invoke-virtual	{v7,v2},android/content/res/Resources/getString	; getString(I)Ljava/lang/String;
+; v7 : Landroid/content/res/Resources; , v2 : single-length
+	move-result-object	v7
+; v7 : Ljava/lang/String;
+	invoke-static	{v7},java/lang/String/valueOf	; valueOf(Ljava/lang/Object;)Ljava/lang/String;
+; v7 : Ljava/lang/String;
+	move-result-object	v7
+; v7 : Ljava/lang/String;
+	invoke-direct	{v6,v7},java/lang/StringBuilder/<init>	; <init>(Ljava/lang/String;)V
+; v6 : Ljava/lang/StringBuilder; , v7 : Ljava/lang/String;
+	invoke-virtual	{v6},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v6 : Ljava/lang/StringBuilder;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	goto/16	ldf320
+.end method
+
+.method private loadSwitchCamera()V
+.limit registers 4
+; this: v3 (Lcom/fsharemobile/fragments/SettingFragment;)
+.line 476
+	invoke-direct	{v3},com/fsharemobile/fragments/SettingFragment/getCameraUploadPre	; getCameraUploadPre()Z
+; v3 : Lcom/fsharemobile/fragments/SettingFragment;
+	move-result	v0
+; v0 : single-length
+.line 477
+	if-eqz	v0,ldf4ce
+; v0 : single-length
+.line 478
+	iget-object	v1,v3,com/fsharemobile/fragments/SettingFragment.switchCameraUpload Landroid/widget/Switch;
+; v1 : Landroid/widget/Switch; , v3 : Lcom/fsharemobile/fragments/SettingFragment;
+	const/4	v2,1
+; v2 : single-length
+	invoke-virtual	{v1,v2},android/widget/Switch/setChecked	; setChecked(Z)V
+; v1 : Landroid/widget/Switch; , v2 : single-length
+ldf4cc:
+.line 482
+	return-void	
+ldf4ce:
+.line 480
+	iget-object	v1,v3,com/fsharemobile/fragments/SettingFragment.switchCameraUpload Landroid/widget/Switch;
+; v1 : Landroid/widget/Switch; , v3 : Lcom/fsharemobile/fragments/SettingFragment;
+	const/4	v2,0
+; v2 : single-length
+	invoke-virtual	{v1,v2},android/widget/Switch/setChecked	; setChecked(Z)V
+; v1 : Landroid/widget/Switch; , v2 : single-length
+	goto	ldf4cc
+.end method
+
+.method private loadUser()V
+.limit registers 6
+; this: v5 (Lcom/fsharemobile/fragments/SettingFragment;)
+.catch java/lang/Exception from ldf4ec to ldf538 using ldf53a
+ldf4ec:
+.line 295
+.line 296
+	invoke-virtual	{v5},com/fsharemobile/fragments/SettingFragment/getActivity	; getActivity()Landroid/support/v4/app/FragmentActivity;
+; v5 : Lcom/fsharemobile/fragments/SettingFragment;
+	move-result-object	v1
+; v1 : Landroid/support/v4/app/FragmentActivity;
+.line 297
+	const-string	v2,""
+; v2 : Ljava/lang/String;
+.line 298
+	invoke-virtual	{v5},com/fsharemobile/fragments/SettingFragment/getActivity	; getActivity()Landroid/support/v4/app/FragmentActivity;
+; v5 : Lcom/fsharemobile/fragments/SettingFragment;
+	move-result-object	v3
+; v3 : Landroid/support/v4/app/FragmentActivity;
+	invoke-virtual	{v3},android/support/v4/app/FragmentActivity/getResources	; getResources()Landroid/content/res/Resources;
+; v3 : Landroid/support/v4/app/FragmentActivity;
+	move-result-object	v3
+; v3 : Landroid/content/res/Resources;
+.line 299
+	const	v4,2131230796	; 0x7f08004c
+; v4 : single-length
+.line 298
+	invoke-virtual	{v3,v4},android/content/res/Resources/getText	; getText(I)Ljava/lang/CharSequence;
+; v3 : Landroid/content/res/Resources; , v4 : single-length
+	move-result-object	v3
+; v3 : Ljava/lang/CharSequence;
+.line 299
+	const/4	v4,1
+; v4 : single-length
+.line 295
+	invoke-static	{v1,v2,v3,v4},android/app/ProgressDialog/show	; show(Landroid/content/Context;Ljava/lang/CharSequence;Ljava/lang/CharSequence;Z)Landroid/app/ProgressDialog;
+; v1 : Landroid/support/v4/app/FragmentActivity; , v2 : Ljava/lang/String; , v3 : Ljava/lang/CharSequence; , v4 : single-length
+	move-result-object	v1
+; v1 : Landroid/app/ProgressDialog;
+	iput-object	v1,v5,com/fsharemobile/fragments/SettingFragment.dialogSetting Landroid/app/ProgressDialog;
+; v1 : Landroid/app/ProgressDialog; , v5 : Lcom/fsharemobile/fragments/SettingFragment;
+.line 300
+	iget-object	v1,v5,com/fsharemobile/fragments/SettingFragment.userProxy Lcom/fsharemobile/client/UserProxy;
+; v1 : Lcom/fsharemobile/client/UserProxy; , v5 : Lcom/fsharemobile/fragments/SettingFragment;
+	new-instance	v2,com/fsharemobile/fragments/SettingFragment$5
+; v2 : Lcom/fsharemobile/fragments/SettingFragment$5;
+	invoke-direct	{v2,v5},com/fsharemobile/fragments/SettingFragment$5/<init>	; <init>(Lcom/fsharemobile/fragments/SettingFragment;)V
+; v2 : Lcom/fsharemobile/fragments/SettingFragment$5; , v5 : Lcom/fsharemobile/fragments/SettingFragment;
+	invoke-virtual	{v1,v2},com/fsharemobile/client/UserProxy/get	; get(Lcom/fsharemobile/client/UserProxy$OnGetCompleted;)V
+; v1 : Lcom/fsharemobile/client/UserProxy; , v2 : Lcom/fsharemobile/fragments/SettingFragment$5;
+ldf538:
+.line 324
+	return-void	
+ldf53a:
+.line 320
+	move-exception	v0
+; v0 : java/lang/Exception
+.line 322
+	invoke-virtual	{v0},java/lang/Exception/printStackTrace	; printStackTrace()V
+; v0 : java/lang/Exception
+	goto	ldf538
+.end method
+
+.method private renderUser(Lcom/fsharemobile/model/User;)V
+.limit registers 9
+; this: v7 (Lcom/fsharemobile/fragments/SettingFragment;)
+; parameter[0] : v8 (Lcom/fsharemobile/model/User;)
+.var 0 is lv Ljava/lang/String; from ldf5a2 to ldf776
+.line 372
+	iget-object	v1,v7,com/fsharemobile/fragments/SettingFragment.dialogSetting Landroid/app/ProgressDialog;
+; v1 : Landroid/app/ProgressDialog; , v7 : Lcom/fsharemobile/fragments/SettingFragment;
+	if-eqz	v1,ldf576
+; v1 : Landroid/app/ProgressDialog;
+.line 373
+	iget-object	v1,v7,com/fsharemobile/fragments/SettingFragment.dialogSetting Landroid/app/ProgressDialog;
+; v1 : Landroid/app/ProgressDialog; , v7 : Lcom/fsharemobile/fragments/SettingFragment;
+	invoke-virtual	{v1},android/app/ProgressDialog/dismiss	; dismiss()V
+; v1 : Landroid/app/ProgressDialog;
+ldf576:
+.line 375
+	if-eqz	v8,ldf776
+; v8 : Lcom/fsharemobile/model/User;
+.line 377
+	iget-object	v1,v7,com/fsharemobile/fragments/SettingFragment.txtEmail Landroid/widget/TextView;
+; v1 : Landroid/widget/TextView; , v7 : Lcom/fsharemobile/fragments/SettingFragment;
+	invoke-virtual	{v8},com/fsharemobile/model/User/getUserEmail	; getUserEmail()Ljava/lang/String;
+; v8 : Lcom/fsharemobile/model/User;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},android/widget/TextView/setText	; setText(Ljava/lang/CharSequence;)V
+; v1 : Landroid/widget/TextView; , v2 : Ljava/lang/String;
+.line 378
+	iget-object	v1,v7,com/fsharemobile/fragments/SettingFragment.txtCode Landroid/widget/TextView;
+; v1 : Landroid/widget/TextView; , v7 : Lcom/fsharemobile/fragments/SettingFragment;
+	invoke-virtual	{v8},com/fsharemobile/model/User/getId	; getId()Ljava/lang/String;
+; v8 : Lcom/fsharemobile/model/User;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},android/widget/TextView/setText	; setText(Ljava/lang/CharSequence;)V
+; v1 : Landroid/widget/TextView; , v2 : Ljava/lang/String;
+.line 379
+	const-string	v0,""
+; v0 : Ljava/lang/String;
+.line 381
+	invoke-virtual	{v8},com/fsharemobile/model/User/getLevel	; getLevel()Ljava/lang/String;
+; v8 : Lcom/fsharemobile/model/User;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	const-string	v2,"2"
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/String/compareTo	; compareTo(Ljava/lang/String;)I
+; v1 : Ljava/lang/String; , v2 : Ljava/lang/String;
+	move-result	v1
+; v1 : single-length
+	if-nez	v1,ldf778
+; v1 : single-length
+.line 382
+	invoke-virtual	{v7},com/fsharemobile/fragments/SettingFragment/getResources	; getResources()Landroid/content/res/Resources;
+; v7 : Lcom/fsharemobile/fragments/SettingFragment;
+	move-result-object	v1
+; v1 : Landroid/content/res/Resources;
+	const	v2,2131230826	; 0x7f08006a
+; v2 : single-length
+	invoke-virtual	{v1,v2},android/content/res/Resources/getString	; getString(I)Ljava/lang/String;
+; v1 : Landroid/content/res/Resources; , v2 : single-length
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+.line 383
+	iget-object	v1,v7,com/fsharemobile/fragments/SettingFragment.txtDate Landroid/widget/TextView;
+; v1 : Landroid/widget/TextView; , v7 : Lcom/fsharemobile/fragments/SettingFragment;
+	invoke-virtual	{v7},com/fsharemobile/fragments/SettingFragment/getActivity	; getActivity()Landroid/support/v4/app/FragmentActivity;
+; v7 : Lcom/fsharemobile/fragments/SettingFragment;
+	move-result-object	v2
+; v2 : Landroid/support/v4/app/FragmentActivity;
+	invoke-virtual	{v2},android/support/v4/app/FragmentActivity/getResources	; getResources()Landroid/content/res/Resources;
+; v2 : Landroid/support/v4/app/FragmentActivity;
+	move-result-object	v2
+; v2 : Landroid/content/res/Resources;
+.line 384
+	const	v3,2131230754	; 0x7f080022
+; v3 : single-length
+.line 383
+	invoke-virtual	{v2,v3},android/content/res/Resources/getString	; getString(I)Ljava/lang/String;
+; v2 : Landroid/content/res/Resources; , v3 : single-length
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},android/widget/TextView/setText	; setText(Ljava/lang/CharSequence;)V
+; v1 : Landroid/widget/TextView; , v2 : Ljava/lang/String;
+ldf5f8:
+.line 390
+	iget-object	v1,v7,com/fsharemobile/fragments/SettingFragment.txtType Landroid/widget/TextView;
+; v1 : Landroid/widget/TextView; , v7 : Lcom/fsharemobile/fragments/SettingFragment;
+	invoke-virtual	{v1,v0},android/widget/TextView/setText	; setText(Ljava/lang/CharSequence;)V
+; v1 : Landroid/widget/TextView; , v0 : Ljava/lang/String;
+.line 391
+	iget-object	v1,v7,com/fsharemobile/fragments/SettingFragment.txtPoint Landroid/widget/TextView;
+; v1 : Landroid/widget/TextView; , v7 : Lcom/fsharemobile/fragments/SettingFragment;
+	invoke-virtual	{v8},com/fsharemobile/model/User/getTotalPoints	; getTotalPoints()Ljava/lang/String;
+; v8 : Lcom/fsharemobile/model/User;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},android/widget/TextView/setText	; setText(Ljava/lang/CharSequence;)V
+; v1 : Landroid/widget/TextView; , v2 : Ljava/lang/String;
+.line 393
+	iget-object	v1,v7,com/fsharemobile/fragments/SettingFragment.txtWebSpace Landroid/widget/TextView;
+; v1 : Landroid/widget/TextView; , v7 : Lcom/fsharemobile/fragments/SettingFragment;
+	new-instance	v2,java/lang/StringBuilder
+; v2 : Ljava/lang/StringBuilder;
+	invoke-direct	{v2},java/lang/StringBuilder/<init>	; <init>()V
+; v2 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v8},com/fsharemobile/model/User/getWebSpace	; getWebSpace()Ljava/lang/String;
+; v8 : Lcom/fsharemobile/model/User;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-direct	{v7,v3},com/fsharemobile/fragments/SettingFragment/getGB	; getGB(Ljava/lang/String;)Ljava/lang/Double;
+; v7 : Lcom/fsharemobile/fragments/SettingFragment; , v3 : Ljava/lang/String;
+	move-result-object	v3
+; v3 : Ljava/lang/Double;
+	invoke-virtual	{v2,v3},java/lang/StringBuilder/append	; append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/Double;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	const-string	v3,"GB"
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v2},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v2 : Ljava/lang/StringBuilder;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},android/widget/TextView/setText	; setText(Ljava/lang/CharSequence;)V
+; v1 : Landroid/widget/TextView; , v2 : Ljava/lang/String;
+.line 394
+	iget-object	v1,v7,com/fsharemobile/fragments/SettingFragment.txtWebSpaceUse Landroid/widget/TextView;
+; v1 : Landroid/widget/TextView; , v7 : Lcom/fsharemobile/fragments/SettingFragment;
+	new-instance	v2,java/lang/StringBuilder
+; v2 : Ljava/lang/StringBuilder;
+	invoke-direct	{v2},java/lang/StringBuilder/<init>	; <init>()V
+; v2 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v8},com/fsharemobile/model/User/getWebSpaceUsed	; getWebSpaceUsed()Ljava/lang/String;
+; v8 : Lcom/fsharemobile/model/User;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-direct	{v7,v3},com/fsharemobile/fragments/SettingFragment/getGB	; getGB(Ljava/lang/String;)Ljava/lang/Double;
+; v7 : Lcom/fsharemobile/fragments/SettingFragment; , v3 : Ljava/lang/String;
+	move-result-object	v3
+; v3 : Ljava/lang/Double;
+	invoke-virtual	{v2,v3},java/lang/StringBuilder/append	; append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/Double;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	const-string	v3,"GB"
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v2},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v2 : Ljava/lang/StringBuilder;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},android/widget/TextView/setText	; setText(Ljava/lang/CharSequence;)V
+; v1 : Landroid/widget/TextView; , v2 : Ljava/lang/String;
+.line 395
+	iget-object	v1,v7,com/fsharemobile/fragments/SettingFragment.txtSecure Landroid/widget/TextView;
+; v1 : Landroid/widget/TextView; , v7 : Lcom/fsharemobile/fragments/SettingFragment;
+	new-instance	v2,java/lang/StringBuilder
+; v2 : Ljava/lang/StringBuilder;
+	invoke-direct	{v2},java/lang/StringBuilder/<init>	; <init>()V
+; v2 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v8},com/fsharemobile/model/User/getWebSpaceUsed	; getWebSpaceUsed()Ljava/lang/String;
+; v8 : Lcom/fsharemobile/model/User;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-direct	{v7,v3},com/fsharemobile/fragments/SettingFragment/getGB	; getGB(Ljava/lang/String;)Ljava/lang/Double;
+; v7 : Lcom/fsharemobile/fragments/SettingFragment; , v3 : Ljava/lang/String;
+	move-result-object	v3
+; v3 : Ljava/lang/Double;
+	invoke-virtual	{v2,v3},java/lang/StringBuilder/append	; append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/Double;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	const-string	v3,"GB"
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v2},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v2 : Ljava/lang/StringBuilder;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},android/widget/TextView/setText	; setText(Ljava/lang/CharSequence;)V
+; v1 : Landroid/widget/TextView; , v2 : Ljava/lang/String;
+.line 396
+	iget-object	v1,v7,com/fsharemobile/fragments/SettingFragment.txtSecureUse Landroid/widget/TextView;
+; v1 : Landroid/widget/TextView; , v7 : Lcom/fsharemobile/fragments/SettingFragment;
+	new-instance	v2,java/lang/StringBuilder
+; v2 : Ljava/lang/StringBuilder;
+	invoke-direct	{v2},java/lang/StringBuilder/<init>	; <init>()V
+; v2 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v8},com/fsharemobile/model/User/getWebSpcaeSecure	; getWebSpcaeSecure()Ljava/lang/String;
+; v8 : Lcom/fsharemobile/model/User;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-direct	{v7,v3},com/fsharemobile/fragments/SettingFragment/getGB	; getGB(Ljava/lang/String;)Ljava/lang/Double;
+; v7 : Lcom/fsharemobile/fragments/SettingFragment; , v3 : Ljava/lang/String;
+	move-result-object	v3
+; v3 : Ljava/lang/Double;
+	invoke-virtual	{v2,v3},java/lang/StringBuilder/append	; append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/Double;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	const-string	v3,"GB"
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v2},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v2 : Ljava/lang/StringBuilder;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},android/widget/TextView/setText	; setText(Ljava/lang/CharSequence;)V
+; v1 : Landroid/widget/TextView; , v2 : Ljava/lang/String;
+.line 397
+	iget-object	v1,v7,com/fsharemobile/fragments/SettingFragment.txtToTal Landroid/widget/TextView;
+; v1 : Landroid/widget/TextView; , v7 : Lcom/fsharemobile/fragments/SettingFragment;
+	new-instance	v2,java/lang/StringBuilder
+; v2 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v8},com/fsharemobile/model/User/getWebSpace	; getWebSpace()Ljava/lang/String;
+; v8 : Lcom/fsharemobile/model/User;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-direct	{v7,v3},com/fsharemobile/fragments/SettingFragment/getGB	; getGB(Ljava/lang/String;)Ljava/lang/Double;
+; v7 : Lcom/fsharemobile/fragments/SettingFragment; , v3 : Ljava/lang/String;
+	move-result-object	v3
+; v3 : Ljava/lang/Double;
+	invoke-virtual	{v3},java/lang/Double/doubleValue	; doubleValue()D
+; v3 : Ljava/lang/Double;
+	move-result-wide	v3
+; v3 : double-length
+.line 398
+	invoke-virtual	{v8},com/fsharemobile/model/User/getWebSpcaeSecure	; getWebSpcaeSecure()Ljava/lang/String;
+; v8 : Lcom/fsharemobile/model/User;
+	move-result-object	v5
+; v5 : Ljava/lang/String;
+	invoke-direct	{v7,v5},com/fsharemobile/fragments/SettingFragment/getGB	; getGB(Ljava/lang/String;)Ljava/lang/Double;
+; v7 : Lcom/fsharemobile/fragments/SettingFragment; , v5 : Ljava/lang/String;
+	move-result-object	v5
+; v5 : Ljava/lang/Double;
+	invoke-virtual	{v5},java/lang/Double/doubleValue	; doubleValue()D
+; v5 : Ljava/lang/Double;
+	move-result-wide	v5
+; v5 : double-length
+	add-double/2addr	v3,v5
+; v3 : double-length , v5 : double-length
+	invoke-static	{v3,v4},java/lang/String/valueOf	; valueOf(D)Ljava/lang/String;
+; v3 : double-length
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-direct	{v2,v3},java/lang/StringBuilder/<init>	; <init>(Ljava/lang/String;)V
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	const-string	v3,"GB"
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v2},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v2 : Ljava/lang/StringBuilder;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+.line 397
+	invoke-virtual	{v1,v2},android/widget/TextView/setText	; setText(Ljava/lang/CharSequence;)V
+; v1 : Landroid/widget/TextView; , v2 : Ljava/lang/String;
+ldf776:
+.line 401
+	return-void	
+ldf778:
+.line 386
+	invoke-virtual	{v7},com/fsharemobile/fragments/SettingFragment/getResources	; getResources()Landroid/content/res/Resources;
+; v7 : Lcom/fsharemobile/fragments/SettingFragment;
+	move-result-object	v1
+; v1 : Landroid/content/res/Resources;
+	const	v2,2131230827	; 0x7f08006b
+; v2 : single-length
+	invoke-virtual	{v1,v2},android/content/res/Resources/getString	; getString(I)Ljava/lang/String;
+; v1 : Landroid/content/res/Resources; , v2 : single-length
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+.line 387
+	iget-object	v1,v7,com/fsharemobile/fragments/SettingFragment.txtDate Landroid/widget/TextView;
+; v1 : Landroid/widget/TextView; , v7 : Lcom/fsharemobile/fragments/SettingFragment;
+	invoke-virtual	{v8},com/fsharemobile/model/User/getExpireVip	; getExpireVip()Ljava/lang/String;
+; v8 : Lcom/fsharemobile/model/User;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-direct	{v7,v2},com/fsharemobile/fragments/SettingFragment/getDate	; getDate(Ljava/lang/String;)Ljava/lang/String;
+; v7 : Lcom/fsharemobile/fragments/SettingFragment; , v2 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},android/widget/TextView/setText	; setText(Ljava/lang/CharSequence;)V
+; v1 : Landroid/widget/TextView; , v2 : Ljava/lang/String;
+	goto/16	ldf5f8
+.end method
+
+.method private setCameraUploadPre(Z)V
+.annotation buildVisibility Landroid/annotation/SuppressLint;
+    value [Ljava/lang/String; = { "CommitPrefEdits" }
+.end annotation
+.limit registers 7
+; this: v5 (Lcom/fsharemobile/fragments/SettingFragment;)
+; parameter[0] : v6 (Z)
+.line 454
+	invoke-virtual	{v5},com/fsharemobile/fragments/SettingFragment/getActivity	; getActivity()Landroid/support/v4/app/FragmentActivity;
+; v5 : Lcom/fsharemobile/fragments/SettingFragment;
+	move-result-object	v2
+; v2 : Landroid/support/v4/app/FragmentActivity;
+.line 455
+	const-string	v3,"camera_upload"
+; v3 : Ljava/lang/String;
+	const/4	v4,0
+; v4 : single-length
+.line 454
+	invoke-virtual	{v2,v3,v4},android/support/v4/app/FragmentActivity/getSharedPreferences	; getSharedPreferences(Ljava/lang/String;I)Landroid/content/SharedPreferences;
+; v2 : Landroid/support/v4/app/FragmentActivity; , v3 : Ljava/lang/String; , v4 : single-length
+	move-result-object	v1
+; v1 : Landroid/content/SharedPreferences;
+.line 457
+	invoke-interface	{v1},android/content/SharedPreferences/edit	; edit()Landroid/content/SharedPreferences$Editor;
+; v1 : Landroid/content/SharedPreferences;
+	move-result-object	v0
+; v0 : Landroid/content/SharedPreferences$Editor;
+.line 459
+	const-string	v2,"camera_upload_stt"
+; v2 : Ljava/lang/String;
+	invoke-interface	{v0,v2,v6},android/content/SharedPreferences$Editor/putBoolean	; putBoolean(Ljava/lang/String;Z)Landroid/content/SharedPreferences$Editor;
+; v0 : Landroid/content/SharedPreferences$Editor; , v2 : Ljava/lang/String; , v6 : single-length
+.line 460
+	invoke-interface	{v0},android/content/SharedPreferences$Editor/commit	; commit()Z
+; v0 : Landroid/content/SharedPreferences$Editor;
+.line 461
+	return-void	
+.end method
+
+.method public onActivityCreated(Landroid/os/Bundle;)V
+.limit registers 10
+; this: v8 (Lcom/fsharemobile/fragments/SettingFragment;)
+; parameter[0] : v9 (Landroid/os/Bundle;)
+.catch java/lang/Exception from ldfad0 to ldfade using ldfaf2
+.catch android/content/pm/PackageManager$NameNotFoundException from ldf9da to ldfa08 using ldfa9e
+.var 2 is pInfo Landroid/content/pm/PackageInfo; from ldfa04 to ldfa08
+.var 3 is share Lcom/fsharemobile/model/Share; from ldfa34 to ldfa9e
+.var 0 is e Landroid/content/pm/PackageManager$NameNotFoundException; from ldfaa0 to ldfaac
+.line 89
+	invoke-super	{v8,v9},android/support/v4/app/Fragment/onActivityCreated	; onActivityCreated(Landroid/os/Bundle;)V
+; v8 : Lcom/fsharemobile/fragments/SettingFragment; , v9 : Landroid/os/Bundle;
+.line 94
+	invoke-virtual	{v8},com/fsharemobile/fragments/SettingFragment/getActivity	; getActivity()Landroid/support/v4/app/FragmentActivity;
+; v8 : Lcom/fsharemobile/fragments/SettingFragment;
+	move-result-object	v5
+; v5 : Landroid/support/v4/app/FragmentActivity;
+	const	v6,2131427411	; 0x7f0b0053
+; v6 : single-length
+	invoke-virtual	{v5,v6},android/support/v4/app/FragmentActivity/findViewById	; findViewById(I)Landroid/view/View;
+; v5 : Landroid/support/v4/app/FragmentActivity; , v6 : single-length
+	move-result-object	v5
+; v5 : Landroid/view/View;
+	check-cast	v5,android/widget/TextView
+; v5 : Landroid/widget/TextView;
+	iput-object	v5,v8,com/fsharemobile/fragments/SettingFragment.txtEmail Landroid/widget/TextView;
+; v5 : Landroid/widget/TextView; , v8 : Lcom/fsharemobile/fragments/SettingFragment;
+.line 95
+	invoke-virtual	{v8},com/fsharemobile/fragments/SettingFragment/getActivity	; getActivity()Landroid/support/v4/app/FragmentActivity;
+; v8 : Lcom/fsharemobile/fragments/SettingFragment;
+	move-result-object	v5
+; v5 : Landroid/support/v4/app/FragmentActivity;
+	const	v6,2131427413	; 0x7f0b0055
+; v6 : single-length
+	invoke-virtual	{v5,v6},android/support/v4/app/FragmentActivity/findViewById	; findViewById(I)Landroid/view/View;
+; v5 : Landroid/support/v4/app/FragmentActivity; , v6 : single-length
+	move-result-object	v5
+; v5 : Landroid/view/View;
+	check-cast	v5,android/widget/TextView
+; v5 : Landroid/widget/TextView;
+	iput-object	v5,v8,com/fsharemobile/fragments/SettingFragment.txtCode Landroid/widget/TextView;
+; v5 : Landroid/widget/TextView; , v8 : Lcom/fsharemobile/fragments/SettingFragment;
+.line 96
+	invoke-virtual	{v8},com/fsharemobile/fragments/SettingFragment/getActivity	; getActivity()Landroid/support/v4/app/FragmentActivity;
+; v8 : Lcom/fsharemobile/fragments/SettingFragment;
+	move-result-object	v5
+; v5 : Landroid/support/v4/app/FragmentActivity;
+	const	v6,2131427415	; 0x7f0b0057
+; v6 : single-length
+	invoke-virtual	{v5,v6},android/support/v4/app/FragmentActivity/findViewById	; findViewById(I)Landroid/view/View;
+; v5 : Landroid/support/v4/app/FragmentActivity; , v6 : single-length
+	move-result-object	v5
+; v5 : Landroid/view/View;
+	check-cast	v5,android/widget/TextView
+; v5 : Landroid/widget/TextView;
+	iput-object	v5,v8,com/fsharemobile/fragments/SettingFragment.txtType Landroid/widget/TextView;
+; v5 : Landroid/widget/TextView; , v8 : Lcom/fsharemobile/fragments/SettingFragment;
+.line 97
+	invoke-virtual	{v8},com/fsharemobile/fragments/SettingFragment/getActivity	; getActivity()Landroid/support/v4/app/FragmentActivity;
+; v8 : Lcom/fsharemobile/fragments/SettingFragment;
+	move-result-object	v5
+; v5 : Landroid/support/v4/app/FragmentActivity;
+	const	v6,2131427419	; 0x7f0b005b
+; v6 : single-length
+	invoke-virtual	{v5,v6},android/support/v4/app/FragmentActivity/findViewById	; findViewById(I)Landroid/view/View;
+; v5 : Landroid/support/v4/app/FragmentActivity; , v6 : single-length
+	move-result-object	v5
+; v5 : Landroid/view/View;
+	check-cast	v5,android/widget/TextView
+; v5 : Landroid/widget/TextView;
+	iput-object	v5,v8,com/fsharemobile/fragments/SettingFragment.txtDate Landroid/widget/TextView;
+; v5 : Landroid/widget/TextView; , v8 : Lcom/fsharemobile/fragments/SettingFragment;
+.line 98
+	invoke-virtual	{v8},com/fsharemobile/fragments/SettingFragment/getActivity	; getActivity()Landroid/support/v4/app/FragmentActivity;
+; v8 : Lcom/fsharemobile/fragments/SettingFragment;
+	move-result-object	v5
+; v5 : Landroid/support/v4/app/FragmentActivity;
+	const	v6,2131427417	; 0x7f0b0059
+; v6 : single-length
+	invoke-virtual	{v5,v6},android/support/v4/app/FragmentActivity/findViewById	; findViewById(I)Landroid/view/View;
+; v5 : Landroid/support/v4/app/FragmentActivity; , v6 : single-length
+	move-result-object	v5
+; v5 : Landroid/view/View;
+	check-cast	v5,android/widget/TextView
+; v5 : Landroid/widget/TextView;
+	iput-object	v5,v8,com/fsharemobile/fragments/SettingFragment.txtPoint Landroid/widget/TextView;
+; v5 : Landroid/widget/TextView; , v8 : Lcom/fsharemobile/fragments/SettingFragment;
+.line 99
+	invoke-virtual	{v8},com/fsharemobile/fragments/SettingFragment/getActivity	; getActivity()Landroid/support/v4/app/FragmentActivity;
+; v8 : Lcom/fsharemobile/fragments/SettingFragment;
+	move-result-object	v5
+; v5 : Landroid/support/v4/app/FragmentActivity;
+	const	v6,2131427422	; 0x7f0b005e
+; v6 : single-length
+	invoke-virtual	{v5,v6},android/support/v4/app/FragmentActivity/findViewById	; findViewById(I)Landroid/view/View;
+; v5 : Landroid/support/v4/app/FragmentActivity; , v6 : single-length
+	move-result-object	v5
+; v5 : Landroid/view/View;
+	check-cast	v5,android/widget/TextView
+; v5 : Landroid/widget/TextView;
+	iput-object	v5,v8,com/fsharemobile/fragments/SettingFragment.txtWebSpace Landroid/widget/TextView;
+; v5 : Landroid/widget/TextView; , v8 : Lcom/fsharemobile/fragments/SettingFragment;
+.line 100
+	invoke-virtual	{v8},com/fsharemobile/fragments/SettingFragment/getActivity	; getActivity()Landroid/support/v4/app/FragmentActivity;
+; v8 : Lcom/fsharemobile/fragments/SettingFragment;
+	move-result-object	v5
+; v5 : Landroid/support/v4/app/FragmentActivity;
+.line 101
+	const	v6,2131427424	; 0x7f0b0060
+; v6 : single-length
+.line 100
+	invoke-virtual	{v5,v6},android/support/v4/app/FragmentActivity/findViewById	; findViewById(I)Landroid/view/View;
+; v5 : Landroid/support/v4/app/FragmentActivity; , v6 : single-length
+	move-result-object	v5
+; v5 : Landroid/view/View;
+	check-cast	v5,android/widget/TextView
+; v5 : Landroid/widget/TextView;
+	iput-object	v5,v8,com/fsharemobile/fragments/SettingFragment.txtWebSpaceUse Landroid/widget/TextView;
+; v5 : Landroid/widget/TextView; , v8 : Lcom/fsharemobile/fragments/SettingFragment;
+.line 102
+	invoke-virtual	{v8},com/fsharemobile/fragments/SettingFragment/getActivity	; getActivity()Landroid/support/v4/app/FragmentActivity;
+; v8 : Lcom/fsharemobile/fragments/SettingFragment;
+	move-result-object	v5
+; v5 : Landroid/support/v4/app/FragmentActivity;
+	const	v6,2131427426	; 0x7f0b0062
+; v6 : single-length
+	invoke-virtual	{v5,v6},android/support/v4/app/FragmentActivity/findViewById	; findViewById(I)Landroid/view/View;
+; v5 : Landroid/support/v4/app/FragmentActivity; , v6 : single-length
+	move-result-object	v5
+; v5 : Landroid/view/View;
+	check-cast	v5,android/widget/TextView
+; v5 : Landroid/widget/TextView;
+	iput-object	v5,v8,com/fsharemobile/fragments/SettingFragment.txtSecure Landroid/widget/TextView;
+; v5 : Landroid/widget/TextView; , v8 : Lcom/fsharemobile/fragments/SettingFragment;
+.line 103
+	invoke-virtual	{v8},com/fsharemobile/fragments/SettingFragment/getActivity	; getActivity()Landroid/support/v4/app/FragmentActivity;
+; v8 : Lcom/fsharemobile/fragments/SettingFragment;
+	move-result-object	v5
+; v5 : Landroid/support/v4/app/FragmentActivity;
+.line 104
+	const	v6,2131427428	; 0x7f0b0064
+; v6 : single-length
+.line 103
+	invoke-virtual	{v5,v6},android/support/v4/app/FragmentActivity/findViewById	; findViewById(I)Landroid/view/View;
+; v5 : Landroid/support/v4/app/FragmentActivity; , v6 : single-length
+	move-result-object	v5
+; v5 : Landroid/view/View;
+	check-cast	v5,android/widget/TextView
+; v5 : Landroid/widget/TextView;
+	iput-object	v5,v8,com/fsharemobile/fragments/SettingFragment.txtSecureUse Landroid/widget/TextView;
+; v5 : Landroid/widget/TextView; , v8 : Lcom/fsharemobile/fragments/SettingFragment;
+.line 105
+	invoke-virtual	{v8},com/fsharemobile/fragments/SettingFragment/getActivity	; getActivity()Landroid/support/v4/app/FragmentActivity;
+; v8 : Lcom/fsharemobile/fragments/SettingFragment;
+	move-result-object	v5
+; v5 : Landroid/support/v4/app/FragmentActivity;
+	const	v6,2131427430	; 0x7f0b0066
+; v6 : single-length
+	invoke-virtual	{v5,v6},android/support/v4/app/FragmentActivity/findViewById	; findViewById(I)Landroid/view/View;
+; v5 : Landroid/support/v4/app/FragmentActivity; , v6 : single-length
+	move-result-object	v5
+; v5 : Landroid/view/View;
+	check-cast	v5,android/widget/TextView
+; v5 : Landroid/widget/TextView;
+	iput-object	v5,v8,com/fsharemobile/fragments/SettingFragment.txtToTal Landroid/widget/TextView;
+; v5 : Landroid/widget/TextView; , v8 : Lcom/fsharemobile/fragments/SettingFragment;
+.line 106
+	invoke-virtual	{v8},com/fsharemobile/fragments/SettingFragment/getActivity	; getActivity()Landroid/support/v4/app/FragmentActivity;
+; v8 : Lcom/fsharemobile/fragments/SettingFragment;
+	move-result-object	v5
+; v5 : Landroid/support/v4/app/FragmentActivity;
+	const	v6,2131427435	; 0x7f0b006b
+; v6 : single-length
+	invoke-virtual	{v5,v6},android/support/v4/app/FragmentActivity/findViewById	; findViewById(I)Landroid/view/View;
+; v5 : Landroid/support/v4/app/FragmentActivity; , v6 : single-length
+	move-result-object	v5
+; v5 : Landroid/view/View;
+	check-cast	v5,android/widget/TextView
+; v5 : Landroid/widget/TextView;
+	iput-object	v5,v8,com/fsharemobile/fragments/SettingFragment.txtVer Landroid/widget/TextView;
+; v5 : Landroid/widget/TextView; , v8 : Lcom/fsharemobile/fragments/SettingFragment;
+.line 107
+	invoke-virtual	{v8},com/fsharemobile/fragments/SettingFragment/getActivity	; getActivity()Landroid/support/v4/app/FragmentActivity;
+; v8 : Lcom/fsharemobile/fragments/SettingFragment;
+	move-result-object	v5
+; v5 : Landroid/support/v4/app/FragmentActivity;
+.line 108
+	const	v6,2131427437	; 0x7f0b006d
+; v6 : single-length
+.line 107
+	invoke-virtual	{v5,v6},android/support/v4/app/FragmentActivity/findViewById	; findViewById(I)Landroid/view/View;
+; v5 : Landroid/support/v4/app/FragmentActivity; , v6 : single-length
+	move-result-object	v5
+; v5 : Landroid/view/View;
+	check-cast	v5,android/widget/TextView
+; v5 : Landroid/widget/TextView;
+	iput-object	v5,v8,com/fsharemobile/fragments/SettingFragment.txtLinkFshare Landroid/widget/TextView;
+; v5 : Landroid/widget/TextView; , v8 : Lcom/fsharemobile/fragments/SettingFragment;
+.line 109
+	invoke-virtual	{v8},com/fsharemobile/fragments/SettingFragment/getActivity	; getActivity()Landroid/support/v4/app/FragmentActivity;
+; v8 : Lcom/fsharemobile/fragments/SettingFragment;
+	move-result-object	v5
+; v5 : Landroid/support/v4/app/FragmentActivity;
+	const	v6,2131427438	; 0x7f0b006e
+; v6 : single-length
+	invoke-virtual	{v5,v6},android/support/v4/app/FragmentActivity/findViewById	; findViewById(I)Landroid/view/View;
+; v5 : Landroid/support/v4/app/FragmentActivity; , v6 : single-length
+	move-result-object	v5
+; v5 : Landroid/view/View;
+	check-cast	v5,android/widget/Button
+; v5 : Landroid/widget/Button;
+	iput-object	v5,v8,com/fsharemobile/fragments/SettingFragment.btnLogOut Landroid/widget/Button;
+; v5 : Landroid/widget/Button; , v8 : Lcom/fsharemobile/fragments/SettingFragment;
+.line 110
+	invoke-virtual	{v8},com/fsharemobile/fragments/SettingFragment/getActivity	; getActivity()Landroid/support/v4/app/FragmentActivity;
+; v8 : Lcom/fsharemobile/fragments/SettingFragment;
+	move-result-object	v5
+; v5 : Landroid/support/v4/app/FragmentActivity;
+.line 111
+	const	v6,2131427432	; 0x7f0b0068
+; v6 : single-length
+.line 110
+	invoke-virtual	{v5,v6},android/support/v4/app/FragmentActivity/findViewById	; findViewById(I)Landroid/view/View;
+; v5 : Landroid/support/v4/app/FragmentActivity; , v6 : single-length
+	move-result-object	v5
+; v5 : Landroid/view/View;
+	check-cast	v5,android/widget/Switch
+; v5 : Landroid/widget/Switch;
+	iput-object	v5,v8,com/fsharemobile/fragments/SettingFragment.switchCameraUpload Landroid/widget/Switch;
+; v5 : Landroid/widget/Switch; , v8 : Lcom/fsharemobile/fragments/SettingFragment;
+.line 112
+	new-instance	v5,com/fsharemobile/database/FilesDataSource
+; v5 : Lcom/fsharemobile/database/FilesDataSource;
+	invoke-virtual	{v8},com/fsharemobile/fragments/SettingFragment/getActivity	; getActivity()Landroid/support/v4/app/FragmentActivity;
+; v8 : Lcom/fsharemobile/fragments/SettingFragment;
+	move-result-object	v6
+; v6 : Landroid/support/v4/app/FragmentActivity;
+	invoke-direct	{v5,v6},com/fsharemobile/database/FilesDataSource/<init>	; <init>(Landroid/content/Context;)V
+; v5 : Lcom/fsharemobile/database/FilesDataSource; , v6 : Landroid/support/v4/app/FragmentActivity;
+	iput-object	v5,v8,com/fsharemobile/fragments/SettingFragment.fileData Lcom/fsharemobile/database/FilesDataSource;
+; v5 : Lcom/fsharemobile/database/FilesDataSource; , v8 : Lcom/fsharemobile/fragments/SettingFragment;
+.line 113
+	invoke-direct	{v8},com/fsharemobile/fragments/SettingFragment/loadSwitchCamera	; loadSwitchCamera()V
+; v8 : Lcom/fsharemobile/fragments/SettingFragment;
+.line 117
+	iget-object	v5,v8,com/fsharemobile/fragments/SettingFragment.switchCameraUpload Landroid/widget/Switch;
+; v5 : Landroid/widget/Switch; , v8 : Lcom/fsharemobile/fragments/SettingFragment;
+.line 118
+	new-instance	v6,com/fsharemobile/fragments/SettingFragment$2
+; v6 : Lcom/fsharemobile/fragments/SettingFragment$2;
+	invoke-direct	{v6,v8},com/fsharemobile/fragments/SettingFragment$2/<init>	; <init>(Lcom/fsharemobile/fragments/SettingFragment;)V
+; v6 : Lcom/fsharemobile/fragments/SettingFragment$2; , v8 : Lcom/fsharemobile/fragments/SettingFragment;
+	invoke-virtual	{v5,v6},android/widget/Switch/setOnCheckedChangeListener	; setOnCheckedChangeListener(Landroid/widget/CompoundButton$OnCheckedChangeListener;)V
+; v5 : Landroid/widget/Switch; , v6 : Lcom/fsharemobile/fragments/SettingFragment$2;
+.line 162
+	const-string	v4,""
+; v4 : Ljava/lang/String;
+ldf9da:
+.line 164
+	invoke-virtual	{v8},com/fsharemobile/fragments/SettingFragment/getActivity	; getActivity()Landroid/support/v4/app/FragmentActivity;
+; v8 : Lcom/fsharemobile/fragments/SettingFragment;
+	move-result-object	v5
+; v5 : Landroid/support/v4/app/FragmentActivity;
+	invoke-virtual	{v5},android/support/v4/app/FragmentActivity/getPackageManager	; getPackageManager()Landroid/content/pm/PackageManager;
+; v5 : Landroid/support/v4/app/FragmentActivity;
+	move-result-object	v5
+; v5 : Landroid/content/pm/PackageManager;
+.line 165
+	invoke-virtual	{v8},com/fsharemobile/fragments/SettingFragment/getActivity	; getActivity()Landroid/support/v4/app/FragmentActivity;
+; v8 : Lcom/fsharemobile/fragments/SettingFragment;
+	move-result-object	v6
+; v6 : Landroid/support/v4/app/FragmentActivity;
+	invoke-virtual	{v6},android/support/v4/app/FragmentActivity/getPackageName	; getPackageName()Ljava/lang/String;
+; v6 : Landroid/support/v4/app/FragmentActivity;
+	move-result-object	v6
+; v6 : Ljava/lang/String;
+	const/4	v7,0
+; v7 : single-length
+.line 164
+	invoke-virtual	{v5,v6,v7},android/content/pm/PackageManager/getPackageInfo	; getPackageInfo(Ljava/lang/String;I)Landroid/content/pm/PackageInfo;
+; v5 : Landroid/content/pm/PackageManager; , v6 : Ljava/lang/String; , v7 : single-length
+	move-result-object	v2
+; v2 : Landroid/content/pm/PackageInfo;
+.line 166
+	iget-object	v4,v2,android/content/pm/PackageInfo.versionName Ljava/lang/String;
+; v4 : Ljava/lang/String; , v2 : Landroid/content/pm/PackageInfo;
+ldfa08:
+.line 172
+	iget-object	v5,v8,com/fsharemobile/fragments/SettingFragment.txtVer Landroid/widget/TextView;
+; v5 : Landroid/widget/TextView; , v8 : Lcom/fsharemobile/fragments/SettingFragment;
+	invoke-virtual	{v5,v4},android/widget/TextView/setText	; setText(Ljava/lang/CharSequence;)V
+; v5 : Landroid/widget/TextView; , v4 : Ljava/lang/String;
+.line 173
+	iget-object	v5,v8,com/fsharemobile/fragments/SettingFragment.txtLinkFshare Landroid/widget/TextView;
+; v5 : Landroid/widget/TextView; , v8 : Lcom/fsharemobile/fragments/SettingFragment;
+	if-eqz	v5,ldfa2c
+; v5 : Landroid/widget/TextView;
+.line 174
+	iget-object	v5,v8,com/fsharemobile/fragments/SettingFragment.txtLinkFshare Landroid/widget/TextView;
+; v5 : Landroid/widget/TextView; , v8 : Lcom/fsharemobile/fragments/SettingFragment;
+	invoke-static	{},android/text/method/LinkMovementMethod/getInstance	; getInstance()Landroid/text/method/MovementMethod;
+; 
+	nop	
+	move-result-object	v6
+; v6 : Landroid/text/method/MovementMethod;
+	invoke-virtual	{v5,v6},android/widget/TextView/setMovementMethod	; setMovementMethod(Landroid/text/method/MovementMethod;)V
+; v5 : Landroid/widget/TextView; , v6 : Landroid/text/method/MovementMethod;
+ldfa2c:
+.line 177
+	invoke-static	{},com/fsharemobile/model/Share/getInstance	; getInstance()Lcom/fsharemobile/model/Share;
+; 
+	nop	
+	move-result-object	v3
+; v3 : Lcom/fsharemobile/model/Share;
+.line 178
+	invoke-virtual	{v3},com/fsharemobile/model/Share/getFclient	; getFclient()Lcom/fsharemobile/client/FClient;
+; v3 : Lcom/fsharemobile/model/Share;
+	move-result-object	v5
+; v5 : Lcom/fsharemobile/client/FClient;
+	iput-object	v5,v8,com/fsharemobile/fragments/SettingFragment.fclient Lcom/fsharemobile/client/FClient;
+; v5 : Lcom/fsharemobile/client/FClient; , v8 : Lcom/fsharemobile/fragments/SettingFragment;
+.line 180
+	iget-object	v5,v8,com/fsharemobile/fragments/SettingFragment.fclient Lcom/fsharemobile/client/FClient;
+; v5 : Lcom/fsharemobile/client/FClient; , v8 : Lcom/fsharemobile/fragments/SettingFragment;
+	invoke-virtual	{v5},com/fsharemobile/client/FClient/getUserProxy	; getUserProxy()Lcom/fsharemobile/client/UserProxy;
+; v5 : Lcom/fsharemobile/client/FClient;
+	move-result-object	v5
+; v5 : Lcom/fsharemobile/client/UserProxy;
+	iput-object	v5,v8,com/fsharemobile/fragments/SettingFragment.userProxy Lcom/fsharemobile/client/UserProxy;
+; v5 : Lcom/fsharemobile/client/UserProxy; , v8 : Lcom/fsharemobile/fragments/SettingFragment;
+.line 181
+	new-instance	v5,com/fsharemobile/database/FilesDataSource
+; v5 : Lcom/fsharemobile/database/FilesDataSource;
+	invoke-virtual	{v8},com/fsharemobile/fragments/SettingFragment/getActivity	; getActivity()Landroid/support/v4/app/FragmentActivity;
+; v8 : Lcom/fsharemobile/fragments/SettingFragment;
+	move-result-object	v6
+; v6 : Landroid/support/v4/app/FragmentActivity;
+	invoke-direct	{v5,v6},com/fsharemobile/database/FilesDataSource/<init>	; <init>(Landroid/content/Context;)V
+; v5 : Lcom/fsharemobile/database/FilesDataSource; , v6 : Landroid/support/v4/app/FragmentActivity;
+	iput-object	v5,v8,com/fsharemobile/fragments/SettingFragment.userData Lcom/fsharemobile/database/FilesDataSource;
+; v5 : Lcom/fsharemobile/database/FilesDataSource; , v8 : Lcom/fsharemobile/fragments/SettingFragment;
+.line 182
+	new-instance	v5,com/fsharemobile/utils/Constants
+; v5 : Lcom/fsharemobile/utils/Constants;
+	invoke-virtual	{v8},com/fsharemobile/fragments/SettingFragment/getActivity	; getActivity()Landroid/support/v4/app/FragmentActivity;
+; v8 : Lcom/fsharemobile/fragments/SettingFragment;
+	move-result-object	v6
+; v6 : Landroid/support/v4/app/FragmentActivity;
+	invoke-direct	{v5,v6},com/fsharemobile/utils/Constants/<init>	; <init>(Landroid/content/Context;)V
+; v5 : Lcom/fsharemobile/utils/Constants; , v6 : Landroid/support/v4/app/FragmentActivity;
+	iput-object	v5,v8,com/fsharemobile/fragments/SettingFragment.constants Lcom/fsharemobile/utils/Constants;
+; v5 : Lcom/fsharemobile/utils/Constants; , v8 : Lcom/fsharemobile/fragments/SettingFragment;
+.line 183
+	iget-object	v5,v8,com/fsharemobile/fragments/SettingFragment.constants Lcom/fsharemobile/utils/Constants;
+; v5 : Lcom/fsharemobile/utils/Constants; , v8 : Lcom/fsharemobile/fragments/SettingFragment;
+	invoke-virtual	{v5},com/fsharemobile/utils/Constants/isOnline	; isOnline()Z
+; v5 : Lcom/fsharemobile/utils/Constants;
+	move-result	v5
+; v5 : single-length
+	if-eqz	v5,ldfaac
+; v5 : single-length
+.line 184
+	invoke-direct	{v8},com/fsharemobile/fragments/SettingFragment/loadUser	; loadUser()V
+; v8 : Lcom/fsharemobile/fragments/SettingFragment;
+ldfa92:
+.line 208
+	iget-object	v5,v8,com/fsharemobile/fragments/SettingFragment.btnLogOut Landroid/widget/Button;
+; v5 : Landroid/widget/Button; , v8 : Lcom/fsharemobile/fragments/SettingFragment;
+	invoke-virtual	{v5,v8},android/widget/Button/setOnClickListener	; setOnClickListener(Landroid/view/View$OnClickListener;)V
+; v5 : Landroid/widget/Button; , v8 : Lcom/fsharemobile/fragments/SettingFragment;
+.line 215
+	return-void	
+ldfa9e:
+.line 167
+	move-exception	v0
+; v0 : android/content/pm/PackageManager$NameNotFoundException
+.line 168
+	invoke-virtual	{v0},android/content/pm/PackageManager$NameNotFoundException/printStackTrace	; printStackTrace()V
+; v0 : android/content/pm/PackageManager$NameNotFoundException
+.line 169
+	const-string	v4,"0.01"
+; v4 : Ljava/lang/String;
+	goto	ldfa08
+ldfaac:
+.line 186
+	iget-object	v5,v8,com/fsharemobile/fragments/SettingFragment.constants Lcom/fsharemobile/utils/Constants;
+; v5 : Lcom/fsharemobile/utils/Constants; , v8 : Lcom/fsharemobile/fragments/SettingFragment;
+	invoke-virtual	{v5},com/fsharemobile/utils/Constants/getUserID	; getUserID()Ljava/lang/String;
+; v5 : Lcom/fsharemobile/utils/Constants;
+	move-result-object	v5
+; v5 : Ljava/lang/String;
+	iput-object	v5,v8,com/fsharemobile/fragments/SettingFragment.userID Ljava/lang/String;
+; v5 : Ljava/lang/String; , v8 : Lcom/fsharemobile/fragments/SettingFragment;
+.line 187
+	new-instance	v1,com/fsharemobile/model/User
+; v1 : Lcom/fsharemobile/model/User;
+	invoke-direct	{v1},com/fsharemobile/model/User/<init>	; <init>()V
+; v1 : Lcom/fsharemobile/model/User;
+.line 188
+	iget-object	v5,v8,com/fsharemobile/fragments/SettingFragment.userData Lcom/fsharemobile/database/FilesDataSource;
+; v5 : Lcom/fsharemobile/database/FilesDataSource; , v8 : Lcom/fsharemobile/fragments/SettingFragment;
+	invoke-virtual	{v5},com/fsharemobile/database/FilesDataSource/open	; open()Lcom/fsharemobile/database/FilesDataSource;
+; v5 : Lcom/fsharemobile/database/FilesDataSource;
+ldfad0:
+.line 190
+	iget-object	v5,v8,com/fsharemobile/fragments/SettingFragment.userData Lcom/fsharemobile/database/FilesDataSource;
+; v5 : Lcom/fsharemobile/database/FilesDataSource; , v8 : Lcom/fsharemobile/fragments/SettingFragment;
+	iget-object	v6,v8,com/fsharemobile/fragments/SettingFragment.userID Ljava/lang/String;
+; v6 : Ljava/lang/String; , v8 : Lcom/fsharemobile/fragments/SettingFragment;
+	invoke-virtual	{v5,v6},com/fsharemobile/database/FilesDataSource/getUser	; getUser(Ljava/lang/String;)Lcom/fsharemobile/model/User;
+; v5 : Lcom/fsharemobile/database/FilesDataSource; , v6 : Ljava/lang/String;
+ldfade:
+	move-result-object	v1
+; v1 : Lcom/fsharemobile/model/User;
+ldfae0:
+.line 195
+	iget-object	v5,v8,com/fsharemobile/fragments/SettingFragment.userData Lcom/fsharemobile/database/FilesDataSource;
+; v5 : Lcom/fsharemobile/database/FilesDataSource; , v8 : Lcom/fsharemobile/fragments/SettingFragment;
+	invoke-virtual	{v5},com/fsharemobile/database/FilesDataSource/close	; close()V
+; v5 : Lcom/fsharemobile/database/FilesDataSource;
+.line 197
+	invoke-direct	{v8,v1},com/fsharemobile/fragments/SettingFragment/renderUser	; renderUser(Lcom/fsharemobile/model/User;)V
+; v8 : Lcom/fsharemobile/fragments/SettingFragment; , v1 : Lcom/fsharemobile/model/User;
+	goto	ldfa92
+ldfaf2:
+.line 191
+	move-exception	v0
+; v0 : java/lang/Exception
+.line 193
+	invoke-virtual	{v0},java/lang/Exception/printStackTrace	; printStackTrace()V
+; v0 : java/lang/Exception
+	goto	ldfae0
+.end method
+
+.method public onClick(Landroid/view/View;)V
+.limit registers 11
+; this: v9 (Lcom/fsharemobile/fragments/SettingFragment;)
+; parameter[0] : v10 (Landroid/view/View;)
+.var 0 is bn Landroid/widget/Button; from ldfc24 to ldfca6
+.var 1 is bp Landroid/widget/Button; from ldfc6a to ldfca6
+.var 2 is loginOrNot Landroid/app/AlertDialog$Builder; from ldfb58 to ldfca6
+.var 3 is myDialog Landroid/app/AlertDialog; from ldfc14 to ldfca6
+	const	v8,2131361800	; 0x7f0a0008
+; v8 : single-length
+	const	v7,2131361799	; 0x7f0a0007
+; v7 : single-length
+.line 220
+	invoke-virtual	{v10},android/view/View/getId	; getId()I
+; v10 : Landroid/view/View;
+	move-result	v4
+; v4 : single-length
+	const	v5,2131427438	; 0x7f0b006e
+; v5 : single-length
+	if-ne	v4,v5,ldfca6
+; v4 : single-length , v5 : single-length
+.line 222
+	new-instance	v2,android/app/AlertDialog$Builder
+; v2 : Landroid/app/AlertDialog$Builder;
+.line 223
+	invoke-virtual	{v9},com/fsharemobile/fragments/SettingFragment/getActivity	; getActivity()Landroid/support/v4/app/FragmentActivity;
+; v9 : Lcom/fsharemobile/fragments/SettingFragment;
+	move-result-object	v4
+; v4 : Landroid/support/v4/app/FragmentActivity;
+.line 222
+	invoke-direct	{v2,v4},android/app/AlertDialog$Builder/<init>	; <init>(Landroid/content/Context;)V
+; v2 : Landroid/app/AlertDialog$Builder; , v4 : Landroid/support/v4/app/FragmentActivity;
+.line 226
+	invoke-virtual	{v9},com/fsharemobile/fragments/SettingFragment/getActivity	; getActivity()Landroid/support/v4/app/FragmentActivity;
+; v9 : Lcom/fsharemobile/fragments/SettingFragment;
+	move-result-object	v4
+; v4 : Landroid/support/v4/app/FragmentActivity;
+	invoke-virtual	{v4},android/support/v4/app/FragmentActivity/getResources	; getResources()Landroid/content/res/Resources;
+; v4 : Landroid/support/v4/app/FragmentActivity;
+	move-result-object	v4
+; v4 : Landroid/content/res/Resources;
+.line 227
+	const	v5,2131230763	; 0x7f08002b
+; v5 : single-length
+.line 226
+	invoke-virtual	{v4,v5},android/content/res/Resources/getText	; getText(I)Ljava/lang/CharSequence;
+; v4 : Landroid/content/res/Resources; , v5 : single-length
+	move-result-object	v4
+; v4 : Ljava/lang/CharSequence;
+.line 225
+	invoke-virtual	{v2,v4},android/app/AlertDialog$Builder/setTitle	; setTitle(Ljava/lang/CharSequence;)Landroid/app/AlertDialog$Builder;
+; v2 : Landroid/app/AlertDialog$Builder; , v4 : Ljava/lang/CharSequence;
+	move-result-object	v4
+; v4 : Landroid/app/AlertDialog$Builder;
+.line 228
+	const	v5,2130837587	; 0x7f020053
+; v5 : single-length
+	invoke-virtual	{v4,v5},android/app/AlertDialog$Builder/setIcon	; setIcon(I)Landroid/app/AlertDialog$Builder;
+; v4 : Landroid/app/AlertDialog$Builder; , v5 : single-length
+	move-result-object	v4
+; v4 : Landroid/app/AlertDialog$Builder;
+.line 230
+	invoke-virtual	{v9},com/fsharemobile/fragments/SettingFragment/getActivity	; getActivity()Landroid/support/v4/app/FragmentActivity;
+; v9 : Lcom/fsharemobile/fragments/SettingFragment;
+	move-result-object	v5
+; v5 : Landroid/support/v4/app/FragmentActivity;
+	invoke-virtual	{v5},android/support/v4/app/FragmentActivity/getResources	; getResources()Landroid/content/res/Resources;
+; v5 : Landroid/support/v4/app/FragmentActivity;
+	move-result-object	v5
+; v5 : Landroid/content/res/Resources;
+.line 231
+	const	v6,2131230797	; 0x7f08004d
+; v6 : single-length
+.line 230
+	invoke-virtual	{v5,v6},android/content/res/Resources/getText	; getText(I)Ljava/lang/CharSequence;
+; v5 : Landroid/content/res/Resources; , v6 : single-length
+	move-result-object	v5
+; v5 : Ljava/lang/CharSequence;
+.line 229
+	invoke-virtual	{v4,v5},android/app/AlertDialog$Builder/setMessage	; setMessage(Ljava/lang/CharSequence;)Landroid/app/AlertDialog$Builder;
+; v4 : Landroid/app/AlertDialog$Builder; , v5 : Ljava/lang/CharSequence;
+.line 234
+	invoke-virtual	{v9},com/fsharemobile/fragments/SettingFragment/getActivity	; getActivity()Landroid/support/v4/app/FragmentActivity;
+; v9 : Lcom/fsharemobile/fragments/SettingFragment;
+	move-result-object	v4
+; v4 : Landroid/support/v4/app/FragmentActivity;
+	invoke-virtual	{v4},android/support/v4/app/FragmentActivity/getResources	; getResources()Landroid/content/res/Resources;
+; v4 : Landroid/support/v4/app/FragmentActivity;
+	move-result-object	v4
+; v4 : Landroid/content/res/Resources;
+	const	v5,2131230802	; 0x7f080052
+; v5 : single-length
+	invoke-virtual	{v4,v5},android/content/res/Resources/getText	; getText(I)Ljava/lang/CharSequence;
+; v4 : Landroid/content/res/Resources; , v5 : single-length
+	move-result-object	v4
+; v4 : Ljava/lang/CharSequence;
+.line 235
+	new-instance	v5,com/fsharemobile/fragments/SettingFragment$3
+; v5 : Lcom/fsharemobile/fragments/SettingFragment$3;
+	invoke-direct	{v5,v9},com/fsharemobile/fragments/SettingFragment$3/<init>	; <init>(Lcom/fsharemobile/fragments/SettingFragment;)V
+; v5 : Lcom/fsharemobile/fragments/SettingFragment$3; , v9 : Lcom/fsharemobile/fragments/SettingFragment;
+.line 233
+	invoke-virtual	{v2,v4,v5},android/app/AlertDialog$Builder/setNegativeButton	; setNegativeButton(Ljava/lang/CharSequence;Landroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
+; v2 : Landroid/app/AlertDialog$Builder; , v4 : Ljava/lang/CharSequence; , v5 : Lcom/fsharemobile/fragments/SettingFragment$3;
+.line 245
+	invoke-virtual	{v9},com/fsharemobile/fragments/SettingFragment/getActivity	; getActivity()Landroid/support/v4/app/FragmentActivity;
+; v9 : Lcom/fsharemobile/fragments/SettingFragment;
+	move-result-object	v4
+; v4 : Landroid/support/v4/app/FragmentActivity;
+	invoke-virtual	{v4},android/support/v4/app/FragmentActivity/getResources	; getResources()Landroid/content/res/Resources;
+; v4 : Landroid/support/v4/app/FragmentActivity;
+	move-result-object	v4
+; v4 : Landroid/content/res/Resources;
+	const	v5,2131230801	; 0x7f080051
+; v5 : single-length
+	invoke-virtual	{v4,v5},android/content/res/Resources/getText	; getText(I)Ljava/lang/CharSequence;
+; v4 : Landroid/content/res/Resources; , v5 : single-length
+	move-result-object	v4
+; v4 : Ljava/lang/CharSequence;
+.line 246
+	new-instance	v5,com/fsharemobile/fragments/SettingFragment$4
+; v5 : Lcom/fsharemobile/fragments/SettingFragment$4;
+	invoke-direct	{v5,v9},com/fsharemobile/fragments/SettingFragment$4/<init>	; <init>(Lcom/fsharemobile/fragments/SettingFragment;)V
+; v5 : Lcom/fsharemobile/fragments/SettingFragment$4; , v9 : Lcom/fsharemobile/fragments/SettingFragment;
+.line 244
+	invoke-virtual	{v2,v4,v5},android/app/AlertDialog$Builder/setPositiveButton	; setPositiveButton(Ljava/lang/CharSequence;Landroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
+; v2 : Landroid/app/AlertDialog$Builder; , v4 : Ljava/lang/CharSequence; , v5 : Lcom/fsharemobile/fragments/SettingFragment$4;
+.line 271
+	invoke-virtual	{v2},android/app/AlertDialog$Builder/create	; create()Landroid/app/AlertDialog;
+; v2 : Landroid/app/AlertDialog$Builder;
+	move-result-object	v3
+; v3 : Landroid/app/AlertDialog;
+.line 272
+	invoke-virtual	{v3},android/app/AlertDialog/show	; show()V
+; v3 : Landroid/app/AlertDialog;
+.line 275
+	const/4	v4,14
+; v4 : single-length
+	invoke-virtual	{v3,v4},android/app/AlertDialog/getButton	; getButton(I)Landroid/widget/Button;
+; v3 : Landroid/app/AlertDialog; , v4 : single-length
+	move-result-object	v0
+; v0 : Landroid/widget/Button;
+.line 277
+	invoke-virtual	{v9},com/fsharemobile/fragments/SettingFragment/getActivity	; getActivity()Landroid/support/v4/app/FragmentActivity;
+; v9 : Lcom/fsharemobile/fragments/SettingFragment;
+	move-result-object	v4
+; v4 : Landroid/support/v4/app/FragmentActivity;
+	invoke-virtual	{v4},android/support/v4/app/FragmentActivity/getResources	; getResources()Landroid/content/res/Resources;
+; v4 : Landroid/support/v4/app/FragmentActivity;
+	move-result-object	v4
+; v4 : Landroid/content/res/Resources;
+	invoke-virtual	{v4,v8},android/content/res/Resources/getColor	; getColor(I)I
+; v4 : Landroid/content/res/Resources; , v8 : single-length
+	move-result	v4
+; v4 : single-length
+	invoke-virtual	{v0,v4},android/widget/Button/setBackgroundColor	; setBackgroundColor(I)V
+; v0 : Landroid/widget/Button; , v4 : single-length
+.line 279
+	invoke-virtual	{v9},com/fsharemobile/fragments/SettingFragment/getActivity	; getActivity()Landroid/support/v4/app/FragmentActivity;
+; v9 : Lcom/fsharemobile/fragments/SettingFragment;
+	move-result-object	v4
+; v4 : Landroid/support/v4/app/FragmentActivity;
+	invoke-virtual	{v4},android/support/v4/app/FragmentActivity/getResources	; getResources()Landroid/content/res/Resources;
+; v4 : Landroid/support/v4/app/FragmentActivity;
+	move-result-object	v4
+; v4 : Landroid/content/res/Resources;
+.line 280
+	invoke-virtual	{v4,v7},android/content/res/Resources/getColor	; getColor(I)I
+; v4 : Landroid/content/res/Resources; , v7 : single-length
+	move-result	v4
+; v4 : single-length
+.line 279
+	invoke-virtual	{v0,v4},android/widget/Button/setTextColor	; setTextColor(I)V
+; v0 : Landroid/widget/Button; , v4 : single-length
+.line 282
+	const/4	v4,15
+; v4 : single-length
+	invoke-virtual	{v3,v4},android/app/AlertDialog/getButton	; getButton(I)Landroid/widget/Button;
+; v3 : Landroid/app/AlertDialog; , v4 : single-length
+	move-result-object	v1
+; v1 : Landroid/widget/Button;
+.line 284
+	invoke-virtual	{v9},com/fsharemobile/fragments/SettingFragment/getActivity	; getActivity()Landroid/support/v4/app/FragmentActivity;
+; v9 : Lcom/fsharemobile/fragments/SettingFragment;
+	move-result-object	v4
+; v4 : Landroid/support/v4/app/FragmentActivity;
+	invoke-virtual	{v4},android/support/v4/app/FragmentActivity/getResources	; getResources()Landroid/content/res/Resources;
+; v4 : Landroid/support/v4/app/FragmentActivity;
+	move-result-object	v4
+; v4 : Landroid/content/res/Resources;
+	invoke-virtual	{v4,v8},android/content/res/Resources/getColor	; getColor(I)I
+; v4 : Landroid/content/res/Resources; , v8 : single-length
+	move-result	v4
+; v4 : single-length
+	invoke-virtual	{v1,v4},android/widget/Button/setBackgroundColor	; setBackgroundColor(I)V
+; v1 : Landroid/widget/Button; , v4 : single-length
+.line 286
+	invoke-virtual	{v9},com/fsharemobile/fragments/SettingFragment/getActivity	; getActivity()Landroid/support/v4/app/FragmentActivity;
+; v9 : Lcom/fsharemobile/fragments/SettingFragment;
+	move-result-object	v4
+; v4 : Landroid/support/v4/app/FragmentActivity;
+	invoke-virtual	{v4},android/support/v4/app/FragmentActivity/getResources	; getResources()Landroid/content/res/Resources;
+; v4 : Landroid/support/v4/app/FragmentActivity;
+	move-result-object	v4
+; v4 : Landroid/content/res/Resources;
+.line 287
+	invoke-virtual	{v4,v7},android/content/res/Resources/getColor	; getColor(I)I
+; v4 : Landroid/content/res/Resources; , v7 : single-length
+	move-result	v4
+; v4 : single-length
+.line 286
+	invoke-virtual	{v1,v4},android/widget/Button/setTextColor	; setTextColor(I)V
+; v1 : Landroid/widget/Button; , v4 : single-length
+ldfca6:
+.line 290
+	return-void	
+.end method
+
+.method public onCreateView(Landroid/view/LayoutInflater;Landroid/view/ViewGroup;Landroid/os/Bundle;)Landroid/view/View;
+.limit registers 7
+; this: v3 (Lcom/fsharemobile/fragments/SettingFragment;)
+; parameter[0] : v4 (Landroid/view/LayoutInflater;)
+; parameter[1] : v5 (Landroid/view/ViewGroup;)
+; parameter[2] : v6 (Landroid/os/Bundle;)
+.line 81
+	const	v1,2130903061	; 0x7f030015
+; v1 : single-length
+.line 82
+	const/4	v2,0
+; v2 : single-length
+.line 81
+	invoke-virtual	{v4,v1,v5,v2},android/view/LayoutInflater/inflate	; inflate(ILandroid/view/ViewGroup;Z)Landroid/view/View;
+; v4 : Landroid/view/LayoutInflater; , v1 : single-length , v5 : Landroid/view/ViewGroup; , v2 : single-length
+	move-result-object	v0
+; v0 : Landroid/view/View;
+	check-cast	v0,android/widget/ScrollView
+; v0 : Landroid/widget/ScrollView;
+.line 83
+	return-object	v0
+; v0 : Landroid/widget/ScrollView;
+.end method
+
+.method public onPause()V
+.limit registers 3
+; this: v2 (Lcom/fsharemobile/fragments/SettingFragment;)
+.line 505
+	invoke-super	{v2},android/support/v4/app/Fragment/onPause	; onPause()V
+; v2 : Lcom/fsharemobile/fragments/SettingFragment;
+.line 506
+	invoke-virtual	{v2},com/fsharemobile/fragments/SettingFragment/getActivity	; getActivity()Landroid/support/v4/app/FragmentActivity;
+; v2 : Lcom/fsharemobile/fragments/SettingFragment;
+	move-result-object	v0
+; v0 : Landroid/support/v4/app/FragmentActivity;
+	iget-object	v1,v2,com/fsharemobile/fragments/SettingFragment.mConnection Landroid/content/ServiceConnection;
+; v1 : Landroid/content/ServiceConnection; , v2 : Lcom/fsharemobile/fragments/SettingFragment;
+	invoke-virtual	{v0,v1},android/support/v4/app/FragmentActivity/unbindService	; unbindService(Landroid/content/ServiceConnection;)V
+; v0 : Landroid/support/v4/app/FragmentActivity; , v1 : Landroid/content/ServiceConnection;
+.line 508
+	return-void	
+.end method
+
+.method public onResume()V
+.limit registers 5
+; this: v4 (Lcom/fsharemobile/fragments/SettingFragment;)
+.line 513
+	invoke-super	{v4},android/support/v4/app/Fragment/onResume	; onResume()V
+; v4 : Lcom/fsharemobile/fragments/SettingFragment;
+.line 514
+	new-instance	v0,android/content/Intent
+; v0 : Landroid/content/Intent;
+	invoke-virtual	{v4},com/fsharemobile/fragments/SettingFragment/getActivity	; getActivity()Landroid/support/v4/app/FragmentActivity;
+; v4 : Lcom/fsharemobile/fragments/SettingFragment;
+	move-result-object	v1
+; v1 : Landroid/support/v4/app/FragmentActivity;
+	const-class	v2,com/fsharemobile/service/UploadService
+; v2 : Ljava/lang/Class;
+	invoke-direct	{v0,v1,v2},android/content/Intent/<init>	; <init>(Landroid/content/Context;Ljava/lang/Class;)V
+; v0 : Landroid/content/Intent; , v1 : Landroid/support/v4/app/FragmentActivity; , v2 : Ljava/lang/Class;
+.line 515
+	invoke-virtual	{v4},com/fsharemobile/fragments/SettingFragment/getActivity	; getActivity()Landroid/support/v4/app/FragmentActivity;
+; v4 : Lcom/fsharemobile/fragments/SettingFragment;
+	move-result-object	v1
+; v1 : Landroid/support/v4/app/FragmentActivity;
+.line 516
+	iget-object	v2,v4,com/fsharemobile/fragments/SettingFragment.mConnection Landroid/content/ServiceConnection;
+; v2 : Landroid/content/ServiceConnection; , v4 : Lcom/fsharemobile/fragments/SettingFragment;
+	const/4	v3,1
+; v3 : single-length
+	invoke-virtual	{v1,v0,v2,v3},android/support/v4/app/FragmentActivity/bindService	; bindService(Landroid/content/Intent;Landroid/content/ServiceConnection;I)Z
+; v1 : Landroid/support/v4/app/FragmentActivity; , v0 : Landroid/content/Intent; , v2 : Landroid/content/ServiceConnection; , v3 : single-length
+.line 517
+	return-void	
+.end method
+
+

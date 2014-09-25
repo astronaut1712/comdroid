@@ -1,0 +1,531 @@
+.class public com/google/tagmanager/ContainerOpener
+.super java/lang/Object
+.source ContainerOpener.java
+
+.inner class ContainerFutureImpl inner com/google/tagmanager/ContainerOpener$ContainerFutureImpl outer com/google/tagmanager/ContainerOpener
+.inner class WaitForFresh inner com/google/tagmanager/ContainerOpener$WaitForFresh outer com/google/tagmanager/ContainerOpener
+.inner class WaitForNonDefaultRefresh inner com/google/tagmanager/ContainerOpener$WaitForNonDefaultRefresh outer com/google/tagmanager/ContainerOpener
+.inner class Notifier inner com/google/tagmanager/ContainerOpener$Notifier outer com/google/tagmanager/ContainerOpener
+.inner class ContainerFuture inner com/google/tagmanager/ContainerOpener$ContainerFuture outer com/google/tagmanager/ContainerOpener
+.inner class OpenType inner com/google/tagmanager/ContainerOpener$OpenType outer com/google/tagmanager/ContainerOpener
+.field public static final DEFAULT_TIMEOUT_IN_MILLIS J = 2000	; 0x7d0
+.field private static final mContainerIdNotifiersMap Ljava/util/Map;
+  .annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "Ljava/util/Map" , "<" , "Ljava/lang/String;" , "Ljava/util/List" , "<" , "Lcom/google/tagmanager/ContainerOpener$Notifier;" , ">;>;" }
+  .end annotation
+.end field
+.field private mClock Lcom/google/tagmanager/Clock;
+.field private volatile mContainer Lcom/google/tagmanager/Container;
+.field private final mContainerId Ljava/lang/String;
+.field private mHaveNotified Z
+.field private mNotifier Lcom/google/tagmanager/ContainerOpener$Notifier;
+.field private final mTagManager Lcom/google/tagmanager/TagManager;
+.field private final mTimeoutInMillis J
+
+.method static <clinit>()V
+.limit registers 1
+.line 173
+	new-instance	v0,java/util/HashMap
+; v0 : Ljava/util/HashMap;
+	invoke-direct	{v0},java/util/HashMap/<init>	; <init>()V
+; v0 : Ljava/util/HashMap;
+	sput-object	v0,com/google/tagmanager/ContainerOpener.mContainerIdNotifiersMap Ljava/util/Map;
+; v0 : Ljava/util/Map;
+	return-void	
+.end method
+
+.method private <init>(Lcom/google/tagmanager/TagManager;Ljava/lang/String;Ljava/lang/Long;Lcom/google/tagmanager/ContainerOpener$Notifier;)V
+.limit registers 9
+; this: v4 (Lcom/google/tagmanager/ContainerOpener;)
+; parameter[0] : v5 (Lcom/google/tagmanager/TagManager;)
+; parameter[1] : v6 (Ljava/lang/String;)
+; parameter[2] : v7 (Ljava/lang/Long;)
+; parameter[3] : v8 (Lcom/google/tagmanager/ContainerOpener$Notifier;)
+.line 190
+	invoke-direct	{v4},java/lang/Object/<init>	; <init>()V
+; v4 : Lcom/google/tagmanager/ContainerOpener;
+.line 182
+	new-instance	v0,com/google/tagmanager/ContainerOpener$1
+; v0 : Lcom/google/tagmanager/ContainerOpener$1;
+	invoke-direct	{v0,v4},com/google/tagmanager/ContainerOpener$1/<init>	; <init>(Lcom/google/tagmanager/ContainerOpener;)V
+; v0 : Lcom/google/tagmanager/ContainerOpener$1; , v4 : Lcom/google/tagmanager/ContainerOpener;
+	iput-object	v0,v4,com/google/tagmanager/ContainerOpener.mClock Lcom/google/tagmanager/Clock;
+; v0 : Lcom/google/tagmanager/ContainerOpener$1; , v4 : Lcom/google/tagmanager/ContainerOpener;
+.line 191
+	iput-object	v5,v4,com/google/tagmanager/ContainerOpener.mTagManager Lcom/google/tagmanager/TagManager;
+; v5 : Lcom/google/tagmanager/TagManager; , v4 : Lcom/google/tagmanager/ContainerOpener;
+.line 192
+	iput-object	v6,v4,com/google/tagmanager/ContainerOpener.mContainerId Ljava/lang/String;
+; v6 : Ljava/lang/String; , v4 : Lcom/google/tagmanager/ContainerOpener;
+.line 193
+	if-eqz	v7,la57ae
+; v7 : Ljava/lang/Long;
+	const-wide/16	v0,1
+; v0 : double-length
+	invoke-virtual	{v7},java/lang/Long/longValue	; longValue()J
+; v7 : Ljava/lang/Long;
+	move-result-wide	v2
+; v2 : double-length
+	invoke-static	{v0,v1,v2,v3},java/lang/Math/max	; max(JJ)J
+; v0 : double-length , v2 : double-length
+	move-result-wide	v0
+; v0 : double-length
+la57a4:
+	iput-wide	v0,v4,com/google/tagmanager/ContainerOpener.mTimeoutInMillis J
+; v0 : double-length , v4 : Lcom/google/tagmanager/ContainerOpener;
+.line 195
+	iput-object	v8,v4,com/google/tagmanager/ContainerOpener.mNotifier Lcom/google/tagmanager/ContainerOpener$Notifier;
+; v8 : Lcom/google/tagmanager/ContainerOpener$Notifier; , v4 : Lcom/google/tagmanager/ContainerOpener;
+.line 196
+	return-void	
+la57ae:
+.line 193
+	const-wide/16	v0,2000
+; v0 : double-length
+	goto	la57a4
+.end method
+
+.method static access$000(Lcom/google/tagmanager/ContainerOpener;Lcom/google/tagmanager/Container;)V
+.limit registers 2
+; parameter[0] : v0 (Lcom/google/tagmanager/ContainerOpener;)
+; parameter[1] : v1 (Lcom/google/tagmanager/Container;)
+.line 49
+	invoke-direct	{v0,v1},com/google/tagmanager/ContainerOpener/callNotifiers	; callNotifiers(Lcom/google/tagmanager/Container;)V
+; v0 : Lcom/google/tagmanager/ContainerOpener; , v1 : Lcom/google/tagmanager/Container;
+	return-void	
+.end method
+
+.method static access$100(Lcom/google/tagmanager/ContainerOpener;)Lcom/google/tagmanager/Container;
+.limit registers 2
+; parameter[0] : v1 (Lcom/google/tagmanager/ContainerOpener;)
+.line 49
+	iget-object	v0,v1,com/google/tagmanager/ContainerOpener.mContainer Lcom/google/tagmanager/Container;
+; v0 : Lcom/google/tagmanager/Container; , v1 : Lcom/google/tagmanager/ContainerOpener;
+	return-object	v0
+; v0 : Lcom/google/tagmanager/Container;
+.end method
+
+.method private synchronized callNotifiers(Lcom/google/tagmanager/Container;)V
+.limit registers 9
+; this: v7 (Lcom/google/tagmanager/ContainerOpener;)
+; parameter[0] : v8 (Lcom/google/tagmanager/Container;)
+.catch java/lang/Exception from la5856 to la585e using la584c
+.catch java/lang/Exception from la5854 to la5856 using la5852
+.catch java/lang/Exception from la5824 to la584a using la584c
+.catch java/lang/Exception from la5806 to la5820 using la5852
+.catch java/lang/Exception from la57f6 to la5806 using la584c
+.var 1 is i$ Ljava/util/Iterator; from la582c to la584c
+.var 2 is notifier Lcom/google/tagmanager/ContainerOpener$Notifier; from la5844 to la584c
+.var 3 is notifiers Ljava/util/List; from la5800 to la584c
+.var 3 is notifiers Ljava/util/List; from la5852 to la585e
+.line 398
+	monitor-enter	v7
+; v7 : Lcom/google/tagmanager/ContainerOpener;
+la57f6:
+	iget-boolean	v4,v7,com/google/tagmanager/ContainerOpener.mHaveNotified Z
+; v4 : single-length , v7 : Lcom/google/tagmanager/ContainerOpener;
+	if-nez	v4,la585e
+; v4 : single-length
+.line 399
+	const/4	v3,0
+; v3 : single-length
+.line 400
+	const-class	v5,com/google/tagmanager/ContainerOpener
+; v5 : Ljava/lang/Class;
+	monitor-enter	v5
+; v5 : Ljava/lang/Class;
+la5806:
+.line 401
+	sget-object	v4,com/google/tagmanager/ContainerOpener.mContainerIdNotifiersMap Ljava/util/Map;
+; v4 : Ljava/util/Map;
+	iget-object	v6,v7,com/google/tagmanager/ContainerOpener.mContainerId Ljava/lang/String;
+; v6 : Ljava/lang/String; , v7 : Lcom/google/tagmanager/ContainerOpener;
+	invoke-interface	{v4,v6},java/util/Map/remove	; remove(Ljava/lang/Object;)Ljava/lang/Object;
+; v4 : Ljava/util/Map; , v6 : Ljava/lang/String;
+	move-result-object	v4
+; v4 : Ljava/lang/Object;
+	move-object	v0,v4
+; v0 : Ljava/lang/Object; , v4 : Ljava/lang/Object;
+	check-cast	v0,java/util/List
+; v0 : Ljava/util/List;
+	move-object	v3,v0
+; v3 : Ljava/util/List; , v0 : Ljava/util/List;
+.line 402
+	monitor-exit	v5
+; v5 : Ljava/lang/Class;
+la5820:
+.line 403
+	if-eqz	v3,la5858
+; v3 : Ljava/util/List;
+la5824:
+.line 404
+	invoke-interface	{v3},java/util/List/iterator	; iterator()Ljava/util/Iterator;
+; v3 : Ljava/util/List;
+	move-result-object	v1
+; v1 : Ljava/util/Iterator;
+la582c:
+	invoke-interface	{v1},java/util/Iterator/hasNext	; hasNext()Z
+; v1 : Ljava/util/Iterator;
+	move-result	v4
+; v4 : single-length
+	if-eqz	v4,la5858
+; v4 : single-length
+	invoke-interface	{v1},java/util/Iterator/next	; next()Ljava/lang/Object;
+; v1 : Ljava/util/Iterator;
+	move-result-object	v2
+; v2 : Ljava/lang/Object;
+	check-cast	v2,com/google/tagmanager/ContainerOpener$Notifier
+; v2 : Lcom/google/tagmanager/ContainerOpener$Notifier;
+.line 405
+	invoke-interface	{v2,v8},com/google/tagmanager/ContainerOpener$Notifier/containerAvailable	; containerAvailable(Lcom/google/tagmanager/Container;)V
+; v2 : Lcom/google/tagmanager/ContainerOpener$Notifier; , v8 : Lcom/google/tagmanager/Container;
+la584a:
+	goto	la582c
+la584c:
+.line 398
+	move-exception	v4
+; v4 : java/lang/Exception
+	monitor-exit	v7
+; v7 : Lcom/google/tagmanager/ContainerOpener;
+	throw	v4
+; v4 : java/lang/Exception
+la5852:
+.line 402
+	move-exception	v4
+; v4 : java/lang/Exception
+la5854:
+	monitor-exit	v5
+; v5 : Ljava/lang/Class;
+la5856:
+	throw	v4
+; v4 : java/lang/Exception
+la5858:
+.line 408
+	const/4	v4,1
+; v4 : single-length
+	iput-boolean	v4,v7,com/google/tagmanager/ContainerOpener.mHaveNotified Z
+; v4 : single-length , v7 : Lcom/google/tagmanager/ContainerOpener;
+la585e:
+.line 410
+	monitor-exit	v7
+; v7 : Lcom/google/tagmanager/ContainerOpener;
+	return-void	
+.end method
+
+.method private open(Lcom/google/tagmanager/Container$RefreshType;)V
+.limit registers 15
+; this: v13 (Lcom/google/tagmanager/ContainerOpener;)
+; parameter[0] : v14 (Lcom/google/tagmanager/Container$RefreshType;)
+.catch java/lang/Exception from la595a to la5988 using la5954
+.catch java/lang/Exception from la593e to la5958 using la5954
+.catch java/lang/Exception from la58ba to la5926 using la5954
+.var 3 is notifiers Ljava/util/List; from la58e0 to la5954
+	const/4	v12,0
+; v12 : single-length
+.line 344
+	iget-object	v6,v13,com/google/tagmanager/ContainerOpener.mClock Lcom/google/tagmanager/Clock;
+; v6 : Lcom/google/tagmanager/Clock; , v13 : Lcom/google/tagmanager/ContainerOpener;
+	invoke-interface	{v6},com/google/tagmanager/Clock/currentTimeMillis	; currentTimeMillis()J
+; v6 : Lcom/google/tagmanager/Clock;
+	move-result-wide	v1
+; v1 : double-length
+.line 346
+	const/4	v0,0
+; v0 : single-length
+.line 347
+	const-class	v7,com/google/tagmanager/ContainerOpener
+; v7 : Ljava/lang/Class;
+	monitor-enter	v7
+; v7 : Ljava/lang/Class;
+la58ba:
+.line 348
+	iget-object	v6,v13,com/google/tagmanager/ContainerOpener.mTagManager Lcom/google/tagmanager/TagManager;
+; v6 : Lcom/google/tagmanager/TagManager; , v13 : Lcom/google/tagmanager/ContainerOpener;
+	iget-object	v8,v13,com/google/tagmanager/ContainerOpener.mContainerId Ljava/lang/String;
+; v8 : Ljava/lang/String; , v13 : Lcom/google/tagmanager/ContainerOpener;
+	invoke-virtual	{v6,v8},com/google/tagmanager/TagManager/getContainer	; getContainer(Ljava/lang/String;)Lcom/google/tagmanager/Container;
+; v6 : Lcom/google/tagmanager/TagManager; , v8 : Ljava/lang/String;
+	move-result-object	v6
+; v6 : Lcom/google/tagmanager/Container;
+	iput-object	v6,v13,com/google/tagmanager/ContainerOpener.mContainer Lcom/google/tagmanager/Container;
+; v6 : Lcom/google/tagmanager/Container; , v13 : Lcom/google/tagmanager/ContainerOpener;
+.line 349
+	iget-object	v6,v13,com/google/tagmanager/ContainerOpener.mContainer Lcom/google/tagmanager/Container;
+; v6 : Lcom/google/tagmanager/Container; , v13 : Lcom/google/tagmanager/ContainerOpener;
+	if-nez	v6,la595a
+; v6 : Lcom/google/tagmanager/Container;
+.line 351
+	new-instance	v3,java/util/ArrayList
+; v3 : Ljava/util/ArrayList;
+	invoke-direct	{v3},java/util/ArrayList/<init>	; <init>()V
+; v3 : Ljava/util/ArrayList;
+.line 352
+	iget-object	v6,v13,com/google/tagmanager/ContainerOpener.mNotifier Lcom/google/tagmanager/ContainerOpener$Notifier;
+; v6 : Lcom/google/tagmanager/ContainerOpener$Notifier; , v13 : Lcom/google/tagmanager/ContainerOpener;
+	invoke-interface	{v3,v6},java/util/List/add	; add(Ljava/lang/Object;)Z
+; v3 : Ljava/util/ArrayList; , v6 : Lcom/google/tagmanager/ContainerOpener$Notifier;
+.line 353
+	const/4	v6,0
+; v6 : single-length
+	iput-object	v6,v13,com/google/tagmanager/ContainerOpener.mNotifier Lcom/google/tagmanager/ContainerOpener$Notifier;
+; v6 : single-length , v13 : Lcom/google/tagmanager/ContainerOpener;
+.line 354
+	sget-object	v6,com/google/tagmanager/ContainerOpener.mContainerIdNotifiersMap Ljava/util/Map;
+; v6 : Ljava/util/Map;
+	iget-object	v8,v13,com/google/tagmanager/ContainerOpener.mContainerId Ljava/lang/String;
+; v8 : Ljava/lang/String; , v13 : Lcom/google/tagmanager/ContainerOpener;
+	invoke-interface	{v6,v8,v3},java/util/Map/put	; put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+; v6 : Ljava/util/Map; , v8 : Ljava/lang/String; , v3 : Ljava/util/ArrayList;
+.line 355
+	iget-object	v8,v13,com/google/tagmanager/ContainerOpener.mTagManager Lcom/google/tagmanager/TagManager;
+; v8 : Lcom/google/tagmanager/TagManager; , v13 : Lcom/google/tagmanager/ContainerOpener;
+	iget-object	v9,v13,com/google/tagmanager/ContainerOpener.mContainerId Ljava/lang/String;
+; v9 : Ljava/lang/String; , v13 : Lcom/google/tagmanager/ContainerOpener;
+	sget-object	v6,com/google/tagmanager/Container$RefreshType.SAVED Lcom/google/tagmanager/Container$RefreshType;
+; v6 : Lcom/google/tagmanager/Container$RefreshType;
+	if-ne	v14,v6,la593e
+; v14 : Lcom/google/tagmanager/Container$RefreshType; , v6 : Lcom/google/tagmanager/Container$RefreshType;
+	new-instance	v6,com/google/tagmanager/ContainerOpener$WaitForNonDefaultRefresh
+; v6 : Lcom/google/tagmanager/ContainerOpener$WaitForNonDefaultRefresh;
+	invoke-direct	{v6,v13},com/google/tagmanager/ContainerOpener$WaitForNonDefaultRefresh/<init>	; <init>(Lcom/google/tagmanager/ContainerOpener;)V
+; v6 : Lcom/google/tagmanager/ContainerOpener$WaitForNonDefaultRefresh; , v13 : Lcom/google/tagmanager/ContainerOpener;
+la5918:
+	invoke-virtual	{v8,v9,v6},com/google/tagmanager/TagManager/openContainer	; openContainer(Ljava/lang/String;Lcom/google/tagmanager/Container$Callback;)Lcom/google/tagmanager/Container;
+; v8 : Lcom/google/tagmanager/TagManager; , v9 : Ljava/lang/String; , v6 : Lcom/google/tagmanager/ContainerOpener$WaitForFresh;
+	move-result-object	v6
+; v6 : Lcom/google/tagmanager/Container;
+	iput-object	v6,v13,com/google/tagmanager/ContainerOpener.mContainer Lcom/google/tagmanager/Container;
+; v6 : Lcom/google/tagmanager/Container; , v13 : Lcom/google/tagmanager/ContainerOpener;
+la5924:
+.line 372
+	monitor-exit	v7
+; v7 : Ljava/lang/Class;
+la5926:
+.line 374
+	if-eqz	v0,la598a
+; v0 : single-length
+.line 375
+	iget-object	v6,v13,com/google/tagmanager/ContainerOpener.mNotifier Lcom/google/tagmanager/ContainerOpener$Notifier;
+; v6 : Lcom/google/tagmanager/ContainerOpener$Notifier; , v13 : Lcom/google/tagmanager/ContainerOpener;
+	iget-object	v7,v13,com/google/tagmanager/ContainerOpener.mContainer Lcom/google/tagmanager/Container;
+; v7 : Lcom/google/tagmanager/Container; , v13 : Lcom/google/tagmanager/ContainerOpener;
+	invoke-interface	{v6,v7},com/google/tagmanager/ContainerOpener$Notifier/containerAvailable	; containerAvailable(Lcom/google/tagmanager/Container;)V
+; v6 : Lcom/google/tagmanager/ContainerOpener$Notifier; , v7 : Lcom/google/tagmanager/Container;
+.line 376
+	iput-object	v12,v13,com/google/tagmanager/ContainerOpener.mNotifier Lcom/google/tagmanager/ContainerOpener$Notifier;
+; v12 : single-length , v13 : Lcom/google/tagmanager/ContainerOpener;
+la593c:
+.line 383
+	return-void	
+la593e:
+.line 355
+	new-instance	v6,com/google/tagmanager/ContainerOpener$WaitForFresh
+; v6 : Lcom/google/tagmanager/ContainerOpener$WaitForFresh;
+	const-wide/32	v10,43200000	; 0x2932e00
+; v10 : double-length
+	sub-long	v10,v1,v10
+; v10 : double-length , v1 : double-length , v10 : double-length
+	invoke-direct	{v6,v13,v10,v11},com/google/tagmanager/ContainerOpener$WaitForFresh/<init>	; <init>(Lcom/google/tagmanager/ContainerOpener;J)V
+; v6 : Lcom/google/tagmanager/ContainerOpener$WaitForFresh; , v13 : Lcom/google/tagmanager/ContainerOpener; , v10 : double-length
+	goto	la5918
+la5954:
+.line 372
+	move-exception	v6
+; v6 : java/lang/Exception
+	monitor-exit	v7
+; v7 : Ljava/lang/Class;
+la5958:
+	throw	v6
+; v6 : java/lang/Exception
+la595a:
+.line 360
+	sget-object	v6,com/google/tagmanager/ContainerOpener.mContainerIdNotifiersMap Ljava/util/Map;
+; v6 : Ljava/util/Map;
+	iget-object	v8,v13,com/google/tagmanager/ContainerOpener.mContainerId Ljava/lang/String;
+; v8 : Ljava/lang/String; , v13 : Lcom/google/tagmanager/ContainerOpener;
+	invoke-interface	{v6,v8},java/util/Map/get	; get(Ljava/lang/Object;)Ljava/lang/Object;
+; v6 : Ljava/util/Map; , v8 : Ljava/lang/String;
+	move-result-object	v3
+; v3 : Ljava/lang/Object;
+	check-cast	v3,java/util/List
+; v3 : Ljava/util/List;
+.line 361
+	if-nez	v3,la5976
+; v3 : Ljava/util/List;
+.line 363
+	const/4	v0,1
+; v0 : single-length
+	goto	la5924
+la5976:
+.line 367
+	iget-object	v6,v13,com/google/tagmanager/ContainerOpener.mNotifier Lcom/google/tagmanager/ContainerOpener$Notifier;
+; v6 : Lcom/google/tagmanager/ContainerOpener$Notifier; , v13 : Lcom/google/tagmanager/ContainerOpener;
+	invoke-interface	{v3,v6},java/util/List/add	; add(Ljava/lang/Object;)Z
+; v3 : Ljava/util/List; , v6 : Lcom/google/tagmanager/ContainerOpener$Notifier;
+.line 368
+	const/4	v6,0
+; v6 : single-length
+	iput-object	v6,v13,com/google/tagmanager/ContainerOpener.mNotifier Lcom/google/tagmanager/ContainerOpener$Notifier;
+; v6 : single-length , v13 : Lcom/google/tagmanager/ContainerOpener;
+.line 369
+	monitor-exit	v7
+; v7 : Ljava/lang/Class;
+la5988:
+	goto	la593c
+la598a:
+.line 381
+	iget-wide	v6,v13,com/google/tagmanager/ContainerOpener.mTimeoutInMillis J
+; v6 : double-length , v13 : Lcom/google/tagmanager/ContainerOpener;
+	iget-object	v8,v13,com/google/tagmanager/ContainerOpener.mClock Lcom/google/tagmanager/Clock;
+; v8 : Lcom/google/tagmanager/Clock; , v13 : Lcom/google/tagmanager/ContainerOpener;
+	invoke-interface	{v8},com/google/tagmanager/Clock/currentTimeMillis	; currentTimeMillis()J
+; v8 : Lcom/google/tagmanager/Clock;
+	move-result-wide	v8
+; v8 : double-length
+	sub-long/2addr	v8,v1
+; v8 : double-length , v1 : double-length
+	sub-long	v4,v6,v8
+; v4 : double-length , v6 : double-length , v8 : double-length
+.line 382
+	const-wide/16	v6,1
+; v6 : double-length
+	invoke-static	{v6,v7,v4,v5},java/lang/Math/max	; max(JJ)J
+; v6 : double-length , v4 : double-length
+	move-result-wide	v6
+; v6 : double-length
+	invoke-direct	{v13,v6,v7},com/google/tagmanager/ContainerOpener/setTimer	; setTimer(J)V
+; v13 : Lcom/google/tagmanager/ContainerOpener; , v6 : double-length
+	goto	la593c
+.end method
+
+.method public static openContainer(Lcom/google/tagmanager/TagManager;Ljava/lang/String;Lcom/google/tagmanager/ContainerOpener$OpenType;Ljava/lang/Long;)Lcom/google/tagmanager/ContainerOpener$ContainerFuture;
+.limit registers 6
+; parameter[0] : v2 (Lcom/google/tagmanager/TagManager;)
+; parameter[1] : v3 (Ljava/lang/String;)
+; parameter[2] : v4 (Lcom/google/tagmanager/ContainerOpener$OpenType;)
+; parameter[3] : v5 (Ljava/lang/Long;)
+.line 302
+	new-instance	v0,com/google/tagmanager/ContainerOpener$ContainerFutureImpl
+; v0 : Lcom/google/tagmanager/ContainerOpener$ContainerFutureImpl;
+	const/4	v1,0
+; v1 : single-length
+	invoke-direct	{v0,v1},com/google/tagmanager/ContainerOpener$ContainerFutureImpl/<init>	; <init>(Lcom/google/tagmanager/ContainerOpener$1;)V
+; v0 : Lcom/google/tagmanager/ContainerOpener$ContainerFutureImpl; , v1 : single-length
+.line 303
+	new-instance	v1,com/google/tagmanager/ContainerOpener$2
+; v1 : Lcom/google/tagmanager/ContainerOpener$2;
+	invoke-direct	{v1,v0},com/google/tagmanager/ContainerOpener$2/<init>	; <init>(Lcom/google/tagmanager/ContainerOpener$ContainerFutureImpl;)V
+; v1 : Lcom/google/tagmanager/ContainerOpener$2; , v0 : Lcom/google/tagmanager/ContainerOpener$ContainerFutureImpl;
+	invoke-static	{v2,v3,v4,v5,v1},com/google/tagmanager/ContainerOpener/openContainer	; openContainer(Lcom/google/tagmanager/TagManager;Ljava/lang/String;Lcom/google/tagmanager/ContainerOpener$OpenType;Ljava/lang/Long;Lcom/google/tagmanager/ContainerOpener$Notifier;)V
+; v2 : Lcom/google/tagmanager/TagManager; , v3 : Ljava/lang/String; , v4 : Lcom/google/tagmanager/ContainerOpener$OpenType; , v5 : Ljava/lang/Long; , v1 : Lcom/google/tagmanager/ContainerOpener$2;
+.line 309
+	return-object	v0
+; v0 : Lcom/google/tagmanager/ContainerOpener$ContainerFutureImpl;
+.end method
+
+.method public static openContainer(Lcom/google/tagmanager/TagManager;Ljava/lang/String;Lcom/google/tagmanager/ContainerOpener$OpenType;Ljava/lang/Long;Lcom/google/tagmanager/ContainerOpener$Notifier;)V
+.limit registers 8
+; parameter[0] : v3 (Lcom/google/tagmanager/TagManager;)
+; parameter[1] : v4 (Ljava/lang/String;)
+; parameter[2] : v5 (Lcom/google/tagmanager/ContainerOpener$OpenType;)
+; parameter[3] : v6 (Ljava/lang/Long;)
+; parameter[4] : v7 (Lcom/google/tagmanager/ContainerOpener$Notifier;)
+.line 241
+	if-nez	v3,la5a24
+; v3 : Lcom/google/tagmanager/TagManager;
+.line 242
+	new-instance	v1,java/lang/NullPointerException
+; v1 : Ljava/lang/NullPointerException;
+	const-string	v2,"TagManager cannot be null."
+; v2 : Ljava/lang/String;
+	invoke-direct	{v1,v2},java/lang/NullPointerException/<init>	; <init>(Ljava/lang/String;)V
+; v1 : Ljava/lang/NullPointerException; , v2 : Ljava/lang/String;
+	throw	v1
+; v1 : Ljava/lang/NullPointerException;
+la5a24:
+.line 244
+	if-nez	v4,la5a38
+; v4 : Ljava/lang/String;
+.line 245
+	new-instance	v1,java/lang/NullPointerException
+; v1 : Ljava/lang/NullPointerException;
+	const-string	v2,"ContainerId cannot be null."
+; v2 : Ljava/lang/String;
+	invoke-direct	{v1,v2},java/lang/NullPointerException/<init>	; <init>(Ljava/lang/String;)V
+; v1 : Ljava/lang/NullPointerException; , v2 : Ljava/lang/String;
+	throw	v1
+; v1 : Ljava/lang/NullPointerException;
+la5a38:
+.line 247
+	if-nez	v5,la5a4c
+; v5 : Lcom/google/tagmanager/ContainerOpener$OpenType;
+.line 248
+	new-instance	v1,java/lang/NullPointerException
+; v1 : Ljava/lang/NullPointerException;
+	const-string	v2,"OpenType cannot be null."
+; v2 : Ljava/lang/String;
+	invoke-direct	{v1,v2},java/lang/NullPointerException/<init>	; <init>(Ljava/lang/String;)V
+; v1 : Ljava/lang/NullPointerException; , v2 : Ljava/lang/String;
+	throw	v1
+; v1 : Ljava/lang/NullPointerException;
+la5a4c:
+.line 250
+	if-nez	v7,la5a60
+; v7 : Lcom/google/tagmanager/ContainerOpener$Notifier;
+.line 251
+	new-instance	v1,java/lang/NullPointerException
+; v1 : Ljava/lang/NullPointerException;
+	const-string	v2,"Notifier cannot be null."
+; v2 : Ljava/lang/String;
+	invoke-direct	{v1,v2},java/lang/NullPointerException/<init>	; <init>(Ljava/lang/String;)V
+; v1 : Ljava/lang/NullPointerException; , v2 : Ljava/lang/String;
+	throw	v1
+; v1 : Ljava/lang/NullPointerException;
+la5a60:
+.line 254
+	new-instance	v0,com/google/tagmanager/ContainerOpener
+; v0 : Lcom/google/tagmanager/ContainerOpener;
+	invoke-direct	{v0,v3,v4,v6,v7},com/google/tagmanager/ContainerOpener/<init>	; <init>(Lcom/google/tagmanager/TagManager;Ljava/lang/String;Ljava/lang/Long;Lcom/google/tagmanager/ContainerOpener$Notifier;)V
+; v0 : Lcom/google/tagmanager/ContainerOpener; , v3 : Lcom/google/tagmanager/TagManager; , v4 : Ljava/lang/String; , v6 : Ljava/lang/Long; , v7 : Lcom/google/tagmanager/ContainerOpener$Notifier;
+.line 257
+	sget-object	v1,com/google/tagmanager/ContainerOpener$OpenType.PREFER_FRESH Lcom/google/tagmanager/ContainerOpener$OpenType;
+; v1 : Lcom/google/tagmanager/ContainerOpener$OpenType;
+	if-ne	v5,v1,la5a7e
+; v5 : Lcom/google/tagmanager/ContainerOpener$OpenType; , v1 : Lcom/google/tagmanager/ContainerOpener$OpenType;
+	sget-object	v1,com/google/tagmanager/Container$RefreshType.NETWORK Lcom/google/tagmanager/Container$RefreshType;
+; v1 : Lcom/google/tagmanager/Container$RefreshType;
+la5a76:
+	invoke-direct	{v0,v1},com/google/tagmanager/ContainerOpener/open	; open(Lcom/google/tagmanager/Container$RefreshType;)V
+; v0 : Lcom/google/tagmanager/ContainerOpener; , v1 : Lcom/google/tagmanager/Container$RefreshType;
+.line 259
+	return-void	
+la5a7e:
+.line 257
+	sget-object	v1,com/google/tagmanager/Container$RefreshType.SAVED Lcom/google/tagmanager/Container$RefreshType;
+; v1 : Lcom/google/tagmanager/Container$RefreshType;
+	goto	la5a76
+.end method
+
+.method private setTimer(J)V
+.limit registers 6
+; this: v3 (Lcom/google/tagmanager/ContainerOpener;)
+; parameter[0] : v4 (J)
+.line 387
+	new-instance	v0,com/google/tagmanager/ContainerOpener$3
+; v0 : Lcom/google/tagmanager/ContainerOpener$3;
+	invoke-direct	{v0,v3},com/google/tagmanager/ContainerOpener$3/<init>	; <init>(Lcom/google/tagmanager/ContainerOpener;)V
+; v0 : Lcom/google/tagmanager/ContainerOpener$3; , v3 : Lcom/google/tagmanager/ContainerOpener;
+.line 394
+	new-instance	v1,java/util/Timer
+; v1 : Ljava/util/Timer;
+	const-string	v2,"ContainerOpener"
+; v2 : Ljava/lang/String;
+	invoke-direct	{v1,v2},java/util/Timer/<init>	; <init>(Ljava/lang/String;)V
+; v1 : Ljava/util/Timer; , v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v0,v4,v5},java/util/Timer/schedule	; schedule(Ljava/util/TimerTask;J)V
+; v1 : Ljava/util/Timer; , v0 : Lcom/google/tagmanager/ContainerOpener$3; , v4 : double-length
+.line 395
+	return-void	
+.end method
+
+

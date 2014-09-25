@@ -1,0 +1,23 @@
+.class com/a/b/b
+.super java/lang/ref/WeakReference
+.source MyApplication
+
+.field final a Lcom/a/b/a;
+
+.method public <init>(Lcom/a/b/a;Ljava/lang/Object;Ljava/lang/ref/ReferenceQueue;)V
+.limit registers 4
+; this: v0 (Lcom/a/b/b;)
+; parameter[0] : v1 (Lcom/a/b/a;)
+; parameter[1] : v2 (Ljava/lang/Object;)
+; parameter[2] : v3 (Ljava/lang/ref/ReferenceQueue;)
+.line 28
+	invoke-direct	{v0,v2,v3},java/lang/ref/WeakReference/<init>	; <init>(Ljava/lang/Object;Ljava/lang/ref/ReferenceQueue;)V
+; v0 : Lcom/a/b/b; , v2 : Ljava/lang/Object; , v3 : Ljava/lang/ref/ReferenceQueue;
+.line 29
+	iput-object	v1,v0,com/a/b/b.a Lcom/a/b/a;
+; v1 : Lcom/a/b/a; , v0 : Lcom/a/b/b;
+.line 30
+	return-void	
+.end method
+
+

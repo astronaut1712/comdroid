@@ -1,0 +1,210 @@
+.class com/a/a/a/a/n
+.super com/a/a/a/a/a
+.source MyApplication
+
+.field private d J
+
+.method public <init>(Ljava/io/InputStream;Ljava/net/CacheRequest;Lcom/a/a/a/a/h;J)V
+.limit registers 10
+; this: v4 (Lcom/a/a/a/a/n;)
+; parameter[0] : v5 (Ljava/io/InputStream;)
+; parameter[1] : v6 (Ljava/net/CacheRequest;)
+; parameter[2] : v7 (Lcom/a/a/a/a/h;)
+; parameter[3] : v8 (J)
+.line 377
+	invoke-direct	{v4,v5,v7,v6},com/a/a/a/a/a/<init>	; <init>(Ljava/io/InputStream;Lcom/a/a/a/a/h;Ljava/net/CacheRequest;)V
+; v4 : Lcom/a/a/a/a/n; , v5 : Ljava/io/InputStream; , v7 : Lcom/a/a/a/a/h; , v6 : Ljava/net/CacheRequest;
+.line 378
+	iput-wide	v8,v4,com/a/a/a/a/n.d J
+; v8 : double-length , v4 : Lcom/a/a/a/a/n;
+.line 379
+	iget-wide	v0,v4,com/a/a/a/a/n.d J
+; v0 : double-length , v4 : Lcom/a/a/a/a/n;
+	const-wide/16	v2,0
+; v2 : double-length
+	cmp-long	v0,v0,v2
+; v0 : single-length , v0 : single-length , v2 : double-length
+	if-nez	v0,l685ac
+; v0 : single-length
+.line 380
+	invoke-virtual	{v4},com/a/a/a/a/n/b	; b()V
+; v4 : Lcom/a/a/a/a/n;
+l685ac:
+.line 382
+	return-void	
+.end method
+
+.method public available()I
+.limit registers 5
+; this: v4 (Lcom/a/a/a/a/n;)
+.line 404
+	invoke-virtual	{v4},com/a/a/a/a/n/a	; a()V
+; v4 : Lcom/a/a/a/a/n;
+.line 405
+	iget-wide	v0,v4,com/a/a/a/a/n.d J
+; v0 : double-length , v4 : Lcom/a/a/a/a/n;
+	const-wide/16	v2,0
+; v2 : double-length
+	cmp-long	v0,v0,v2
+; v0 : single-length , v0 : single-length , v2 : double-length
+	if-nez	v0,l685da
+; v0 : single-length
+	const/4	v0,0
+; v0 : single-length
+l685d8:
+	return	v0
+; v0 : single-length
+l685da:
+	iget-object	v0,v4,com/a/a/a/a/n.a Ljava/io/InputStream;
+; v0 : Ljava/io/InputStream; , v4 : Lcom/a/a/a/a/n;
+	invoke-virtual	{v0},java/io/InputStream/available	; available()I
+; v0 : Ljava/io/InputStream;
+	move-result	v0
+; v0 : single-length
+	int-to-long	v0,v0
+; v0 : double-length , v0 : double-length
+	iget-wide	v2,v4,com/a/a/a/a/n.d J
+; v2 : double-length , v4 : Lcom/a/a/a/a/n;
+	invoke-static	{v0,v1,v2,v3},java/lang/Math/min	; min(JJ)J
+; v0 : double-length , v2 : double-length
+	move-result-wide	v0
+; v0 : double-length
+	long-to-int	v0,v0
+; v0 : single-length , v0 : single-length
+	goto	l685d8
+.end method
+
+.method public close()V
+.limit registers 5
+; this: v4 (Lcom/a/a/a/a/n;)
+.line 409
+	iget-boolean	v0,v4,com/a/a/a/a/n.c Z
+; v0 : single-length , v4 : Lcom/a/a/a/a/n;
+	if-eqz	v0,l68612
+; v0 : single-length
+l68610:
+.line 416
+	return-void	
+l68612:
+.line 412
+	iget-wide	v0,v4,com/a/a/a/a/n.d J
+; v0 : double-length , v4 : Lcom/a/a/a/a/n;
+	const-wide/16	v2,0
+; v2 : double-length
+	cmp-long	v0,v0,v2
+; v0 : single-length , v0 : single-length , v2 : double-length
+	if-eqz	v0,l68638
+; v0 : single-length
+	iget-object	v0,v4,com/a/a/a/a/n.b Lcom/a/a/a/a/h;
+; v0 : Lcom/a/a/a/a/h; , v4 : Lcom/a/a/a/a/n;
+	invoke-static	{v0,v4},com/a/a/a/a/j/a	; a(Lcom/a/a/a/a/h;Ljava/io/InputStream;)Z
+; v0 : Lcom/a/a/a/a/h; , v4 : Lcom/a/a/a/a/n;
+	move-result	v0
+; v0 : single-length
+	if-nez	v0,l68638
+; v0 : single-length
+.line 413
+	invoke-virtual	{v4},com/a/a/a/a/n/c	; c()V
+; v4 : Lcom/a/a/a/a/n;
+l68638:
+.line 415
+	const/4	v0,1
+; v0 : single-length
+	iput-boolean	v0,v4,com/a/a/a/a/n.c Z
+; v0 : single-length , v4 : Lcom/a/a/a/a/n;
+	goto	l68610
+.end method
+
+.method public read([BII)I
+.limit registers 12
+; this: v8 (Lcom/a/a/a/a/n;)
+; parameter[0] : v9 ([B)
+; parameter[1] : v10 (I)
+; parameter[2] : v11 (I)
+	const-wide/16	v6,0
+; v6 : double-length
+	const/4	v0,15
+; v0 : single-length
+.line 385
+	array-length	v1,v9
+; v1 : single-length , v9 : [B
+	invoke-static	{v1,v10,v11},com/a/a/a/u/a	; a(III)V
+; v1 : single-length , v10 : single-length , v11 : single-length
+.line 386
+	invoke-virtual	{v8},com/a/a/a/a/n/a	; a()V
+; v8 : Lcom/a/a/a/a/n;
+.line 387
+	iget-wide	v1,v8,com/a/a/a/a/n.d J
+; v1 : double-length , v8 : Lcom/a/a/a/a/n;
+	cmp-long	v1,v1,v6
+; v1 : single-length , v1 : single-length , v6 : double-length
+	if-nez	v1,l68672
+; v1 : single-length
+l68670:
+.line 400
+	return	v0
+; v0 : single-length
+l68672:
+.line 390
+	iget-object	v1,v8,com/a/a/a/a/n.a Ljava/io/InputStream;
+; v1 : Ljava/io/InputStream; , v8 : Lcom/a/a/a/a/n;
+	int-to-long	v2,v11
+; v2 : double-length , v11 : single-length
+	iget-wide	v4,v8,com/a/a/a/a/n.d J
+; v4 : double-length , v8 : Lcom/a/a/a/a/n;
+	invoke-static	{v2,v3,v4,v5},java/lang/Math/min	; min(JJ)J
+; v2 : double-length , v4 : double-length
+	move-result-wide	v2
+; v2 : double-length
+	long-to-int	v2,v2
+; v2 : single-length , v2 : single-length
+	invoke-virtual	{v1,v9,v10,v2},java/io/InputStream/read	; read([BII)I
+; v1 : Ljava/io/InputStream; , v9 : [B , v10 : single-length , v2 : single-length
+	move-result	v1
+; v1 : single-length
+.line 391
+	if-ne	v1,v0,l686a8
+; v1 : single-length , v0 : single-length
+.line 392
+	invoke-virtual	{v8},com/a/a/a/a/n/c	; c()V
+; v8 : Lcom/a/a/a/a/n;
+.line 393
+	new-instance	v0,java/net/ProtocolException
+; v0 : Ljava/net/ProtocolException;
+	const-string	v1,"unexpected end of stream"
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/net/ProtocolException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/net/ProtocolException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/net/ProtocolException;
+l686a8:
+.line 395
+	iget-wide	v2,v8,com/a/a/a/a/n.d J
+; v2 : double-length , v8 : Lcom/a/a/a/a/n;
+	int-to-long	v4,v1
+; v4 : double-length , v1 : single-length
+	sub-long/2addr	v2,v4
+; v2 : double-length , v4 : double-length
+	iput-wide	v2,v8,com/a/a/a/a/n.d J
+; v2 : double-length , v8 : Lcom/a/a/a/a/n;
+.line 396
+	invoke-virtual	{v8,v9,v10,v1},com/a/a/a/a/n/a	; a([BII)V
+; v8 : Lcom/a/a/a/a/n; , v9 : [B , v10 : single-length , v1 : single-length
+.line 397
+	iget-wide	v2,v8,com/a/a/a/a/n.d J
+; v2 : double-length , v8 : Lcom/a/a/a/a/n;
+	cmp-long	v0,v2,v6
+; v0 : single-length , v2 : double-length , v6 : double-length
+	if-nez	v0,l686cc
+; v0 : single-length
+.line 398
+	invoke-virtual	{v8},com/a/a/a/a/n/b	; b()V
+; v8 : Lcom/a/a/a/a/n;
+l686cc:
+	move	v0,v1
+; v0 : single-length , v1 : single-length
+.line 400
+	goto	l68670
+.end method
+
+

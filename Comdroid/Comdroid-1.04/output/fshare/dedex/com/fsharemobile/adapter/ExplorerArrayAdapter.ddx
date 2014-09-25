@@ -1,0 +1,3266 @@
+.class public com/fsharemobile/adapter/ExplorerArrayAdapter
+.super android/widget/ArrayAdapter
+.source ExplorerArrayAdapter.java
+
+.inner class OperationListener inner com/fsharemobile/adapter/ExplorerArrayAdapter$OperationListener outer com/fsharemobile/adapter/ExplorerArrayAdapter
+.inner class ViewHolder inner com/fsharemobile/adapter/ExplorerArrayAdapter$ViewHolder outer com/fsharemobile/adapter/ExplorerArrayAdapter
+.annotation systemVisibility Ldalvik/annotation/Signature;
+  value [Ljava/lang/String; = { "Landroid/widget/ArrayAdapter" , "<" , "Lcom/fsharemobile/model/File;" , ">;" }
+.end annotation
+
+.field private static final FILE_TYPE_LIST Ljava/lang/String; = "[{'exts':['txt'], 'icon_name':'ic_txt', 'type':'text/*'}, {'exts':['doc','docx'], 'icon_name':'ic_word', 'type':'application/msword'} , {'exts':['xls','xlsx'], 'ic"
+.field arr Ljava/util/List;
+  .annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "Ljava/util/List" , "<" , "Lcom/fsharemobile/model/File;" , ">;" }
+  .end annotation
+.end field
+.field private constants Lcom/fsharemobile/utils/Constants;
+.field private context Landroid/content/Context;
+.field private fclient Lcom/fsharemobile/client/FClient;
+.field fileProxy Lcom/fsharemobile/client/FileProxy;
+.field private isContextMenuEnable Ljava/lang/Boolean;
+.field jsoArr Lorg/json/JSONArray;
+.field listener Lcom/fsharemobile/adapter/ExplorerArrayAdapter$OperationListener;
+.field private mQuickAction Lcom/fsharemobile/quickaction/QuickAction;
+.field private mQuickActionFile Lcom/fsharemobile/quickaction/QuickAction;
+.field private pos I
+.field progressDiaglog Landroid/app/ProgressDialog;
+.field private viewHolderTemp Lcom/fsharemobile/adapter/ExplorerArrayAdapter$ViewHolder;
+
+.method public <init>(Landroid/content/Context;ILjava/util/List;)V
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "(" , "Landroid/content/Context;" , "I" , "Ljava/util/List" , "<" , "Lcom/fsharemobile/model/File;" , ">;)V" }
+.end annotation
+.limit registers 6
+; this: v2 (Lcom/fsharemobile/adapter/ExplorerArrayAdapter;)
+; parameter[0] : v3 (Landroid/content/Context;)
+; parameter[1] : v4 (I)
+; parameter[2] : v5 (Ljava/util/List;)
+.catch java/lang/Exception from l924c8 to l924da using l92506
+	const/4	v1,0
+; v1 : single-length
+.line 105
+	const	v0,2130903074	; 0x7f030022
+; v0 : single-length
+	invoke-direct	{v2,v3,v0,v5},android/widget/ArrayAdapter/<init>	; <init>(Landroid/content/Context;ILjava/util/List;)V
+; v2 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v3 : Landroid/content/Context; , v0 : single-length , v5 : Ljava/util/List;
+.line 62
+	const/4	v0,1
+; v0 : single-length
+	invoke-static	{v0},java/lang/Boolean/valueOf	; valueOf(Z)Ljava/lang/Boolean;
+; v0 : single-length
+	move-result-object	v0
+; v0 : Ljava/lang/Boolean;
+	iput-object	v0,v2,com/fsharemobile/adapter/ExplorerArrayAdapter.isContextMenuEnable Ljava/lang/Boolean;
+; v0 : Ljava/lang/Boolean; , v2 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+.line 88
+	iput-object	v1,v2,com/fsharemobile/adapter/ExplorerArrayAdapter.arr Ljava/util/List;
+; v1 : single-length , v2 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+.line 92
+	iput-object	v1,v2,com/fsharemobile/adapter/ExplorerArrayAdapter.fclient Lcom/fsharemobile/client/FClient;
+; v1 : single-length , v2 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+.line 94
+	iput-object	v1,v2,com/fsharemobile/adapter/ExplorerArrayAdapter.jsoArr Lorg/json/JSONArray;
+; v1 : single-length , v2 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+.line 108
+	iput-object	v3,v2,com/fsharemobile/adapter/ExplorerArrayAdapter.context Landroid/content/Context;
+; v3 : Landroid/content/Context; , v2 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+.line 110
+	iput-object	v5,v2,com/fsharemobile/adapter/ExplorerArrayAdapter.arr Ljava/util/List;
+; v5 : Ljava/util/List; , v2 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+l924c8:
+.line 112
+	new-instance	v0,org/json/JSONArray
+; v0 : Lorg/json/JSONArray;
+	const-string	v1,"[{'exts':['txt'], 'icon_name':'ic_txt', 'type':'text/*'}, {'exts':['doc','docx'], 'icon_name':'ic_word', 'type':'application/msword'} , {'exts':['xls','xlsx'], 'ic"
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},org/json/JSONArray/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Lorg/json/JSONArray; , v1 : Ljava/lang/String;
+	iput-object	v0,v2,com/fsharemobile/adapter/ExplorerArrayAdapter.jsoArr Lorg/json/JSONArray;
+; v0 : Lorg/json/JSONArray; , v2 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+l924da:
+.line 115
+	iget-object	v0,v2,com/fsharemobile/adapter/ExplorerArrayAdapter.isContextMenuEnable Ljava/lang/Boolean;
+; v0 : Ljava/lang/Boolean; , v2 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	invoke-virtual	{v0},java/lang/Boolean/booleanValue	; booleanValue()Z
+; v0 : Ljava/lang/Boolean;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,l924f6
+; v0 : single-length
+.line 116
+	invoke-direct	{v2},com/fsharemobile/adapter/ExplorerArrayAdapter/initQuickAction	; initQuickAction()V
+; v2 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+.line 117
+	invoke-direct	{v2},com/fsharemobile/adapter/ExplorerArrayAdapter/initQuickActionFile	; initQuickActionFile()V
+; v2 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+l924f6:
+.line 120
+	new-instance	v0,com/fsharemobile/utils/Constants
+; v0 : Lcom/fsharemobile/utils/Constants;
+	invoke-direct	{v0,v3},com/fsharemobile/utils/Constants/<init>	; <init>(Landroid/content/Context;)V
+; v0 : Lcom/fsharemobile/utils/Constants; , v3 : Landroid/content/Context;
+	iput-object	v0,v2,com/fsharemobile/adapter/ExplorerArrayAdapter.constants Lcom/fsharemobile/utils/Constants;
+; v0 : Lcom/fsharemobile/utils/Constants; , v2 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+.line 122
+	return-void	
+l92506:
+.line 113
+	move-exception	v0
+; v0 : java/lang/Exception
+	goto	l924da
+.end method
+
+.method static access$1(Lcom/fsharemobile/adapter/ExplorerArrayAdapter;)I
+.limit registers 2
+; parameter[0] : v1 (Lcom/fsharemobile/adapter/ExplorerArrayAdapter;)
+.line 89
+	iget	v0,v1,com/fsharemobile/adapter/ExplorerArrayAdapter.pos I
+; v0 : single-length , v1 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	return	v0
+; v0 : single-length
+.end method
+
+.method static access$2(Lcom/fsharemobile/adapter/ExplorerArrayAdapter;)Lcom/fsharemobile/adapter/ExplorerArrayAdapter$ViewHolder;
+.limit registers 2
+; parameter[0] : v1 (Lcom/fsharemobile/adapter/ExplorerArrayAdapter;)
+.line 90
+	iget-object	v0,v1,com/fsharemobile/adapter/ExplorerArrayAdapter.viewHolderTemp Lcom/fsharemobile/adapter/ExplorerArrayAdapter$ViewHolder;
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$ViewHolder; , v1 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	return-object	v0
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$ViewHolder;
+.end method
+
+.method static access$3(Lcom/fsharemobile/adapter/ExplorerArrayAdapter;Lcom/fsharemobile/adapter/ExplorerArrayAdapter$ViewHolder;)V
+.limit registers 2
+; parameter[0] : v0 (Lcom/fsharemobile/adapter/ExplorerArrayAdapter;)
+; parameter[1] : v1 (Lcom/fsharemobile/adapter/ExplorerArrayAdapter$ViewHolder;)
+.line 90
+	iput-object	v1,v0,com/fsharemobile/adapter/ExplorerArrayAdapter.viewHolderTemp Lcom/fsharemobile/adapter/ExplorerArrayAdapter$ViewHolder;
+; v1 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$ViewHolder; , v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	return-void	
+.end method
+
+.method static access$4(Lcom/fsharemobile/adapter/ExplorerArrayAdapter;I)V
+.limit registers 2
+; parameter[0] : v0 (Lcom/fsharemobile/adapter/ExplorerArrayAdapter;)
+; parameter[1] : v1 (I)
+.line 89
+	iput	v1,v0,com/fsharemobile/adapter/ExplorerArrayAdapter.pos I
+; v1 : single-length , v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	return-void	
+.end method
+
+.method static access$5(Lcom/fsharemobile/adapter/ExplorerArrayAdapter;)Lcom/fsharemobile/quickaction/QuickAction;
+.limit registers 2
+; parameter[0] : v1 (Lcom/fsharemobile/adapter/ExplorerArrayAdapter;)
+.line 60
+	iget-object	v0,v1,com/fsharemobile/adapter/ExplorerArrayAdapter.mQuickAction Lcom/fsharemobile/quickaction/QuickAction;
+; v0 : Lcom/fsharemobile/quickaction/QuickAction; , v1 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	return-object	v0
+; v0 : Lcom/fsharemobile/quickaction/QuickAction;
+.end method
+
+.method static access$6(Lcom/fsharemobile/adapter/ExplorerArrayAdapter;)Lcom/fsharemobile/quickaction/QuickAction;
+.limit registers 2
+; parameter[0] : v1 (Lcom/fsharemobile/adapter/ExplorerArrayAdapter;)
+.line 61
+	iget-object	v0,v1,com/fsharemobile/adapter/ExplorerArrayAdapter.mQuickActionFile Lcom/fsharemobile/quickaction/QuickAction;
+; v0 : Lcom/fsharemobile/quickaction/QuickAction; , v1 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	return-object	v0
+; v0 : Lcom/fsharemobile/quickaction/QuickAction;
+.end method
+
+.method static access$7(Lcom/fsharemobile/adapter/ExplorerArrayAdapter;)Landroid/content/Context;
+.limit registers 2
+; parameter[0] : v1 (Lcom/fsharemobile/adapter/ExplorerArrayAdapter;)
+.line 54
+	iget-object	v0,v1,com/fsharemobile/adapter/ExplorerArrayAdapter.context Landroid/content/Context;
+; v0 : Landroid/content/Context; , v1 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	return-object	v0
+; v0 : Landroid/content/Context;
+.end method
+
+.method private getDate(Ljava/lang/String;)Ljava/lang/String;
+.annotation buildVisibility Landroid/annotation/SuppressLint;
+    value [Ljava/lang/String; = { "SimpleDateFormat" }
+.end annotation
+.limit registers 11
+; this: v9 (Lcom/fsharemobile/adapter/ExplorerArrayAdapter;)
+; parameter[0] : v10 (Ljava/lang/String;)
+.line 822
+	const-string	v0,""
+; v0 : Ljava/lang/String;
+.line 824
+	invoke-static	{v10},java/lang/Long/valueOf	; valueOf(Ljava/lang/String;)Ljava/lang/Long;
+; v10 : Ljava/lang/String;
+	move-result-object	v5
+; v5 : Ljava/lang/Long;
+	invoke-virtual	{v5},java/lang/Long/longValue	; longValue()J
+; v5 : Ljava/lang/Long;
+	move-result-wide	v5
+; v5 : double-length
+	const-wide/16	v7,1000
+; v7 : double-length
+	mul-long	v2,v5,v7
+; v2 : double-length , v5 : double-length , v7 : double-length
+.line 826
+	new-instance	v1,java/util/Date
+; v1 : Ljava/util/Date;
+	invoke-direct	{v1,v2,v3},java/util/Date/<init>	; <init>(J)V
+; v1 : Ljava/util/Date; , v2 : double-length
+.line 827
+	new-instance	v4,java/text/SimpleDateFormat
+; v4 : Ljava/text/SimpleDateFormat;
+	const-string	v5,"dd MMM, yyyy"
+; v5 : Ljava/lang/String;
+	invoke-direct	{v4,v5},java/text/SimpleDateFormat/<init>	; <init>(Ljava/lang/String;)V
+; v4 : Ljava/text/SimpleDateFormat; , v5 : Ljava/lang/String;
+.line 830
+	invoke-virtual	{v4,v1},java/text/SimpleDateFormat/format	; format(Ljava/util/Date;)Ljava/lang/String;
+; v4 : Ljava/text/SimpleDateFormat; , v1 : Ljava/util/Date;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+.line 832
+	return-object	v0
+; v0 : Ljava/lang/String;
+.end method
+
+.method private getMB(Ljava/lang/String;)Ljava/lang/Double;
+.limit registers 14
+; this: v12 (Lcom/fsharemobile/adapter/ExplorerArrayAdapter;)
+; parameter[0] : v13 (Ljava/lang/String;)
+.line 856
+	const-wide/16	v8,0
+; v8 : double-length
+	invoke-static	{v8,v9},java/lang/Double/valueOf	; valueOf(D)Ljava/lang/Double;
+; v8 : double-length
+	move-result-object	v4
+; v4 : Ljava/lang/Double;
+.line 857
+	const-wide/high16	v8,16688
+; v8 : double-length
+	invoke-static	{v8,v9},java/lang/Double/valueOf	; valueOf(D)Ljava/lang/Double;
+; v8 : double-length
+	move-result-object	v2
+; v2 : Ljava/lang/Double;
+.line 858
+	invoke-static	{v13},java/lang/Double/parseDouble	; parseDouble(Ljava/lang/String;)D
+; v13 : Ljava/lang/String;
+	move-result-wide	v8
+; v8 : double-length
+	invoke-static	{v8,v9},java/lang/Double/valueOf	; valueOf(D)Ljava/lang/Double;
+; v8 : double-length
+	move-result-object	v3
+; v3 : Ljava/lang/Double;
+.line 859
+	invoke-virtual	{v3},java/lang/Double/doubleValue	; doubleValue()D
+; v3 : Ljava/lang/Double;
+	move-result-wide	v8
+; v8 : double-length
+	invoke-virtual	{v2},java/lang/Double/doubleValue	; doubleValue()D
+; v2 : Ljava/lang/Double;
+	move-result-wide	v10
+; v10 : double-length
+	div-double/2addr	v8,v10
+; v8 : double-length , v10 : double-length
+	invoke-static	{v8,v9},java/lang/Double/valueOf	; valueOf(D)Ljava/lang/Double;
+; v8 : double-length
+	move-result-object	v4
+; v4 : Ljava/lang/Double;
+.line 864
+	new-instance	v0,java/text/DecimalFormat
+; v0 : Ljava/text/DecimalFormat;
+	const-string	v8,"#.##"
+; v8 : Ljava/lang/String;
+	invoke-direct	{v0,v8},java/text/DecimalFormat/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/text/DecimalFormat; , v8 : Ljava/lang/String;
+.line 865
+	new-instance	v1,java/text/DecimalFormatSymbols
+; v1 : Ljava/text/DecimalFormatSymbols;
+	sget-object	v8,java/util/Locale.ENGLISH Ljava/util/Locale;
+; v8 : Ljava/util/Locale;
+	invoke-direct	{v1,v8},java/text/DecimalFormatSymbols/<init>	; <init>(Ljava/util/Locale;)V
+; v1 : Ljava/text/DecimalFormatSymbols; , v8 : Ljava/util/Locale;
+.line 866
+	const/16	v8,46
+; v8 : single-length
+	invoke-virtual	{v1,v8},java/text/DecimalFormatSymbols/setDecimalSeparator	; setDecimalSeparator(C)V
+; v1 : Ljava/text/DecimalFormatSymbols; , v8 : single-length
+.line 867
+	invoke-virtual	{v0,v1},java/text/DecimalFormat/setDecimalFormatSymbols	; setDecimalFormatSymbols(Ljava/text/DecimalFormatSymbols;)V
+; v0 : Ljava/text/DecimalFormat; , v1 : Ljava/text/DecimalFormatSymbols;
+.line 869
+	invoke-virtual	{v0,v4},java/text/DecimalFormat/format	; format(Ljava/lang/Object;)Ljava/lang/String;
+; v0 : Ljava/text/DecimalFormat; , v4 : Ljava/lang/Double;
+	move-result-object	v7
+; v7 : Ljava/lang/String;
+.line 870
+	invoke-static	{v7},java/lang/Double/valueOf	; valueOf(Ljava/lang/String;)Ljava/lang/Double;
+; v7 : Ljava/lang/String;
+	move-result-object	v8
+; v8 : Ljava/lang/Double;
+	invoke-virtual	{v8},java/lang/Double/doubleValue	; doubleValue()D
+; v8 : Ljava/lang/Double;
+	move-result-wide	v5
+; v5 : double-length
+.line 871
+	invoke-static	{v5,v6},java/lang/Double/valueOf	; valueOf(D)Ljava/lang/Double;
+; v5 : double-length
+	move-result-object	v8
+; v8 : Ljava/lang/Double;
+	return-object	v8
+; v8 : Ljava/lang/Double;
+.end method
+
+.method private initQuickAction()V
+.limit registers 9
+; this: v8 (Lcom/fsharemobile/adapter/ExplorerArrayAdapter;)
+.line 876
+	new-instance	v4,com/fsharemobile/quickaction/ActionItem
+; v4 : Lcom/fsharemobile/quickaction/ActionItem;
+	invoke-direct	{v4},com/fsharemobile/quickaction/ActionItem/<init>	; <init>()V
+; v4 : Lcom/fsharemobile/quickaction/ActionItem;
+.line 878
+	new-instance	v5,java/lang/StringBuilder
+; v5 : Ljava/lang/StringBuilder;
+	const-string	v6," "
+; v6 : Ljava/lang/String;
+	invoke-direct	{v5,v6},java/lang/StringBuilder/<init>	; <init>(Ljava/lang/String;)V
+; v5 : Ljava/lang/StringBuilder; , v6 : Ljava/lang/String;
+.line 879
+	iget-object	v6,v8,com/fsharemobile/adapter/ExplorerArrayAdapter.context Landroid/content/Context;
+; v6 : Landroid/content/Context; , v8 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	invoke-virtual	{v6},android/content/Context/getResources	; getResources()Landroid/content/res/Resources;
+; v6 : Landroid/content/Context;
+	move-result-object	v6
+; v6 : Landroid/content/res/Resources;
+	const	v7,2131230789	; 0x7f080045
+; v7 : single-length
+	invoke-virtual	{v6,v7},android/content/res/Resources/getText	; getText(I)Ljava/lang/CharSequence;
+; v6 : Landroid/content/res/Resources; , v7 : single-length
+	move-result-object	v6
+; v6 : Ljava/lang/CharSequence;
+	invoke-virtual	{v5,v6},java/lang/StringBuilder/append	; append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+; v5 : Ljava/lang/StringBuilder; , v6 : Ljava/lang/CharSequence;
+	move-result-object	v5
+; v5 : Ljava/lang/StringBuilder;
+	const-string	v6," "
+; v6 : Ljava/lang/String;
+	invoke-virtual	{v5,v6},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v5 : Ljava/lang/StringBuilder; , v6 : Ljava/lang/String;
+	move-result-object	v5
+; v5 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v5},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v5 : Ljava/lang/StringBuilder;
+	move-result-object	v5
+; v5 : Ljava/lang/String;
+.line 878
+	invoke-virtual	{v4,v5},com/fsharemobile/quickaction/ActionItem/setTitle	; setTitle(Ljava/lang/String;)V
+; v4 : Lcom/fsharemobile/quickaction/ActionItem; , v5 : Ljava/lang/String;
+.line 880
+	iget-object	v5,v8,com/fsharemobile/adapter/ExplorerArrayAdapter.context Landroid/content/Context;
+; v5 : Landroid/content/Context; , v8 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	invoke-virtual	{v5},android/content/Context/getResources	; getResources()Landroid/content/res/Resources;
+; v5 : Landroid/content/Context;
+	move-result-object	v5
+; v5 : Landroid/content/res/Resources;
+.line 881
+	const	v6,2130837591	; 0x7f020057
+; v6 : single-length
+.line 880
+	invoke-virtual	{v5,v6},android/content/res/Resources/getDrawable	; getDrawable(I)Landroid/graphics/drawable/Drawable;
+; v5 : Landroid/content/res/Resources; , v6 : single-length
+	move-result-object	v5
+; v5 : Landroid/graphics/drawable/Drawable;
+	invoke-virtual	{v4,v5},com/fsharemobile/quickaction/ActionItem/setIcon	; setIcon(Landroid/graphics/drawable/Drawable;)V
+; v4 : Lcom/fsharemobile/quickaction/ActionItem; , v5 : Landroid/graphics/drawable/Drawable;
+.line 884
+	new-instance	v0,com/fsharemobile/quickaction/ActionItem
+; v0 : Lcom/fsharemobile/quickaction/ActionItem;
+	invoke-direct	{v0},com/fsharemobile/quickaction/ActionItem/<init>	; <init>()V
+; v0 : Lcom/fsharemobile/quickaction/ActionItem;
+.line 886
+	new-instance	v5,java/lang/StringBuilder
+; v5 : Ljava/lang/StringBuilder;
+	const-string	v6,"  "
+; v6 : Ljava/lang/String;
+	invoke-direct	{v5,v6},java/lang/StringBuilder/<init>	; <init>(Ljava/lang/String;)V
+; v5 : Ljava/lang/StringBuilder; , v6 : Ljava/lang/String;
+.line 887
+	iget-object	v6,v8,com/fsharemobile/adapter/ExplorerArrayAdapter.context Landroid/content/Context;
+; v6 : Landroid/content/Context; , v8 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	invoke-virtual	{v6},android/content/Context/getResources	; getResources()Landroid/content/res/Resources;
+; v6 : Landroid/content/Context;
+	move-result-object	v6
+; v6 : Landroid/content/res/Resources;
+	const	v7,2131230788	; 0x7f080044
+; v7 : single-length
+	invoke-virtual	{v6,v7},android/content/res/Resources/getText	; getText(I)Ljava/lang/CharSequence;
+; v6 : Landroid/content/res/Resources; , v7 : single-length
+	move-result-object	v6
+; v6 : Ljava/lang/CharSequence;
+	invoke-virtual	{v5,v6},java/lang/StringBuilder/append	; append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+; v5 : Ljava/lang/StringBuilder; , v6 : Ljava/lang/CharSequence;
+	move-result-object	v5
+; v5 : Ljava/lang/StringBuilder;
+	const-string	v6,"  "
+; v6 : Ljava/lang/String;
+	invoke-virtual	{v5,v6},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v5 : Ljava/lang/StringBuilder; , v6 : Ljava/lang/String;
+	move-result-object	v5
+; v5 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v5},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v5 : Ljava/lang/StringBuilder;
+	move-result-object	v5
+; v5 : Ljava/lang/String;
+.line 886
+	invoke-virtual	{v0,v5},com/fsharemobile/quickaction/ActionItem/setTitle	; setTitle(Ljava/lang/String;)V
+; v0 : Lcom/fsharemobile/quickaction/ActionItem; , v5 : Ljava/lang/String;
+.line 888
+	iget-object	v5,v8,com/fsharemobile/adapter/ExplorerArrayAdapter.context Landroid/content/Context;
+; v5 : Landroid/content/Context; , v8 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	invoke-virtual	{v5},android/content/Context/getResources	; getResources()Landroid/content/res/Resources;
+; v5 : Landroid/content/Context;
+	move-result-object	v5
+; v5 : Landroid/content/res/Resources;
+.line 889
+	const	v6,2130837588	; 0x7f020054
+; v6 : single-length
+.line 888
+	invoke-virtual	{v5,v6},android/content/res/Resources/getDrawable	; getDrawable(I)Landroid/graphics/drawable/Drawable;
+; v5 : Landroid/content/res/Resources; , v6 : single-length
+	move-result-object	v5
+; v5 : Landroid/graphics/drawable/Drawable;
+	invoke-virtual	{v0,v5},com/fsharemobile/quickaction/ActionItem/setIcon	; setIcon(Landroid/graphics/drawable/Drawable;)V
+; v0 : Lcom/fsharemobile/quickaction/ActionItem; , v5 : Landroid/graphics/drawable/Drawable;
+.line 892
+	new-instance	v2,com/fsharemobile/quickaction/ActionItem
+; v2 : Lcom/fsharemobile/quickaction/ActionItem;
+	invoke-direct	{v2},com/fsharemobile/quickaction/ActionItem/<init>	; <init>()V
+; v2 : Lcom/fsharemobile/quickaction/ActionItem;
+.line 894
+	new-instance	v5,java/lang/StringBuilder
+; v5 : Ljava/lang/StringBuilder;
+	invoke-direct	{v5},java/lang/StringBuilder/<init>	; <init>()V
+; v5 : Ljava/lang/StringBuilder;
+	iget-object	v6,v8,com/fsharemobile/adapter/ExplorerArrayAdapter.context Landroid/content/Context;
+; v6 : Landroid/content/Context; , v8 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	invoke-virtual	{v6},android/content/Context/getResources	; getResources()Landroid/content/res/Resources;
+; v6 : Landroid/content/Context;
+	move-result-object	v6
+; v6 : Landroid/content/res/Resources;
+	const	v7,2131230790	; 0x7f080046
+; v7 : single-length
+	invoke-virtual	{v6,v7},android/content/res/Resources/getText	; getText(I)Ljava/lang/CharSequence;
+; v6 : Landroid/content/res/Resources; , v7 : single-length
+	move-result-object	v6
+; v6 : Ljava/lang/CharSequence;
+	invoke-virtual	{v5,v6},java/lang/StringBuilder/append	; append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+; v5 : Ljava/lang/StringBuilder; , v6 : Ljava/lang/CharSequence;
+	move-result-object	v5
+; v5 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v5},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v5 : Ljava/lang/StringBuilder;
+	move-result-object	v5
+; v5 : Ljava/lang/String;
+	invoke-virtual	{v2,v5},com/fsharemobile/quickaction/ActionItem/setTitle	; setTitle(Ljava/lang/String;)V
+; v2 : Lcom/fsharemobile/quickaction/ActionItem; , v5 : Ljava/lang/String;
+.line 895
+	iget-object	v5,v8,com/fsharemobile/adapter/ExplorerArrayAdapter.context Landroid/content/Context;
+; v5 : Landroid/content/Context; , v8 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	invoke-virtual	{v5},android/content/Context/getResources	; getResources()Landroid/content/res/Resources;
+; v5 : Landroid/content/Context;
+	move-result-object	v5
+; v5 : Landroid/content/res/Resources;
+.line 896
+	const	v6,2130837557	; 0x7f020035
+; v6 : single-length
+.line 895
+	invoke-virtual	{v5,v6},android/content/res/Resources/getDrawable	; getDrawable(I)Landroid/graphics/drawable/Drawable;
+; v5 : Landroid/content/res/Resources; , v6 : single-length
+	move-result-object	v5
+; v5 : Landroid/graphics/drawable/Drawable;
+	invoke-virtual	{v2,v5},com/fsharemobile/quickaction/ActionItem/setIcon	; setIcon(Landroid/graphics/drawable/Drawable;)V
+; v2 : Lcom/fsharemobile/quickaction/ActionItem; , v5 : Landroid/graphics/drawable/Drawable;
+.line 899
+	new-instance	v3,com/fsharemobile/quickaction/ActionItem
+; v3 : Lcom/fsharemobile/quickaction/ActionItem;
+	invoke-direct	{v3},com/fsharemobile/quickaction/ActionItem/<init>	; <init>()V
+; v3 : Lcom/fsharemobile/quickaction/ActionItem;
+.line 901
+	new-instance	v5,java/lang/StringBuilder
+; v5 : Ljava/lang/StringBuilder;
+	invoke-direct	{v5},java/lang/StringBuilder/<init>	; <init>()V
+; v5 : Ljava/lang/StringBuilder;
+	iget-object	v6,v8,com/fsharemobile/adapter/ExplorerArrayAdapter.context Landroid/content/Context;
+; v6 : Landroid/content/Context; , v8 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	invoke-virtual	{v6},android/content/Context/getResources	; getResources()Landroid/content/res/Resources;
+; v6 : Landroid/content/Context;
+	move-result-object	v6
+; v6 : Landroid/content/res/Resources;
+	const	v7,2131230791	; 0x7f080047
+; v7 : single-length
+	invoke-virtual	{v6,v7},android/content/res/Resources/getText	; getText(I)Ljava/lang/CharSequence;
+; v6 : Landroid/content/res/Resources; , v7 : single-length
+	move-result-object	v6
+; v6 : Ljava/lang/CharSequence;
+	invoke-virtual	{v5,v6},java/lang/StringBuilder/append	; append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+; v5 : Ljava/lang/StringBuilder; , v6 : Ljava/lang/CharSequence;
+	move-result-object	v5
+; v5 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v5},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v5 : Ljava/lang/StringBuilder;
+	move-result-object	v5
+; v5 : Ljava/lang/String;
+	invoke-virtual	{v3,v5},com/fsharemobile/quickaction/ActionItem/setTitle	; setTitle(Ljava/lang/String;)V
+; v3 : Lcom/fsharemobile/quickaction/ActionItem; , v5 : Ljava/lang/String;
+.line 902
+	iget-object	v5,v8,com/fsharemobile/adapter/ExplorerArrayAdapter.context Landroid/content/Context;
+; v5 : Landroid/content/Context; , v8 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	invoke-virtual	{v5},android/content/Context/getResources	; getResources()Landroid/content/res/Resources;
+; v5 : Landroid/content/Context;
+	move-result-object	v5
+; v5 : Landroid/content/res/Resources;
+.line 903
+	const	v6,2130837575	; 0x7f020047
+; v6 : single-length
+.line 902
+	invoke-virtual	{v5,v6},android/content/res/Resources/getDrawable	; getDrawable(I)Landroid/graphics/drawable/Drawable;
+; v5 : Landroid/content/res/Resources; , v6 : single-length
+	move-result-object	v5
+; v5 : Landroid/graphics/drawable/Drawable;
+	invoke-virtual	{v3,v5},com/fsharemobile/quickaction/ActionItem/setIcon	; setIcon(Landroid/graphics/drawable/Drawable;)V
+; v3 : Lcom/fsharemobile/quickaction/ActionItem; , v5 : Landroid/graphics/drawable/Drawable;
+.line 906
+	new-instance	v1,com/fsharemobile/quickaction/ActionItem
+; v1 : Lcom/fsharemobile/quickaction/ActionItem;
+	invoke-direct	{v1},com/fsharemobile/quickaction/ActionItem/<init>	; <init>()V
+; v1 : Lcom/fsharemobile/quickaction/ActionItem;
+.line 908
+	new-instance	v5,java/lang/StringBuilder
+; v5 : Ljava/lang/StringBuilder;
+	invoke-direct	{v5},java/lang/StringBuilder/<init>	; <init>()V
+; v5 : Ljava/lang/StringBuilder;
+	iget-object	v6,v8,com/fsharemobile/adapter/ExplorerArrayAdapter.context Landroid/content/Context;
+; v6 : Landroid/content/Context; , v8 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	invoke-virtual	{v6},android/content/Context/getResources	; getResources()Landroid/content/res/Resources;
+; v6 : Landroid/content/Context;
+	move-result-object	v6
+; v6 : Landroid/content/res/Resources;
+.line 909
+	const	v7,2131230792	; 0x7f080048
+; v7 : single-length
+.line 908
+	invoke-virtual	{v6,v7},android/content/res/Resources/getText	; getText(I)Ljava/lang/CharSequence;
+; v6 : Landroid/content/res/Resources; , v7 : single-length
+	move-result-object	v6
+; v6 : Ljava/lang/CharSequence;
+	invoke-virtual	{v5,v6},java/lang/StringBuilder/append	; append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+; v5 : Ljava/lang/StringBuilder; , v6 : Ljava/lang/CharSequence;
+	move-result-object	v5
+; v5 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v5},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v5 : Ljava/lang/StringBuilder;
+	move-result-object	v5
+; v5 : Ljava/lang/String;
+	invoke-virtual	{v1,v5},com/fsharemobile/quickaction/ActionItem/setTitle	; setTitle(Ljava/lang/String;)V
+; v1 : Lcom/fsharemobile/quickaction/ActionItem; , v5 : Ljava/lang/String;
+.line 911
+	iget-object	v5,v8,com/fsharemobile/adapter/ExplorerArrayAdapter.context Landroid/content/Context;
+; v5 : Landroid/content/Context; , v8 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	invoke-virtual	{v5},android/content/Context/getResources	; getResources()Landroid/content/res/Resources;
+; v5 : Landroid/content/Context;
+	move-result-object	v5
+; v5 : Landroid/content/res/Resources;
+.line 912
+	const	v6,2130837556	; 0x7f020034
+; v6 : single-length
+.line 911
+	invoke-virtual	{v5,v6},android/content/res/Resources/getDrawable	; getDrawable(I)Landroid/graphics/drawable/Drawable;
+; v5 : Landroid/content/res/Resources; , v6 : single-length
+	move-result-object	v5
+; v5 : Landroid/graphics/drawable/Drawable;
+	invoke-virtual	{v1,v5},com/fsharemobile/quickaction/ActionItem/setIcon	; setIcon(Landroid/graphics/drawable/Drawable;)V
+; v1 : Lcom/fsharemobile/quickaction/ActionItem; , v5 : Landroid/graphics/drawable/Drawable;
+.line 914
+	new-instance	v5,com/fsharemobile/quickaction/QuickAction
+; v5 : Lcom/fsharemobile/quickaction/QuickAction;
+.line 915
+	iget-object	v6,v8,com/fsharemobile/adapter/ExplorerArrayAdapter.context Landroid/content/Context;
+; v6 : Landroid/content/Context; , v8 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	invoke-direct	{v5,v6},com/fsharemobile/quickaction/QuickAction/<init>	; <init>(Landroid/content/Context;)V
+; v5 : Lcom/fsharemobile/quickaction/QuickAction; , v6 : Landroid/content/Context;
+.line 914
+	iput-object	v5,v8,com/fsharemobile/adapter/ExplorerArrayAdapter.mQuickAction Lcom/fsharemobile/quickaction/QuickAction;
+; v5 : Lcom/fsharemobile/quickaction/QuickAction; , v8 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+.line 917
+	iget-object	v5,v8,com/fsharemobile/adapter/ExplorerArrayAdapter.mQuickAction Lcom/fsharemobile/quickaction/QuickAction;
+; v5 : Lcom/fsharemobile/quickaction/QuickAction; , v8 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	invoke-virtual	{v5,v4},com/fsharemobile/quickaction/QuickAction/addActionItem	; addActionItem(Lcom/fsharemobile/quickaction/ActionItem;)V
+; v5 : Lcom/fsharemobile/quickaction/QuickAction; , v4 : Lcom/fsharemobile/quickaction/ActionItem;
+.line 918
+	iget-object	v5,v8,com/fsharemobile/adapter/ExplorerArrayAdapter.mQuickAction Lcom/fsharemobile/quickaction/QuickAction;
+; v5 : Lcom/fsharemobile/quickaction/QuickAction; , v8 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	invoke-virtual	{v5,v0},com/fsharemobile/quickaction/QuickAction/addActionItem	; addActionItem(Lcom/fsharemobile/quickaction/ActionItem;)V
+; v5 : Lcom/fsharemobile/quickaction/QuickAction; , v0 : Lcom/fsharemobile/quickaction/ActionItem;
+.line 919
+	iget-object	v5,v8,com/fsharemobile/adapter/ExplorerArrayAdapter.mQuickAction Lcom/fsharemobile/quickaction/QuickAction;
+; v5 : Lcom/fsharemobile/quickaction/QuickAction; , v8 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	invoke-virtual	{v5,v2},com/fsharemobile/quickaction/QuickAction/addActionItem	; addActionItem(Lcom/fsharemobile/quickaction/ActionItem;)V
+; v5 : Lcom/fsharemobile/quickaction/QuickAction; , v2 : Lcom/fsharemobile/quickaction/ActionItem;
+.line 920
+	iget-object	v5,v8,com/fsharemobile/adapter/ExplorerArrayAdapter.mQuickAction Lcom/fsharemobile/quickaction/QuickAction;
+; v5 : Lcom/fsharemobile/quickaction/QuickAction; , v8 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	invoke-virtual	{v5,v3},com/fsharemobile/quickaction/QuickAction/addActionItem	; addActionItem(Lcom/fsharemobile/quickaction/ActionItem;)V
+; v5 : Lcom/fsharemobile/quickaction/QuickAction; , v3 : Lcom/fsharemobile/quickaction/ActionItem;
+.line 922
+	iget-object	v5,v8,com/fsharemobile/adapter/ExplorerArrayAdapter.mQuickAction Lcom/fsharemobile/quickaction/QuickAction;
+; v5 : Lcom/fsharemobile/quickaction/QuickAction; , v8 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+.line 923
+	new-instance	v6,com/fsharemobile/adapter/ExplorerArrayAdapter$15
+; v6 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$15;
+	invoke-direct	{v6,v8},com/fsharemobile/adapter/ExplorerArrayAdapter$15/<init>	; <init>(Lcom/fsharemobile/adapter/ExplorerArrayAdapter;)V
+; v6 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$15; , v8 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	invoke-virtual	{v5,v6},com/fsharemobile/quickaction/QuickAction/setOnActionItemClickListener	; setOnActionItemClickListener(Lcom/fsharemobile/quickaction/QuickAction$OnActionItemClickListener;)V
+; v5 : Lcom/fsharemobile/quickaction/QuickAction; , v6 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$15;
+.line 933
+	return-void	
+.end method
+
+.method private initQuickActionFile()V
+.limit registers 9
+; this: v8 (Lcom/fsharemobile/adapter/ExplorerArrayAdapter;)
+.line 937
+	new-instance	v4,com/fsharemobile/quickaction/ActionItem
+; v4 : Lcom/fsharemobile/quickaction/ActionItem;
+	invoke-direct	{v4},com/fsharemobile/quickaction/ActionItem/<init>	; <init>()V
+; v4 : Lcom/fsharemobile/quickaction/ActionItem;
+.line 939
+	new-instance	v5,java/lang/StringBuilder
+; v5 : Ljava/lang/StringBuilder;
+	const-string	v6," "
+; v6 : Ljava/lang/String;
+	invoke-direct	{v5,v6},java/lang/StringBuilder/<init>	; <init>(Ljava/lang/String;)V
+; v5 : Ljava/lang/StringBuilder; , v6 : Ljava/lang/String;
+.line 940
+	iget-object	v6,v8,com/fsharemobile/adapter/ExplorerArrayAdapter.context Landroid/content/Context;
+; v6 : Landroid/content/Context; , v8 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	invoke-virtual	{v6},android/content/Context/getResources	; getResources()Landroid/content/res/Resources;
+; v6 : Landroid/content/Context;
+	move-result-object	v6
+; v6 : Landroid/content/res/Resources;
+	const	v7,2131230789	; 0x7f080045
+; v7 : single-length
+	invoke-virtual	{v6,v7},android/content/res/Resources/getText	; getText(I)Ljava/lang/CharSequence;
+; v6 : Landroid/content/res/Resources; , v7 : single-length
+	move-result-object	v6
+; v6 : Ljava/lang/CharSequence;
+	invoke-virtual	{v5,v6},java/lang/StringBuilder/append	; append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+; v5 : Ljava/lang/StringBuilder; , v6 : Ljava/lang/CharSequence;
+	move-result-object	v5
+; v5 : Ljava/lang/StringBuilder;
+	const-string	v6," "
+; v6 : Ljava/lang/String;
+	invoke-virtual	{v5,v6},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v5 : Ljava/lang/StringBuilder; , v6 : Ljava/lang/String;
+	move-result-object	v5
+; v5 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v5},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v5 : Ljava/lang/StringBuilder;
+	move-result-object	v5
+; v5 : Ljava/lang/String;
+.line 939
+	invoke-virtual	{v4,v5},com/fsharemobile/quickaction/ActionItem/setTitle	; setTitle(Ljava/lang/String;)V
+; v4 : Lcom/fsharemobile/quickaction/ActionItem; , v5 : Ljava/lang/String;
+.line 941
+	iget-object	v5,v8,com/fsharemobile/adapter/ExplorerArrayAdapter.context Landroid/content/Context;
+; v5 : Landroid/content/Context; , v8 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	invoke-virtual	{v5},android/content/Context/getResources	; getResources()Landroid/content/res/Resources;
+; v5 : Landroid/content/Context;
+	move-result-object	v5
+; v5 : Landroid/content/res/Resources;
+.line 942
+	const	v6,2130837591	; 0x7f020057
+; v6 : single-length
+.line 941
+	invoke-virtual	{v5,v6},android/content/res/Resources/getDrawable	; getDrawable(I)Landroid/graphics/drawable/Drawable;
+; v5 : Landroid/content/res/Resources; , v6 : single-length
+	move-result-object	v5
+; v5 : Landroid/graphics/drawable/Drawable;
+	invoke-virtual	{v4,v5},com/fsharemobile/quickaction/ActionItem/setIcon	; setIcon(Landroid/graphics/drawable/Drawable;)V
+; v4 : Lcom/fsharemobile/quickaction/ActionItem; , v5 : Landroid/graphics/drawable/Drawable;
+.line 945
+	new-instance	v0,com/fsharemobile/quickaction/ActionItem
+; v0 : Lcom/fsharemobile/quickaction/ActionItem;
+	invoke-direct	{v0},com/fsharemobile/quickaction/ActionItem/<init>	; <init>()V
+; v0 : Lcom/fsharemobile/quickaction/ActionItem;
+.line 947
+	new-instance	v5,java/lang/StringBuilder
+; v5 : Ljava/lang/StringBuilder;
+	const-string	v6,"  "
+; v6 : Ljava/lang/String;
+	invoke-direct	{v5,v6},java/lang/StringBuilder/<init>	; <init>(Ljava/lang/String;)V
+; v5 : Ljava/lang/StringBuilder; , v6 : Ljava/lang/String;
+.line 948
+	iget-object	v6,v8,com/fsharemobile/adapter/ExplorerArrayAdapter.context Landroid/content/Context;
+; v6 : Landroid/content/Context; , v8 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	invoke-virtual	{v6},android/content/Context/getResources	; getResources()Landroid/content/res/Resources;
+; v6 : Landroid/content/Context;
+	move-result-object	v6
+; v6 : Landroid/content/res/Resources;
+	const	v7,2131230788	; 0x7f080044
+; v7 : single-length
+	invoke-virtual	{v6,v7},android/content/res/Resources/getText	; getText(I)Ljava/lang/CharSequence;
+; v6 : Landroid/content/res/Resources; , v7 : single-length
+	move-result-object	v6
+; v6 : Ljava/lang/CharSequence;
+	invoke-virtual	{v5,v6},java/lang/StringBuilder/append	; append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+; v5 : Ljava/lang/StringBuilder; , v6 : Ljava/lang/CharSequence;
+	move-result-object	v5
+; v5 : Ljava/lang/StringBuilder;
+	const-string	v6,"  "
+; v6 : Ljava/lang/String;
+	invoke-virtual	{v5,v6},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v5 : Ljava/lang/StringBuilder; , v6 : Ljava/lang/String;
+	move-result-object	v5
+; v5 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v5},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v5 : Ljava/lang/StringBuilder;
+	move-result-object	v5
+; v5 : Ljava/lang/String;
+.line 947
+	invoke-virtual	{v0,v5},com/fsharemobile/quickaction/ActionItem/setTitle	; setTitle(Ljava/lang/String;)V
+; v0 : Lcom/fsharemobile/quickaction/ActionItem; , v5 : Ljava/lang/String;
+.line 949
+	iget-object	v5,v8,com/fsharemobile/adapter/ExplorerArrayAdapter.context Landroid/content/Context;
+; v5 : Landroid/content/Context; , v8 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	invoke-virtual	{v5},android/content/Context/getResources	; getResources()Landroid/content/res/Resources;
+; v5 : Landroid/content/Context;
+	move-result-object	v5
+; v5 : Landroid/content/res/Resources;
+.line 950
+	const	v6,2130837588	; 0x7f020054
+; v6 : single-length
+.line 949
+	invoke-virtual	{v5,v6},android/content/res/Resources/getDrawable	; getDrawable(I)Landroid/graphics/drawable/Drawable;
+; v5 : Landroid/content/res/Resources; , v6 : single-length
+	move-result-object	v5
+; v5 : Landroid/graphics/drawable/Drawable;
+	invoke-virtual	{v0,v5},com/fsharemobile/quickaction/ActionItem/setIcon	; setIcon(Landroid/graphics/drawable/Drawable;)V
+; v0 : Lcom/fsharemobile/quickaction/ActionItem; , v5 : Landroid/graphics/drawable/Drawable;
+.line 953
+	new-instance	v2,com/fsharemobile/quickaction/ActionItem
+; v2 : Lcom/fsharemobile/quickaction/ActionItem;
+	invoke-direct	{v2},com/fsharemobile/quickaction/ActionItem/<init>	; <init>()V
+; v2 : Lcom/fsharemobile/quickaction/ActionItem;
+.line 955
+	new-instance	v5,java/lang/StringBuilder
+; v5 : Ljava/lang/StringBuilder;
+	invoke-direct	{v5},java/lang/StringBuilder/<init>	; <init>()V
+; v5 : Ljava/lang/StringBuilder;
+	iget-object	v6,v8,com/fsharemobile/adapter/ExplorerArrayAdapter.context Landroid/content/Context;
+; v6 : Landroid/content/Context; , v8 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	invoke-virtual	{v6},android/content/Context/getResources	; getResources()Landroid/content/res/Resources;
+; v6 : Landroid/content/Context;
+	move-result-object	v6
+; v6 : Landroid/content/res/Resources;
+	const	v7,2131230790	; 0x7f080046
+; v7 : single-length
+	invoke-virtual	{v6,v7},android/content/res/Resources/getText	; getText(I)Ljava/lang/CharSequence;
+; v6 : Landroid/content/res/Resources; , v7 : single-length
+	move-result-object	v6
+; v6 : Ljava/lang/CharSequence;
+	invoke-virtual	{v5,v6},java/lang/StringBuilder/append	; append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+; v5 : Ljava/lang/StringBuilder; , v6 : Ljava/lang/CharSequence;
+	move-result-object	v5
+; v5 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v5},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v5 : Ljava/lang/StringBuilder;
+	move-result-object	v5
+; v5 : Ljava/lang/String;
+	invoke-virtual	{v2,v5},com/fsharemobile/quickaction/ActionItem/setTitle	; setTitle(Ljava/lang/String;)V
+; v2 : Lcom/fsharemobile/quickaction/ActionItem; , v5 : Ljava/lang/String;
+.line 956
+	iget-object	v5,v8,com/fsharemobile/adapter/ExplorerArrayAdapter.context Landroid/content/Context;
+; v5 : Landroid/content/Context; , v8 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	invoke-virtual	{v5},android/content/Context/getResources	; getResources()Landroid/content/res/Resources;
+; v5 : Landroid/content/Context;
+	move-result-object	v5
+; v5 : Landroid/content/res/Resources;
+.line 957
+	const	v6,2130837557	; 0x7f020035
+; v6 : single-length
+.line 956
+	invoke-virtual	{v5,v6},android/content/res/Resources/getDrawable	; getDrawable(I)Landroid/graphics/drawable/Drawable;
+; v5 : Landroid/content/res/Resources; , v6 : single-length
+	move-result-object	v5
+; v5 : Landroid/graphics/drawable/Drawable;
+	invoke-virtual	{v2,v5},com/fsharemobile/quickaction/ActionItem/setIcon	; setIcon(Landroid/graphics/drawable/Drawable;)V
+; v2 : Lcom/fsharemobile/quickaction/ActionItem; , v5 : Landroid/graphics/drawable/Drawable;
+.line 960
+	new-instance	v3,com/fsharemobile/quickaction/ActionItem
+; v3 : Lcom/fsharemobile/quickaction/ActionItem;
+	invoke-direct	{v3},com/fsharemobile/quickaction/ActionItem/<init>	; <init>()V
+; v3 : Lcom/fsharemobile/quickaction/ActionItem;
+.line 962
+	new-instance	v5,java/lang/StringBuilder
+; v5 : Ljava/lang/StringBuilder;
+	invoke-direct	{v5},java/lang/StringBuilder/<init>	; <init>()V
+; v5 : Ljava/lang/StringBuilder;
+	iget-object	v6,v8,com/fsharemobile/adapter/ExplorerArrayAdapter.context Landroid/content/Context;
+; v6 : Landroid/content/Context; , v8 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	invoke-virtual	{v6},android/content/Context/getResources	; getResources()Landroid/content/res/Resources;
+; v6 : Landroid/content/Context;
+	move-result-object	v6
+; v6 : Landroid/content/res/Resources;
+	const	v7,2131230791	; 0x7f080047
+; v7 : single-length
+	invoke-virtual	{v6,v7},android/content/res/Resources/getText	; getText(I)Ljava/lang/CharSequence;
+; v6 : Landroid/content/res/Resources; , v7 : single-length
+	move-result-object	v6
+; v6 : Ljava/lang/CharSequence;
+	invoke-virtual	{v5,v6},java/lang/StringBuilder/append	; append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+; v5 : Ljava/lang/StringBuilder; , v6 : Ljava/lang/CharSequence;
+	move-result-object	v5
+; v5 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v5},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v5 : Ljava/lang/StringBuilder;
+	move-result-object	v5
+; v5 : Ljava/lang/String;
+	invoke-virtual	{v3,v5},com/fsharemobile/quickaction/ActionItem/setTitle	; setTitle(Ljava/lang/String;)V
+; v3 : Lcom/fsharemobile/quickaction/ActionItem; , v5 : Ljava/lang/String;
+.line 963
+	iget-object	v5,v8,com/fsharemobile/adapter/ExplorerArrayAdapter.context Landroid/content/Context;
+; v5 : Landroid/content/Context; , v8 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	invoke-virtual	{v5},android/content/Context/getResources	; getResources()Landroid/content/res/Resources;
+; v5 : Landroid/content/Context;
+	move-result-object	v5
+; v5 : Landroid/content/res/Resources;
+.line 964
+	const	v6,2130837575	; 0x7f020047
+; v6 : single-length
+.line 963
+	invoke-virtual	{v5,v6},android/content/res/Resources/getDrawable	; getDrawable(I)Landroid/graphics/drawable/Drawable;
+; v5 : Landroid/content/res/Resources; , v6 : single-length
+	move-result-object	v5
+; v5 : Landroid/graphics/drawable/Drawable;
+	invoke-virtual	{v3,v5},com/fsharemobile/quickaction/ActionItem/setIcon	; setIcon(Landroid/graphics/drawable/Drawable;)V
+; v3 : Lcom/fsharemobile/quickaction/ActionItem; , v5 : Landroid/graphics/drawable/Drawable;
+.line 967
+	new-instance	v1,com/fsharemobile/quickaction/ActionItem
+; v1 : Lcom/fsharemobile/quickaction/ActionItem;
+	invoke-direct	{v1},com/fsharemobile/quickaction/ActionItem/<init>	; <init>()V
+; v1 : Lcom/fsharemobile/quickaction/ActionItem;
+.line 969
+	new-instance	v5,java/lang/StringBuilder
+; v5 : Ljava/lang/StringBuilder;
+	invoke-direct	{v5},java/lang/StringBuilder/<init>	; <init>()V
+; v5 : Ljava/lang/StringBuilder;
+	iget-object	v6,v8,com/fsharemobile/adapter/ExplorerArrayAdapter.context Landroid/content/Context;
+; v6 : Landroid/content/Context; , v8 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	invoke-virtual	{v6},android/content/Context/getResources	; getResources()Landroid/content/res/Resources;
+; v6 : Landroid/content/Context;
+	move-result-object	v6
+; v6 : Landroid/content/res/Resources;
+.line 970
+	const	v7,2131230792	; 0x7f080048
+; v7 : single-length
+.line 969
+	invoke-virtual	{v6,v7},android/content/res/Resources/getText	; getText(I)Ljava/lang/CharSequence;
+; v6 : Landroid/content/res/Resources; , v7 : single-length
+	move-result-object	v6
+; v6 : Ljava/lang/CharSequence;
+	invoke-virtual	{v5,v6},java/lang/StringBuilder/append	; append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+; v5 : Ljava/lang/StringBuilder; , v6 : Ljava/lang/CharSequence;
+	move-result-object	v5
+; v5 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v5},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v5 : Ljava/lang/StringBuilder;
+	move-result-object	v5
+; v5 : Ljava/lang/String;
+	invoke-virtual	{v1,v5},com/fsharemobile/quickaction/ActionItem/setTitle	; setTitle(Ljava/lang/String;)V
+; v1 : Lcom/fsharemobile/quickaction/ActionItem; , v5 : Ljava/lang/String;
+.line 972
+	iget-object	v5,v8,com/fsharemobile/adapter/ExplorerArrayAdapter.context Landroid/content/Context;
+; v5 : Landroid/content/Context; , v8 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	invoke-virtual	{v5},android/content/Context/getResources	; getResources()Landroid/content/res/Resources;
+; v5 : Landroid/content/Context;
+	move-result-object	v5
+; v5 : Landroid/content/res/Resources;
+.line 973
+	const	v6,2130837556	; 0x7f020034
+; v6 : single-length
+.line 972
+	invoke-virtual	{v5,v6},android/content/res/Resources/getDrawable	; getDrawable(I)Landroid/graphics/drawable/Drawable;
+; v5 : Landroid/content/res/Resources; , v6 : single-length
+	move-result-object	v5
+; v5 : Landroid/graphics/drawable/Drawable;
+	invoke-virtual	{v1,v5},com/fsharemobile/quickaction/ActionItem/setIcon	; setIcon(Landroid/graphics/drawable/Drawable;)V
+; v1 : Lcom/fsharemobile/quickaction/ActionItem; , v5 : Landroid/graphics/drawable/Drawable;
+.line 975
+	new-instance	v5,com/fsharemobile/quickaction/QuickAction
+; v5 : Lcom/fsharemobile/quickaction/QuickAction;
+.line 976
+	iget-object	v6,v8,com/fsharemobile/adapter/ExplorerArrayAdapter.context Landroid/content/Context;
+; v6 : Landroid/content/Context; , v8 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	invoke-direct	{v5,v6},com/fsharemobile/quickaction/QuickAction/<init>	; <init>(Landroid/content/Context;)V
+; v5 : Lcom/fsharemobile/quickaction/QuickAction; , v6 : Landroid/content/Context;
+.line 975
+	iput-object	v5,v8,com/fsharemobile/adapter/ExplorerArrayAdapter.mQuickActionFile Lcom/fsharemobile/quickaction/QuickAction;
+; v5 : Lcom/fsharemobile/quickaction/QuickAction; , v8 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+.line 978
+	iget-object	v5,v8,com/fsharemobile/adapter/ExplorerArrayAdapter.mQuickActionFile Lcom/fsharemobile/quickaction/QuickAction;
+; v5 : Lcom/fsharemobile/quickaction/QuickAction; , v8 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	invoke-virtual	{v5,v4},com/fsharemobile/quickaction/QuickAction/addActionItem	; addActionItem(Lcom/fsharemobile/quickaction/ActionItem;)V
+; v5 : Lcom/fsharemobile/quickaction/QuickAction; , v4 : Lcom/fsharemobile/quickaction/ActionItem;
+.line 979
+	iget-object	v5,v8,com/fsharemobile/adapter/ExplorerArrayAdapter.mQuickActionFile Lcom/fsharemobile/quickaction/QuickAction;
+; v5 : Lcom/fsharemobile/quickaction/QuickAction; , v8 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	invoke-virtual	{v5,v0},com/fsharemobile/quickaction/QuickAction/addActionItem	; addActionItem(Lcom/fsharemobile/quickaction/ActionItem;)V
+; v5 : Lcom/fsharemobile/quickaction/QuickAction; , v0 : Lcom/fsharemobile/quickaction/ActionItem;
+.line 980
+	iget-object	v5,v8,com/fsharemobile/adapter/ExplorerArrayAdapter.mQuickActionFile Lcom/fsharemobile/quickaction/QuickAction;
+; v5 : Lcom/fsharemobile/quickaction/QuickAction; , v8 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	invoke-virtual	{v5,v2},com/fsharemobile/quickaction/QuickAction/addActionItem	; addActionItem(Lcom/fsharemobile/quickaction/ActionItem;)V
+; v5 : Lcom/fsharemobile/quickaction/QuickAction; , v2 : Lcom/fsharemobile/quickaction/ActionItem;
+.line 981
+	iget-object	v5,v8,com/fsharemobile/adapter/ExplorerArrayAdapter.mQuickActionFile Lcom/fsharemobile/quickaction/QuickAction;
+; v5 : Lcom/fsharemobile/quickaction/QuickAction; , v8 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	invoke-virtual	{v5,v3},com/fsharemobile/quickaction/QuickAction/addActionItem	; addActionItem(Lcom/fsharemobile/quickaction/ActionItem;)V
+; v5 : Lcom/fsharemobile/quickaction/QuickAction; , v3 : Lcom/fsharemobile/quickaction/ActionItem;
+.line 982
+	iget-object	v5,v8,com/fsharemobile/adapter/ExplorerArrayAdapter.mQuickActionFile Lcom/fsharemobile/quickaction/QuickAction;
+; v5 : Lcom/fsharemobile/quickaction/QuickAction; , v8 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	invoke-virtual	{v5,v1},com/fsharemobile/quickaction/QuickAction/addActionItem	; addActionItem(Lcom/fsharemobile/quickaction/ActionItem;)V
+; v5 : Lcom/fsharemobile/quickaction/QuickAction; , v1 : Lcom/fsharemobile/quickaction/ActionItem;
+.line 983
+	iget-object	v5,v8,com/fsharemobile/adapter/ExplorerArrayAdapter.mQuickActionFile Lcom/fsharemobile/quickaction/QuickAction;
+; v5 : Lcom/fsharemobile/quickaction/QuickAction; , v8 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+.line 984
+	new-instance	v6,com/fsharemobile/adapter/ExplorerArrayAdapter$16
+; v6 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$16;
+	invoke-direct	{v6,v8},com/fsharemobile/adapter/ExplorerArrayAdapter$16/<init>	; <init>(Lcom/fsharemobile/adapter/ExplorerArrayAdapter;)V
+; v6 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$16; , v8 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	invoke-virtual	{v5,v6},com/fsharemobile/quickaction/QuickAction/setOnActionItemClickListener	; setOnActionItemClickListener(Lcom/fsharemobile/quickaction/QuickAction$OnActionItemClickListener;)V
+; v5 : Lcom/fsharemobile/quickaction/QuickAction; , v6 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$16;
+.line 994
+	return-void	
+.end method
+
+.method public OnFileAction(I)V
+.limit registers 25
+; this: v23 (Lcom/fsharemobile/adapter/ExplorerArrayAdapter;)
+; parameter[0] : v24 (I)
+.var 7 is btn_cancel Landroid/widget/Button; from l92d8a to l92de8
+.var 9 is dialog Landroid/app/Dialog; from l92d0c to l92de8
+.var 12 is layout_mail Landroid/widget/LinearLayout; from l92d5e to l92de8
+.var 13 is layout_social Landroid/widget/LinearLayout; from l92d74 to l92de8
+.var 10 is idList Ljava/util/List; from l92bfe to l92e60
+.var 11 is idListForSocial Ljava/util/List; from l92c08 to l92e60
+.var 15 is path Ljava/lang/String; from l92c42 to l92e60
+.var 5 is bn Landroid/widget/Button; from l92fb6 to l9307a
+.var 6 is bp Landroid/widget/Button; from l9301e to l9307a
+.var 8 is deleteAD Landroid/app/AlertDialog$Builder; from l92e8a to l9307a
+.var 14 is myDialog Landroid/app/AlertDialog; from l92fa0 to l9307a
+.var 16 is type Ljava/lang/String; from l93142 to l931d0
+.var 10 is idList Ljava/util/List; from l931ea to l9323a
+.line 606
+	move-object/from16	v0,v23
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v23 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	iget-object	v0,v0,com/fsharemobile/adapter/ExplorerArrayAdapter.constants Lcom/fsharemobile/utils/Constants;
+; v0 : Lcom/fsharemobile/utils/Constants; , v0 : Lcom/fsharemobile/utils/Constants;
+	move-object/from16	v17,v0
+; v17 : Lcom/fsharemobile/utils/Constants; , v0 : Lcom/fsharemobile/utils/Constants;
+	invoke-virtual/range	{v17},com/fsharemobile/utils/Constants/isOnline;	isOnline()Z
+; v17 : Lcom/fsharemobile/utils/Constants;
+	move-result	v17
+; v17 : single-length
+	if-nez	v17,l92bf0
+; v17 : single-length
+.line 607
+	invoke-virtual/range	{v23},com/fsharemobile/adapter/ExplorerArrayAdapter/getContext;	getContext()Landroid/content/Context;
+; v23 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	move-result-object	v17
+; v17 : Landroid/content/Context;
+.line 608
+	const-string	v18,"You're current offline, check your connection!"
+; v18 : Ljava/lang/String;
+.line 609
+	const/16	v19,0
+; v19 : single-length
+.line 607
+	invoke-static/range	{v17..v19},android/widget/Toast/makeText;	makeText(Landroid/content/Context;Ljava/lang/CharSequence;I)Landroid/widget/Toast;
+; v17 : Landroid/content/Context; , v18 : Ljava/lang/String; , v19 : single-length
+	move-result-object	v17
+; v17 : Landroid/widget/Toast;
+.line 609
+	invoke-virtual/range	{v17},android/widget/Toast/show;	show()V
+; v17 : Landroid/widget/Toast;
+l92bee:
+.line 793
+	return-void	
+l92bf0:
+.line 611
+	if-nez	v24,l92e60
+; v24 : single-length
+.line 613
+	new-instance	v10,java/util/ArrayList
+; v10 : Ljava/util/ArrayList;
+	invoke-direct	{v10},java/util/ArrayList/<init>	; <init>()V
+; v10 : Ljava/util/ArrayList;
+.line 614
+	new-instance	v11,java/util/ArrayList
+; v11 : Ljava/util/ArrayList;
+	invoke-direct	{v11},java/util/ArrayList/<init>	; <init>()V
+; v11 : Ljava/util/ArrayList;
+.line 616
+	move-object/from16	v0,v23
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v23 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	iget-object	v0,v0,com/fsharemobile/adapter/ExplorerArrayAdapter.arr Ljava/util/List;
+; v0 : Ljava/util/List; , v0 : Ljava/util/List;
+	move-object/from16	v17,v0
+; v17 : Ljava/util/List; , v0 : Ljava/util/List;
+	move-object/from16	v0,v23
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v23 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	iget	v0,v0,com/fsharemobile/adapter/ExplorerArrayAdapter.pos I
+; v0 : single-length , v0 : single-length
+	move/from16	v18,v0
+; v18 : single-length , v0 : single-length
+	invoke-interface/range	{v17..v18},java/util/List/get;	get(I)Ljava/lang/Object;
+; v17 : Ljava/util/List; , v18 : single-length
+	move-result-object	v17
+; v17 : Ljava/lang/Object;
+	check-cast	v17,com/fsharemobile/model/File
+; v17 : Lcom/fsharemobile/model/File;
+	invoke-virtual/range	{v17},com/fsharemobile/model/File/getmLinkCode;	getmLinkCode()Ljava/lang/String;
+; v17 : Lcom/fsharemobile/model/File;
+	move-result-object	v17
+; v17 : Ljava/lang/String;
+	move-object/from16	v0,v17
+; v0 : Ljava/lang/String; , v17 : Ljava/lang/String;
+	invoke-interface	{v10,v0},java/util/List/add	; add(Ljava/lang/Object;)Z
+; v10 : Ljava/util/ArrayList; , v0 : Ljava/lang/String;
+.line 618
+	const-string	v15,"http://beta.fshare.vn"
+; v15 : Ljava/lang/String;
+.line 619
+	move-object/from16	v0,v23
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v23 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	iget-object	v0,v0,com/fsharemobile/adapter/ExplorerArrayAdapter.arr Ljava/util/List;
+; v0 : Ljava/util/List; , v0 : Ljava/util/List;
+	move-object/from16	v17,v0
+; v17 : Ljava/util/List; , v0 : Ljava/util/List;
+	move-object/from16	v0,v23
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v23 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	iget	v0,v0,com/fsharemobile/adapter/ExplorerArrayAdapter.pos I
+; v0 : single-length , v0 : single-length
+	move/from16	v18,v0
+; v18 : single-length , v0 : single-length
+	invoke-interface/range	{v17..v18},java/util/List/get;	get(I)Ljava/lang/Object;
+; v17 : Ljava/util/List; , v18 : single-length
+	move-result-object	v17
+; v17 : Ljava/lang/Object;
+	check-cast	v17,com/fsharemobile/model/File
+; v17 : Lcom/fsharemobile/model/File;
+	invoke-virtual/range	{v17},com/fsharemobile/model/File/getmType;	getmType()Ljava/lang/String;
+; v17 : Lcom/fsharemobile/model/File;
+	move-result-object	v17
+; v17 : Ljava/lang/String;
+	const-string	v18,"0"
+; v18 : Ljava/lang/String;
+	invoke-virtual/range	{v17..v18},java/lang/String/equals;	equals(Ljava/lang/Object;)Z
+; v17 : Ljava/lang/String; , v18 : Ljava/lang/String;
+	move-result	v17
+; v17 : single-length
+	if-eqz	v17,l92de8
+; v17 : single-length
+.line 620
+	new-instance	v17,java/lang/StringBuilder
+; v17 : Ljava/lang/StringBuilder;
+	invoke-static	{v15},java/lang/String/valueOf	; valueOf(Ljava/lang/Object;)Ljava/lang/String;
+; v15 : Ljava/lang/String;
+	move-result-object	v18
+; v18 : Ljava/lang/String;
+	invoke-direct/range	{v17..v18},java/lang/StringBuilder/<init>;	<init>(Ljava/lang/String;)V
+; v17 : Ljava/lang/StringBuilder; , v18 : Ljava/lang/String;
+	const-string	v18,"/folder/"
+; v18 : Ljava/lang/String;
+	invoke-virtual/range	{v17..v18},java/lang/StringBuilder/append;	append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v17 : Ljava/lang/StringBuilder; , v18 : Ljava/lang/String;
+	move-result-object	v18
+; v18 : Ljava/lang/StringBuilder;
+	move-object/from16	v0,v23
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v23 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	iget-object	v0,v0,com/fsharemobile/adapter/ExplorerArrayAdapter.arr Ljava/util/List;
+; v0 : Ljava/util/List; , v0 : Ljava/util/List;
+	move-object/from16	v17,v0
+; v17 : Ljava/util/List; , v0 : Ljava/util/List;
+	move-object/from16	v0,v23
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v23 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	iget	v0,v0,com/fsharemobile/adapter/ExplorerArrayAdapter.pos I
+; v0 : single-length , v0 : single-length
+	move/from16	v19,v0
+; v19 : single-length , v0 : single-length
+	move-object/from16	v0,v17
+; v0 : Ljava/util/List; , v17 : Ljava/util/List;
+	move/from16	v1,v19
+; v1 : single-length , v19 : single-length
+	invoke-interface	{v0,v1},java/util/List/get	; get(I)Ljava/lang/Object;
+; v0 : Ljava/util/List; , v1 : single-length
+	move-result-object	v17
+; v17 : Ljava/lang/Object;
+	check-cast	v17,com/fsharemobile/model/File
+; v17 : Lcom/fsharemobile/model/File;
+	invoke-virtual/range	{v17},com/fsharemobile/model/File/getmLinkCode;	getmLinkCode()Ljava/lang/String;
+; v17 : Lcom/fsharemobile/model/File;
+	move-result-object	v17
+; v17 : Ljava/lang/String;
+	move-object/from16	v0,v18
+; v0 : Ljava/lang/StringBuilder; , v18 : Ljava/lang/StringBuilder;
+	move-object/from16	v1,v17
+; v1 : Ljava/lang/String; , v17 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v1 : Ljava/lang/String;
+	move-result-object	v17
+; v17 : Ljava/lang/StringBuilder;
+	invoke-virtual/range	{v17},java/lang/StringBuilder/toString;	toString()Ljava/lang/String;
+; v17 : Ljava/lang/StringBuilder;
+	move-result-object	v17
+; v17 : Ljava/lang/String;
+	move-object/from16	v0,v17
+; v0 : Ljava/lang/String; , v17 : Ljava/lang/String;
+	invoke-interface	{v11,v0},java/util/List/add	; add(Ljava/lang/Object;)Z
+; v11 : Ljava/util/ArrayList; , v0 : Ljava/lang/String;
+l92cf2:
+.line 629
+	new-instance	v9,android/app/Dialog
+; v9 : Landroid/app/Dialog;
+	move-object/from16	v0,v23
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v23 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	iget-object	v0,v0,com/fsharemobile/adapter/ExplorerArrayAdapter.context Landroid/content/Context;
+; v0 : Landroid/content/Context; , v0 : Landroid/content/Context;
+	move-object/from16	v17,v0
+; v17 : Landroid/content/Context; , v0 : Landroid/content/Context;
+	move-object/from16	v0,v17
+; v0 : Landroid/content/Context; , v17 : Landroid/content/Context;
+	invoke-direct	{v9,v0},android/app/Dialog/<init>	; <init>(Landroid/content/Context;)V
+; v9 : Landroid/app/Dialog; , v0 : Landroid/content/Context;
+.line 633
+	const	v17,2130903071	; 0x7f03001f
+; v17 : single-length
+	move/from16	v0,v17
+; v0 : single-length , v17 : single-length
+	invoke-virtual	{v9,v0},android/app/Dialog/setContentView	; setContentView(I)V
+; v9 : Landroid/app/Dialog; , v0 : single-length
+.line 636
+	move-object/from16	v0,v23
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v23 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	iget-object	v0,v0,com/fsharemobile/adapter/ExplorerArrayAdapter.context Landroid/content/Context;
+; v0 : Landroid/content/Context; , v0 : Landroid/content/Context;
+	move-object/from16	v17,v0
+; v17 : Landroid/content/Context; , v0 : Landroid/content/Context;
+	invoke-virtual/range	{v17},android/content/Context/getResources;	getResources()Landroid/content/res/Resources;
+; v17 : Landroid/content/Context;
+	move-result-object	v17
+; v17 : Landroid/content/res/Resources;
+.line 637
+	const	v18,2131230789	; 0x7f080045
+; v18 : single-length
+	invoke-virtual/range	{v17..v18},android/content/res/Resources/getString;	getString(I)Ljava/lang/String;
+; v17 : Landroid/content/res/Resources; , v18 : single-length
+	move-result-object	v17
+; v17 : Ljava/lang/String;
+.line 636
+	move-object/from16	v0,v17
+; v0 : Ljava/lang/String; , v17 : Ljava/lang/String;
+	invoke-virtual	{v9,v0},android/app/Dialog/setTitle	; setTitle(Ljava/lang/CharSequence;)V
+; v9 : Landroid/app/Dialog; , v0 : Ljava/lang/String;
+.line 642
+	const	v17,2131427461	; 0x7f0b0085
+; v17 : single-length
+	move/from16	v0,v17
+; v0 : single-length , v17 : single-length
+	invoke-virtual	{v9,v0},android/app/Dialog/findViewById	; findViewById(I)Landroid/view/View;
+; v9 : Landroid/app/Dialog; , v0 : single-length
+	move-result-object	v12
+; v12 : Landroid/view/View;
+.line 641
+	check-cast	v12,android/widget/LinearLayout
+; v12 : Landroid/widget/LinearLayout;
+.line 644
+	const	v17,2131427459	; 0x7f0b0083
+; v17 : single-length
+	move/from16	v0,v17
+; v0 : single-length , v17 : single-length
+	invoke-virtual	{v9,v0},android/app/Dialog/findViewById	; findViewById(I)Landroid/view/View;
+; v9 : Landroid/app/Dialog; , v0 : single-length
+	move-result-object	v13
+; v13 : Landroid/view/View;
+.line 643
+	check-cast	v13,android/widget/LinearLayout
+; v13 : Landroid/widget/LinearLayout;
+.line 646
+	const	v17,2131427463	; 0x7f0b0087
+; v17 : single-length
+	move/from16	v0,v17
+; v0 : single-length , v17 : single-length
+	invoke-virtual	{v9,v0},android/app/Dialog/findViewById	; findViewById(I)Landroid/view/View;
+; v9 : Landroid/app/Dialog; , v0 : single-length
+	move-result-object	v7
+; v7 : Landroid/view/View;
+.line 645
+	check-cast	v7,android/widget/Button
+; v7 : Landroid/widget/Button;
+.line 648
+	new-instance	v17,com/fsharemobile/adapter/ExplorerArrayAdapter$10
+; v17 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$10;
+	move-object/from16	v0,v17
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$10; , v17 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$10;
+	move-object/from16	v1,v23
+; v1 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v23 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	invoke-direct	{v0,v1,v10,v9},com/fsharemobile/adapter/ExplorerArrayAdapter$10/<init>	; <init>(Lcom/fsharemobile/adapter/ExplorerArrayAdapter;Ljava/util/List;Landroid/app/Dialog;)V
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$10; , v1 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v10 : Ljava/util/ArrayList; , v9 : Landroid/app/Dialog;
+	move-object/from16	v0,v17
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$10; , v17 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$10;
+	invoke-virtual	{v12,v0},android/widget/LinearLayout/setOnClickListener	; setOnClickListener(Landroid/view/View$OnClickListener;)V
+; v12 : Landroid/widget/LinearLayout; , v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$10;
+.line 656
+	new-instance	v17,com/fsharemobile/adapter/ExplorerArrayAdapter$11
+; v17 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$11;
+	move-object/from16	v0,v17
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$11; , v17 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$11;
+	move-object/from16	v1,v23
+; v1 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v23 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	invoke-direct	{v0,v1,v11,v9},com/fsharemobile/adapter/ExplorerArrayAdapter$11/<init>	; <init>(Lcom/fsharemobile/adapter/ExplorerArrayAdapter;Ljava/util/List;Landroid/app/Dialog;)V
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$11; , v1 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v11 : Ljava/util/ArrayList; , v9 : Landroid/app/Dialog;
+	move-object/from16	v0,v17
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$11; , v17 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$11;
+	invoke-virtual	{v13,v0},android/widget/LinearLayout/setOnClickListener	; setOnClickListener(Landroid/view/View$OnClickListener;)V
+; v13 : Landroid/widget/LinearLayout; , v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$11;
+.line 664
+	new-instance	v17,com/fsharemobile/adapter/ExplorerArrayAdapter$12
+; v17 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$12;
+	move-object/from16	v0,v17
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$12; , v17 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$12;
+	move-object/from16	v1,v23
+; v1 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v23 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	invoke-direct	{v0,v1,v9},com/fsharemobile/adapter/ExplorerArrayAdapter$12/<init>	; <init>(Lcom/fsharemobile/adapter/ExplorerArrayAdapter;Landroid/app/Dialog;)V
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$12; , v1 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v9 : Landroid/app/Dialog;
+	move-object/from16	v0,v17
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$12; , v17 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$12;
+	invoke-virtual	{v7,v0},android/widget/Button/setOnClickListener	; setOnClickListener(Landroid/view/View$OnClickListener;)V
+; v7 : Landroid/widget/Button; , v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$12;
+.line 672
+	invoke-virtual	{v9},android/app/Dialog/show	; show()V
+; v9 : Landroid/app/Dialog;
+	goto/16	l92bee
+l92de8:
+.line 622
+	new-instance	v17,java/lang/StringBuilder
+; v17 : Ljava/lang/StringBuilder;
+	invoke-static	{v15},java/lang/String/valueOf	; valueOf(Ljava/lang/Object;)Ljava/lang/String;
+; v15 : Ljava/lang/String;
+	move-result-object	v18
+; v18 : Ljava/lang/String;
+	invoke-direct/range	{v17..v18},java/lang/StringBuilder/<init>;	<init>(Ljava/lang/String;)V
+; v17 : Ljava/lang/StringBuilder; , v18 : Ljava/lang/String;
+	const-string	v18,"/file/"
+; v18 : Ljava/lang/String;
+	invoke-virtual/range	{v17..v18},java/lang/StringBuilder/append;	append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v17 : Ljava/lang/StringBuilder; , v18 : Ljava/lang/String;
+	move-result-object	v18
+; v18 : Ljava/lang/StringBuilder;
+	move-object/from16	v0,v23
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v23 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	iget-object	v0,v0,com/fsharemobile/adapter/ExplorerArrayAdapter.arr Ljava/util/List;
+; v0 : Ljava/util/List; , v0 : Ljava/util/List;
+	move-object/from16	v17,v0
+; v17 : Ljava/util/List; , v0 : Ljava/util/List;
+	move-object/from16	v0,v23
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v23 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	iget	v0,v0,com/fsharemobile/adapter/ExplorerArrayAdapter.pos I
+; v0 : single-length , v0 : single-length
+	move/from16	v19,v0
+; v19 : single-length , v0 : single-length
+	move-object/from16	v0,v17
+; v0 : Ljava/util/List; , v17 : Ljava/util/List;
+	move/from16	v1,v19
+; v1 : single-length , v19 : single-length
+	invoke-interface	{v0,v1},java/util/List/get	; get(I)Ljava/lang/Object;
+; v0 : Ljava/util/List; , v1 : single-length
+	move-result-object	v17
+; v17 : Ljava/lang/Object;
+	check-cast	v17,com/fsharemobile/model/File
+; v17 : Lcom/fsharemobile/model/File;
+	invoke-virtual/range	{v17},com/fsharemobile/model/File/getmLinkCode;	getmLinkCode()Ljava/lang/String;
+; v17 : Lcom/fsharemobile/model/File;
+	move-result-object	v17
+; v17 : Ljava/lang/String;
+	move-object/from16	v0,v18
+; v0 : Ljava/lang/StringBuilder; , v18 : Ljava/lang/StringBuilder;
+	move-object/from16	v1,v17
+; v1 : Ljava/lang/String; , v17 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v1 : Ljava/lang/String;
+	move-result-object	v17
+; v17 : Ljava/lang/StringBuilder;
+	invoke-virtual/range	{v17},java/lang/StringBuilder/toString;	toString()Ljava/lang/String;
+; v17 : Ljava/lang/StringBuilder;
+	move-result-object	v17
+; v17 : Ljava/lang/String;
+	move-object/from16	v0,v17
+; v0 : Ljava/lang/String; , v17 : Ljava/lang/String;
+	invoke-interface	{v11,v0},java/util/List/add	; add(Ljava/lang/Object;)Z
+; v11 : Ljava/util/ArrayList; , v0 : Ljava/lang/String;
+	goto/16	l92cf2
+l92e60:
+.line 674
+	const/16	v17,1
+; v17 : single-length
+	move/from16	v0,v24
+; v0 : single-length , v24 : single-length
+	move/from16	v1,v17
+; v1 : single-length , v17 : single-length
+	if-ne	v0,v1,l9307a
+; v0 : single-length , v1 : single-length
+.line 678
+	new-instance	v8,android/app/AlertDialog$Builder
+; v8 : Landroid/app/AlertDialog$Builder;
+	move-object/from16	v0,v23
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v23 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	iget-object	v0,v0,com/fsharemobile/adapter/ExplorerArrayAdapter.context Landroid/content/Context;
+; v0 : Landroid/content/Context; , v0 : Landroid/content/Context;
+	move-object/from16	v17,v0
+; v17 : Landroid/content/Context; , v0 : Landroid/content/Context;
+	move-object/from16	v0,v17
+; v0 : Landroid/content/Context; , v17 : Landroid/content/Context;
+	invoke-direct	{v8,v0},android/app/AlertDialog$Builder/<init>	; <init>(Landroid/content/Context;)V
+; v8 : Landroid/app/AlertDialog$Builder; , v0 : Landroid/content/Context;
+.line 680
+	move-object/from16	v0,v23
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v23 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	iget-object	v0,v0,com/fsharemobile/adapter/ExplorerArrayAdapter.context Landroid/content/Context;
+; v0 : Landroid/content/Context; , v0 : Landroid/content/Context;
+	move-object/from16	v17,v0
+; v17 : Landroid/content/Context; , v0 : Landroid/content/Context;
+	invoke-virtual/range	{v17},android/content/Context/getResources;	getResources()Landroid/content/res/Resources;
+; v17 : Landroid/content/Context;
+	move-result-object	v17
+; v17 : Landroid/content/res/Resources;
+	const	v18,2131230788	; 0x7f080044
+; v18 : single-length
+	invoke-virtual/range	{v17..v18},android/content/res/Resources/getText;	getText(I)Ljava/lang/CharSequence;
+; v17 : Landroid/content/res/Resources; , v18 : single-length
+	move-result-object	v17
+; v17 : Ljava/lang/CharSequence;
+.line 679
+	move-object/from16	v0,v17
+; v0 : Ljava/lang/CharSequence; , v17 : Ljava/lang/CharSequence;
+	invoke-virtual	{v8,v0},android/app/AlertDialog$Builder/setTitle	; setTitle(Ljava/lang/CharSequence;)Landroid/app/AlertDialog$Builder;
+; v8 : Landroid/app/AlertDialog$Builder; , v0 : Ljava/lang/CharSequence;
+	move-result-object	v17
+; v17 : Landroid/app/AlertDialog$Builder;
+.line 681
+	const	v18,2130837587	; 0x7f020053
+; v18 : single-length
+	invoke-virtual/range	{v17..v18},android/app/AlertDialog$Builder/setIcon;	setIcon(I)Landroid/app/AlertDialog$Builder;
+; v17 : Landroid/app/AlertDialog$Builder; , v18 : single-length
+	move-result-object	v17
+; v17 : Landroid/app/AlertDialog$Builder;
+.line 683
+	new-instance	v18,java/lang/StringBuilder
+; v18 : Ljava/lang/StringBuilder;
+	invoke-direct/range	{v18},java/lang/StringBuilder/<init>;	<init>()V
+; v18 : Ljava/lang/StringBuilder;
+	move-object/from16	v0,v23
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v23 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	iget-object	v0,v0,com/fsharemobile/adapter/ExplorerArrayAdapter.context Landroid/content/Context;
+; v0 : Landroid/content/Context; , v0 : Landroid/content/Context;
+	move-object/from16	v19,v0
+; v19 : Landroid/content/Context; , v0 : Landroid/content/Context;
+	invoke-virtual/range	{v19},android/content/Context/getResources;	getResources()Landroid/content/res/Resources;
+; v19 : Landroid/content/Context;
+	move-result-object	v19
+; v19 : Landroid/content/res/Resources;
+.line 684
+	const	v20,2131230806	; 0x7f080056
+; v20 : single-length
+	invoke-virtual/range	{v19..v20},android/content/res/Resources/getText;	getText(I)Ljava/lang/CharSequence;
+; v19 : Landroid/content/res/Resources; , v20 : single-length
+	move-result-object	v19
+; v19 : Ljava/lang/CharSequence;
+	invoke-virtual/range	{v18..v19},java/lang/StringBuilder/append;	append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+; v18 : Ljava/lang/StringBuilder; , v19 : Ljava/lang/CharSequence;
+	move-result-object	v18
+; v18 : Ljava/lang/StringBuilder;
+.line 685
+	const-string	v19,"                        "
+; v19 : Ljava/lang/String;
+	invoke-virtual/range	{v18..v19},java/lang/StringBuilder/append;	append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v18 : Ljava/lang/StringBuilder; , v19 : Ljava/lang/String;
+	move-result-object	v18
+; v18 : Ljava/lang/StringBuilder;
+.line 683
+	invoke-virtual/range	{v18},java/lang/StringBuilder/toString;	toString()Ljava/lang/String;
+; v18 : Ljava/lang/StringBuilder;
+	move-result-object	v18
+; v18 : Ljava/lang/String;
+.line 682
+	invoke-virtual/range	{v17..v18},android/app/AlertDialog$Builder/setMessage;	setMessage(Ljava/lang/CharSequence;)Landroid/app/AlertDialog$Builder;
+; v17 : Landroid/app/AlertDialog$Builder; , v18 : Ljava/lang/String;
+.line 688
+	move-object/from16	v0,v23
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v23 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	iget-object	v0,v0,com/fsharemobile/adapter/ExplorerArrayAdapter.context Landroid/content/Context;
+; v0 : Landroid/content/Context; , v0 : Landroid/content/Context;
+	move-object/from16	v17,v0
+; v17 : Landroid/content/Context; , v0 : Landroid/content/Context;
+	invoke-virtual/range	{v17},android/content/Context/getResources;	getResources()Landroid/content/res/Resources;
+; v17 : Landroid/content/Context;
+	move-result-object	v17
+; v17 : Landroid/content/res/Resources;
+	const	v18,2131230802	; 0x7f080052
+; v18 : single-length
+	invoke-virtual/range	{v17..v18},android/content/res/Resources/getText;	getText(I)Ljava/lang/CharSequence;
+; v17 : Landroid/content/res/Resources; , v18 : single-length
+	move-result-object	v17
+; v17 : Ljava/lang/CharSequence;
+.line 689
+	new-instance	v18,com/fsharemobile/adapter/ExplorerArrayAdapter$13
+; v18 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$13;
+	move-object/from16	v0,v18
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$13; , v18 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$13;
+	move-object/from16	v1,v23
+; v1 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v23 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	invoke-direct	{v0,v1},com/fsharemobile/adapter/ExplorerArrayAdapter$13/<init>	; <init>(Lcom/fsharemobile/adapter/ExplorerArrayAdapter;)V
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$13; , v1 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+.line 687
+	move-object/from16	v0,v17
+; v0 : Ljava/lang/CharSequence; , v17 : Ljava/lang/CharSequence;
+	move-object/from16	v1,v18
+; v1 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$13; , v18 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$13;
+	invoke-virtual	{v8,v0,v1},android/app/AlertDialog$Builder/setNegativeButton	; setNegativeButton(Ljava/lang/CharSequence;Landroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
+; v8 : Landroid/app/AlertDialog$Builder; , v0 : Ljava/lang/CharSequence; , v1 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$13;
+.line 700
+	move-object/from16	v0,v23
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v23 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	iget-object	v0,v0,com/fsharemobile/adapter/ExplorerArrayAdapter.context Landroid/content/Context;
+; v0 : Landroid/content/Context; , v0 : Landroid/content/Context;
+	move-object/from16	v17,v0
+; v17 : Landroid/content/Context; , v0 : Landroid/content/Context;
+	invoke-virtual/range	{v17},android/content/Context/getResources;	getResources()Landroid/content/res/Resources;
+; v17 : Landroid/content/Context;
+	move-result-object	v17
+; v17 : Landroid/content/res/Resources;
+	const	v18,2131230801	; 0x7f080051
+; v18 : single-length
+	invoke-virtual/range	{v17..v18},android/content/res/Resources/getText;	getText(I)Ljava/lang/CharSequence;
+; v17 : Landroid/content/res/Resources; , v18 : single-length
+	move-result-object	v17
+; v17 : Ljava/lang/CharSequence;
+.line 701
+	new-instance	v18,com/fsharemobile/adapter/ExplorerArrayAdapter$14
+; v18 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$14;
+	move-object/from16	v0,v18
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$14; , v18 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$14;
+	move-object/from16	v1,v23
+; v1 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v23 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	invoke-direct	{v0,v1},com/fsharemobile/adapter/ExplorerArrayAdapter$14/<init>	; <init>(Lcom/fsharemobile/adapter/ExplorerArrayAdapter;)V
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$14; , v1 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+.line 699
+	move-object/from16	v0,v17
+; v0 : Ljava/lang/CharSequence; , v17 : Ljava/lang/CharSequence;
+	move-object/from16	v1,v18
+; v1 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$14; , v18 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$14;
+	invoke-virtual	{v8,v0,v1},android/app/AlertDialog$Builder/setPositiveButton	; setPositiveButton(Ljava/lang/CharSequence;Landroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
+; v8 : Landroid/app/AlertDialog$Builder; , v0 : Ljava/lang/CharSequence; , v1 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$14;
+.line 713
+	invoke-virtual	{v8},android/app/AlertDialog$Builder/create	; create()Landroid/app/AlertDialog;
+; v8 : Landroid/app/AlertDialog$Builder;
+	move-result-object	v14
+; v14 : Landroid/app/AlertDialog;
+.line 714
+	invoke-virtual	{v14},android/app/AlertDialog/show	; show()V
+; v14 : Landroid/app/AlertDialog;
+.line 715
+	const/16	v17,65534
+; v17 : single-length
+	move/from16	v0,v17
+; v0 : single-length , v17 : single-length
+	invoke-virtual	{v14,v0},android/app/AlertDialog/getButton	; getButton(I)Landroid/widget/Button;
+; v14 : Landroid/app/AlertDialog; , v0 : single-length
+	move-result-object	v5
+; v5 : Landroid/widget/Button;
+.line 717
+	move-object/from16	v0,v23
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v23 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	iget-object	v0,v0,com/fsharemobile/adapter/ExplorerArrayAdapter.context Landroid/content/Context;
+; v0 : Landroid/content/Context; , v0 : Landroid/content/Context;
+	move-object/from16	v17,v0
+; v17 : Landroid/content/Context; , v0 : Landroid/content/Context;
+	invoke-virtual/range	{v17},android/content/Context/getResources;	getResources()Landroid/content/res/Resources;
+; v17 : Landroid/content/Context;
+	move-result-object	v17
+; v17 : Landroid/content/res/Resources;
+.line 718
+	const	v18,2131361800	; 0x7f0a0008
+; v18 : single-length
+.line 717
+	invoke-virtual/range	{v17..v18},android/content/res/Resources/getColor;	getColor(I)I
+; v17 : Landroid/content/res/Resources; , v18 : single-length
+	move-result	v17
+; v17 : single-length
+	move/from16	v0,v17
+; v0 : single-length , v17 : single-length
+	invoke-virtual	{v5,v0},android/widget/Button/setBackgroundColor	; setBackgroundColor(I)V
+; v5 : Landroid/widget/Button; , v0 : single-length
+.line 719
+	move-object/from16	v0,v23
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v23 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	iget-object	v0,v0,com/fsharemobile/adapter/ExplorerArrayAdapter.context Landroid/content/Context;
+; v0 : Landroid/content/Context; , v0 : Landroid/content/Context;
+	move-object/from16	v17,v0
+; v17 : Landroid/content/Context; , v0 : Landroid/content/Context;
+	invoke-virtual/range	{v17},android/content/Context/getResources;	getResources()Landroid/content/res/Resources;
+; v17 : Landroid/content/Context;
+	move-result-object	v17
+; v17 : Landroid/content/res/Resources;
+	const	v18,2131361799	; 0x7f0a0007
+; v18 : single-length
+	invoke-virtual/range	{v17..v18},android/content/res/Resources/getColor;	getColor(I)I
+; v17 : Landroid/content/res/Resources; , v18 : single-length
+	move-result	v17
+; v17 : single-length
+	move/from16	v0,v17
+; v0 : single-length , v17 : single-length
+	invoke-virtual	{v5,v0},android/widget/Button/setTextColor	; setTextColor(I)V
+; v5 : Landroid/widget/Button; , v0 : single-length
+.line 721
+	const/16	v17,65535
+; v17 : single-length
+	move/from16	v0,v17
+; v0 : single-length , v17 : single-length
+	invoke-virtual	{v14,v0},android/app/AlertDialog/getButton	; getButton(I)Landroid/widget/Button;
+; v14 : Landroid/app/AlertDialog; , v0 : single-length
+	move-result-object	v6
+; v6 : Landroid/widget/Button;
+.line 723
+	move-object/from16	v0,v23
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v23 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	iget-object	v0,v0,com/fsharemobile/adapter/ExplorerArrayAdapter.context Landroid/content/Context;
+; v0 : Landroid/content/Context; , v0 : Landroid/content/Context;
+	move-object/from16	v17,v0
+; v17 : Landroid/content/Context; , v0 : Landroid/content/Context;
+	invoke-virtual/range	{v17},android/content/Context/getResources;	getResources()Landroid/content/res/Resources;
+; v17 : Landroid/content/Context;
+	move-result-object	v17
+; v17 : Landroid/content/res/Resources;
+.line 724
+	const	v18,2131361800	; 0x7f0a0008
+; v18 : single-length
+.line 723
+	invoke-virtual/range	{v17..v18},android/content/res/Resources/getColor;	getColor(I)I
+; v17 : Landroid/content/res/Resources; , v18 : single-length
+	move-result	v17
+; v17 : single-length
+	move/from16	v0,v17
+; v0 : single-length , v17 : single-length
+	invoke-virtual	{v6,v0},android/widget/Button/setBackgroundColor	; setBackgroundColor(I)V
+; v6 : Landroid/widget/Button; , v0 : single-length
+.line 725
+	move-object/from16	v0,v23
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v23 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	iget-object	v0,v0,com/fsharemobile/adapter/ExplorerArrayAdapter.context Landroid/content/Context;
+; v0 : Landroid/content/Context; , v0 : Landroid/content/Context;
+	move-object/from16	v17,v0
+; v17 : Landroid/content/Context; , v0 : Landroid/content/Context;
+	invoke-virtual/range	{v17},android/content/Context/getResources;	getResources()Landroid/content/res/Resources;
+; v17 : Landroid/content/Context;
+	move-result-object	v17
+; v17 : Landroid/content/res/Resources;
+	const	v18,2131361799	; 0x7f0a0007
+; v18 : single-length
+	invoke-virtual/range	{v17..v18},android/content/res/Resources/getColor;	getColor(I)I
+; v17 : Landroid/content/res/Resources; , v18 : single-length
+	move-result	v17
+; v17 : single-length
+	move/from16	v0,v17
+; v0 : single-length , v17 : single-length
+	invoke-virtual	{v6,v0},android/widget/Button/setTextColor	; setTextColor(I)V
+; v6 : Landroid/widget/Button; , v0 : single-length
+	goto/16	l92bee
+l9307a:
+.line 729
+	const/16	v17,2
+; v17 : single-length
+	move/from16	v0,v24
+; v0 : single-length , v24 : single-length
+	move/from16	v1,v17
+; v1 : single-length , v17 : single-length
+	if-ne	v0,v1,l931d0
+; v0 : single-length , v1 : single-length
+.line 730
+	const-string	v18,"Rename_LinkCode_FileID"
+; v18 : Ljava/lang/String;
+	move-object/from16	v0,v23
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v23 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	iget-object	v0,v0,com/fsharemobile/adapter/ExplorerArrayAdapter.arr Ljava/util/List;
+; v0 : Ljava/util/List; , v0 : Ljava/util/List;
+	move-object/from16	v17,v0
+; v17 : Ljava/util/List; , v0 : Ljava/util/List;
+	move-object/from16	v0,v23
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v23 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	iget	v0,v0,com/fsharemobile/adapter/ExplorerArrayAdapter.pos I
+; v0 : single-length , v0 : single-length
+	move/from16	v19,v0
+; v19 : single-length , v0 : single-length
+	move-object/from16	v0,v17
+; v0 : Ljava/util/List; , v17 : Ljava/util/List;
+	move/from16	v1,v19
+; v1 : single-length , v19 : single-length
+	invoke-interface	{v0,v1},java/util/List/get	; get(I)Ljava/lang/Object;
+; v0 : Ljava/util/List; , v1 : single-length
+	move-result-object	v17
+; v17 : Ljava/lang/Object;
+	check-cast	v17,com/fsharemobile/model/File
+; v17 : Lcom/fsharemobile/model/File;
+	invoke-virtual/range	{v17},com/fsharemobile/model/File/getmLinkCode;	getmLinkCode()Ljava/lang/String;
+; v17 : Lcom/fsharemobile/model/File;
+	move-result-object	v17
+; v17 : Ljava/lang/String;
+	move-object/from16	v0,v18
+; v0 : Ljava/lang/String; , v18 : Ljava/lang/String;
+	move-object/from16	v1,v17
+; v1 : Ljava/lang/String; , v17 : Ljava/lang/String;
+	invoke-static	{v0,v1},android/util/Log/i	; i(Ljava/lang/String;Ljava/lang/String;)I
+; v0 : Ljava/lang/String; , v1 : Ljava/lang/String;
+.line 731
+	const-string	v18,"Rename_OldName"
+; v18 : Ljava/lang/String;
+	move-object/from16	v0,v23
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v23 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	iget-object	v0,v0,com/fsharemobile/adapter/ExplorerArrayAdapter.arr Ljava/util/List;
+; v0 : Ljava/util/List; , v0 : Ljava/util/List;
+	move-object/from16	v17,v0
+; v17 : Ljava/util/List; , v0 : Ljava/util/List;
+	move-object/from16	v0,v23
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v23 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	iget	v0,v0,com/fsharemobile/adapter/ExplorerArrayAdapter.pos I
+; v0 : single-length , v0 : single-length
+	move/from16	v19,v0
+; v19 : single-length , v0 : single-length
+	move-object/from16	v0,v17
+; v0 : Ljava/util/List; , v17 : Ljava/util/List;
+	move/from16	v1,v19
+; v1 : single-length , v19 : single-length
+	invoke-interface	{v0,v1},java/util/List/get	; get(I)Ljava/lang/Object;
+; v0 : Ljava/util/List; , v1 : single-length
+	move-result-object	v17
+; v17 : Ljava/lang/Object;
+	check-cast	v17,com/fsharemobile/model/File
+; v17 : Lcom/fsharemobile/model/File;
+	invoke-virtual/range	{v17},com/fsharemobile/model/File/getmName;	getmName()Ljava/lang/String;
+; v17 : Lcom/fsharemobile/model/File;
+	move-result-object	v17
+; v17 : Ljava/lang/String;
+	move-object/from16	v0,v18
+; v0 : Ljava/lang/String; , v18 : Ljava/lang/String;
+	move-object/from16	v1,v17
+; v1 : Ljava/lang/String; , v17 : Ljava/lang/String;
+	invoke-static	{v0,v1},android/util/Log/i	; i(Ljava/lang/String;Ljava/lang/String;)I
+; v0 : Ljava/lang/String; , v1 : Ljava/lang/String;
+.line 732
+	move-object/from16	v0,v23
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v23 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	iget-object	v0,v0,com/fsharemobile/adapter/ExplorerArrayAdapter.arr Ljava/util/List;
+; v0 : Ljava/util/List; , v0 : Ljava/util/List;
+	move-object/from16	v17,v0
+; v17 : Ljava/util/List; , v0 : Ljava/util/List;
+	move-object/from16	v0,v23
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v23 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	iget	v0,v0,com/fsharemobile/adapter/ExplorerArrayAdapter.pos I
+; v0 : single-length , v0 : single-length
+	move/from16	v18,v0
+; v18 : single-length , v0 : single-length
+	invoke-interface/range	{v17..v18},java/util/List/get;	get(I)Ljava/lang/Object;
+; v17 : Ljava/util/List; , v18 : single-length
+	move-result-object	v17
+; v17 : Ljava/lang/Object;
+	check-cast	v17,com/fsharemobile/model/File
+; v17 : Lcom/fsharemobile/model/File;
+	invoke-virtual/range	{v17},com/fsharemobile/model/File/getmType;	getmType()Ljava/lang/String;
+; v17 : Lcom/fsharemobile/model/File;
+	move-result-object	v16
+; v16 : Ljava/lang/String;
+.line 733
+	move-object/from16	v0,v23
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v23 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	iget-object	v0,v0,com/fsharemobile/adapter/ExplorerArrayAdapter.listener Lcom/fsharemobile/adapter/ExplorerArrayAdapter$OperationListener;
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$OperationListener; , v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$OperationListener;
+	move-object/from16	v18,v0
+; v18 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$OperationListener; , v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$OperationListener;
+	move-object/from16	v0,v23
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v23 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	iget-object	v0,v0,com/fsharemobile/adapter/ExplorerArrayAdapter.arr Ljava/util/List;
+; v0 : Ljava/util/List; , v0 : Ljava/util/List;
+	move-object/from16	v17,v0
+; v17 : Ljava/util/List; , v0 : Ljava/util/List;
+	move-object/from16	v0,v23
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v23 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	iget	v0,v0,com/fsharemobile/adapter/ExplorerArrayAdapter.pos I
+; v0 : single-length , v0 : single-length
+	move/from16	v19,v0
+; v19 : single-length , v0 : single-length
+	move-object/from16	v0,v17
+; v0 : Ljava/util/List; , v17 : Ljava/util/List;
+	move/from16	v1,v19
+; v1 : single-length , v19 : single-length
+	invoke-interface	{v0,v1},java/util/List/get	; get(I)Ljava/lang/Object;
+; v0 : Ljava/util/List; , v1 : single-length
+	move-result-object	v17
+; v17 : Ljava/lang/Object;
+	check-cast	v17,com/fsharemobile/model/File
+; v17 : Lcom/fsharemobile/model/File;
+	invoke-virtual/range	{v17},com/fsharemobile/model/File/getmLinkCode;	getmLinkCode()Ljava/lang/String;
+; v17 : Lcom/fsharemobile/model/File;
+	move-result-object	v19
+; v19 : Ljava/lang/String;
+	move-object/from16	v0,v23
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v23 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	iget-object	v0,v0,com/fsharemobile/adapter/ExplorerArrayAdapter.arr Ljava/util/List;
+; v0 : Ljava/util/List; , v0 : Ljava/util/List;
+	move-object/from16	v17,v0
+; v17 : Ljava/util/List; , v0 : Ljava/util/List;
+	move-object/from16	v0,v23
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v23 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	iget	v0,v0,com/fsharemobile/adapter/ExplorerArrayAdapter.pos I
+; v0 : single-length , v0 : single-length
+	move/from16	v20,v0
+; v20 : single-length , v0 : single-length
+	move-object/from16	v0,v17
+; v0 : Ljava/util/List; , v17 : Ljava/util/List;
+	move/from16	v1,v20
+; v1 : single-length , v20 : single-length
+	invoke-interface	{v0,v1},java/util/List/get	; get(I)Ljava/lang/Object;
+; v0 : Ljava/util/List; , v1 : single-length
+	move-result-object	v17
+; v17 : Ljava/lang/Object;
+	check-cast	v17,com/fsharemobile/model/File
+; v17 : Lcom/fsharemobile/model/File;
+.line 734
+	invoke-virtual/range	{v17},com/fsharemobile/model/File/getmName;	getmName()Ljava/lang/String;
+; v17 : Lcom/fsharemobile/model/File;
+	move-result-object	v17
+; v17 : Ljava/lang/String;
+.line 733
+	move-object/from16	v0,v18
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$OperationListener; , v18 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$OperationListener;
+	move-object/from16	v1,v19
+; v1 : Ljava/lang/String; , v19 : Ljava/lang/String;
+	move-object/from16	v2,v17
+; v2 : Ljava/lang/String; , v17 : Ljava/lang/String;
+	move-object/from16	v3,v16
+; v3 : Ljava/lang/String; , v16 : Ljava/lang/String;
+	invoke-interface	{v0,v1,v2,v3},com/fsharemobile/adapter/ExplorerArrayAdapter$OperationListener/onRename	; onRename(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$OperationListener; , v1 : Ljava/lang/String; , v2 : Ljava/lang/String; , v3 : Ljava/lang/String;
+	goto/16	l92bee
+l931d0:
+.line 735
+	const/16	v17,3
+; v17 : single-length
+	move/from16	v0,v24
+; v0 : single-length , v24 : single-length
+	move/from16	v1,v17
+; v1 : single-length , v17 : single-length
+	if-ne	v0,v1,l9323a
+; v0 : single-length , v1 : single-length
+.line 736
+	new-instance	v10,java/util/ArrayList
+; v10 : Ljava/util/ArrayList;
+	invoke-direct	{v10},java/util/ArrayList/<init>	; <init>()V
+; v10 : Ljava/util/ArrayList;
+.line 737
+	move-object/from16	v0,v23
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v23 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	iget-object	v0,v0,com/fsharemobile/adapter/ExplorerArrayAdapter.arr Ljava/util/List;
+; v0 : Ljava/util/List; , v0 : Ljava/util/List;
+	move-object/from16	v17,v0
+; v17 : Ljava/util/List; , v0 : Ljava/util/List;
+	move-object/from16	v0,v23
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v23 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	iget	v0,v0,com/fsharemobile/adapter/ExplorerArrayAdapter.pos I
+; v0 : single-length , v0 : single-length
+	move/from16	v18,v0
+; v18 : single-length , v0 : single-length
+	invoke-interface/range	{v17..v18},java/util/List/get;	get(I)Ljava/lang/Object;
+; v17 : Ljava/util/List; , v18 : single-length
+	move-result-object	v17
+; v17 : Ljava/lang/Object;
+	check-cast	v17,com/fsharemobile/model/File
+; v17 : Lcom/fsharemobile/model/File;
+	invoke-virtual/range	{v17},com/fsharemobile/model/File/getmLinkCode;	getmLinkCode()Ljava/lang/String;
+; v17 : Lcom/fsharemobile/model/File;
+	move-result-object	v17
+; v17 : Ljava/lang/String;
+	move-object/from16	v0,v17
+; v0 : Ljava/lang/String; , v17 : Ljava/lang/String;
+	invoke-interface	{v10,v0},java/util/List/add	; add(Ljava/lang/Object;)Z
+; v10 : Ljava/util/ArrayList; , v0 : Ljava/lang/String;
+.line 738
+	move-object/from16	v0,v23
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v23 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	iget-object	v0,v0,com/fsharemobile/adapter/ExplorerArrayAdapter.listener Lcom/fsharemobile/adapter/ExplorerArrayAdapter$OperationListener;
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$OperationListener; , v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$OperationListener;
+	move-object/from16	v17,v0
+; v17 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$OperationListener; , v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$OperationListener;
+	move-object/from16	v0,v17
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$OperationListener; , v17 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$OperationListener;
+	invoke-interface	{v0,v10},com/fsharemobile/adapter/ExplorerArrayAdapter$OperationListener/onMove	; onMove(Ljava/util/List;)V
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$OperationListener; , v10 : Ljava/util/ArrayList;
+	goto/16	l92bee
+l9323a:
+.line 739
+	const/16	v17,4
+; v17 : single-length
+	move/from16	v0,v24
+; v0 : single-length , v24 : single-length
+	move/from16	v1,v17
+; v1 : single-length , v17 : single-length
+	if-ne	v0,v1,l92bee
+; v0 : single-length , v1 : single-length
+.line 741
+	move-object/from16	v0,v23
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v23 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	iget-object	v0,v0,com/fsharemobile/adapter/ExplorerArrayAdapter.listener Lcom/fsharemobile/adapter/ExplorerArrayAdapter$OperationListener;
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$OperationListener; , v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$OperationListener;
+	move-object/from16	v18,v0
+; v18 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$OperationListener; , v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$OperationListener;
+	move-object/from16	v0,v23
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v23 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	iget-object	v0,v0,com/fsharemobile/adapter/ExplorerArrayAdapter.arr Ljava/util/List;
+; v0 : Ljava/util/List; , v0 : Ljava/util/List;
+	move-object/from16	v17,v0
+; v17 : Ljava/util/List; , v0 : Ljava/util/List;
+	move-object/from16	v0,v23
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v23 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	iget	v0,v0,com/fsharemobile/adapter/ExplorerArrayAdapter.pos I
+; v0 : single-length , v0 : single-length
+	move/from16	v19,v0
+; v19 : single-length , v0 : single-length
+	move-object/from16	v0,v17
+; v0 : Ljava/util/List; , v17 : Ljava/util/List;
+	move/from16	v1,v19
+; v1 : single-length , v19 : single-length
+	invoke-interface	{v0,v1},java/util/List/get	; get(I)Ljava/lang/Object;
+; v0 : Ljava/util/List; , v1 : single-length
+	move-result-object	v17
+; v17 : Ljava/lang/Object;
+	check-cast	v17,com/fsharemobile/model/File
+; v17 : Lcom/fsharemobile/model/File;
+	invoke-virtual/range	{v17},com/fsharemobile/model/File/getmId;	getmId()Ljava/lang/String;
+; v17 : Lcom/fsharemobile/model/File;
+	move-result-object	v17
+; v17 : Ljava/lang/String;
+	invoke-static/range	{v17},java/lang/Integer/parseInt;	parseInt(Ljava/lang/String;)I
+; v17 : Ljava/lang/String;
+	move-result	v19
+; v19 : single-length
+.line 742
+	move-object/from16	v0,v23
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v23 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	iget-object	v0,v0,com/fsharemobile/adapter/ExplorerArrayAdapter.arr Ljava/util/List;
+; v0 : Ljava/util/List; , v0 : Ljava/util/List;
+	move-object/from16	v17,v0
+; v17 : Ljava/util/List; , v0 : Ljava/util/List;
+	move-object/from16	v0,v23
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v23 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	iget	v0,v0,com/fsharemobile/adapter/ExplorerArrayAdapter.pos I
+; v0 : single-length , v0 : single-length
+	move/from16	v20,v0
+; v20 : single-length , v0 : single-length
+	move-object/from16	v0,v17
+; v0 : Ljava/util/List; , v17 : Ljava/util/List;
+	move/from16	v1,v20
+; v1 : single-length , v20 : single-length
+	invoke-interface	{v0,v1},java/util/List/get	; get(I)Ljava/lang/Object;
+; v0 : Ljava/util/List; , v1 : single-length
+	move-result-object	v17
+; v17 : Ljava/lang/Object;
+	check-cast	v17,com/fsharemobile/model/File
+; v17 : Lcom/fsharemobile/model/File;
+	invoke-virtual/range	{v17},com/fsharemobile/model/File/getmLinkCode;	getmLinkCode()Ljava/lang/String;
+; v17 : Lcom/fsharemobile/model/File;
+	move-result-object	v20
+; v20 : Ljava/lang/String;
+	move-object/from16	v0,v23
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v23 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	iget-object	v0,v0,com/fsharemobile/adapter/ExplorerArrayAdapter.arr Ljava/util/List;
+; v0 : Ljava/util/List; , v0 : Ljava/util/List;
+	move-object/from16	v17,v0
+; v17 : Ljava/util/List; , v0 : Ljava/util/List;
+	move-object/from16	v0,v23
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v23 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	iget	v0,v0,com/fsharemobile/adapter/ExplorerArrayAdapter.pos I
+; v0 : single-length , v0 : single-length
+	move/from16	v21,v0
+; v21 : single-length , v0 : single-length
+	move-object/from16	v0,v17
+; v0 : Ljava/util/List; , v17 : Ljava/util/List;
+	move/from16	v1,v21
+; v1 : single-length , v21 : single-length
+	invoke-interface	{v0,v1},java/util/List/get	; get(I)Ljava/lang/Object;
+; v0 : Ljava/util/List; , v1 : single-length
+	move-result-object	v17
+; v17 : Ljava/lang/Object;
+	check-cast	v17,com/fsharemobile/model/File
+; v17 : Lcom/fsharemobile/model/File;
+	invoke-virtual/range	{v17},com/fsharemobile/model/File/getmName;	getmName()Ljava/lang/String;
+; v17 : Lcom/fsharemobile/model/File;
+	move-result-object	v21
+; v21 : Ljava/lang/String;
+.line 743
+	move-object/from16	v0,v23
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v23 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	iget-object	v0,v0,com/fsharemobile/adapter/ExplorerArrayAdapter.arr Ljava/util/List;
+; v0 : Ljava/util/List; , v0 : Ljava/util/List;
+	move-object/from16	v17,v0
+; v17 : Ljava/util/List; , v0 : Ljava/util/List;
+	move-object/from16	v0,v23
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v23 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	iget	v0,v0,com/fsharemobile/adapter/ExplorerArrayAdapter.pos I
+; v0 : single-length , v0 : single-length
+	move/from16	v22,v0
+; v22 : single-length , v0 : single-length
+	move-object/from16	v0,v17
+; v0 : Ljava/util/List; , v17 : Ljava/util/List;
+	move/from16	v1,v22
+; v1 : single-length , v22 : single-length
+	invoke-interface	{v0,v1},java/util/List/get	; get(I)Ljava/lang/Object;
+; v0 : Ljava/util/List; , v1 : single-length
+	move-result-object	v17
+; v17 : Ljava/lang/Object;
+	check-cast	v17,com/fsharemobile/model/File
+; v17 : Lcom/fsharemobile/model/File;
+	invoke-virtual/range	{v17},com/fsharemobile/model/File/getmSize;	getmSize()Ljava/lang/String;
+; v17 : Lcom/fsharemobile/model/File;
+	move-result-object	v17
+; v17 : Ljava/lang/String;
+.line 741
+	move-object/from16	v0,v18
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$OperationListener; , v18 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$OperationListener;
+	move/from16	v1,v19
+; v1 : single-length , v19 : single-length
+	move-object/from16	v2,v20
+; v2 : Ljava/lang/String; , v20 : Ljava/lang/String;
+	move-object/from16	v3,v21
+; v3 : Ljava/lang/String; , v21 : Ljava/lang/String;
+	move-object/from16	v4,v17
+; v4 : Ljava/lang/String; , v17 : Ljava/lang/String;
+	invoke-interface	{v0,v1,v2,v3,v4},com/fsharemobile/adapter/ExplorerArrayAdapter$OperationListener/onDownload	; onDownload(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$OperationListener; , v1 : single-length , v2 : Ljava/lang/String; , v3 : Ljava/lang/String; , v4 : Ljava/lang/String;
+	goto/16	l92bee
+.end method
+
+.method public clear()V
+.limit registers 1
+; this: v0 (Lcom/fsharemobile/adapter/ExplorerArrayAdapter;)
+.line 351
+	invoke-super	{v0},android/widget/ArrayAdapter/clear	; clear()V
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+.line 354
+	return-void	
+.end method
+
+.method public createFolder(Ljava/lang/String;Ljava/lang/String;)V
+.limit registers 7
+; this: v4 (Lcom/fsharemobile/adapter/ExplorerArrayAdapter;)
+; parameter[0] : v5 (Ljava/lang/String;)
+; parameter[1] : v6 (Ljava/lang/String;)
+.catch java/lang/Exception from l933ac to l933c0 using l933c2
+.line 533
+	const-string	v2,""
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v6,v2},java/lang/String/compareTo	; compareTo(Ljava/lang/String;)I
+; v6 : Ljava/lang/String; , v2 : Ljava/lang/String;
+	move-result	v2
+; v2 : single-length
+	if-nez	v2,l93388
+; v2 : single-length
+.line 534
+	const-string	v6,"0"
+; v6 : Ljava/lang/String;
+l93388:
+.line 536
+	invoke-static	{},com/fsharemobile/model/Share/getInstance	; getInstance()Lcom/fsharemobile/model/Share;
+; 
+	nop	
+	move-result-object	v1
+; v1 : Lcom/fsharemobile/model/Share;
+.line 537
+	invoke-virtual	{v1},com/fsharemobile/model/Share/getFclient	; getFclient()Lcom/fsharemobile/client/FClient;
+; v1 : Lcom/fsharemobile/model/Share;
+	move-result-object	v2
+; v2 : Lcom/fsharemobile/client/FClient;
+	iput-object	v2,v4,com/fsharemobile/adapter/ExplorerArrayAdapter.fclient Lcom/fsharemobile/client/FClient;
+; v2 : Lcom/fsharemobile/client/FClient; , v4 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+.line 538
+	iget-object	v2,v4,com/fsharemobile/adapter/ExplorerArrayAdapter.fclient Lcom/fsharemobile/client/FClient;
+; v2 : Lcom/fsharemobile/client/FClient; , v4 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	invoke-virtual	{v2},com/fsharemobile/client/FClient/getFileProxy	; getFileProxy()Lcom/fsharemobile/client/FileProxy;
+; v2 : Lcom/fsharemobile/client/FClient;
+	move-result-object	v2
+; v2 : Lcom/fsharemobile/client/FileProxy;
+	iput-object	v2,v4,com/fsharemobile/adapter/ExplorerArrayAdapter.fileProxy Lcom/fsharemobile/client/FileProxy;
+; v2 : Lcom/fsharemobile/client/FileProxy; , v4 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+l933ac:
+.line 541
+	iget-object	v2,v4,com/fsharemobile/adapter/ExplorerArrayAdapter.fileProxy Lcom/fsharemobile/client/FileProxy;
+; v2 : Lcom/fsharemobile/client/FileProxy; , v4 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+.line 542
+	new-instance	v3,com/fsharemobile/adapter/ExplorerArrayAdapter$9
+; v3 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$9;
+	invoke-direct	{v3,v4},com/fsharemobile/adapter/ExplorerArrayAdapter$9/<init>	; <init>(Lcom/fsharemobile/adapter/ExplorerArrayAdapter;)V
+; v3 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$9; , v4 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+.line 541
+	invoke-virtual	{v2,v5,v6,v3},com/fsharemobile/client/FileProxy/createFolder	; createFolder(Ljava/lang/String;Ljava/lang/String;Lcom/fsharemobile/client/FileProxy$OnCreateFolderCompleted;)V
+; v2 : Lcom/fsharemobile/client/FileProxy; , v5 : Ljava/lang/String; , v6 : Ljava/lang/String; , v3 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$9;
+l933c0:
+.line 581
+	return-void	
+l933c2:
+.line 577
+	move-exception	v0
+; v0 : java/lang/Exception
+.line 578
+	sget-object	v2,java/lang/System.out Ljava/io/PrintStream;
+; v2 : Ljava/io/PrintStream;
+	invoke-virtual	{v0},java/lang/Exception/toString	; toString()Ljava/lang/String;
+; v0 : java/lang/Exception
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/io/PrintStream/println	; println(Ljava/lang/String;)V
+; v2 : Ljava/io/PrintStream; , v3 : Ljava/lang/String;
+	goto	l933c0
+.end method
+
+.method public delete(Ljava/util/List;)V
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "(" , "Ljava/util/List" , "<" , "Ljava/lang/String;" , ">;)V" }
+.end annotation
+.limit registers 6
+; this: v4 (Lcom/fsharemobile/adapter/ExplorerArrayAdapter;)
+; parameter[0] : v5 (Ljava/util/List;)
+.catch java/lang/Exception from l9341c to l93430 using l93432
+.line 394
+	invoke-static	{},com/fsharemobile/model/Share/getInstance	; getInstance()Lcom/fsharemobile/model/Share;
+; 
+	nop	
+	move-result-object	v1
+; v1 : Lcom/fsharemobile/model/Share;
+.line 395
+	invoke-virtual	{v1},com/fsharemobile/model/Share/getFclient	; getFclient()Lcom/fsharemobile/client/FClient;
+; v1 : Lcom/fsharemobile/model/Share;
+	move-result-object	v2
+; v2 : Lcom/fsharemobile/client/FClient;
+	iput-object	v2,v4,com/fsharemobile/adapter/ExplorerArrayAdapter.fclient Lcom/fsharemobile/client/FClient;
+; v2 : Lcom/fsharemobile/client/FClient; , v4 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+.line 396
+	iget-object	v2,v4,com/fsharemobile/adapter/ExplorerArrayAdapter.fclient Lcom/fsharemobile/client/FClient;
+; v2 : Lcom/fsharemobile/client/FClient; , v4 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	invoke-virtual	{v2},com/fsharemobile/client/FClient/getFileProxy	; getFileProxy()Lcom/fsharemobile/client/FileProxy;
+; v2 : Lcom/fsharemobile/client/FClient;
+	move-result-object	v2
+; v2 : Lcom/fsharemobile/client/FileProxy;
+	iput-object	v2,v4,com/fsharemobile/adapter/ExplorerArrayAdapter.fileProxy Lcom/fsharemobile/client/FileProxy;
+; v2 : Lcom/fsharemobile/client/FileProxy; , v4 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+l9341c:
+.line 398
+	iget-object	v2,v4,com/fsharemobile/adapter/ExplorerArrayAdapter.fileProxy Lcom/fsharemobile/client/FileProxy;
+; v2 : Lcom/fsharemobile/client/FileProxy; , v4 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	new-instance	v3,com/fsharemobile/adapter/ExplorerArrayAdapter$6
+; v3 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$6;
+	invoke-direct	{v3,v4},com/fsharemobile/adapter/ExplorerArrayAdapter$6/<init>	; <init>(Lcom/fsharemobile/adapter/ExplorerArrayAdapter;)V
+; v3 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$6; , v4 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	invoke-virtual	{v2,v5,v3},com/fsharemobile/client/FileProxy/delete	; delete(Ljava/util/List;Lcom/fsharemobile/client/FileProxy$OnDeleteCompleted;)V
+; v2 : Lcom/fsharemobile/client/FileProxy; , v5 : Ljava/util/List; , v3 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$6;
+l93430:
+.line 442
+	return-void	
+l93432:
+.line 438
+	move-exception	v0
+; v0 : java/lang/Exception
+.line 439
+	sget-object	v2,java/lang/System.out Ljava/io/PrintStream;
+; v2 : Ljava/io/PrintStream;
+	invoke-virtual	{v0},java/lang/Exception/toString	; toString()Ljava/lang/String;
+; v0 : java/lang/Exception
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/io/PrintStream/println	; println(Ljava/lang/String;)V
+; v2 : Ljava/io/PrintStream; , v3 : Ljava/lang/String;
+	goto	l93430
+.end method
+
+.method public dismissContextMenu()V
+.limit registers 1
+; this: v0 (Lcom/fsharemobile/adapter/ExplorerArrayAdapter;)
+.line 359
+	return-void	
+.end method
+
+.method public getCount()I
+.limit registers 2
+; this: v1 (Lcom/fsharemobile/adapter/ExplorerArrayAdapter;)
+.line 127
+	iget-object	v0,v1,com/fsharemobile/adapter/ExplorerArrayAdapter.arr Ljava/util/List;
+; v0 : Ljava/util/List; , v1 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	invoke-interface	{v0},java/util/List/size	; size()I
+; v0 : Ljava/util/List;
+	move-result	v0
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public getExt(Ljava/lang/String;)Ljava/lang/String;
+.limit registers 3
+; this: v1 (Lcom/fsharemobile/adapter/ExplorerArrayAdapter;)
+; parameter[0] : v2 (Ljava/lang/String;)
+.line 817
+	const-string	v0,"."
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v2,v0},java/lang/String/lastIndexOf	; lastIndexOf(Ljava/lang/String;)I
+; v2 : Ljava/lang/String; , v0 : Ljava/lang/String;
+	move-result	v0
+; v0 : single-length
+	add-int/lit8	v0,v0,1
+; v0 : single-length , v0 : single-length
+	invoke-virtual	{v2,v0},java/lang/String/substring	; substring(I)Ljava/lang/String;
+; v2 : Ljava/lang/String; , v0 : single-length
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	return-object	v0
+; v0 : Ljava/lang/String;
+.end method
+
+.method public getIcon(Ljava/lang/String;)I
+.throws Ljava/lang/Exception;
+.limit registers 10
+; this: v8 (Lcom/fsharemobile/adapter/ExplorerArrayAdapter;)
+; parameter[0] : v9 (Ljava/lang/String;)
+.line 796
+	const-string	v1,"ic_default"
+; v1 : Ljava/lang/String;
+.line 798
+	const/4	v4,0
+; v4 : single-length
+.line 800
+	const/4	v0,0
+; v0 : single-length
+l934d0:
+	iget-object	v5,v8,com/fsharemobile/adapter/ExplorerArrayAdapter.jsoArr Lorg/json/JSONArray;
+; v5 : Lorg/json/JSONArray; , v8 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	invoke-virtual	{v5},org/json/JSONArray/length	; length()I
+; v5 : Lorg/json/JSONArray;
+	move-result	v5
+; v5 : single-length
+	if-lt	v0,v5,l934fe
+; v0 : single-length , v5 : single-length
+.line 812
+	iget-object	v5,v8,com/fsharemobile/adapter/ExplorerArrayAdapter.context Landroid/content/Context;
+; v5 : Landroid/content/Context; , v8 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	invoke-virtual	{v5},android/content/Context/getResources	; getResources()Landroid/content/res/Resources;
+; v5 : Landroid/content/Context;
+	move-result-object	v5
+; v5 : Landroid/content/res/Resources;
+	const-string	v6,"drawable"
+; v6 : Ljava/lang/String;
+.line 813
+	const-string	v7,"com.fsharemobile"
+; v7 : Ljava/lang/String;
+.line 812
+	invoke-virtual	{v5,v1,v6,v7},android/content/res/Resources/getIdentifier	; getIdentifier(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)I
+; v5 : Landroid/content/res/Resources; , v1 : Ljava/lang/String; , v6 : Ljava/lang/String; , v7 : Ljava/lang/String;
+	move-result	v5
+; v5 : single-length
+	return	v5
+; v5 : single-length
+l934fe:
+.line 801
+	iget-object	v5,v8,com/fsharemobile/adapter/ExplorerArrayAdapter.jsoArr Lorg/json/JSONArray;
+; v5 : Lorg/json/JSONArray; , v8 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	invoke-virtual	{v5,v0},org/json/JSONArray/getJSONObject	; getJSONObject(I)Lorg/json/JSONObject;
+; v5 : Lorg/json/JSONArray; , v0 : single-length
+	move-result-object	v3
+; v3 : Lorg/json/JSONObject;
+.line 802
+	const-string	v5,"exts"
+; v5 : Ljava/lang/String;
+	invoke-virtual	{v3,v5},org/json/JSONObject/getJSONArray	; getJSONArray(Ljava/lang/String;)Lorg/json/JSONArray;
+; v3 : Lorg/json/JSONObject; , v5 : Ljava/lang/String;
+	move-result-object	v4
+; v4 : Lorg/json/JSONArray;
+.line 803
+	const/4	v2,0
+; v2 : single-length
+l93518:
+	invoke-virtual	{v4},org/json/JSONArray/length	; length()I
+; v4 : Lorg/json/JSONArray;
+	move-result	v5
+; v5 : single-length
+	if-lt	v2,v5,l9352a
+; v2 : single-length , v5 : single-length
+.line 800
+	add-int/lit8	v0,v0,1
+; v0 : single-length , v0 : single-length
+	goto	l934d0
+l9352a:
+.line 804
+	invoke-virtual	{v4,v2},org/json/JSONArray/getString	; getString(I)Ljava/lang/String;
+; v4 : Lorg/json/JSONArray; , v2 : single-length
+	move-result-object	v5
+; v5 : Ljava/lang/String;
+	invoke-virtual	{v5,v9},java/lang/String/compareTo	; compareTo(Ljava/lang/String;)I
+; v5 : Ljava/lang/String; , v9 : Ljava/lang/String;
+	move-result	v5
+; v5 : single-length
+	if-nez	v5,l9355e
+; v5 : single-length
+.line 805
+	const-string	v5,"icon_name"
+; v5 : Ljava/lang/String;
+	invoke-virtual	{v3,v5},org/json/JSONObject/getString	; getString(Ljava/lang/String;)Ljava/lang/String;
+; v3 : Lorg/json/JSONObject; , v5 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+.line 807
+	invoke-virtual	{v4},org/json/JSONArray/length	; length()I
+; v4 : Lorg/json/JSONArray;
+	move-result	v2
+; v2 : single-length
+.line 808
+	iget-object	v5,v8,com/fsharemobile/adapter/ExplorerArrayAdapter.jsoArr Lorg/json/JSONArray;
+; v5 : Lorg/json/JSONArray; , v8 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	invoke-virtual	{v5},org/json/JSONArray/length	; length()I
+; v5 : Lorg/json/JSONArray;
+	move-result	v0
+; v0 : single-length
+l9355e:
+.line 803
+	add-int/lit8	v2,v2,1
+; v2 : single-length , v2 : single-length
+	goto	l93518
+.end method
+
+.method public getItem(I)Lcom/fsharemobile/model/File;
+.limit registers 3
+; this: v1 (Lcom/fsharemobile/adapter/ExplorerArrayAdapter;)
+; parameter[0] : v2 (I)
+.line 132
+	iget-object	v0,v1,com/fsharemobile/adapter/ExplorerArrayAdapter.arr Ljava/util/List;
+; v0 : Ljava/util/List; , v1 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	invoke-interface	{v0,v2},java/util/List/get	; get(I)Ljava/lang/Object;
+; v0 : Ljava/util/List; , v2 : single-length
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,com/fsharemobile/model/File
+; v0 : Lcom/fsharemobile/model/File;
+	return-object	v0
+; v0 : Lcom/fsharemobile/model/File;
+.end method
+
+.method public getItem(I)Ljava/lang/Object;
+.limit registers 3
+; this: v1 (Lcom/fsharemobile/adapter/ExplorerArrayAdapter;)
+; parameter[0] : v2 (I)
+.line 1
+	invoke-virtual	{v1,v2},com/fsharemobile/adapter/ExplorerArrayAdapter/getItem	; getItem(I)Lcom/fsharemobile/model/File;
+; v1 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v2 : single-length
+	move-result-object	v0
+; v0 : Lcom/fsharemobile/model/File;
+	return-object	v0
+; v0 : Lcom/fsharemobile/model/File;
+.end method
+
+.method public getItemId(I)J
+.limit registers 4
+; this: v2 (Lcom/fsharemobile/adapter/ExplorerArrayAdapter;)
+; parameter[0] : v3 (I)
+.line 138
+	int-to-long	v0,v3
+; v0 : double-length , v3 : single-length
+	return-wide	v0
+; v0 : double-length
+.end method
+
+.method public getPos()I
+.limit registers 2
+; this: v1 (Lcom/fsharemobile/adapter/ExplorerArrayAdapter;)
+.line 345
+	iget	v0,v1,com/fsharemobile/adapter/ExplorerArrayAdapter.pos I
+; v0 : single-length , v1 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	return	v0
+; v0 : single-length
+.end method
+
+.method public getType(Ljava/lang/String;)Ljava/lang/String;
+.throws Ljava/lang/Exception;
+.limit registers 8
+; this: v6 (Lcom/fsharemobile/adapter/ExplorerArrayAdapter;)
+; parameter[0] : v7 (Ljava/lang/String;)
+.line 836
+	const-string	v4,"application/*"
+; v4 : Ljava/lang/String;
+.line 838
+	const/4	v3,0
+; v3 : single-length
+.line 840
+	const/4	v0,0
+; v0 : single-length
+l935e8:
+	iget-object	v5,v6,com/fsharemobile/adapter/ExplorerArrayAdapter.jsoArr Lorg/json/JSONArray;
+; v5 : Lorg/json/JSONArray; , v6 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	invoke-virtual	{v5},org/json/JSONArray/length	; length()I
+; v5 : Lorg/json/JSONArray;
+	move-result	v5
+; v5 : single-length
+	if-lt	v0,v5,l935fa
+; v0 : single-length , v5 : single-length
+.line 852
+	return-object	v4
+; v4 : Ljava/lang/String;
+l935fa:
+.line 841
+	iget-object	v5,v6,com/fsharemobile/adapter/ExplorerArrayAdapter.jsoArr Lorg/json/JSONArray;
+; v5 : Lorg/json/JSONArray; , v6 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	invoke-virtual	{v5,v0},org/json/JSONArray/getJSONObject	; getJSONObject(I)Lorg/json/JSONObject;
+; v5 : Lorg/json/JSONArray; , v0 : single-length
+	move-result-object	v2
+; v2 : Lorg/json/JSONObject;
+.line 842
+	const-string	v5,"exts"
+; v5 : Ljava/lang/String;
+	invoke-virtual	{v2,v5},org/json/JSONObject/getJSONArray	; getJSONArray(Ljava/lang/String;)Lorg/json/JSONArray;
+; v2 : Lorg/json/JSONObject; , v5 : Ljava/lang/String;
+	move-result-object	v3
+; v3 : Lorg/json/JSONArray;
+.line 843
+	const/4	v1,0
+; v1 : single-length
+l93614:
+	invoke-virtual	{v3},org/json/JSONArray/length	; length()I
+; v3 : Lorg/json/JSONArray;
+	move-result	v5
+; v5 : single-length
+	if-lt	v1,v5,l93626
+; v1 : single-length , v5 : single-length
+.line 840
+	add-int/lit8	v0,v0,1
+; v0 : single-length , v0 : single-length
+	goto	l935e8
+l93626:
+.line 844
+	invoke-virtual	{v3,v1},org/json/JSONArray/getString	; getString(I)Ljava/lang/String;
+; v3 : Lorg/json/JSONArray; , v1 : single-length
+	move-result-object	v5
+; v5 : Ljava/lang/String;
+	invoke-virtual	{v5,v7},java/lang/String/compareTo	; compareTo(Ljava/lang/String;)I
+; v5 : Ljava/lang/String; , v7 : Ljava/lang/String;
+	move-result	v5
+; v5 : single-length
+	if-nez	v5,l9365a
+; v5 : single-length
+.line 845
+	const-string	v5,"type"
+; v5 : Ljava/lang/String;
+	invoke-virtual	{v2,v5},org/json/JSONObject/getString	; getString(Ljava/lang/String;)Ljava/lang/String;
+; v2 : Lorg/json/JSONObject; , v5 : Ljava/lang/String;
+	move-result-object	v4
+; v4 : Ljava/lang/String;
+.line 847
+	invoke-virtual	{v3},org/json/JSONArray/length	; length()I
+; v3 : Lorg/json/JSONArray;
+	move-result	v1
+; v1 : single-length
+.line 848
+	iget-object	v5,v6,com/fsharemobile/adapter/ExplorerArrayAdapter.jsoArr Lorg/json/JSONArray;
+; v5 : Lorg/json/JSONArray; , v6 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	invoke-virtual	{v5},org/json/JSONArray/length	; length()I
+; v5 : Lorg/json/JSONArray;
+	move-result	v0
+; v0 : single-length
+l9365a:
+.line 843
+	add-int/lit8	v1,v1,1
+; v1 : single-length , v1 : single-length
+	goto	l93614
+.end method
+
+.method public getView(ILandroid/view/View;Landroid/view/ViewGroup;)Landroid/view/View;
+.annotation buildVisibility Landroid/annotation/SuppressLint;
+    value [Ljava/lang/String; = { "DefaultLocale" }
+.end annotation
+.limit registers 19
+; this: v15 (Lcom/fsharemobile/adapter/ExplorerArrayAdapter;)
+; parameter[0] : v16 (I)
+; parameter[1] : v17 (Landroid/view/View;)
+; parameter[2] : v18 (Landroid/view/ViewGroup;)
+.catch java/lang/Exception from l93986 to l93ac2 using l93a92
+.var 10 is inflater Landroid/view/LayoutInflater; from l93688 to l93742
+.var 3 is a Lcom/fsharemobile/adapter/ExplorerArrayAdapter$ViewHolder; from l93750 to l938ba
+.var 5 is rowViewTemp Landroid/view/View; from l9374e to l938ba
+.var 6 is type Ljava/lang/String; from l93774 to l938ba
+.var 7 is date Ljava/lang/String; from l9377c to l938ba
+.var 8 is fileName Ljava/lang/String; from l9376c to l938ba
+.var 9 is files Lcom/fsharemobile/model/File; from l93764 to l938ba
+.var 11 is path Ljava/lang/String; from l9378c to l938ba
+.var 12 is size Ljava/lang/String; from l93784 to l938ba
+.var 13 is viewHolder Lcom/fsharemobile/adapter/ExplorerArrayAdapter$ViewHolder; from l936a6 to l938ba
+.line 146
+	if-nez	v17,l938ba
+; v17 : Landroid/view/View;
+.line 147
+	iget-object	v1,v15,com/fsharemobile/adapter/ExplorerArrayAdapter.context Landroid/content/Context;
+; v1 : Landroid/content/Context; , v15 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+.line 148
+	const-string	v2,"layout_inflater"
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},android/content/Context/getSystemService	; getSystemService(Ljava/lang/String;)Ljava/lang/Object;
+; v1 : Landroid/content/Context; , v2 : Ljava/lang/String;
+	move-result-object	v10
+; v10 : Ljava/lang/Object;
+.line 147
+	check-cast	v10,android/view/LayoutInflater
+; v10 : Landroid/view/LayoutInflater;
+.line 150
+	const	v1,2130903074	; 0x7f030022
+; v1 : single-length
+.line 151
+	const/4	v2,0
+; v2 : single-length
+.line 150
+	move-object/from16	v0,v18
+; v0 : Landroid/view/ViewGroup; , v18 : Landroid/view/ViewGroup;
+	invoke-virtual	{v10,v1,v0,v2},android/view/LayoutInflater/inflate	; inflate(ILandroid/view/ViewGroup;Z)Landroid/view/View;
+; v10 : Landroid/view/LayoutInflater; , v1 : single-length , v0 : Landroid/view/ViewGroup; , v2 : single-length
+	move-result-object	v17
+; v17 : Landroid/view/View;
+.line 153
+	new-instance	v13,com/fsharemobile/adapter/ExplorerArrayAdapter$ViewHolder
+; v13 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$ViewHolder;
+	invoke-direct	{v13},com/fsharemobile/adapter/ExplorerArrayAdapter$ViewHolder/<init>	; <init>()V
+; v13 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$ViewHolder;
+.line 155
+	const	v1,2131427471	; 0x7f0b008f
+; v1 : single-length
+	move-object/from16	v0,v17
+; v0 : Landroid/view/View; , v17 : Landroid/view/View;
+	invoke-virtual	{v0,v1},android/view/View/findViewById	; findViewById(I)Landroid/view/View;
+; v0 : Landroid/view/View; , v1 : single-length
+	move-result-object	v1
+; v1 : Landroid/view/View;
+	check-cast	v1,android/widget/TextView
+; v1 : Landroid/widget/TextView;
+.line 154
+	iput-object	v1,v13,com/fsharemobile/adapter/ExplorerArrayAdapter$ViewHolder.text Landroid/widget/TextView;
+; v1 : Landroid/widget/TextView; , v13 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$ViewHolder;
+.line 157
+	const	v1,2131427472	; 0x7f0b0090
+; v1 : single-length
+	move-object/from16	v0,v17
+; v0 : Landroid/view/View; , v17 : Landroid/view/View;
+	invoke-virtual	{v0,v1},android/view/View/findViewById	; findViewById(I)Landroid/view/View;
+; v0 : Landroid/view/View; , v1 : single-length
+	move-result-object	v1
+; v1 : Landroid/view/View;
+	check-cast	v1,android/widget/TextView
+; v1 : Landroid/widget/TextView;
+.line 156
+	iput-object	v1,v13,com/fsharemobile/adapter/ExplorerArrayAdapter$ViewHolder.text2 Landroid/widget/TextView;
+; v1 : Landroid/widget/TextView; , v13 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$ViewHolder;
+.line 160
+	const	v1,2131427473	; 0x7f0b0091
+; v1 : single-length
+	move-object/from16	v0,v17
+; v0 : Landroid/view/View; , v17 : Landroid/view/View;
+	invoke-virtual	{v0,v1},android/view/View/findViewById	; findViewById(I)Landroid/view/View;
+; v0 : Landroid/view/View; , v1 : single-length
+	move-result-object	v1
+; v1 : Landroid/view/View;
+	check-cast	v1,android/widget/TextView
+; v1 : Landroid/widget/TextView;
+.line 159
+	iput-object	v1,v13,com/fsharemobile/adapter/ExplorerArrayAdapter$ViewHolder.text3 Landroid/widget/TextView;
+; v1 : Landroid/widget/TextView; , v13 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$ViewHolder;
+.line 162
+	const	v1,2131427468	; 0x7f0b008c
+; v1 : single-length
+	move-object/from16	v0,v17
+; v0 : Landroid/view/View; , v17 : Landroid/view/View;
+	invoke-virtual	{v0,v1},android/view/View/findViewById	; findViewById(I)Landroid/view/View;
+; v0 : Landroid/view/View; , v1 : single-length
+	move-result-object	v1
+; v1 : Landroid/view/View;
+	check-cast	v1,android/widget/ImageView
+; v1 : Landroid/widget/ImageView;
+.line 161
+	iput-object	v1,v13,com/fsharemobile/adapter/ExplorerArrayAdapter$ViewHolder.image Landroid/widget/ImageView;
+; v1 : Landroid/widget/ImageView; , v13 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$ViewHolder;
+.line 164
+	const	v1,2131427470	; 0x7f0b008e
+; v1 : single-length
+	move-object/from16	v0,v17
+; v0 : Landroid/view/View; , v17 : Landroid/view/View;
+	invoke-virtual	{v0,v1},android/view/View/findViewById	; findViewById(I)Landroid/view/View;
+; v0 : Landroid/view/View; , v1 : single-length
+	move-result-object	v1
+; v1 : Landroid/view/View;
+	check-cast	v1,android/widget/ImageView
+; v1 : Landroid/widget/ImageView;
+.line 163
+	iput-object	v1,v13,com/fsharemobile/adapter/ExplorerArrayAdapter$ViewHolder.button Landroid/widget/ImageView;
+; v1 : Landroid/widget/ImageView; , v13 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$ViewHolder;
+.line 165
+	iget-object	v1,v13,com/fsharemobile/adapter/ExplorerArrayAdapter$ViewHolder.button Landroid/widget/ImageView;
+; v1 : Landroid/widget/ImageView; , v13 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$ViewHolder;
+	const	v2,2130837538	; 0x7f020022
+; v2 : single-length
+	invoke-virtual	{v1,v2},android/widget/ImageView/setImageResource	; setImageResource(I)V
+; v1 : Landroid/widget/ImageView; , v2 : single-length
+.line 169
+	move-object/from16	v0,v17
+; v0 : Landroid/view/View; , v17 : Landroid/view/View;
+	invoke-virtual	{v0,v13},android/view/View/setTag	; setTag(Ljava/lang/Object;)V
+; v0 : Landroid/view/View; , v13 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$ViewHolder;
+l93742:
+.line 173
+	move/from16	v0,v16
+; v0 : single-length , v16 : single-length
+	iput	v0,v13,com/fsharemobile/adapter/ExplorerArrayAdapter$ViewHolder.position I
+; v0 : single-length , v13 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$ViewHolder;
+.line 176
+	move-object/from16	v5,v17
+; v5 : Landroid/view/View; , v17 : Landroid/view/View;
+.line 177
+	move-object	v3,v13
+; v3 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$ViewHolder; , v13 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$ViewHolder;
+.line 178
+	iget-object	v1,v15,com/fsharemobile/adapter/ExplorerArrayAdapter.arr Ljava/util/List;
+; v1 : Ljava/util/List; , v15 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	move/from16	v0,v16
+; v0 : single-length , v16 : single-length
+	invoke-interface	{v1,v0},java/util/List/get	; get(I)Ljava/lang/Object;
+; v1 : Ljava/util/List; , v0 : single-length
+	move-result-object	v9
+; v9 : Ljava/lang/Object;
+	check-cast	v9,com/fsharemobile/model/File
+; v9 : Lcom/fsharemobile/model/File;
+.line 180
+	invoke-virtual	{v9},com/fsharemobile/model/File/getmName	; getmName()Ljava/lang/String;
+; v9 : Lcom/fsharemobile/model/File;
+	move-result-object	v8
+; v8 : Ljava/lang/String;
+.line 181
+	invoke-virtual	{v9},com/fsharemobile/model/File/getmType	; getmType()Ljava/lang/String;
+; v9 : Lcom/fsharemobile/model/File;
+	move-result-object	v6
+; v6 : Ljava/lang/String;
+.line 182
+	invoke-virtual	{v9},com/fsharemobile/model/File/getmCreated	; getmCreated()Ljava/lang/String;
+; v9 : Lcom/fsharemobile/model/File;
+	move-result-object	v7
+; v7 : Ljava/lang/String;
+.line 183
+	invoke-virtual	{v9},com/fsharemobile/model/File/getmSize	; getmSize()Ljava/lang/String;
+; v9 : Lcom/fsharemobile/model/File;
+	move-result-object	v12
+; v12 : Ljava/lang/String;
+.line 184
+	invoke-virtual	{v9},com/fsharemobile/model/File/getmPath	; getmPath()Ljava/lang/String;
+; v9 : Lcom/fsharemobile/model/File;
+	move-result-object	v11
+; v11 : Ljava/lang/String;
+.line 188
+	invoke-virtual	{v8},java/lang/String/length	; length()I
+; v8 : Ljava/lang/String;
+	move-result	v1
+; v1 : single-length
+	const/16	v2,20
+; v2 : single-length
+	if-lt	v1,v2,l937d0
+; v1 : single-length , v2 : single-length
+.line 190
+	new-instance	v1,java/lang/StringBuilder
+; v1 : Ljava/lang/StringBuilder;
+	const/4	v2,0
+; v2 : single-length
+	const/16	v4,20
+; v4 : single-length
+	invoke-virtual	{v8,v2,v4},java/lang/String/substring	; substring(II)Ljava/lang/String;
+; v8 : Ljava/lang/String; , v2 : single-length , v4 : single-length
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-static	{v2},java/lang/String/valueOf	; valueOf(Ljava/lang/Object;)Ljava/lang/String;
+; v2 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-direct	{v1,v2},java/lang/StringBuilder/<init>	; <init>(Ljava/lang/String;)V
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	const-string	v2,"..."
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v1},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v1 : Ljava/lang/StringBuilder;
+	move-result-object	v8
+; v8 : Ljava/lang/String;
+l937d0:
+.line 193
+	iget-object	v1,v13,com/fsharemobile/adapter/ExplorerArrayAdapter$ViewHolder.text Landroid/widget/TextView;
+; v1 : Landroid/widget/TextView; , v13 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$ViewHolder;
+	invoke-virtual	{v1,v8},android/widget/TextView/setText	; setText(Ljava/lang/CharSequence;)V
+; v1 : Landroid/widget/TextView; , v8 : Ljava/lang/String;
+.line 194
+	iget-object	v1,v13,com/fsharemobile/adapter/ExplorerArrayAdapter$ViewHolder.text2 Landroid/widget/TextView;
+; v1 : Landroid/widget/TextView; , v13 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$ViewHolder;
+	const/4	v2,0
+; v2 : single-length
+	invoke-virtual	{v1,v2},android/widget/TextView/setText	; setText(Ljava/lang/CharSequence;)V
+; v1 : Landroid/widget/TextView; , v2 : single-length
+.line 195
+	iget-object	v1,v13,com/fsharemobile/adapter/ExplorerArrayAdapter$ViewHolder.text3 Landroid/widget/TextView;
+; v1 : Landroid/widget/TextView; , v13 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$ViewHolder;
+	const/4	v2,0
+; v2 : single-length
+	invoke-virtual	{v1,v2},android/widget/TextView/setText	; setText(Ljava/lang/CharSequence;)V
+; v1 : Landroid/widget/TextView; , v2 : single-length
+.line 198
+	const-string	v1,"0"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v6,v1},java/lang/String/compareTo	; compareTo(Ljava/lang/String;)I
+; v6 : Ljava/lang/String; , v1 : Ljava/lang/String;
+	move-result	v1
+; v1 : single-length
+	if-nez	v1,l93976
+; v1 : single-length
+.line 199
+	iget-object	v1,v13,com/fsharemobile/adapter/ExplorerArrayAdapter$ViewHolder.text2 Landroid/widget/TextView;
+; v1 : Landroid/widget/TextView; , v13 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$ViewHolder;
+	const/16	v2,8
+; v2 : single-length
+	invoke-virtual	{v1,v2},android/widget/TextView/setVisibility	; setVisibility(I)V
+; v1 : Landroid/widget/TextView; , v2 : single-length
+.line 200
+	iget-object	v1,v13,com/fsharemobile/adapter/ExplorerArrayAdapter$ViewHolder.text3 Landroid/widget/TextView;
+; v1 : Landroid/widget/TextView; , v13 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$ViewHolder;
+	const/16	v2,8
+; v2 : single-length
+	invoke-virtual	{v1,v2},android/widget/TextView/setVisibility	; setVisibility(I)V
+; v1 : Landroid/widget/TextView; , v2 : single-length
+.line 201
+	const-string	v1,"Documents"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v8,v1},java/lang/String/compareTo	; compareTo(Ljava/lang/String;)I
+; v8 : Ljava/lang/String; , v1 : Ljava/lang/String;
+	move-result	v1
+; v1 : single-length
+	if-nez	v1,l938ca
+; v1 : single-length
+.line 202
+	const-string	v1,"/"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v11,v1},java/lang/String/compareTo	; compareTo(Ljava/lang/String;)I
+; v11 : Ljava/lang/String; , v1 : Ljava/lang/String;
+	move-result	v1
+; v1 : single-length
+	if-nez	v1,l938ca
+; v1 : single-length
+.line 203
+	iget-object	v1,v13,com/fsharemobile/adapter/ExplorerArrayAdapter$ViewHolder.image Landroid/widget/ImageView;
+; v1 : Landroid/widget/ImageView; , v13 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$ViewHolder;
+.line 204
+	const	v2,2130837554	; 0x7f020032
+; v2 : single-length
+	invoke-virtual	{v1,v2},android/widget/ImageView/setImageResource	; setImageResource(I)V
+; v1 : Landroid/widget/ImageView; , v2 : single-length
+l9384e:
+.line 238
+	iget-object	v1,v15,com/fsharemobile/adapter/ExplorerArrayAdapter.mQuickAction Lcom/fsharemobile/quickaction/QuickAction;
+; v1 : Lcom/fsharemobile/quickaction/QuickAction; , v15 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	new-instance	v2,com/fsharemobile/adapter/ExplorerArrayAdapter$1
+; v2 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$1;
+	move/from16	v0,v16
+; v0 : single-length , v16 : single-length
+	invoke-direct	{v2,v15,v0},com/fsharemobile/adapter/ExplorerArrayAdapter$1/<init>	; <init>(Lcom/fsharemobile/adapter/ExplorerArrayAdapter;I)V
+; v2 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$1; , v15 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v0 : single-length
+	invoke-virtual	{v1,v2},com/fsharemobile/quickaction/QuickAction/setOnMyDismissListener	; setOnMyDismissListener(Lcom/fsharemobile/quickaction/PopupWindows$onDisMiss;)V
+; v1 : Lcom/fsharemobile/quickaction/QuickAction; , v2 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$1;
+.line 258
+	iget-object	v1,v15,com/fsharemobile/adapter/ExplorerArrayAdapter.mQuickAction Lcom/fsharemobile/quickaction/QuickAction;
+; v1 : Lcom/fsharemobile/quickaction/QuickAction; , v15 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	new-instance	v2,com/fsharemobile/adapter/ExplorerArrayAdapter$2
+; v2 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$2;
+	invoke-direct	{v2,v15},com/fsharemobile/adapter/ExplorerArrayAdapter$2/<init>	; <init>(Lcom/fsharemobile/adapter/ExplorerArrayAdapter;)V
+; v2 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$2; , v15 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	invoke-virtual	{v1,v2},com/fsharemobile/quickaction/QuickAction/setOnDismissListener	; setOnDismissListener(Landroid/widget/PopupWindow$OnDismissListener;)V
+; v1 : Lcom/fsharemobile/quickaction/QuickAction; , v2 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$2;
+.line 272
+	iget-object	v1,v15,com/fsharemobile/adapter/ExplorerArrayAdapter.mQuickActionFile Lcom/fsharemobile/quickaction/QuickAction;
+; v1 : Lcom/fsharemobile/quickaction/QuickAction; , v15 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	new-instance	v2,com/fsharemobile/adapter/ExplorerArrayAdapter$3
+; v2 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$3;
+	invoke-direct	{v2,v15},com/fsharemobile/adapter/ExplorerArrayAdapter$3/<init>	; <init>(Lcom/fsharemobile/adapter/ExplorerArrayAdapter;)V
+; v2 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$3; , v15 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	invoke-virtual	{v1,v2},com/fsharemobile/quickaction/QuickAction/setOnDismissListener	; setOnDismissListener(Landroid/widget/PopupWindow$OnDismissListener;)V
+; v1 : Lcom/fsharemobile/quickaction/QuickAction; , v2 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$3;
+.line 283
+	iget-object	v1,v15,com/fsharemobile/adapter/ExplorerArrayAdapter.isContextMenuEnable Ljava/lang/Boolean;
+; v1 : Ljava/lang/Boolean; , v15 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	invoke-virtual	{v1},java/lang/Boolean/booleanValue	; booleanValue()Z
+; v1 : Ljava/lang/Boolean;
+	move-result	v1
+; v1 : single-length
+	if-eqz	v1,l93ac4
+; v1 : single-length
+.line 284
+	iget-object	v14,v13,com/fsharemobile/adapter/ExplorerArrayAdapter$ViewHolder.button Landroid/widget/ImageView;
+; v14 : Landroid/widget/ImageView; , v13 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$ViewHolder;
+	new-instance	v1,com/fsharemobile/adapter/ExplorerArrayAdapter$4
+; v1 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$4;
+	move-object	v2,v15
+; v2 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v15 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	move/from16	v4,v16
+; v4 : single-length , v16 : single-length
+	invoke-direct/range	{v1..v6},com/fsharemobile/adapter/ExplorerArrayAdapter$4/<init>;	<init>(Lcom/fsharemobile/adapter/ExplorerArrayAdapter;Lcom/fsharemobile/adapter/ExplorerArrayAdapter$ViewHolder;ILandroid/view/View;Ljava/lang/String;)V
+; v1 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$4; , v2 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v3 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$ViewHolder; , v4 : single-length , v5 : Landroid/view/View; , v6 : Ljava/lang/String;
+	invoke-virtual	{v14,v1},android/widget/ImageView/setOnClickListener	; setOnClickListener(Landroid/view/View$OnClickListener;)V
+; v14 : Landroid/widget/ImageView; , v1 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$4;
+l938b8:
+.line 341
+	return-object	v17
+; v17 : Landroid/view/View;
+l938ba:
+.line 171
+	invoke-virtual/range	{v17},android/view/View/getTag;	getTag()Ljava/lang/Object;
+; v17 : Landroid/view/View;
+	move-result-object	v13
+; v13 : Ljava/lang/Object;
+	check-cast	v13,com/fsharemobile/adapter/ExplorerArrayAdapter$ViewHolder
+; v13 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$ViewHolder;
+	goto/16	l93742
+l938ca:
+.line 205
+	const-string	v1,"Photos"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v8,v1},java/lang/String/compareTo	; compareTo(Ljava/lang/String;)I
+; v8 : Ljava/lang/String; , v1 : Ljava/lang/String;
+	move-result	v1
+; v1 : single-length
+	if-nez	v1,l938fc
+; v1 : single-length
+.line 206
+	const-string	v1,"/"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v11,v1},java/lang/String/compareTo	; compareTo(Ljava/lang/String;)I
+; v11 : Ljava/lang/String; , v1 : Ljava/lang/String;
+	move-result	v1
+; v1 : single-length
+	if-nez	v1,l938fc
+; v1 : single-length
+.line 207
+	iget-object	v1,v13,com/fsharemobile/adapter/ExplorerArrayAdapter$ViewHolder.image Landroid/widget/ImageView;
+; v1 : Landroid/widget/ImageView; , v13 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$ViewHolder;
+	const	v2,2130837583	; 0x7f02004f
+; v2 : single-length
+	invoke-virtual	{v1,v2},android/widget/ImageView/setImageResource	; setImageResource(I)V
+; v1 : Landroid/widget/ImageView; , v2 : single-length
+	goto	l9384e
+l938fc:
+.line 208
+	const-string	v1,"Public"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v8,v1},java/lang/String/compareTo	; compareTo(Ljava/lang/String;)I
+; v8 : Ljava/lang/String; , v1 : Ljava/lang/String;
+	move-result	v1
+; v1 : single-length
+	if-nez	v1,l9392e
+; v1 : single-length
+.line 209
+	const-string	v1,"/"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v11,v1},java/lang/String/compareTo	; compareTo(Ljava/lang/String;)I
+; v11 : Ljava/lang/String; , v1 : Ljava/lang/String;
+	move-result	v1
+; v1 : single-length
+	if-nez	v1,l9392e
+; v1 : single-length
+.line 210
+	iget-object	v1,v13,com/fsharemobile/adapter/ExplorerArrayAdapter$ViewHolder.image Landroid/widget/ImageView;
+; v1 : Landroid/widget/ImageView; , v13 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$ViewHolder;
+	const	v2,2130837586	; 0x7f020052
+; v2 : single-length
+	invoke-virtual	{v1,v2},android/widget/ImageView/setImageResource	; setImageResource(I)V
+; v1 : Landroid/widget/ImageView; , v2 : single-length
+	goto	l9384e
+l9392e:
+.line 211
+	const-string	v1,"Uploads"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v8,v1},java/lang/String/compareTo	; compareTo(Ljava/lang/String;)I
+; v8 : Ljava/lang/String; , v1 : Ljava/lang/String;
+	move-result	v1
+; v1 : single-length
+	if-nez	v1,l93962
+; v1 : single-length
+.line 212
+	const-string	v1,"/"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v11,v1},java/lang/String/compareTo	; compareTo(Ljava/lang/String;)I
+; v11 : Ljava/lang/String; , v1 : Ljava/lang/String;
+	move-result	v1
+; v1 : single-length
+	if-nez	v1,l93962
+; v1 : single-length
+.line 213
+	iget-object	v1,v13,com/fsharemobile/adapter/ExplorerArrayAdapter$ViewHolder.image Landroid/widget/ImageView;
+; v1 : Landroid/widget/ImageView; , v13 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$ViewHolder;
+	const	v2,2130837599	; 0x7f02005f
+; v2 : single-length
+	invoke-virtual	{v1,v2},android/widget/ImageView/setImageResource	; setImageResource(I)V
+; v1 : Landroid/widget/ImageView; , v2 : single-length
+	goto/16	l9384e
+l93962:
+.line 215
+	iget-object	v1,v13,com/fsharemobile/adapter/ExplorerArrayAdapter$ViewHolder.image Landroid/widget/ImageView;
+; v1 : Landroid/widget/ImageView; , v13 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$ViewHolder;
+	const	v2,2130837562	; 0x7f02003a
+; v2 : single-length
+	invoke-virtual	{v1,v2},android/widget/ImageView/setImageResource	; setImageResource(I)V
+; v1 : Landroid/widget/ImageView; , v2 : single-length
+	goto/16	l9384e
+l93976:
+.line 217
+	const-string	v1,"1"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v6,v1},java/lang/String/compareTo	; compareTo(Ljava/lang/String;)I
+; v6 : Ljava/lang/String; , v1 : Ljava/lang/String;
+	move-result	v1
+; v1 : single-length
+	if-nez	v1,l9384e
+; v1 : single-length
+l93986:
+.line 219
+	iget-object	v1,v13,com/fsharemobile/adapter/ExplorerArrayAdapter$ViewHolder.text2 Landroid/widget/TextView;
+; v1 : Landroid/widget/TextView; , v13 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$ViewHolder;
+	const/4	v2,0
+; v2 : single-length
+	invoke-virtual	{v1,v2},android/widget/TextView/setVisibility	; setVisibility(I)V
+; v1 : Landroid/widget/TextView; , v2 : single-length
+.line 220
+	iget-object	v1,v13,com/fsharemobile/adapter/ExplorerArrayAdapter$ViewHolder.text3 Landroid/widget/TextView;
+; v1 : Landroid/widget/TextView; , v13 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$ViewHolder;
+	const/4	v2,0
+; v2 : single-length
+	invoke-virtual	{v1,v2},android/widget/TextView/setVisibility	; setVisibility(I)V
+; v1 : Landroid/widget/TextView; , v2 : single-length
+.line 221
+	const-string	v1,"FILE_INFO_ABC"
+; v1 : Ljava/lang/String;
+	new-instance	v2,java/lang/StringBuilder
+; v2 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v9},com/fsharemobile/model/File/getmName	; getmName()Ljava/lang/String;
+; v9 : Lcom/fsharemobile/model/File;
+	move-result-object	v4
+; v4 : Ljava/lang/String;
+	invoke-static	{v4},java/lang/String/valueOf	; valueOf(Ljava/lang/Object;)Ljava/lang/String;
+; v4 : Ljava/lang/String;
+	move-result-object	v4
+; v4 : Ljava/lang/String;
+	invoke-direct	{v2,v4},java/lang/StringBuilder/<init>	; <init>(Ljava/lang/String;)V
+; v2 : Ljava/lang/StringBuilder; , v4 : Ljava/lang/String;
+	const-string	v4,"----"
+; v4 : Ljava/lang/String;
+	invoke-virtual	{v2,v4},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v4 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v9},com/fsharemobile/model/File/getmXS	; getmXS()Ljava/lang/String;
+; v9 : Lcom/fsharemobile/model/File;
+	move-result-object	v4
+; v4 : Ljava/lang/String;
+	invoke-virtual	{v2,v4},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v4 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v2},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v2 : Ljava/lang/StringBuilder;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-static	{v1,v2},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v1 : Ljava/lang/String; , v2 : Ljava/lang/String;
+.line 222
+	invoke-virtual	{v9},com/fsharemobile/model/File/getmXS	; getmXS()Ljava/lang/String;
+; v9 : Lcom/fsharemobile/model/File;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	if-eqz	v1,l93a98
+; v1 : Ljava/lang/String;
+.line 223
+	iget-object	v1,v15,com/fsharemobile/adapter/ExplorerArrayAdapter.context Landroid/content/Context;
+; v1 : Landroid/content/Context; , v15 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	invoke-static	{v1},com/squareup/picasso/Picasso/with	; with(Landroid/content/Context;)Lcom/squareup/picasso/Picasso;
+; v1 : Landroid/content/Context;
+	move-result-object	v1
+; v1 : Lcom/squareup/picasso/Picasso;
+	invoke-virtual	{v9},com/fsharemobile/model/File/getmXS	; getmXS()Ljava/lang/String;
+; v9 : Lcom/fsharemobile/model/File;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},com/squareup/picasso/Picasso/load	; load(Ljava/lang/String;)Lcom/squareup/picasso/RequestCreator;
+; v1 : Lcom/squareup/picasso/Picasso; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Lcom/squareup/picasso/RequestCreator;
+.line 224
+	const	v2,2130837612	; 0x7f02006c
+; v2 : single-length
+	invoke-virtual	{v1,v2},com/squareup/picasso/RequestCreator/placeholder	; placeholder(I)Lcom/squareup/picasso/RequestCreator;
+; v1 : Lcom/squareup/picasso/RequestCreator; , v2 : single-length
+	move-result-object	v1
+; v1 : Lcom/squareup/picasso/RequestCreator;
+.line 225
+	iget-object	v2,v13,com/fsharemobile/adapter/ExplorerArrayAdapter$ViewHolder.image Landroid/widget/ImageView;
+; v2 : Landroid/widget/ImageView; , v13 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$ViewHolder;
+	invoke-virtual	{v1,v2},com/squareup/picasso/RequestCreator/into	; into(Landroid/widget/ImageView;)V
+; v1 : Lcom/squareup/picasso/RequestCreator; , v2 : Landroid/widget/ImageView;
+l93a26:
+.line 230
+	iget-object	v1,v13,com/fsharemobile/adapter/ExplorerArrayAdapter$ViewHolder.text2 Landroid/widget/TextView;
+; v1 : Landroid/widget/TextView; , v13 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$ViewHolder;
+	new-instance	v2,java/lang/StringBuilder
+; v2 : Ljava/lang/StringBuilder;
+	invoke-direct	{v15,v7},com/fsharemobile/adapter/ExplorerArrayAdapter/getDate	; getDate(Ljava/lang/String;)Ljava/lang/String;
+; v15 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v7 : Ljava/lang/String;
+	move-result-object	v4
+; v4 : Ljava/lang/String;
+	invoke-static	{v4},java/lang/String/valueOf	; valueOf(Ljava/lang/Object;)Ljava/lang/String;
+; v4 : Ljava/lang/String;
+	move-result-object	v4
+; v4 : Ljava/lang/String;
+	invoke-direct	{v2,v4},java/lang/StringBuilder/<init>	; <init>(Ljava/lang/String;)V
+; v2 : Ljava/lang/StringBuilder; , v4 : Ljava/lang/String;
+	invoke-virtual	{v2},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v2 : Ljava/lang/StringBuilder;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},android/widget/TextView/setText	; setText(Ljava/lang/CharSequence;)V
+; v1 : Landroid/widget/TextView; , v2 : Ljava/lang/String;
+.line 231
+	iget-object	v1,v13,com/fsharemobile/adapter/ExplorerArrayAdapter$ViewHolder.text3 Landroid/widget/TextView;
+; v1 : Landroid/widget/TextView; , v13 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$ViewHolder;
+	new-instance	v2,java/lang/StringBuilder
+; v2 : Ljava/lang/StringBuilder;
+	const-string	v4,"   -   "
+; v4 : Ljava/lang/String;
+	invoke-direct	{v2,v4},java/lang/StringBuilder/<init>	; <init>(Ljava/lang/String;)V
+; v2 : Ljava/lang/StringBuilder; , v4 : Ljava/lang/String;
+	invoke-direct	{v15,v12},com/fsharemobile/adapter/ExplorerArrayAdapter/getMB	; getMB(Ljava/lang/String;)Ljava/lang/Double;
+; v15 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v12 : Ljava/lang/String;
+	move-result-object	v4
+; v4 : Ljava/lang/Double;
+	invoke-virtual	{v2,v4},java/lang/StringBuilder/append	; append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v4 : Ljava/lang/Double;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	const-string	v4,"MB"
+; v4 : Ljava/lang/String;
+	invoke-virtual	{v2,v4},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v4 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v2},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v2 : Ljava/lang/StringBuilder;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},android/widget/TextView/setText	; setText(Ljava/lang/CharSequence;)V
+; v1 : Landroid/widget/TextView; , v2 : Ljava/lang/String;
+	goto/16	l9384e
+l93a92:
+.line 234
+	move-exception	v1
+; v1 : java/lang/Exception
+	goto/16	l9384e
+l93a98:
+.line 227
+	iget-object	v1,v13,com/fsharemobile/adapter/ExplorerArrayAdapter$ViewHolder.image Landroid/widget/ImageView;
+; v1 : Landroid/widget/ImageView; , v13 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$ViewHolder;
+.line 228
+	invoke-virtual	{v9},com/fsharemobile/model/File/getmName	; getmName()Ljava/lang/String;
+; v9 : Lcom/fsharemobile/model/File;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+.line 227
+	invoke-virtual	{v15,v2},com/fsharemobile/adapter/ExplorerArrayAdapter/getExt	; getExt(Ljava/lang/String;)Ljava/lang/String;
+; v15 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v2 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+.line 228
+	invoke-virtual	{v2},java/lang/String/toLowerCase	; toLowerCase()Ljava/lang/String;
+; v2 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+.line 227
+	invoke-virtual	{v15,v2},com/fsharemobile/adapter/ExplorerArrayAdapter/getIcon	; getIcon(Ljava/lang/String;)I
+; v15 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v2 : Ljava/lang/String;
+	move-result	v2
+; v2 : single-length
+	invoke-virtual	{v1,v2},android/widget/ImageView/setImageResource	; setImageResource(I)V
+; v1 : Landroid/widget/ImageView; , v2 : single-length
+l93ac2:
+	goto	l93a26
+l93ac4:
+.line 335
+	iget-object	v1,v13,com/fsharemobile/adapter/ExplorerArrayAdapter$ViewHolder.button Landroid/widget/ImageView;
+; v1 : Landroid/widget/ImageView; , v13 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$ViewHolder;
+	const/16	v2,8
+; v2 : single-length
+	invoke-virtual	{v1,v2},android/widget/ImageView/setVisibility	; setVisibility(I)V
+; v1 : Landroid/widget/ImageView; , v2 : single-length
+	goto/16	l938b8
+.end method
+
+.method public move(Ljava/util/List;Ljava/lang/String;)V
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "(" , "Ljava/util/List" , "<" , "Ljava/lang/String;" , ">;" , "Ljava/lang/String;" , ")V" }
+.end annotation
+.limit registers 9
+; this: v6 (Lcom/fsharemobile/adapter/ExplorerArrayAdapter;)
+; parameter[0] : v7 (Ljava/util/List;)
+; parameter[1] : v8 (Ljava/lang/String;)
+.catch java/lang/Exception from l93b4c to l93b60 using l93b62
+.line 482
+	invoke-static	{},com/fsharemobile/model/Share/getInstance	; getInstance()Lcom/fsharemobile/model/Share;
+; 
+	nop	
+	move-result-object	v1
+; v1 : Lcom/fsharemobile/model/Share;
+.line 483
+	invoke-virtual	{v1},com/fsharemobile/model/Share/getFclient	; getFclient()Lcom/fsharemobile/client/FClient;
+; v1 : Lcom/fsharemobile/model/Share;
+	move-result-object	v2
+; v2 : Lcom/fsharemobile/client/FClient;
+	iput-object	v2,v6,com/fsharemobile/adapter/ExplorerArrayAdapter.fclient Lcom/fsharemobile/client/FClient;
+; v2 : Lcom/fsharemobile/client/FClient; , v6 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+.line 484
+	iget-object	v2,v6,com/fsharemobile/adapter/ExplorerArrayAdapter.fclient Lcom/fsharemobile/client/FClient;
+; v2 : Lcom/fsharemobile/client/FClient; , v6 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	invoke-virtual	{v2},com/fsharemobile/client/FClient/getFileProxy	; getFileProxy()Lcom/fsharemobile/client/FileProxy;
+; v2 : Lcom/fsharemobile/client/FClient;
+	move-result-object	v2
+; v2 : Lcom/fsharemobile/client/FileProxy;
+	iput-object	v2,v6,com/fsharemobile/adapter/ExplorerArrayAdapter.fileProxy Lcom/fsharemobile/client/FileProxy;
+; v2 : Lcom/fsharemobile/client/FileProxy; , v6 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+.line 486
+	iget-object	v2,v6,com/fsharemobile/adapter/ExplorerArrayAdapter.context Landroid/content/Context;
+; v2 : Landroid/content/Context; , v6 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	const-string	v3,""
+; v3 : Ljava/lang/String;
+	iget-object	v4,v6,com/fsharemobile/adapter/ExplorerArrayAdapter.context Landroid/content/Context;
+; v4 : Landroid/content/Context; , v6 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	invoke-virtual	{v4},android/content/Context/getResources	; getResources()Landroid/content/res/Resources;
+; v4 : Landroid/content/Context;
+	move-result-object	v4
+; v4 : Landroid/content/res/Resources;
+	const	v5,2131230902	; 0x7f0800b6
+; v5 : single-length
+	invoke-virtual	{v4,v5},android/content/res/Resources/getString	; getString(I)Ljava/lang/String;
+; v4 : Landroid/content/res/Resources; , v5 : single-length
+	move-result-object	v4
+; v4 : Ljava/lang/String;
+	const/4	v5,1
+; v5 : single-length
+	invoke-static	{v2,v3,v4,v5},android/app/ProgressDialog/show	; show(Landroid/content/Context;Ljava/lang/CharSequence;Ljava/lang/CharSequence;Z)Landroid/app/ProgressDialog;
+; v2 : Landroid/content/Context; , v3 : Ljava/lang/String; , v4 : Ljava/lang/String; , v5 : single-length
+	move-result-object	v2
+; v2 : Landroid/app/ProgressDialog;
+	iput-object	v2,v6,com/fsharemobile/adapter/ExplorerArrayAdapter.progressDiaglog Landroid/app/ProgressDialog;
+; v2 : Landroid/app/ProgressDialog; , v6 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+l93b4c:
+.line 489
+	iget-object	v2,v6,com/fsharemobile/adapter/ExplorerArrayAdapter.fileProxy Lcom/fsharemobile/client/FileProxy;
+; v2 : Lcom/fsharemobile/client/FileProxy; , v6 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	new-instance	v3,com/fsharemobile/adapter/ExplorerArrayAdapter$8
+; v3 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$8;
+	invoke-direct	{v3,v6},com/fsharemobile/adapter/ExplorerArrayAdapter$8/<init>	; <init>(Lcom/fsharemobile/adapter/ExplorerArrayAdapter;)V
+; v3 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$8; , v6 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	invoke-virtual	{v2,v7,v8,v3},com/fsharemobile/client/FileProxy/move	; move(Ljava/util/List;Ljava/lang/String;Lcom/fsharemobile/client/FileProxy$OnMoveCompleted;)V
+; v2 : Lcom/fsharemobile/client/FileProxy; , v7 : Ljava/util/List; , v8 : Ljava/lang/String; , v3 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$8;
+l93b60:
+.line 530
+	return-void	
+l93b62:
+.line 526
+	move-exception	v0
+; v0 : java/lang/Exception
+.line 527
+	sget-object	v2,java/lang/System.out Ljava/io/PrintStream;
+; v2 : Ljava/io/PrintStream;
+	invoke-virtual	{v0},java/lang/Exception/toString	; toString()Ljava/lang/String;
+; v0 : java/lang/Exception
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/io/PrintStream/println	; println(Ljava/lang/String;)V
+; v2 : Ljava/io/PrintStream; , v3 : Ljava/lang/String;
+	goto	l93b60
+.end method
+
+.method public rename(Ljava/lang/String;Ljava/lang/String;)V
+.limit registers 7
+; this: v4 (Lcom/fsharemobile/adapter/ExplorerArrayAdapter;)
+; parameter[0] : v5 (Ljava/lang/String;)
+; parameter[1] : v6 (Ljava/lang/String;)
+.catch java/lang/Exception from l93bbc to l93bd0 using l93bd2
+.line 445
+	invoke-static	{},com/fsharemobile/model/Share/getInstance	; getInstance()Lcom/fsharemobile/model/Share;
+; 
+	nop	
+	move-result-object	v1
+; v1 : Lcom/fsharemobile/model/Share;
+.line 446
+	invoke-virtual	{v1},com/fsharemobile/model/Share/getFclient	; getFclient()Lcom/fsharemobile/client/FClient;
+; v1 : Lcom/fsharemobile/model/Share;
+	move-result-object	v2
+; v2 : Lcom/fsharemobile/client/FClient;
+	iput-object	v2,v4,com/fsharemobile/adapter/ExplorerArrayAdapter.fclient Lcom/fsharemobile/client/FClient;
+; v2 : Lcom/fsharemobile/client/FClient; , v4 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+.line 447
+	iget-object	v2,v4,com/fsharemobile/adapter/ExplorerArrayAdapter.fclient Lcom/fsharemobile/client/FClient;
+; v2 : Lcom/fsharemobile/client/FClient; , v4 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	invoke-virtual	{v2},com/fsharemobile/client/FClient/getFileProxy	; getFileProxy()Lcom/fsharemobile/client/FileProxy;
+; v2 : Lcom/fsharemobile/client/FClient;
+	move-result-object	v2
+; v2 : Lcom/fsharemobile/client/FileProxy;
+	iput-object	v2,v4,com/fsharemobile/adapter/ExplorerArrayAdapter.fileProxy Lcom/fsharemobile/client/FileProxy;
+; v2 : Lcom/fsharemobile/client/FileProxy; , v4 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+l93bbc:
+.line 449
+	iget-object	v2,v4,com/fsharemobile/adapter/ExplorerArrayAdapter.fileProxy Lcom/fsharemobile/client/FileProxy;
+; v2 : Lcom/fsharemobile/client/FileProxy; , v4 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	new-instance	v3,com/fsharemobile/adapter/ExplorerArrayAdapter$7
+; v3 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$7;
+	invoke-direct	{v3,v4,v5},com/fsharemobile/adapter/ExplorerArrayAdapter$7/<init>	; <init>(Lcom/fsharemobile/adapter/ExplorerArrayAdapter;Ljava/lang/String;)V
+; v3 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$7; , v4 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v5 : Ljava/lang/String;
+	invoke-virtual	{v2,v5,v6,v3},com/fsharemobile/client/FileProxy/rename	; rename(Ljava/lang/String;Ljava/lang/String;Lcom/fsharemobile/client/FileProxy$OnRenameCompleted;)V
+; v2 : Lcom/fsharemobile/client/FileProxy; , v5 : Ljava/lang/String; , v6 : Ljava/lang/String; , v3 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$7;
+l93bd0:
+.line 479
+	return-void	
+l93bd2:
+.line 476
+	move-exception	v0
+; v0 : java/lang/Exception
+.line 477
+	sget-object	v2,java/lang/System.out Ljava/io/PrintStream;
+; v2 : Ljava/io/PrintStream;
+	invoke-virtual	{v0},java/lang/Exception/toString	; toString()Ljava/lang/String;
+; v0 : java/lang/Exception
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/io/PrintStream/println	; println(Ljava/lang/String;)V
+; v2 : Ljava/io/PrintStream; , v3 : Ljava/lang/String;
+	goto	l93bd0
+.end method
+
+.method public setContextMenuEnable(Z)V
+.limit registers 3
+; this: v1 (Lcom/fsharemobile/adapter/ExplorerArrayAdapter;)
+; parameter[0] : v2 (Z)
+.line 81
+	invoke-static	{v2},java/lang/Boolean/valueOf	; valueOf(Z)Ljava/lang/Boolean;
+; v2 : single-length
+	move-result-object	v0
+; v0 : Ljava/lang/Boolean;
+	iput-object	v0,v1,com/fsharemobile/adapter/ExplorerArrayAdapter.isContextMenuEnable Ljava/lang/Boolean;
+; v0 : Ljava/lang/Boolean; , v1 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+.line 82
+	return-void	
+.end method
+
+.method public setOperationListener(Lcom/fsharemobile/adapter/ExplorerArrayAdapter$OperationListener;)V
+.limit registers 2
+; this: v0 (Lcom/fsharemobile/adapter/ExplorerArrayAdapter;)
+; parameter[0] : v1 (Lcom/fsharemobile/adapter/ExplorerArrayAdapter$OperationListener;)
+.line 602
+	iput-object	v1,v0,com/fsharemobile/adapter/ExplorerArrayAdapter.listener Lcom/fsharemobile/adapter/ExplorerArrayAdapter$OperationListener;
+; v1 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$OperationListener; , v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+.line 603
+	return-void	
+.end method
+
+.method public shareViaEmails(Ljava/util/List;Ljava/util/List;Ljava/lang/String;)V
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "(" , "Ljava/util/List" , "<" , "Ljava/lang/String;" , ">;" , "Ljava/util/List" , "<" , "Ljava/lang/String;" , ">;" , "Ljava/lang/String;" , ")V" }
+.end annotation
+.limit registers 8
+; this: v4 (Lcom/fsharemobile/adapter/ExplorerArrayAdapter;)
+; parameter[0] : v5 (Ljava/util/List;)
+; parameter[1] : v6 (Ljava/util/List;)
+; parameter[2] : v7 (Ljava/lang/String;)
+.catch java/lang/Exception from l93c64 to l93c78 using l93c7a
+.line 363
+	invoke-static	{},com/fsharemobile/model/Share/getInstance	; getInstance()Lcom/fsharemobile/model/Share;
+; 
+	nop	
+	move-result-object	v1
+; v1 : Lcom/fsharemobile/model/Share;
+.line 364
+	invoke-virtual	{v1},com/fsharemobile/model/Share/getFclient	; getFclient()Lcom/fsharemobile/client/FClient;
+; v1 : Lcom/fsharemobile/model/Share;
+	move-result-object	v2
+; v2 : Lcom/fsharemobile/client/FClient;
+	iput-object	v2,v4,com/fsharemobile/adapter/ExplorerArrayAdapter.fclient Lcom/fsharemobile/client/FClient;
+; v2 : Lcom/fsharemobile/client/FClient; , v4 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+.line 365
+	iget-object	v2,v4,com/fsharemobile/adapter/ExplorerArrayAdapter.fclient Lcom/fsharemobile/client/FClient;
+; v2 : Lcom/fsharemobile/client/FClient; , v4 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	invoke-virtual	{v2},com/fsharemobile/client/FClient/getFileProxy	; getFileProxy()Lcom/fsharemobile/client/FileProxy;
+; v2 : Lcom/fsharemobile/client/FClient;
+	move-result-object	v2
+; v2 : Lcom/fsharemobile/client/FileProxy;
+	iput-object	v2,v4,com/fsharemobile/adapter/ExplorerArrayAdapter.fileProxy Lcom/fsharemobile/client/FileProxy;
+; v2 : Lcom/fsharemobile/client/FileProxy; , v4 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+l93c64:
+.line 367
+	iget-object	v2,v4,com/fsharemobile/adapter/ExplorerArrayAdapter.fileProxy Lcom/fsharemobile/client/FileProxy;
+; v2 : Lcom/fsharemobile/client/FileProxy; , v4 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+.line 368
+	new-instance	v3,com/fsharemobile/adapter/ExplorerArrayAdapter$5
+; v3 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$5;
+	invoke-direct	{v3,v4},com/fsharemobile/adapter/ExplorerArrayAdapter$5/<init>	; <init>(Lcom/fsharemobile/adapter/ExplorerArrayAdapter;)V
+; v3 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$5; , v4 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+.line 367
+	invoke-virtual	{v2,v5,v6,v7,v3},com/fsharemobile/client/FileProxy/shareViaEmail	; shareViaEmail(Ljava/util/List;Ljava/util/List;Ljava/lang/String;Lcom/fsharemobile/client/FileProxy$OnShareCompleted;)V
+; v2 : Lcom/fsharemobile/client/FileProxy; , v5 : Ljava/util/List; , v6 : Ljava/util/List; , v7 : Ljava/lang/String; , v3 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$5;
+l93c78:
+.line 391
+	return-void	
+l93c7a:
+.line 387
+	move-exception	v0
+; v0 : java/lang/Exception
+.line 388
+	sget-object	v2,java/lang/System.out Ljava/io/PrintStream;
+; v2 : Ljava/io/PrintStream;
+	invoke-virtual	{v0},java/lang/Exception/toString	; toString()Ljava/lang/String;
+; v0 : java/lang/Exception
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/io/PrintStream/println	; println(Ljava/lang/String;)V
+; v2 : Ljava/io/PrintStream; , v3 : Ljava/lang/String;
+	goto	l93c78
+.end method
+
+

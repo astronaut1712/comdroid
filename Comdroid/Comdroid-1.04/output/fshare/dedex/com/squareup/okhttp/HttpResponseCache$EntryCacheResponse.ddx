@@ -1,0 +1,78 @@
+.class com/squareup/okhttp/HttpResponseCache$EntryCacheResponse
+.super java/net/CacheResponse
+.source HttpResponseCache.java
+
+.inner class EntryCacheResponse inner com/squareup/okhttp/HttpResponseCache$EntryCacheResponse outer com/squareup/okhttp/HttpResponseCache
+.field private final entry Lcom/squareup/okhttp/HttpResponseCache$Entry;
+.field private final in Ljava/io/InputStream;
+.field private final snapshot Lcom/squareup/okhttp/internal/DiskLruCache$Snapshot;
+
+.method public <init>(Lcom/squareup/okhttp/HttpResponseCache$Entry;Lcom/squareup/okhttp/internal/DiskLruCache$Snapshot;)V
+.limit registers 4
+; this: v1 (Lcom/squareup/okhttp/HttpResponseCache$EntryCacheResponse;)
+; parameter[0] : v2 (Lcom/squareup/okhttp/HttpResponseCache$Entry;)
+; parameter[1] : v3 (Lcom/squareup/okhttp/internal/DiskLruCache$Snapshot;)
+.line 655
+	invoke-direct	{v1},java/net/CacheResponse/<init>	; <init>()V
+; v1 : Lcom/squareup/okhttp/HttpResponseCache$EntryCacheResponse;
+.line 656
+	iput-object	v2,v1,com/squareup/okhttp/HttpResponseCache$EntryCacheResponse.entry Lcom/squareup/okhttp/HttpResponseCache$Entry;
+; v2 : Lcom/squareup/okhttp/HttpResponseCache$Entry; , v1 : Lcom/squareup/okhttp/HttpResponseCache$EntryCacheResponse;
+.line 657
+	iput-object	v3,v1,com/squareup/okhttp/HttpResponseCache$EntryCacheResponse.snapshot Lcom/squareup/okhttp/internal/DiskLruCache$Snapshot;
+; v3 : Lcom/squareup/okhttp/internal/DiskLruCache$Snapshot; , v1 : Lcom/squareup/okhttp/HttpResponseCache$EntryCacheResponse;
+.line 658
+	invoke-static	{v3},com/squareup/okhttp/HttpResponseCache/access$1000	; access$1000(Lcom/squareup/okhttp/internal/DiskLruCache$Snapshot;)Ljava/io/InputStream;
+; v3 : Lcom/squareup/okhttp/internal/DiskLruCache$Snapshot;
+	move-result-object	v0
+; v0 : Ljava/io/InputStream;
+	iput-object	v0,v1,com/squareup/okhttp/HttpResponseCache$EntryCacheResponse.in Ljava/io/InputStream;
+; v0 : Ljava/io/InputStream; , v1 : Lcom/squareup/okhttp/HttpResponseCache$EntryCacheResponse;
+.line 659
+	return-void	
+.end method
+
+.method static access$500(Lcom/squareup/okhttp/HttpResponseCache$EntryCacheResponse;)Lcom/squareup/okhttp/internal/DiskLruCache$Snapshot;
+.limit registers 2
+; parameter[0] : v1 (Lcom/squareup/okhttp/HttpResponseCache$EntryCacheResponse;)
+.line 650
+	iget-object	v0,v1,com/squareup/okhttp/HttpResponseCache$EntryCacheResponse.snapshot Lcom/squareup/okhttp/internal/DiskLruCache$Snapshot;
+; v0 : Lcom/squareup/okhttp/internal/DiskLruCache$Snapshot; , v1 : Lcom/squareup/okhttp/HttpResponseCache$EntryCacheResponse;
+	return-object	v0
+; v0 : Lcom/squareup/okhttp/internal/DiskLruCache$Snapshot;
+.end method
+
+.method public getBody()Ljava/io/InputStream;
+.limit registers 2
+; this: v1 (Lcom/squareup/okhttp/HttpResponseCache$EntryCacheResponse;)
+.line 666
+	iget-object	v0,v1,com/squareup/okhttp/HttpResponseCache$EntryCacheResponse.in Ljava/io/InputStream;
+; v0 : Ljava/io/InputStream; , v1 : Lcom/squareup/okhttp/HttpResponseCache$EntryCacheResponse;
+	return-object	v0
+; v0 : Ljava/io/InputStream;
+.end method
+
+.method public getHeaders()Ljava/util/Map;
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "()" , "Ljava/util/Map" , "<" , "Ljava/lang/String;" , "Ljava/util/List" , "<" , "Ljava/lang/String;" , ">;>;" }
+.end annotation
+.limit registers 3
+; this: v2 (Lcom/squareup/okhttp/HttpResponseCache$EntryCacheResponse;)
+.line 662
+	iget-object	v0,v2,com/squareup/okhttp/HttpResponseCache$EntryCacheResponse.entry Lcom/squareup/okhttp/HttpResponseCache$Entry;
+; v0 : Lcom/squareup/okhttp/HttpResponseCache$Entry; , v2 : Lcom/squareup/okhttp/HttpResponseCache$EntryCacheResponse;
+	invoke-static	{v0},com/squareup/okhttp/HttpResponseCache$Entry/access$1100	; access$1100(Lcom/squareup/okhttp/HttpResponseCache$Entry;)Lcom/squareup/okhttp/internal/http/RawHeaders;
+; v0 : Lcom/squareup/okhttp/HttpResponseCache$Entry;
+	move-result-object	v0
+; v0 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+	const/4	v1,1
+; v1 : single-length
+	invoke-virtual	{v0,v1},com/squareup/okhttp/internal/http/RawHeaders/toMultimap	; toMultimap(Z)Ljava/util/Map;
+; v0 : Lcom/squareup/okhttp/internal/http/RawHeaders; , v1 : single-length
+	move-result-object	v0
+; v0 : Ljava/util/Map;
+	return-object	v0
+; v0 : Ljava/util/Map;
+.end method
+
+

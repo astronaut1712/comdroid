@@ -1,0 +1,169 @@
+.class com/google/tagmanager/DataLayerMacro
+.super com/google/tagmanager/FunctionCallImplementation
+.source DataLayerMacro.java
+
+.field private static final DEFAULT_VALUE Ljava/lang/String;
+.field private static final ID Ljava/lang/String;
+.field private static final NAME Ljava/lang/String;
+.field private final mDataLayer Lcom/google/tagmanager/DataLayer;
+
+.method static <clinit>()V
+.limit registers 1
+.line 15
+	sget-object	v0,com/google/analytics/containertag/common/FunctionType.CUSTOM_VAR Lcom/google/analytics/containertag/common/FunctionType;
+; v0 : Lcom/google/analytics/containertag/common/FunctionType;
+	invoke-virtual	{v0},com/google/analytics/containertag/common/FunctionType/toString	; toString()Ljava/lang/String;
+; v0 : Lcom/google/analytics/containertag/common/FunctionType;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	sput-object	v0,com/google/tagmanager/DataLayerMacro.ID Ljava/lang/String;
+; v0 : Ljava/lang/String;
+.line 16
+	sget-object	v0,com/google/analytics/containertag/common/Key.NAME Lcom/google/analytics/containertag/common/Key;
+; v0 : Lcom/google/analytics/containertag/common/Key;
+	invoke-virtual	{v0},com/google/analytics/containertag/common/Key/toString	; toString()Ljava/lang/String;
+; v0 : Lcom/google/analytics/containertag/common/Key;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	sput-object	v0,com/google/tagmanager/DataLayerMacro.NAME Ljava/lang/String;
+; v0 : Ljava/lang/String;
+.line 17
+	sget-object	v0,com/google/analytics/containertag/common/Key.DEFAULT_VALUE Lcom/google/analytics/containertag/common/Key;
+; v0 : Lcom/google/analytics/containertag/common/Key;
+	invoke-virtual	{v0},com/google/analytics/containertag/common/Key/toString	; toString()Ljava/lang/String;
+; v0 : Lcom/google/analytics/containertag/common/Key;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	sput-object	v0,com/google/tagmanager/DataLayerMacro.DEFAULT_VALUE Ljava/lang/String;
+; v0 : Ljava/lang/String;
+	return-void	
+.end method
+
+.method public <init>(Lcom/google/tagmanager/DataLayer;)V
+.limit registers 6
+; this: v4 (Lcom/google/tagmanager/DataLayerMacro;)
+; parameter[0] : v5 (Lcom/google/tagmanager/DataLayer;)
+.line 26
+	sget-object	v0,com/google/tagmanager/DataLayerMacro.ID Ljava/lang/String;
+; v0 : Ljava/lang/String;
+	const/4	v1,1
+; v1 : single-length
+	new-array	v1,v1,[Ljava/lang/String;
+; v1 : [Ljava/lang/String; , v1 : [Ljava/lang/String;
+	const/4	v2,0
+; v2 : single-length
+	sget-object	v3,com/google/tagmanager/DataLayerMacro.NAME Ljava/lang/String;
+; v3 : Ljava/lang/String;
+	aput-object	v3,v1,v2
+; v3 : Ljava/lang/String; , v1 : [Ljava/lang/String; , v2 : single-length
+	invoke-direct	{v4,v0,v1},com/google/tagmanager/FunctionCallImplementation/<init>	; <init>(Ljava/lang/String;[Ljava/lang/String;)V
+; v4 : Lcom/google/tagmanager/DataLayerMacro; , v0 : Ljava/lang/String; , v1 : [Ljava/lang/String;
+.line 27
+	iput-object	v5,v4,com/google/tagmanager/DataLayerMacro.mDataLayer Lcom/google/tagmanager/DataLayer;
+; v5 : Lcom/google/tagmanager/DataLayer; , v4 : Lcom/google/tagmanager/DataLayerMacro;
+.line 28
+	return-void	
+.end method
+
+.method public static getDefaultValueKey()Ljava/lang/String;
+.limit registers 1
+.line 35
+	sget-object	v0,com/google/tagmanager/DataLayerMacro.DEFAULT_VALUE Ljava/lang/String;
+; v0 : Ljava/lang/String;
+	return-object	v0
+; v0 : Ljava/lang/String;
+.end method
+
+.method public static getFunctionId()Ljava/lang/String;
+.limit registers 1
+.line 22
+	sget-object	v0,com/google/tagmanager/DataLayerMacro.ID Ljava/lang/String;
+; v0 : Ljava/lang/String;
+	return-object	v0
+; v0 : Ljava/lang/String;
+.end method
+
+.method public static getNameKey()Ljava/lang/String;
+.limit registers 1
+.line 31
+	sget-object	v0,com/google/tagmanager/DataLayerMacro.NAME Ljava/lang/String;
+; v0 : Ljava/lang/String;
+	return-object	v0
+; v0 : Ljava/lang/String;
+.end method
+
+.method public evaluate(Ljava/util/Map;)Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "(" , "Ljava/util/Map" , "<" , "Ljava/lang/String;" , "Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;" , ">;)" , "Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;" }
+.end annotation
+.limit registers 6
+; this: v4 (Lcom/google/tagmanager/DataLayerMacro;)
+; parameter[0] : v5 (Ljava/util/Map;)
+.var 1 is defaultValue Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; from le72dc to le72e0
+.var 1 is defaultValue Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; from le72e2 to le72ec
+.line 43
+	iget-object	v3,v4,com/google/tagmanager/DataLayerMacro.mDataLayer Lcom/google/tagmanager/DataLayer;
+; v3 : Lcom/google/tagmanager/DataLayer; , v4 : Lcom/google/tagmanager/DataLayerMacro;
+	sget-object	v2,com/google/tagmanager/DataLayerMacro.NAME Ljava/lang/String;
+; v2 : Ljava/lang/String;
+	invoke-interface	{v5,v2},java/util/Map/get	; get(Ljava/lang/Object;)Ljava/lang/Object;
+; v5 : Ljava/util/Map; , v2 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/Object;
+	check-cast	v2,com/google/analytics/midtier/proto/containertag/TypeSystem$Value
+; v2 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	invoke-static	{v2},com/google/tagmanager/Types/valueToString	; valueToString(Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;)Ljava/lang/String;
+; v2 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v3,v2},com/google/tagmanager/DataLayer/get	; get(Ljava/lang/String;)Ljava/lang/Object;
+; v3 : Lcom/google/tagmanager/DataLayer; , v2 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+.line 44
+	if-nez	v0,le72ec
+; v0 : Ljava/lang/Object;
+.line 45
+	sget-object	v2,com/google/tagmanager/DataLayerMacro.DEFAULT_VALUE Ljava/lang/String;
+; v2 : Ljava/lang/String;
+	invoke-interface	{v5,v2},java/util/Map/get	; get(Ljava/lang/Object;)Ljava/lang/Object;
+; v5 : Ljava/util/Map; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/Object;
+	check-cast	v1,com/google/analytics/midtier/proto/containertag/TypeSystem$Value
+; v1 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+.line 46
+	if-eqz	v1,le72e2
+; v1 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+le72e0:
+.line 52
+	return-object	v1
+; v1 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+le72e2:
+.line 49
+	invoke-static	{},com/google/tagmanager/Types/getDefaultValue	; getDefaultValue()Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+; 
+	nop	
+	move-result-object	v1
+; v1 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	goto	le72e0
+le72ec:
+.line 52
+	invoke-static	{v0},com/google/tagmanager/Types/objectToValue	; objectToValue(Ljava/lang/Object;)Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+; v0 : Ljava/lang/Object;
+	move-result-object	v1
+; v1 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	goto	le72e0
+.end method
+
+.method public isCacheable()Z
+.limit registers 2
+; this: v1 (Lcom/google/tagmanager/DataLayerMacro;)
+.line 39
+	const/4	v0,0
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+

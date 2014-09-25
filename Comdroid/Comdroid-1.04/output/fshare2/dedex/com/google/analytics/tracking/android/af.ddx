@@ -1,0 +1,167 @@
+.class com/google/analytics/tracking/android/af
+.super java/lang/Object
+.source MyApplication
+
+.field private final a Ljava/util/Map;
+.field private final b J
+.field private final c Ljava/lang/String;
+.field private final d Ljava/util/List;
+
+.method public <init>(Ljava/util/Map;JLjava/lang/String;Ljava/util/List;)V
+.limit registers 6
+; this: v0 (Lcom/google/analytics/tracking/android/af;)
+; parameter[0] : v1 (Ljava/util/Map;)
+; parameter[1] : v2 (J)
+; parameter[2] : v4 (Ljava/lang/String;)
+; parameter[3] : v5 (Ljava/util/List;)
+.line 443
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Lcom/google/analytics/tracking/android/af;
+.line 444
+	iput-object	v1,v0,com/google/analytics/tracking/android/af.a Ljava/util/Map;
+; v1 : Ljava/util/Map; , v0 : Lcom/google/analytics/tracking/android/af;
+.line 445
+	iput-wide	v2,v0,com/google/analytics/tracking/android/af.b J
+; v2 : double-length , v0 : Lcom/google/analytics/tracking/android/af;
+.line 446
+	iput-object	v4,v0,com/google/analytics/tracking/android/af.c Ljava/lang/String;
+; v4 : Ljava/lang/String; , v0 : Lcom/google/analytics/tracking/android/af;
+.line 447
+	iput-object	v5,v0,com/google/analytics/tracking/android/af.d Ljava/util/List;
+; v5 : Ljava/util/List; , v0 : Lcom/google/analytics/tracking/android/af;
+.line 448
+	return-void	
+.end method
+
+.method public a()Ljava/util/Map;
+.limit registers 2
+; this: v1 (Lcom/google/analytics/tracking/android/af;)
+.line 451
+	iget-object	v0,v1,com/google/analytics/tracking/android/af.a Ljava/util/Map;
+; v0 : Ljava/util/Map; , v1 : Lcom/google/analytics/tracking/android/af;
+	return-object	v0
+; v0 : Ljava/util/Map;
+.end method
+
+.method public b()J
+.limit registers 3
+; this: v2 (Lcom/google/analytics/tracking/android/af;)
+.line 455
+	iget-wide	v0,v2,com/google/analytics/tracking/android/af.b J
+; v0 : double-length , v2 : Lcom/google/analytics/tracking/android/af;
+	return-wide	v0
+; v0 : double-length
+.end method
+
+.method public c()Ljava/lang/String;
+.limit registers 2
+; this: v1 (Lcom/google/analytics/tracking/android/af;)
+.line 459
+	iget-object	v0,v1,com/google/analytics/tracking/android/af.c Ljava/lang/String;
+; v0 : Ljava/lang/String; , v1 : Lcom/google/analytics/tracking/android/af;
+	return-object	v0
+; v0 : Ljava/lang/String;
+.end method
+
+.method public d()Ljava/util/List;
+.limit registers 2
+; this: v1 (Lcom/google/analytics/tracking/android/af;)
+.line 463
+	iget-object	v0,v1,com/google/analytics/tracking/android/af.d Ljava/util/List;
+; v0 : Ljava/util/List; , v1 : Lcom/google/analytics/tracking/android/af;
+	return-object	v0
+; v0 : Ljava/util/List;
+.end method
+
+.method public toString()Ljava/lang/String;
+.limit registers 5
+; this: v4 (Lcom/google/analytics/tracking/android/af;)
+.line 468
+	new-instance	v2,java/lang/StringBuilder
+; v2 : Ljava/lang/StringBuilder;
+	invoke-direct	{v2},java/lang/StringBuilder/<init>	; <init>()V
+; v2 : Ljava/lang/StringBuilder;
+.line 469
+	const-string	v0,"PATH: "
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v2,v0},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v0 : Ljava/lang/String;
+.line 470
+	iget-object	v0,v4,com/google/analytics/tracking/android/af.c Ljava/lang/String;
+; v0 : Ljava/lang/String; , v4 : Lcom/google/analytics/tracking/android/af;
+	invoke-virtual	{v2,v0},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v0 : Ljava/lang/String;
+.line 471
+	iget-object	v0,v4,com/google/analytics/tracking/android/af.a Ljava/util/Map;
+; v0 : Ljava/util/Map; , v4 : Lcom/google/analytics/tracking/android/af;
+	if-eqz	v0,l9900e
+; v0 : Ljava/util/Map;
+.line 472
+	const-string	v0,"  PARAMS: "
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v2,v0},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v0 : Ljava/lang/String;
+.line 473
+	iget-object	v0,v4,com/google/analytics/tracking/android/af.a Ljava/util/Map;
+; v0 : Ljava/util/Map; , v4 : Lcom/google/analytics/tracking/android/af;
+	invoke-interface	{v0},java/util/Map/entrySet	; entrySet()Ljava/util/Set;
+; v0 : Ljava/util/Map;
+	move-result-object	v0
+; v0 : Ljava/util/Set;
+	invoke-interface	{v0},java/util/Set/iterator	; iterator()Ljava/util/Iterator;
+; v0 : Ljava/util/Set;
+	move-result-object	v3
+; v3 : Ljava/util/Iterator;
+l98fbc:
+	invoke-interface	{v3},java/util/Iterator/hasNext	; hasNext()Z
+; v3 : Ljava/util/Iterator;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,l9900e
+; v0 : single-length
+	invoke-interface	{v3},java/util/Iterator/next	; next()Ljava/lang/Object;
+; v3 : Ljava/util/Iterator;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,java/util/Map$Entry
+; v0 : Ljava/util/Map$Entry;
+.line 474
+	invoke-interface	{v0},java/util/Map$Entry/getKey	; getKey()Ljava/lang/Object;
+; v0 : Ljava/util/Map$Entry;
+	move-result-object	v1
+; v1 : Ljava/lang/Object;
+	check-cast	v1,java/lang/String
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v2,v1},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v1 : Ljava/lang/String;
+.line 475
+	const-string	v1,"="
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v2,v1},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v1 : Ljava/lang/String;
+.line 476
+	invoke-interface	{v0},java/util/Map$Entry/getValue	; getValue()Ljava/lang/Object;
+; v0 : Ljava/util/Map$Entry;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,java/lang/String
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v2,v0},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v0 : Ljava/lang/String;
+.line 477
+	const-string	v0,",  "
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v2,v0},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v0 : Ljava/lang/String;
+	goto	l98fbc
+l9900e:
+.line 480
+	invoke-virtual	{v2},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v2 : Ljava/lang/StringBuilder;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	return-object	v0
+; v0 : Ljava/lang/String;
+.end method
+
+

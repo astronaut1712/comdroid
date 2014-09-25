@@ -1,0 +1,217 @@
+.class com/google/tagmanager/Base64Encoder
+.super java/lang/Object
+.source Base64Encoder.java
+
+.field public static final DEFAULT I = 0	; 0x0
+.field public static final NO_PADDING I = 1	; 0x1
+.field public static final URL_SAFE I = 2	; 0x2
+
+.method <init>()V
+.limit registers 1
+; this: v0 (Lcom/google/tagmanager/Base64Encoder;)
+.line 11
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Lcom/google/tagmanager/Base64Encoder;
+	return-void	
+.end method
+
+.method public static decode(Ljava/lang/String;I)[B
+.limit registers 8
+; parameter[0] : v6 (Ljava/lang/String;)
+; parameter[1] : v7 (I)
+.var 0 is newFlags I from la4356 to la4376
+.var 1 is paddingDesired Z from la4382 to la4398
+.var 2 is websafeDesired Z from la438a to la4398
+	const/4	v2,1
+; v2 : single-length
+	const/4	v3,0
+; v3 : single-length
+.line 43
+	invoke-static	{},com/google/tagmanager/Base64Encoder/getSdkVersion	; getSdkVersion()I
+; 
+	nop	
+	move-result	v4
+; v4 : single-length
+	const/16	v5,8
+; v5 : single-length
+	if-lt	v4,v5,la4378
+; v4 : single-length , v5 : single-length
+.line 44
+	const/4	v0,2
+; v0 : single-length
+.line 45
+	and-int/lit8	v3,v7,1
+; v3 : single-length , v7 : single-length
+	if-eqz	v3,la4362
+; v3 : single-length
+.line 46
+	or-int/lit8	v0,v0,1
+; v0 : single-length , v0 : single-length
+la4362:
+.line 48
+	and-int/lit8	v3,v7,2
+; v3 : single-length , v7 : single-length
+	if-eqz	v3,la436e
+; v3 : single-length
+.line 49
+	or-int/lit8	v0,v0,8
+; v0 : single-length , v0 : single-length
+la436e:
+.line 52
+	invoke-static	{v6,v0},android/util/Base64/decode	; decode(Ljava/lang/String;I)[B
+; v6 : Ljava/lang/String; , v0 : single-length
+	move-result-object	v3
+; v3 : [B
+la4376:
+.line 59
+	return-object	v3
+; v3 : [B
+la4378:
+.line 54
+	and-int/lit8	v4,v7,1
+; v4 : single-length , v7 : single-length
+	if-nez	v4,la4398
+; v4 : single-length
+	move	v1,v2
+; v1 : single-length , v2 : single-length
+la4382:
+.line 55
+	and-int/lit8	v4,v7,2
+; v4 : single-length , v7 : single-length
+	if-eqz	v4,la439c
+; v4 : single-length
+la438a:
+.line 56
+	if-eqz	v2,la43a0
+; v2 : single-length
+.line 57
+	invoke-static	{v6},com/google/tagmanager/Base64/decodeWebSafe	; decodeWebSafe(Ljava/lang/String;)[B
+; v6 : Ljava/lang/String;
+	move-result-object	v3
+; v3 : [B
+	goto	la4376
+la4398:
+	move	v1,v3
+; v1 : single-length , v3 : single-length
+.line 54
+	goto	la4382
+la439c:
+	move	v2,v3
+; v2 : single-length , v3 : single-length
+.line 55
+	goto	la438a
+la43a0:
+.line 59
+	invoke-static	{v6},com/google/tagmanager/Base64/decode	; decode(Ljava/lang/String;)[B
+; v6 : Ljava/lang/String;
+	move-result-object	v3
+; v3 : [B
+	goto	la4376
+.end method
+
+.method public static encodeToString([BI)Ljava/lang/String;
+.limit registers 8
+; parameter[0] : v6 ([B)
+; parameter[1] : v7 (I)
+.var 0 is newFlags I from la43d2 to la43f2
+.var 1 is paddingDesired Z from la43fe to la4414
+.var 2 is websafeDesired Z from la4406 to la4414
+	const/4	v2,1
+; v2 : single-length
+	const/4	v3,0
+; v3 : single-length
+.line 21
+	invoke-static	{},com/google/tagmanager/Base64Encoder/getSdkVersion	; getSdkVersion()I
+; 
+	nop	
+	move-result	v4
+; v4 : single-length
+	const/16	v5,8
+; v5 : single-length
+	if-lt	v4,v5,la43f4
+; v4 : single-length , v5 : single-length
+.line 22
+	const/4	v0,2
+; v0 : single-length
+.line 23
+	and-int/lit8	v3,v7,1
+; v3 : single-length , v7 : single-length
+	if-eqz	v3,la43de
+; v3 : single-length
+.line 24
+	or-int/lit8	v0,v0,1
+; v0 : single-length , v0 : single-length
+la43de:
+.line 26
+	and-int/lit8	v3,v7,2
+; v3 : single-length , v7 : single-length
+	if-eqz	v3,la43ea
+; v3 : single-length
+.line 27
+	or-int/lit8	v0,v0,8
+; v0 : single-length , v0 : single-length
+la43ea:
+.line 30
+	invoke-static	{v6,v0},android/util/Base64/encodeToString	; encodeToString([BI)Ljava/lang/String;
+; v6 : [B , v0 : single-length
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+la43f2:
+.line 37
+	return-object	v3
+; v3 : Ljava/lang/String;
+la43f4:
+.line 32
+	and-int/lit8	v4,v7,1
+; v4 : single-length , v7 : single-length
+	if-nez	v4,la4414
+; v4 : single-length
+	move	v1,v2
+; v1 : single-length , v2 : single-length
+la43fe:
+.line 33
+	and-int/lit8	v4,v7,2
+; v4 : single-length , v7 : single-length
+	if-eqz	v4,la4418
+; v4 : single-length
+la4406:
+.line 34
+	if-eqz	v2,la441c
+; v2 : single-length
+.line 35
+	invoke-static	{v6,v1},com/google/tagmanager/Base64/encodeWebSafe	; encodeWebSafe([BZ)Ljava/lang/String;
+; v6 : [B , v1 : single-length
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	goto	la43f2
+la4414:
+	move	v1,v3
+; v1 : single-length , v3 : single-length
+.line 32
+	goto	la43fe
+la4418:
+	move	v2,v3
+; v2 : single-length , v3 : single-length
+.line 33
+	goto	la4406
+la441c:
+.line 37
+	invoke-static	{v6,v1},com/google/tagmanager/Base64/encode	; encode([BZ)Ljava/lang/String;
+; v6 : [B , v1 : single-length
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	goto	la43f2
+.end method
+
+.method static getSdkVersion()I
+.annotation buildVisibility Lcom/google/android/gms/common/util/VisibleForTesting;
+.end annotation
+.limit registers 1
+.line 66
+	sget	v0,android/os/Build$VERSION.SDK_INT I
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+

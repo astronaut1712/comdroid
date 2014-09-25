@@ -1,0 +1,377 @@
+.class final com/a/a/a/h
+.super java/lang/Object
+.source MyApplication
+
+.field final a Lcom/a/a/a/c;
+.field private final b Ljava/lang/String;
+.field private final c [J
+.field private d Z
+.field private e Lcom/a/a/a/f;
+.field private f J
+
+.method private <init>(Lcom/a/a/a/c;Ljava/lang/String;)V
+.limit registers 4
+; this: v1 (Lcom/a/a/a/h;)
+; parameter[0] : v2 (Lcom/a/a/a/c;)
+; parameter[1] : v3 (Ljava/lang/String;)
+.line 886
+	iput-object	v2,v1,com/a/a/a/h.a Lcom/a/a/a/c;
+; v2 : Lcom/a/a/a/c; , v1 : Lcom/a/a/a/h;
+	invoke-direct	{v1},java/lang/Object/<init>	; <init>()V
+; v1 : Lcom/a/a/a/h;
+.line 887
+	iput-object	v3,v1,com/a/a/a/h.b Ljava/lang/String;
+; v3 : Ljava/lang/String; , v1 : Lcom/a/a/a/h;
+.line 888
+	invoke-static	{v2},com/a/a/a/c/e	; e(Lcom/a/a/a/c;)I
+; v2 : Lcom/a/a/a/c;
+	move-result	v0
+; v0 : single-length
+	new-array	v0,v0,[J
+; v0 : [J , v0 : [J
+	iput-object	v0,v1,com/a/a/a/h.c [J
+; v0 : [J , v1 : Lcom/a/a/a/h;
+.line 889
+	return-void	
+.end method
+
+.method <init>(Lcom/a/a/a/c;Ljava/lang/String;Lcom/a/a/a/d;)V
+.limit registers 4
+; this: v0 (Lcom/a/a/a/h;)
+; parameter[0] : v1 (Lcom/a/a/a/c;)
+; parameter[1] : v2 (Ljava/lang/String;)
+; parameter[2] : v3 (Lcom/a/a/a/d;)
+.line 871
+	invoke-direct	{v0,v1,v2},com/a/a/a/h/<init>	; <init>(Lcom/a/a/a/c;Ljava/lang/String;)V
+; v0 : Lcom/a/a/a/h; , v1 : Lcom/a/a/a/c; , v2 : Ljava/lang/String;
+	return-void	
+.end method
+
+.method static a(Lcom/a/a/a/h;J)J
+.limit registers 3
+; parameter[0] : v0 (Lcom/a/a/a/h;)
+; parameter[1] : v1 (J)
+.line 871
+	iput-wide	v1,v0,com/a/a/a/h.f J
+; v1 : double-length , v0 : Lcom/a/a/a/h;
+	return-wide	v1
+; v1 : double-length
+.end method
+
+.method static a(Lcom/a/a/a/h;)Lcom/a/a/a/f;
+.limit registers 2
+; parameter[0] : v1 (Lcom/a/a/a/h;)
+.line 871
+	iget-object	v0,v1,com/a/a/a/h.e Lcom/a/a/a/f;
+; v0 : Lcom/a/a/a/f; , v1 : Lcom/a/a/a/h;
+	return-object	v0
+; v0 : Lcom/a/a/a/f;
+.end method
+
+.method static a(Lcom/a/a/a/h;Lcom/a/a/a/f;)Lcom/a/a/a/f;
+.limit registers 2
+; parameter[0] : v0 (Lcom/a/a/a/h;)
+; parameter[1] : v1 (Lcom/a/a/a/f;)
+.line 871
+	iput-object	v1,v0,com/a/a/a/h.e Lcom/a/a/a/f;
+; v1 : Lcom/a/a/a/f; , v0 : Lcom/a/a/a/h;
+	return-object	v1
+; v1 : Lcom/a/a/a/f;
+.end method
+
+.method static a(Lcom/a/a/a/h;[Ljava/lang/String;)V
+.limit registers 2
+; parameter[0] : v0 (Lcom/a/a/a/h;)
+; parameter[1] : v1 ([Ljava/lang/String;)
+.line 871
+	invoke-direct	{v0,v1},com/a/a/a/h/a	; a([Ljava/lang/String;)V
+; v0 : Lcom/a/a/a/h; , v1 : [Ljava/lang/String;
+	return-void	
+.end method
+
+.method private a([Ljava/lang/String;)V
+.limit registers 6
+; this: v4 (Lcom/a/a/a/h;)
+; parameter[0] : v5 ([Ljava/lang/String;)
+.catch java/lang/NumberFormatException from l73582 to l7359c using l735a2
+.line 901
+	array-length	v0,v5
+; v0 : single-length , v5 : [Ljava/lang/String;
+	iget-object	v1,v4,com/a/a/a/h.a Lcom/a/a/a/c;
+; v1 : Lcom/a/a/a/c; , v4 : Lcom/a/a/a/h;
+	invoke-static	{v1},com/a/a/a/c/e	; e(Lcom/a/a/a/c;)I
+; v1 : Lcom/a/a/a/c;
+	move-result	v1
+; v1 : single-length
+	if-eq	v0,v1,l73580
+; v0 : single-length , v1 : single-length
+.line 902
+	invoke-direct	{v4,v5},com/a/a/a/h/b	; b([Ljava/lang/String;)Ljava/io/IOException;
+; v4 : Lcom/a/a/a/h; , v5 : [Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/io/IOException;
+	throw	v0
+; v0 : Ljava/io/IOException;
+l73580:
+.line 906
+	const/4	v0,0
+; v0 : single-length
+l73582:
+	array-length	v1,v5
+; v1 : single-length , v5 : [Ljava/lang/String;
+	if-ge	v0,v1,l735ae
+; v0 : single-length , v1 : single-length
+.line 907
+	iget-object	v1,v4,com/a/a/a/h.c [J
+; v1 : [J , v4 : Lcom/a/a/a/h;
+	aget-object	v2,v5,v0
+; v2 : Ljava/lang/String; , v5 : [Ljava/lang/String; , v0 : single-length
+	invoke-static	{v2},java/lang/Long/parseLong	; parseLong(Ljava/lang/String;)J
+; v2 : Ljava/lang/String;
+	move-result-wide	v2
+; v2 : double-length
+	aput-wide	v2,v1,v0
+; v2 : double-length , v1 : [J , v0 : single-length
+l7359c:
+.line 906
+	add-int/lit8	v0,v0,1
+; v0 : single-length , v0 : single-length
+	goto	l73582
+l735a2:
+.line 909
+	move-exception	v0
+; v0 : java/lang/NumberFormatException
+.line 910
+	invoke-direct	{v4,v5},com/a/a/a/h/b	; b([Ljava/lang/String;)Ljava/io/IOException;
+; v4 : Lcom/a/a/a/h; , v5 : [Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/io/IOException;
+	throw	v0
+; v0 : Ljava/io/IOException;
+l735ae:
+.line 912
+	return-void	
+.end method
+
+.method static a(Lcom/a/a/a/h;Z)Z
+.limit registers 2
+; parameter[0] : v0 (Lcom/a/a/a/h;)
+; parameter[1] : v1 (Z)
+.line 871
+	iput-boolean	v1,v0,com/a/a/a/h.d Z
+; v1 : single-length , v0 : Lcom/a/a/a/h;
+	return	v1
+; v1 : single-length
+.end method
+
+.method private b([Ljava/lang/String;)Ljava/io/IOException;
+.limit registers 5
+; this: v3 (Lcom/a/a/a/h;)
+; parameter[0] : v4 ([Ljava/lang/String;)
+.line 915
+	new-instance	v0,java/io/IOException
+; v0 : Ljava/io/IOException;
+	new-instance	v1,java/lang/StringBuilder
+; v1 : Ljava/lang/StringBuilder;
+	invoke-direct	{v1},java/lang/StringBuilder/<init>	; <init>()V
+; v1 : Ljava/lang/StringBuilder;
+	const-string	v2,"unexpected journal line: "
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	invoke-static	{v4},java/util/Arrays/toString	; toString([Ljava/lang/Object;)Ljava/lang/String;
+; v4 : [Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v1},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v1 : Ljava/lang/StringBuilder;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/io/IOException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/io/IOException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/io/IOException;
+.end method
+
+.method static b(Lcom/a/a/a/h;)[J
+.limit registers 2
+; parameter[0] : v1 (Lcom/a/a/a/h;)
+.line 871
+	iget-object	v0,v1,com/a/a/a/h.c [J
+; v0 : [J , v1 : Lcom/a/a/a/h;
+	return-object	v0
+; v0 : [J
+.end method
+
+.method static c(Lcom/a/a/a/h;)Ljava/lang/String;
+.limit registers 2
+; parameter[0] : v1 (Lcom/a/a/a/h;)
+.line 871
+	iget-object	v0,v1,com/a/a/a/h.b Ljava/lang/String;
+; v0 : Ljava/lang/String; , v1 : Lcom/a/a/a/h;
+	return-object	v0
+; v0 : Ljava/lang/String;
+.end method
+
+.method static d(Lcom/a/a/a/h;)Z
+.limit registers 2
+; parameter[0] : v1 (Lcom/a/a/a/h;)
+.line 871
+	iget-boolean	v0,v1,com/a/a/a/h.d Z
+; v0 : single-length , v1 : Lcom/a/a/a/h;
+	return	v0
+; v0 : single-length
+.end method
+
+.method static e(Lcom/a/a/a/h;)J
+.limit registers 3
+; parameter[0] : v2 (Lcom/a/a/a/h;)
+.line 871
+	iget-wide	v0,v2,com/a/a/a/h.f J
+; v0 : double-length , v2 : Lcom/a/a/a/h;
+	return-wide	v0
+; v0 : double-length
+.end method
+
+.method public a(I)Ljava/io/File;
+.limit registers 6
+; this: v4 (Lcom/a/a/a/h;)
+; parameter[0] : v5 (I)
+.line 919
+	new-instance	v0,java/io/File
+; v0 : Ljava/io/File;
+	iget-object	v1,v4,com/a/a/a/h.a Lcom/a/a/a/c;
+; v1 : Lcom/a/a/a/c; , v4 : Lcom/a/a/a/h;
+	invoke-static	{v1},com/a/a/a/c/f	; f(Lcom/a/a/a/c;)Ljava/io/File;
+; v1 : Lcom/a/a/a/c;
+	move-result-object	v1
+; v1 : Ljava/io/File;
+	new-instance	v2,java/lang/StringBuilder
+; v2 : Ljava/lang/StringBuilder;
+	invoke-direct	{v2},java/lang/StringBuilder/<init>	; <init>()V
+; v2 : Ljava/lang/StringBuilder;
+	iget-object	v3,v4,com/a/a/a/h.b Ljava/lang/String;
+; v3 : Ljava/lang/String; , v4 : Lcom/a/a/a/h;
+	invoke-virtual	{v2,v3},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	const-string	v3,"."
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v2,v5},java/lang/StringBuilder/append	; append(I)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v5 : single-length
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v2},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v2 : Ljava/lang/StringBuilder;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-direct	{v0,v1,v2},java/io/File/<init>	; <init>(Ljava/io/File;Ljava/lang/String;)V
+; v0 : Ljava/io/File; , v1 : Ljava/io/File; , v2 : Ljava/lang/String;
+	return-object	v0
+; v0 : Ljava/io/File;
+.end method
+
+.method public a()Ljava/lang/String;
+.limit registers 8
+; this: v7 (Lcom/a/a/a/h;)
+.line 892
+	new-instance	v1,java/lang/StringBuilder
+; v1 : Ljava/lang/StringBuilder;
+	invoke-direct	{v1},java/lang/StringBuilder/<init>	; <init>()V
+; v1 : Ljava/lang/StringBuilder;
+.line 893
+	iget-object	v2,v7,com/a/a/a/h.c [J
+; v2 : [J , v7 : Lcom/a/a/a/h;
+	array-length	v3,v2
+; v3 : single-length , v2 : [J
+	const/4	v0,0
+; v0 : single-length
+l73702:
+	if-ge	v0,v3,l73722
+; v0 : single-length , v3 : single-length
+	aget-wide	v4,v2,v0
+; v4 : double-length , v2 : [J , v0 : single-length
+.line 894
+	const/16	v6,32
+; v6 : single-length
+	invoke-virtual	{v1,v6},java/lang/StringBuilder/append	; append(C)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v6 : single-length
+	move-result-object	v6
+; v6 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v6,v4,v5},java/lang/StringBuilder/append	; append(J)Ljava/lang/StringBuilder;
+; v6 : Ljava/lang/StringBuilder; , v4 : double-length
+.line 893
+	add-int/lit8	v0,v0,1
+; v0 : single-length , v0 : single-length
+	goto	l73702
+l73722:
+.line 896
+	invoke-virtual	{v1},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v1 : Ljava/lang/StringBuilder;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	return-object	v0
+; v0 : Ljava/lang/String;
+.end method
+
+.method public b(I)Ljava/io/File;
+.limit registers 6
+; this: v4 (Lcom/a/a/a/h;)
+; parameter[0] : v5 (I)
+.line 923
+	new-instance	v0,java/io/File
+; v0 : Ljava/io/File;
+	iget-object	v1,v4,com/a/a/a/h.a Lcom/a/a/a/c;
+; v1 : Lcom/a/a/a/c; , v4 : Lcom/a/a/a/h;
+	invoke-static	{v1},com/a/a/a/c/f	; f(Lcom/a/a/a/c;)Ljava/io/File;
+; v1 : Lcom/a/a/a/c;
+	move-result-object	v1
+; v1 : Ljava/io/File;
+	new-instance	v2,java/lang/StringBuilder
+; v2 : Ljava/lang/StringBuilder;
+	invoke-direct	{v2},java/lang/StringBuilder/<init>	; <init>()V
+; v2 : Ljava/lang/StringBuilder;
+	iget-object	v3,v4,com/a/a/a/h.b Ljava/lang/String;
+; v3 : Ljava/lang/String; , v4 : Lcom/a/a/a/h;
+	invoke-virtual	{v2,v3},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	const-string	v3,"."
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v2,v5},java/lang/StringBuilder/append	; append(I)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v5 : single-length
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	const-string	v3,".tmp"
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v2},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v2 : Ljava/lang/StringBuilder;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-direct	{v0,v1,v2},java/io/File/<init>	; <init>(Ljava/io/File;Ljava/lang/String;)V
+; v0 : Ljava/io/File; , v1 : Ljava/io/File; , v2 : Ljava/lang/String;
+	return-object	v0
+; v0 : Ljava/io/File;
+.end method
+
+

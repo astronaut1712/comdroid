@@ -1,0 +1,117 @@
+.class final com/squareup/okhttp/internal/http/HttpURLConnectionImpl$Retry
+.super java/lang/Enum
+.source HttpURLConnectionImpl.java
+
+.inner class Retry inner com/squareup/okhttp/internal/http/HttpURLConnectionImpl$Retry outer com/squareup/okhttp/internal/http/HttpURLConnectionImpl
+.annotation systemVisibility Ldalvik/annotation/Signature;
+  value [Ljava/lang/String; = { "Ljava/lang/Enum" , "<" , "Lcom/squareup/okhttp/internal/http/HttpURLConnectionImpl$Retry;" , ">;" }
+.end annotation
+
+.field private static final $VALUES [Lcom/squareup/okhttp/internal/http/HttpURLConnectionImpl$Retry;
+.field public static final DIFFERENT_CONNECTION Lcom/squareup/okhttp/internal/http/HttpURLConnectionImpl$Retry;
+.field public static final NONE Lcom/squareup/okhttp/internal/http/HttpURLConnectionImpl$Retry;
+.field public static final SAME_CONNECTION Lcom/squareup/okhttp/internal/http/HttpURLConnectionImpl$Retry;
+
+.method static <clinit>()V
+.limit registers 5
+	const/4	v4,2
+; v4 : single-length
+	const/4	v3,1
+; v3 : single-length
+	const/4	v2,0
+; v2 : single-length
+.line 408
+	new-instance	v0,com/squareup/okhttp/internal/http/HttpURLConnectionImpl$Retry
+; v0 : Lcom/squareup/okhttp/internal/http/HttpURLConnectionImpl$Retry;
+	const-string	v1,"NONE"
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1,v2},com/squareup/okhttp/internal/http/HttpURLConnectionImpl$Retry/<init>	; <init>(Ljava/lang/String;I)V
+; v0 : Lcom/squareup/okhttp/internal/http/HttpURLConnectionImpl$Retry; , v1 : Ljava/lang/String; , v2 : single-length
+	sput-object	v0,com/squareup/okhttp/internal/http/HttpURLConnectionImpl$Retry.NONE Lcom/squareup/okhttp/internal/http/HttpURLConnectionImpl$Retry;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpURLConnectionImpl$Retry;
+.line 409
+	new-instance	v0,com/squareup/okhttp/internal/http/HttpURLConnectionImpl$Retry
+; v0 : Lcom/squareup/okhttp/internal/http/HttpURLConnectionImpl$Retry;
+	const-string	v1,"SAME_CONNECTION"
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1,v3},com/squareup/okhttp/internal/http/HttpURLConnectionImpl$Retry/<init>	; <init>(Ljava/lang/String;I)V
+; v0 : Lcom/squareup/okhttp/internal/http/HttpURLConnectionImpl$Retry; , v1 : Ljava/lang/String; , v3 : single-length
+	sput-object	v0,com/squareup/okhttp/internal/http/HttpURLConnectionImpl$Retry.SAME_CONNECTION Lcom/squareup/okhttp/internal/http/HttpURLConnectionImpl$Retry;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpURLConnectionImpl$Retry;
+.line 410
+	new-instance	v0,com/squareup/okhttp/internal/http/HttpURLConnectionImpl$Retry
+; v0 : Lcom/squareup/okhttp/internal/http/HttpURLConnectionImpl$Retry;
+	const-string	v1,"DIFFERENT_CONNECTION"
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1,v4},com/squareup/okhttp/internal/http/HttpURLConnectionImpl$Retry/<init>	; <init>(Ljava/lang/String;I)V
+; v0 : Lcom/squareup/okhttp/internal/http/HttpURLConnectionImpl$Retry; , v1 : Ljava/lang/String; , v4 : single-length
+	sput-object	v0,com/squareup/okhttp/internal/http/HttpURLConnectionImpl$Retry.DIFFERENT_CONNECTION Lcom/squareup/okhttp/internal/http/HttpURLConnectionImpl$Retry;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpURLConnectionImpl$Retry;
+.line 407
+	const/4	v0,3
+; v0 : single-length
+	new-array	v0,v0,[Lcom/squareup/okhttp/internal/http/HttpURLConnectionImpl$Retry;
+; v0 : [Lcom/squareup/okhttp/internal/http/HttpURLConnectionImpl$Retry; , v0 : [Lcom/squareup/okhttp/internal/http/HttpURLConnectionImpl$Retry;
+	sget-object	v1,com/squareup/okhttp/internal/http/HttpURLConnectionImpl$Retry.NONE Lcom/squareup/okhttp/internal/http/HttpURLConnectionImpl$Retry;
+; v1 : Lcom/squareup/okhttp/internal/http/HttpURLConnectionImpl$Retry;
+	aput-object	v1,v0,v2
+; v1 : Lcom/squareup/okhttp/internal/http/HttpURLConnectionImpl$Retry; , v0 : [Lcom/squareup/okhttp/internal/http/HttpURLConnectionImpl$Retry; , v2 : single-length
+	sget-object	v1,com/squareup/okhttp/internal/http/HttpURLConnectionImpl$Retry.SAME_CONNECTION Lcom/squareup/okhttp/internal/http/HttpURLConnectionImpl$Retry;
+; v1 : Lcom/squareup/okhttp/internal/http/HttpURLConnectionImpl$Retry;
+	aput-object	v1,v0,v3
+; v1 : Lcom/squareup/okhttp/internal/http/HttpURLConnectionImpl$Retry; , v0 : [Lcom/squareup/okhttp/internal/http/HttpURLConnectionImpl$Retry; , v3 : single-length
+	sget-object	v1,com/squareup/okhttp/internal/http/HttpURLConnectionImpl$Retry.DIFFERENT_CONNECTION Lcom/squareup/okhttp/internal/http/HttpURLConnectionImpl$Retry;
+; v1 : Lcom/squareup/okhttp/internal/http/HttpURLConnectionImpl$Retry;
+	aput-object	v1,v0,v4
+; v1 : Lcom/squareup/okhttp/internal/http/HttpURLConnectionImpl$Retry; , v0 : [Lcom/squareup/okhttp/internal/http/HttpURLConnectionImpl$Retry; , v4 : single-length
+	sput-object	v0,com/squareup/okhttp/internal/http/HttpURLConnectionImpl$Retry.$VALUES [Lcom/squareup/okhttp/internal/http/HttpURLConnectionImpl$Retry;
+; v0 : [Lcom/squareup/okhttp/internal/http/HttpURLConnectionImpl$Retry;
+	return-void	
+.end method
+
+.method private <init>(Ljava/lang/String;I)V
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "()V" }
+.end annotation
+.limit registers 3
+; this: v0 (Lcom/squareup/okhttp/internal/http/HttpURLConnectionImpl$Retry;)
+; parameter[0] : v1 (Ljava/lang/String;)
+; parameter[1] : v2 (I)
+.line 407
+	invoke-direct	{v0,v1,v2},java/lang/Enum/<init>	; <init>(Ljava/lang/String;I)V
+; v0 : Lcom/squareup/okhttp/internal/http/HttpURLConnectionImpl$Retry; , v1 : Ljava/lang/String; , v2 : single-length
+	return-void	
+.end method
+
+.method public static valueOf(Ljava/lang/String;)Lcom/squareup/okhttp/internal/http/HttpURLConnectionImpl$Retry;
+.limit registers 2
+; parameter[0] : v1 (Ljava/lang/String;)
+.line 407
+	const-class	v0,com/squareup/okhttp/internal/http/HttpURLConnectionImpl$Retry
+; v0 : Ljava/lang/Class;
+	invoke-static	{v0,v1},java/lang/Enum/valueOf	; valueOf(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Enum;
+; v0 : Ljava/lang/Class; , v1 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/Enum;
+	check-cast	v0,com/squareup/okhttp/internal/http/HttpURLConnectionImpl$Retry
+; v0 : Lcom/squareup/okhttp/internal/http/HttpURLConnectionImpl$Retry;
+	return-object	v0
+; v0 : Lcom/squareup/okhttp/internal/http/HttpURLConnectionImpl$Retry;
+.end method
+
+.method public static values()[Lcom/squareup/okhttp/internal/http/HttpURLConnectionImpl$Retry;
+.limit registers 1
+.line 407
+	sget-object	v0,com/squareup/okhttp/internal/http/HttpURLConnectionImpl$Retry.$VALUES [Lcom/squareup/okhttp/internal/http/HttpURLConnectionImpl$Retry;
+; v0 : [Lcom/squareup/okhttp/internal/http/HttpURLConnectionImpl$Retry;
+	invoke-virtual	{v0},[Lcom/squareup/okhttp/internal/http/HttpURLConnectionImpl$Retry/clone	; clone()Ljava/lang/Object;
+; v0 : [Lcom/squareup/okhttp/internal/http/HttpURLConnectionImpl$Retry;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,[Lcom/squareup/okhttp/internal/http/HttpURLConnectionImpl$Retry
+; v0 : [Lcom/squareup/okhttp/internal/http/HttpURLConnectionImpl$Retry
+	return-object	v0
+; v0 : [Lcom/squareup/okhttp/internal/http/HttpURLConnectionImpl$Retry
+.end method
+
+

@@ -1,0 +1,69 @@
+.class com/google/tagmanager/GreaterThanPredicate
+.super com/google/tagmanager/NumberPredicate
+.source GreaterThanPredicate.java
+
+.field private static final ID Ljava/lang/String;
+
+.method static <clinit>()V
+.limit registers 1
+.line 13
+	sget-object	v0,com/google/analytics/containertag/common/FunctionType.GREATER_THAN Lcom/google/analytics/containertag/common/FunctionType;
+; v0 : Lcom/google/analytics/containertag/common/FunctionType;
+	invoke-virtual	{v0},com/google/analytics/containertag/common/FunctionType/toString	; toString()Ljava/lang/String;
+; v0 : Lcom/google/analytics/containertag/common/FunctionType;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	sput-object	v0,com/google/tagmanager/GreaterThanPredicate.ID Ljava/lang/String;
+; v0 : Ljava/lang/String;
+	return-void	
+.end method
+
+.method public <init>()V
+.limit registers 2
+; this: v1 (Lcom/google/tagmanager/GreaterThanPredicate;)
+.line 20
+	sget-object	v0,com/google/tagmanager/GreaterThanPredicate.ID Ljava/lang/String;
+; v0 : Ljava/lang/String;
+	invoke-direct	{v1,v0},com/google/tagmanager/NumberPredicate/<init>	; <init>(Ljava/lang/String;)V
+; v1 : Lcom/google/tagmanager/GreaterThanPredicate; , v0 : Ljava/lang/String;
+.line 21
+	return-void	
+.end method
+
+.method public static getFunctionId()Ljava/lang/String;
+.limit registers 1
+.line 16
+	sget-object	v0,com/google/tagmanager/GreaterThanPredicate.ID Ljava/lang/String;
+; v0 : Ljava/lang/String;
+	return-object	v0
+; v0 : Ljava/lang/String;
+.end method
+
+.method protected evaluateNumber(Lcom/google/tagmanager/TypedNumber;Lcom/google/tagmanager/TypedNumber;Ljava/util/Map;)Z
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "(" , "Lcom/google/tagmanager/TypedNumber;" , "Lcom/google/tagmanager/TypedNumber;" , "Ljava/util/Map" , "<" , "Ljava/lang/String;" , "Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;" , ">;)Z" }
+.end annotation
+.limit registers 5
+; this: v1 (Lcom/google/tagmanager/GreaterThanPredicate;)
+; parameter[0] : v2 (Lcom/google/tagmanager/TypedNumber;)
+; parameter[1] : v3 (Lcom/google/tagmanager/TypedNumber;)
+; parameter[2] : v4 (Ljava/util/Map;)
+.line 26
+	invoke-virtual	{v2,v3},com/google/tagmanager/TypedNumber/compareTo	; compareTo(Lcom/google/tagmanager/TypedNumber;)I
+; v2 : Lcom/google/tagmanager/TypedNumber; , v3 : Lcom/google/tagmanager/TypedNumber;
+	move-result	v0
+; v0 : single-length
+	if-lez	v0,l10192c
+; v0 : single-length
+	const/4	v0,1
+; v0 : single-length
+l10192a:
+	return	v0
+; v0 : single-length
+l10192c:
+	const/4	v0,0
+; v0 : single-length
+	goto	l10192a
+.end method
+
+

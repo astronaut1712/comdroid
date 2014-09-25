@@ -1,0 +1,58 @@
+.class final com/squareup/okhttp/internal/http/HttpDate$1
+.super java/lang/ThreadLocal
+.source HttpDate.java
+
+.inner class 1 inner com/squareup/okhttp/internal/http/HttpDate$1 outer com/squareup/okhttp/internal/http/HttpDate
+.annotation systemVisibility Ldalvik/annotation/Signature;
+  value [Ljava/lang/String; = { "Ljava/lang/ThreadLocal" , "<" , "Ljava/text/DateFormat;" , ">;" }
+.end annotation
+
+
+.method <init>()V
+.limit registers 1
+; this: v0 (Lcom/squareup/okhttp/internal/http/HttpDate$1;)
+.line 36
+	invoke-direct	{v0},java/lang/ThreadLocal/<init>	; <init>()V
+; v0 : Lcom/squareup/okhttp/internal/http/HttpDate$1;
+	return-void	
+.end method
+
+.method protected initialValue()Ljava/lang/Object;
+.limit registers 2
+; this: v1 (Lcom/squareup/okhttp/internal/http/HttpDate$1;)
+.line 36
+	invoke-virtual	{v1},com/squareup/okhttp/internal/http/HttpDate$1/initialValue	; initialValue()Ljava/text/DateFormat;
+; v1 : Lcom/squareup/okhttp/internal/http/HttpDate$1;
+	move-result-object	v0
+; v0 : Ljava/text/DateFormat;
+	return-object	v0
+; v0 : Ljava/text/DateFormat;
+.end method
+
+.method protected initialValue()Ljava/text/DateFormat;
+.limit registers 4
+; this: v3 (Lcom/squareup/okhttp/internal/http/HttpDate$1;)
+.line 38
+	new-instance	v0,java/text/SimpleDateFormat
+; v0 : Ljava/text/SimpleDateFormat;
+	const-string	v1,"EEE, dd MMM yyyy HH:mm:ss zzz"
+; v1 : Ljava/lang/String;
+	sget-object	v2,java/util/Locale.US Ljava/util/Locale;
+; v2 : Ljava/util/Locale;
+	invoke-direct	{v0,v1,v2},java/text/SimpleDateFormat/<init>	; <init>(Ljava/lang/String;Ljava/util/Locale;)V
+; v0 : Ljava/text/SimpleDateFormat; , v1 : Ljava/lang/String; , v2 : Ljava/util/Locale;
+.line 39
+	const-string	v1,"GMT"
+; v1 : Ljava/lang/String;
+	invoke-static	{v1},java/util/TimeZone/getTimeZone	; getTimeZone(Ljava/lang/String;)Ljava/util/TimeZone;
+; v1 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/util/TimeZone;
+	invoke-virtual	{v0,v1},java/text/DateFormat/setTimeZone	; setTimeZone(Ljava/util/TimeZone;)V
+; v0 : Ljava/text/SimpleDateFormat; , v1 : Ljava/util/TimeZone;
+.line 40
+	return-object	v0
+; v0 : Ljava/text/SimpleDateFormat;
+.end method
+
+

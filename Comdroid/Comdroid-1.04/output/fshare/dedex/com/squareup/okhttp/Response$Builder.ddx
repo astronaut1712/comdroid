@@ -1,0 +1,225 @@
+.class public com/squareup/okhttp/Response$Builder
+.super java/lang/Object
+.source Response.java
+
+.inner class Builder inner com/squareup/okhttp/Response$Builder outer com/squareup/okhttp/Response
+.field private body Lcom/squareup/okhttp/Response$Body;
+.field private final code I
+.field private headers Lcom/squareup/okhttp/internal/http/RawHeaders;
+.field private redirectedBy Lcom/squareup/okhttp/Response;
+.field private final request Lcom/squareup/okhttp/Request;
+
+.method public <init>(Lcom/squareup/okhttp/Request;I)V
+.limit registers 5
+; this: v2 (Lcom/squareup/okhttp/Response$Builder;)
+; parameter[0] : v3 (Lcom/squareup/okhttp/Request;)
+; parameter[1] : v4 (I)
+.line 244
+	invoke-direct	{v2},java/lang/Object/<init>	; <init>()V
+; v2 : Lcom/squareup/okhttp/Response$Builder;
+.line 240
+	new-instance	v0,com/squareup/okhttp/internal/http/RawHeaders
+; v0 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+	invoke-direct	{v0},com/squareup/okhttp/internal/http/RawHeaders/<init>	; <init>()V
+; v0 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+	iput-object	v0,v2,com/squareup/okhttp/Response$Builder.headers Lcom/squareup/okhttp/internal/http/RawHeaders;
+; v0 : Lcom/squareup/okhttp/internal/http/RawHeaders; , v2 : Lcom/squareup/okhttp/Response$Builder;
+.line 245
+	if-nez	v3,lb568c
+; v3 : Lcom/squareup/okhttp/Request;
+	new-instance	v0,java/lang/IllegalArgumentException
+; v0 : Ljava/lang/IllegalArgumentException;
+	const-string	v1,"request == null"
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/IllegalArgumentException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/IllegalArgumentException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/IllegalArgumentException;
+lb568c:
+.line 246
+	if-gtz	v4,lb56a0
+; v4 : single-length
+	new-instance	v0,java/lang/IllegalArgumentException
+; v0 : Ljava/lang/IllegalArgumentException;
+	const-string	v1,"code <= 0"
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/IllegalArgumentException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/IllegalArgumentException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/IllegalArgumentException;
+lb56a0:
+.line 247
+	iput-object	v3,v2,com/squareup/okhttp/Response$Builder.request Lcom/squareup/okhttp/Request;
+; v3 : Lcom/squareup/okhttp/Request; , v2 : Lcom/squareup/okhttp/Response$Builder;
+.line 248
+	iput	v4,v2,com/squareup/okhttp/Response$Builder.code I
+; v4 : single-length , v2 : Lcom/squareup/okhttp/Response$Builder;
+.line 249
+	return-void	
+.end method
+
+.method static access$000(Lcom/squareup/okhttp/Response$Builder;)Lcom/squareup/okhttp/Request;
+.limit registers 2
+; parameter[0] : v1 (Lcom/squareup/okhttp/Response$Builder;)
+.line 237
+	iget-object	v0,v1,com/squareup/okhttp/Response$Builder.request Lcom/squareup/okhttp/Request;
+; v0 : Lcom/squareup/okhttp/Request; , v1 : Lcom/squareup/okhttp/Response$Builder;
+	return-object	v0
+; v0 : Lcom/squareup/okhttp/Request;
+.end method
+
+.method static access$100(Lcom/squareup/okhttp/Response$Builder;)I
+.limit registers 2
+; parameter[0] : v1 (Lcom/squareup/okhttp/Response$Builder;)
+.line 237
+	iget	v0,v1,com/squareup/okhttp/Response$Builder.code I
+; v0 : single-length , v1 : Lcom/squareup/okhttp/Response$Builder;
+	return	v0
+; v0 : single-length
+.end method
+
+.method static access$200(Lcom/squareup/okhttp/Response$Builder;)Lcom/squareup/okhttp/internal/http/RawHeaders;
+.limit registers 2
+; parameter[0] : v1 (Lcom/squareup/okhttp/Response$Builder;)
+.line 237
+	iget-object	v0,v1,com/squareup/okhttp/Response$Builder.headers Lcom/squareup/okhttp/internal/http/RawHeaders;
+; v0 : Lcom/squareup/okhttp/internal/http/RawHeaders; , v1 : Lcom/squareup/okhttp/Response$Builder;
+	return-object	v0
+; v0 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+.end method
+
+.method static access$300(Lcom/squareup/okhttp/Response$Builder;)Lcom/squareup/okhttp/Response$Body;
+.limit registers 2
+; parameter[0] : v1 (Lcom/squareup/okhttp/Response$Builder;)
+.line 237
+	iget-object	v0,v1,com/squareup/okhttp/Response$Builder.body Lcom/squareup/okhttp/Response$Body;
+; v0 : Lcom/squareup/okhttp/Response$Body; , v1 : Lcom/squareup/okhttp/Response$Builder;
+	return-object	v0
+; v0 : Lcom/squareup/okhttp/Response$Body;
+.end method
+
+.method static access$400(Lcom/squareup/okhttp/Response$Builder;)Lcom/squareup/okhttp/Response;
+.limit registers 2
+; parameter[0] : v1 (Lcom/squareup/okhttp/Response$Builder;)
+.line 237
+	iget-object	v0,v1,com/squareup/okhttp/Response$Builder.redirectedBy Lcom/squareup/okhttp/Response;
+; v0 : Lcom/squareup/okhttp/Response; , v1 : Lcom/squareup/okhttp/Response$Builder;
+	return-object	v0
+; v0 : Lcom/squareup/okhttp/Response;
+.end method
+
+.method public addHeader(Ljava/lang/String;Ljava/lang/String;)Lcom/squareup/okhttp/Response$Builder;
+.limit registers 4
+; this: v1 (Lcom/squareup/okhttp/Response$Builder;)
+; parameter[0] : v2 (Ljava/lang/String;)
+; parameter[1] : v3 (Ljava/lang/String;)
+.line 265
+	iget-object	v0,v1,com/squareup/okhttp/Response$Builder.headers Lcom/squareup/okhttp/internal/http/RawHeaders;
+; v0 : Lcom/squareup/okhttp/internal/http/RawHeaders; , v1 : Lcom/squareup/okhttp/Response$Builder;
+	invoke-virtual	{v0,v2,v3},com/squareup/okhttp/internal/http/RawHeaders/add	; add(Ljava/lang/String;Ljava/lang/String;)V
+; v0 : Lcom/squareup/okhttp/internal/http/RawHeaders; , v2 : Ljava/lang/String; , v3 : Ljava/lang/String;
+.line 266
+	return-object	v1
+; v1 : Lcom/squareup/okhttp/Response$Builder;
+.end method
+
+.method public body(Lcom/squareup/okhttp/Response$Body;)Lcom/squareup/okhttp/Response$Builder;
+.limit registers 2
+; this: v0 (Lcom/squareup/okhttp/Response$Builder;)
+; parameter[0] : v1 (Lcom/squareup/okhttp/Response$Body;)
+.line 275
+	iput-object	v1,v0,com/squareup/okhttp/Response$Builder.body Lcom/squareup/okhttp/Response$Body;
+; v1 : Lcom/squareup/okhttp/Response$Body; , v0 : Lcom/squareup/okhttp/Response$Builder;
+.line 276
+	return-object	v0
+; v0 : Lcom/squareup/okhttp/Response$Builder;
+.end method
+
+.method public build()Lcom/squareup/okhttp/Response;
+.limit registers 3
+; this: v2 (Lcom/squareup/okhttp/Response$Builder;)
+.line 285
+	iget-object	v0,v2,com/squareup/okhttp/Response$Builder.request Lcom/squareup/okhttp/Request;
+; v0 : Lcom/squareup/okhttp/Request; , v2 : Lcom/squareup/okhttp/Response$Builder;
+	if-nez	v0,lb5780
+; v0 : Lcom/squareup/okhttp/Request;
+	new-instance	v0,java/lang/IllegalStateException
+; v0 : Ljava/lang/IllegalStateException;
+	const-string	v1,"Response has no request."
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/IllegalStateException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/IllegalStateException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/IllegalStateException;
+lb5780:
+.line 286
+	iget	v0,v2,com/squareup/okhttp/Response$Builder.code I
+; v0 : single-length , v2 : Lcom/squareup/okhttp/Response$Builder;
+	const/4	v1,15
+; v1 : single-length
+	if-ne	v0,v1,lb579a
+; v0 : single-length , v1 : single-length
+	new-instance	v0,java/lang/IllegalStateException
+; v0 : Ljava/lang/IllegalStateException;
+	const-string	v1,"Response has no code."
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/IllegalStateException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/IllegalStateException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/IllegalStateException;
+lb579a:
+.line 287
+	new-instance	v0,com/squareup/okhttp/Response
+; v0 : Lcom/squareup/okhttp/Response;
+	const/4	v1,0
+; v1 : single-length
+	invoke-direct	{v0,v2,v1},com/squareup/okhttp/Response/<init>	; <init>(Lcom/squareup/okhttp/Response$Builder;Lcom/squareup/okhttp/Response$1;)V
+; v0 : Lcom/squareup/okhttp/Response; , v2 : Lcom/squareup/okhttp/Response$Builder; , v1 : single-length
+	return-object	v0
+; v0 : Lcom/squareup/okhttp/Response;
+.end method
+
+.method public header(Ljava/lang/String;Ljava/lang/String;)Lcom/squareup/okhttp/Response$Builder;
+.limit registers 4
+; this: v1 (Lcom/squareup/okhttp/Response$Builder;)
+; parameter[0] : v2 (Ljava/lang/String;)
+; parameter[1] : v3 (Ljava/lang/String;)
+.line 256
+	iget-object	v0,v1,com/squareup/okhttp/Response$Builder.headers Lcom/squareup/okhttp/internal/http/RawHeaders;
+; v0 : Lcom/squareup/okhttp/internal/http/RawHeaders; , v1 : Lcom/squareup/okhttp/Response$Builder;
+	invoke-virtual	{v0,v2,v3},com/squareup/okhttp/internal/http/RawHeaders/set	; set(Ljava/lang/String;Ljava/lang/String;)V
+; v0 : Lcom/squareup/okhttp/internal/http/RawHeaders; , v2 : Ljava/lang/String; , v3 : Ljava/lang/String;
+.line 257
+	return-object	v1
+; v1 : Lcom/squareup/okhttp/Response$Builder;
+.end method
+
+.method rawHeaders(Lcom/squareup/okhttp/internal/http/RawHeaders;)Lcom/squareup/okhttp/Response$Builder;
+.limit registers 3
+; this: v1 (Lcom/squareup/okhttp/Response$Builder;)
+; parameter[0] : v2 (Lcom/squareup/okhttp/internal/http/RawHeaders;)
+.line 270
+	new-instance	v0,com/squareup/okhttp/internal/http/RawHeaders
+; v0 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+	invoke-direct	{v0,v2},com/squareup/okhttp/internal/http/RawHeaders/<init>	; <init>(Lcom/squareup/okhttp/internal/http/RawHeaders;)V
+; v0 : Lcom/squareup/okhttp/internal/http/RawHeaders; , v2 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+	iput-object	v0,v1,com/squareup/okhttp/Response$Builder.headers Lcom/squareup/okhttp/internal/http/RawHeaders;
+; v0 : Lcom/squareup/okhttp/internal/http/RawHeaders; , v1 : Lcom/squareup/okhttp/Response$Builder;
+.line 271
+	return-object	v1
+; v1 : Lcom/squareup/okhttp/Response$Builder;
+.end method
+
+.method public redirectedBy(Lcom/squareup/okhttp/Response;)Lcom/squareup/okhttp/Response$Builder;
+.limit registers 2
+; this: v0 (Lcom/squareup/okhttp/Response$Builder;)
+; parameter[0] : v1 (Lcom/squareup/okhttp/Response;)
+.line 280
+	iput-object	v1,v0,com/squareup/okhttp/Response$Builder.redirectedBy Lcom/squareup/okhttp/Response;
+; v1 : Lcom/squareup/okhttp/Response; , v0 : Lcom/squareup/okhttp/Response$Builder;
+.line 281
+	return-object	v0
+; v0 : Lcom/squareup/okhttp/Response$Builder;
+.end method
+
+

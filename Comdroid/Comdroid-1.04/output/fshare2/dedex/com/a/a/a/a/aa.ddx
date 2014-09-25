@@ -1,0 +1,122 @@
+.class com/a/a/a/a/aa
+.super java/lang/Object
+.source MyApplication
+.implements com/a/a/a/a/c
+
+.field final a Lcom/a/a/a/a/z;
+
+.method <init>(Lcom/a/a/a/a/z;)V
+.limit registers 2
+; this: v0 (Lcom/a/a/a/a/aa;)
+; parameter[0] : v1 (Lcom/a/a/a/a/z;)
+.line 66
+	iput-object	v1,v0,com/a/a/a/a/aa.a Lcom/a/a/a/a/z;
+; v1 : Lcom/a/a/a/a/z; , v0 : Lcom/a/a/a/a/aa;
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Lcom/a/a/a/a/aa;
+	return-void	
+.end method
+
+.method public a(Ljava/lang/String;Ljava/lang/String;)V
+.limit registers 5
+; this: v2 (Lcom/a/a/a/a/aa;)
+; parameter[0] : v3 (Ljava/lang/String;)
+; parameter[1] : v4 (Ljava/lang/String;)
+	const/4	v1,1
+; v1 : single-length
+.line 68
+	const-string	v0,"no-cache"
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v0,v3},java/lang/String/equalsIgnoreCase	; equalsIgnoreCase(Ljava/lang/String;)Z
+; v0 : Ljava/lang/String; , v3 : Ljava/lang/String;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,l64d5a
+; v0 : single-length
+.line 69
+	iget-object	v0,v2,com/a/a/a/a/aa.a Lcom/a/a/a/a/z;
+; v0 : Lcom/a/a/a/a/z; , v2 : Lcom/a/a/a/a/aa;
+	invoke-static	{v0,v1},com/a/a/a/a/z/a	; a(Lcom/a/a/a/a/z;Z)Z
+; v0 : Lcom/a/a/a/a/z; , v1 : single-length
+l64d58:
+.line 79
+	return-void	
+l64d5a:
+.line 70
+	const-string	v0,"max-age"
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v0,v3},java/lang/String/equalsIgnoreCase	; equalsIgnoreCase(Ljava/lang/String;)Z
+; v0 : Ljava/lang/String; , v3 : Ljava/lang/String;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,l64d7e
+; v0 : single-length
+.line 71
+	iget-object	v0,v2,com/a/a/a/a/aa.a Lcom/a/a/a/a/z;
+; v0 : Lcom/a/a/a/a/z; , v2 : Lcom/a/a/a/a/aa;
+	invoke-static	{v4},com/a/a/a/a/b/a	; a(Ljava/lang/String;)I
+; v4 : Ljava/lang/String;
+	move-result	v1
+; v1 : single-length
+	invoke-static	{v0,v1},com/a/a/a/a/z/a	; a(Lcom/a/a/a/a/z;I)I
+; v0 : Lcom/a/a/a/a/z; , v1 : single-length
+	goto	l64d58
+l64d7e:
+.line 72
+	const-string	v0,"max-stale"
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v0,v3},java/lang/String/equalsIgnoreCase	; equalsIgnoreCase(Ljava/lang/String;)Z
+; v0 : Ljava/lang/String; , v3 : Ljava/lang/String;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,l64da2
+; v0 : single-length
+.line 73
+	iget-object	v0,v2,com/a/a/a/a/aa.a Lcom/a/a/a/a/z;
+; v0 : Lcom/a/a/a/a/z; , v2 : Lcom/a/a/a/a/aa;
+	invoke-static	{v4},com/a/a/a/a/b/a	; a(Ljava/lang/String;)I
+; v4 : Ljava/lang/String;
+	move-result	v1
+; v1 : single-length
+	invoke-static	{v0,v1},com/a/a/a/a/z/b	; b(Lcom/a/a/a/a/z;I)I
+; v0 : Lcom/a/a/a/a/z; , v1 : single-length
+	goto	l64d58
+l64da2:
+.line 74
+	const-string	v0,"min-fresh"
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v0,v3},java/lang/String/equalsIgnoreCase	; equalsIgnoreCase(Ljava/lang/String;)Z
+; v0 : Ljava/lang/String; , v3 : Ljava/lang/String;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,l64dc6
+; v0 : single-length
+.line 75
+	iget-object	v0,v2,com/a/a/a/a/aa.a Lcom/a/a/a/a/z;
+; v0 : Lcom/a/a/a/a/z; , v2 : Lcom/a/a/a/a/aa;
+	invoke-static	{v4},com/a/a/a/a/b/a	; a(Ljava/lang/String;)I
+; v4 : Ljava/lang/String;
+	move-result	v1
+; v1 : single-length
+	invoke-static	{v0,v1},com/a/a/a/a/z/c	; c(Lcom/a/a/a/a/z;I)I
+; v0 : Lcom/a/a/a/a/z; , v1 : single-length
+	goto	l64d58
+l64dc6:
+.line 76
+	const-string	v0,"only-if-cached"
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v0,v3},java/lang/String/equalsIgnoreCase	; equalsIgnoreCase(Ljava/lang/String;)Z
+; v0 : Ljava/lang/String; , v3 : Ljava/lang/String;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,l64d58
+; v0 : single-length
+.line 77
+	iget-object	v0,v2,com/a/a/a/a/aa.a Lcom/a/a/a/a/z;
+; v0 : Lcom/a/a/a/a/z; , v2 : Lcom/a/a/a/a/aa;
+	invoke-static	{v0,v1},com/a/a/a/a/z/b	; b(Lcom/a/a/a/a/z;Z)Z
+; v0 : Lcom/a/a/a/a/z; , v1 : single-length
+	goto	l64d58
+.end method
+
+

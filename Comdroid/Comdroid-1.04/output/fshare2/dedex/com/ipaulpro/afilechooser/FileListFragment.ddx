@@ -1,0 +1,318 @@
+.class public com/ipaulpro/afilechooser/FileListFragment
+.super android/support/v4/app/ListFragment
+.source MyApplication
+.implements android/support/v4/app/LoaderManager$LoaderCallbacks
+
+.field private static final LOADER_ID I
+.field private mAdapter Lcom/ipaulpro/afilechooser/FileListAdapter;
+.field private mListener Lcom/ipaulpro/afilechooser/FileListFragment$Callbacks;
+.field private mPath Ljava/lang/String;
+
+.method public <init>()V
+.limit registers 1
+; this: v0 (Lcom/ipaulpro/afilechooser/FileListFragment;)
+.line 37
+	invoke-direct	{v0},android/support/v4/app/ListFragment/<init>	; <init>()V
+; v0 : Lcom/ipaulpro/afilechooser/FileListFragment;
+	return-void	
+.end method
+
+.method public static newInstance(Ljava/lang/String;)Lcom/ipaulpro/afilechooser/FileListFragment;
+.limit registers 4
+; parameter[0] : v3 (Ljava/lang/String;)
+.line 66
+	new-instance	v0,com/ipaulpro/afilechooser/FileListFragment
+; v0 : Lcom/ipaulpro/afilechooser/FileListFragment;
+	invoke-direct	{v0},com/ipaulpro/afilechooser/FileListFragment/<init>	; <init>()V
+; v0 : Lcom/ipaulpro/afilechooser/FileListFragment;
+.line 67
+	new-instance	v1,android/os/Bundle
+; v1 : Landroid/os/Bundle;
+	invoke-direct	{v1},android/os/Bundle/<init>	; <init>()V
+; v1 : Landroid/os/Bundle;
+.line 68
+	const-string	v2,"path"
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2,v3},android/os/Bundle/putString	; putString(Ljava/lang/String;Ljava/lang/String;)V
+; v1 : Landroid/os/Bundle; , v2 : Ljava/lang/String; , v3 : Ljava/lang/String;
+.line 69
+	invoke-virtual	{v0,v1},com/ipaulpro/afilechooser/FileListFragment/setArguments	; setArguments(Landroid/os/Bundle;)V
+; v0 : Lcom/ipaulpro/afilechooser/FileListFragment; , v1 : Landroid/os/Bundle;
+.line 71
+	return-object	v0
+; v0 : Lcom/ipaulpro/afilechooser/FileListFragment;
+.end method
+
+.method public onActivityCreated(Landroid/os/Bundle;)V
+.limit registers 5
+; this: v3 (Lcom/ipaulpro/afilechooser/FileListFragment;)
+; parameter[0] : v4 (Landroid/os/Bundle;)
+	const/4	v2,0
+; v2 : single-length
+.line 98
+	sget	v0,com/ipaulpro/afilechooser/R$string.empty_directory I
+; v0 : single-length
+	invoke-virtual	{v3,v0},com/ipaulpro/afilechooser/FileListFragment/getString	; getString(I)Ljava/lang/String;
+; v3 : Lcom/ipaulpro/afilechooser/FileListFragment; , v0 : single-length
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v3,v0},com/ipaulpro/afilechooser/FileListFragment/setEmptyText	; setEmptyText(Ljava/lang/CharSequence;)V
+; v3 : Lcom/ipaulpro/afilechooser/FileListFragment; , v0 : Ljava/lang/String;
+.line 99
+	iget-object	v0,v3,com/ipaulpro/afilechooser/FileListFragment.mAdapter Lcom/ipaulpro/afilechooser/FileListAdapter;
+; v0 : Lcom/ipaulpro/afilechooser/FileListAdapter; , v3 : Lcom/ipaulpro/afilechooser/FileListFragment;
+	invoke-virtual	{v3,v0},com/ipaulpro/afilechooser/FileListFragment/setListAdapter	; setListAdapter(Landroid/widget/ListAdapter;)V
+; v3 : Lcom/ipaulpro/afilechooser/FileListFragment; , v0 : Lcom/ipaulpro/afilechooser/FileListAdapter;
+.line 100
+	invoke-virtual	{v3,v2},com/ipaulpro/afilechooser/FileListFragment/setListShown	; setListShown(Z)V
+; v3 : Lcom/ipaulpro/afilechooser/FileListFragment; , v2 : single-length
+.line 102
+	invoke-virtual	{v3},com/ipaulpro/afilechooser/FileListFragment/getLoaderManager	; getLoaderManager()Landroid/support/v4/app/LoaderManager;
+; v3 : Lcom/ipaulpro/afilechooser/FileListFragment;
+	move-result-object	v0
+; v0 : Landroid/support/v4/app/LoaderManager;
+	const/4	v1,0
+; v1 : single-length
+	invoke-virtual	{v0,v2,v1,v3},android/support/v4/app/LoaderManager/initLoader	; initLoader(ILandroid/os/Bundle;Landroid/support/v4/app/LoaderManager$LoaderCallbacks;)Landroid/support/v4/content/Loader;
+; v0 : Landroid/support/v4/app/LoaderManager; , v2 : single-length , v1 : single-length , v3 : Lcom/ipaulpro/afilechooser/FileListFragment;
+.line 104
+	invoke-super	{v3,v4},android/support/v4/app/ListFragment/onActivityCreated	; onActivityCreated(Landroid/os/Bundle;)V
+; v3 : Lcom/ipaulpro/afilechooser/FileListFragment; , v4 : Landroid/os/Bundle;
+.line 105
+	return-void	
+.end method
+
+.method public onAttach(Landroid/app/Activity;)V
+.limit registers 6
+; this: v4 (Lcom/ipaulpro/afilechooser/FileListFragment;)
+; parameter[0] : v5 (Landroid/app/Activity;)
+.catch java/lang/ClassCastException from la5bba to la5bc6 using la5bc8
+.line 76
+	invoke-super	{v4,v5},android/support/v4/app/ListFragment/onAttach	; onAttach(Landroid/app/Activity;)V
+; v4 : Lcom/ipaulpro/afilechooser/FileListFragment; , v5 : Landroid/app/Activity;
+la5bba:
+.line 79
+	move-object	v0,v5
+; v0 : Landroid/app/Activity; , v5 : Landroid/app/Activity;
+	check-cast	v0,com/ipaulpro/afilechooser/FileListFragment$Callbacks
+; v0 : Lcom/ipaulpro/afilechooser/FileListFragment$Callbacks;
+	move-object	v1,v0
+; v1 : Lcom/ipaulpro/afilechooser/FileListFragment$Callbacks; , v0 : Lcom/ipaulpro/afilechooser/FileListFragment$Callbacks;
+	iput-object	v1,v4,com/ipaulpro/afilechooser/FileListFragment.mListener Lcom/ipaulpro/afilechooser/FileListFragment$Callbacks;
+; v1 : Lcom/ipaulpro/afilechooser/FileListFragment$Callbacks; , v4 : Lcom/ipaulpro/afilechooser/FileListFragment;
+la5bc6:
+.line 84
+	return-void	
+la5bc8:
+.line 80
+	move-exception	v1
+; v1 : java/lang/ClassCastException
+.line 81
+	new-instance	v1,java/lang/ClassCastException
+; v1 : Ljava/lang/ClassCastException;
+	new-instance	v2,java/lang/StringBuilder
+; v2 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v5},java/lang/Object/toString	; toString()Ljava/lang/String;
+; v5 : Landroid/app/Activity;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-static	{v3},java/lang/String/valueOf	; valueOf(Ljava/lang/Object;)Ljava/lang/String;
+; v3 : Ljava/lang/String;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-direct	{v2,v3},java/lang/StringBuilder/<init>	; <init>(Ljava/lang/String;)V
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+.line 82
+	const-string	v3," must implement FileListFragment.Callbacks"
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v2},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v2 : Ljava/lang/StringBuilder;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+.line 81
+	invoke-direct	{v1,v2},java/lang/ClassCastException/<init>	; <init>(Ljava/lang/String;)V
+; v1 : Ljava/lang/ClassCastException; , v2 : Ljava/lang/String;
+	throw	v1
+; v1 : Ljava/lang/ClassCastException;
+.end method
+
+.method public onCreate(Landroid/os/Bundle;)V
+.limit registers 4
+; this: v2 (Lcom/ipaulpro/afilechooser/FileListFragment;)
+; parameter[0] : v3 (Landroid/os/Bundle;)
+.line 88
+	invoke-super	{v2,v3},android/support/v4/app/ListFragment/onCreate	; onCreate(Landroid/os/Bundle;)V
+; v2 : Lcom/ipaulpro/afilechooser/FileListFragment; , v3 : Landroid/os/Bundle;
+.line 90
+	new-instance	v0,com/ipaulpro/afilechooser/FileListAdapter
+; v0 : Lcom/ipaulpro/afilechooser/FileListAdapter;
+	invoke-virtual	{v2},com/ipaulpro/afilechooser/FileListFragment/getActivity	; getActivity()Landroid/support/v4/app/FragmentActivity;
+; v2 : Lcom/ipaulpro/afilechooser/FileListFragment;
+	move-result-object	v1
+; v1 : Landroid/support/v4/app/FragmentActivity;
+	invoke-direct	{v0,v1},com/ipaulpro/afilechooser/FileListAdapter/<init>	; <init>(Landroid/content/Context;)V
+; v0 : Lcom/ipaulpro/afilechooser/FileListAdapter; , v1 : Landroid/support/v4/app/FragmentActivity;
+	iput-object	v0,v2,com/ipaulpro/afilechooser/FileListFragment.mAdapter Lcom/ipaulpro/afilechooser/FileListAdapter;
+; v0 : Lcom/ipaulpro/afilechooser/FileListAdapter; , v2 : Lcom/ipaulpro/afilechooser/FileListFragment;
+.line 91
+	invoke-virtual	{v2},com/ipaulpro/afilechooser/FileListFragment/getArguments	; getArguments()Landroid/os/Bundle;
+; v2 : Lcom/ipaulpro/afilechooser/FileListFragment;
+	move-result-object	v0
+; v0 : Landroid/os/Bundle;
+	if-eqz	v0,la5c66
+; v0 : Landroid/os/Bundle;
+	invoke-virtual	{v2},com/ipaulpro/afilechooser/FileListFragment/getArguments	; getArguments()Landroid/os/Bundle;
+; v2 : Lcom/ipaulpro/afilechooser/FileListFragment;
+	move-result-object	v0
+; v0 : Landroid/os/Bundle;
+.line 92
+	const-string	v1,"path"
+; v1 : Ljava/lang/String;
+.line 91
+	invoke-virtual	{v0,v1},android/os/Bundle/getString	; getString(Ljava/lang/String;)Ljava/lang/String;
+; v0 : Landroid/os/Bundle; , v1 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+la5c60:
+	iput-object	v0,v2,com/ipaulpro/afilechooser/FileListFragment.mPath Ljava/lang/String;
+; v0 : Ljava/lang/String; , v2 : Lcom/ipaulpro/afilechooser/FileListFragment;
+.line 94
+	return-void	
+la5c66:
+.line 93
+	invoke-static	{},android/os/Environment/getExternalStorageDirectory	; getExternalStorageDirectory()Ljava/io/File;
+; 
+	nop	
+	move-result-object	v0
+; v0 : Ljava/io/File;
+	invoke-virtual	{v0},java/io/File/getAbsolutePath	; getAbsolutePath()Ljava/lang/String;
+; v0 : Ljava/io/File;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	goto	la5c60
+.end method
+
+.method public onCreateLoader(ILandroid/os/Bundle;)Landroid/support/v4/content/Loader;
+.limit registers 6
+; this: v3 (Lcom/ipaulpro/afilechooser/FileListFragment;)
+; parameter[0] : v4 (I)
+; parameter[1] : v5 (Landroid/os/Bundle;)
+.line 119
+	new-instance	v0,com/ipaulpro/afilechooser/FileLoader
+; v0 : Lcom/ipaulpro/afilechooser/FileLoader;
+	invoke-virtual	{v3},com/ipaulpro/afilechooser/FileListFragment/getActivity	; getActivity()Landroid/support/v4/app/FragmentActivity;
+; v3 : Lcom/ipaulpro/afilechooser/FileListFragment;
+	move-result-object	v1
+; v1 : Landroid/support/v4/app/FragmentActivity;
+	iget-object	v2,v3,com/ipaulpro/afilechooser/FileListFragment.mPath Ljava/lang/String;
+; v2 : Ljava/lang/String; , v3 : Lcom/ipaulpro/afilechooser/FileListFragment;
+	invoke-direct	{v0,v1,v2},com/ipaulpro/afilechooser/FileLoader/<init>	; <init>(Landroid/content/Context;Ljava/lang/String;)V
+; v0 : Lcom/ipaulpro/afilechooser/FileLoader; , v1 : Landroid/support/v4/app/FragmentActivity; , v2 : Ljava/lang/String;
+	return-object	v0
+; v0 : Lcom/ipaulpro/afilechooser/FileLoader;
+.end method
+
+.method public onListItemClick(Landroid/widget/ListView;Landroid/view/View;IJ)V
+.limit registers 8
+; this: v2 (Lcom/ipaulpro/afilechooser/FileListFragment;)
+; parameter[0] : v3 (Landroid/widget/ListView;)
+; parameter[1] : v4 (Landroid/view/View;)
+; parameter[2] : v5 (I)
+; parameter[3] : v6 (J)
+.line 109
+	invoke-virtual	{v3},android/widget/ListView/getAdapter	; getAdapter()Landroid/widget/ListAdapter;
+; v3 : Landroid/widget/ListView;
+	move-result-object	v0
+; v0 : Landroid/widget/ListAdapter;
+	check-cast	v0,com/ipaulpro/afilechooser/FileListAdapter
+; v0 : Lcom/ipaulpro/afilechooser/FileListAdapter;
+.line 110
+	if-eqz	v0,la5cde
+; v0 : Lcom/ipaulpro/afilechooser/FileListAdapter;
+.line 111
+	invoke-virtual	{v0,v5},com/ipaulpro/afilechooser/FileListAdapter/getItem	; getItem(I)Ljava/io/File;
+; v0 : Lcom/ipaulpro/afilechooser/FileListAdapter; , v5 : single-length
+	move-result-object	v0
+; v0 : Ljava/io/File;
+.line 112
+	invoke-virtual	{v0},java/io/File/getAbsolutePath	; getAbsolutePath()Ljava/lang/String;
+; v0 : Ljava/io/File;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	iput-object	v1,v2,com/ipaulpro/afilechooser/FileListFragment.mPath Ljava/lang/String;
+; v1 : Ljava/lang/String; , v2 : Lcom/ipaulpro/afilechooser/FileListFragment;
+.line 113
+	iget-object	v1,v2,com/ipaulpro/afilechooser/FileListFragment.mListener Lcom/ipaulpro/afilechooser/FileListFragment$Callbacks;
+; v1 : Lcom/ipaulpro/afilechooser/FileListFragment$Callbacks; , v2 : Lcom/ipaulpro/afilechooser/FileListFragment;
+	invoke-interface	{v1,v0},com/ipaulpro/afilechooser/FileListFragment$Callbacks/onFileSelected	; onFileSelected(Ljava/io/File;)V
+; v1 : Lcom/ipaulpro/afilechooser/FileListFragment$Callbacks; , v0 : Ljava/io/File;
+la5cde:
+.line 115
+	return-void	
+.end method
+
+.method public onLoadFinished(Landroid/support/v4/content/Loader;Ljava/lang/Object;)V
+.limit registers 3
+; this: v0 (Lcom/ipaulpro/afilechooser/FileListFragment;)
+; parameter[0] : v1 (Landroid/support/v4/content/Loader;)
+; parameter[1] : v2 (Ljava/lang/Object;)
+.line 1
+	check-cast	v1,android/support/v4/content/Loader
+; v1 : Landroid/support/v4/content/Loader;
+	check-cast	v2,java/util/List
+; v2 : Ljava/util/List;
+	invoke-virtual	{v0,v1,v2},com/ipaulpro/afilechooser/FileListFragment/onLoadFinished	; onLoadFinished(Landroid/support/v4/content/Loader;Ljava/util/List;)V
+; v0 : Lcom/ipaulpro/afilechooser/FileListFragment; , v1 : Landroid/support/v4/content/Loader; , v2 : Ljava/util/List;
+	return-void	
+.end method
+
+.method public onLoadFinished(Landroid/support/v4/content/Loader;Ljava/util/List;)V
+.limit registers 5
+; this: v2 (Lcom/ipaulpro/afilechooser/FileListFragment;)
+; parameter[0] : v3 (Landroid/support/v4/content/Loader;)
+; parameter[1] : v4 (Ljava/util/List;)
+	const/4	v1,1
+; v1 : single-length
+.line 124
+	iget-object	v0,v2,com/ipaulpro/afilechooser/FileListFragment.mAdapter Lcom/ipaulpro/afilechooser/FileListAdapter;
+; v0 : Lcom/ipaulpro/afilechooser/FileListAdapter; , v2 : Lcom/ipaulpro/afilechooser/FileListFragment;
+	invoke-virtual	{v0,v4},com/ipaulpro/afilechooser/FileListAdapter/setListItems	; setListItems(Ljava/util/List;)V
+; v0 : Lcom/ipaulpro/afilechooser/FileListAdapter; , v4 : Ljava/util/List;
+.line 126
+	invoke-virtual	{v2},com/ipaulpro/afilechooser/FileListFragment/isResumed	; isResumed()Z
+; v2 : Lcom/ipaulpro/afilechooser/FileListFragment;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,la5d30
+; v0 : single-length
+.line 127
+	invoke-virtual	{v2,v1},com/ipaulpro/afilechooser/FileListFragment/setListShown	; setListShown(Z)V
+; v2 : Lcom/ipaulpro/afilechooser/FileListFragment; , v1 : single-length
+la5d2e:
+.line 130
+	return-void	
+la5d30:
+.line 129
+	invoke-virtual	{v2,v1},com/ipaulpro/afilechooser/FileListFragment/setListShownNoAnimation	; setListShownNoAnimation(Z)V
+; v2 : Lcom/ipaulpro/afilechooser/FileListFragment; , v1 : single-length
+	goto	la5d2e
+.end method
+
+.method public onLoaderReset(Landroid/support/v4/content/Loader;)V
+.limit registers 3
+; this: v1 (Lcom/ipaulpro/afilechooser/FileListFragment;)
+; parameter[0] : v2 (Landroid/support/v4/content/Loader;)
+.line 134
+	iget-object	v0,v1,com/ipaulpro/afilechooser/FileListFragment.mAdapter Lcom/ipaulpro/afilechooser/FileListAdapter;
+; v0 : Lcom/ipaulpro/afilechooser/FileListAdapter; , v1 : Lcom/ipaulpro/afilechooser/FileListFragment;
+	invoke-virtual	{v0},com/ipaulpro/afilechooser/FileListAdapter/clear	; clear()V
+; v0 : Lcom/ipaulpro/afilechooser/FileListAdapter;
+.line 135
+	return-void	
+.end method
+
+

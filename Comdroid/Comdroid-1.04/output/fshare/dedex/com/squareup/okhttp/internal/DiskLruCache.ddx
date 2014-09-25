@@ -1,0 +1,2731 @@
+.class public final com/squareup/okhttp/internal/DiskLruCache
+.super java/lang/Object
+.source DiskLruCache.java
+.implements java/io/Closeable
+
+.inner class Entry inner com/squareup/okhttp/internal/DiskLruCache$Entry outer com/squareup/okhttp/internal/DiskLruCache
+.inner class Editor inner com/squareup/okhttp/internal/DiskLruCache$Editor outer com/squareup/okhttp/internal/DiskLruCache
+.inner class Snapshot inner com/squareup/okhttp/internal/DiskLruCache$Snapshot outer com/squareup/okhttp/internal/DiskLruCache
+.field static final ANY_SEQUENCE_NUMBER J = -1	; 0xffffffffffffffff
+.field private static final CLEAN Ljava/lang/String; = "CLEAN"
+.field private static final DIRTY Ljava/lang/String; = "DIRTY"
+.field static final JOURNAL_FILE Ljava/lang/String; = "journal"
+.field static final JOURNAL_FILE_BACKUP Ljava/lang/String; = "journal.bkp"
+.field static final JOURNAL_FILE_TEMP Ljava/lang/String; = "journal.tmp"
+.field static final LEGAL_KEY_PATTERN Ljava/util/regex/Pattern; = null
+.field static final MAGIC Ljava/lang/String; = "libcore.io.DiskLruCache"
+.field private static final NULL_OUTPUT_STREAM Ljava/io/OutputStream; = null
+.field private static final READ Ljava/lang/String; = "READ"
+.field private static final REMOVE Ljava/lang/String; = "REMOVE"
+.field static final VERSION_1 Ljava/lang/String; = "1"
+.field private final appVersion I
+.field private final cleanupCallable Ljava/util/concurrent/Callable;
+  .annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "Ljava/util/concurrent/Callable" , "<" , "Ljava/lang/Void;" , ">;" }
+  .end annotation
+.end field
+.field private final directory Ljava/io/File;
+.field final executorService Ljava/util/concurrent/ThreadPoolExecutor;
+.field private final journalFile Ljava/io/File;
+.field private final journalFileBackup Ljava/io/File;
+.field private final journalFileTmp Ljava/io/File;
+.field private journalWriter Ljava/io/Writer;
+.field private final lruEntries Ljava/util/LinkedHashMap;
+  .annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "Ljava/util/LinkedHashMap" , "<" , "Ljava/lang/String;" , "Lcom/squareup/okhttp/internal/DiskLruCache$Entry;" , ">;" }
+  .end annotation
+.end field
+.field private maxSize J
+.field private nextSequenceNumber J
+.field private redundantOpCount I
+.field private size J
+.field private final valueCount I
+
+.method static <clinit>()V
+.limit registers 1
+.line 95
+	const-string	v0,"[a-z0-9_-]{1,64}"
+; v0 : Ljava/lang/String;
+	invoke-static	{v0},java/util/regex/Pattern/compile	; compile(Ljava/lang/String;)Ljava/util/regex/Pattern;
+; v0 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/util/regex/Pattern;
+	sput-object	v0,com/squareup/okhttp/internal/DiskLruCache.LEGAL_KEY_PATTERN Ljava/util/regex/Pattern;
+; v0 : Ljava/util/regex/Pattern;
+.line 709
+	new-instance	v0,com/squareup/okhttp/internal/DiskLruCache$2
+; v0 : Lcom/squareup/okhttp/internal/DiskLruCache$2;
+	invoke-direct	{v0},com/squareup/okhttp/internal/DiskLruCache$2/<init>	; <init>()V
+; v0 : Lcom/squareup/okhttp/internal/DiskLruCache$2;
+	sput-object	v0,com/squareup/okhttp/internal/DiskLruCache.NULL_OUTPUT_STREAM Ljava/io/OutputStream;
+; v0 : Ljava/io/OutputStream;
+	return-void	
+.end method
+
+.method private <init>(Ljava/io/File;IIJ)V
+.limit registers 13
+; this: v7 (Lcom/squareup/okhttp/internal/DiskLruCache;)
+; parameter[0] : v8 (Ljava/io/File;)
+; parameter[1] : v9 (I)
+; parameter[2] : v10 (I)
+; parameter[3] : v11 (J)
+	const-wide/16	v4,0
+; v4 : double-length
+	const/4	v2,1
+; v2 : single-length
+	const/4	v1,0
+; v1 : single-length
+.line 180
+	invoke-direct	{v7},java/lang/Object/<init>	; <init>()V
+; v7 : Lcom/squareup/okhttp/internal/DiskLruCache;
+.line 148
+	iput-wide	v4,v7,com/squareup/okhttp/internal/DiskLruCache.size J
+; v4 : double-length , v7 : Lcom/squareup/okhttp/internal/DiskLruCache;
+.line 150
+	new-instance	v0,java/util/LinkedHashMap
+; v0 : Ljava/util/LinkedHashMap;
+	const/high16	v3,16192
+; v3 : single-length
+	invoke-direct	{v0,v1,v3,v2},java/util/LinkedHashMap/<init>	; <init>(IFZ)V
+; v0 : Ljava/util/LinkedHashMap; , v1 : single-length , v3 : single-length , v2 : single-length
+	iput-object	v0,v7,com/squareup/okhttp/internal/DiskLruCache.lruEntries Ljava/util/LinkedHashMap;
+; v0 : Ljava/util/LinkedHashMap; , v7 : Lcom/squareup/okhttp/internal/DiskLruCache;
+.line 159
+	iput-wide	v4,v7,com/squareup/okhttp/internal/DiskLruCache.nextSequenceNumber J
+; v4 : double-length , v7 : Lcom/squareup/okhttp/internal/DiskLruCache;
+.line 162
+	new-instance	v0,java/util/concurrent/ThreadPoolExecutor
+; v0 : Ljava/util/concurrent/ThreadPoolExecutor;
+	const-wide/16	v3,60
+; v3 : double-length
+	sget-object	v5,java/util/concurrent/TimeUnit.SECONDS Ljava/util/concurrent/TimeUnit;
+; v5 : Ljava/util/concurrent/TimeUnit;
+	new-instance	v6,java/util/concurrent/LinkedBlockingQueue
+; v6 : Ljava/util/concurrent/LinkedBlockingQueue;
+	invoke-direct	{v6},java/util/concurrent/LinkedBlockingQueue/<init>	; <init>()V
+; v6 : Ljava/util/concurrent/LinkedBlockingQueue;
+	invoke-direct/range	{v0..v6},java/util/concurrent/ThreadPoolExecutor/<init>;	<init>(IIJLjava/util/concurrent/TimeUnit;Ljava/util/concurrent/BlockingQueue;)V
+; v0 : Ljava/util/concurrent/ThreadPoolExecutor; , v1 : single-length , v2 : single-length , v3 : double-length , v5 : Ljava/util/concurrent/TimeUnit; , v6 : Ljava/util/concurrent/LinkedBlockingQueue;
+	iput-object	v0,v7,com/squareup/okhttp/internal/DiskLruCache.executorService Ljava/util/concurrent/ThreadPoolExecutor;
+; v0 : Ljava/util/concurrent/ThreadPoolExecutor; , v7 : Lcom/squareup/okhttp/internal/DiskLruCache;
+.line 164
+	new-instance	v0,com/squareup/okhttp/internal/DiskLruCache$1
+; v0 : Lcom/squareup/okhttp/internal/DiskLruCache$1;
+	invoke-direct	{v0,v7},com/squareup/okhttp/internal/DiskLruCache$1/<init>	; <init>(Lcom/squareup/okhttp/internal/DiskLruCache;)V
+; v0 : Lcom/squareup/okhttp/internal/DiskLruCache$1; , v7 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	iput-object	v0,v7,com/squareup/okhttp/internal/DiskLruCache.cleanupCallable Ljava/util/concurrent/Callable;
+; v0 : Lcom/squareup/okhttp/internal/DiskLruCache$1; , v7 : Lcom/squareup/okhttp/internal/DiskLruCache;
+.line 181
+	iput-object	v8,v7,com/squareup/okhttp/internal/DiskLruCache.directory Ljava/io/File;
+; v8 : Ljava/io/File; , v7 : Lcom/squareup/okhttp/internal/DiskLruCache;
+.line 182
+	iput	v9,v7,com/squareup/okhttp/internal/DiskLruCache.appVersion I
+; v9 : single-length , v7 : Lcom/squareup/okhttp/internal/DiskLruCache;
+.line 183
+	new-instance	v0,java/io/File
+; v0 : Ljava/io/File;
+	const-string	v1,"journal"
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v8,v1},java/io/File/<init>	; <init>(Ljava/io/File;Ljava/lang/String;)V
+; v0 : Ljava/io/File; , v8 : Ljava/io/File; , v1 : Ljava/lang/String;
+	iput-object	v0,v7,com/squareup/okhttp/internal/DiskLruCache.journalFile Ljava/io/File;
+; v0 : Ljava/io/File; , v7 : Lcom/squareup/okhttp/internal/DiskLruCache;
+.line 184
+	new-instance	v0,java/io/File
+; v0 : Ljava/io/File;
+	const-string	v1,"journal.tmp"
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v8,v1},java/io/File/<init>	; <init>(Ljava/io/File;Ljava/lang/String;)V
+; v0 : Ljava/io/File; , v8 : Ljava/io/File; , v1 : Ljava/lang/String;
+	iput-object	v0,v7,com/squareup/okhttp/internal/DiskLruCache.journalFileTmp Ljava/io/File;
+; v0 : Ljava/io/File; , v7 : Lcom/squareup/okhttp/internal/DiskLruCache;
+.line 185
+	new-instance	v0,java/io/File
+; v0 : Ljava/io/File;
+	const-string	v1,"journal.bkp"
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v8,v1},java/io/File/<init>	; <init>(Ljava/io/File;Ljava/lang/String;)V
+; v0 : Ljava/io/File; , v8 : Ljava/io/File; , v1 : Ljava/lang/String;
+	iput-object	v0,v7,com/squareup/okhttp/internal/DiskLruCache.journalFileBackup Ljava/io/File;
+; v0 : Ljava/io/File; , v7 : Lcom/squareup/okhttp/internal/DiskLruCache;
+.line 186
+	iput	v10,v7,com/squareup/okhttp/internal/DiskLruCache.valueCount I
+; v10 : single-length , v7 : Lcom/squareup/okhttp/internal/DiskLruCache;
+.line 187
+	iput-wide	v11,v7,com/squareup/okhttp/internal/DiskLruCache.maxSize J
+; v11 : double-length , v7 : Lcom/squareup/okhttp/internal/DiskLruCache;
+.line 188
+	return-void	
+.end method
+
+.method static access$000(Lcom/squareup/okhttp/internal/DiskLruCache;)Ljava/io/Writer;
+.limit registers 2
+; parameter[0] : v1 (Lcom/squareup/okhttp/internal/DiskLruCache;)
+.line 88
+	iget-object	v0,v1,com/squareup/okhttp/internal/DiskLruCache.journalWriter Ljava/io/Writer;
+; v0 : Ljava/io/Writer; , v1 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	return-object	v0
+; v0 : Ljava/io/Writer;
+.end method
+
+.method static access$100(Lcom/squareup/okhttp/internal/DiskLruCache;)V
+.throws Ljava/io/IOException;
+.limit registers 1
+; parameter[0] : v0 (Lcom/squareup/okhttp/internal/DiskLruCache;)
+.line 88
+	invoke-direct	{v0},com/squareup/okhttp/internal/DiskLruCache/trimToSize	; trimToSize()V
+; v0 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	return-void	
+.end method
+
+.method static access$1600(Lcom/squareup/okhttp/internal/DiskLruCache;Ljava/lang/String;J)Lcom/squareup/okhttp/internal/DiskLruCache$Editor;
+.throws Ljava/io/IOException;
+.limit registers 5
+; parameter[0] : v1 (Lcom/squareup/okhttp/internal/DiskLruCache;)
+; parameter[1] : v2 (Ljava/lang/String;)
+; parameter[2] : v3 (J)
+.line 88
+	invoke-direct	{v1,v2,v3,v4},com/squareup/okhttp/internal/DiskLruCache/edit	; edit(Ljava/lang/String;J)Lcom/squareup/okhttp/internal/DiskLruCache$Editor;
+; v1 : Lcom/squareup/okhttp/internal/DiskLruCache; , v2 : Ljava/lang/String; , v3 : double-length
+	move-result-object	v0
+; v0 : Lcom/squareup/okhttp/internal/DiskLruCache$Editor;
+	return-object	v0
+; v0 : Lcom/squareup/okhttp/internal/DiskLruCache$Editor;
+.end method
+
+.method static access$1700(Ljava/io/InputStream;)Ljava/lang/String;
+.throws Ljava/io/IOException;
+.limit registers 2
+; parameter[0] : v1 (Ljava/io/InputStream;)
+.line 88
+	invoke-static	{v1},com/squareup/okhttp/internal/DiskLruCache/inputStreamToString	; inputStreamToString(Ljava/io/InputStream;)Ljava/lang/String;
+; v1 : Ljava/io/InputStream;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	return-object	v0
+; v0 : Ljava/lang/String;
+.end method
+
+.method static access$1800(Lcom/squareup/okhttp/internal/DiskLruCache;)I
+.limit registers 2
+; parameter[0] : v1 (Lcom/squareup/okhttp/internal/DiskLruCache;)
+.line 88
+	iget	v0,v1,com/squareup/okhttp/internal/DiskLruCache.valueCount I
+; v0 : single-length , v1 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	return	v0
+; v0 : single-length
+.end method
+
+.method static access$1900(Lcom/squareup/okhttp/internal/DiskLruCache;)Ljava/io/File;
+.limit registers 2
+; parameter[0] : v1 (Lcom/squareup/okhttp/internal/DiskLruCache;)
+.line 88
+	iget-object	v0,v1,com/squareup/okhttp/internal/DiskLruCache.directory Ljava/io/File;
+; v0 : Ljava/io/File; , v1 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	return-object	v0
+; v0 : Ljava/io/File;
+.end method
+
+.method static access$200(Lcom/squareup/okhttp/internal/DiskLruCache;)Z
+.limit registers 2
+; parameter[0] : v1 (Lcom/squareup/okhttp/internal/DiskLruCache;)
+.line 88
+	invoke-direct	{v1},com/squareup/okhttp/internal/DiskLruCache/journalRebuildRequired	; journalRebuildRequired()Z
+; v1 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	move-result	v0
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method static access$2000()Ljava/io/OutputStream;
+.limit registers 1
+.line 88
+	sget-object	v0,com/squareup/okhttp/internal/DiskLruCache.NULL_OUTPUT_STREAM Ljava/io/OutputStream;
+; v0 : Ljava/io/OutputStream;
+	return-object	v0
+; v0 : Ljava/io/OutputStream;
+.end method
+
+.method static access$2200(Lcom/squareup/okhttp/internal/DiskLruCache;Lcom/squareup/okhttp/internal/DiskLruCache$Editor;Z)V
+.throws Ljava/io/IOException;
+.limit registers 3
+; parameter[0] : v0 (Lcom/squareup/okhttp/internal/DiskLruCache;)
+; parameter[1] : v1 (Lcom/squareup/okhttp/internal/DiskLruCache$Editor;)
+; parameter[2] : v2 (Z)
+.line 88
+	invoke-direct	{v0,v1,v2},com/squareup/okhttp/internal/DiskLruCache/completeEdit	; completeEdit(Lcom/squareup/okhttp/internal/DiskLruCache$Editor;Z)V
+; v0 : Lcom/squareup/okhttp/internal/DiskLruCache; , v1 : Lcom/squareup/okhttp/internal/DiskLruCache$Editor; , v2 : single-length
+	return-void	
+.end method
+
+.method static access$300(Lcom/squareup/okhttp/internal/DiskLruCache;)V
+.throws Ljava/io/IOException;
+.limit registers 1
+; parameter[0] : v0 (Lcom/squareup/okhttp/internal/DiskLruCache;)
+.line 88
+	invoke-direct	{v0},com/squareup/okhttp/internal/DiskLruCache/rebuildJournal	; rebuildJournal()V
+; v0 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	return-void	
+.end method
+
+.method static access$402(Lcom/squareup/okhttp/internal/DiskLruCache;I)I
+.limit registers 2
+; parameter[0] : v0 (Lcom/squareup/okhttp/internal/DiskLruCache;)
+; parameter[1] : v1 (I)
+.line 88
+	iput	v1,v0,com/squareup/okhttp/internal/DiskLruCache.redundantOpCount I
+; v1 : single-length , v0 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	return	v1
+; v1 : single-length
+.end method
+
+.method private checkNotClosed()V
+.limit registers 3
+; this: v2 (Lcom/squareup/okhttp/internal/DiskLruCache;)
+.line 609
+	iget-object	v0,v2,com/squareup/okhttp/internal/DiskLruCache.journalWriter Ljava/io/Writer;
+; v0 : Ljava/io/Writer; , v2 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	if-nez	v0,lb6ed4
+; v0 : Ljava/io/Writer;
+.line 610
+	new-instance	v0,java/lang/IllegalStateException
+; v0 : Ljava/lang/IllegalStateException;
+	const-string	v1,"cache is closed"
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/IllegalStateException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/IllegalStateException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/IllegalStateException;
+lb6ed4:
+.line 612
+	return-void	
+.end method
+
+.method private synchronized completeEdit(Lcom/squareup/okhttp/internal/DiskLruCache$Editor;Z)V
+.throws Ljava/io/IOException;
+.limit registers 15
+; this: v12 (Lcom/squareup/okhttp/internal/DiskLruCache;)
+; parameter[0] : v13 (Lcom/squareup/okhttp/internal/DiskLruCache$Editor;)
+; parameter[1] : v14 (Z)
+.catch java/lang/Exception from lb6f98 to lb7124 using lb6f0a
+.catch java/lang/Exception from lb6f14 to lb6f8c using lb6f0a
+.catch java/lang/Exception from lb6eea to lb6f0a using lb6f0a
+.var 2 is entry Lcom/squareup/okhttp/internal/DiskLruCache$Entry; from lb6ef2 to lb6f0a
+.var 3 is i I from lb6f22 to lb6f96
+.var 0 is clean Ljava/io/File; from lb6fc0 to lb6ff2
+.var 4 is newLength J from lb6fda to lb6ff2
+.var 6 is oldLength J from lb6fd2 to lb6ff2
+.var 1 is dirty Ljava/io/File; from lb6fa8 to lb7000
+.line 505
+	monitor-enter	v12
+; v12 : Lcom/squareup/okhttp/internal/DiskLruCache;
+lb6eea:
+	invoke-static	{v13},com/squareup/okhttp/internal/DiskLruCache$Editor/access$1400	; access$1400(Lcom/squareup/okhttp/internal/DiskLruCache$Editor;)Lcom/squareup/okhttp/internal/DiskLruCache$Entry;
+; v13 : Lcom/squareup/okhttp/internal/DiskLruCache$Editor;
+	move-result-object	v2
+; v2 : Lcom/squareup/okhttp/internal/DiskLruCache$Entry;
+.line 506
+	invoke-static	{v2},com/squareup/okhttp/internal/DiskLruCache$Entry/access$700	; access$700(Lcom/squareup/okhttp/internal/DiskLruCache$Entry;)Lcom/squareup/okhttp/internal/DiskLruCache$Editor;
+; v2 : Lcom/squareup/okhttp/internal/DiskLruCache$Entry;
+	move-result-object	v8
+; v8 : Lcom/squareup/okhttp/internal/DiskLruCache$Editor;
+	if-eq	v8,v13,lb6f10
+; v8 : Lcom/squareup/okhttp/internal/DiskLruCache$Editor; , v13 : Lcom/squareup/okhttp/internal/DiskLruCache$Editor;
+.line 507
+	new-instance	v8,java/lang/IllegalStateException
+; v8 : Ljava/lang/IllegalStateException;
+	invoke-direct	{v8},java/lang/IllegalStateException/<init>	; <init>()V
+; v8 : Ljava/lang/IllegalStateException;
+	throw	v8
+; v8 : Ljava/lang/IllegalStateException;
+lb6f0a:
+.line 505
+	move-exception	v8
+; v8 : java/lang/Exception
+	monitor-exit	v12
+; v12 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	throw	v8
+; v8 : java/lang/Exception
+lb6f10:
+.line 511
+	if-eqz	v14,lb6f96
+; v14 : single-length
+lb6f14:
+	invoke-static	{v2},com/squareup/okhttp/internal/DiskLruCache$Entry/access$600	; access$600(Lcom/squareup/okhttp/internal/DiskLruCache$Entry;)Z
+; v2 : Lcom/squareup/okhttp/internal/DiskLruCache$Entry;
+	move-result	v8
+; v8 : single-length
+	if-nez	v8,lb6f96
+; v8 : single-length
+.line 512
+	const/4	v3,0
+; v3 : single-length
+lb6f22:
+	iget	v8,v12,com/squareup/okhttp/internal/DiskLruCache.valueCount I
+; v8 : single-length , v12 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	if-ge	v3,v8,lb6f96
+; v3 : single-length , v8 : single-length
+.line 513
+	invoke-static	{v13},com/squareup/okhttp/internal/DiskLruCache$Editor/access$1500	; access$1500(Lcom/squareup/okhttp/internal/DiskLruCache$Editor;)[Z
+; v13 : Lcom/squareup/okhttp/internal/DiskLruCache$Editor;
+	move-result-object	v8
+; v8 : [Z
+	aget-boolean	v8,v8,v3
+; v8 : single-length , v8 : single-length , v3 : single-length
+	if-nez	v8,lb6f72
+; v8 : single-length
+.line 514
+	invoke-virtual	{v13},com/squareup/okhttp/internal/DiskLruCache$Editor/abort	; abort()V
+; v13 : Lcom/squareup/okhttp/internal/DiskLruCache$Editor;
+.line 515
+	new-instance	v8,java/lang/IllegalStateException
+; v8 : Ljava/lang/IllegalStateException;
+	new-instance	v9,java/lang/StringBuilder
+; v9 : Ljava/lang/StringBuilder;
+	invoke-direct	{v9},java/lang/StringBuilder/<init>	; <init>()V
+; v9 : Ljava/lang/StringBuilder;
+	const-string	v10,"Newly created entry didn't create value for index "
+; v10 : Ljava/lang/String;
+	invoke-virtual	{v9,v10},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v9 : Ljava/lang/StringBuilder; , v10 : Ljava/lang/String;
+	move-result-object	v9
+; v9 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v9,v3},java/lang/StringBuilder/append	; append(I)Ljava/lang/StringBuilder;
+; v9 : Ljava/lang/StringBuilder; , v3 : single-length
+	move-result-object	v9
+; v9 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v9},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v9 : Ljava/lang/StringBuilder;
+	move-result-object	v9
+; v9 : Ljava/lang/String;
+	invoke-direct	{v8,v9},java/lang/IllegalStateException/<init>	; <init>(Ljava/lang/String;)V
+; v8 : Ljava/lang/IllegalStateException; , v9 : Ljava/lang/String;
+	throw	v8
+; v8 : Ljava/lang/IllegalStateException;
+lb6f72:
+.line 517
+	invoke-virtual	{v2,v3},com/squareup/okhttp/internal/DiskLruCache$Entry/getDirtyFile	; getDirtyFile(I)Ljava/io/File;
+; v2 : Lcom/squareup/okhttp/internal/DiskLruCache$Entry; , v3 : single-length
+	move-result-object	v8
+; v8 : Ljava/io/File;
+	invoke-virtual	{v8},java/io/File/exists	; exists()Z
+; v8 : Ljava/io/File;
+	move-result	v8
+; v8 : single-length
+	if-nez	v8,lb6f90
+; v8 : single-length
+.line 518
+	invoke-virtual	{v13},com/squareup/okhttp/internal/DiskLruCache$Editor/abort	; abort()V
+; v13 : Lcom/squareup/okhttp/internal/DiskLruCache$Editor;
+lb6f8c:
+.line 557
+	monitor-exit	v12
+; v12 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	return-void	
+lb6f90:
+.line 512
+	add-int/lit8	v3,v3,1
+; v3 : single-length , v3 : single-length
+	goto	lb6f22
+lb6f96:
+.line 524
+	const/4	v3,0
+; v3 : single-length
+lb6f98:
+	iget	v8,v12,com/squareup/okhttp/internal/DiskLruCache.valueCount I
+; v8 : single-length , v12 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	if-ge	v3,v8,lb7000
+; v3 : single-length , v8 : single-length
+.line 525
+	invoke-virtual	{v2,v3},com/squareup/okhttp/internal/DiskLruCache$Entry/getDirtyFile	; getDirtyFile(I)Ljava/io/File;
+; v2 : Lcom/squareup/okhttp/internal/DiskLruCache$Entry; , v3 : single-length
+	move-result-object	v1
+; v1 : Ljava/io/File;
+.line 526
+	if-eqz	v14,lb6ff8
+; v14 : single-length
+.line 527
+	invoke-virtual	{v1},java/io/File/exists	; exists()Z
+; v1 : Ljava/io/File;
+	move-result	v8
+; v8 : single-length
+	if-eqz	v8,lb6ff2
+; v8 : single-length
+.line 528
+	invoke-virtual	{v2,v3},com/squareup/okhttp/internal/DiskLruCache$Entry/getCleanFile	; getCleanFile(I)Ljava/io/File;
+; v2 : Lcom/squareup/okhttp/internal/DiskLruCache$Entry; , v3 : single-length
+	move-result-object	v0
+; v0 : Ljava/io/File;
+.line 529
+	invoke-virtual	{v1,v0},java/io/File/renameTo	; renameTo(Ljava/io/File;)Z
+; v1 : Ljava/io/File; , v0 : Ljava/io/File;
+.line 530
+	invoke-static	{v2},com/squareup/okhttp/internal/DiskLruCache$Entry/access$1000	; access$1000(Lcom/squareup/okhttp/internal/DiskLruCache$Entry;)[J
+; v2 : Lcom/squareup/okhttp/internal/DiskLruCache$Entry;
+	move-result-object	v8
+; v8 : [J
+	aget-wide	v6,v8,v3
+; v6 : double-length , v8 : [J , v3 : single-length
+.line 531
+	invoke-virtual	{v0},java/io/File/length	; length()J
+; v0 : Ljava/io/File;
+	move-result-wide	v4
+; v4 : double-length
+.line 532
+	invoke-static	{v2},com/squareup/okhttp/internal/DiskLruCache$Entry/access$1000	; access$1000(Lcom/squareup/okhttp/internal/DiskLruCache$Entry;)[J
+; v2 : Lcom/squareup/okhttp/internal/DiskLruCache$Entry;
+	move-result-object	v8
+; v8 : [J
+	aput-wide	v4,v8,v3
+; v4 : double-length , v8 : [J , v3 : single-length
+.line 533
+	iget-wide	v8,v12,com/squareup/okhttp/internal/DiskLruCache.size J
+; v8 : double-length , v12 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	sub-long/2addr	v8,v6
+; v8 : double-length , v6 : double-length
+	add-long/2addr	v8,v4
+; v8 : double-length , v4 : double-length
+	iput-wide	v8,v12,com/squareup/okhttp/internal/DiskLruCache.size J
+; v8 : double-length , v12 : Lcom/squareup/okhttp/internal/DiskLruCache;
+lb6ff2:
+.line 524
+	add-int/lit8	v3,v3,1
+; v3 : single-length , v3 : single-length
+	goto	lb6f98
+lb6ff8:
+.line 536
+	invoke-static	{v1},com/squareup/okhttp/internal/DiskLruCache/deleteIfExists	; deleteIfExists(Ljava/io/File;)V
+; v1 : Ljava/io/File;
+	goto	lb6ff2
+lb7000:
+.line 540
+	iget	v8,v12,com/squareup/okhttp/internal/DiskLruCache.redundantOpCount I
+; v8 : single-length , v12 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	add-int/lit8	v8,v8,1
+; v8 : single-length , v8 : single-length
+	iput	v8,v12,com/squareup/okhttp/internal/DiskLruCache.redundantOpCount I
+; v8 : single-length , v12 : Lcom/squareup/okhttp/internal/DiskLruCache;
+.line 541
+	const/4	v8,0
+; v8 : single-length
+	invoke-static	{v2,v8},com/squareup/okhttp/internal/DiskLruCache$Entry/access$702	; access$702(Lcom/squareup/okhttp/internal/DiskLruCache$Entry;Lcom/squareup/okhttp/internal/DiskLruCache$Editor;)Lcom/squareup/okhttp/internal/DiskLruCache$Editor;
+; v2 : Lcom/squareup/okhttp/internal/DiskLruCache$Entry; , v8 : single-length
+.line 542
+	invoke-static	{v2},com/squareup/okhttp/internal/DiskLruCache$Entry/access$600	; access$600(Lcom/squareup/okhttp/internal/DiskLruCache$Entry;)Z
+; v2 : Lcom/squareup/okhttp/internal/DiskLruCache$Entry;
+	move-result	v8
+; v8 : single-length
+	or-int/2addr	v8,v14
+; v8 : single-length , v14 : single-length
+	if-eqz	v8,lb70ce
+; v8 : single-length
+.line 543
+	const/4	v8,1
+; v8 : single-length
+	invoke-static	{v2,v8},com/squareup/okhttp/internal/DiskLruCache$Entry/access$602	; access$602(Lcom/squareup/okhttp/internal/DiskLruCache$Entry;Z)Z
+; v2 : Lcom/squareup/okhttp/internal/DiskLruCache$Entry; , v8 : single-length
+.line 544
+	iget-object	v8,v12,com/squareup/okhttp/internal/DiskLruCache.journalWriter Ljava/io/Writer;
+; v8 : Ljava/io/Writer; , v12 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	new-instance	v9,java/lang/StringBuilder
+; v9 : Ljava/lang/StringBuilder;
+	invoke-direct	{v9},java/lang/StringBuilder/<init>	; <init>()V
+; v9 : Ljava/lang/StringBuilder;
+	const-string	v10,"CLEAN "
+; v10 : Ljava/lang/String;
+	invoke-virtual	{v9,v10},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v9 : Ljava/lang/StringBuilder; , v10 : Ljava/lang/String;
+	move-result-object	v9
+; v9 : Ljava/lang/StringBuilder;
+	invoke-static	{v2},com/squareup/okhttp/internal/DiskLruCache$Entry/access$1100	; access$1100(Lcom/squareup/okhttp/internal/DiskLruCache$Entry;)Ljava/lang/String;
+; v2 : Lcom/squareup/okhttp/internal/DiskLruCache$Entry;
+	move-result-object	v10
+; v10 : Ljava/lang/String;
+	invoke-virtual	{v9,v10},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v9 : Ljava/lang/StringBuilder; , v10 : Ljava/lang/String;
+	move-result-object	v9
+; v9 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v2},com/squareup/okhttp/internal/DiskLruCache$Entry/getLengths	; getLengths()Ljava/lang/String;
+; v2 : Lcom/squareup/okhttp/internal/DiskLruCache$Entry;
+	move-result-object	v10
+; v10 : Ljava/lang/String;
+	invoke-virtual	{v9,v10},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v9 : Ljava/lang/StringBuilder; , v10 : Ljava/lang/String;
+	move-result-object	v9
+; v9 : Ljava/lang/StringBuilder;
+	const/16	v10,10
+; v10 : single-length
+	invoke-virtual	{v9,v10},java/lang/StringBuilder/append	; append(C)Ljava/lang/StringBuilder;
+; v9 : Ljava/lang/StringBuilder; , v10 : single-length
+	move-result-object	v9
+; v9 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v9},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v9 : Ljava/lang/StringBuilder;
+	move-result-object	v9
+; v9 : Ljava/lang/String;
+	invoke-virtual	{v8,v9},java/io/Writer/write	; write(Ljava/lang/String;)V
+; v8 : Ljava/io/Writer; , v9 : Ljava/lang/String;
+.line 545
+	if-eqz	v14,lb7096
+; v14 : single-length
+.line 546
+	iget-wide	v8,v12,com/squareup/okhttp/internal/DiskLruCache.nextSequenceNumber J
+; v8 : double-length , v12 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	const-wide/16	v10,1
+; v10 : double-length
+	add-long/2addr	v10,v8
+; v10 : double-length , v8 : double-length
+	iput-wide	v10,v12,com/squareup/okhttp/internal/DiskLruCache.nextSequenceNumber J
+; v10 : double-length , v12 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	invoke-static	{v2,v8,v9},com/squareup/okhttp/internal/DiskLruCache$Entry/access$1202	; access$1202(Lcom/squareup/okhttp/internal/DiskLruCache$Entry;J)J
+; v2 : Lcom/squareup/okhttp/internal/DiskLruCache$Entry; , v8 : double-length
+lb7096:
+.line 552
+	iget-object	v8,v12,com/squareup/okhttp/internal/DiskLruCache.journalWriter Ljava/io/Writer;
+; v8 : Ljava/io/Writer; , v12 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	invoke-virtual	{v8},java/io/Writer/flush	; flush()V
+; v8 : Ljava/io/Writer;
+.line 554
+	iget-wide	v8,v12,com/squareup/okhttp/internal/DiskLruCache.size J
+; v8 : double-length , v12 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	iget-wide	v10,v12,com/squareup/okhttp/internal/DiskLruCache.maxSize J
+; v10 : double-length , v12 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	cmp-long	v8,v8,v10
+; v8 : single-length , v8 : single-length , v10 : double-length
+	if-gtz	v8,lb70bc
+; v8 : single-length
+	invoke-direct	{v12},com/squareup/okhttp/internal/DiskLruCache/journalRebuildRequired	; journalRebuildRequired()Z
+; v12 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	move-result	v8
+; v8 : single-length
+	if-eqz	v8,lb6f8c
+; v8 : single-length
+lb70bc:
+.line 555
+	iget-object	v8,v12,com/squareup/okhttp/internal/DiskLruCache.executorService Ljava/util/concurrent/ThreadPoolExecutor;
+; v8 : Ljava/util/concurrent/ThreadPoolExecutor; , v12 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	iget-object	v9,v12,com/squareup/okhttp/internal/DiskLruCache.cleanupCallable Ljava/util/concurrent/Callable;
+; v9 : Ljava/util/concurrent/Callable; , v12 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	invoke-virtual	{v8,v9},java/util/concurrent/ThreadPoolExecutor/submit	; submit(Ljava/util/concurrent/Callable;)Ljava/util/concurrent/Future;
+; v8 : Ljava/util/concurrent/ThreadPoolExecutor; , v9 : Ljava/util/concurrent/Callable;
+	goto/16	lb6f8c
+lb70ce:
+.line 549
+	iget-object	v8,v12,com/squareup/okhttp/internal/DiskLruCache.lruEntries Ljava/util/LinkedHashMap;
+; v8 : Ljava/util/LinkedHashMap; , v12 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	invoke-static	{v2},com/squareup/okhttp/internal/DiskLruCache$Entry/access$1100	; access$1100(Lcom/squareup/okhttp/internal/DiskLruCache$Entry;)Ljava/lang/String;
+; v2 : Lcom/squareup/okhttp/internal/DiskLruCache$Entry;
+	move-result-object	v9
+; v9 : Ljava/lang/String;
+	invoke-virtual	{v8,v9},java/util/LinkedHashMap/remove	; remove(Ljava/lang/Object;)Ljava/lang/Object;
+; v8 : Ljava/util/LinkedHashMap; , v9 : Ljava/lang/String;
+.line 550
+	iget-object	v8,v12,com/squareup/okhttp/internal/DiskLruCache.journalWriter Ljava/io/Writer;
+; v8 : Ljava/io/Writer; , v12 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	new-instance	v9,java/lang/StringBuilder
+; v9 : Ljava/lang/StringBuilder;
+	invoke-direct	{v9},java/lang/StringBuilder/<init>	; <init>()V
+; v9 : Ljava/lang/StringBuilder;
+	const-string	v10,"REMOVE "
+; v10 : Ljava/lang/String;
+	invoke-virtual	{v9,v10},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v9 : Ljava/lang/StringBuilder; , v10 : Ljava/lang/String;
+	move-result-object	v9
+; v9 : Ljava/lang/StringBuilder;
+	invoke-static	{v2},com/squareup/okhttp/internal/DiskLruCache$Entry/access$1100	; access$1100(Lcom/squareup/okhttp/internal/DiskLruCache$Entry;)Ljava/lang/String;
+; v2 : Lcom/squareup/okhttp/internal/DiskLruCache$Entry;
+	move-result-object	v10
+; v10 : Ljava/lang/String;
+	invoke-virtual	{v9,v10},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v9 : Ljava/lang/StringBuilder; , v10 : Ljava/lang/String;
+	move-result-object	v9
+; v9 : Ljava/lang/StringBuilder;
+	const/16	v10,10
+; v10 : single-length
+	invoke-virtual	{v9,v10},java/lang/StringBuilder/append	; append(C)Ljava/lang/StringBuilder;
+; v9 : Ljava/lang/StringBuilder; , v10 : single-length
+	move-result-object	v9
+; v9 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v9},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v9 : Ljava/lang/StringBuilder;
+	move-result-object	v9
+; v9 : Ljava/lang/String;
+	invoke-virtual	{v8,v9},java/io/Writer/write	; write(Ljava/lang/String;)V
+; v8 : Ljava/io/Writer; , v9 : Ljava/lang/String;
+lb7124:
+	goto	lb7096
+.end method
+
+.method private static deleteIfExists(Ljava/io/File;)V
+.throws Ljava/io/IOException;
+.limit registers 2
+; parameter[0] : v1 (Ljava/io/File;)
+.line 381
+	invoke-virtual	{v1},java/io/File/exists	; exists()Z
+; v1 : Ljava/io/File;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,lb7178
+; v0 : single-length
+	invoke-virtual	{v1},java/io/File/delete	; delete()Z
+; v1 : Ljava/io/File;
+	move-result	v0
+; v0 : single-length
+	if-nez	v0,lb7178
+; v0 : single-length
+.line 382
+	new-instance	v0,java/io/IOException
+; v0 : Ljava/io/IOException;
+	invoke-direct	{v0},java/io/IOException/<init>	; <init>()V
+; v0 : Ljava/io/IOException;
+	throw	v0
+; v0 : Ljava/io/IOException;
+lb7178:
+.line 384
+	return-void	
+.end method
+
+.method private synchronized edit(Ljava/lang/String;J)Lcom/squareup/okhttp/internal/DiskLruCache$Editor;
+.throws Ljava/io/IOException;
+.limit registers 9
+; this: v5 (Lcom/squareup/okhttp/internal/DiskLruCache;)
+; parameter[0] : v6 (Ljava/lang/String;)
+; parameter[1] : v7 (J)
+.catch java/lang/Exception from lb724a to lb7250 using lb7244
+.catch java/lang/Exception from lb71d4 to lb7242 using lb7244
+.catch java/lang/Exception from lb7190 to lb71c2 using lb7244
+.var 1 is entry Lcom/squareup/okhttp/internal/DiskLruCache$Entry; from lb71ac to lb71d8
+.var 0 is editor Lcom/squareup/okhttp/internal/DiskLruCache$Editor; from lb71f6 to lb7244
+.var 1 is entry Lcom/squareup/okhttp/internal/DiskLruCache$Entry; from lb71e0 to lb7244
+	const/4	v0,0
+; v0 : single-length
+.line 450
+	monitor-enter	v5
+; v5 : Lcom/squareup/okhttp/internal/DiskLruCache;
+lb7190:
+	invoke-direct	{v5},com/squareup/okhttp/internal/DiskLruCache/checkNotClosed	; checkNotClosed()V
+; v5 : Lcom/squareup/okhttp/internal/DiskLruCache;
+.line 451
+	invoke-direct	{v5,v6},com/squareup/okhttp/internal/DiskLruCache/validateKey	; validateKey(Ljava/lang/String;)V
+; v5 : Lcom/squareup/okhttp/internal/DiskLruCache; , v6 : Ljava/lang/String;
+.line 452
+	iget-object	v2,v5,com/squareup/okhttp/internal/DiskLruCache.lruEntries Ljava/util/LinkedHashMap;
+; v2 : Ljava/util/LinkedHashMap; , v5 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	invoke-virtual	{v2,v6},java/util/LinkedHashMap/get	; get(Ljava/lang/Object;)Ljava/lang/Object;
+; v2 : Ljava/util/LinkedHashMap; , v6 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/Object;
+	check-cast	v1,com/squareup/okhttp/internal/DiskLruCache$Entry
+; v1 : Lcom/squareup/okhttp/internal/DiskLruCache$Entry;
+.line 453
+	const-wide/16	v2,65535
+; v2 : double-length
+	cmp-long	v2,v7,v2
+; v2 : single-length , v7 : double-length , v2 : single-length
+	if-eqz	v2,lb71d0
+; v2 : single-length
+	if-eqz	v1,lb71cc
+; v1 : Lcom/squareup/okhttp/internal/DiskLruCache$Entry;
+	invoke-static	{v1},com/squareup/okhttp/internal/DiskLruCache$Entry/access$1200	; access$1200(Lcom/squareup/okhttp/internal/DiskLruCache$Entry;)J
+; v1 : Lcom/squareup/okhttp/internal/DiskLruCache$Entry;
+lb71c2:
+	move-result-wide	v2
+; v2 : double-length
+	cmp-long	v2,v2,v7
+; v2 : single-length , v2 : single-length , v7 : double-length
+	if-eqz	v2,lb71d0
+; v2 : single-length
+lb71cc:
+.line 470
+	monitor-exit	v5
+; v5 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	return-object	v0
+; v0 : Lcom/squareup/okhttp/internal/DiskLruCache$Editor;
+lb71d0:
+.line 457
+	if-nez	v1,lb724a
+; v1 : Lcom/squareup/okhttp/internal/DiskLruCache$Entry;
+lb71d4:
+.line 458
+	new-instance	v1,com/squareup/okhttp/internal/DiskLruCache$Entry
+; v1 : Lcom/squareup/okhttp/internal/DiskLruCache$Entry;
+lb71d8:
+	const/4	v2,0
+; v2 : single-length
+	invoke-direct	{v1,v5,v6,v2},com/squareup/okhttp/internal/DiskLruCache$Entry/<init>	; <init>(Lcom/squareup/okhttp/internal/DiskLruCache;Ljava/lang/String;Lcom/squareup/okhttp/internal/DiskLruCache$1;)V
+; v1 : Lcom/squareup/okhttp/internal/DiskLruCache$Entry; , v5 : Lcom/squareup/okhttp/internal/DiskLruCache; , v6 : Ljava/lang/String; , v2 : single-length
+.line 459
+	iget-object	v2,v5,com/squareup/okhttp/internal/DiskLruCache.lruEntries Ljava/util/LinkedHashMap;
+; v2 : Ljava/util/LinkedHashMap; , v5 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	invoke-virtual	{v2,v6,v1},java/util/LinkedHashMap/put	; put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+; v2 : Ljava/util/LinkedHashMap; , v6 : Ljava/lang/String; , v1 : Lcom/squareup/okhttp/internal/DiskLruCache$Entry;
+lb71ea:
+.line 464
+	new-instance	v0,com/squareup/okhttp/internal/DiskLruCache$Editor
+; v0 : Lcom/squareup/okhttp/internal/DiskLruCache$Editor;
+	const/4	v2,0
+; v2 : single-length
+	invoke-direct	{v0,v5,v1,v2},com/squareup/okhttp/internal/DiskLruCache$Editor/<init>	; <init>(Lcom/squareup/okhttp/internal/DiskLruCache;Lcom/squareup/okhttp/internal/DiskLruCache$Entry;Lcom/squareup/okhttp/internal/DiskLruCache$1;)V
+; v0 : Lcom/squareup/okhttp/internal/DiskLruCache$Editor; , v5 : Lcom/squareup/okhttp/internal/DiskLruCache; , v1 : Lcom/squareup/okhttp/internal/DiskLruCache$Entry; , v2 : single-length
+.line 465
+	invoke-static	{v1,v0},com/squareup/okhttp/internal/DiskLruCache$Entry/access$702	; access$702(Lcom/squareup/okhttp/internal/DiskLruCache$Entry;Lcom/squareup/okhttp/internal/DiskLruCache$Editor;)Lcom/squareup/okhttp/internal/DiskLruCache$Editor;
+; v1 : Lcom/squareup/okhttp/internal/DiskLruCache$Entry; , v0 : Lcom/squareup/okhttp/internal/DiskLruCache$Editor;
+.line 468
+	iget-object	v2,v5,com/squareup/okhttp/internal/DiskLruCache.journalWriter Ljava/io/Writer;
+; v2 : Ljava/io/Writer; , v5 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	new-instance	v3,java/lang/StringBuilder
+; v3 : Ljava/lang/StringBuilder;
+	invoke-direct	{v3},java/lang/StringBuilder/<init>	; <init>()V
+; v3 : Ljava/lang/StringBuilder;
+	const-string	v4,"DIRTY "
+; v4 : Ljava/lang/String;
+	invoke-virtual	{v3,v4},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v3 : Ljava/lang/StringBuilder; , v4 : Ljava/lang/String;
+	move-result-object	v3
+; v3 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v3,v6},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v3 : Ljava/lang/StringBuilder; , v6 : Ljava/lang/String;
+	move-result-object	v3
+; v3 : Ljava/lang/StringBuilder;
+	const/16	v4,10
+; v4 : single-length
+	invoke-virtual	{v3,v4},java/lang/StringBuilder/append	; append(C)Ljava/lang/StringBuilder;
+; v3 : Ljava/lang/StringBuilder; , v4 : single-length
+	move-result-object	v3
+; v3 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v3},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v3 : Ljava/lang/StringBuilder;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/io/Writer/write	; write(Ljava/lang/String;)V
+; v2 : Ljava/io/Writer; , v3 : Ljava/lang/String;
+.line 469
+	iget-object	v2,v5,com/squareup/okhttp/internal/DiskLruCache.journalWriter Ljava/io/Writer;
+; v2 : Ljava/io/Writer; , v5 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	invoke-virtual	{v2},java/io/Writer/flush	; flush()V
+; v2 : Ljava/io/Writer;
+lb7242:
+	goto	lb71cc
+lb7244:
+.line 450
+	move-exception	v2
+; v2 : java/lang/Exception
+	monitor-exit	v5
+; v5 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	throw	v2
+; v2 : java/lang/Exception
+lb724a:
+.line 460
+	invoke-static	{v1},com/squareup/okhttp/internal/DiskLruCache$Entry/access$700	; access$700(Lcom/squareup/okhttp/internal/DiskLruCache$Entry;)Lcom/squareup/okhttp/internal/DiskLruCache$Editor;
+; v1 : Lcom/squareup/okhttp/internal/DiskLruCache$Entry;
+lb7250:
+	move-result-object	v2
+; v2 : Lcom/squareup/okhttp/internal/DiskLruCache$Editor;
+	if-eqz	v2,lb71ea
+; v2 : Lcom/squareup/okhttp/internal/DiskLruCache$Editor;
+	goto	lb71cc
+.end method
+
+.method private static inputStreamToString(Ljava/io/InputStream;)Ljava/lang/String;
+.throws Ljava/io/IOException;
+.limit registers 3
+; parameter[0] : v2 (Ljava/io/InputStream;)
+.line 661
+	new-instance	v0,java/io/InputStreamReader
+; v0 : Ljava/io/InputStreamReader;
+	sget-object	v1,com/squareup/okhttp/internal/Util.UTF_8 Ljava/nio/charset/Charset;
+; v1 : Ljava/nio/charset/Charset;
+	invoke-direct	{v0,v2,v1},java/io/InputStreamReader/<init>	; <init>(Ljava/io/InputStream;Ljava/nio/charset/Charset;)V
+; v0 : Ljava/io/InputStreamReader; , v2 : Ljava/io/InputStream; , v1 : Ljava/nio/charset/Charset;
+	invoke-static	{v0},com/squareup/okhttp/internal/Util/readFully	; readFully(Ljava/io/Reader;)Ljava/lang/String;
+; v0 : Ljava/io/InputStreamReader;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	return-object	v0
+; v0 : Ljava/lang/String;
+.end method
+
+.method private journalRebuildRequired()Z
+.limit registers 4
+; this: v3 (Lcom/squareup/okhttp/internal/DiskLruCache;)
+.line 564
+	const/16	v0,2000
+; v0 : single-length
+.line 565
+	iget	v1,v3,com/squareup/okhttp/internal/DiskLruCache.redundantOpCount I
+; v1 : single-length , v3 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	const/16	v2,2000
+; v2 : single-length
+	if-lt	v1,v2,lb72d4
+; v1 : single-length , v2 : single-length
+	iget	v1,v3,com/squareup/okhttp/internal/DiskLruCache.redundantOpCount I
+; v1 : single-length , v3 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	iget-object	v2,v3,com/squareup/okhttp/internal/DiskLruCache.lruEntries Ljava/util/LinkedHashMap;
+; v2 : Ljava/util/LinkedHashMap; , v3 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	invoke-virtual	{v2},java/util/LinkedHashMap/size	; size()I
+; v2 : Ljava/util/LinkedHashMap;
+	move-result	v2
+; v2 : single-length
+	if-lt	v1,v2,lb72d4
+; v1 : single-length , v2 : single-length
+	const/4	v1,1
+; v1 : single-length
+lb72d2:
+	return	v1
+; v1 : single-length
+lb72d4:
+	const/4	v1,0
+; v1 : single-length
+	goto	lb72d2
+.end method
+
+.method public static open(Ljava/io/File;IIJ)Lcom/squareup/okhttp/internal/DiskLruCache;
+.throws Ljava/io/IOException;
+.limit registers 15
+; parameter[0] : v10 (Ljava/io/File;)
+; parameter[1] : v11 (I)
+; parameter[2] : v12 (I)
+; parameter[3] : v13 (J)
+.catch java/io/IOException from lb7374 to lb73ac using lb73ba
+.var 8 is journalFile Ljava/io/File; from lb7340 to lb7352
+.var 0 is cache Lcom/squareup/okhttp/internal/DiskLruCache; from lb7364 to lb73ae
+.var 7 is cache Ljava/lang/Object; from lb73ae to lb73b0
+.var 8 is journalFile Ljava/io/File; from lb73b0 to lb73ba
+.var 9 is journalIsCorrupt Ljava/io/IOException; from lb73bc to lb741e
+.var 0 is cache Lcom/squareup/okhttp/internal/DiskLruCache; from lb73ba to lb7428
+.line 201
+	const-wide/16	v1,0
+; v1 : double-length
+	cmp-long	v1,v13,v1
+; v1 : single-length , v13 : double-length , v1 : single-length
+	if-gtz	v1,lb7304
+; v1 : single-length
+.line 202
+	new-instance	v1,java/lang/IllegalArgumentException
+; v1 : Ljava/lang/IllegalArgumentException;
+	const-string	v2,"maxSize <= 0"
+; v2 : Ljava/lang/String;
+	invoke-direct	{v1,v2},java/lang/IllegalArgumentException/<init>	; <init>(Ljava/lang/String;)V
+; v1 : Ljava/lang/IllegalArgumentException; , v2 : Ljava/lang/String;
+	throw	v1
+; v1 : Ljava/lang/IllegalArgumentException;
+lb7304:
+.line 204
+	if-gtz	v12,lb7318
+; v12 : single-length
+.line 205
+	new-instance	v1,java/lang/IllegalArgumentException
+; v1 : Ljava/lang/IllegalArgumentException;
+	const-string	v2,"valueCount <= 0"
+; v2 : Ljava/lang/String;
+	invoke-direct	{v1,v2},java/lang/IllegalArgumentException/<init>	; <init>(Ljava/lang/String;)V
+; v1 : Ljava/lang/IllegalArgumentException; , v2 : Ljava/lang/String;
+	throw	v1
+; v1 : Ljava/lang/IllegalArgumentException;
+lb7318:
+.line 209
+	new-instance	v6,java/io/File
+; v6 : Ljava/io/File;
+	const-string	v1,"journal.bkp"
+; v1 : Ljava/lang/String;
+	invoke-direct	{v6,v10,v1},java/io/File/<init>	; <init>(Ljava/io/File;Ljava/lang/String;)V
+; v6 : Ljava/io/File; , v10 : Ljava/io/File; , v1 : Ljava/lang/String;
+.line 210
+	invoke-virtual	{v6},java/io/File/exists	; exists()Z
+; v6 : Ljava/io/File;
+	move-result	v1
+; v1 : single-length
+	if-eqz	v1,lb7352
+; v1 : single-length
+.line 211
+	new-instance	v8,java/io/File
+; v8 : Ljava/io/File;
+	const-string	v1,"journal"
+; v1 : Ljava/lang/String;
+	invoke-direct	{v8,v10,v1},java/io/File/<init>	; <init>(Ljava/io/File;Ljava/lang/String;)V
+; v8 : Ljava/io/File; , v10 : Ljava/io/File; , v1 : Ljava/lang/String;
+.line 213
+	invoke-virtual	{v8},java/io/File/exists	; exists()Z
+; v8 : Ljava/io/File;
+	move-result	v1
+; v1 : single-length
+	if-eqz	v1,lb73b0
+; v1 : single-length
+.line 214
+	invoke-virtual	{v6},java/io/File/delete	; delete()Z
+; v6 : Ljava/io/File;
+lb7352:
+.line 221
+	new-instance	v0,com/squareup/okhttp/internal/DiskLruCache
+; v0 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	move-object	v1,v10
+; v1 : Ljava/io/File; , v10 : Ljava/io/File;
+	move	v2,v11
+; v2 : single-length , v11 : single-length
+	move	v3,v12
+; v3 : single-length , v12 : single-length
+	move-wide	v4,v13
+; v4 : double-length , v13 : double-length
+	invoke-direct/range	{v0..v5},com/squareup/okhttp/internal/DiskLruCache/<init>;	<init>(Ljava/io/File;IIJ)V
+; v0 : Lcom/squareup/okhttp/internal/DiskLruCache; , v1 : Ljava/io/File; , v2 : single-length , v3 : single-length , v4 : double-length
+.line 222
+	iget-object	v1,v0,com/squareup/okhttp/internal/DiskLruCache.journalFile Ljava/io/File;
+; v1 : Ljava/io/File; , v0 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	invoke-virtual	{v1},java/io/File/exists	; exists()Z
+; v1 : Ljava/io/File;
+	move-result	v1
+; v1 : single-length
+	if-eqz	v1,lb741e
+; v1 : single-length
+lb7374:
+.line 224
+	invoke-direct	{v0},com/squareup/okhttp/internal/DiskLruCache/readJournal	; readJournal()V
+; v0 : Lcom/squareup/okhttp/internal/DiskLruCache;
+.line 225
+	invoke-direct	{v0},com/squareup/okhttp/internal/DiskLruCache/processJournal	; processJournal()V
+; v0 : Lcom/squareup/okhttp/internal/DiskLruCache;
+.line 226
+	new-instance	v1,java/io/BufferedWriter
+; v1 : Ljava/io/BufferedWriter;
+	new-instance	v2,java/io/OutputStreamWriter
+; v2 : Ljava/io/OutputStreamWriter;
+	new-instance	v3,java/io/FileOutputStream
+; v3 : Ljava/io/FileOutputStream;
+	iget-object	v4,v0,com/squareup/okhttp/internal/DiskLruCache.journalFile Ljava/io/File;
+; v4 : Ljava/io/File; , v0 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	const/4	v5,1
+; v5 : single-length
+	invoke-direct	{v3,v4,v5},java/io/FileOutputStream/<init>	; <init>(Ljava/io/File;Z)V
+; v3 : Ljava/io/FileOutputStream; , v4 : Ljava/io/File; , v5 : single-length
+	sget-object	v4,com/squareup/okhttp/internal/Util.US_ASCII Ljava/nio/charset/Charset;
+; v4 : Ljava/nio/charset/Charset;
+	invoke-direct	{v2,v3,v4},java/io/OutputStreamWriter/<init>	; <init>(Ljava/io/OutputStream;Ljava/nio/charset/Charset;)V
+; v2 : Ljava/io/OutputStreamWriter; , v3 : Ljava/io/FileOutputStream; , v4 : Ljava/nio/charset/Charset;
+	invoke-direct	{v1,v2},java/io/BufferedWriter/<init>	; <init>(Ljava/io/Writer;)V
+; v1 : Ljava/io/BufferedWriter; , v2 : Ljava/io/OutputStreamWriter;
+	iput-object	v1,v0,com/squareup/okhttp/internal/DiskLruCache.journalWriter Ljava/io/Writer;
+; v1 : Ljava/io/BufferedWriter; , v0 : Lcom/squareup/okhttp/internal/DiskLruCache;
+lb73ac:
+	move-object	v7,v0
+; v7 : Lcom/squareup/okhttp/internal/DiskLruCache; , v0 : Lcom/squareup/okhttp/internal/DiskLruCache;
+lb73ae:
+.line 240
+	return-object	v7
+; v7 : Lcom/squareup/okhttp/internal/DiskLruCache;
+lb73b0:
+.line 216
+	const/4	v1,0
+; v1 : single-length
+	invoke-static	{v6,v8,v1},com/squareup/okhttp/internal/DiskLruCache/renameTo	; renameTo(Ljava/io/File;Ljava/io/File;Z)V
+; v6 : Ljava/io/File; , v8 : Ljava/io/File; , v1 : single-length
+	goto	lb7352
+lb73ba:
+.line 229
+	move-exception	v9
+; v9 : java/io/IOException
+.line 230
+	invoke-static	{},com/squareup/okhttp/internal/Platform/get	; get()Lcom/squareup/okhttp/internal/Platform;
+; 
+	nop	
+	move-result-object	v1
+; v1 : Lcom/squareup/okhttp/internal/Platform;
+	new-instance	v2,java/lang/StringBuilder
+; v2 : Ljava/lang/StringBuilder;
+	invoke-direct	{v2},java/lang/StringBuilder/<init>	; <init>()V
+; v2 : Ljava/lang/StringBuilder;
+	const-string	v3,"DiskLruCache "
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v2,v10},java/lang/StringBuilder/append	; append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v10 : Ljava/io/File;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	const-string	v3," is corrupt: "
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v9},java/io/IOException/getMessage	; getMessage()Ljava/lang/String;
+; v9 : java/io/IOException
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	const-string	v3,", removing"
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v2},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v2 : Ljava/lang/StringBuilder;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},com/squareup/okhttp/internal/Platform/logW	; logW(Ljava/lang/String;)V
+; v1 : Lcom/squareup/okhttp/internal/Platform; , v2 : Ljava/lang/String;
+.line 232
+	invoke-virtual	{v0},com/squareup/okhttp/internal/DiskLruCache/delete	; delete()V
+; v0 : Lcom/squareup/okhttp/internal/DiskLruCache;
+lb741e:
+.line 237
+	invoke-virtual	{v10},java/io/File/mkdirs	; mkdirs()Z
+; v10 : Ljava/io/File;
+.line 238
+	new-instance	v0,com/squareup/okhttp/internal/DiskLruCache
+; v0 : Lcom/squareup/okhttp/internal/DiskLruCache;
+lb7428:
+	move-object	v1,v10
+; v1 : Ljava/io/File; , v10 : Ljava/io/File;
+	move	v2,v11
+; v2 : single-length , v11 : single-length
+	move	v3,v12
+; v3 : single-length , v12 : single-length
+	move-wide	v4,v13
+; v4 : double-length , v13 : double-length
+	invoke-direct/range	{v0..v5},com/squareup/okhttp/internal/DiskLruCache/<init>;	<init>(Ljava/io/File;IIJ)V
+; v0 : Lcom/squareup/okhttp/internal/DiskLruCache; , v1 : Ljava/io/File; , v2 : single-length , v3 : single-length , v4 : double-length
+.line 239
+	invoke-direct	{v0},com/squareup/okhttp/internal/DiskLruCache/rebuildJournal	; rebuildJournal()V
+; v0 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	move-object	v7,v0
+; v7 : Lcom/squareup/okhttp/internal/DiskLruCache; , v0 : Lcom/squareup/okhttp/internal/DiskLruCache;
+.line 240
+	goto	lb73ae
+.end method
+
+.method private processJournal()V
+.throws Ljava/io/IOException;
+.limit registers 8
+; this: v7 (Lcom/squareup/okhttp/internal/DiskLruCache;)
+.var 2 is t I from lb74a4 to lb74c8
+.var 0 is entry Lcom/squareup/okhttp/internal/DiskLruCache$Entry; from lb7496 to lb7504
+.var 2 is t I from lb74d2 to lb7504
+.line 319
+	iget-object	v3,v7,com/squareup/okhttp/internal/DiskLruCache.journalFileTmp Ljava/io/File;
+; v3 : Ljava/io/File; , v7 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	invoke-static	{v3},com/squareup/okhttp/internal/DiskLruCache/deleteIfExists	; deleteIfExists(Ljava/io/File;)V
+; v3 : Ljava/io/File;
+.line 320
+	iget-object	v3,v7,com/squareup/okhttp/internal/DiskLruCache.lruEntries Ljava/util/LinkedHashMap;
+; v3 : Ljava/util/LinkedHashMap; , v7 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	invoke-virtual	{v3},java/util/LinkedHashMap/values	; values()Ljava/util/Collection;
+; v3 : Ljava/util/LinkedHashMap;
+	move-result-object	v3
+; v3 : Ljava/util/Collection;
+	invoke-interface	{v3},java/util/Collection/iterator	; iterator()Ljava/util/Iterator;
+; v3 : Ljava/util/Collection;
+	move-result-object	v1
+; v1 : Ljava/util/Iterator;
+lb747e:
+	invoke-interface	{v1},java/util/Iterator/hasNext	; hasNext()Z
+; v1 : Ljava/util/Iterator;
+	move-result	v3
+; v3 : single-length
+	if-eqz	v3,lb7504
+; v3 : single-length
+.line 321
+	invoke-interface	{v1},java/util/Iterator/next	; next()Ljava/lang/Object;
+; v1 : Ljava/util/Iterator;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,com/squareup/okhttp/internal/DiskLruCache$Entry
+; v0 : Lcom/squareup/okhttp/internal/DiskLruCache$Entry;
+.line 322
+	invoke-static	{v0},com/squareup/okhttp/internal/DiskLruCache$Entry/access$700	; access$700(Lcom/squareup/okhttp/internal/DiskLruCache$Entry;)Lcom/squareup/okhttp/internal/DiskLruCache$Editor;
+; v0 : Lcom/squareup/okhttp/internal/DiskLruCache$Entry;
+	move-result-object	v3
+; v3 : Lcom/squareup/okhttp/internal/DiskLruCache$Editor;
+	if-nez	v3,lb74c8
+; v3 : Lcom/squareup/okhttp/internal/DiskLruCache$Editor;
+.line 323
+	const/4	v2,0
+; v2 : single-length
+lb74a4:
+	iget	v3,v7,com/squareup/okhttp/internal/DiskLruCache.valueCount I
+; v3 : single-length , v7 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	if-ge	v2,v3,lb747e
+; v2 : single-length , v3 : single-length
+.line 324
+	iget-wide	v3,v7,com/squareup/okhttp/internal/DiskLruCache.size J
+; v3 : double-length , v7 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	invoke-static	{v0},com/squareup/okhttp/internal/DiskLruCache$Entry/access$1000	; access$1000(Lcom/squareup/okhttp/internal/DiskLruCache$Entry;)[J
+; v0 : Lcom/squareup/okhttp/internal/DiskLruCache$Entry;
+	move-result-object	v5
+; v5 : [J
+	aget-wide	v5,v5,v2
+; v5 : double-length , v5 : double-length , v2 : single-length
+	add-long/2addr	v3,v5
+; v3 : double-length , v5 : double-length
+	iput-wide	v3,v7,com/squareup/okhttp/internal/DiskLruCache.size J
+; v3 : double-length , v7 : Lcom/squareup/okhttp/internal/DiskLruCache;
+.line 323
+	add-int/lit8	v2,v2,1
+; v2 : single-length , v2 : single-length
+	goto	lb74a4
+lb74c8:
+.line 327
+	const/4	v3,0
+; v3 : single-length
+	invoke-static	{v0,v3},com/squareup/okhttp/internal/DiskLruCache$Entry/access$702	; access$702(Lcom/squareup/okhttp/internal/DiskLruCache$Entry;Lcom/squareup/okhttp/internal/DiskLruCache$Editor;)Lcom/squareup/okhttp/internal/DiskLruCache$Editor;
+; v0 : Lcom/squareup/okhttp/internal/DiskLruCache$Entry; , v3 : single-length
+.line 328
+	const/4	v2,0
+; v2 : single-length
+lb74d2:
+	iget	v3,v7,com/squareup/okhttp/internal/DiskLruCache.valueCount I
+; v3 : single-length , v7 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	if-ge	v2,v3,lb74fc
+; v2 : single-length , v3 : single-length
+.line 329
+	invoke-virtual	{v0,v2},com/squareup/okhttp/internal/DiskLruCache$Entry/getCleanFile	; getCleanFile(I)Ljava/io/File;
+; v0 : Lcom/squareup/okhttp/internal/DiskLruCache$Entry; , v2 : single-length
+	move-result-object	v3
+; v3 : Ljava/io/File;
+	invoke-static	{v3},com/squareup/okhttp/internal/DiskLruCache/deleteIfExists	; deleteIfExists(Ljava/io/File;)V
+; v3 : Ljava/io/File;
+.line 330
+	invoke-virtual	{v0,v2},com/squareup/okhttp/internal/DiskLruCache$Entry/getDirtyFile	; getDirtyFile(I)Ljava/io/File;
+; v0 : Lcom/squareup/okhttp/internal/DiskLruCache$Entry; , v2 : single-length
+	move-result-object	v3
+; v3 : Ljava/io/File;
+	invoke-static	{v3},com/squareup/okhttp/internal/DiskLruCache/deleteIfExists	; deleteIfExists(Ljava/io/File;)V
+; v3 : Ljava/io/File;
+.line 328
+	add-int/lit8	v2,v2,1
+; v2 : single-length , v2 : single-length
+	goto	lb74d2
+lb74fc:
+.line 332
+	invoke-interface	{v1},java/util/Iterator/remove	; remove()V
+; v1 : Ljava/util/Iterator;
+	goto	lb747e
+lb7504:
+.line 335
+	return-void	
+.end method
+
+.method private readJournal()V
+.throws Ljava/io/IOException;
+.limit registers 12
+; this: v11 (Lcom/squareup/okhttp/internal/DiskLruCache;)
+.catch java/lang/Exception from lb7658 to lb766c using lb7636
+.catch java/io/EOFException from lb7642 to lb7650 using lb7656
+.catch java/lang/Exception from lb7642 to lb7650 using lb7636
+.catch java/lang/Exception from lb7534 to lb7636 using lb7636
+.var 0 is appVersionString Ljava/lang/String; from lb754c to lb7636
+.var 1 is blank Ljava/lang/String; from lb755c to lb7636
+.var 4 is magic Ljava/lang/String; from lb753c to lb7636
+.var 6 is valueCountString Ljava/lang/String; from lb7554 to lb7636
+.var 7 is version Ljava/lang/String; from lb7544 to lb7636
+.line 244
+	new-instance	v5,com/squareup/okhttp/internal/StrictLineReader
+; v5 : Lcom/squareup/okhttp/internal/StrictLineReader;
+	new-instance	v8,java/io/FileInputStream
+; v8 : Ljava/io/FileInputStream;
+	iget-object	v9,v11,com/squareup/okhttp/internal/DiskLruCache.journalFile Ljava/io/File;
+; v9 : Ljava/io/File; , v11 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	invoke-direct	{v8,v9},java/io/FileInputStream/<init>	; <init>(Ljava/io/File;)V
+; v8 : Ljava/io/FileInputStream; , v9 : Ljava/io/File;
+	sget-object	v9,com/squareup/okhttp/internal/Util.US_ASCII Ljava/nio/charset/Charset;
+; v9 : Ljava/nio/charset/Charset;
+	invoke-direct	{v5,v8,v9},com/squareup/okhttp/internal/StrictLineReader/<init>	; <init>(Ljava/io/InputStream;Ljava/nio/charset/Charset;)V
+; v5 : Lcom/squareup/okhttp/internal/StrictLineReader; , v8 : Ljava/io/FileInputStream; , v9 : Ljava/nio/charset/Charset;
+lb7534:
+.line 246
+	invoke-virtual	{v5},com/squareup/okhttp/internal/StrictLineReader/readLine	; readLine()Ljava/lang/String;
+; v5 : Lcom/squareup/okhttp/internal/StrictLineReader;
+	move-result-object	v4
+; v4 : Ljava/lang/String;
+.line 247
+	invoke-virtual	{v5},com/squareup/okhttp/internal/StrictLineReader/readLine	; readLine()Ljava/lang/String;
+; v5 : Lcom/squareup/okhttp/internal/StrictLineReader;
+	move-result-object	v7
+; v7 : Ljava/lang/String;
+.line 248
+	invoke-virtual	{v5},com/squareup/okhttp/internal/StrictLineReader/readLine	; readLine()Ljava/lang/String;
+; v5 : Lcom/squareup/okhttp/internal/StrictLineReader;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+.line 249
+	invoke-virtual	{v5},com/squareup/okhttp/internal/StrictLineReader/readLine	; readLine()Ljava/lang/String;
+; v5 : Lcom/squareup/okhttp/internal/StrictLineReader;
+	move-result-object	v6
+; v6 : Ljava/lang/String;
+.line 250
+	invoke-virtual	{v5},com/squareup/okhttp/internal/StrictLineReader/readLine	; readLine()Ljava/lang/String;
+; v5 : Lcom/squareup/okhttp/internal/StrictLineReader;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+.line 251
+	const-string	v8,"libcore.io.DiskLruCache"
+; v8 : Ljava/lang/String;
+	invoke-virtual	{v8,v4},java/lang/String/equals	; equals(Ljava/lang/Object;)Z
+; v8 : Ljava/lang/String; , v4 : Ljava/lang/String;
+	move-result	v8
+; v8 : single-length
+	if-eqz	v8,lb75bc
+; v8 : single-length
+	const-string	v8,"1"
+; v8 : Ljava/lang/String;
+	invoke-virtual	{v8,v7},java/lang/String/equals	; equals(Ljava/lang/Object;)Z
+; v8 : Ljava/lang/String; , v7 : Ljava/lang/String;
+	move-result	v8
+; v8 : single-length
+	if-eqz	v8,lb75bc
+; v8 : single-length
+	iget	v8,v11,com/squareup/okhttp/internal/DiskLruCache.appVersion I
+; v8 : single-length , v11 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	invoke-static	{v8},java/lang/Integer/toString	; toString(I)Ljava/lang/String;
+; v8 : single-length
+	move-result-object	v8
+; v8 : Ljava/lang/String;
+	invoke-virtual	{v8,v0},java/lang/String/equals	; equals(Ljava/lang/Object;)Z
+; v8 : Ljava/lang/String; , v0 : Ljava/lang/String;
+	move-result	v8
+; v8 : single-length
+	if-eqz	v8,lb75bc
+; v8 : single-length
+	iget	v8,v11,com/squareup/okhttp/internal/DiskLruCache.valueCount I
+; v8 : single-length , v11 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	invoke-static	{v8},java/lang/Integer/toString	; toString(I)Ljava/lang/String;
+; v8 : single-length
+	move-result-object	v8
+; v8 : Ljava/lang/String;
+	invoke-virtual	{v8,v6},java/lang/String/equals	; equals(Ljava/lang/Object;)Z
+; v8 : Ljava/lang/String; , v6 : Ljava/lang/String;
+	move-result	v8
+; v8 : single-length
+	if-eqz	v8,lb75bc
+; v8 : single-length
+	const-string	v8,""
+; v8 : Ljava/lang/String;
+	invoke-virtual	{v8,v1},java/lang/String/equals	; equals(Ljava/lang/Object;)Z
+; v8 : Ljava/lang/String; , v1 : Ljava/lang/String;
+	move-result	v8
+; v8 : single-length
+	if-nez	v8,lb7640
+; v8 : single-length
+lb75bc:
+.line 256
+	new-instance	v8,java/io/IOException
+; v8 : Ljava/io/IOException;
+	new-instance	v9,java/lang/StringBuilder
+; v9 : Ljava/lang/StringBuilder;
+	invoke-direct	{v9},java/lang/StringBuilder/<init>	; <init>()V
+; v9 : Ljava/lang/StringBuilder;
+	const-string	v10,"unexpected journal header: ["
+; v10 : Ljava/lang/String;
+	invoke-virtual	{v9,v10},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v9 : Ljava/lang/StringBuilder; , v10 : Ljava/lang/String;
+	move-result-object	v9
+; v9 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v9,v4},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v9 : Ljava/lang/StringBuilder; , v4 : Ljava/lang/String;
+	move-result-object	v9
+; v9 : Ljava/lang/StringBuilder;
+	const-string	v10,", "
+; v10 : Ljava/lang/String;
+	invoke-virtual	{v9,v10},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v9 : Ljava/lang/StringBuilder; , v10 : Ljava/lang/String;
+	move-result-object	v9
+; v9 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v9,v7},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v9 : Ljava/lang/StringBuilder; , v7 : Ljava/lang/String;
+	move-result-object	v9
+; v9 : Ljava/lang/StringBuilder;
+	const-string	v10,", "
+; v10 : Ljava/lang/String;
+	invoke-virtual	{v9,v10},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v9 : Ljava/lang/StringBuilder; , v10 : Ljava/lang/String;
+	move-result-object	v9
+; v9 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v9,v6},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v9 : Ljava/lang/StringBuilder; , v6 : Ljava/lang/String;
+	move-result-object	v9
+; v9 : Ljava/lang/StringBuilder;
+	const-string	v10,", "
+; v10 : Ljava/lang/String;
+	invoke-virtual	{v9,v10},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v9 : Ljava/lang/StringBuilder; , v10 : Ljava/lang/String;
+	move-result-object	v9
+; v9 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v9,v1},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v9 : Ljava/lang/StringBuilder; , v1 : Ljava/lang/String;
+	move-result-object	v9
+; v9 : Ljava/lang/StringBuilder;
+	const-string	v10,"]"
+; v10 : Ljava/lang/String;
+	invoke-virtual	{v9,v10},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v9 : Ljava/lang/StringBuilder; , v10 : Ljava/lang/String;
+	move-result-object	v9
+; v9 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v9},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v9 : Ljava/lang/StringBuilder;
+	move-result-object	v9
+; v9 : Ljava/lang/String;
+	invoke-direct	{v8,v9},java/io/IOException/<init>	; <init>(Ljava/lang/String;)V
+; v8 : Ljava/io/IOException; , v9 : Ljava/lang/String;
+	throw	v8
+; v8 : Ljava/io/IOException;
+lb7636:
+.line 271
+	move-exception	v8
+; v8 : java/lang/Exception
+	invoke-static	{v5},com/squareup/okhttp/internal/Util/closeQuietly	; closeQuietly(Ljava/io/Closeable;)V
+; v5 : Lcom/squareup/okhttp/internal/StrictLineReader;
+	throw	v8
+; v8 : java/lang/Exception
+lb7640:
+.line 260
+	const/4	v3,0
+; v3 : single-length
+lb7642:
+.line 263
+	invoke-virtual	{v5},com/squareup/okhttp/internal/StrictLineReader/readLine	; readLine()Ljava/lang/String;
+; v5 : Lcom/squareup/okhttp/internal/StrictLineReader;
+	move-result-object	v8
+; v8 : Ljava/lang/String;
+	invoke-direct	{v11,v8},com/squareup/okhttp/internal/DiskLruCache/readJournalLine	; readJournalLine(Ljava/lang/String;)V
+; v11 : Lcom/squareup/okhttp/internal/DiskLruCache; , v8 : Ljava/lang/String;
+lb7650:
+.line 264
+	add-int/lit8	v3,v3,1
+; v3 : single-length , v3 : single-length
+	goto	lb7642
+lb7656:
+.line 265
+	move-exception	v2
+; v2 : java/io/EOFException
+lb7658:
+.line 269
+	iget-object	v8,v11,com/squareup/okhttp/internal/DiskLruCache.lruEntries Ljava/util/LinkedHashMap;
+; v8 : Ljava/util/LinkedHashMap; , v11 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	invoke-virtual	{v8},java/util/LinkedHashMap/size	; size()I
+; v8 : Ljava/util/LinkedHashMap;
+	move-result	v8
+; v8 : single-length
+	sub-int	v8,v3,v8
+; v8 : single-length , v3 : single-length , v8 : single-length
+	iput	v8,v11,com/squareup/okhttp/internal/DiskLruCache.redundantOpCount I
+; v8 : single-length , v11 : Lcom/squareup/okhttp/internal/DiskLruCache;
+lb766c:
+.line 271
+	invoke-static	{v5},com/squareup/okhttp/internal/Util/closeQuietly	; closeQuietly(Ljava/io/Closeable;)V
+; v5 : Lcom/squareup/okhttp/internal/StrictLineReader;
+.line 273
+	return-void	
+.end method
+
+.method private readJournalLine(Ljava/lang/String;)V
+.throws Ljava/io/IOException;
+.limit registers 11
+; this: v9 (Lcom/squareup/okhttp/internal/DiskLruCache;)
+; parameter[0] : v10 (Ljava/lang/String;)
+.var 2 is key Ljava/lang/String; from lb7706 to lb7732
+.var 0 is entry Lcom/squareup/okhttp/internal/DiskLruCache$Entry; from lb774a to lb7752
+.var 4 is parts [Ljava/lang/String; from lb779e to lb77b4
+	const/16	v6,32
+; v6 : single-length
+	const/4	v8,0
+; v8 : single-length
+	const/4	v7,15
+; v7 : single-length
+.line 276
+	invoke-virtual	{v10,v6},java/lang/String/indexOf	; indexOf(I)I
+; v10 : Ljava/lang/String; , v6 : single-length
+	move-result	v1
+; v1 : single-length
+.line 277
+	if-ne	v1,v7,lb76ee
+; v1 : single-length , v7 : single-length
+.line 278
+	new-instance	v6,java/io/IOException
+; v6 : Ljava/io/IOException;
+	new-instance	v7,java/lang/StringBuilder
+; v7 : Ljava/lang/StringBuilder;
+	invoke-direct	{v7},java/lang/StringBuilder/<init>	; <init>()V
+; v7 : Ljava/lang/StringBuilder;
+	const-string	v8,"unexpected journal line: "
+; v8 : Ljava/lang/String;
+	invoke-virtual	{v7,v8},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v7 : Ljava/lang/StringBuilder; , v8 : Ljava/lang/String;
+	move-result-object	v7
+; v7 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v7,v10},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v7 : Ljava/lang/StringBuilder; , v10 : Ljava/lang/String;
+	move-result-object	v7
+; v7 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v7},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v7 : Ljava/lang/StringBuilder;
+	move-result-object	v7
+; v7 : Ljava/lang/String;
+	invoke-direct	{v6,v7},java/io/IOException/<init>	; <init>(Ljava/lang/String;)V
+; v6 : Ljava/io/IOException; , v7 : Ljava/lang/String;
+	throw	v6
+; v6 : Ljava/io/IOException;
+lb76ee:
+.line 281
+	add-int/lit8	v3,v1,1
+; v3 : single-length , v1 : single-length
+.line 282
+	invoke-virtual	{v10,v6,v3},java/lang/String/indexOf	; indexOf(II)I
+; v10 : Ljava/lang/String; , v6 : single-length , v3 : single-length
+	move-result	v5
+; v5 : single-length
+.line 284
+	if-ne	v5,v7,lb7732
+; v5 : single-length , v7 : single-length
+.line 285
+	invoke-virtual	{v10,v3},java/lang/String/substring	; substring(I)Ljava/lang/String;
+; v10 : Ljava/lang/String; , v3 : single-length
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+.line 286
+	const-string	v6,"REMOVE"
+; v6 : Ljava/lang/String;
+	invoke-virtual	{v6},java/lang/String/length	; length()I
+; v6 : Ljava/lang/String;
+	move-result	v6
+; v6 : single-length
+	if-ne	v1,v6,lb773a
+; v1 : single-length , v6 : single-length
+	const-string	v6,"REMOVE"
+; v6 : Ljava/lang/String;
+	invoke-virtual	{v10,v6},java/lang/String/startsWith	; startsWith(Ljava/lang/String;)Z
+; v10 : Ljava/lang/String; , v6 : Ljava/lang/String;
+	move-result	v6
+; v6 : single-length
+	if-eqz	v6,lb773a
+; v6 : single-length
+.line 287
+	iget-object	v6,v9,com/squareup/okhttp/internal/DiskLruCache.lruEntries Ljava/util/LinkedHashMap;
+; v6 : Ljava/util/LinkedHashMap; , v9 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	invoke-virtual	{v6,v2},java/util/LinkedHashMap/remove	; remove(Ljava/lang/Object;)Ljava/lang/Object;
+; v6 : Ljava/util/LinkedHashMap; , v2 : Ljava/lang/String;
+lb7730:
+.line 312
+	return-void	
+lb7732:
+.line 291
+	invoke-virtual	{v10,v3,v5},java/lang/String/substring	; substring(II)Ljava/lang/String;
+; v10 : Ljava/lang/String; , v3 : single-length , v5 : single-length
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+lb773a:
+.line 294
+	iget-object	v6,v9,com/squareup/okhttp/internal/DiskLruCache.lruEntries Ljava/util/LinkedHashMap;
+; v6 : Ljava/util/LinkedHashMap; , v9 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	invoke-virtual	{v6,v2},java/util/LinkedHashMap/get	; get(Ljava/lang/Object;)Ljava/lang/Object;
+; v6 : Ljava/util/LinkedHashMap; , v2 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,com/squareup/okhttp/internal/DiskLruCache$Entry
+; v0 : Lcom/squareup/okhttp/internal/DiskLruCache$Entry;
+.line 295
+	if-nez	v0,lb7762
+; v0 : Lcom/squareup/okhttp/internal/DiskLruCache$Entry;
+.line 296
+	new-instance	v0,com/squareup/okhttp/internal/DiskLruCache$Entry
+; v0 : Lcom/squareup/okhttp/internal/DiskLruCache$Entry;
+lb7752:
+	invoke-direct	{v0,v9,v2,v8},com/squareup/okhttp/internal/DiskLruCache$Entry/<init>	; <init>(Lcom/squareup/okhttp/internal/DiskLruCache;Ljava/lang/String;Lcom/squareup/okhttp/internal/DiskLruCache$1;)V
+; v0 : Lcom/squareup/okhttp/internal/DiskLruCache$Entry; , v9 : Lcom/squareup/okhttp/internal/DiskLruCache; , v2 : Ljava/lang/String; , v8 : single-length
+.line 297
+	iget-object	v6,v9,com/squareup/okhttp/internal/DiskLruCache.lruEntries Ljava/util/LinkedHashMap;
+; v6 : Ljava/util/LinkedHashMap; , v9 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	invoke-virtual	{v6,v2,v0},java/util/LinkedHashMap/put	; put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+; v6 : Ljava/util/LinkedHashMap; , v2 : Ljava/lang/String; , v0 : Lcom/squareup/okhttp/internal/DiskLruCache$Entry;
+lb7762:
+.line 300
+	if-eq	v5,v7,lb77b4
+; v5 : single-length , v7 : single-length
+	const-string	v6,"CLEAN"
+; v6 : Ljava/lang/String;
+	invoke-virtual	{v6},java/lang/String/length	; length()I
+; v6 : Ljava/lang/String;
+	move-result	v6
+; v6 : single-length
+	if-ne	v1,v6,lb77b4
+; v1 : single-length , v6 : single-length
+	const-string	v6,"CLEAN"
+; v6 : Ljava/lang/String;
+	invoke-virtual	{v10,v6},java/lang/String/startsWith	; startsWith(Ljava/lang/String;)Z
+; v10 : Ljava/lang/String; , v6 : Ljava/lang/String;
+	move-result	v6
+; v6 : single-length
+	if-eqz	v6,lb77b4
+; v6 : single-length
+.line 301
+	add-int/lit8	v6,v5,1
+; v6 : single-length , v5 : single-length
+	invoke-virtual	{v10,v6},java/lang/String/substring	; substring(I)Ljava/lang/String;
+; v10 : Ljava/lang/String; , v6 : single-length
+	move-result-object	v6
+; v6 : Ljava/lang/String;
+	const-string	v7," "
+; v7 : Ljava/lang/String;
+	invoke-virtual	{v6,v7},java/lang/String/split	; split(Ljava/lang/String;)[Ljava/lang/String;
+; v6 : Ljava/lang/String; , v7 : Ljava/lang/String;
+	move-result-object	v4
+; v4 : [Ljava/lang/String;
+.line 302
+	const/4	v6,1
+; v6 : single-length
+	invoke-static	{v0,v6},com/squareup/okhttp/internal/DiskLruCache$Entry/access$602	; access$602(Lcom/squareup/okhttp/internal/DiskLruCache$Entry;Z)Z
+; v0 : Lcom/squareup/okhttp/internal/DiskLruCache$Entry; , v6 : single-length
+.line 303
+	invoke-static	{v0,v8},com/squareup/okhttp/internal/DiskLruCache$Entry/access$702	; access$702(Lcom/squareup/okhttp/internal/DiskLruCache$Entry;Lcom/squareup/okhttp/internal/DiskLruCache$Editor;)Lcom/squareup/okhttp/internal/DiskLruCache$Editor;
+; v0 : Lcom/squareup/okhttp/internal/DiskLruCache$Entry; , v8 : single-length
+.line 304
+	invoke-static	{v0,v4},com/squareup/okhttp/internal/DiskLruCache$Entry/access$800	; access$800(Lcom/squareup/okhttp/internal/DiskLruCache$Entry;[Ljava/lang/String;)V
+; v0 : Lcom/squareup/okhttp/internal/DiskLruCache$Entry; , v4 : [Ljava/lang/String;
+	goto	lb7730
+lb77b4:
+.line 305
+	if-ne	v5,v7,lb77ea
+; v5 : single-length , v7 : single-length
+	const-string	v6,"DIRTY"
+; v6 : Ljava/lang/String;
+	invoke-virtual	{v6},java/lang/String/length	; length()I
+; v6 : Ljava/lang/String;
+	move-result	v6
+; v6 : single-length
+	if-ne	v1,v6,lb77ea
+; v1 : single-length , v6 : single-length
+	const-string	v6,"DIRTY"
+; v6 : Ljava/lang/String;
+	invoke-virtual	{v10,v6},java/lang/String/startsWith	; startsWith(Ljava/lang/String;)Z
+; v10 : Ljava/lang/String; , v6 : Ljava/lang/String;
+	move-result	v6
+; v6 : single-length
+	if-eqz	v6,lb77ea
+; v6 : single-length
+.line 306
+	new-instance	v6,com/squareup/okhttp/internal/DiskLruCache$Editor
+; v6 : Lcom/squareup/okhttp/internal/DiskLruCache$Editor;
+	invoke-direct	{v6,v9,v0,v8},com/squareup/okhttp/internal/DiskLruCache$Editor/<init>	; <init>(Lcom/squareup/okhttp/internal/DiskLruCache;Lcom/squareup/okhttp/internal/DiskLruCache$Entry;Lcom/squareup/okhttp/internal/DiskLruCache$1;)V
+; v6 : Lcom/squareup/okhttp/internal/DiskLruCache$Editor; , v9 : Lcom/squareup/okhttp/internal/DiskLruCache; , v0 : Lcom/squareup/okhttp/internal/DiskLruCache$Entry; , v8 : single-length
+	invoke-static	{v0,v6},com/squareup/okhttp/internal/DiskLruCache$Entry/access$702	; access$702(Lcom/squareup/okhttp/internal/DiskLruCache$Entry;Lcom/squareup/okhttp/internal/DiskLruCache$Editor;)Lcom/squareup/okhttp/internal/DiskLruCache$Editor;
+; v0 : Lcom/squareup/okhttp/internal/DiskLruCache$Entry; , v6 : Lcom/squareup/okhttp/internal/DiskLruCache$Editor;
+	goto	lb7730
+lb77ea:
+.line 307
+	if-ne	v5,v7,lb780e
+; v5 : single-length , v7 : single-length
+	const-string	v6,"READ"
+; v6 : Ljava/lang/String;
+	invoke-virtual	{v6},java/lang/String/length	; length()I
+; v6 : Ljava/lang/String;
+	move-result	v6
+; v6 : single-length
+	if-ne	v1,v6,lb780e
+; v1 : single-length , v6 : single-length
+	const-string	v6,"READ"
+; v6 : Ljava/lang/String;
+	invoke-virtual	{v10,v6},java/lang/String/startsWith	; startsWith(Ljava/lang/String;)Z
+; v10 : Ljava/lang/String; , v6 : Ljava/lang/String;
+	move-result	v6
+; v6 : single-length
+	if-nez	v6,lb7730
+; v6 : single-length
+lb780e:
+.line 310
+	new-instance	v6,java/io/IOException
+; v6 : Ljava/io/IOException;
+	new-instance	v7,java/lang/StringBuilder
+; v7 : Ljava/lang/StringBuilder;
+	invoke-direct	{v7},java/lang/StringBuilder/<init>	; <init>()V
+; v7 : Ljava/lang/StringBuilder;
+	const-string	v8,"unexpected journal line: "
+; v8 : Ljava/lang/String;
+	invoke-virtual	{v7,v8},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v7 : Ljava/lang/StringBuilder; , v8 : Ljava/lang/String;
+	move-result-object	v7
+; v7 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v7,v10},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v7 : Ljava/lang/StringBuilder; , v10 : Ljava/lang/String;
+	move-result-object	v7
+; v7 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v7},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v7 : Ljava/lang/StringBuilder;
+	move-result-object	v7
+; v7 : Ljava/lang/String;
+	invoke-direct	{v6,v7},java/io/IOException/<init>	; <init>(Ljava/lang/String;)V
+; v6 : Ljava/io/IOException; , v7 : Ljava/lang/String;
+	throw	v6
+; v6 : Ljava/io/IOException;
+.end method
+
+.method private synchronized rebuildJournal()V
+.throws Ljava/io/IOException;
+.limit registers 9
+; this: v8 (Lcom/squareup/okhttp/internal/DiskLruCache;)
+.catch java/lang/Exception from lb79d0 to lb7a3c using lb7978
+.catch java/lang/Exception from lb797e to lb79ce using lb796e
+.catch java/lang/Exception from lb7970 to lb7978 using lb7978
+.catch java/lang/Exception from lb788a to lb796c using lb796e
+.catch java/lang/Exception from lb7852 to lb788a using lb7978
+.var 0 is entry Lcom/squareup/okhttp/internal/DiskLruCache$Entry; from lb7920 to lb796e
+.var 1 is i$ Ljava/util/Iterator; from lb7908 to lb796e
+.var 2 is writer Ljava/io/Writer; from lb788a to lb7978
+.var 0 is entry Lcom/squareup/okhttp/internal/DiskLruCache$Entry; from lb797e to lb79d0
+.line 342
+	monitor-enter	v8
+; v8 : Lcom/squareup/okhttp/internal/DiskLruCache;
+lb7852:
+	iget-object	v3,v8,com/squareup/okhttp/internal/DiskLruCache.journalWriter Ljava/io/Writer;
+; v3 : Ljava/io/Writer; , v8 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	if-eqz	v3,lb7864
+; v3 : Ljava/io/Writer;
+.line 343
+	iget-object	v3,v8,com/squareup/okhttp/internal/DiskLruCache.journalWriter Ljava/io/Writer;
+; v3 : Ljava/io/Writer; , v8 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	invoke-virtual	{v3},java/io/Writer/close	; close()V
+; v3 : Ljava/io/Writer;
+lb7864:
+.line 346
+	new-instance	v2,java/io/BufferedWriter
+; v2 : Ljava/io/BufferedWriter;
+	new-instance	v3,java/io/OutputStreamWriter
+; v3 : Ljava/io/OutputStreamWriter;
+	new-instance	v4,java/io/FileOutputStream
+; v4 : Ljava/io/FileOutputStream;
+	iget-object	v5,v8,com/squareup/okhttp/internal/DiskLruCache.journalFileTmp Ljava/io/File;
+; v5 : Ljava/io/File; , v8 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	invoke-direct	{v4,v5},java/io/FileOutputStream/<init>	; <init>(Ljava/io/File;)V
+; v4 : Ljava/io/FileOutputStream; , v5 : Ljava/io/File;
+	sget-object	v5,com/squareup/okhttp/internal/Util.US_ASCII Ljava/nio/charset/Charset;
+; v5 : Ljava/nio/charset/Charset;
+	invoke-direct	{v3,v4,v5},java/io/OutputStreamWriter/<init>	; <init>(Ljava/io/OutputStream;Ljava/nio/charset/Charset;)V
+; v3 : Ljava/io/OutputStreamWriter; , v4 : Ljava/io/FileOutputStream; , v5 : Ljava/nio/charset/Charset;
+	invoke-direct	{v2,v3},java/io/BufferedWriter/<init>	; <init>(Ljava/io/Writer;)V
+; v2 : Ljava/io/BufferedWriter; , v3 : Ljava/io/OutputStreamWriter;
+lb788a:
+.line 349
+	const-string	v3,"libcore.io.DiskLruCache"
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/io/Writer/write	; write(Ljava/lang/String;)V
+; v2 : Ljava/io/BufferedWriter; , v3 : Ljava/lang/String;
+.line 350
+	const-string	v3,"
+"
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/io/Writer/write	; write(Ljava/lang/String;)V
+; v2 : Ljava/io/BufferedWriter; , v3 : Ljava/lang/String;
+.line 351
+	const-string	v3,"1"
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/io/Writer/write	; write(Ljava/lang/String;)V
+; v2 : Ljava/io/BufferedWriter; , v3 : Ljava/lang/String;
+.line 352
+	const-string	v3,"
+"
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/io/Writer/write	; write(Ljava/lang/String;)V
+; v2 : Ljava/io/BufferedWriter; , v3 : Ljava/lang/String;
+.line 353
+	iget	v3,v8,com/squareup/okhttp/internal/DiskLruCache.appVersion I
+; v3 : single-length , v8 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	invoke-static	{v3},java/lang/Integer/toString	; toString(I)Ljava/lang/String;
+; v3 : single-length
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/io/Writer/write	; write(Ljava/lang/String;)V
+; v2 : Ljava/io/BufferedWriter; , v3 : Ljava/lang/String;
+.line 354
+	const-string	v3,"
+"
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/io/Writer/write	; write(Ljava/lang/String;)V
+; v2 : Ljava/io/BufferedWriter; , v3 : Ljava/lang/String;
+.line 355
+	iget	v3,v8,com/squareup/okhttp/internal/DiskLruCache.valueCount I
+; v3 : single-length , v8 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	invoke-static	{v3},java/lang/Integer/toString	; toString(I)Ljava/lang/String;
+; v3 : single-length
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/io/Writer/write	; write(Ljava/lang/String;)V
+; v2 : Ljava/io/BufferedWriter; , v3 : Ljava/lang/String;
+.line 356
+	const-string	v3,"
+"
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/io/Writer/write	; write(Ljava/lang/String;)V
+; v2 : Ljava/io/BufferedWriter; , v3 : Ljava/lang/String;
+.line 357
+	const-string	v3,"
+"
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/io/Writer/write	; write(Ljava/lang/String;)V
+; v2 : Ljava/io/BufferedWriter; , v3 : Ljava/lang/String;
+.line 359
+	iget-object	v3,v8,com/squareup/okhttp/internal/DiskLruCache.lruEntries Ljava/util/LinkedHashMap;
+; v3 : Ljava/util/LinkedHashMap; , v8 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	invoke-virtual	{v3},java/util/LinkedHashMap/values	; values()Ljava/util/Collection;
+; v3 : Ljava/util/LinkedHashMap;
+	move-result-object	v3
+; v3 : Ljava/util/Collection;
+	invoke-interface	{v3},java/util/Collection/iterator	; iterator()Ljava/util/Iterator;
+; v3 : Ljava/util/Collection;
+	move-result-object	v1
+; v1 : Ljava/util/Iterator;
+lb7908:
+	invoke-interface	{v1},java/util/Iterator/hasNext	; hasNext()Z
+; v1 : Ljava/util/Iterator;
+	move-result	v3
+; v3 : single-length
+	if-eqz	v3,lb79d0
+; v3 : single-length
+	invoke-interface	{v1},java/util/Iterator/next	; next()Ljava/lang/Object;
+; v1 : Ljava/util/Iterator;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,com/squareup/okhttp/internal/DiskLruCache$Entry
+; v0 : Lcom/squareup/okhttp/internal/DiskLruCache$Entry;
+.line 360
+	invoke-static	{v0},com/squareup/okhttp/internal/DiskLruCache$Entry/access$700	; access$700(Lcom/squareup/okhttp/internal/DiskLruCache$Entry;)Lcom/squareup/okhttp/internal/DiskLruCache$Editor;
+; v0 : Lcom/squareup/okhttp/internal/DiskLruCache$Entry;
+	move-result-object	v3
+; v3 : Lcom/squareup/okhttp/internal/DiskLruCache$Editor;
+	if-eqz	v3,lb797e
+; v3 : Lcom/squareup/okhttp/internal/DiskLruCache$Editor;
+.line 361
+	new-instance	v3,java/lang/StringBuilder
+; v3 : Ljava/lang/StringBuilder;
+	invoke-direct	{v3},java/lang/StringBuilder/<init>	; <init>()V
+; v3 : Ljava/lang/StringBuilder;
+	const-string	v4,"DIRTY "
+; v4 : Ljava/lang/String;
+	invoke-virtual	{v3,v4},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v3 : Ljava/lang/StringBuilder; , v4 : Ljava/lang/String;
+	move-result-object	v3
+; v3 : Ljava/lang/StringBuilder;
+	invoke-static	{v0},com/squareup/okhttp/internal/DiskLruCache$Entry/access$1100	; access$1100(Lcom/squareup/okhttp/internal/DiskLruCache$Entry;)Ljava/lang/String;
+; v0 : Lcom/squareup/okhttp/internal/DiskLruCache$Entry;
+	move-result-object	v4
+; v4 : Ljava/lang/String;
+	invoke-virtual	{v3,v4},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v3 : Ljava/lang/StringBuilder; , v4 : Ljava/lang/String;
+	move-result-object	v3
+; v3 : Ljava/lang/StringBuilder;
+	const/16	v4,10
+; v4 : single-length
+	invoke-virtual	{v3,v4},java/lang/StringBuilder/append	; append(C)Ljava/lang/StringBuilder;
+; v3 : Ljava/lang/StringBuilder; , v4 : single-length
+	move-result-object	v3
+; v3 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v3},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v3 : Ljava/lang/StringBuilder;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/io/Writer/write	; write(Ljava/lang/String;)V
+; v2 : Ljava/io/BufferedWriter; , v3 : Ljava/lang/String;
+lb796c:
+	goto	lb7908
+lb796e:
+.line 367
+	move-exception	v3
+; v3 : java/lang/Exception
+lb7970:
+	invoke-virtual	{v2},java/io/Writer/close	; close()V
+; v2 : Ljava/io/BufferedWriter;
+	throw	v3
+; v3 : java/lang/Exception
+lb7978:
+.line 342
+	move-exception	v3
+; v3 : java/lang/Exception
+	monitor-exit	v8
+; v8 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	throw	v3
+; v3 : java/lang/Exception
+lb797e:
+.line 363
+	new-instance	v3,java/lang/StringBuilder
+; v3 : Ljava/lang/StringBuilder;
+	invoke-direct	{v3},java/lang/StringBuilder/<init>	; <init>()V
+; v3 : Ljava/lang/StringBuilder;
+	const-string	v4,"CLEAN "
+; v4 : Ljava/lang/String;
+	invoke-virtual	{v3,v4},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v3 : Ljava/lang/StringBuilder; , v4 : Ljava/lang/String;
+	move-result-object	v3
+; v3 : Ljava/lang/StringBuilder;
+	invoke-static	{v0},com/squareup/okhttp/internal/DiskLruCache$Entry/access$1100	; access$1100(Lcom/squareup/okhttp/internal/DiskLruCache$Entry;)Ljava/lang/String;
+; v0 : Lcom/squareup/okhttp/internal/DiskLruCache$Entry;
+	move-result-object	v4
+; v4 : Ljava/lang/String;
+	invoke-virtual	{v3,v4},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v3 : Ljava/lang/StringBuilder; , v4 : Ljava/lang/String;
+	move-result-object	v3
+; v3 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v0},com/squareup/okhttp/internal/DiskLruCache$Entry/getLengths	; getLengths()Ljava/lang/String;
+; v0 : Lcom/squareup/okhttp/internal/DiskLruCache$Entry;
+	move-result-object	v4
+; v4 : Ljava/lang/String;
+	invoke-virtual	{v3,v4},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v3 : Ljava/lang/StringBuilder; , v4 : Ljava/lang/String;
+	move-result-object	v3
+; v3 : Ljava/lang/StringBuilder;
+	const/16	v4,10
+; v4 : single-length
+	invoke-virtual	{v3,v4},java/lang/StringBuilder/append	; append(C)Ljava/lang/StringBuilder;
+; v3 : Ljava/lang/StringBuilder; , v4 : single-length
+	move-result-object	v3
+; v3 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v3},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v3 : Ljava/lang/StringBuilder;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/io/Writer/write	; write(Ljava/lang/String;)V
+; v2 : Ljava/io/BufferedWriter; , v3 : Ljava/lang/String;
+lb79ce:
+	goto	lb7908
+lb79d0:
+.line 367
+	invoke-virtual	{v2},java/io/Writer/close	; close()V
+; v2 : Ljava/io/BufferedWriter;
+.line 370
+	iget-object	v3,v8,com/squareup/okhttp/internal/DiskLruCache.journalFile Ljava/io/File;
+; v3 : Ljava/io/File; , v8 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	invoke-virtual	{v3},java/io/File/exists	; exists()Z
+; v3 : Ljava/io/File;
+	move-result	v3
+; v3 : single-length
+	if-eqz	v3,lb79f6
+; v3 : single-length
+.line 371
+	iget-object	v3,v8,com/squareup/okhttp/internal/DiskLruCache.journalFile Ljava/io/File;
+; v3 : Ljava/io/File; , v8 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	iget-object	v4,v8,com/squareup/okhttp/internal/DiskLruCache.journalFileBackup Ljava/io/File;
+; v4 : Ljava/io/File; , v8 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	const/4	v5,1
+; v5 : single-length
+	invoke-static	{v3,v4,v5},com/squareup/okhttp/internal/DiskLruCache/renameTo	; renameTo(Ljava/io/File;Ljava/io/File;Z)V
+; v3 : Ljava/io/File; , v4 : Ljava/io/File; , v5 : single-length
+lb79f6:
+.line 373
+	iget-object	v3,v8,com/squareup/okhttp/internal/DiskLruCache.journalFileTmp Ljava/io/File;
+; v3 : Ljava/io/File; , v8 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	iget-object	v4,v8,com/squareup/okhttp/internal/DiskLruCache.journalFile Ljava/io/File;
+; v4 : Ljava/io/File; , v8 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	const/4	v5,0
+; v5 : single-length
+	invoke-static	{v3,v4,v5},com/squareup/okhttp/internal/DiskLruCache/renameTo	; renameTo(Ljava/io/File;Ljava/io/File;Z)V
+; v3 : Ljava/io/File; , v4 : Ljava/io/File; , v5 : single-length
+.line 374
+	iget-object	v3,v8,com/squareup/okhttp/internal/DiskLruCache.journalFileBackup Ljava/io/File;
+; v3 : Ljava/io/File; , v8 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	invoke-virtual	{v3},java/io/File/delete	; delete()Z
+; v3 : Ljava/io/File;
+.line 376
+	new-instance	v3,java/io/BufferedWriter
+; v3 : Ljava/io/BufferedWriter;
+	new-instance	v4,java/io/OutputStreamWriter
+; v4 : Ljava/io/OutputStreamWriter;
+	new-instance	v5,java/io/FileOutputStream
+; v5 : Ljava/io/FileOutputStream;
+	iget-object	v6,v8,com/squareup/okhttp/internal/DiskLruCache.journalFile Ljava/io/File;
+; v6 : Ljava/io/File; , v8 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	const/4	v7,1
+; v7 : single-length
+	invoke-direct	{v5,v6,v7},java/io/FileOutputStream/<init>	; <init>(Ljava/io/File;Z)V
+; v5 : Ljava/io/FileOutputStream; , v6 : Ljava/io/File; , v7 : single-length
+	sget-object	v6,com/squareup/okhttp/internal/Util.US_ASCII Ljava/nio/charset/Charset;
+; v6 : Ljava/nio/charset/Charset;
+	invoke-direct	{v4,v5,v6},java/io/OutputStreamWriter/<init>	; <init>(Ljava/io/OutputStream;Ljava/nio/charset/Charset;)V
+; v4 : Ljava/io/OutputStreamWriter; , v5 : Ljava/io/FileOutputStream; , v6 : Ljava/nio/charset/Charset;
+	invoke-direct	{v3,v4},java/io/BufferedWriter/<init>	; <init>(Ljava/io/Writer;)V
+; v3 : Ljava/io/BufferedWriter; , v4 : Ljava/io/OutputStreamWriter;
+	iput-object	v3,v8,com/squareup/okhttp/internal/DiskLruCache.journalWriter Ljava/io/Writer;
+; v3 : Ljava/io/BufferedWriter; , v8 : Lcom/squareup/okhttp/internal/DiskLruCache;
+lb7a3c:
+.line 378
+	monitor-exit	v8
+; v8 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	return-void	
+.end method
+
+.method private static renameTo(Ljava/io/File;Ljava/io/File;Z)V
+.throws Ljava/io/IOException;
+.limit registers 4
+; parameter[0] : v1 (Ljava/io/File;)
+; parameter[1] : v2 (Ljava/io/File;)
+; parameter[2] : v3 (Z)
+.line 387
+	if-eqz	v3,lb7a8a
+; v3 : single-length
+.line 388
+	invoke-static	{v2},com/squareup/okhttp/internal/DiskLruCache/deleteIfExists	; deleteIfExists(Ljava/io/File;)V
+; v2 : Ljava/io/File;
+lb7a8a:
+.line 390
+	invoke-virtual	{v1,v2},java/io/File/renameTo	; renameTo(Ljava/io/File;)Z
+; v1 : Ljava/io/File; , v2 : Ljava/io/File;
+	move-result	v0
+; v0 : single-length
+	if-nez	v0,lb7aa2
+; v0 : single-length
+.line 391
+	new-instance	v0,java/io/IOException
+; v0 : Ljava/io/IOException;
+	invoke-direct	{v0},java/io/IOException/<init>	; <init>()V
+; v0 : Ljava/io/IOException;
+	throw	v0
+; v0 : Ljava/io/IOException;
+lb7aa2:
+.line 393
+	return-void	
+.end method
+
+.method private trimToSize()V
+.throws Ljava/io/IOException;
+.limit registers 6
+; this: v5 (Lcom/squareup/okhttp/internal/DiskLruCache;)
+.var 0 is toEvict Ljava/util/Map$Entry; from lb7ae4 to lb7af8
+lb7ab4:
+.line 637
+	iget-wide	v1,v5,com/squareup/okhttp/internal/DiskLruCache.size J
+; v1 : double-length , v5 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	iget-wide	v3,v5,com/squareup/okhttp/internal/DiskLruCache.maxSize J
+; v3 : double-length , v5 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	cmp-long	v1,v1,v3
+; v1 : single-length , v1 : single-length , v3 : double-length
+	if-lez	v1,lb7af8
+; v1 : single-length
+.line 638
+	iget-object	v1,v5,com/squareup/okhttp/internal/DiskLruCache.lruEntries Ljava/util/LinkedHashMap;
+; v1 : Ljava/util/LinkedHashMap; , v5 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	invoke-virtual	{v1},java/util/LinkedHashMap/entrySet	; entrySet()Ljava/util/Set;
+; v1 : Ljava/util/LinkedHashMap;
+	move-result-object	v1
+; v1 : Ljava/util/Set;
+	invoke-interface	{v1},java/util/Set/iterator	; iterator()Ljava/util/Iterator;
+; v1 : Ljava/util/Set;
+	move-result-object	v1
+; v1 : Ljava/util/Iterator;
+	invoke-interface	{v1},java/util/Iterator/next	; next()Ljava/lang/Object;
+; v1 : Ljava/util/Iterator;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,java/util/Map$Entry
+; v0 : Ljava/util/Map$Entry;
+.line 639
+	invoke-interface	{v0},java/util/Map$Entry/getKey	; getKey()Ljava/lang/Object;
+; v0 : Ljava/util/Map$Entry;
+	move-result-object	v1
+; v1 : Ljava/lang/Object;
+	check-cast	v1,java/lang/String
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v5,v1},com/squareup/okhttp/internal/DiskLruCache/remove	; remove(Ljava/lang/String;)Z
+; v5 : Lcom/squareup/okhttp/internal/DiskLruCache; , v1 : Ljava/lang/String;
+	goto	lb7ab4
+lb7af8:
+.line 641
+	return-void	
+.end method
+
+.method private validateKey(Ljava/lang/String;)V
+.limit registers 6
+; this: v4 (Lcom/squareup/okhttp/internal/DiskLruCache;)
+; parameter[0] : v5 (Ljava/lang/String;)
+.line 654
+	sget-object	v1,com/squareup/okhttp/internal/DiskLruCache.LEGAL_KEY_PATTERN Ljava/util/regex/Pattern;
+; v1 : Ljava/util/regex/Pattern;
+	invoke-virtual	{v1,v5},java/util/regex/Pattern/matcher	; matcher(Ljava/lang/CharSequence;)Ljava/util/regex/Matcher;
+; v1 : Ljava/util/regex/Pattern; , v5 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/util/regex/Matcher;
+.line 655
+	invoke-virtual	{v0},java/util/regex/Matcher/matches	; matches()Z
+; v0 : Ljava/util/regex/Matcher;
+	move-result	v1
+; v1 : single-length
+	if-nez	v1,lb7b62
+; v1 : single-length
+.line 656
+	new-instance	v1,java/lang/IllegalArgumentException
+; v1 : Ljava/lang/IllegalArgumentException;
+	new-instance	v2,java/lang/StringBuilder
+; v2 : Ljava/lang/StringBuilder;
+	invoke-direct	{v2},java/lang/StringBuilder/<init>	; <init>()V
+; v2 : Ljava/lang/StringBuilder;
+	const-string	v3,"keys must match regex [a-z0-9_-]{1,64}: ""
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v2,v5},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v5 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	const-string	v3,"""
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v2},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v2 : Ljava/lang/StringBuilder;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-direct	{v1,v2},java/lang/IllegalArgumentException/<init>	; <init>(Ljava/lang/String;)V
+; v1 : Ljava/lang/IllegalArgumentException; , v2 : Ljava/lang/String;
+	throw	v1
+; v1 : Ljava/lang/IllegalArgumentException;
+lb7b62:
+.line 658
+	return-void	
+.end method
+
+.method public synchronized close()V
+.throws Ljava/io/IOException;
+.limit registers 5
+; this: v4 (Lcom/squareup/okhttp/internal/DiskLruCache;)
+.catch java/lang/Exception from lb7bda to lb7bf0 using lb7bd4
+.catch java/lang/Exception from lb7b82 to lb7bd2 using lb7bd4
+.catch java/lang/Exception from lb7b76 to lb7b7a using lb7bd4
+.var 0 is entry Lcom/squareup/okhttp/internal/DiskLruCache$Entry; from lb7bb8 to lb7bd4
+.var 1 is i$ Ljava/util/Iterator; from lb7ba0 to lb7bd4
+.line 623
+	monitor-enter	v4
+; v4 : Lcom/squareup/okhttp/internal/DiskLruCache;
+lb7b76:
+	iget-object	v2,v4,com/squareup/okhttp/internal/DiskLruCache.journalWriter Ljava/io/Writer;
+; v2 : Ljava/io/Writer; , v4 : Lcom/squareup/okhttp/internal/DiskLruCache;
+lb7b7a:
+	if-nez	v2,lb7b82
+; v2 : Ljava/io/Writer;
+lb7b7e:
+.line 634
+	monitor-exit	v4
+; v4 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	return-void	
+lb7b82:
+.line 626
+	new-instance	v2,java/util/ArrayList
+; v2 : Ljava/util/ArrayList;
+	iget-object	v3,v4,com/squareup/okhttp/internal/DiskLruCache.lruEntries Ljava/util/LinkedHashMap;
+; v3 : Ljava/util/LinkedHashMap; , v4 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	invoke-virtual	{v3},java/util/LinkedHashMap/values	; values()Ljava/util/Collection;
+; v3 : Ljava/util/LinkedHashMap;
+	move-result-object	v3
+; v3 : Ljava/util/Collection;
+	invoke-direct	{v2,v3},java/util/ArrayList/<init>	; <init>(Ljava/util/Collection;)V
+; v2 : Ljava/util/ArrayList; , v3 : Ljava/util/Collection;
+	invoke-virtual	{v2},java/util/ArrayList/iterator	; iterator()Ljava/util/Iterator;
+; v2 : Ljava/util/ArrayList;
+	move-result-object	v1
+; v1 : Ljava/util/Iterator;
+lb7ba0:
+	invoke-interface	{v1},java/util/Iterator/hasNext	; hasNext()Z
+; v1 : Ljava/util/Iterator;
+	move-result	v2
+; v2 : single-length
+	if-eqz	v2,lb7bda
+; v2 : single-length
+	invoke-interface	{v1},java/util/Iterator/next	; next()Ljava/lang/Object;
+; v1 : Ljava/util/Iterator;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,com/squareup/okhttp/internal/DiskLruCache$Entry
+; v0 : Lcom/squareup/okhttp/internal/DiskLruCache$Entry;
+.line 627
+	invoke-static	{v0},com/squareup/okhttp/internal/DiskLruCache$Entry/access$700	; access$700(Lcom/squareup/okhttp/internal/DiskLruCache$Entry;)Lcom/squareup/okhttp/internal/DiskLruCache$Editor;
+; v0 : Lcom/squareup/okhttp/internal/DiskLruCache$Entry;
+	move-result-object	v2
+; v2 : Lcom/squareup/okhttp/internal/DiskLruCache$Editor;
+	if-eqz	v2,lb7ba0
+; v2 : Lcom/squareup/okhttp/internal/DiskLruCache$Editor;
+.line 628
+	invoke-static	{v0},com/squareup/okhttp/internal/DiskLruCache$Entry/access$700	; access$700(Lcom/squareup/okhttp/internal/DiskLruCache$Entry;)Lcom/squareup/okhttp/internal/DiskLruCache$Editor;
+; v0 : Lcom/squareup/okhttp/internal/DiskLruCache$Entry;
+	move-result-object	v2
+; v2 : Lcom/squareup/okhttp/internal/DiskLruCache$Editor;
+	invoke-virtual	{v2},com/squareup/okhttp/internal/DiskLruCache$Editor/abort	; abort()V
+; v2 : Lcom/squareup/okhttp/internal/DiskLruCache$Editor;
+lb7bd2:
+	goto	lb7ba0
+lb7bd4:
+.line 623
+	move-exception	v2
+; v2 : java/lang/Exception
+	monitor-exit	v4
+; v4 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	throw	v2
+; v2 : java/lang/Exception
+lb7bda:
+.line 631
+	invoke-direct	{v4},com/squareup/okhttp/internal/DiskLruCache/trimToSize	; trimToSize()V
+; v4 : Lcom/squareup/okhttp/internal/DiskLruCache;
+.line 632
+	iget-object	v2,v4,com/squareup/okhttp/internal/DiskLruCache.journalWriter Ljava/io/Writer;
+; v2 : Ljava/io/Writer; , v4 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	invoke-virtual	{v2},java/io/Writer/close	; close()V
+; v2 : Ljava/io/Writer;
+.line 633
+	const/4	v2,0
+; v2 : single-length
+	iput-object	v2,v4,com/squareup/okhttp/internal/DiskLruCache.journalWriter Ljava/io/Writer;
+; v2 : single-length , v4 : Lcom/squareup/okhttp/internal/DiskLruCache;
+lb7bf0:
+	goto	lb7b7e
+.end method
+
+.method public delete()V
+.throws Ljava/io/IOException;
+.limit registers 2
+; this: v1 (Lcom/squareup/okhttp/internal/DiskLruCache;)
+.line 649
+	invoke-virtual	{v1},com/squareup/okhttp/internal/DiskLruCache/close	; close()V
+; v1 : Lcom/squareup/okhttp/internal/DiskLruCache;
+.line 650
+	iget-object	v0,v1,com/squareup/okhttp/internal/DiskLruCache.directory Ljava/io/File;
+; v0 : Ljava/io/File; , v1 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	invoke-static	{v0},com/squareup/okhttp/internal/Util/deleteContents	; deleteContents(Ljava/io/File;)V
+; v0 : Ljava/io/File;
+.line 651
+	return-void	
+.end method
+
+.method public edit(Ljava/lang/String;)Lcom/squareup/okhttp/internal/DiskLruCache$Editor;
+.throws Ljava/io/IOException;
+.limit registers 4
+; this: v2 (Lcom/squareup/okhttp/internal/DiskLruCache;)
+; parameter[0] : v3 (Ljava/lang/String;)
+.line 446
+	const-wide/16	v0,65535
+; v0 : double-length
+	invoke-direct	{v2,v3,v0,v1},com/squareup/okhttp/internal/DiskLruCache/edit	; edit(Ljava/lang/String;J)Lcom/squareup/okhttp/internal/DiskLruCache$Editor;
+; v2 : Lcom/squareup/okhttp/internal/DiskLruCache; , v3 : Ljava/lang/String; , v0 : double-length
+	move-result-object	v0
+; v0 : Lcom/squareup/okhttp/internal/DiskLruCache$Editor;
+	return-object	v0
+; v0 : Lcom/squareup/okhttp/internal/DiskLruCache$Editor;
+.end method
+
+.method public synchronized flush()V
+.throws Ljava/io/IOException;
+.limit registers 2
+; this: v1 (Lcom/squareup/okhttp/internal/DiskLruCache;)
+.catch java/lang/Exception from lb7c66 to lb7c7c using lb7c80
+.line 616
+	monitor-enter	v1
+; v1 : Lcom/squareup/okhttp/internal/DiskLruCache;
+lb7c66:
+	invoke-direct	{v1},com/squareup/okhttp/internal/DiskLruCache/checkNotClosed	; checkNotClosed()V
+; v1 : Lcom/squareup/okhttp/internal/DiskLruCache;
+.line 617
+	invoke-direct	{v1},com/squareup/okhttp/internal/DiskLruCache/trimToSize	; trimToSize()V
+; v1 : Lcom/squareup/okhttp/internal/DiskLruCache;
+.line 618
+	iget-object	v0,v1,com/squareup/okhttp/internal/DiskLruCache.journalWriter Ljava/io/Writer;
+; v0 : Ljava/io/Writer; , v1 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	invoke-virtual	{v0},java/io/Writer/flush	; flush()V
+; v0 : Ljava/io/Writer;
+lb7c7c:
+.line 619
+	monitor-exit	v1
+; v1 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	return-void	
+lb7c80:
+.line 616
+	move-exception	v0
+; v0 : java/lang/Exception
+	monitor-exit	v1
+; v1 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	throw	v0
+; v0 : java/lang/Exception
+.end method
+
+.method public synchronized get(Ljava/lang/String;)Lcom/squareup/okhttp/internal/DiskLruCache$Snapshot;
+.throws Ljava/io/IOException;
+.limit registers 13
+; this: v11 (Lcom/squareup/okhttp/internal/DiskLruCache;)
+; parameter[0] : v12 (Ljava/lang/String;)
+.catch java/lang/Exception from lb7d0a to lb7dac using lb7dae
+.catch java/io/FileNotFoundException from lb7ce2 to lb7d00 using lb7d06
+.catch java/lang/Exception from lb7ce2 to lb7d00 using lb7dae
+.catch java/lang/Exception from lb7ccc to lb7ce0 using lb7dae
+.catch java/lang/Exception from lb7ca8 to lb7cc4 using lb7dae
+.var 8 is e Ljava/io/FileNotFoundException; from lb7d08 to lb7d2a
+.var 5 is ins [Ljava/io/InputStream; from lb7ce0 to lb7dae
+.var 9 is entry Lcom/squareup/okhttp/internal/DiskLruCache$Entry; from lb7cc4 to lb7dae
+.var 10 is i I from lb7ce2 to lb7dae
+	const/4	v0,0
+; v0 : single-length
+.line 401
+	monitor-enter	v11
+; v11 : Lcom/squareup/okhttp/internal/DiskLruCache;
+lb7ca8:
+	invoke-direct	{v11},com/squareup/okhttp/internal/DiskLruCache/checkNotClosed	; checkNotClosed()V
+; v11 : Lcom/squareup/okhttp/internal/DiskLruCache;
+.line 402
+	invoke-direct	{v11,v12},com/squareup/okhttp/internal/DiskLruCache/validateKey	; validateKey(Ljava/lang/String;)V
+; v11 : Lcom/squareup/okhttp/internal/DiskLruCache; , v12 : Ljava/lang/String;
+.line 403
+	iget-object	v1,v11,com/squareup/okhttp/internal/DiskLruCache.lruEntries Ljava/util/LinkedHashMap;
+; v1 : Ljava/util/LinkedHashMap; , v11 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	invoke-virtual	{v1,v12},java/util/LinkedHashMap/get	; get(Ljava/lang/Object;)Ljava/lang/Object;
+; v1 : Ljava/util/LinkedHashMap; , v12 : Ljava/lang/String;
+	move-result-object	v9
+; v9 : Ljava/lang/Object;
+	check-cast	v9,com/squareup/okhttp/internal/DiskLruCache$Entry
+; v9 : Lcom/squareup/okhttp/internal/DiskLruCache$Entry;
+lb7cc4:
+.line 404
+	if-nez	v9,lb7ccc
+; v9 : Lcom/squareup/okhttp/internal/DiskLruCache$Entry;
+lb7cc8:
+.line 438
+	monitor-exit	v11
+; v11 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	return-object	v0
+; v0 : Lcom/squareup/okhttp/internal/DiskLruCache$Snapshot;
+lb7ccc:
+.line 408
+	invoke-static	{v9},com/squareup/okhttp/internal/DiskLruCache$Entry/access$600	; access$600(Lcom/squareup/okhttp/internal/DiskLruCache$Entry;)Z
+; v9 : Lcom/squareup/okhttp/internal/DiskLruCache$Entry;
+	move-result	v1
+; v1 : single-length
+	if-eqz	v1,lb7cc8
+; v1 : single-length
+.line 415
+	iget	v1,v11,com/squareup/okhttp/internal/DiskLruCache.valueCount I
+; v1 : single-length , v11 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	new-array	v5,v1,[Ljava/io/InputStream;
+; v5 : [Ljava/io/InputStream; , v1 : single-length
+lb7ce0:
+.line 417
+	const/4	v10,0
+; v10 : single-length
+lb7ce2:
+	iget	v1,v11,com/squareup/okhttp/internal/DiskLruCache.valueCount I
+; v1 : single-length , v11 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	if-ge	v10,v1,lb7d2a
+; v10 : single-length , v1 : single-length
+.line 418
+	new-instance	v1,java/io/FileInputStream
+; v1 : Ljava/io/FileInputStream;
+	invoke-virtual	{v9,v10},com/squareup/okhttp/internal/DiskLruCache$Entry/getCleanFile	; getCleanFile(I)Ljava/io/File;
+; v9 : Lcom/squareup/okhttp/internal/DiskLruCache$Entry; , v10 : single-length
+	move-result-object	v2
+; v2 : Ljava/io/File;
+	invoke-direct	{v1,v2},java/io/FileInputStream/<init>	; <init>(Ljava/io/File;)V
+; v1 : Ljava/io/FileInputStream; , v2 : Ljava/io/File;
+	aput-object	v1,v5,v10
+; v1 : Ljava/io/FileInputStream; , v5 : [Ljava/io/InputStream; , v10 : single-length
+lb7d00:
+.line 417
+	add-int/lit8	v10,v10,1
+; v10 : single-length , v10 : single-length
+	goto	lb7ce2
+lb7d06:
+.line 420
+	move-exception	v8
+; v8 : java/io/FileNotFoundException
+.line 422
+	const/4	v10,0
+; v10 : single-length
+lb7d0a:
+	iget	v1,v11,com/squareup/okhttp/internal/DiskLruCache.valueCount I
+; v1 : single-length , v11 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	if-ge	v10,v1,lb7cc8
+; v10 : single-length , v1 : single-length
+.line 423
+	aget-object	v1,v5,v10
+; v1 : Ljava/io/InputStream; , v5 : [Ljava/io/InputStream; , v10 : single-length
+	if-eqz	v1,lb7cc8
+; v1 : Ljava/io/InputStream;
+.line 424
+	aget-object	v1,v5,v10
+; v1 : Ljava/io/InputStream; , v5 : [Ljava/io/InputStream; , v10 : single-length
+	invoke-static	{v1},com/squareup/okhttp/internal/Util/closeQuietly	; closeQuietly(Ljava/io/Closeable;)V
+; v1 : Ljava/io/InputStream;
+.line 422
+	add-int/lit8	v10,v10,1
+; v10 : single-length , v10 : single-length
+	goto	lb7d0a
+lb7d2a:
+.line 432
+	iget	v0,v11,com/squareup/okhttp/internal/DiskLruCache.redundantOpCount I
+; v0 : single-length , v11 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	add-int/lit8	v0,v0,1
+; v0 : single-length , v0 : single-length
+	iput	v0,v11,com/squareup/okhttp/internal/DiskLruCache.redundantOpCount I
+; v0 : single-length , v11 : Lcom/squareup/okhttp/internal/DiskLruCache;
+.line 433
+	iget-object	v0,v11,com/squareup/okhttp/internal/DiskLruCache.journalWriter Ljava/io/Writer;
+; v0 : Ljava/io/Writer; , v11 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	new-instance	v1,java/lang/StringBuilder
+; v1 : Ljava/lang/StringBuilder;
+	invoke-direct	{v1},java/lang/StringBuilder/<init>	; <init>()V
+; v1 : Ljava/lang/StringBuilder;
+	const-string	v2,"READ "
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v1,v12},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v12 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	const/16	v2,10
+; v2 : single-length
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(C)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : single-length
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v1},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v1 : Ljava/lang/StringBuilder;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/io/Writer/append	; append(Ljava/lang/CharSequence;)Ljava/io/Writer;
+; v0 : Ljava/io/Writer; , v1 : Ljava/lang/String;
+.line 434
+	invoke-direct	{v11},com/squareup/okhttp/internal/DiskLruCache/journalRebuildRequired	; journalRebuildRequired()Z
+; v11 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,lb7d8c
+; v0 : single-length
+.line 435
+	iget-object	v0,v11,com/squareup/okhttp/internal/DiskLruCache.executorService Ljava/util/concurrent/ThreadPoolExecutor;
+; v0 : Ljava/util/concurrent/ThreadPoolExecutor; , v11 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	iget-object	v1,v11,com/squareup/okhttp/internal/DiskLruCache.cleanupCallable Ljava/util/concurrent/Callable;
+; v1 : Ljava/util/concurrent/Callable; , v11 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	invoke-virtual	{v0,v1},java/util/concurrent/ThreadPoolExecutor/submit	; submit(Ljava/util/concurrent/Callable;)Ljava/util/concurrent/Future;
+; v0 : Ljava/util/concurrent/ThreadPoolExecutor; , v1 : Ljava/util/concurrent/Callable;
+lb7d8c:
+.line 438
+	new-instance	v0,com/squareup/okhttp/internal/DiskLruCache$Snapshot
+; v0 : Lcom/squareup/okhttp/internal/DiskLruCache$Snapshot;
+	invoke-static	{v9},com/squareup/okhttp/internal/DiskLruCache$Entry/access$1200	; access$1200(Lcom/squareup/okhttp/internal/DiskLruCache$Entry;)J
+; v9 : Lcom/squareup/okhttp/internal/DiskLruCache$Entry;
+	move-result-wide	v3
+; v3 : double-length
+	invoke-static	{v9},com/squareup/okhttp/internal/DiskLruCache$Entry/access$1000	; access$1000(Lcom/squareup/okhttp/internal/DiskLruCache$Entry;)[J
+; v9 : Lcom/squareup/okhttp/internal/DiskLruCache$Entry;
+	move-result-object	v6
+; v6 : [J
+	const/4	v7,0
+; v7 : single-length
+	move-object	v1,v11
+; v1 : Lcom/squareup/okhttp/internal/DiskLruCache; , v11 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	move-object	v2,v12
+; v2 : Ljava/lang/String; , v12 : Ljava/lang/String;
+	invoke-direct/range	{v0..v7},com/squareup/okhttp/internal/DiskLruCache$Snapshot/<init>;	<init>(Lcom/squareup/okhttp/internal/DiskLruCache;Ljava/lang/String;J[Ljava/io/InputStream;[JLcom/squareup/okhttp/internal/DiskLruCache$1;)V
+; v0 : Lcom/squareup/okhttp/internal/DiskLruCache$Snapshot; , v1 : Lcom/squareup/okhttp/internal/DiskLruCache; , v2 : Ljava/lang/String; , v3 : double-length , v5 : [Ljava/io/InputStream; , v6 : [J , v7 : single-length
+lb7dac:
+	goto	lb7cc8
+lb7dae:
+.line 401
+	move-exception	v0
+; v0 : java/lang/Exception
+	monitor-exit	v11
+; v11 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	throw	v0
+; v0 : java/lang/Exception
+.end method
+
+.method public getDirectory()Ljava/io/File;
+.limit registers 2
+; this: v1 (Lcom/squareup/okhttp/internal/DiskLruCache;)
+.line 475
+	iget-object	v0,v1,com/squareup/okhttp/internal/DiskLruCache.directory Ljava/io/File;
+; v0 : Ljava/io/File; , v1 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	return-object	v0
+; v0 : Ljava/io/File;
+.end method
+
+.method public getMaxSize()J
+.limit registers 3
+; this: v2 (Lcom/squareup/okhttp/internal/DiskLruCache;)
+.line 483
+	iget-wide	v0,v2,com/squareup/okhttp/internal/DiskLruCache.maxSize J
+; v0 : double-length , v2 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	return-wide	v0
+; v0 : double-length
+.end method
+
+.method public isClosed()Z
+.limit registers 2
+; this: v1 (Lcom/squareup/okhttp/internal/DiskLruCache;)
+.line 605
+	iget-object	v0,v1,com/squareup/okhttp/internal/DiskLruCache.journalWriter Ljava/io/Writer;
+; v0 : Ljava/io/Writer; , v1 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	if-nez	v0,lb7e2c
+; v0 : Ljava/io/Writer;
+	const/4	v0,1
+; v0 : single-length
+lb7e2a:
+	return	v0
+; v0 : single-length
+lb7e2c:
+	const/4	v0,0
+; v0 : single-length
+	goto	lb7e2a
+.end method
+
+.method public synchronized remove(Ljava/lang/String;)Z
+.throws Ljava/io/IOException;
+.limit registers 9
+; this: v7 (Lcom/squareup/okhttp/internal/DiskLruCache;)
+; parameter[0] : v8 (Ljava/lang/String;)
+.catch java/lang/Exception from lb7eca to lb7f62 using lb7ec4
+.catch java/lang/Exception from lb7e76 to lb7ec4 using lb7ec4
+.catch java/lang/Exception from lb7e42 to lb7e68 using lb7ec4
+.var 0 is entry Lcom/squareup/okhttp/internal/DiskLruCache$Entry; from lb7e5e to lb7ec4
+.var 1 is file Ljava/io/File; from lb7e86 to lb7ec4
+.var 2 is i I from lb7e76 to lb7ec4
+.var 1 is file Ljava/io/File; from lb7eca to lb7ef6
+.line 576
+	monitor-enter	v7
+; v7 : Lcom/squareup/okhttp/internal/DiskLruCache;
+lb7e42:
+	invoke-direct	{v7},com/squareup/okhttp/internal/DiskLruCache/checkNotClosed	; checkNotClosed()V
+; v7 : Lcom/squareup/okhttp/internal/DiskLruCache;
+.line 577
+	invoke-direct	{v7,v8},com/squareup/okhttp/internal/DiskLruCache/validateKey	; validateKey(Ljava/lang/String;)V
+; v7 : Lcom/squareup/okhttp/internal/DiskLruCache; , v8 : Ljava/lang/String;
+.line 578
+	iget-object	v3,v7,com/squareup/okhttp/internal/DiskLruCache.lruEntries Ljava/util/LinkedHashMap;
+; v3 : Ljava/util/LinkedHashMap; , v7 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	invoke-virtual	{v3,v8},java/util/LinkedHashMap/get	; get(Ljava/lang/Object;)Ljava/lang/Object;
+; v3 : Ljava/util/LinkedHashMap; , v8 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,com/squareup/okhttp/internal/DiskLruCache$Entry
+; v0 : Lcom/squareup/okhttp/internal/DiskLruCache$Entry;
+.line 579
+	if-eqz	v0,lb7e6e
+; v0 : Lcom/squareup/okhttp/internal/DiskLruCache$Entry;
+	invoke-static	{v0},com/squareup/okhttp/internal/DiskLruCache$Entry/access$700	; access$700(Lcom/squareup/okhttp/internal/DiskLruCache$Entry;)Lcom/squareup/okhttp/internal/DiskLruCache$Editor;
+; v0 : Lcom/squareup/okhttp/internal/DiskLruCache$Entry;
+lb7e68:
+	move-result-object	v3
+; v3 : Lcom/squareup/okhttp/internal/DiskLruCache$Editor;
+	if-eqz	v3,lb7e74
+; v3 : Lcom/squareup/okhttp/internal/DiskLruCache$Editor;
+lb7e6e:
+.line 580
+	const/4	v3,0
+; v3 : single-length
+lb7e70:
+.line 600
+	monitor-exit	v7
+; v7 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	return	v3
+; v3 : single-length
+lb7e74:
+.line 583
+	const/4	v2,0
+; v2 : single-length
+lb7e76:
+	iget	v3,v7,com/squareup/okhttp/internal/DiskLruCache.valueCount I
+; v3 : single-length , v7 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	if-ge	v2,v3,lb7ef6
+; v2 : single-length , v3 : single-length
+.line 584
+	invoke-virtual	{v0,v2},com/squareup/okhttp/internal/DiskLruCache$Entry/getCleanFile	; getCleanFile(I)Ljava/io/File;
+; v0 : Lcom/squareup/okhttp/internal/DiskLruCache$Entry; , v2 : single-length
+	move-result-object	v1
+; v1 : Ljava/io/File;
+.line 585
+	invoke-virtual	{v1},java/io/File/delete	; delete()Z
+; v1 : Ljava/io/File;
+	move-result	v3
+; v3 : single-length
+	if-nez	v3,lb7eca
+; v3 : single-length
+.line 586
+	new-instance	v3,java/io/IOException
+; v3 : Ljava/io/IOException;
+	new-instance	v4,java/lang/StringBuilder
+; v4 : Ljava/lang/StringBuilder;
+	invoke-direct	{v4},java/lang/StringBuilder/<init>	; <init>()V
+; v4 : Ljava/lang/StringBuilder;
+	const-string	v5,"failed to delete "
+; v5 : Ljava/lang/String;
+	invoke-virtual	{v4,v5},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v4 : Ljava/lang/StringBuilder; , v5 : Ljava/lang/String;
+	move-result-object	v4
+; v4 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v4,v1},java/lang/StringBuilder/append	; append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+; v4 : Ljava/lang/StringBuilder; , v1 : Ljava/io/File;
+	move-result-object	v4
+; v4 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v4},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v4 : Ljava/lang/StringBuilder;
+	move-result-object	v4
+; v4 : Ljava/lang/String;
+	invoke-direct	{v3,v4},java/io/IOException/<init>	; <init>(Ljava/lang/String;)V
+; v3 : Ljava/io/IOException; , v4 : Ljava/lang/String;
+	throw	v3
+; v3 : Ljava/io/IOException;
+lb7ec4:
+.line 576
+	move-exception	v3
+; v3 : java/lang/Exception
+	monitor-exit	v7
+; v7 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	throw	v3
+; v3 : java/lang/Exception
+lb7eca:
+.line 588
+	iget-wide	v3,v7,com/squareup/okhttp/internal/DiskLruCache.size J
+; v3 : double-length , v7 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	invoke-static	{v0},com/squareup/okhttp/internal/DiskLruCache$Entry/access$1000	; access$1000(Lcom/squareup/okhttp/internal/DiskLruCache$Entry;)[J
+; v0 : Lcom/squareup/okhttp/internal/DiskLruCache$Entry;
+	move-result-object	v5
+; v5 : [J
+	aget-wide	v5,v5,v2
+; v5 : double-length , v5 : double-length , v2 : single-length
+	sub-long/2addr	v3,v5
+; v3 : double-length , v5 : double-length
+	iput-wide	v3,v7,com/squareup/okhttp/internal/DiskLruCache.size J
+; v3 : double-length , v7 : Lcom/squareup/okhttp/internal/DiskLruCache;
+.line 589
+	invoke-static	{v0},com/squareup/okhttp/internal/DiskLruCache$Entry/access$1000	; access$1000(Lcom/squareup/okhttp/internal/DiskLruCache$Entry;)[J
+; v0 : Lcom/squareup/okhttp/internal/DiskLruCache$Entry;
+	move-result-object	v3
+; v3 : [J
+	const-wide/16	v4,0
+; v4 : double-length
+	aput-wide	v4,v3,v2
+; v4 : double-length , v3 : [J , v2 : single-length
+.line 583
+	add-int/lit8	v2,v2,1
+; v2 : single-length , v2 : single-length
+	goto	lb7e76
+lb7ef6:
+.line 592
+	iget	v3,v7,com/squareup/okhttp/internal/DiskLruCache.redundantOpCount I
+; v3 : single-length , v7 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	add-int/lit8	v3,v3,1
+; v3 : single-length , v3 : single-length
+	iput	v3,v7,com/squareup/okhttp/internal/DiskLruCache.redundantOpCount I
+; v3 : single-length , v7 : Lcom/squareup/okhttp/internal/DiskLruCache;
+.line 593
+	iget-object	v3,v7,com/squareup/okhttp/internal/DiskLruCache.journalWriter Ljava/io/Writer;
+; v3 : Ljava/io/Writer; , v7 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	new-instance	v4,java/lang/StringBuilder
+; v4 : Ljava/lang/StringBuilder;
+	invoke-direct	{v4},java/lang/StringBuilder/<init>	; <init>()V
+; v4 : Ljava/lang/StringBuilder;
+	const-string	v5,"REMOVE "
+; v5 : Ljava/lang/String;
+	invoke-virtual	{v4,v5},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v4 : Ljava/lang/StringBuilder; , v5 : Ljava/lang/String;
+	move-result-object	v4
+; v4 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v4,v8},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v4 : Ljava/lang/StringBuilder; , v8 : Ljava/lang/String;
+	move-result-object	v4
+; v4 : Ljava/lang/StringBuilder;
+	const/16	v5,10
+; v5 : single-length
+	invoke-virtual	{v4,v5},java/lang/StringBuilder/append	; append(C)Ljava/lang/StringBuilder;
+; v4 : Ljava/lang/StringBuilder; , v5 : single-length
+	move-result-object	v4
+; v4 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v4},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v4 : Ljava/lang/StringBuilder;
+	move-result-object	v4
+; v4 : Ljava/lang/String;
+	invoke-virtual	{v3,v4},java/io/Writer/append	; append(Ljava/lang/CharSequence;)Ljava/io/Writer;
+; v3 : Ljava/io/Writer; , v4 : Ljava/lang/String;
+.line 594
+	iget-object	v3,v7,com/squareup/okhttp/internal/DiskLruCache.lruEntries Ljava/util/LinkedHashMap;
+; v3 : Ljava/util/LinkedHashMap; , v7 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	invoke-virtual	{v3,v8},java/util/LinkedHashMap/remove	; remove(Ljava/lang/Object;)Ljava/lang/Object;
+; v3 : Ljava/util/LinkedHashMap; , v8 : Ljava/lang/String;
+.line 596
+	invoke-direct	{v7},com/squareup/okhttp/internal/DiskLruCache/journalRebuildRequired	; journalRebuildRequired()Z
+; v7 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	move-result	v3
+; v3 : single-length
+	if-eqz	v3,lb7f62
+; v3 : single-length
+.line 597
+	iget-object	v3,v7,com/squareup/okhttp/internal/DiskLruCache.executorService Ljava/util/concurrent/ThreadPoolExecutor;
+; v3 : Ljava/util/concurrent/ThreadPoolExecutor; , v7 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	iget-object	v4,v7,com/squareup/okhttp/internal/DiskLruCache.cleanupCallable Ljava/util/concurrent/Callable;
+; v4 : Ljava/util/concurrent/Callable; , v7 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	invoke-virtual	{v3,v4},java/util/concurrent/ThreadPoolExecutor/submit	; submit(Ljava/util/concurrent/Callable;)Ljava/util/concurrent/Future;
+; v3 : Ljava/util/concurrent/ThreadPoolExecutor; , v4 : Ljava/util/concurrent/Callable;
+lb7f62:
+.line 600
+	const/4	v3,1
+; v3 : single-length
+	goto	lb7e70
+.end method
+
+.method public synchronized setMaxSize(J)V
+.limit registers 5
+; this: v2 (Lcom/squareup/okhttp/internal/DiskLruCache;)
+; parameter[0] : v3 (J)
+.catch java/lang/Exception from lb7f96 to lb7fa8 using lb7fac
+.line 491
+	monitor-enter	v2
+; v2 : Lcom/squareup/okhttp/internal/DiskLruCache;
+lb7f96:
+	iput-wide	v3,v2,com/squareup/okhttp/internal/DiskLruCache.maxSize J
+; v3 : double-length , v2 : Lcom/squareup/okhttp/internal/DiskLruCache;
+.line 492
+	iget-object	v0,v2,com/squareup/okhttp/internal/DiskLruCache.executorService Ljava/util/concurrent/ThreadPoolExecutor;
+; v0 : Ljava/util/concurrent/ThreadPoolExecutor; , v2 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	iget-object	v1,v2,com/squareup/okhttp/internal/DiskLruCache.cleanupCallable Ljava/util/concurrent/Callable;
+; v1 : Ljava/util/concurrent/Callable; , v2 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	invoke-virtual	{v0,v1},java/util/concurrent/ThreadPoolExecutor/submit	; submit(Ljava/util/concurrent/Callable;)Ljava/util/concurrent/Future;
+; v0 : Ljava/util/concurrent/ThreadPoolExecutor; , v1 : Ljava/util/concurrent/Callable;
+lb7fa8:
+.line 493
+	monitor-exit	v2
+; v2 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	return-void	
+lb7fac:
+.line 491
+	move-exception	v0
+; v0 : java/lang/Exception
+	monitor-exit	v2
+; v2 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	throw	v0
+; v0 : java/lang/Exception
+.end method
+
+.method public synchronized size()J
+.limit registers 3
+; this: v2 (Lcom/squareup/okhttp/internal/DiskLruCache;)
+.catch java/lang/Exception from lb7fd2 to lb7fd6 using lb7fda
+.line 501
+	monitor-enter	v2
+; v2 : Lcom/squareup/okhttp/internal/DiskLruCache;
+lb7fd2:
+	iget-wide	v0,v2,com/squareup/okhttp/internal/DiskLruCache.size J
+; v0 : double-length , v2 : Lcom/squareup/okhttp/internal/DiskLruCache;
+lb7fd6:
+	monitor-exit	v2
+; v2 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	return-wide	v0
+; v0 : double-length
+lb7fda:
+	move-exception	v0
+; v0 : java/lang/Exception
+	monitor-exit	v2
+; v2 : Lcom/squareup/okhttp/internal/DiskLruCache;
+	throw	v0
+; v0 : java/lang/Exception
+.end method
+
+

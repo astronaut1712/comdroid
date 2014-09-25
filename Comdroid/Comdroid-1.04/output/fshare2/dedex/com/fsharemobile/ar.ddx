@@ -1,0 +1,90 @@
+.class com/fsharemobile/ar
+.super java/lang/Object
+.source MyApplication
+.implements com/fsharemobile/a/ao
+
+.field final a Lcom/fsharemobile/LoginActivity;
+
+.method <init>(Lcom/fsharemobile/LoginActivity;)V
+.limit registers 2
+; this: v0 (Lcom/fsharemobile/ar;)
+; parameter[0] : v1 (Lcom/fsharemobile/LoginActivity;)
+.line 1
+	iput-object	v1,v0,com/fsharemobile/ar.a Lcom/fsharemobile/LoginActivity;
+; v1 : Lcom/fsharemobile/LoginActivity; , v0 : Lcom/fsharemobile/ar;
+.line 274
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Lcom/fsharemobile/ar;
+	return-void	
+.end method
+
+.method public a(ILcom/fsharemobile/model/User;)V
+.limit registers 7
+; this: v4 (Lcom/fsharemobile/ar;)
+; parameter[0] : v5 (I)
+; parameter[1] : v6 (Lcom/fsharemobile/model/User;)
+.line 280
+	if-eqz	v5,l88290
+; v5 : single-length
+.line 281
+	iget-object	v0,v4,com/fsharemobile/ar.a Lcom/fsharemobile/LoginActivity;
+; v0 : Lcom/fsharemobile/LoginActivity; , v4 : Lcom/fsharemobile/ar;
+	invoke-static	{v0,v5},com/fsharemobile/LoginActivity/a	; a(Lcom/fsharemobile/LoginActivity;I)V
+; v0 : Lcom/fsharemobile/LoginActivity; , v5 : single-length
+l8828e:
+.line 288
+	return-void	
+l88290:
+.line 283
+	iget-object	v0,v4,com/fsharemobile/ar.a Lcom/fsharemobile/LoginActivity;
+; v0 : Lcom/fsharemobile/LoginActivity; , v4 : Lcom/fsharemobile/ar;
+	iput-object	v6,v0,com/fsharemobile/LoginActivity.m Lcom/fsharemobile/model/User;
+; v6 : Lcom/fsharemobile/model/User; , v0 : Lcom/fsharemobile/LoginActivity;
+.line 284
+	iget-object	v0,v4,com/fsharemobile/ar.a Lcom/fsharemobile/LoginActivity;
+; v0 : Lcom/fsharemobile/LoginActivity; , v4 : Lcom/fsharemobile/ar;
+	iget-object	v1,v4,com/fsharemobile/ar.a Lcom/fsharemobile/LoginActivity;
+; v1 : Lcom/fsharemobile/LoginActivity; , v4 : Lcom/fsharemobile/ar;
+	iget-object	v1,v1,com/fsharemobile/LoginActivity.m Lcom/fsharemobile/model/User;
+; v1 : Lcom/fsharemobile/model/User; , v1 : Lcom/fsharemobile/model/User;
+	invoke-static	{v0,v1},com/fsharemobile/LoginActivity/a	; a(Lcom/fsharemobile/LoginActivity;Lcom/fsharemobile/model/User;)V
+; v0 : Lcom/fsharemobile/LoginActivity; , v1 : Lcom/fsharemobile/model/User;
+.line 286
+	iget-object	v0,v4,com/fsharemobile/ar.a Lcom/fsharemobile/LoginActivity;
+; v0 : Lcom/fsharemobile/LoginActivity; , v4 : Lcom/fsharemobile/ar;
+	iget-object	v0,v0,com/fsharemobile/LoginActivity.n Lcom/fsharemobile/f/a;
+; v0 : Lcom/fsharemobile/f/a; , v0 : Lcom/fsharemobile/f/a;
+	iget-object	v1,v4,com/fsharemobile/ar.a Lcom/fsharemobile/LoginActivity;
+; v1 : Lcom/fsharemobile/LoginActivity; , v4 : Lcom/fsharemobile/ar;
+	iget-object	v1,v1,com/fsharemobile/LoginActivity.m Lcom/fsharemobile/model/User;
+; v1 : Lcom/fsharemobile/model/User; , v1 : Lcom/fsharemobile/model/User;
+	invoke-virtual	{v1},com/fsharemobile/model/User/c	; c()Ljava/lang/String;
+; v1 : Lcom/fsharemobile/model/User;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	iget-object	v2,v4,com/fsharemobile/ar.a Lcom/fsharemobile/LoginActivity;
+; v2 : Lcom/fsharemobile/LoginActivity; , v4 : Lcom/fsharemobile/ar;
+	iget-object	v2,v2,com/fsharemobile/LoginActivity.c Landroid/widget/EditText;
+; v2 : Landroid/widget/EditText; , v2 : Landroid/widget/EditText;
+	invoke-virtual	{v2},android/widget/EditText/getText	; getText()Landroid/text/Editable;
+; v2 : Landroid/widget/EditText;
+	move-result-object	v2
+; v2 : Landroid/text/Editable;
+	invoke-interface	{v2},android/text/Editable/toString	; toString()Ljava/lang/String;
+; v2 : Landroid/text/Editable;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	iget-object	v3,v4,com/fsharemobile/ar.a Lcom/fsharemobile/LoginActivity;
+; v3 : Lcom/fsharemobile/LoginActivity; , v4 : Lcom/fsharemobile/ar;
+	iget-object	v3,v3,com/fsharemobile/LoginActivity.m Lcom/fsharemobile/model/User;
+; v3 : Lcom/fsharemobile/model/User; , v3 : Lcom/fsharemobile/model/User;
+	invoke-virtual	{v3},com/fsharemobile/model/User/a	; a()Ljava/lang/String;
+; v3 : Lcom/fsharemobile/model/User;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v0,v1,v2,v3},com/fsharemobile/f/a/a	; a(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+; v0 : Lcom/fsharemobile/f/a; , v1 : Ljava/lang/String; , v2 : Ljava/lang/String; , v3 : Ljava/lang/String;
+	goto	l8828e
+.end method
+
+

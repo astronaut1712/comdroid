@@ -1,0 +1,52 @@
+.class public com/fsharemobile/adapter/SquaredImageView
+.super android/widget/ImageView
+.source SquaredImageView.java
+
+
+.method public <init>(Landroid/content/Context;)V
+.limit registers 2
+; this: v0 (Lcom/fsharemobile/adapter/SquaredImageView;)
+; parameter[0] : v1 (Landroid/content/Context;)
+.line 10
+	invoke-direct	{v0,v1},android/widget/ImageView/<init>	; <init>(Landroid/content/Context;)V
+; v0 : Lcom/fsharemobile/adapter/SquaredImageView; , v1 : Landroid/content/Context;
+.line 11
+	return-void	
+.end method
+
+.method public <init>(Landroid/content/Context;Landroid/util/AttributeSet;)V
+.limit registers 3
+; this: v0 (Lcom/fsharemobile/adapter/SquaredImageView;)
+; parameter[0] : v1 (Landroid/content/Context;)
+; parameter[1] : v2 (Landroid/util/AttributeSet;)
+.line 14
+	invoke-direct	{v0,v1,v2},android/widget/ImageView/<init>	; <init>(Landroid/content/Context;Landroid/util/AttributeSet;)V
+; v0 : Lcom/fsharemobile/adapter/SquaredImageView; , v1 : Landroid/content/Context; , v2 : Landroid/util/AttributeSet;
+.line 15
+	return-void	
+.end method
+
+.method protected onMeasure(II)V
+.limit registers 5
+; this: v2 (Lcom/fsharemobile/adapter/SquaredImageView;)
+; parameter[0] : v3 (I)
+; parameter[1] : v4 (I)
+.line 18
+	invoke-super	{v2,v3,v4},android/widget/ImageView/onMeasure	; onMeasure(II)V
+; v2 : Lcom/fsharemobile/adapter/SquaredImageView; , v3 : single-length , v4 : single-length
+.line 19
+	invoke-virtual	{v2},com/fsharemobile/adapter/SquaredImageView/getMeasuredWidth	; getMeasuredWidth()I
+; v2 : Lcom/fsharemobile/adapter/SquaredImageView;
+	move-result	v0
+; v0 : single-length
+	invoke-virtual	{v2},com/fsharemobile/adapter/SquaredImageView/getMeasuredWidth	; getMeasuredWidth()I
+; v2 : Lcom/fsharemobile/adapter/SquaredImageView;
+	move-result	v1
+; v1 : single-length
+	invoke-virtual	{v2,v0,v1},com/fsharemobile/adapter/SquaredImageView/setMeasuredDimension	; setMeasuredDimension(II)V
+; v2 : Lcom/fsharemobile/adapter/SquaredImageView; , v0 : single-length , v1 : single-length
+.line 20
+	return-void	
+.end method
+
+

@@ -1,0 +1,525 @@
+.class com/google/analytics/tracking/android/PersistentAnalyticsStore$AnalyticsDatabaseHelper
+.super android/database/sqlite/SQLiteOpenHelper
+.source PersistentAnalyticsStore.java
+
+.inner class AnalyticsDatabaseHelper inner com/google/analytics/tracking/android/PersistentAnalyticsStore$AnalyticsDatabaseHelper outer com/google/analytics/tracking/android/PersistentAnalyticsStore
+.field private mBadDatabase Z
+.field private mLastDatabaseCheckTime J
+.field final this$0 Lcom/google/analytics/tracking/android/PersistentAnalyticsStore;
+
+.method <init>(Lcom/google/analytics/tracking/android/PersistentAnalyticsStore;Landroid/content/Context;Ljava/lang/String;)V
+.limit registers 6
+; this: v2 (Lcom/google/analytics/tracking/android/PersistentAnalyticsStore$AnalyticsDatabaseHelper;)
+; parameter[0] : v3 (Lcom/google/analytics/tracking/android/PersistentAnalyticsStore;)
+; parameter[1] : v4 (Landroid/content/Context;)
+; parameter[2] : v5 (Ljava/lang/String;)
+.line 592
+	iput-object	v3,v2,com/google/analytics/tracking/android/PersistentAnalyticsStore$AnalyticsDatabaseHelper.this$0 Lcom/google/analytics/tracking/android/PersistentAnalyticsStore;
+; v3 : Lcom/google/analytics/tracking/android/PersistentAnalyticsStore; , v2 : Lcom/google/analytics/tracking/android/PersistentAnalyticsStore$AnalyticsDatabaseHelper;
+.line 594
+	const/4	v0,0
+; v0 : single-length
+	const/4	v1,1
+; v1 : single-length
+	invoke-direct	{v2,v4,v5,v0,v1},android/database/sqlite/SQLiteOpenHelper/<init>	; <init>(Landroid/content/Context;Ljava/lang/String;Landroid/database/sqlite/SQLiteDatabase$CursorFactory;I)V
+; v2 : Lcom/google/analytics/tracking/android/PersistentAnalyticsStore$AnalyticsDatabaseHelper; , v4 : Landroid/content/Context; , v5 : Ljava/lang/String; , v0 : single-length , v1 : single-length
+.line 582
+	const-wide/16	v0,0
+; v0 : double-length
+	iput-wide	v0,v2,com/google/analytics/tracking/android/PersistentAnalyticsStore$AnalyticsDatabaseHelper.mLastDatabaseCheckTime J
+; v0 : double-length , v2 : Lcom/google/analytics/tracking/android/PersistentAnalyticsStore$AnalyticsDatabaseHelper;
+.line 595
+	return-void	
+.end method
+
+.method private tablePresent(Ljava/lang/String;Landroid/database/sqlite/SQLiteDatabase;)Z
+.limit registers 14
+; this: v11 (Lcom/google/analytics/tracking/android/PersistentAnalyticsStore$AnalyticsDatabaseHelper;)
+; parameter[0] : v12 (Ljava/lang/String;)
+; parameter[1] : v13 (Landroid/database/sqlite/SQLiteDatabase;)
+.catch java/lang/Exception from la2a9a to la2ac6 using la2ad4
+.catch android/database/sqlite/SQLiteException from la2a50 to la2a8a using la2a98
+.catch java/lang/Exception from la2a50 to la2a8a using la2ad4
+.var 9 is e Landroid/database/sqlite/SQLiteException; from la2a9a to la2ad4
+	const/4	v10,0
+; v10 : single-length
+.line 609
+	const/4	v8,0
+; v8 : single-length
+la2a50:
+.line 611
+	const-string	v1,"SQLITE_MASTER"
+; v1 : Ljava/lang/String;
+	const/4	v0,1
+; v0 : single-length
+	new-array	v2,v0,[Ljava/lang/String;
+; v2 : [Ljava/lang/String; , v0 : single-length
+	const/4	v0,0
+; v0 : single-length
+	const-string	v3,"name"
+; v3 : Ljava/lang/String;
+	aput-object	v3,v2,v0
+; v3 : Ljava/lang/String; , v2 : [Ljava/lang/String; , v0 : single-length
+	const-string	v3,"name=?"
+; v3 : Ljava/lang/String;
+	const/4	v0,1
+; v0 : single-length
+	new-array	v4,v0,[Ljava/lang/String;
+; v4 : [Ljava/lang/String; , v0 : single-length
+	const/4	v0,0
+; v0 : single-length
+	aput-object	v12,v4,v0
+; v12 : Ljava/lang/String; , v4 : [Ljava/lang/String; , v0 : single-length
+	const/4	v5,0
+; v5 : single-length
+	const/4	v6,0
+; v6 : single-length
+	const/4	v7,0
+; v7 : single-length
+	move-object	v0,v13
+; v0 : Landroid/database/sqlite/SQLiteDatabase; , v13 : Landroid/database/sqlite/SQLiteDatabase;
+	invoke-virtual/range	{v0..v7},android/database/sqlite/SQLiteDatabase/query;	query(Ljava/lang/String;[Ljava/lang/String;Ljava/lang/String;[Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Landroid/database/Cursor;
+; v0 : Landroid/database/sqlite/SQLiteDatabase; , v1 : Ljava/lang/String; , v2 : [Ljava/lang/String; , v3 : Ljava/lang/String; , v4 : [Ljava/lang/String; , v5 : single-length , v6 : single-length , v7 : single-length
+	move-result-object	v8
+; v8 : Landroid/database/Cursor;
+.line 618
+	invoke-interface	{v8},android/database/Cursor/moveToFirst	; moveToFirst()Z
+; v8 : Landroid/database/Cursor;
+la2a8a:
+	move-result	v0
+; v0 : single-length
+.line 623
+	if-eqz	v8,la2a96
+; v8 : Landroid/database/Cursor;
+.line 624
+	invoke-interface	{v8},android/database/Cursor/close	; close()V
+; v8 : Landroid/database/Cursor;
+la2a96:
+	return	v0
+; v0 : single-length
+la2a98:
+.line 619
+	move-exception	v9
+; v9 : android/database/sqlite/SQLiteException
+la2a9a:
+.line 620
+	new-instance	v0,java/lang/StringBuilder
+; v0 : Ljava/lang/StringBuilder;
+	invoke-direct	{v0},java/lang/StringBuilder/<init>	; <init>()V
+; v0 : Ljava/lang/StringBuilder;
+	const-string	v1,"Error querying for table "
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v1 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v0,v12},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v12 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v0},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v0 : Ljava/lang/StringBuilder;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	invoke-static	{v0},com/google/analytics/tracking/android/Log/w	; w(Ljava/lang/String;)V
+; v0 : Ljava/lang/String;
+la2ac6:
+.line 623
+	if-eqz	v8,la2ad0
+; v8 : Landroid/database/Cursor;
+.line 624
+	invoke-interface	{v8},android/database/Cursor/close	; close()V
+; v8 : Landroid/database/Cursor;
+la2ad0:
+	move	v0,v10
+; v0 : single-length , v10 : single-length
+	goto	la2a96
+la2ad4:
+.line 623
+	move-exception	v0
+; v0 : java/lang/Exception
+	if-eqz	v8,la2ae0
+; v8 : Landroid/database/Cursor;
+.line 624
+	invoke-interface	{v8},android/database/Cursor/close	; close()V
+; v8 : Landroid/database/Cursor;
+la2ae0:
+	throw	v0
+; v0 : java/lang/Exception
+.end method
+
+.method private validateColumnsPresent(Landroid/database/sqlite/SQLiteDatabase;)V
+.limit registers 9
+; this: v7 (Lcom/google/analytics/tracking/android/PersistentAnalyticsStore$AnalyticsDatabaseHelper;)
+; parameter[0] : v8 (Landroid/database/sqlite/SQLiteDatabase;)
+.catch java/lang/Exception from la2b24 to la2b3e using la2b9a
+.var 1 is columnNames [Ljava/lang/String; from la2b2c to la2b9a
+.var 3 is i I from la2b2e to la2b9a
+.var 4 is needsAppId Z from la2bb6 to la2bd2
+.line 692
+	const-string	v5,"SELECT * FROM hits2 WHERE 0"
+; v5 : Ljava/lang/String;
+	const/4	v6,0
+; v6 : single-length
+	invoke-virtual	{v8,v5,v6},android/database/sqlite/SQLiteDatabase/rawQuery	; rawQuery(Ljava/lang/String;[Ljava/lang/String;)Landroid/database/Cursor;
+; v8 : Landroid/database/sqlite/SQLiteDatabase; , v5 : Ljava/lang/String; , v6 : single-length
+	move-result-object	v0
+; v0 : Landroid/database/Cursor;
+.line 694
+	new-instance	v2,java/util/HashSet
+; v2 : Ljava/util/HashSet;
+	invoke-direct	{v2},java/util/HashSet/<init>	; <init>()V
+; v2 : Ljava/util/HashSet;
+la2b24:
+.line 696
+	invoke-interface	{v0},android/database/Cursor/getColumnNames	; getColumnNames()[Ljava/lang/String;
+; v0 : Landroid/database/Cursor;
+	move-result-object	v1
+; v1 : [Ljava/lang/String;
+.line 697
+	const/4	v3,0
+; v3 : single-length
+la2b2e:
+	array-length	v5,v1
+; v5 : single-length , v1 : [Ljava/lang/String;
+	if-ge	v3,v5,la2b44
+; v3 : single-length , v5 : single-length
+.line 698
+	aget-object	v5,v1,v3
+; v5 : Ljava/lang/String; , v1 : [Ljava/lang/String; , v3 : single-length
+	invoke-interface	{v2,v5},java/util/Set/add	; add(Ljava/lang/Object;)Z
+; v2 : Ljava/util/HashSet; , v5 : Ljava/lang/String;
+la2b3e:
+.line 697
+	add-int/lit8	v3,v3,1
+; v3 : single-length , v3 : single-length
+	goto	la2b2e
+la2b44:
+.line 701
+	invoke-interface	{v0},android/database/Cursor/close	; close()V
+; v0 : Landroid/database/Cursor;
+.line 704
+	const-string	v5,"hit_id"
+; v5 : Ljava/lang/String;
+	invoke-interface	{v2,v5},java/util/Set/remove	; remove(Ljava/lang/Object;)Z
+; v2 : Ljava/util/HashSet; , v5 : Ljava/lang/String;
+	move-result	v5
+; v5 : single-length
+	if-eqz	v5,la2b8a
+; v5 : single-length
+	const-string	v5,"hit_url"
+; v5 : Ljava/lang/String;
+	invoke-interface	{v2,v5},java/util/Set/remove	; remove(Ljava/lang/Object;)Z
+; v2 : Ljava/util/HashSet; , v5 : Ljava/lang/String;
+	move-result	v5
+; v5 : single-length
+	if-eqz	v5,la2b8a
+; v5 : single-length
+	const-string	v5,"hit_string"
+; v5 : Ljava/lang/String;
+	invoke-interface	{v2,v5},java/util/Set/remove	; remove(Ljava/lang/Object;)Z
+; v2 : Ljava/util/HashSet; , v5 : Ljava/lang/String;
+	move-result	v5
+; v5 : single-length
+	if-eqz	v5,la2b8a
+; v5 : single-length
+	const-string	v5,"hit_time"
+; v5 : Ljava/lang/String;
+	invoke-interface	{v2,v5},java/util/Set/remove	; remove(Ljava/lang/Object;)Z
+; v2 : Ljava/util/HashSet; , v5 : Ljava/lang/String;
+	move-result	v5
+; v5 : single-length
+	if-nez	v5,la2ba4
+; v5 : single-length
+la2b8a:
+.line 708
+	new-instance	v5,android/database/sqlite/SQLiteException
+; v5 : Landroid/database/sqlite/SQLiteException;
+	const-string	v6,"Database column missing"
+; v6 : Ljava/lang/String;
+	invoke-direct	{v5,v6},android/database/sqlite/SQLiteException/<init>	; <init>(Ljava/lang/String;)V
+; v5 : Landroid/database/sqlite/SQLiteException; , v6 : Ljava/lang/String;
+	throw	v5
+; v5 : Landroid/database/sqlite/SQLiteException;
+la2b9a:
+.line 701
+	move-exception	v5
+; v5 : java/lang/Exception
+	invoke-interface	{v0},android/database/Cursor/close	; close()V
+; v0 : Landroid/database/Cursor;
+	throw	v5
+; v5 : java/lang/Exception
+la2ba4:
+.line 711
+	const-string	v5,"hit_app_id"
+; v5 : Ljava/lang/String;
+	invoke-interface	{v2,v5},java/util/Set/remove	; remove(Ljava/lang/Object;)Z
+; v2 : Ljava/util/HashSet; , v5 : Ljava/lang/String;
+	move-result	v5
+; v5 : single-length
+	if-nez	v5,la2bd2
+; v5 : single-length
+	const/4	v4,1
+; v4 : single-length
+la2bb6:
+.line 713
+	invoke-interface	{v2},java/util/Set/isEmpty	; isEmpty()Z
+; v2 : Ljava/util/HashSet;
+	move-result	v5
+; v5 : single-length
+	if-nez	v5,la2bd6
+; v5 : single-length
+.line 714
+	new-instance	v5,android/database/sqlite/SQLiteException
+; v5 : Landroid/database/sqlite/SQLiteException;
+	const-string	v6,"Database has extra columns"
+; v6 : Ljava/lang/String;
+	invoke-direct	{v5,v6},android/database/sqlite/SQLiteException/<init>	; <init>(Ljava/lang/String;)V
+; v5 : Landroid/database/sqlite/SQLiteException; , v6 : Ljava/lang/String;
+	throw	v5
+; v5 : Landroid/database/sqlite/SQLiteException;
+la2bd2:
+.line 711
+	const/4	v4,0
+; v4 : single-length
+	goto	la2bb6
+la2bd6:
+.line 716
+	if-eqz	v4,la2be4
+; v4 : single-length
+.line 717
+	const-string	v5,"ALTER TABLE hits2 ADD COLUMN hit_app_id"
+; v5 : Ljava/lang/String;
+	invoke-virtual	{v8,v5},android/database/sqlite/SQLiteDatabase/execSQL	; execSQL(Ljava/lang/String;)V
+; v8 : Landroid/database/sqlite/SQLiteDatabase; , v5 : Ljava/lang/String;
+la2be4:
+.line 720
+	return-void	
+.end method
+
+.method public getWritableDatabase()Landroid/database/sqlite/SQLiteDatabase;
+.limit registers 7
+; this: v6 (Lcom/google/analytics/tracking/android/PersistentAnalyticsStore$AnalyticsDatabaseHelper;)
+.catch android/database/sqlite/SQLiteException from la2c64 to la2c6a using la2c80
+.line 638
+	iget-boolean	v2,v6,com/google/analytics/tracking/android/PersistentAnalyticsStore$AnalyticsDatabaseHelper.mBadDatabase Z
+; v2 : single-length , v6 : Lcom/google/analytics/tracking/android/PersistentAnalyticsStore$AnalyticsDatabaseHelper;
+	if-eqz	v2,la2c44
+; v2 : single-length
+.line 642
+	iget-wide	v2,v6,com/google/analytics/tracking/android/PersistentAnalyticsStore$AnalyticsDatabaseHelper.mLastDatabaseCheckTime J
+; v2 : double-length , v6 : Lcom/google/analytics/tracking/android/PersistentAnalyticsStore$AnalyticsDatabaseHelper;
+	const-wide/32	v4,3600000	; 0x36ee80
+; v4 : double-length
+	add-long/2addr	v2,v4
+; v2 : double-length , v4 : double-length
+	iget-object	v4,v6,com/google/analytics/tracking/android/PersistentAnalyticsStore$AnalyticsDatabaseHelper.this$0 Lcom/google/analytics/tracking/android/PersistentAnalyticsStore;
+; v4 : Lcom/google/analytics/tracking/android/PersistentAnalyticsStore; , v6 : Lcom/google/analytics/tracking/android/PersistentAnalyticsStore$AnalyticsDatabaseHelper;
+	invoke-static	{v4},com/google/analytics/tracking/android/PersistentAnalyticsStore/access$000	; access$000(Lcom/google/analytics/tracking/android/PersistentAnalyticsStore;)Lcom/google/analytics/tracking/android/Clock;
+; v4 : Lcom/google/analytics/tracking/android/PersistentAnalyticsStore;
+	move-result-object	v4
+; v4 : Lcom/google/analytics/tracking/android/Clock;
+	invoke-interface	{v4},com/google/analytics/tracking/android/Clock/currentTimeMillis	; currentTimeMillis()J
+; v4 : Lcom/google/analytics/tracking/android/Clock;
+	move-result-wide	v4
+; v4 : double-length
+	cmp-long	v2,v2,v4
+; v2 : single-length , v2 : single-length , v4 : double-length
+	if-lez	v2,la2c44
+; v2 : single-length
+.line 644
+	new-instance	v2,android/database/sqlite/SQLiteException
+; v2 : Landroid/database/sqlite/SQLiteException;
+	const-string	v3,"Database creation failed"
+; v3 : Ljava/lang/String;
+	invoke-direct	{v2,v3},android/database/sqlite/SQLiteException/<init>	; <init>(Ljava/lang/String;)V
+; v2 : Landroid/database/sqlite/SQLiteException; , v3 : Ljava/lang/String;
+	throw	v2
+; v2 : Landroid/database/sqlite/SQLiteException;
+la2c44:
+.line 647
+	const/4	v0,0
+; v0 : single-length
+.line 648
+	const/4	v2,1
+; v2 : single-length
+	iput-boolean	v2,v6,com/google/analytics/tracking/android/PersistentAnalyticsStore$AnalyticsDatabaseHelper.mBadDatabase Z
+; v2 : single-length , v6 : Lcom/google/analytics/tracking/android/PersistentAnalyticsStore$AnalyticsDatabaseHelper;
+.line 649
+	iget-object	v2,v6,com/google/analytics/tracking/android/PersistentAnalyticsStore$AnalyticsDatabaseHelper.this$0 Lcom/google/analytics/tracking/android/PersistentAnalyticsStore;
+; v2 : Lcom/google/analytics/tracking/android/PersistentAnalyticsStore; , v6 : Lcom/google/analytics/tracking/android/PersistentAnalyticsStore$AnalyticsDatabaseHelper;
+	invoke-static	{v2},com/google/analytics/tracking/android/PersistentAnalyticsStore/access$000	; access$000(Lcom/google/analytics/tracking/android/PersistentAnalyticsStore;)Lcom/google/analytics/tracking/android/Clock;
+; v2 : Lcom/google/analytics/tracking/android/PersistentAnalyticsStore;
+	move-result-object	v2
+; v2 : Lcom/google/analytics/tracking/android/Clock;
+	invoke-interface	{v2},com/google/analytics/tracking/android/Clock/currentTimeMillis	; currentTimeMillis()J
+; v2 : Lcom/google/analytics/tracking/android/Clock;
+	move-result-wide	v2
+; v2 : double-length
+	iput-wide	v2,v6,com/google/analytics/tracking/android/PersistentAnalyticsStore$AnalyticsDatabaseHelper.mLastDatabaseCheckTime J
+; v2 : double-length , v6 : Lcom/google/analytics/tracking/android/PersistentAnalyticsStore$AnalyticsDatabaseHelper;
+la2c64:
+.line 651
+	invoke-super	{v6},android/database/sqlite/SQLiteOpenHelper/getWritableDatabase	; getWritableDatabase()Landroid/database/sqlite/SQLiteDatabase;
+; v6 : Lcom/google/analytics/tracking/android/PersistentAnalyticsStore$AnalyticsDatabaseHelper;
+la2c6a:
+	move-result-object	v0
+; v0 : Landroid/database/sqlite/SQLiteDatabase;
+la2c6c:
+.line 656
+	if-nez	v0,la2c78
+; v0 : single-length
+.line 657
+	invoke-super	{v6},android/database/sqlite/SQLiteOpenHelper/getWritableDatabase	; getWritableDatabase()Landroid/database/sqlite/SQLiteDatabase;
+; v6 : Lcom/google/analytics/tracking/android/PersistentAnalyticsStore$AnalyticsDatabaseHelper;
+	move-result-object	v0
+; v0 : Landroid/database/sqlite/SQLiteDatabase;
+la2c78:
+.line 659
+	const/4	v2,0
+; v2 : single-length
+	iput-boolean	v2,v6,com/google/analytics/tracking/android/PersistentAnalyticsStore$AnalyticsDatabaseHelper.mBadDatabase Z
+; v2 : single-length , v6 : Lcom/google/analytics/tracking/android/PersistentAnalyticsStore$AnalyticsDatabaseHelper;
+.line 660
+	return-object	v0
+; v0 : Landroid/database/sqlite/SQLiteDatabase;
+la2c80:
+.line 652
+	move-exception	v1
+; v1 : android/database/sqlite/SQLiteException
+.line 654
+	iget-object	v2,v6,com/google/analytics/tracking/android/PersistentAnalyticsStore$AnalyticsDatabaseHelper.this$0 Lcom/google/analytics/tracking/android/PersistentAnalyticsStore;
+; v2 : Lcom/google/analytics/tracking/android/PersistentAnalyticsStore; , v6 : Lcom/google/analytics/tracking/android/PersistentAnalyticsStore$AnalyticsDatabaseHelper;
+	invoke-static	{v2},com/google/analytics/tracking/android/PersistentAnalyticsStore/access$200	; access$200(Lcom/google/analytics/tracking/android/PersistentAnalyticsStore;)Landroid/content/Context;
+; v2 : Lcom/google/analytics/tracking/android/PersistentAnalyticsStore;
+	move-result-object	v2
+; v2 : Landroid/content/Context;
+	iget-object	v3,v6,com/google/analytics/tracking/android/PersistentAnalyticsStore$AnalyticsDatabaseHelper.this$0 Lcom/google/analytics/tracking/android/PersistentAnalyticsStore;
+; v3 : Lcom/google/analytics/tracking/android/PersistentAnalyticsStore; , v6 : Lcom/google/analytics/tracking/android/PersistentAnalyticsStore$AnalyticsDatabaseHelper;
+	invoke-static	{v3},com/google/analytics/tracking/android/PersistentAnalyticsStore/access$100	; access$100(Lcom/google/analytics/tracking/android/PersistentAnalyticsStore;)Ljava/lang/String;
+; v3 : Lcom/google/analytics/tracking/android/PersistentAnalyticsStore;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},android/content/Context/getDatabasePath	; getDatabasePath(Ljava/lang/String;)Ljava/io/File;
+; v2 : Landroid/content/Context; , v3 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/io/File;
+	invoke-virtual	{v2},java/io/File/delete	; delete()Z
+; v2 : Ljava/io/File;
+	goto	la2c6c
+.end method
+
+.method isBadDatabase()Z
+.limit registers 2
+; this: v1 (Lcom/google/analytics/tracking/android/PersistentAnalyticsStore$AnalyticsDatabaseHelper;)
+.line 585
+	iget-boolean	v0,v1,com/google/analytics/tracking/android/PersistentAnalyticsStore$AnalyticsDatabaseHelper.mBadDatabase Z
+; v0 : single-length , v1 : Lcom/google/analytics/tracking/android/PersistentAnalyticsStore$AnalyticsDatabaseHelper;
+	return	v0
+; v0 : single-length
+.end method
+
+.method public onCreate(Landroid/database/sqlite/SQLiteDatabase;)V
+.limit registers 3
+; this: v1 (Lcom/google/analytics/tracking/android/PersistentAnalyticsStore$AnalyticsDatabaseHelper;)
+; parameter[0] : v2 (Landroid/database/sqlite/SQLiteDatabase;)
+.line 724
+	invoke-virtual	{v2},android/database/sqlite/SQLiteDatabase/getPath	; getPath()Ljava/lang/String;
+; v2 : Landroid/database/sqlite/SQLiteDatabase;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	invoke-static	{v0},com/google/analytics/tracking/android/FutureApis/setOwnerOnlyReadWrite	; setOwnerOnlyReadWrite(Ljava/lang/String;)Z
+; v0 : Ljava/lang/String;
+.line 725
+	return-void	
+.end method
+
+.method public onOpen(Landroid/database/sqlite/SQLiteDatabase;)V
+.limit registers 5
+; this: v3 (Lcom/google/analytics/tracking/android/PersistentAnalyticsStore$AnalyticsDatabaseHelper;)
+; parameter[0] : v4 (Landroid/database/sqlite/SQLiteDatabase;)
+.catch java/lang/Exception from la2d1a to la2d20 using la2d46
+.var 0 is cursor Landroid/database/Cursor; from la2d1a to la2d26
+.var 0 is cursor Landroid/database/Cursor; from la2d46 to la2d50
+.line 667
+	sget	v1,android/os/Build$VERSION.SDK_INT I
+; v1 : single-length
+	const/16	v2,15
+; v2 : single-length
+	if-ge	v1,v2,la2d26
+; v1 : single-length , v2 : single-length
+.line 668
+	const-string	v1,"PRAGMA journal_mode=memory"
+; v1 : Ljava/lang/String;
+	const/4	v2,0
+; v2 : single-length
+	invoke-virtual	{v4,v1,v2},android/database/sqlite/SQLiteDatabase/rawQuery	; rawQuery(Ljava/lang/String;[Ljava/lang/String;)Landroid/database/Cursor;
+; v4 : Landroid/database/sqlite/SQLiteDatabase; , v1 : Ljava/lang/String; , v2 : single-length
+	move-result-object	v0
+; v0 : Landroid/database/Cursor;
+la2d1a:
+.line 671
+	invoke-interface	{v0},android/database/Cursor/moveToFirst	; moveToFirst()Z
+; v0 : Landroid/database/Cursor;
+la2d20:
+.line 673
+	invoke-interface	{v0},android/database/Cursor/close	; close()V
+; v0 : Landroid/database/Cursor;
+la2d26:
+.line 676
+	const-string	v1,"hits2"
+; v1 : Ljava/lang/String;
+	invoke-direct	{v3,v1,v4},com/google/analytics/tracking/android/PersistentAnalyticsStore$AnalyticsDatabaseHelper/tablePresent	; tablePresent(Ljava/lang/String;Landroid/database/sqlite/SQLiteDatabase;)Z
+; v3 : Lcom/google/analytics/tracking/android/PersistentAnalyticsStore$AnalyticsDatabaseHelper; , v1 : Ljava/lang/String; , v4 : Landroid/database/sqlite/SQLiteDatabase;
+	move-result	v1
+; v1 : single-length
+	if-nez	v1,la2d50
+; v1 : single-length
+.line 677
+	invoke-static	{},com/google/analytics/tracking/android/PersistentAnalyticsStore/access$300	; access$300()Ljava/lang/String;
+; 
+	nop	
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v4,v1},android/database/sqlite/SQLiteDatabase/execSQL	; execSQL(Ljava/lang/String;)V
+; v4 : Landroid/database/sqlite/SQLiteDatabase; , v1 : Ljava/lang/String;
+la2d44:
+.line 681
+	return-void	
+la2d46:
+.line 673
+	move-exception	v1
+; v1 : java/lang/Exception
+	invoke-interface	{v0},android/database/Cursor/close	; close()V
+; v0 : Landroid/database/Cursor;
+	throw	v1
+; v1 : java/lang/Exception
+la2d50:
+.line 679
+	invoke-direct	{v3,v4},com/google/analytics/tracking/android/PersistentAnalyticsStore$AnalyticsDatabaseHelper/validateColumnsPresent	; validateColumnsPresent(Landroid/database/sqlite/SQLiteDatabase;)V
+; v3 : Lcom/google/analytics/tracking/android/PersistentAnalyticsStore$AnalyticsDatabaseHelper; , v4 : Landroid/database/sqlite/SQLiteDatabase;
+	goto	la2d44
+.end method
+
+.method public onUpgrade(Landroid/database/sqlite/SQLiteDatabase;II)V
+.limit registers 4
+; this: v0 (Lcom/google/analytics/tracking/android/PersistentAnalyticsStore$AnalyticsDatabaseHelper;)
+; parameter[0] : v1 (Landroid/database/sqlite/SQLiteDatabase;)
+; parameter[1] : v2 (I)
+; parameter[2] : v3 (I)
+.line 733
+	return-void	
+.end method
+
+.method setBadDatabase(Z)V
+.limit registers 2
+; this: v0 (Lcom/google/analytics/tracking/android/PersistentAnalyticsStore$AnalyticsDatabaseHelper;)
+; parameter[0] : v1 (Z)
+.line 589
+	iput-boolean	v1,v0,com/google/analytics/tracking/android/PersistentAnalyticsStore$AnalyticsDatabaseHelper.mBadDatabase Z
+; v1 : single-length , v0 : Lcom/google/analytics/tracking/android/PersistentAnalyticsStore$AnalyticsDatabaseHelper;
+.line 590
+	return-void	
+.end method
+
+

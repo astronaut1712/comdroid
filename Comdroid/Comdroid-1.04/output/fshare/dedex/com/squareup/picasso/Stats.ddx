@@ -1,0 +1,353 @@
+.class com/squareup/picasso/Stats
+.super java/lang/Object
+.source Stats.java
+
+.inner class StatsHandler inner com/squareup/picasso/Stats$StatsHandler outer com/squareup/picasso/Stats
+.field private static final BITMAP_DECODE_FINISHED I = 2	; 0x2
+.field private static final BITMAP_TRANSFORMED_FINISHED I = 3	; 0x3
+.field private static final CACHE_HIT I = 0	; 0x0
+.field private static final CACHE_MISS I = 1	; 0x1
+.field private static final STATS_THREAD_NAME Ljava/lang/String; = "Picasso-Stats"
+.field averageOriginalBitmapSize J
+.field averageTransformedBitmapSize J
+.field final cache Lcom/squareup/picasso/Cache;
+.field cacheHits J
+.field cacheMisses J
+.field final handler Landroid/os/Handler;
+.field originalBitmapCount I
+.field final statsThread Landroid/os/HandlerThread;
+.field totalOriginalBitmapSize J
+.field totalTransformedBitmapSize J
+.field transformedBitmapCount I
+
+.method <init>(Lcom/squareup/picasso/Cache;)V
+.limit registers 5
+; this: v3 (Lcom/squareup/picasso/Stats;)
+; parameter[0] : v4 (Lcom/squareup/picasso/Cache;)
+.line 47
+	invoke-direct	{v3},java/lang/Object/<init>	; <init>()V
+; v3 : Lcom/squareup/picasso/Stats;
+.line 48
+	iput-object	v4,v3,com/squareup/picasso/Stats.cache Lcom/squareup/picasso/Cache;
+; v4 : Lcom/squareup/picasso/Cache; , v3 : Lcom/squareup/picasso/Stats;
+.line 49
+	new-instance	v0,android/os/HandlerThread
+; v0 : Landroid/os/HandlerThread;
+	const-string	v1,"Picasso-Stats"
+; v1 : Ljava/lang/String;
+	const/16	v2,10
+; v2 : single-length
+	invoke-direct	{v0,v1,v2},android/os/HandlerThread/<init>	; <init>(Ljava/lang/String;I)V
+; v0 : Landroid/os/HandlerThread; , v1 : Ljava/lang/String; , v2 : single-length
+	iput-object	v0,v3,com/squareup/picasso/Stats.statsThread Landroid/os/HandlerThread;
+; v0 : Landroid/os/HandlerThread; , v3 : Lcom/squareup/picasso/Stats;
+.line 50
+	iget-object	v0,v3,com/squareup/picasso/Stats.statsThread Landroid/os/HandlerThread;
+; v0 : Landroid/os/HandlerThread; , v3 : Lcom/squareup/picasso/Stats;
+	invoke-virtual	{v0},android/os/HandlerThread/start	; start()V
+; v0 : Landroid/os/HandlerThread;
+.line 51
+	new-instance	v0,com/squareup/picasso/Stats$StatsHandler
+; v0 : Lcom/squareup/picasso/Stats$StatsHandler;
+	iget-object	v1,v3,com/squareup/picasso/Stats.statsThread Landroid/os/HandlerThread;
+; v1 : Landroid/os/HandlerThread; , v3 : Lcom/squareup/picasso/Stats;
+	invoke-virtual	{v1},android/os/HandlerThread/getLooper	; getLooper()Landroid/os/Looper;
+; v1 : Landroid/os/HandlerThread;
+	move-result-object	v1
+; v1 : Landroid/os/Looper;
+	invoke-direct	{v0,v1,v3},com/squareup/picasso/Stats$StatsHandler/<init>	; <init>(Landroid/os/Looper;Lcom/squareup/picasso/Stats;)V
+; v0 : Lcom/squareup/picasso/Stats$StatsHandler; , v1 : Landroid/os/Looper; , v3 : Lcom/squareup/picasso/Stats;
+	iput-object	v0,v3,com/squareup/picasso/Stats.handler Landroid/os/Handler;
+; v0 : Lcom/squareup/picasso/Stats$StatsHandler; , v3 : Lcom/squareup/picasso/Stats;
+.line 52
+	return-void	
+.end method
+
+.method private static getAverage(IJ)J
+.limit registers 5
+; parameter[0] : v2 (I)
+; parameter[1] : v3 (J)
+.line 108
+	int-to-long	v0,v2
+; v0 : double-length , v2 : single-length
+	div-long	v0,v3,v0
+; v0 : double-length , v3 : double-length , v0 : double-length
+	return-wide	v0
+; v0 : double-length
+.end method
+
+.method private processBitmap(Landroid/graphics/Bitmap;I)V
+.limit registers 7
+; this: v4 (Lcom/squareup/picasso/Stats;)
+; parameter[0] : v5 (Landroid/graphics/Bitmap;)
+; parameter[1] : v6 (I)
+.line 103
+	invoke-static	{v5},com/squareup/picasso/Utils/getBitmapBytes	; getBitmapBytes(Landroid/graphics/Bitmap;)I
+; v5 : Landroid/graphics/Bitmap;
+	move-result	v0
+; v0 : single-length
+.line 104
+	iget-object	v1,v4,com/squareup/picasso/Stats.handler Landroid/os/Handler;
+; v1 : Landroid/os/Handler; , v4 : Lcom/squareup/picasso/Stats;
+	iget-object	v2,v4,com/squareup/picasso/Stats.handler Landroid/os/Handler;
+; v2 : Landroid/os/Handler; , v4 : Lcom/squareup/picasso/Stats;
+	const/4	v3,0
+; v3 : single-length
+	invoke-virtual	{v2,v6,v0,v3},android/os/Handler/obtainMessage	; obtainMessage(III)Landroid/os/Message;
+; v2 : Landroid/os/Handler; , v6 : single-length , v0 : single-length , v3 : single-length
+	move-result-object	v2
+; v2 : Landroid/os/Message;
+	invoke-virtual	{v1,v2},android/os/Handler/sendMessage	; sendMessage(Landroid/os/Message;)Z
+; v1 : Landroid/os/Handler; , v2 : Landroid/os/Message;
+.line 105
+	return-void	
+.end method
+
+.method synchronized createSnapshot()Lcom/squareup/picasso/StatsSnapshot;
+.limit registers 21
+; this: v20 (Lcom/squareup/picasso/Stats;)
+.catch java/lang/Exception from lc5d56 to lc5dd0 using lc5dd4
+.line 95
+	monitor-enter	v20
+; v20 : Lcom/squareup/picasso/Stats;
+lc5d56:
+	new-instance	v1,com/squareup/picasso/StatsSnapshot
+; v1 : Lcom/squareup/picasso/StatsSnapshot;
+	move-object/from16	v0,v20
+; v0 : Lcom/squareup/picasso/Stats; , v20 : Lcom/squareup/picasso/Stats;
+	iget-object	v2,v0,com/squareup/picasso/Stats.cache Lcom/squareup/picasso/Cache;
+; v2 : Lcom/squareup/picasso/Cache; , v0 : Lcom/squareup/picasso/Stats;
+	invoke-interface	{v2},com/squareup/picasso/Cache/maxSize	; maxSize()I
+; v2 : Lcom/squareup/picasso/Cache;
+	move-result	v2
+; v2 : single-length
+	move-object/from16	v0,v20
+; v0 : Lcom/squareup/picasso/Stats; , v20 : Lcom/squareup/picasso/Stats;
+	iget-object	v3,v0,com/squareup/picasso/Stats.cache Lcom/squareup/picasso/Cache;
+; v3 : Lcom/squareup/picasso/Cache; , v0 : Lcom/squareup/picasso/Stats;
+	invoke-interface	{v3},com/squareup/picasso/Cache/size	; size()I
+; v3 : Lcom/squareup/picasso/Cache;
+	move-result	v3
+; v3 : single-length
+	move-object/from16	v0,v20
+; v0 : Lcom/squareup/picasso/Stats; , v20 : Lcom/squareup/picasso/Stats;
+	iget-wide	v4,v0,com/squareup/picasso/Stats.cacheHits J
+; v4 : double-length , v0 : Lcom/squareup/picasso/Stats;
+	move-object/from16	v0,v20
+; v0 : Lcom/squareup/picasso/Stats; , v20 : Lcom/squareup/picasso/Stats;
+	iget-wide	v6,v0,com/squareup/picasso/Stats.cacheMisses J
+; v6 : double-length , v0 : Lcom/squareup/picasso/Stats;
+	move-object/from16	v0,v20
+; v0 : Lcom/squareup/picasso/Stats; , v20 : Lcom/squareup/picasso/Stats;
+	iget-wide	v8,v0,com/squareup/picasso/Stats.totalOriginalBitmapSize J
+; v8 : double-length , v0 : Lcom/squareup/picasso/Stats;
+	move-object/from16	v0,v20
+; v0 : Lcom/squareup/picasso/Stats; , v20 : Lcom/squareup/picasso/Stats;
+	iget-wide	v10,v0,com/squareup/picasso/Stats.totalTransformedBitmapSize J
+; v10 : double-length , v0 : Lcom/squareup/picasso/Stats;
+	move-object/from16	v0,v20
+; v0 : Lcom/squareup/picasso/Stats; , v20 : Lcom/squareup/picasso/Stats;
+	iget-wide	v12,v0,com/squareup/picasso/Stats.averageOriginalBitmapSize J
+; v12 : double-length , v0 : Lcom/squareup/picasso/Stats;
+	move-object/from16	v0,v20
+; v0 : Lcom/squareup/picasso/Stats; , v20 : Lcom/squareup/picasso/Stats;
+	iget-wide	v14,v0,com/squareup/picasso/Stats.averageTransformedBitmapSize J
+; v14 : double-length , v0 : Lcom/squareup/picasso/Stats;
+	move-object/from16	v0,v20
+; v0 : Lcom/squareup/picasso/Stats; , v20 : Lcom/squareup/picasso/Stats;
+	iget	v0,v0,com/squareup/picasso/Stats.originalBitmapCount I
+; v0 : single-length , v0 : single-length
+	move/from16	v16,v0
+; v16 : single-length , v0 : single-length
+	move-object/from16	v0,v20
+; v0 : Lcom/squareup/picasso/Stats; , v20 : Lcom/squareup/picasso/Stats;
+	iget	v0,v0,com/squareup/picasso/Stats.transformedBitmapCount I
+; v0 : single-length , v0 : single-length
+	move/from16	v17,v0
+; v17 : single-length , v0 : single-length
+	invoke-static	{},java/lang/System/currentTimeMillis	; currentTimeMillis()J
+; 
+	nop	
+	move-result-wide	v18
+; v18 : double-length
+	invoke-direct/range	{v1..v19},com/squareup/picasso/StatsSnapshot/<init>;	<init>(IIJJJJJJIIJ)V
+; v1 : Lcom/squareup/picasso/StatsSnapshot; , v2 : single-length , v3 : single-length , v4 : double-length , v6 : double-length , v8 : double-length , v10 : double-length , v12 : double-length , v14 : double-length , v16 : single-length , v17 : single-length , v18 : double-length
+lc5dd0:
+	monitor-exit	v20
+; v20 : Lcom/squareup/picasso/Stats;
+	return-object	v1
+; v1 : Lcom/squareup/picasso/StatsSnapshot;
+lc5dd4:
+	move-exception	v1
+; v1 : java/lang/Exception
+	monitor-exit	v20
+; v20 : Lcom/squareup/picasso/Stats;
+	throw	v1
+; v1 : java/lang/Exception
+.end method
+
+.method dispatchBitmapDecoded(Landroid/graphics/Bitmap;)V
+.limit registers 3
+; this: v1 (Lcom/squareup/picasso/Stats;)
+; parameter[0] : v2 (Landroid/graphics/Bitmap;)
+.line 55
+	const/4	v0,2
+; v0 : single-length
+	invoke-direct	{v1,v2,v0},com/squareup/picasso/Stats/processBitmap	; processBitmap(Landroid/graphics/Bitmap;I)V
+; v1 : Lcom/squareup/picasso/Stats; , v2 : Landroid/graphics/Bitmap; , v0 : single-length
+.line 56
+	return-void	
+.end method
+
+.method dispatchBitmapTransformed(Landroid/graphics/Bitmap;)V
+.limit registers 3
+; this: v1 (Lcom/squareup/picasso/Stats;)
+; parameter[0] : v2 (Landroid/graphics/Bitmap;)
+.line 59
+	const/4	v0,3
+; v0 : single-length
+	invoke-direct	{v1,v2,v0},com/squareup/picasso/Stats/processBitmap	; processBitmap(Landroid/graphics/Bitmap;I)V
+; v1 : Lcom/squareup/picasso/Stats; , v2 : Landroid/graphics/Bitmap; , v0 : single-length
+.line 60
+	return-void	
+.end method
+
+.method dispatchCacheHit()V
+.limit registers 3
+; this: v2 (Lcom/squareup/picasso/Stats;)
+.line 63
+	iget-object	v0,v2,com/squareup/picasso/Stats.handler Landroid/os/Handler;
+; v0 : Landroid/os/Handler; , v2 : Lcom/squareup/picasso/Stats;
+	const/4	v1,0
+; v1 : single-length
+	invoke-virtual	{v0,v1},android/os/Handler/sendEmptyMessage	; sendEmptyMessage(I)Z
+; v0 : Landroid/os/Handler; , v1 : single-length
+.line 64
+	return-void	
+.end method
+
+.method dispatchCacheMiss()V
+.limit registers 3
+; this: v2 (Lcom/squareup/picasso/Stats;)
+.line 67
+	iget-object	v0,v2,com/squareup/picasso/Stats.handler Landroid/os/Handler;
+; v0 : Landroid/os/Handler; , v2 : Lcom/squareup/picasso/Stats;
+	const/4	v1,1
+; v1 : single-length
+	invoke-virtual	{v0,v1},android/os/Handler/sendEmptyMessage	; sendEmptyMessage(I)Z
+; v0 : Landroid/os/Handler; , v1 : single-length
+.line 68
+	return-void	
+.end method
+
+.method performBitmapDecoded(J)V
+.limit registers 6
+; this: v3 (Lcom/squareup/picasso/Stats;)
+; parameter[0] : v4 (J)
+.line 83
+	iget	v0,v3,com/squareup/picasso/Stats.originalBitmapCount I
+; v0 : single-length , v3 : Lcom/squareup/picasso/Stats;
+	add-int/lit8	v0,v0,1
+; v0 : single-length , v0 : single-length
+	iput	v0,v3,com/squareup/picasso/Stats.originalBitmapCount I
+; v0 : single-length , v3 : Lcom/squareup/picasso/Stats;
+.line 84
+	iget-wide	v0,v3,com/squareup/picasso/Stats.totalOriginalBitmapSize J
+; v0 : double-length , v3 : Lcom/squareup/picasso/Stats;
+	add-long/2addr	v0,v4
+; v0 : double-length , v4 : double-length
+	iput-wide	v0,v3,com/squareup/picasso/Stats.totalOriginalBitmapSize J
+; v0 : double-length , v3 : Lcom/squareup/picasso/Stats;
+.line 85
+	iget	v0,v3,com/squareup/picasso/Stats.originalBitmapCount I
+; v0 : single-length , v3 : Lcom/squareup/picasso/Stats;
+	iget-wide	v1,v3,com/squareup/picasso/Stats.totalOriginalBitmapSize J
+; v1 : double-length , v3 : Lcom/squareup/picasso/Stats;
+	invoke-static	{v0,v1,v2},com/squareup/picasso/Stats/getAverage	; getAverage(IJ)J
+; v0 : single-length , v1 : double-length
+	move-result-wide	v0
+; v0 : double-length
+	iput-wide	v0,v3,com/squareup/picasso/Stats.averageOriginalBitmapSize J
+; v0 : double-length , v3 : Lcom/squareup/picasso/Stats;
+.line 86
+	return-void	
+.end method
+
+.method performBitmapTransformed(J)V
+.limit registers 6
+; this: v3 (Lcom/squareup/picasso/Stats;)
+; parameter[0] : v4 (J)
+.line 89
+	iget	v0,v3,com/squareup/picasso/Stats.transformedBitmapCount I
+; v0 : single-length , v3 : Lcom/squareup/picasso/Stats;
+	add-int/lit8	v0,v0,1
+; v0 : single-length , v0 : single-length
+	iput	v0,v3,com/squareup/picasso/Stats.transformedBitmapCount I
+; v0 : single-length , v3 : Lcom/squareup/picasso/Stats;
+.line 90
+	iget-wide	v0,v3,com/squareup/picasso/Stats.totalTransformedBitmapSize J
+; v0 : double-length , v3 : Lcom/squareup/picasso/Stats;
+	add-long/2addr	v0,v4
+; v0 : double-length , v4 : double-length
+	iput-wide	v0,v3,com/squareup/picasso/Stats.totalTransformedBitmapSize J
+; v0 : double-length , v3 : Lcom/squareup/picasso/Stats;
+.line 91
+	iget	v0,v3,com/squareup/picasso/Stats.originalBitmapCount I
+; v0 : single-length , v3 : Lcom/squareup/picasso/Stats;
+	iget-wide	v1,v3,com/squareup/picasso/Stats.totalTransformedBitmapSize J
+; v1 : double-length , v3 : Lcom/squareup/picasso/Stats;
+	invoke-static	{v0,v1,v2},com/squareup/picasso/Stats/getAverage	; getAverage(IJ)J
+; v0 : single-length , v1 : double-length
+	move-result-wide	v0
+; v0 : double-length
+	iput-wide	v0,v3,com/squareup/picasso/Stats.averageTransformedBitmapSize J
+; v0 : double-length , v3 : Lcom/squareup/picasso/Stats;
+.line 92
+	return-void	
+.end method
+
+.method performCacheHit()V
+.limit registers 5
+; this: v4 (Lcom/squareup/picasso/Stats;)
+.line 75
+	iget-wide	v0,v4,com/squareup/picasso/Stats.cacheHits J
+; v0 : double-length , v4 : Lcom/squareup/picasso/Stats;
+	const-wide/16	v2,1
+; v2 : double-length
+	add-long/2addr	v0,v2
+; v0 : double-length , v2 : double-length
+	iput-wide	v0,v4,com/squareup/picasso/Stats.cacheHits J
+; v0 : double-length , v4 : Lcom/squareup/picasso/Stats;
+.line 76
+	return-void	
+.end method
+
+.method performCacheMiss()V
+.limit registers 5
+; this: v4 (Lcom/squareup/picasso/Stats;)
+.line 79
+	iget-wide	v0,v4,com/squareup/picasso/Stats.cacheMisses J
+; v0 : double-length , v4 : Lcom/squareup/picasso/Stats;
+	const-wide/16	v2,1
+; v2 : double-length
+	add-long/2addr	v0,v2
+; v0 : double-length , v2 : double-length
+	iput-wide	v0,v4,com/squareup/picasso/Stats.cacheMisses J
+; v0 : double-length , v4 : Lcom/squareup/picasso/Stats;
+.line 80
+	return-void	
+.end method
+
+.method shutdown()V
+.limit registers 2
+; this: v1 (Lcom/squareup/picasso/Stats;)
+.line 71
+	iget-object	v0,v1,com/squareup/picasso/Stats.statsThread Landroid/os/HandlerThread;
+; v0 : Landroid/os/HandlerThread; , v1 : Lcom/squareup/picasso/Stats;
+	invoke-virtual	{v0},android/os/HandlerThread/quit	; quit()Z
+; v0 : Landroid/os/HandlerThread;
+.line 72
+	return-void	
+.end method
+
+

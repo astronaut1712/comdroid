@@ -1,0 +1,272 @@
+.class com/fsharemobile/ExplorerSearchResultsActivity$3$1
+.super java/lang/Object
+.source ExplorerSearchResultsActivity.java
+.implements java/lang/Runnable
+
+.enclosing method com/onCreateULSessionCompleted(ILjava/lang/String;)V
+.field final this$1 Lcom/fsharemobile/ExplorerSearchResultsActivity$3;
+.field private final val$err I
+.field private final val$filePath Ljava/lang/String;
+.field private final val$id I
+.field private final val$mBuilder Landroid/support/v4/app/NotificationCompat$Builder;
+.field private final val$mNotifyManager Landroid/app/NotificationManager;
+.field private final val$upload_url Ljava/lang/String;
+
+.method <init>(Lcom/fsharemobile/ExplorerSearchResultsActivity$3;Ljava/lang/String;Ljava/lang/String;ILandroid/support/v4/app/NotificationCompat$Builder;Landroid/app/NotificationManager;I)V
+.limit registers 8
+; this: v0 (Lcom/fsharemobile/ExplorerSearchResultsActivity$3$1;)
+; parameter[0] : v1 (Lcom/fsharemobile/ExplorerSearchResultsActivity$3;)
+; parameter[1] : v2 (Ljava/lang/String;)
+; parameter[2] : v3 (Ljava/lang/String;)
+; parameter[3] : v4 (I)
+; parameter[4] : v5 (Landroid/support/v4/app/NotificationCompat$Builder;)
+; parameter[5] : v6 (Landroid/app/NotificationManager;)
+; parameter[6] : v7 (I)
+.line 1
+	iput-object	v1,v0,com/fsharemobile/ExplorerSearchResultsActivity$3$1.this$1 Lcom/fsharemobile/ExplorerSearchResultsActivity$3;
+; v1 : Lcom/fsharemobile/ExplorerSearchResultsActivity$3; , v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity$3$1;
+	iput-object	v2,v0,com/fsharemobile/ExplorerSearchResultsActivity$3$1.val$upload_url Ljava/lang/String;
+; v2 : Ljava/lang/String; , v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity$3$1;
+	iput-object	v3,v0,com/fsharemobile/ExplorerSearchResultsActivity$3$1.val$filePath Ljava/lang/String;
+; v3 : Ljava/lang/String; , v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity$3$1;
+	iput	v4,v0,com/fsharemobile/ExplorerSearchResultsActivity$3$1.val$err I
+; v4 : single-length , v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity$3$1;
+	iput-object	v5,v0,com/fsharemobile/ExplorerSearchResultsActivity$3$1.val$mBuilder Landroid/support/v4/app/NotificationCompat$Builder;
+; v5 : Landroid/support/v4/app/NotificationCompat$Builder; , v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity$3$1;
+	iput-object	v6,v0,com/fsharemobile/ExplorerSearchResultsActivity$3$1.val$mNotifyManager Landroid/app/NotificationManager;
+; v6 : Landroid/app/NotificationManager; , v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity$3$1;
+	iput	v7,v0,com/fsharemobile/ExplorerSearchResultsActivity$3$1.val$id I
+; v7 : single-length , v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity$3$1;
+.line 492
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity$3$1;
+	return-void	
+.end method
+
+.method static access$0(Lcom/fsharemobile/ExplorerSearchResultsActivity$3$1;)Lcom/fsharemobile/ExplorerSearchResultsActivity$3;
+.limit registers 2
+; parameter[0] : v1 (Lcom/fsharemobile/ExplorerSearchResultsActivity$3$1;)
+.line 492
+	iget-object	v0,v1,com/fsharemobile/ExplorerSearchResultsActivity$3$1.this$1 Lcom/fsharemobile/ExplorerSearchResultsActivity$3;
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity$3; , v1 : Lcom/fsharemobile/ExplorerSearchResultsActivity$3$1;
+	return-object	v0
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity$3;
+.end method
+
+.method public run()V
+.limit registers 10
+; this: v9 (Lcom/fsharemobile/ExplorerSearchResultsActivity$3$1;)
+.catch java/net/MalformedURLException from l8f37a to l8f3d8 using l8f45a
+.catch java/io/IOException from l8f37a to l8f3d8 using l8f464
+.var 0 is e Ljava/net/MalformedURLException; from l8f45c to l8f464
+.var 0 is e Ljava/io/IOException; from l8f466 to l8f46e
+	const/4	v8,0
+; v8 : single-length
+.line 495
+	iget-object	v1,v9,com/fsharemobile/ExplorerSearchResultsActivity$3$1.this$1 Lcom/fsharemobile/ExplorerSearchResultsActivity$3;
+; v1 : Lcom/fsharemobile/ExplorerSearchResultsActivity$3; , v9 : Lcom/fsharemobile/ExplorerSearchResultsActivity$3$1;
+	invoke-static	{v1},com/fsharemobile/ExplorerSearchResultsActivity$3/access$0	; access$0(Lcom/fsharemobile/ExplorerSearchResultsActivity$3;)Lcom/fsharemobile/ExplorerSearchResultsActivity;
+; v1 : Lcom/fsharemobile/ExplorerSearchResultsActivity$3;
+	move-result-object	v1
+; v1 : Lcom/fsharemobile/ExplorerSearchResultsActivity;
+	iget	v2,v1,com/fsharemobile/ExplorerSearchResultsActivity.runningCount I
+; v2 : single-length , v1 : Lcom/fsharemobile/ExplorerSearchResultsActivity;
+	add-int/lit8	v2,v2,1
+; v2 : single-length , v2 : single-length
+	iput	v2,v1,com/fsharemobile/ExplorerSearchResultsActivity.runningCount I
+; v2 : single-length , v1 : Lcom/fsharemobile/ExplorerSearchResultsActivity;
+l8f37a:
+.line 497
+	iget-object	v1,v9,com/fsharemobile/ExplorerSearchResultsActivity$3$1.this$1 Lcom/fsharemobile/ExplorerSearchResultsActivity$3;
+; v1 : Lcom/fsharemobile/ExplorerSearchResultsActivity$3; , v9 : Lcom/fsharemobile/ExplorerSearchResultsActivity$3$1;
+	invoke-static	{v1},com/fsharemobile/ExplorerSearchResultsActivity$3/access$0	; access$0(Lcom/fsharemobile/ExplorerSearchResultsActivity$3;)Lcom/fsharemobile/ExplorerSearchResultsActivity;
+; v1 : Lcom/fsharemobile/ExplorerSearchResultsActivity$3;
+	move-result-object	v1
+; v1 : Lcom/fsharemobile/ExplorerSearchResultsActivity;
+	invoke-static	{v1},com/fsharemobile/ExplorerSearchResultsActivity/access$14	; access$14(Lcom/fsharemobile/ExplorerSearchResultsActivity;)Lcom/fsharemobile/client/FClient;
+; v1 : Lcom/fsharemobile/ExplorerSearchResultsActivity;
+	move-result-object	v1
+; v1 : Lcom/fsharemobile/client/FClient;
+	invoke-virtual	{v1},com/fsharemobile/client/FClient/getHttputil	; getHttputil()Lcom/fsharemobile/client/HttpUtil;
+; v1 : Lcom/fsharemobile/client/FClient;
+	move-result-object	v1
+; v1 : Lcom/fsharemobile/client/HttpUtil;
+.line 498
+	new-instance	v2,java/net/URL
+; v2 : Ljava/net/URL;
+	iget-object	v3,v9,com/fsharemobile/ExplorerSearchResultsActivity$3$1.val$upload_url Ljava/lang/String;
+; v3 : Ljava/lang/String; , v9 : Lcom/fsharemobile/ExplorerSearchResultsActivity$3$1;
+	invoke-direct	{v2,v3},java/net/URL/<init>	; <init>(Ljava/lang/String;)V
+; v2 : Ljava/net/URL; , v3 : Ljava/lang/String;
+.line 499
+	iget-object	v3,v9,com/fsharemobile/ExplorerSearchResultsActivity$3$1.val$filePath Ljava/lang/String;
+; v3 : Ljava/lang/String; , v9 : Lcom/fsharemobile/ExplorerSearchResultsActivity$3$1;
+.line 500
+	new-instance	v4,com/fsharemobile/ExplorerSearchResultsActivity$3$1$1
+; v4 : Lcom/fsharemobile/ExplorerSearchResultsActivity$3$1$1;
+	iget-object	v5,v9,com/fsharemobile/ExplorerSearchResultsActivity$3$1.val$mBuilder Landroid/support/v4/app/NotificationCompat$Builder;
+; v5 : Landroid/support/v4/app/NotificationCompat$Builder; , v9 : Lcom/fsharemobile/ExplorerSearchResultsActivity$3$1;
+	iget-object	v6,v9,com/fsharemobile/ExplorerSearchResultsActivity$3$1.val$mNotifyManager Landroid/app/NotificationManager;
+; v6 : Landroid/app/NotificationManager; , v9 : Lcom/fsharemobile/ExplorerSearchResultsActivity$3$1;
+	iget	v7,v9,com/fsharemobile/ExplorerSearchResultsActivity$3$1.val$id I
+; v7 : single-length , v9 : Lcom/fsharemobile/ExplorerSearchResultsActivity$3$1;
+	invoke-direct	{v4,v9,v5,v6,v7},com/fsharemobile/ExplorerSearchResultsActivity$3$1$1/<init>	; <init>(Lcom/fsharemobile/ExplorerSearchResultsActivity$3$1;Landroid/support/v4/app/NotificationCompat$Builder;Landroid/app/NotificationManager;I)V
+; v4 : Lcom/fsharemobile/ExplorerSearchResultsActivity$3$1$1; , v9 : Lcom/fsharemobile/ExplorerSearchResultsActivity$3$1; , v5 : Landroid/support/v4/app/NotificationCompat$Builder; , v6 : Landroid/app/NotificationManager; , v7 : single-length
+.line 523
+	iget-object	v5,v9,com/fsharemobile/ExplorerSearchResultsActivity$3$1.this$1 Lcom/fsharemobile/ExplorerSearchResultsActivity$3;
+; v5 : Lcom/fsharemobile/ExplorerSearchResultsActivity$3; , v9 : Lcom/fsharemobile/ExplorerSearchResultsActivity$3$1;
+	invoke-static	{v5},com/fsharemobile/ExplorerSearchResultsActivity$3/access$0	; access$0(Lcom/fsharemobile/ExplorerSearchResultsActivity$3;)Lcom/fsharemobile/ExplorerSearchResultsActivity;
+; v5 : Lcom/fsharemobile/ExplorerSearchResultsActivity$3;
+	move-result-object	v5
+; v5 : Lcom/fsharemobile/ExplorerSearchResultsActivity;
+	invoke-static	{v5},com/fsharemobile/ExplorerSearchResultsActivity/access$15	; access$15(Lcom/fsharemobile/ExplorerSearchResultsActivity;)Ljava/util/concurrent/atomic/AtomicInteger;
+; v5 : Lcom/fsharemobile/ExplorerSearchResultsActivity;
+	move-result-object	v5
+; v5 : Ljava/util/concurrent/atomic/AtomicInteger;
+.line 497
+	invoke-virtual	{v1,v2,v3,v4,v5},com/fsharemobile/client/HttpUtil/upload	; upload(Ljava/net/URL;Ljava/lang/String;Lcom/fsharemobile/client/HttpUtil$OnProgressUpdate;Ljava/util/concurrent/atomic/AtomicInteger;)I
+; v1 : Lcom/fsharemobile/client/HttpUtil; , v2 : Ljava/net/URL; , v3 : Ljava/lang/String; , v4 : Lcom/fsharemobile/ExplorerSearchResultsActivity$3$1$1; , v5 : Ljava/util/concurrent/atomic/AtomicInteger;
+l8f3d8:
+.line 531
+	iget	v1,v9,com/fsharemobile/ExplorerSearchResultsActivity$3$1.val$err I
+; v1 : single-length , v9 : Lcom/fsharemobile/ExplorerSearchResultsActivity$3$1;
+	if-nez	v1,l8f46e
+; v1 : single-length
+.line 532
+	iget-object	v1,v9,com/fsharemobile/ExplorerSearchResultsActivity$3$1.val$mBuilder Landroid/support/v4/app/NotificationCompat$Builder;
+; v1 : Landroid/support/v4/app/NotificationCompat$Builder; , v9 : Lcom/fsharemobile/ExplorerSearchResultsActivity$3$1;
+.line 533
+	const-string	v2,"Upload complete"
+; v2 : Ljava/lang/String;
+.line 532
+	invoke-virtual	{v1,v2},android/support/v4/app/NotificationCompat$Builder/setContentText	; setContentText(Ljava/lang/CharSequence;)Landroid/support/v4/app/NotificationCompat$Builder;
+; v1 : Landroid/support/v4/app/NotificationCompat$Builder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Landroid/support/v4/app/NotificationCompat$Builder;
+.line 535
+	invoke-virtual	{v1,v8,v8,v8},android/support/v4/app/NotificationCompat$Builder/setProgress	; setProgress(IIZ)Landroid/support/v4/app/NotificationCompat$Builder;
+; v1 : Landroid/support/v4/app/NotificationCompat$Builder; , v8 : single-length , v8 : single-length , v8 : single-length
+.line 536
+	iget-object	v1,v9,com/fsharemobile/ExplorerSearchResultsActivity$3$1.val$mNotifyManager Landroid/app/NotificationManager;
+; v1 : Landroid/app/NotificationManager; , v9 : Lcom/fsharemobile/ExplorerSearchResultsActivity$3$1;
+	iget	v2,v9,com/fsharemobile/ExplorerSearchResultsActivity$3$1.val$id I
+; v2 : single-length , v9 : Lcom/fsharemobile/ExplorerSearchResultsActivity$3$1;
+.line 537
+	iget-object	v3,v9,com/fsharemobile/ExplorerSearchResultsActivity$3$1.val$mBuilder Landroid/support/v4/app/NotificationCompat$Builder;
+; v3 : Landroid/support/v4/app/NotificationCompat$Builder; , v9 : Lcom/fsharemobile/ExplorerSearchResultsActivity$3$1;
+	invoke-virtual	{v3},android/support/v4/app/NotificationCompat$Builder/build	; build()Landroid/app/Notification;
+; v3 : Landroid/support/v4/app/NotificationCompat$Builder;
+	move-result-object	v3
+; v3 : Landroid/app/Notification;
+.line 536
+	invoke-virtual	{v1,v2,v3},android/app/NotificationManager/notify	; notify(ILandroid/app/Notification;)V
+; v1 : Landroid/app/NotificationManager; , v2 : single-length , v3 : Landroid/app/Notification;
+.line 538
+	iget-object	v1,v9,com/fsharemobile/ExplorerSearchResultsActivity$3$1.this$1 Lcom/fsharemobile/ExplorerSearchResultsActivity$3;
+; v1 : Lcom/fsharemobile/ExplorerSearchResultsActivity$3; , v9 : Lcom/fsharemobile/ExplorerSearchResultsActivity$3$1;
+	invoke-static	{v1},com/fsharemobile/ExplorerSearchResultsActivity$3/access$0	; access$0(Lcom/fsharemobile/ExplorerSearchResultsActivity$3;)Lcom/fsharemobile/ExplorerSearchResultsActivity;
+; v1 : Lcom/fsharemobile/ExplorerSearchResultsActivity$3;
+	move-result-object	v1
+; v1 : Lcom/fsharemobile/ExplorerSearchResultsActivity;
+	iget	v2,v1,com/fsharemobile/ExplorerSearchResultsActivity.runningCount I
+; v2 : single-length , v1 : Lcom/fsharemobile/ExplorerSearchResultsActivity;
+	add-int/lit8	v2,v2,255
+; v2 : single-length , v2 : single-length
+	iput	v2,v1,com/fsharemobile/ExplorerSearchResultsActivity.runningCount I
+; v2 : single-length , v1 : Lcom/fsharemobile/ExplorerSearchResultsActivity;
+.line 539
+	iget-object	v1,v9,com/fsharemobile/ExplorerSearchResultsActivity$3$1.this$1 Lcom/fsharemobile/ExplorerSearchResultsActivity$3;
+; v1 : Lcom/fsharemobile/ExplorerSearchResultsActivity$3; , v9 : Lcom/fsharemobile/ExplorerSearchResultsActivity$3$1;
+	invoke-static	{v1},com/fsharemobile/ExplorerSearchResultsActivity$3/access$0	; access$0(Lcom/fsharemobile/ExplorerSearchResultsActivity$3;)Lcom/fsharemobile/ExplorerSearchResultsActivity;
+; v1 : Lcom/fsharemobile/ExplorerSearchResultsActivity$3;
+	move-result-object	v1
+; v1 : Lcom/fsharemobile/ExplorerSearchResultsActivity;
+	iget	v1,v1,com/fsharemobile/ExplorerSearchResultsActivity.runningCount I
+; v1 : single-length , v1 : single-length
+	if-nez	v1,l8f458
+; v1 : single-length
+.line 540
+	iget-object	v1,v9,com/fsharemobile/ExplorerSearchResultsActivity$3$1.this$1 Lcom/fsharemobile/ExplorerSearchResultsActivity$3;
+; v1 : Lcom/fsharemobile/ExplorerSearchResultsActivity$3; , v9 : Lcom/fsharemobile/ExplorerSearchResultsActivity$3$1;
+	invoke-static	{v1},com/fsharemobile/ExplorerSearchResultsActivity$3/access$0	; access$0(Lcom/fsharemobile/ExplorerSearchResultsActivity$3;)Lcom/fsharemobile/ExplorerSearchResultsActivity;
+; v1 : Lcom/fsharemobile/ExplorerSearchResultsActivity$3;
+	move-result-object	v1
+; v1 : Lcom/fsharemobile/ExplorerSearchResultsActivity;
+.line 541
+	new-instance	v2,com/fsharemobile/ExplorerSearchResultsActivity$3$1$2
+; v2 : Lcom/fsharemobile/ExplorerSearchResultsActivity$3$1$2;
+	invoke-direct	{v2,v9},com/fsharemobile/ExplorerSearchResultsActivity$3$1$2/<init>	; <init>(Lcom/fsharemobile/ExplorerSearchResultsActivity$3$1;)V
+; v2 : Lcom/fsharemobile/ExplorerSearchResultsActivity$3$1$2; , v9 : Lcom/fsharemobile/ExplorerSearchResultsActivity$3$1;
+	invoke-virtual	{v1,v2},com/fsharemobile/ExplorerSearchResultsActivity/runOnUiThread	; runOnUiThread(Ljava/lang/Runnable;)V
+; v1 : Lcom/fsharemobile/ExplorerSearchResultsActivity; , v2 : Lcom/fsharemobile/ExplorerSearchResultsActivity$3$1$2;
+l8f458:
+.line 560
+	return-void	
+l8f45a:
+.line 524
+	move-exception	v0
+; v0 : java/net/MalformedURLException
+.line 525
+	invoke-virtual	{v0},java/net/MalformedURLException/printStackTrace	; printStackTrace()V
+; v0 : java/net/MalformedURLException
+	goto	l8f3d8
+l8f464:
+.line 526
+	move-exception	v0
+; v0 : java/io/IOException
+.line 527
+	invoke-virtual	{v0},java/io/IOException/printStackTrace	; printStackTrace()V
+; v0 : java/io/IOException
+	goto	l8f3d8
+l8f46e:
+.line 549
+	iget-object	v1,v9,com/fsharemobile/ExplorerSearchResultsActivity$3$1.val$mBuilder Landroid/support/v4/app/NotificationCompat$Builder;
+; v1 : Landroid/support/v4/app/NotificationCompat$Builder; , v9 : Lcom/fsharemobile/ExplorerSearchResultsActivity$3$1;
+.line 550
+	const-string	v2,"Upload Error ! "
+; v2 : Ljava/lang/String;
+.line 549
+	invoke-virtual	{v1,v2},android/support/v4/app/NotificationCompat$Builder/setContentText	; setContentText(Ljava/lang/CharSequence;)Landroid/support/v4/app/NotificationCompat$Builder;
+; v1 : Landroid/support/v4/app/NotificationCompat$Builder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Landroid/support/v4/app/NotificationCompat$Builder;
+.line 552
+	invoke-virtual	{v1,v8,v8,v8},android/support/v4/app/NotificationCompat$Builder/setProgress	; setProgress(IIZ)Landroid/support/v4/app/NotificationCompat$Builder;
+; v1 : Landroid/support/v4/app/NotificationCompat$Builder; , v8 : single-length , v8 : single-length , v8 : single-length
+.line 553
+	iget-object	v1,v9,com/fsharemobile/ExplorerSearchResultsActivity$3$1.val$mNotifyManager Landroid/app/NotificationManager;
+; v1 : Landroid/app/NotificationManager; , v9 : Lcom/fsharemobile/ExplorerSearchResultsActivity$3$1;
+	iget	v2,v9,com/fsharemobile/ExplorerSearchResultsActivity$3$1.val$id I
+; v2 : single-length , v9 : Lcom/fsharemobile/ExplorerSearchResultsActivity$3$1;
+.line 554
+	iget-object	v3,v9,com/fsharemobile/ExplorerSearchResultsActivity$3$1.val$mBuilder Landroid/support/v4/app/NotificationCompat$Builder;
+; v3 : Landroid/support/v4/app/NotificationCompat$Builder; , v9 : Lcom/fsharemobile/ExplorerSearchResultsActivity$3$1;
+	invoke-virtual	{v3},android/support/v4/app/NotificationCompat$Builder/build	; build()Landroid/app/Notification;
+; v3 : Landroid/support/v4/app/NotificationCompat$Builder;
+	move-result-object	v3
+; v3 : Landroid/app/Notification;
+.line 553
+	invoke-virtual	{v1,v2,v3},android/app/NotificationManager/notify	; notify(ILandroid/app/Notification;)V
+; v1 : Landroid/app/NotificationManager; , v2 : single-length , v3 : Landroid/app/Notification;
+.line 556
+	iget-object	v1,v9,com/fsharemobile/ExplorerSearchResultsActivity$3$1.this$1 Lcom/fsharemobile/ExplorerSearchResultsActivity$3;
+; v1 : Lcom/fsharemobile/ExplorerSearchResultsActivity$3; , v9 : Lcom/fsharemobile/ExplorerSearchResultsActivity$3$1;
+	invoke-static	{v1},com/fsharemobile/ExplorerSearchResultsActivity$3/access$0	; access$0(Lcom/fsharemobile/ExplorerSearchResultsActivity$3;)Lcom/fsharemobile/ExplorerSearchResultsActivity;
+; v1 : Lcom/fsharemobile/ExplorerSearchResultsActivity$3;
+	move-result-object	v1
+; v1 : Lcom/fsharemobile/ExplorerSearchResultsActivity;
+.line 557
+	const-string	v2,"Upload error !"
+; v2 : Ljava/lang/String;
+.line 555
+	invoke-static	{v1,v2,v8},android/widget/Toast/makeText	; makeText(Landroid/content/Context;Ljava/lang/CharSequence;I)Landroid/widget/Toast;
+; v1 : Lcom/fsharemobile/ExplorerSearchResultsActivity; , v2 : Ljava/lang/String; , v8 : single-length
+	move-result-object	v1
+; v1 : Landroid/widget/Toast;
+.line 558
+	invoke-virtual	{v1},android/widget/Toast/show	; show()V
+; v1 : Landroid/widget/Toast;
+	goto	l8f458
+.end method
+
+

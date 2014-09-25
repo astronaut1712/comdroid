@@ -1,0 +1,352 @@
+.class com/fsharemobile/c/s
+.super java/lang/Object
+.source MyApplication
+.implements java/lang/Runnable
+
+.field final a Lcom/fsharemobile/c/r;
+.field private final b I
+.field private final c Ljava/lang/String;
+.field private final d Ljava/lang/String;
+.field private final e Ljava/io/File;
+
+.method <init>(Lcom/fsharemobile/c/r;ILjava/lang/String;Ljava/lang/String;Ljava/io/File;)V
+.limit registers 6
+; this: v0 (Lcom/fsharemobile/c/s;)
+; parameter[0] : v1 (Lcom/fsharemobile/c/r;)
+; parameter[1] : v2 (I)
+; parameter[2] : v3 (Ljava/lang/String;)
+; parameter[3] : v4 (Ljava/lang/String;)
+; parameter[4] : v5 (Ljava/io/File;)
+.line 1
+	iput-object	v1,v0,com/fsharemobile/c/s.a Lcom/fsharemobile/c/r;
+; v1 : Lcom/fsharemobile/c/r; , v0 : Lcom/fsharemobile/c/s;
+	iput	v2,v0,com/fsharemobile/c/s.b I
+; v2 : single-length , v0 : Lcom/fsharemobile/c/s;
+	iput-object	v3,v0,com/fsharemobile/c/s.c Ljava/lang/String;
+; v3 : Ljava/lang/String; , v0 : Lcom/fsharemobile/c/s;
+	iput-object	v4,v0,com/fsharemobile/c/s.d Ljava/lang/String;
+; v4 : Ljava/lang/String; , v0 : Lcom/fsharemobile/c/s;
+	iput-object	v5,v0,com/fsharemobile/c/s.e Ljava/io/File;
+; v5 : Ljava/io/File; , v0 : Lcom/fsharemobile/c/s;
+.line 1043
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Lcom/fsharemobile/c/s;
+	return-void	
+.end method
+
+.method static a(Lcom/fsharemobile/c/s;)Lcom/fsharemobile/c/r;
+.limit registers 2
+; parameter[0] : v1 (Lcom/fsharemobile/c/s;)
+.line 1043
+	iget-object	v0,v1,com/fsharemobile/c/s.a Lcom/fsharemobile/c/r;
+; v0 : Lcom/fsharemobile/c/r; , v1 : Lcom/fsharemobile/c/s;
+	return-object	v0
+; v0 : Lcom/fsharemobile/c/r;
+.end method
+
+.method public run()V
+.limit registers 8
+; this: v7 (Lcom/fsharemobile/c/s;)
+.catch java/net/MalformedURLException from l8f4fe to l8f550 using l8f5f2
+.catch java/io/IOException from l8f4fe to l8f550 using l8f612
+	const/4	v6,1
+; v6 : single-length
+.line 1046
+	iget-object	v0,v7,com/fsharemobile/c/s.a Lcom/fsharemobile/c/r;
+; v0 : Lcom/fsharemobile/c/r; , v7 : Lcom/fsharemobile/c/s;
+	invoke-static	{v0},com/fsharemobile/c/r/a	; a(Lcom/fsharemobile/c/r;)Lcom/fsharemobile/c/a;
+; v0 : Lcom/fsharemobile/c/r;
+	move-result-object	v0
+; v0 : Lcom/fsharemobile/c/a;
+	iget	v1,v0,com/fsharemobile/c/a.p I
+; v1 : single-length , v0 : Lcom/fsharemobile/c/a;
+	add-int/lit8	v1,v1,1
+; v1 : single-length , v1 : single-length
+	iput	v1,v0,com/fsharemobile/c/a.p I
+; v1 : single-length , v0 : Lcom/fsharemobile/c/a;
+.line 1047
+	iget	v0,v7,com/fsharemobile/c/s.b I
+; v0 : single-length , v7 : Lcom/fsharemobile/c/s;
+.line 1048
+	iget-object	v1,v7,com/fsharemobile/c/s.a Lcom/fsharemobile/c/r;
+; v1 : Lcom/fsharemobile/c/r; , v7 : Lcom/fsharemobile/c/s;
+	invoke-static	{v1},com/fsharemobile/c/r/a	; a(Lcom/fsharemobile/c/r;)Lcom/fsharemobile/c/a;
+; v1 : Lcom/fsharemobile/c/r;
+	move-result-object	v1
+; v1 : Lcom/fsharemobile/c/a;
+	invoke-virtual	{v1},com/fsharemobile/c/a/getActivity	; getActivity()Landroid/support/v4/app/FragmentActivity;
+; v1 : Lcom/fsharemobile/c/a;
+	move-result-object	v1
+; v1 : Landroid/support/v4/app/FragmentActivity;
+.line 1049
+	new-instance	v2,com/fsharemobile/c/t
+; v2 : Lcom/fsharemobile/c/t;
+	iget-object	v3,v7,com/fsharemobile/c/s.e Ljava/io/File;
+; v3 : Ljava/io/File; , v7 : Lcom/fsharemobile/c/s;
+	invoke-direct	{v2,v7,v3},com/fsharemobile/c/t/<init>	; <init>(Lcom/fsharemobile/c/s;Ljava/io/File;)V
+; v2 : Lcom/fsharemobile/c/t; , v7 : Lcom/fsharemobile/c/s; , v3 : Ljava/io/File;
+.line 1048
+	invoke-virtual	{v1,v2},android/support/v4/app/FragmentActivity/runOnUiThread	; runOnUiThread(Ljava/lang/Runnable;)V
+; v1 : Landroid/support/v4/app/FragmentActivity; , v2 : Lcom/fsharemobile/c/t;
+l8f4fe:
+.line 1073
+	iget-object	v1,v7,com/fsharemobile/c/s.a Lcom/fsharemobile/c/r;
+; v1 : Lcom/fsharemobile/c/r; , v7 : Lcom/fsharemobile/c/s;
+	invoke-static	{v1},com/fsharemobile/c/r/a	; a(Lcom/fsharemobile/c/r;)Lcom/fsharemobile/c/a;
+; v1 : Lcom/fsharemobile/c/r;
+	move-result-object	v1
+; v1 : Lcom/fsharemobile/c/a;
+	invoke-static	{v1},com/fsharemobile/c/a/f	; f(Lcom/fsharemobile/c/a;)Lcom/fsharemobile/a/c;
+; v1 : Lcom/fsharemobile/c/a;
+	move-result-object	v1
+; v1 : Lcom/fsharemobile/a/c;
+.line 1074
+	invoke-virtual	{v1},com/fsharemobile/a/c/g	; g()Lcom/fsharemobile/a/z;
+; v1 : Lcom/fsharemobile/a/c;
+	move-result-object	v1
+; v1 : Lcom/fsharemobile/a/z;
+.line 1076
+	new-instance	v2,java/net/URL
+; v2 : Ljava/net/URL;
+.line 1077
+	iget-object	v3,v7,com/fsharemobile/c/s.c Ljava/lang/String;
+; v3 : Ljava/lang/String; , v7 : Lcom/fsharemobile/c/s;
+.line 1076
+	invoke-direct	{v2,v3},java/net/URL/<init>	; <init>(Ljava/lang/String;)V
+; v2 : Ljava/net/URL; , v3 : Ljava/lang/String;
+.line 1078
+	iget-object	v3,v7,com/fsharemobile/c/s.d Ljava/lang/String;
+; v3 : Ljava/lang/String; , v7 : Lcom/fsharemobile/c/s;
+.line 1079
+	new-instance	v4,com/fsharemobile/c/u
+; v4 : Lcom/fsharemobile/c/u;
+	invoke-direct	{v4,v7},com/fsharemobile/c/u/<init>	; <init>(Lcom/fsharemobile/c/s;)V
+; v4 : Lcom/fsharemobile/c/u; , v7 : Lcom/fsharemobile/c/s;
+.line 1109
+	iget-object	v5,v7,com/fsharemobile/c/s.a Lcom/fsharemobile/c/r;
+; v5 : Lcom/fsharemobile/c/r; , v7 : Lcom/fsharemobile/c/s;
+	invoke-static	{v5},com/fsharemobile/c/r/a	; a(Lcom/fsharemobile/c/r;)Lcom/fsharemobile/c/a;
+; v5 : Lcom/fsharemobile/c/r;
+	move-result-object	v5
+; v5 : Lcom/fsharemobile/c/a;
+	invoke-static	{v5},com/fsharemobile/c/a/e	; e(Lcom/fsharemobile/c/a;)Ljava/util/concurrent/atomic/AtomicInteger;
+; v5 : Lcom/fsharemobile/c/a;
+	move-result-object	v5
+; v5 : Ljava/util/concurrent/atomic/AtomicInteger;
+.line 1075
+	invoke-virtual	{v1,v2,v3,v4,v5},com/fsharemobile/a/z/c	; c(Ljava/net/URL;Ljava/lang/String;Lcom/fsharemobile/a/aa;Ljava/util/concurrent/atomic/AtomicInteger;)I
+; v1 : Lcom/fsharemobile/a/z; , v2 : Ljava/net/URL; , v3 : Ljava/lang/String; , v4 : Lcom/fsharemobile/c/u; , v5 : Ljava/util/concurrent/atomic/AtomicInteger;
+l8f550:
+	move-result	v0
+; v0 : single-length
+l8f552:
+.line 1121
+	iget-object	v1,v7,com/fsharemobile/c/s.a Lcom/fsharemobile/c/r;
+; v1 : Lcom/fsharemobile/c/r; , v7 : Lcom/fsharemobile/c/s;
+	invoke-static	{v1},com/fsharemobile/c/r/a	; a(Lcom/fsharemobile/c/r;)Lcom/fsharemobile/c/a;
+; v1 : Lcom/fsharemobile/c/r;
+	move-result-object	v1
+; v1 : Lcom/fsharemobile/c/a;
+	iget-object	v1,v1,com/fsharemobile/c/a.z Landroid/widget/ProgressBar;
+; v1 : Landroid/widget/ProgressBar; , v1 : Landroid/widget/ProgressBar;
+	const/4	v2,0
+; v2 : single-length
+	invoke-virtual	{v1,v2},android/widget/ProgressBar/setProgress	; setProgress(I)V
+; v1 : Landroid/widget/ProgressBar; , v2 : single-length
+.line 1122
+	iget-object	v1,v7,com/fsharemobile/c/s.a Lcom/fsharemobile/c/r;
+; v1 : Lcom/fsharemobile/c/r; , v7 : Lcom/fsharemobile/c/s;
+	invoke-static	{v1},com/fsharemobile/c/r/a	; a(Lcom/fsharemobile/c/r;)Lcom/fsharemobile/c/a;
+; v1 : Lcom/fsharemobile/c/r;
+	move-result-object	v1
+; v1 : Lcom/fsharemobile/c/a;
+	iget-object	v1,v1,com/fsharemobile/c/a.x Landroid/app/Dialog;
+; v1 : Landroid/app/Dialog; , v1 : Landroid/app/Dialog;
+	invoke-virtual	{v1},android/app/Dialog/isShowing	; isShowing()Z
+; v1 : Landroid/app/Dialog;
+	move-result	v1
+; v1 : single-length
+	if-eqz	v1,l8f59c
+; v1 : single-length
+.line 1123
+	iget-object	v1,v7,com/fsharemobile/c/s.a Lcom/fsharemobile/c/r;
+; v1 : Lcom/fsharemobile/c/r; , v7 : Lcom/fsharemobile/c/s;
+	invoke-static	{v1},com/fsharemobile/c/r/a	; a(Lcom/fsharemobile/c/r;)Lcom/fsharemobile/c/a;
+; v1 : Lcom/fsharemobile/c/r;
+	move-result-object	v1
+; v1 : Lcom/fsharemobile/c/a;
+	iget-object	v1,v1,com/fsharemobile/c/a.x Landroid/app/Dialog;
+; v1 : Landroid/app/Dialog; , v1 : Landroid/app/Dialog;
+	invoke-virtual	{v1},android/app/Dialog/dismiss	; dismiss()V
+; v1 : Landroid/app/Dialog;
+l8f59c:
+.line 1125
+	if-nez	v0,l8f62c
+; v0 : single-length
+.line 1126
+	iget-object	v0,v7,com/fsharemobile/c/s.a Lcom/fsharemobile/c/r;
+; v0 : Lcom/fsharemobile/c/r; , v7 : Lcom/fsharemobile/c/s;
+	invoke-static	{v0},com/fsharemobile/c/r/a	; a(Lcom/fsharemobile/c/r;)Lcom/fsharemobile/c/a;
+; v0 : Lcom/fsharemobile/c/r;
+	move-result-object	v0
+; v0 : Lcom/fsharemobile/c/a;
+	iget	v1,v0,com/fsharemobile/c/a.p I
+; v1 : single-length , v0 : Lcom/fsharemobile/c/a;
+	add-int/lit8	v1,v1,255
+; v1 : single-length , v1 : single-length
+	iput	v1,v0,com/fsharemobile/c/a.p I
+; v1 : single-length , v0 : Lcom/fsharemobile/c/a;
+.line 1127
+	iget-object	v0,v7,com/fsharemobile/c/s.a Lcom/fsharemobile/c/r;
+; v0 : Lcom/fsharemobile/c/r; , v7 : Lcom/fsharemobile/c/s;
+	invoke-static	{v0},com/fsharemobile/c/r/a	; a(Lcom/fsharemobile/c/r;)Lcom/fsharemobile/c/a;
+; v0 : Lcom/fsharemobile/c/r;
+	move-result-object	v0
+; v0 : Lcom/fsharemobile/c/a;
+	iget	v0,v0,com/fsharemobile/c/a.p I
+; v0 : single-length , v0 : single-length
+	if-nez	v0,l8f5f0
+; v0 : single-length
+.line 1128
+	iget-object	v0,v7,com/fsharemobile/c/s.a Lcom/fsharemobile/c/r;
+; v0 : Lcom/fsharemobile/c/r; , v7 : Lcom/fsharemobile/c/s;
+	invoke-static	{v0},com/fsharemobile/c/r/a	; a(Lcom/fsharemobile/c/r;)Lcom/fsharemobile/c/a;
+; v0 : Lcom/fsharemobile/c/r;
+	move-result-object	v0
+; v0 : Lcom/fsharemobile/c/a;
+	invoke-virtual	{v0},com/fsharemobile/c/a/getActivity	; getActivity()Landroid/support/v4/app/FragmentActivity;
+; v0 : Lcom/fsharemobile/c/a;
+	move-result-object	v0
+; v0 : Landroid/support/v4/app/FragmentActivity;
+.line 1130
+	new-instance	v1,com/fsharemobile/c/w
+; v1 : Lcom/fsharemobile/c/w;
+	invoke-direct	{v1,v7},com/fsharemobile/c/w/<init>	; <init>(Lcom/fsharemobile/c/s;)V
+; v1 : Lcom/fsharemobile/c/w; , v7 : Lcom/fsharemobile/c/s;
+.line 1129
+	invoke-virtual	{v0,v1},android/support/v4/app/FragmentActivity/runOnUiThread	; runOnUiThread(Ljava/lang/Runnable;)V
+; v0 : Landroid/support/v4/app/FragmentActivity; , v1 : Lcom/fsharemobile/c/w;
+l8f5f0:
+.line 1219
+	return-void	
+l8f5f2:
+.line 1110
+	move-exception	v1
+; v1 : java/net/MalformedURLException
+.line 1111
+	invoke-virtual	{v1},java/net/MalformedURLException/printStackTrace	; printStackTrace()V
+; v1 : java/net/MalformedURLException
+.line 1112
+	iget-object	v1,v7,com/fsharemobile/c/s.a Lcom/fsharemobile/c/r;
+; v1 : Lcom/fsharemobile/c/r; , v7 : Lcom/fsharemobile/c/s;
+	invoke-static	{v1},com/fsharemobile/c/r/a	; a(Lcom/fsharemobile/c/r;)Lcom/fsharemobile/c/a;
+; v1 : Lcom/fsharemobile/c/r;
+	move-result-object	v1
+; v1 : Lcom/fsharemobile/c/a;
+	iget-object	v1,v1,com/fsharemobile/c/a.x Landroid/app/Dialog;
+; v1 : Landroid/app/Dialog; , v1 : Landroid/app/Dialog;
+	invoke-virtual	{v1},android/app/Dialog/dismiss	; dismiss()V
+; v1 : Landroid/app/Dialog;
+	goto	l8f552
+l8f612:
+.line 1114
+	move-exception	v1
+; v1 : java/io/IOException
+.line 1115
+	iget-object	v1,v7,com/fsharemobile/c/s.a Lcom/fsharemobile/c/r;
+; v1 : Lcom/fsharemobile/c/r; , v7 : Lcom/fsharemobile/c/s;
+	invoke-static	{v1},com/fsharemobile/c/r/a	; a(Lcom/fsharemobile/c/r;)Lcom/fsharemobile/c/a;
+; v1 : Lcom/fsharemobile/c/r;
+	move-result-object	v1
+; v1 : Lcom/fsharemobile/c/a;
+	iget-object	v1,v1,com/fsharemobile/c/a.x Landroid/app/Dialog;
+; v1 : Landroid/app/Dialog; , v1 : Landroid/app/Dialog;
+	invoke-virtual	{v1},android/app/Dialog/dismiss	; dismiss()V
+; v1 : Landroid/app/Dialog;
+	goto	l8f552
+l8f62c:
+.line 1146
+	if-ne	v0,v6,l8f656
+; v0 : single-length , v6 : single-length
+.line 1148
+	iget-object	v1,v7,com/fsharemobile/c/s.a Lcom/fsharemobile/c/r;
+; v1 : Lcom/fsharemobile/c/r; , v7 : Lcom/fsharemobile/c/s;
+	invoke-static	{v1},com/fsharemobile/c/r/a	; a(Lcom/fsharemobile/c/r;)Lcom/fsharemobile/c/a;
+; v1 : Lcom/fsharemobile/c/r;
+	move-result-object	v1
+; v1 : Lcom/fsharemobile/c/a;
+	invoke-virtual	{v1},com/fsharemobile/c/a/getActivity	; getActivity()Landroid/support/v4/app/FragmentActivity;
+; v1 : Lcom/fsharemobile/c/a;
+	move-result-object	v1
+; v1 : Landroid/support/v4/app/FragmentActivity;
+.line 1150
+	new-instance	v2,com/fsharemobile/c/x
+; v2 : Lcom/fsharemobile/c/x;
+	invoke-direct	{v2,v7,v0},com/fsharemobile/c/x/<init>	; <init>(Lcom/fsharemobile/c/s;I)V
+; v2 : Lcom/fsharemobile/c/x; , v7 : Lcom/fsharemobile/c/s; , v0 : single-length
+.line 1149
+	invoke-virtual	{v1,v2},android/support/v4/app/FragmentActivity/runOnUiThread	; runOnUiThread(Ljava/lang/Runnable;)V
+; v1 : Landroid/support/v4/app/FragmentActivity; , v2 : Lcom/fsharemobile/c/x;
+	goto	l8f5f0
+l8f656:
+.line 1163
+	iget-object	v1,v7,com/fsharemobile/c/s.a Lcom/fsharemobile/c/r;
+; v1 : Lcom/fsharemobile/c/r; , v7 : Lcom/fsharemobile/c/s;
+	invoke-static	{v1},com/fsharemobile/c/r/a	; a(Lcom/fsharemobile/c/r;)Lcom/fsharemobile/c/a;
+; v1 : Lcom/fsharemobile/c/r;
+	move-result-object	v1
+; v1 : Lcom/fsharemobile/c/a;
+	invoke-static	{v1},com/fsharemobile/c/a/e	; e(Lcom/fsharemobile/c/a;)Ljava/util/concurrent/atomic/AtomicInteger;
+; v1 : Lcom/fsharemobile/c/a;
+	move-result-object	v1
+; v1 : Ljava/util/concurrent/atomic/AtomicInteger;
+	invoke-virtual	{v1},java/util/concurrent/atomic/AtomicInteger/get	; get()I
+; v1 : Ljava/util/concurrent/atomic/AtomicInteger;
+	move-result	v1
+; v1 : single-length
+	if-ne	v1,v6,l8f69c
+; v1 : single-length , v6 : single-length
+.line 1164
+	iget-object	v0,v7,com/fsharemobile/c/s.a Lcom/fsharemobile/c/r;
+; v0 : Lcom/fsharemobile/c/r; , v7 : Lcom/fsharemobile/c/s;
+	invoke-static	{v0},com/fsharemobile/c/r/a	; a(Lcom/fsharemobile/c/r;)Lcom/fsharemobile/c/a;
+; v0 : Lcom/fsharemobile/c/r;
+	move-result-object	v0
+; v0 : Lcom/fsharemobile/c/a;
+	invoke-virtual	{v0},com/fsharemobile/c/a/getActivity	; getActivity()Landroid/support/v4/app/FragmentActivity;
+; v0 : Lcom/fsharemobile/c/a;
+	move-result-object	v0
+; v0 : Landroid/support/v4/app/FragmentActivity;
+.line 1166
+	new-instance	v1,com/fsharemobile/c/y
+; v1 : Lcom/fsharemobile/c/y;
+	invoke-direct	{v1,v7},com/fsharemobile/c/y/<init>	; <init>(Lcom/fsharemobile/c/s;)V
+; v1 : Lcom/fsharemobile/c/y; , v7 : Lcom/fsharemobile/c/s;
+.line 1165
+	invoke-virtual	{v0,v1},android/support/v4/app/FragmentActivity/runOnUiThread	; runOnUiThread(Ljava/lang/Runnable;)V
+; v0 : Landroid/support/v4/app/FragmentActivity; , v1 : Lcom/fsharemobile/c/y;
+	goto	l8f5f0
+l8f69c:
+.line 1181
+	iget-object	v1,v7,com/fsharemobile/c/s.a Lcom/fsharemobile/c/r;
+; v1 : Lcom/fsharemobile/c/r; , v7 : Lcom/fsharemobile/c/s;
+	invoke-static	{v1},com/fsharemobile/c/r/a	; a(Lcom/fsharemobile/c/r;)Lcom/fsharemobile/c/a;
+; v1 : Lcom/fsharemobile/c/r;
+	move-result-object	v1
+; v1 : Lcom/fsharemobile/c/a;
+	invoke-virtual	{v1},com/fsharemobile/c/a/getActivity	; getActivity()Landroid/support/v4/app/FragmentActivity;
+; v1 : Lcom/fsharemobile/c/a;
+	move-result-object	v1
+; v1 : Landroid/support/v4/app/FragmentActivity;
+.line 1183
+	new-instance	v2,com/fsharemobile/c/z
+; v2 : Lcom/fsharemobile/c/z;
+	invoke-direct	{v2,v7,v0},com/fsharemobile/c/z/<init>	; <init>(Lcom/fsharemobile/c/s;I)V
+; v2 : Lcom/fsharemobile/c/z; , v7 : Lcom/fsharemobile/c/s; , v0 : single-length
+.line 1182
+	invoke-virtual	{v1,v2},android/support/v4/app/FragmentActivity/runOnUiThread	; runOnUiThread(Ljava/lang/Runnable;)V
+; v1 : Landroid/support/v4/app/FragmentActivity; , v2 : Lcom/fsharemobile/c/z;
+	goto	l8f5f0
+.end method
+
+

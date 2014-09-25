@@ -1,0 +1,39 @@
+.class public com/fsharemobile/listener/BaseBackPressedPictureListener
+.super java/lang/Object
+.source BaseBackPressedPictureListener.java
+.implements com/fsharemobile/listener/OnBackPressedListener
+
+.field private final activity Landroid/support/v4/app/FragmentActivity;
+.field private picFragment Lcom/fsharemobile/fragments/PicturesFragment;
+
+.method public <init>(Landroid/support/v4/app/FragmentActivity;Lcom/fsharemobile/fragments/PicturesFragment;)V
+.limit registers 3
+; this: v0 (Lcom/fsharemobile/listener/BaseBackPressedPictureListener;)
+; parameter[0] : v1 (Landroid/support/v4/app/FragmentActivity;)
+; parameter[1] : v2 (Lcom/fsharemobile/fragments/PicturesFragment;)
+.line 13
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Lcom/fsharemobile/listener/BaseBackPressedPictureListener;
+.line 14
+	iput-object	v1,v0,com/fsharemobile/listener/BaseBackPressedPictureListener.activity Landroid/support/v4/app/FragmentActivity;
+; v1 : Landroid/support/v4/app/FragmentActivity; , v0 : Lcom/fsharemobile/listener/BaseBackPressedPictureListener;
+.line 15
+	iput-object	v2,v0,com/fsharemobile/listener/BaseBackPressedPictureListener.picFragment Lcom/fsharemobile/fragments/PicturesFragment;
+; v2 : Lcom/fsharemobile/fragments/PicturesFragment; , v0 : Lcom/fsharemobile/listener/BaseBackPressedPictureListener;
+.line 16
+	return-void	
+.end method
+
+.method public doBack()V
+.limit registers 2
+; this: v1 (Lcom/fsharemobile/listener/BaseBackPressedPictureListener;)
+.line 21
+	iget-object	v0,v1,com/fsharemobile/listener/BaseBackPressedPictureListener.picFragment Lcom/fsharemobile/fragments/PicturesFragment;
+; v0 : Lcom/fsharemobile/fragments/PicturesFragment; , v1 : Lcom/fsharemobile/listener/BaseBackPressedPictureListener;
+	invoke-virtual	{v0},com/fsharemobile/fragments/PicturesFragment/back	; back()V
+; v0 : Lcom/fsharemobile/fragments/PicturesFragment;
+.line 22
+	return-void	
+.end method
+
+

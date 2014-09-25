@@ -1,0 +1,682 @@
+.class final com/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream
+.super java/io/OutputStream
+.source SpdyStream.java
+
+.inner class SpdyDataOutputStream inner com/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream outer com/squareup/okhttp/internal/spdy/SpdyStream
+.field static final $assertionsDisabled Z
+.field private final buffer [B
+.field private closed Z
+.field private finished Z
+.field private pos I
+.field final this$0 Lcom/squareup/okhttp/internal/spdy/SpdyStream;
+.field private unacknowledgedBytes I
+
+.method static <clinit>()V
+.limit registers 1
+.line 570
+	const-class	v0,com/squareup/okhttp/internal/spdy/SpdyStream
+; v0 : Ljava/lang/Class;
+	invoke-virtual	{v0},java/lang/Class/desiredAssertionStatus	; desiredAssertionStatus()Z
+; v0 : Ljava/lang/Class;
+	move-result	v0
+; v0 : single-length
+	if-nez	v0,lc0700
+; v0 : single-length
+	const/4	v0,1
+; v0 : single-length
+lc06fa:
+	sput-boolean	v0,com/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream.$assertionsDisabled Z
+; v0 : Z
+	return-void	
+lc0700:
+	const/4	v0,0
+; v0 : single-length
+	goto	lc06fa
+.end method
+
+.method private <init>(Lcom/squareup/okhttp/internal/spdy/SpdyStream;)V
+.limit registers 4
+; this: v2 (Lcom/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream;)
+; parameter[0] : v3 (Lcom/squareup/okhttp/internal/spdy/SpdyStream;)
+	const/4	v1,0
+; v1 : single-length
+.line 570
+	iput-object	v3,v2,com/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream.this$0 Lcom/squareup/okhttp/internal/spdy/SpdyStream;
+; v3 : Lcom/squareup/okhttp/internal/spdy/SpdyStream; , v2 : Lcom/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream;
+	invoke-direct	{v2},java/io/OutputStream/<init>	; <init>()V
+; v2 : Lcom/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream;
+.line 571
+	const/16	v0,8192
+; v0 : single-length
+	new-array	v0,v0,[B
+; v0 : [B , v0 : [B
+	iput-object	v0,v2,com/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream.buffer [B
+; v0 : [B , v2 : Lcom/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream;
+.line 572
+	iput	v1,v2,com/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream.pos I
+; v1 : single-length , v2 : Lcom/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream;
+.line 588
+	iput	v1,v2,com/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream.unacknowledgedBytes I
+; v1 : single-length , v2 : Lcom/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream;
+	return-void	
+.end method
+
+.method <init>(Lcom/squareup/okhttp/internal/spdy/SpdyStream;Lcom/squareup/okhttp/internal/spdy/SpdyStream$1;)V
+.limit registers 3
+; this: v0 (Lcom/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream;)
+; parameter[0] : v1 (Lcom/squareup/okhttp/internal/spdy/SpdyStream;)
+; parameter[1] : v2 (Lcom/squareup/okhttp/internal/spdy/SpdyStream$1;)
+.line 570
+	invoke-direct	{v0,v1},com/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream/<init>	; <init>(Lcom/squareup/okhttp/internal/spdy/SpdyStream;)V
+; v0 : Lcom/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream; , v1 : Lcom/squareup/okhttp/internal/spdy/SpdyStream;
+	return-void	
+.end method
+
+.method static access$300(Lcom/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream;)Z
+.limit registers 2
+; parameter[0] : v1 (Lcom/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream;)
+.line 570
+	iget-boolean	v0,v1,com/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream.finished Z
+; v0 : single-length , v1 : Lcom/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream;
+	return	v0
+; v0 : single-length
+.end method
+
+.method static access$302(Lcom/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream;Z)Z
+.limit registers 2
+; parameter[0] : v0 (Lcom/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream;)
+; parameter[1] : v1 (Z)
+.line 570
+	iput-boolean	v1,v0,com/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream.finished Z
+; v1 : single-length , v0 : Lcom/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream;
+	return	v1
+; v1 : single-length
+.end method
+
+.method static access$500(Lcom/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream;)Z
+.limit registers 2
+; parameter[0] : v1 (Lcom/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream;)
+.line 570
+	iget-boolean	v0,v1,com/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream.closed Z
+; v0 : single-length , v1 : Lcom/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream;
+	return	v0
+; v0 : single-length
+.end method
+
+.method static access$620(Lcom/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream;I)I
+.limit registers 3
+; parameter[0] : v1 (Lcom/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream;)
+; parameter[1] : v2 (I)
+.line 570
+	iget	v0,v1,com/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream.unacknowledgedBytes I
+; v0 : single-length , v1 : Lcom/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream;
+	sub-int/2addr	v0,v2
+; v0 : single-length , v2 : single-length
+	iput	v0,v1,com/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream.unacknowledgedBytes I
+; v0 : single-length , v1 : Lcom/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream;
+	return	v0
+; v0 : single-length
+.end method
+
+.method private checkNotClosed()V
+.throws Ljava/io/IOException;
+.limit registers 5
+; this: v4 (Lcom/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream;)
+.catch java/lang/Exception from lc07e8 to lc0850 using lc07e2
+.catch java/lang/Exception from lc07ca to lc07e6 using lc07e2
+.line 673
+	iget-object	v1,v4,com/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream.this$0 Lcom/squareup/okhttp/internal/spdy/SpdyStream;
+; v1 : Lcom/squareup/okhttp/internal/spdy/SpdyStream; , v4 : Lcom/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream;
+	monitor-enter	v1
+; v1 : Lcom/squareup/okhttp/internal/spdy/SpdyStream;
+lc07ca:
+.line 674
+	iget-boolean	v0,v4,com/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream.closed Z
+; v0 : single-length , v4 : Lcom/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream;
+	if-eqz	v0,lc07e8
+; v0 : single-length
+.line 675
+	new-instance	v0,java/io/IOException
+; v0 : Ljava/io/IOException;
+	const-string	v2,"stream closed"
+; v2 : Ljava/lang/String;
+	invoke-direct	{v0,v2},java/io/IOException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/io/IOException; , v2 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/io/IOException;
+lc07e2:
+.line 681
+	move-exception	v0
+; v0 : java/lang/Exception
+	monitor-exit	v1
+; v1 : Lcom/squareup/okhttp/internal/spdy/SpdyStream;
+lc07e6:
+	throw	v0
+; v0 : java/lang/Exception
+lc07e8:
+.line 676
+	iget-boolean	v0,v4,com/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream.finished Z
+; v0 : single-length , v4 : Lcom/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream;
+	if-eqz	v0,lc0800
+; v0 : single-length
+.line 677
+	new-instance	v0,java/io/IOException
+; v0 : Ljava/io/IOException;
+	const-string	v2,"stream finished"
+; v2 : Ljava/lang/String;
+	invoke-direct	{v0,v2},java/io/IOException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/io/IOException; , v2 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/io/IOException;
+lc0800:
+.line 678
+	iget-object	v0,v4,com/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream.this$0 Lcom/squareup/okhttp/internal/spdy/SpdyStream;
+; v0 : Lcom/squareup/okhttp/internal/spdy/SpdyStream; , v4 : Lcom/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream;
+	invoke-static	{v0},com/squareup/okhttp/internal/spdy/SpdyStream/access$1000	; access$1000(Lcom/squareup/okhttp/internal/spdy/SpdyStream;)Lcom/squareup/okhttp/internal/spdy/ErrorCode;
+; v0 : Lcom/squareup/okhttp/internal/spdy/SpdyStream;
+	move-result-object	v0
+; v0 : Lcom/squareup/okhttp/internal/spdy/ErrorCode;
+	if-eqz	v0,lc084e
+; v0 : Lcom/squareup/okhttp/internal/spdy/ErrorCode;
+.line 679
+	new-instance	v0,java/io/IOException
+; v0 : Ljava/io/IOException;
+	new-instance	v2,java/lang/StringBuilder
+; v2 : Ljava/lang/StringBuilder;
+	invoke-direct	{v2},java/lang/StringBuilder/<init>	; <init>()V
+; v2 : Ljava/lang/StringBuilder;
+	const-string	v3,"stream was reset: "
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	iget-object	v3,v4,com/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream.this$0 Lcom/squareup/okhttp/internal/spdy/SpdyStream;
+; v3 : Lcom/squareup/okhttp/internal/spdy/SpdyStream; , v4 : Lcom/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream;
+	invoke-static	{v3},com/squareup/okhttp/internal/spdy/SpdyStream/access$1000	; access$1000(Lcom/squareup/okhttp/internal/spdy/SpdyStream;)Lcom/squareup/okhttp/internal/spdy/ErrorCode;
+; v3 : Lcom/squareup/okhttp/internal/spdy/SpdyStream;
+	move-result-object	v3
+; v3 : Lcom/squareup/okhttp/internal/spdy/ErrorCode;
+	invoke-virtual	{v2,v3},java/lang/StringBuilder/append	; append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v3 : Lcom/squareup/okhttp/internal/spdy/ErrorCode;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v2},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v2 : Ljava/lang/StringBuilder;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-direct	{v0,v2},java/io/IOException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/io/IOException; , v2 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/io/IOException;
+lc084e:
+.line 681
+	monitor-exit	v1
+; v1 : Lcom/squareup/okhttp/internal/spdy/SpdyStream;
+lc0850:
+.line 682
+	return-void	
+.end method
+
+.method private waitUntilWritable(IZ)V
+.throws Ljava/io/IOException;
+.limit registers 7
+; this: v4 (Lcom/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream;)
+; parameter[0] : v5 (I)
+; parameter[1] : v6 (Z)
+.catch java/lang/InterruptedException from lc08c2 to lc0928 using lc08b4
+.catch java/lang/InterruptedException from lc0878 to lc08b4 using lc08b4
+.var 0 is e Ljava/lang/InterruptedException; from lc08b6 to lc08c2
+lc0878:
+.line 655
+	iget	v1,v4,com/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream.unacknowledgedBytes I
+; v1 : single-length , v4 : Lcom/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream;
+	add-int/2addr	v1,v5
+; v1 : single-length , v5 : single-length
+	iget-object	v2,v4,com/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream.this$0 Lcom/squareup/okhttp/internal/spdy/SpdyStream;
+; v2 : Lcom/squareup/okhttp/internal/spdy/SpdyStream; , v4 : Lcom/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream;
+	invoke-static	{v2},com/squareup/okhttp/internal/spdy/SpdyStream/access$1300	; access$1300(Lcom/squareup/okhttp/internal/spdy/SpdyStream;)I
+; v2 : Lcom/squareup/okhttp/internal/spdy/SpdyStream;
+	move-result	v2
+; v2 : single-length
+	if-lt	v1,v2,lc0928
+; v1 : single-length , v2 : single-length
+.line 656
+	iget-object	v1,v4,com/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream.this$0 Lcom/squareup/okhttp/internal/spdy/SpdyStream;
+; v1 : Lcom/squareup/okhttp/internal/spdy/SpdyStream; , v4 : Lcom/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream;
+	invoke-virtual	{v1},java/lang/Object/wait	; wait()V
+; v1 : Lcom/squareup/okhttp/internal/spdy/SpdyStream;
+.line 659
+	if-nez	v6,lc08c2
+; v6 : single-length
+	iget-boolean	v1,v4,com/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream.closed Z
+; v1 : single-length , v4 : Lcom/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream;
+	if-eqz	v1,lc08c2
+; v1 : single-length
+.line 660
+	new-instance	v1,java/io/IOException
+; v1 : Ljava/io/IOException;
+	const-string	v2,"stream closed"
+; v2 : Ljava/lang/String;
+	invoke-direct	{v1,v2},java/io/IOException/<init>	; <init>(Ljava/lang/String;)V
+; v1 : Ljava/io/IOException; , v2 : Ljava/lang/String;
+	throw	v1
+; v1 : Ljava/io/IOException;
+lc08b4:
+.line 667
+	move-exception	v0
+; v0 : java/lang/InterruptedException
+.line 668
+	new-instance	v1,java/io/InterruptedIOException
+; v1 : Ljava/io/InterruptedIOException;
+	invoke-direct	{v1},java/io/InterruptedIOException/<init>	; <init>()V
+; v1 : Ljava/io/InterruptedIOException;
+	throw	v1
+; v1 : Ljava/io/InterruptedIOException;
+lc08c2:
+.line 661
+	iget-boolean	v1,v4,com/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream.finished Z
+; v1 : single-length , v4 : Lcom/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream;
+	if-eqz	v1,lc08da
+; v1 : single-length
+.line 662
+	new-instance	v1,java/io/IOException
+; v1 : Ljava/io/IOException;
+	const-string	v2,"stream finished"
+; v2 : Ljava/lang/String;
+	invoke-direct	{v1,v2},java/io/IOException/<init>	; <init>(Ljava/lang/String;)V
+; v1 : Ljava/io/IOException; , v2 : Ljava/lang/String;
+	throw	v1
+; v1 : Ljava/io/IOException;
+lc08da:
+.line 663
+	iget-object	v1,v4,com/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream.this$0 Lcom/squareup/okhttp/internal/spdy/SpdyStream;
+; v1 : Lcom/squareup/okhttp/internal/spdy/SpdyStream; , v4 : Lcom/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream;
+	invoke-static	{v1},com/squareup/okhttp/internal/spdy/SpdyStream/access$1000	; access$1000(Lcom/squareup/okhttp/internal/spdy/SpdyStream;)Lcom/squareup/okhttp/internal/spdy/ErrorCode;
+; v1 : Lcom/squareup/okhttp/internal/spdy/SpdyStream;
+	move-result-object	v1
+; v1 : Lcom/squareup/okhttp/internal/spdy/ErrorCode;
+	if-eqz	v1,lc0878
+; v1 : Lcom/squareup/okhttp/internal/spdy/ErrorCode;
+.line 664
+	new-instance	v1,java/io/IOException
+; v1 : Ljava/io/IOException;
+	new-instance	v2,java/lang/StringBuilder
+; v2 : Ljava/lang/StringBuilder;
+	invoke-direct	{v2},java/lang/StringBuilder/<init>	; <init>()V
+; v2 : Ljava/lang/StringBuilder;
+	const-string	v3,"stream was reset: "
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	iget-object	v3,v4,com/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream.this$0 Lcom/squareup/okhttp/internal/spdy/SpdyStream;
+; v3 : Lcom/squareup/okhttp/internal/spdy/SpdyStream; , v4 : Lcom/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream;
+	invoke-static	{v3},com/squareup/okhttp/internal/spdy/SpdyStream/access$1000	; access$1000(Lcom/squareup/okhttp/internal/spdy/SpdyStream;)Lcom/squareup/okhttp/internal/spdy/ErrorCode;
+; v3 : Lcom/squareup/okhttp/internal/spdy/SpdyStream;
+	move-result-object	v3
+; v3 : Lcom/squareup/okhttp/internal/spdy/ErrorCode;
+	invoke-virtual	{v2,v3},java/lang/StringBuilder/append	; append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v3 : Lcom/squareup/okhttp/internal/spdy/ErrorCode;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v2},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v2 : Ljava/lang/StringBuilder;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-direct	{v1,v2},java/io/IOException/<init>	; <init>(Ljava/lang/String;)V
+; v1 : Ljava/io/IOException; , v2 : Ljava/lang/String;
+	throw	v1
+; v1 : Ljava/io/IOException;
+lc0928:
+.line 670
+	return-void	
+.end method
+
+.method private writeFrame(Z)V
+.throws Ljava/io/IOException;
+.limit registers 9
+; this: v7 (Lcom/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream;)
+; parameter[0] : v8 (Z)
+.catch java/lang/Exception from lc09c6 to lc09c8 using lc09c4
+.catch java/lang/Exception from lc0984 to lc0996 using lc09c4
+	const/4	v4,0
+; v4 : single-length
+.line 636
+	sget-boolean	v0,com/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream.$assertionsDisabled Z
+; v0 : single-length
+	if-nez	v0,lc097a
+; v0 : single-length
+	iget-object	v0,v7,com/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream.this$0 Lcom/squareup/okhttp/internal/spdy/SpdyStream;
+; v0 : Lcom/squareup/okhttp/internal/spdy/SpdyStream; , v7 : Lcom/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream;
+	invoke-static	{v0},java/lang/Thread/holdsLock	; holdsLock(Ljava/lang/Object;)Z
+; v0 : Lcom/squareup/okhttp/internal/spdy/SpdyStream;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,lc097a
+; v0 : single-length
+	new-instance	v0,java/lang/AssertionError
+; v0 : Ljava/lang/AssertionError;
+	invoke-direct	{v0},java/lang/AssertionError/<init>	; <init>()V
+; v0 : Ljava/lang/AssertionError;
+	throw	v0
+; v0 : Ljava/lang/AssertionError;
+lc097a:
+.line 638
+	iget	v6,v7,com/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream.pos I
+; v6 : single-length , v7 : Lcom/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream;
+.line 639
+	iget-object	v1,v7,com/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream.this$0 Lcom/squareup/okhttp/internal/spdy/SpdyStream;
+; v1 : Lcom/squareup/okhttp/internal/spdy/SpdyStream; , v7 : Lcom/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream;
+	monitor-enter	v1
+; v1 : Lcom/squareup/okhttp/internal/spdy/SpdyStream;
+lc0984:
+.line 640
+	invoke-direct	{v7,v6,v8},com/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream/waitUntilWritable	; waitUntilWritable(IZ)V
+; v7 : Lcom/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream; , v6 : single-length , v8 : single-length
+.line 641
+	iget	v0,v7,com/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream.unacknowledgedBytes I
+; v0 : single-length , v7 : Lcom/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream;
+	add-int/2addr	v0,v6
+; v0 : single-length , v6 : single-length
+	iput	v0,v7,com/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream.unacknowledgedBytes I
+; v0 : single-length , v7 : Lcom/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream;
+.line 642
+	monitor-exit	v1
+; v1 : Lcom/squareup/okhttp/internal/spdy/SpdyStream;
+lc0996:
+.line 643
+	iget-object	v0,v7,com/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream.this$0 Lcom/squareup/okhttp/internal/spdy/SpdyStream;
+; v0 : Lcom/squareup/okhttp/internal/spdy/SpdyStream; , v7 : Lcom/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream;
+	invoke-static	{v0},com/squareup/okhttp/internal/spdy/SpdyStream/access$800	; access$800(Lcom/squareup/okhttp/internal/spdy/SpdyStream;)Lcom/squareup/okhttp/internal/spdy/SpdyConnection;
+; v0 : Lcom/squareup/okhttp/internal/spdy/SpdyStream;
+	move-result-object	v0
+; v0 : Lcom/squareup/okhttp/internal/spdy/SpdyConnection;
+	iget-object	v1,v7,com/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream.this$0 Lcom/squareup/okhttp/internal/spdy/SpdyStream;
+; v1 : Lcom/squareup/okhttp/internal/spdy/SpdyStream; , v7 : Lcom/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream;
+	invoke-static	{v1},com/squareup/okhttp/internal/spdy/SpdyStream/access$700	; access$700(Lcom/squareup/okhttp/internal/spdy/SpdyStream;)I
+; v1 : Lcom/squareup/okhttp/internal/spdy/SpdyStream;
+	move-result	v1
+; v1 : single-length
+	iget-object	v3,v7,com/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream.buffer [B
+; v3 : [B , v7 : Lcom/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream;
+	iget	v5,v7,com/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream.pos I
+; v5 : single-length , v7 : Lcom/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream;
+	move	v2,v8
+; v2 : single-length , v8 : single-length
+	invoke-virtual/range	{v0..v5},com/squareup/okhttp/internal/spdy/SpdyConnection/writeData;	writeData(IZ[BII)V
+; v0 : Lcom/squareup/okhttp/internal/spdy/SpdyConnection; , v1 : single-length , v2 : single-length , v3 : [B , v4 : single-length , v5 : single-length
+.line 644
+	iput	v4,v7,com/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream.pos I
+; v4 : single-length , v7 : Lcom/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream;
+.line 645
+	return-void	
+lc09c4:
+.line 642
+	move-exception	v0
+; v0 : java/lang/Exception
+lc09c6:
+	monitor-exit	v1
+; v1 : Lcom/squareup/okhttp/internal/spdy/SpdyStream;
+lc09c8:
+	throw	v0
+; v0 : java/lang/Exception
+.end method
+
+.method public close()V
+.throws Ljava/io/IOException;
+.limit registers 4
+; this: v3 (Lcom/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream;)
+.catch java/lang/Exception from lc0a6a to lc0a6c using lc0a68
+.catch java/lang/Exception from lc0a1c to lc0a30 using lc0a68
+	const/4	v2,1
+; v2 : single-length
+.line 621
+	sget-boolean	v0,com/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream.$assertionsDisabled Z
+; v0 : single-length
+	if-nez	v0,lc0a16
+; v0 : single-length
+	iget-object	v0,v3,com/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream.this$0 Lcom/squareup/okhttp/internal/spdy/SpdyStream;
+; v0 : Lcom/squareup/okhttp/internal/spdy/SpdyStream; , v3 : Lcom/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream;
+	invoke-static	{v0},java/lang/Thread/holdsLock	; holdsLock(Ljava/lang/Object;)Z
+; v0 : Lcom/squareup/okhttp/internal/spdy/SpdyStream;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,lc0a16
+; v0 : single-length
+	new-instance	v0,java/lang/AssertionError
+; v0 : Ljava/lang/AssertionError;
+	invoke-direct	{v0},java/lang/AssertionError/<init>	; <init>()V
+; v0 : Ljava/lang/AssertionError;
+	throw	v0
+; v0 : Ljava/lang/AssertionError;
+lc0a16:
+.line 622
+	iget-object	v1,v3,com/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream.this$0 Lcom/squareup/okhttp/internal/spdy/SpdyStream;
+; v1 : Lcom/squareup/okhttp/internal/spdy/SpdyStream; , v3 : Lcom/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream;
+	monitor-enter	v1
+; v1 : Lcom/squareup/okhttp/internal/spdy/SpdyStream;
+lc0a1c:
+.line 623
+	iget-boolean	v0,v3,com/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream.closed Z
+; v0 : single-length , v3 : Lcom/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream;
+	if-eqz	v0,lc0a28
+; v0 : single-length
+.line 624
+	monitor-exit	v1
+; v1 : Lcom/squareup/okhttp/internal/spdy/SpdyStream;
+lc0a26:
+.line 633
+	return-void	
+lc0a28:
+.line 626
+	const/4	v0,1
+; v0 : single-length
+	iput-boolean	v0,v3,com/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream.closed Z
+; v0 : single-length , v3 : Lcom/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream;
+.line 627
+	monitor-exit	v1
+; v1 : Lcom/squareup/okhttp/internal/spdy/SpdyStream;
+lc0a30:
+.line 628
+	iget-object	v0,v3,com/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream.this$0 Lcom/squareup/okhttp/internal/spdy/SpdyStream;
+; v0 : Lcom/squareup/okhttp/internal/spdy/SpdyStream; , v3 : Lcom/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream;
+	invoke-static	{v0},com/squareup/okhttp/internal/spdy/SpdyStream/access$1200	; access$1200(Lcom/squareup/okhttp/internal/spdy/SpdyStream;)Lcom/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream;
+; v0 : Lcom/squareup/okhttp/internal/spdy/SpdyStream;
+	move-result-object	v0
+; v0 : Lcom/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream;
+	iget-boolean	v0,v0,com/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream.finished Z
+; v0 : single-length , v0 : single-length
+	if-nez	v0,lc0a4a
+; v0 : single-length
+.line 629
+	invoke-direct	{v3,v2},com/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream/writeFrame	; writeFrame(Z)V
+; v3 : Lcom/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream; , v2 : single-length
+lc0a4a:
+.line 631
+	iget-object	v0,v3,com/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream.this$0 Lcom/squareup/okhttp/internal/spdy/SpdyStream;
+; v0 : Lcom/squareup/okhttp/internal/spdy/SpdyStream; , v3 : Lcom/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream;
+	invoke-static	{v0},com/squareup/okhttp/internal/spdy/SpdyStream/access$800	; access$800(Lcom/squareup/okhttp/internal/spdy/SpdyStream;)Lcom/squareup/okhttp/internal/spdy/SpdyConnection;
+; v0 : Lcom/squareup/okhttp/internal/spdy/SpdyStream;
+	move-result-object	v0
+; v0 : Lcom/squareup/okhttp/internal/spdy/SpdyConnection;
+	invoke-virtual	{v0},com/squareup/okhttp/internal/spdy/SpdyConnection/flush	; flush()V
+; v0 : Lcom/squareup/okhttp/internal/spdy/SpdyConnection;
+.line 632
+	iget-object	v0,v3,com/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream.this$0 Lcom/squareup/okhttp/internal/spdy/SpdyStream;
+; v0 : Lcom/squareup/okhttp/internal/spdy/SpdyStream; , v3 : Lcom/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream;
+	invoke-static	{v0},com/squareup/okhttp/internal/spdy/SpdyStream/access$1100	; access$1100(Lcom/squareup/okhttp/internal/spdy/SpdyStream;)V
+; v0 : Lcom/squareup/okhttp/internal/spdy/SpdyStream;
+	goto	lc0a26
+lc0a68:
+.line 627
+	move-exception	v0
+; v0 : java/lang/Exception
+lc0a6a:
+	monitor-exit	v1
+; v1 : Lcom/squareup/okhttp/internal/spdy/SpdyStream;
+lc0a6c:
+	throw	v0
+; v0 : java/lang/Exception
+.end method
+
+.method public flush()V
+.throws Ljava/io/IOException;
+.limit registers 2
+; this: v1 (Lcom/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream;)
+.line 612
+	sget-boolean	v0,com/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream.$assertionsDisabled Z
+; v0 : single-length
+	if-nez	v0,lc0ab8
+; v0 : single-length
+	iget-object	v0,v1,com/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream.this$0 Lcom/squareup/okhttp/internal/spdy/SpdyStream;
+; v0 : Lcom/squareup/okhttp/internal/spdy/SpdyStream; , v1 : Lcom/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream;
+	invoke-static	{v0},java/lang/Thread/holdsLock	; holdsLock(Ljava/lang/Object;)Z
+; v0 : Lcom/squareup/okhttp/internal/spdy/SpdyStream;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,lc0ab8
+; v0 : single-length
+	new-instance	v0,java/lang/AssertionError
+; v0 : Ljava/lang/AssertionError;
+	invoke-direct	{v0},java/lang/AssertionError/<init>	; <init>()V
+; v0 : Ljava/lang/AssertionError;
+	throw	v0
+; v0 : Ljava/lang/AssertionError;
+lc0ab8:
+.line 613
+	invoke-direct	{v1},com/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream/checkNotClosed	; checkNotClosed()V
+; v1 : Lcom/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream;
+.line 614
+	iget	v0,v1,com/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream.pos I
+; v0 : single-length , v1 : Lcom/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream;
+	if-lez	v0,lc0ae0
+; v0 : single-length
+.line 615
+	const/4	v0,0
+; v0 : single-length
+	invoke-direct	{v1,v0},com/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream/writeFrame	; writeFrame(Z)V
+; v1 : Lcom/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream; , v0 : single-length
+.line 616
+	iget-object	v0,v1,com/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream.this$0 Lcom/squareup/okhttp/internal/spdy/SpdyStream;
+; v0 : Lcom/squareup/okhttp/internal/spdy/SpdyStream; , v1 : Lcom/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream;
+	invoke-static	{v0},com/squareup/okhttp/internal/spdy/SpdyStream/access$800	; access$800(Lcom/squareup/okhttp/internal/spdy/SpdyStream;)Lcom/squareup/okhttp/internal/spdy/SpdyConnection;
+; v0 : Lcom/squareup/okhttp/internal/spdy/SpdyStream;
+	move-result-object	v0
+; v0 : Lcom/squareup/okhttp/internal/spdy/SpdyConnection;
+	invoke-virtual	{v0},com/squareup/okhttp/internal/spdy/SpdyConnection/flush	; flush()V
+; v0 : Lcom/squareup/okhttp/internal/spdy/SpdyConnection;
+lc0ae0:
+.line 618
+	return-void	
+.end method
+
+.method public write(I)V
+.throws Ljava/io/IOException;
+.limit registers 2
+; this: v0 (Lcom/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream;)
+; parameter[0] : v1 (I)
+.line 591
+	invoke-static	{v0,v1},com/squareup/okhttp/internal/Util/writeSingleByte	; writeSingleByte(Ljava/io/OutputStream;I)V
+; v0 : Lcom/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream; , v1 : single-length
+.line 592
+	return-void	
+.end method
+
+.method public write([BII)V
+.throws Ljava/io/IOException;
+.limit registers 7
+; this: v3 (Lcom/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream;)
+; parameter[0] : v4 ([B)
+; parameter[1] : v5 (I)
+; parameter[2] : v6 (I)
+.var 0 is bytesToCopy I from lc0b6c to lc0b8a
+.line 595
+	sget-boolean	v1,com/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream.$assertionsDisabled Z
+; v1 : single-length
+	if-nez	v1,lc0b30
+; v1 : single-length
+	iget-object	v1,v3,com/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream.this$0 Lcom/squareup/okhttp/internal/spdy/SpdyStream;
+; v1 : Lcom/squareup/okhttp/internal/spdy/SpdyStream; , v3 : Lcom/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream;
+	invoke-static	{v1},java/lang/Thread/holdsLock	; holdsLock(Ljava/lang/Object;)Z
+; v1 : Lcom/squareup/okhttp/internal/spdy/SpdyStream;
+	move-result	v1
+; v1 : single-length
+	if-eqz	v1,lc0b30
+; v1 : single-length
+	new-instance	v1,java/lang/AssertionError
+; v1 : Ljava/lang/AssertionError;
+	invoke-direct	{v1},java/lang/AssertionError/<init>	; <init>()V
+; v1 : Ljava/lang/AssertionError;
+	throw	v1
+; v1 : Ljava/lang/AssertionError;
+lc0b30:
+.line 596
+	array-length	v1,v4
+; v1 : single-length , v4 : [B
+	invoke-static	{v1,v5,v6},com/squareup/okhttp/internal/Util/checkOffsetAndCount	; checkOffsetAndCount(III)V
+; v1 : single-length , v5 : single-length , v6 : single-length
+.line 597
+	invoke-direct	{v3},com/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream/checkNotClosed	; checkNotClosed()V
+; v3 : Lcom/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream;
+lc0b3e:
+.line 599
+	if-lez	v6,lc0b8a
+; v6 : single-length
+.line 600
+	iget	v1,v3,com/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream.pos I
+; v1 : single-length , v3 : Lcom/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream;
+	iget-object	v2,v3,com/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream.buffer [B
+; v2 : [B , v3 : Lcom/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream;
+	array-length	v2,v2
+; v2 : single-length , v2 : single-length
+	if-ne	v1,v2,lc0b58
+; v1 : single-length , v2 : single-length
+.line 601
+	const/4	v1,0
+; v1 : single-length
+	invoke-direct	{v3,v1},com/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream/writeFrame	; writeFrame(Z)V
+; v3 : Lcom/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream; , v1 : single-length
+lc0b58:
+.line 603
+	iget-object	v1,v3,com/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream.buffer [B
+; v1 : [B , v3 : Lcom/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream;
+	array-length	v1,v1
+; v1 : single-length , v1 : single-length
+	iget	v2,v3,com/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream.pos I
+; v2 : single-length , v3 : Lcom/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream;
+	sub-int/2addr	v1,v2
+; v1 : single-length , v2 : single-length
+	invoke-static	{v6,v1},java/lang/Math/min	; min(II)I
+; v6 : single-length , v1 : single-length
+	move-result	v0
+; v0 : single-length
+.line 604
+	iget-object	v1,v3,com/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream.buffer [B
+; v1 : [B , v3 : Lcom/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream;
+	iget	v2,v3,com/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream.pos I
+; v2 : single-length , v3 : Lcom/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream;
+	invoke-static	{v4,v5,v1,v2,v0},java/lang/System/arraycopy	; arraycopy(Ljava/lang/Object;ILjava/lang/Object;II)V
+; v4 : [B , v5 : single-length , v1 : [B , v2 : single-length , v0 : single-length
+.line 605
+	iget	v1,v3,com/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream.pos I
+; v1 : single-length , v3 : Lcom/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream;
+	add-int/2addr	v1,v0
+; v1 : single-length , v0 : single-length
+	iput	v1,v3,com/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream.pos I
+; v1 : single-length , v3 : Lcom/squareup/okhttp/internal/spdy/SpdyStream$SpdyDataOutputStream;
+.line 606
+	add-int/2addr	v5,v0
+; v5 : single-length , v0 : single-length
+.line 607
+	sub-int/2addr	v6,v0
+; v6 : single-length , v0 : single-length
+.line 608
+	goto	lc0b3e
+lc0b8a:
+.line 609
+	return-void	
+.end method
+
+

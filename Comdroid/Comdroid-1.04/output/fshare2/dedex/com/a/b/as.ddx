@@ -1,0 +1,362 @@
+.class public com/a/b/as
+.super java/lang/Object
+.source MyApplication
+
+.field private final a Lcom/a/b/ae;
+.field private final b Lcom/a/b/ar;
+.field private c Z
+.field private d Z
+.field private e Z
+.field private f I
+.field private g Landroid/graphics/drawable/Drawable;
+.field private h I
+.field private i Landroid/graphics/drawable/Drawable;
+
+.method <init>()V
+.limit registers 4
+; this: v3 (Lcom/a/b/as;)
+	const/4	v2,0
+; v2 : single-length
+.line 55
+	invoke-direct	{v3},java/lang/Object/<init>	; <init>()V
+; v3 : Lcom/a/b/as;
+.line 56
+	iput-object	v2,v3,com/a/b/as.a Lcom/a/b/ae;
+; v2 : single-length , v3 : Lcom/a/b/as;
+.line 57
+	new-instance	v0,com/a/b/ar
+; v0 : Lcom/a/b/ar;
+	const/4	v1,0
+; v1 : single-length
+	invoke-direct	{v0,v2,v1},com/a/b/ar/<init>	; <init>(Landroid/net/Uri;I)V
+; v0 : Lcom/a/b/ar; , v2 : single-length , v1 : single-length
+	iput-object	v0,v3,com/a/b/as.b Lcom/a/b/ar;
+; v0 : Lcom/a/b/ar; , v3 : Lcom/a/b/as;
+.line 58
+	return-void	
+.end method
+
+.method <init>(Lcom/a/b/ae;Landroid/net/Uri;I)V
+.limit registers 6
+; this: v2 (Lcom/a/b/as;)
+; parameter[0] : v3 (Lcom/a/b/ae;)
+; parameter[1] : v4 (Landroid/net/Uri;)
+; parameter[2] : v5 (I)
+.line 46
+	invoke-direct	{v2},java/lang/Object/<init>	; <init>()V
+; v2 : Lcom/a/b/as;
+.line 47
+	iget-boolean	v0,v3,com/a/b/ae.k Z
+; v0 : single-length , v3 : Lcom/a/b/ae;
+	if-eqz	v0,l79e5e
+; v0 : single-length
+.line 48
+	new-instance	v0,java/lang/IllegalStateException
+; v0 : Ljava/lang/IllegalStateException;
+	const-string	v1,"Picasso instance already shut down. Cannot submit new requests."
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/IllegalStateException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/IllegalStateException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/IllegalStateException;
+l79e5e:
+.line 51
+	iput-object	v3,v2,com/a/b/as.a Lcom/a/b/ae;
+; v3 : Lcom/a/b/ae; , v2 : Lcom/a/b/as;
+.line 52
+	new-instance	v0,com/a/b/ar
+; v0 : Lcom/a/b/ar;
+	invoke-direct	{v0,v4,v5},com/a/b/ar/<init>	; <init>(Landroid/net/Uri;I)V
+; v0 : Lcom/a/b/ar; , v4 : Landroid/net/Uri; , v5 : single-length
+	iput-object	v0,v2,com/a/b/as.b Lcom/a/b/ar;
+; v0 : Lcom/a/b/ar; , v2 : Lcom/a/b/as;
+.line 53
+	return-void	
+.end method
+
+.method a()Lcom/a/b/as;
+.limit registers 2
+; this: v1 (Lcom/a/b/as;)
+.line 129
+	const/4	v0,0
+; v0 : single-length
+	iput-boolean	v0,v1,com/a/b/as.e Z
+; v0 : single-length , v1 : Lcom/a/b/as;
+.line 130
+	return-object	v1
+; v1 : Lcom/a/b/as;
+.end method
+
+.method public a(I)Lcom/a/b/as;
+.limit registers 4
+; this: v2 (Lcom/a/b/as;)
+; parameter[0] : v3 (I)
+.line 66
+	if-nez	v3,l79eb0
+; v3 : single-length
+.line 67
+	new-instance	v0,java/lang/IllegalArgumentException
+; v0 : Ljava/lang/IllegalArgumentException;
+	const-string	v1,"Placeholder image resource invalid."
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/IllegalArgumentException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/IllegalArgumentException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/IllegalArgumentException;
+l79eb0:
+.line 69
+	iget-object	v0,v2,com/a/b/as.g Landroid/graphics/drawable/Drawable;
+; v0 : Landroid/graphics/drawable/Drawable; , v2 : Lcom/a/b/as;
+	if-eqz	v0,l79ec8
+; v0 : Landroid/graphics/drawable/Drawable;
+.line 70
+	new-instance	v0,java/lang/IllegalStateException
+; v0 : Ljava/lang/IllegalStateException;
+	const-string	v1,"Placeholder image already set."
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/IllegalStateException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/IllegalStateException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/IllegalStateException;
+l79ec8:
+.line 72
+	iput	v3,v2,com/a/b/as.f I
+; v3 : single-length , v2 : Lcom/a/b/as;
+.line 73
+	return-object	v2
+; v2 : Lcom/a/b/as;
+.end method
+
+.method public a(II)Lcom/a/b/as;
+.limit registers 4
+; this: v1 (Lcom/a/b/as;)
+; parameter[0] : v2 (I)
+; parameter[1] : v3 (I)
+.line 143
+	iget-object	v0,v1,com/a/b/as.b Lcom/a/b/ar;
+; v0 : Lcom/a/b/ar; , v1 : Lcom/a/b/as;
+	invoke-virtual	{v0,v2,v3},com/a/b/ar/a	; a(II)Lcom/a/b/ar;
+; v0 : Lcom/a/b/ar; , v2 : single-length , v3 : single-length
+.line 144
+	return-object	v1
+; v1 : Lcom/a/b/as;
+.end method
+
+.method public a(Landroid/widget/ImageView;)V
+.limit registers 3
+; this: v1 (Lcom/a/b/as;)
+; parameter[0] : v2 (Landroid/widget/ImageView;)
+.line 326
+	const/4	v0,0
+; v0 : single-length
+	invoke-virtual	{v1,v2,v0},com/a/b/as/a	; a(Landroid/widget/ImageView;Lcom/a/b/j;)V
+; v1 : Lcom/a/b/as; , v2 : Landroid/widget/ImageView; , v0 : single-length
+.line 327
+	return-void	
+.end method
+
+.method public a(Landroid/widget/ImageView;Lcom/a/b/j;)V
+.limit registers 13
+; this: v10 (Lcom/a/b/as;)
+; parameter[0] : v11 (Landroid/widget/ImageView;)
+; parameter[1] : v12 (Lcom/a/b/j;)
+.line 339
+	if-nez	v11,l79f2c
+; v11 : Landroid/widget/ImageView;
+.line 340
+	new-instance	v0,java/lang/IllegalArgumentException
+; v0 : Ljava/lang/IllegalArgumentException;
+	const-string	v1,"Target must not be null."
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/IllegalArgumentException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/IllegalArgumentException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/IllegalArgumentException;
+l79f2c:
+.line 343
+	iget-object	v0,v10,com/a/b/as.b Lcom/a/b/ar;
+; v0 : Lcom/a/b/ar; , v10 : Lcom/a/b/as;
+	invoke-virtual	{v0},com/a/b/ar/a	; a()Z
+; v0 : Lcom/a/b/ar;
+	move-result	v0
+; v0 : single-length
+	if-nez	v0,l79f56
+; v0 : single-length
+.line 344
+	iget-object	v0,v10,com/a/b/as.a Lcom/a/b/ae;
+; v0 : Lcom/a/b/ae; , v10 : Lcom/a/b/as;
+	invoke-virtual	{v0,v11},com/a/b/ae/a	; a(Landroid/widget/ImageView;)V
+; v0 : Lcom/a/b/ae; , v11 : Landroid/widget/ImageView;
+.line 345
+	iget	v0,v10,com/a/b/as.f I
+; v0 : single-length , v10 : Lcom/a/b/as;
+	iget-object	v1,v10,com/a/b/as.g Landroid/graphics/drawable/Drawable;
+; v1 : Landroid/graphics/drawable/Drawable; , v10 : Lcom/a/b/as;
+	invoke-static	{v11,v0,v1},com/a/b/an/a	; a(Landroid/widget/ImageView;ILandroid/graphics/drawable/Drawable;)V
+; v11 : Landroid/widget/ImageView; , v0 : single-length , v1 : Landroid/graphics/drawable/Drawable;
+l79f54:
+.line 386
+	return-void	
+l79f56:
+.line 349
+	iget-boolean	v0,v10,com/a/b/as.e Z
+; v0 : single-length , v10 : Lcom/a/b/as;
+	if-eqz	v0,l79fc4
+; v0 : single-length
+.line 350
+	iget-object	v0,v10,com/a/b/as.b Lcom/a/b/ar;
+; v0 : Lcom/a/b/ar; , v10 : Lcom/a/b/as;
+	invoke-virtual	{v0},com/a/b/ar/b	; b()Z
+; v0 : Lcom/a/b/ar;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,l79f7e
+; v0 : single-length
+.line 351
+	new-instance	v0,java/lang/IllegalStateException
+; v0 : Ljava/lang/IllegalStateException;
+	const-string	v1,"Fit cannot be used with resize."
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/IllegalStateException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/IllegalStateException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/IllegalStateException;
+l79f7e:
+.line 353
+	invoke-virtual	{v11},android/widget/ImageView/getMeasuredWidth	; getMeasuredWidth()I
+; v11 : Landroid/widget/ImageView;
+	move-result	v0
+; v0 : single-length
+.line 354
+	invoke-virtual	{v11},android/widget/ImageView/getMeasuredHeight	; getMeasuredHeight()I
+; v11 : Landroid/widget/ImageView;
+	move-result	v1
+; v1 : single-length
+.line 355
+	if-eqz	v0,l79f96
+; v0 : single-length
+	if-nez	v1,l79fba
+; v1 : single-length
+l79f96:
+.line 356
+	iget	v0,v10,com/a/b/as.f I
+; v0 : single-length , v10 : Lcom/a/b/as;
+	iget-object	v1,v10,com/a/b/as.g Landroid/graphics/drawable/Drawable;
+; v1 : Landroid/graphics/drawable/Drawable; , v10 : Lcom/a/b/as;
+	invoke-static	{v11,v0,v1},com/a/b/an/a	; a(Landroid/widget/ImageView;ILandroid/graphics/drawable/Drawable;)V
+; v11 : Landroid/widget/ImageView; , v0 : single-length , v1 : Landroid/graphics/drawable/Drawable;
+.line 357
+	iget-object	v0,v10,com/a/b/as.a Lcom/a/b/ae;
+; v0 : Lcom/a/b/ae; , v10 : Lcom/a/b/as;
+	new-instance	v1,com/a/b/n
+; v1 : Lcom/a/b/n;
+	invoke-direct	{v1,v10,v11,v12},com/a/b/n/<init>	; <init>(Lcom/a/b/as;Landroid/widget/ImageView;Lcom/a/b/j;)V
+; v1 : Lcom/a/b/n; , v10 : Lcom/a/b/as; , v11 : Landroid/widget/ImageView; , v12 : Lcom/a/b/j;
+	invoke-virtual	{v0,v11,v1},com/a/b/ae/a	; a(Landroid/widget/ImageView;Lcom/a/b/n;)V
+; v0 : Lcom/a/b/ae; , v11 : Landroid/widget/ImageView; , v1 : Lcom/a/b/n;
+	goto	l79f54
+l79fba:
+.line 360
+	iget-object	v2,v10,com/a/b/as.b Lcom/a/b/ar;
+; v2 : Lcom/a/b/ar; , v10 : Lcom/a/b/as;
+	invoke-virtual	{v2,v0,v1},com/a/b/ar/a	; a(II)Lcom/a/b/ar;
+; v2 : Lcom/a/b/ar; , v0 : single-length , v1 : single-length
+l79fc4:
+.line 363
+	iget-object	v0,v10,com/a/b/as.a Lcom/a/b/ae;
+; v0 : Lcom/a/b/ae; , v10 : Lcom/a/b/as;
+	iget-object	v1,v10,com/a/b/as.b Lcom/a/b/ar;
+; v1 : Lcom/a/b/ar; , v10 : Lcom/a/b/as;
+	invoke-virtual	{v1},com/a/b/ar/c	; c()Lcom/a/b/ap;
+; v1 : Lcom/a/b/ar;
+	move-result-object	v1
+; v1 : Lcom/a/b/ap;
+	invoke-virtual	{v0,v1},com/a/b/ae/a	; a(Lcom/a/b/ap;)Lcom/a/b/ap;
+; v0 : Lcom/a/b/ae; , v1 : Lcom/a/b/ap;
+	move-result-object	v3
+; v3 : Lcom/a/b/ap;
+.line 364
+	invoke-static	{v3},com/a/b/bb/a	; a(Lcom/a/b/ap;)Ljava/lang/String;
+; v3 : Lcom/a/b/ap;
+	move-result-object	v8
+; v8 : Ljava/lang/String;
+.line 366
+	iget-boolean	v0,v10,com/a/b/as.c Z
+; v0 : single-length , v10 : Lcom/a/b/as;
+	if-nez	v0,l7a032
+; v0 : single-length
+.line 367
+	iget-object	v0,v10,com/a/b/as.a Lcom/a/b/ae;
+; v0 : Lcom/a/b/ae; , v10 : Lcom/a/b/as;
+	invoke-virtual	{v0,v8},com/a/b/ae/b	; b(Ljava/lang/String;)Landroid/graphics/Bitmap;
+; v0 : Lcom/a/b/ae; , v8 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Landroid/graphics/Bitmap;
+.line 368
+	if-eqz	v2,l7a032
+; v2 : Landroid/graphics/Bitmap;
+.line 369
+	iget-object	v0,v10,com/a/b/as.a Lcom/a/b/ae;
+; v0 : Lcom/a/b/ae; , v10 : Lcom/a/b/as;
+	invoke-virtual	{v0,v11},com/a/b/ae/a	; a(Landroid/widget/ImageView;)V
+; v0 : Lcom/a/b/ae; , v11 : Landroid/widget/ImageView;
+.line 370
+	iget-object	v0,v10,com/a/b/as.a Lcom/a/b/ae;
+; v0 : Lcom/a/b/ae; , v10 : Lcom/a/b/as;
+	iget-object	v1,v0,com/a/b/ae.c Landroid/content/Context;
+; v1 : Landroid/content/Context; , v0 : Lcom/a/b/ae;
+	sget-object	v3,com/a/b/ak.a Lcom/a/b/ak;
+; v3 : Lcom/a/b/ak;
+	iget-boolean	v4,v10,com/a/b/as.d Z
+; v4 : single-length , v10 : Lcom/a/b/as;
+	iget-object	v0,v10,com/a/b/as.a Lcom/a/b/ae;
+; v0 : Lcom/a/b/ae; , v10 : Lcom/a/b/as;
+	iget-boolean	v5,v0,com/a/b/ae.j Z
+; v5 : single-length , v0 : Lcom/a/b/ae;
+	move-object	v0,v11
+; v0 : Landroid/widget/ImageView; , v11 : Landroid/widget/ImageView;
+	invoke-static/range	{v0..v5},com/a/b/an/a;	a(Landroid/widget/ImageView;Landroid/content/Context;Landroid/graphics/Bitmap;Lcom/a/b/ak;ZZ)V
+; v0 : Landroid/widget/ImageView; , v1 : Landroid/content/Context; , v2 : Landroid/graphics/Bitmap; , v3 : Lcom/a/b/ak; , v4 : single-length , v5 : single-length
+.line 372
+	if-eqz	v12,l79f54
+; v12 : Lcom/a/b/j;
+.line 373
+	invoke-interface	{v12},com/a/b/j/a	; a()V
+; v12 : Lcom/a/b/j;
+	goto	l79f54
+l7a032:
+.line 379
+	iget	v0,v10,com/a/b/as.f I
+; v0 : single-length , v10 : Lcom/a/b/as;
+	iget-object	v1,v10,com/a/b/as.g Landroid/graphics/drawable/Drawable;
+; v1 : Landroid/graphics/drawable/Drawable; , v10 : Lcom/a/b/as;
+	invoke-static	{v11,v0,v1},com/a/b/an/a	; a(Landroid/widget/ImageView;ILandroid/graphics/drawable/Drawable;)V
+; v11 : Landroid/widget/ImageView; , v0 : single-length , v1 : Landroid/graphics/drawable/Drawable;
+.line 381
+	new-instance	v0,com/a/b/x
+; v0 : Lcom/a/b/x;
+	iget-object	v1,v10,com/a/b/as.a Lcom/a/b/ae;
+; v1 : Lcom/a/b/ae; , v10 : Lcom/a/b/as;
+	iget-boolean	v4,v10,com/a/b/as.c Z
+; v4 : single-length , v10 : Lcom/a/b/as;
+	iget-boolean	v5,v10,com/a/b/as.d Z
+; v5 : single-length , v10 : Lcom/a/b/as;
+	iget	v6,v10,com/a/b/as.h I
+; v6 : single-length , v10 : Lcom/a/b/as;
+	iget-object	v7,v10,com/a/b/as.i Landroid/graphics/drawable/Drawable;
+; v7 : Landroid/graphics/drawable/Drawable; , v10 : Lcom/a/b/as;
+	move-object	v2,v11
+; v2 : Landroid/widget/ImageView; , v11 : Landroid/widget/ImageView;
+	move-object	v9,v12
+; v9 : Lcom/a/b/j; , v12 : Lcom/a/b/j;
+	invoke-direct/range	{v0..v9},com/a/b/x/<init>;	<init>(Lcom/a/b/ae;Landroid/widget/ImageView;Lcom/a/b/ap;ZZILandroid/graphics/drawable/Drawable;Ljava/lang/String;Lcom/a/b/j;)V
+; v0 : Lcom/a/b/x; , v1 : Lcom/a/b/ae; , v2 : Landroid/widget/ImageView; , v3 : Lcom/a/b/ap; , v4 : single-length , v5 : single-length , v6 : single-length , v7 : Landroid/graphics/drawable/Drawable; , v8 : Ljava/lang/String; , v9 : Lcom/a/b/j;
+.line 385
+	iget-object	v1,v10,com/a/b/as.a Lcom/a/b/ae;
+; v1 : Lcom/a/b/ae; , v10 : Lcom/a/b/as;
+	invoke-virtual	{v1,v0},com/a/b/ae/a	; a(Lcom/a/b/a;)V
+; v1 : Lcom/a/b/ae; , v0 : Lcom/a/b/x;
+	goto/16	l79f54
+.end method
+
+

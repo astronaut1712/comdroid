@@ -1,0 +1,222 @@
+.class public com/kenny/mypopupwindow/ActionItem
+.super java/lang/Object
+.source ActionItem.java
+
+.field private actionId I
+.field private icon Landroid/graphics/drawable/Drawable;
+.field private selected Z
+.field private sticky Z
+.field private thumb Landroid/graphics/Bitmap;
+.field private title Ljava/lang/String;
+
+.method public <init>()V
+.limit registers 3
+; this: v2 (Lcom/kenny/mypopupwindow/ActionItem;)
+	const/4	v1,0
+; v1 : single-length
+.line 40
+	const/4	v0,15
+; v0 : single-length
+	invoke-direct	{v2,v0,v1,v1},com/kenny/mypopupwindow/ActionItem/<init>	; <init>(ILjava/lang/String;Landroid/graphics/drawable/Drawable;)V
+; v2 : Lcom/kenny/mypopupwindow/ActionItem; , v0 : single-length , v1 : single-length , v1 : single-length
+.line 41
+	return-void	
+.end method
+
+.method public <init>(ILandroid/graphics/drawable/Drawable;)V
+.limit registers 4
+; this: v1 (Lcom/kenny/mypopupwindow/ActionItem;)
+; parameter[0] : v2 (I)
+; parameter[1] : v3 (Landroid/graphics/drawable/Drawable;)
+.line 69
+	const/4	v0,0
+; v0 : single-length
+	invoke-direct	{v1,v2,v0,v3},com/kenny/mypopupwindow/ActionItem/<init>	; <init>(ILjava/lang/String;Landroid/graphics/drawable/Drawable;)V
+; v1 : Lcom/kenny/mypopupwindow/ActionItem; , v2 : single-length , v0 : single-length , v3 : Landroid/graphics/drawable/Drawable;
+.line 70
+	return-void	
+.end method
+
+.method public <init>(ILjava/lang/String;)V
+.limit registers 4
+; this: v1 (Lcom/kenny/mypopupwindow/ActionItem;)
+; parameter[0] : v2 (I)
+; parameter[1] : v3 (Ljava/lang/String;)
+.line 50
+	const/4	v0,0
+; v0 : single-length
+	invoke-direct	{v1,v2,v3,v0},com/kenny/mypopupwindow/ActionItem/<init>	; <init>(ILjava/lang/String;Landroid/graphics/drawable/Drawable;)V
+; v1 : Lcom/kenny/mypopupwindow/ActionItem; , v2 : single-length , v3 : Ljava/lang/String; , v0 : single-length
+.line 51
+	return-void	
+.end method
+
+.method public <init>(ILjava/lang/String;Landroid/graphics/drawable/Drawable;)V
+.limit registers 5
+; this: v1 (Lcom/kenny/mypopupwindow/ActionItem;)
+; parameter[0] : v2 (I)
+; parameter[1] : v3 (Ljava/lang/String;)
+; parameter[2] : v4 (Landroid/graphics/drawable/Drawable;)
+.line 30
+	invoke-direct	{v1},java/lang/Object/<init>	; <init>()V
+; v1 : Lcom/kenny/mypopupwindow/ActionItem;
+.line 19
+	const/4	v0,15
+; v0 : single-length
+	iput	v0,v1,com/kenny/mypopupwindow/ActionItem.actionId I
+; v0 : single-length , v1 : Lcom/kenny/mypopupwindow/ActionItem;
+.line 31
+	iput-object	v3,v1,com/kenny/mypopupwindow/ActionItem.title Ljava/lang/String;
+; v3 : Ljava/lang/String; , v1 : Lcom/kenny/mypopupwindow/ActionItem;
+.line 32
+	iput-object	v4,v1,com/kenny/mypopupwindow/ActionItem.icon Landroid/graphics/drawable/Drawable;
+; v4 : Landroid/graphics/drawable/Drawable; , v1 : Lcom/kenny/mypopupwindow/ActionItem;
+.line 33
+	iput	v2,v1,com/kenny/mypopupwindow/ActionItem.actionId I
+; v2 : single-length , v1 : Lcom/kenny/mypopupwindow/ActionItem;
+.line 34
+	return-void	
+.end method
+
+.method public <init>(Landroid/graphics/drawable/Drawable;)V
+.limit registers 4
+; this: v2 (Lcom/kenny/mypopupwindow/ActionItem;)
+; parameter[0] : v3 (Landroid/graphics/drawable/Drawable;)
+.line 59
+	const/4	v0,15
+; v0 : single-length
+	const/4	v1,0
+; v1 : single-length
+	invoke-direct	{v2,v0,v1,v3},com/kenny/mypopupwindow/ActionItem/<init>	; <init>(ILjava/lang/String;Landroid/graphics/drawable/Drawable;)V
+; v2 : Lcom/kenny/mypopupwindow/ActionItem; , v0 : single-length , v1 : single-length , v3 : Landroid/graphics/drawable/Drawable;
+.line 60
+	return-void	
+.end method
+
+.method public getActionId()I
+.limit registers 2
+; this: v1 (Lcom/kenny/mypopupwindow/ActionItem;)
+.line 120
+	iget	v0,v1,com/kenny/mypopupwindow/ActionItem.actionId I
+; v0 : single-length , v1 : Lcom/kenny/mypopupwindow/ActionItem;
+	return	v0
+; v0 : single-length
+.end method
+
+.method public getIcon()Landroid/graphics/drawable/Drawable;
+.limit registers 2
+; this: v1 (Lcom/kenny/mypopupwindow/ActionItem;)
+.line 104
+	iget-object	v0,v1,com/kenny/mypopupwindow/ActionItem.icon Landroid/graphics/drawable/Drawable;
+; v0 : Landroid/graphics/drawable/Drawable; , v1 : Lcom/kenny/mypopupwindow/ActionItem;
+	return-object	v0
+; v0 : Landroid/graphics/drawable/Drawable;
+.end method
+
+.method public getThumb()Landroid/graphics/Bitmap;
+.limit registers 2
+; this: v1 (Lcom/kenny/mypopupwindow/ActionItem;)
+.line 172
+	iget-object	v0,v1,com/kenny/mypopupwindow/ActionItem.thumb Landroid/graphics/Bitmap;
+; v0 : Landroid/graphics/Bitmap; , v1 : Lcom/kenny/mypopupwindow/ActionItem;
+	return-object	v0
+; v0 : Landroid/graphics/Bitmap;
+.end method
+
+.method public getTitle()Ljava/lang/String;
+.limit registers 2
+; this: v1 (Lcom/kenny/mypopupwindow/ActionItem;)
+.line 87
+	iget-object	v0,v1,com/kenny/mypopupwindow/ActionItem.title Ljava/lang/String;
+; v0 : Ljava/lang/String; , v1 : Lcom/kenny/mypopupwindow/ActionItem;
+	return-object	v0
+; v0 : Ljava/lang/String;
+.end method
+
+.method public isSelected()Z
+.limit registers 2
+; this: v1 (Lcom/kenny/mypopupwindow/ActionItem;)
+.line 154
+	iget-boolean	v0,v1,com/kenny/mypopupwindow/ActionItem.selected Z
+; v0 : single-length , v1 : Lcom/kenny/mypopupwindow/ActionItem;
+	return	v0
+; v0 : single-length
+.end method
+
+.method public isSticky()Z
+.limit registers 2
+; this: v1 (Lcom/kenny/mypopupwindow/ActionItem;)
+.line 136
+	iget-boolean	v0,v1,com/kenny/mypopupwindow/ActionItem.sticky Z
+; v0 : single-length , v1 : Lcom/kenny/mypopupwindow/ActionItem;
+	return	v0
+; v0 : single-length
+.end method
+
+.method public setActionId(I)V
+.limit registers 2
+; this: v0 (Lcom/kenny/mypopupwindow/ActionItem;)
+; parameter[0] : v1 (I)
+.line 113
+	iput	v1,v0,com/kenny/mypopupwindow/ActionItem.actionId I
+; v1 : single-length , v0 : Lcom/kenny/mypopupwindow/ActionItem;
+.line 114
+	return-void	
+.end method
+
+.method public setIcon(Landroid/graphics/drawable/Drawable;)V
+.limit registers 2
+; this: v0 (Lcom/kenny/mypopupwindow/ActionItem;)
+; parameter[0] : v1 (Landroid/graphics/drawable/Drawable;)
+.line 96
+	iput-object	v1,v0,com/kenny/mypopupwindow/ActionItem.icon Landroid/graphics/drawable/Drawable;
+; v1 : Landroid/graphics/drawable/Drawable; , v0 : Lcom/kenny/mypopupwindow/ActionItem;
+.line 97
+	return-void	
+.end method
+
+.method public setSelected(Z)V
+.limit registers 2
+; this: v0 (Lcom/kenny/mypopupwindow/ActionItem;)
+; parameter[0] : v1 (Z)
+.line 145
+	iput-boolean	v1,v0,com/kenny/mypopupwindow/ActionItem.selected Z
+; v1 : single-length , v0 : Lcom/kenny/mypopupwindow/ActionItem;
+.line 146
+	return-void	
+.end method
+
+.method public setSticky(Z)V
+.limit registers 2
+; this: v0 (Lcom/kenny/mypopupwindow/ActionItem;)
+; parameter[0] : v1 (Z)
+.line 129
+	iput-boolean	v1,v0,com/kenny/mypopupwindow/ActionItem.sticky Z
+; v1 : single-length , v0 : Lcom/kenny/mypopupwindow/ActionItem;
+.line 130
+	return-void	
+.end method
+
+.method public setThumb(Landroid/graphics/Bitmap;)V
+.limit registers 2
+; this: v0 (Lcom/kenny/mypopupwindow/ActionItem;)
+; parameter[0] : v1 (Landroid/graphics/Bitmap;)
+.line 163
+	iput-object	v1,v0,com/kenny/mypopupwindow/ActionItem.thumb Landroid/graphics/Bitmap;
+; v1 : Landroid/graphics/Bitmap; , v0 : Lcom/kenny/mypopupwindow/ActionItem;
+.line 164
+	return-void	
+.end method
+
+.method public setTitle(Ljava/lang/String;)V
+.limit registers 2
+; this: v0 (Lcom/kenny/mypopupwindow/ActionItem;)
+; parameter[0] : v1 (Ljava/lang/String;)
+.line 78
+	iput-object	v1,v0,com/kenny/mypopupwindow/ActionItem.title Ljava/lang/String;
+; v1 : Ljava/lang/String; , v0 : Lcom/kenny/mypopupwindow/ActionItem;
+.line 79
+	return-void	
+.end method
+
+

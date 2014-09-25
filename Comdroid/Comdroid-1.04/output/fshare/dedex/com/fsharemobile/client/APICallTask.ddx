@@ -1,0 +1,172 @@
+.class public com/fsharemobile/client/APICallTask
+.super android/os/AsyncTask
+.source APICallTask.java
+
+.inner class OnAPICallCompleted inner com/fsharemobile/client/APICallTask$OnAPICallCompleted outer com/fsharemobile/client/APICallTask
+.annotation systemVisibility Ldalvik/annotation/Signature;
+  value [Ljava/lang/String; = { "Landroid/os/AsyncTask" , "<" , "Ljava/lang/Object;" , "Ljava/lang/Void;" , "Lcom/fsharemobile/client/HttpResponse;" , ">;" }
+.end annotation
+
+.field private httputil Lcom/fsharemobile/client/HttpUtil;
+.field private listener Lcom/fsharemobile/client/APICallTask$OnAPICallCompleted;
+
+.method public <init>(Lcom/fsharemobile/client/HttpUtil;Lcom/fsharemobile/client/APICallTask$OnAPICallCompleted;)V
+.limit registers 3
+; this: v0 (Lcom/fsharemobile/client/APICallTask;)
+; parameter[0] : v1 (Lcom/fsharemobile/client/HttpUtil;)
+; parameter[1] : v2 (Lcom/fsharemobile/client/APICallTask$OnAPICallCompleted;)
+.line 22
+	invoke-direct	{v0},android/os/AsyncTask/<init>	; <init>()V
+; v0 : Lcom/fsharemobile/client/APICallTask;
+.line 23
+	iput-object	v2,v0,com/fsharemobile/client/APICallTask.listener Lcom/fsharemobile/client/APICallTask$OnAPICallCompleted;
+; v2 : Lcom/fsharemobile/client/APICallTask$OnAPICallCompleted; , v0 : Lcom/fsharemobile/client/APICallTask;
+.line 24
+	iput-object	v1,v0,com/fsharemobile/client/APICallTask.httputil Lcom/fsharemobile/client/HttpUtil;
+; v1 : Lcom/fsharemobile/client/HttpUtil; , v0 : Lcom/fsharemobile/client/APICallTask;
+.line 26
+	return-void	
+.end method
+
+.method protected doInBackground([Ljava/lang/Object;)Lcom/fsharemobile/client/HttpResponse;
+.limit registers 7
+; this: v5 (Lcom/fsharemobile/client/APICallTask;)
+; parameter[0] : v6 ([Ljava/lang/Object;)
+.catch java/io/IOException from l941c2 to l941e6 using l941ea
+.var 1 is request Lcom/fsharemobile/client/HttpRequest; from l941b6 to l941bc
+.line 39
+	const/4	v1,0
+; v1 : single-length
+.line 40
+	const/4	v3,0
+; v3 : single-length
+	aget-object	v1,v6,v3
+; v1 : Ljava/lang/Object; , v6 : [Ljava/lang/Object; , v3 : single-length
+l941bc:
+	check-cast	v1,com/fsharemobile/client/HttpRequest
+; v1 : Lcom/fsharemobile/client/HttpRequest;
+.line 41
+	const/4	v2,0
+; v2 : single-length
+l941c2:
+.line 48
+	invoke-virtual	{v1},com/fsharemobile/client/HttpRequest/getBody	; getBody()[B
+; v1 : Lcom/fsharemobile/client/HttpRequest;
+	move-result-object	v3
+; v3 : [B
+	if-nez	v3,l941dc
+; v3 : [B
+.line 49
+	iget-object	v3,v5,com/fsharemobile/client/APICallTask.httputil Lcom/fsharemobile/client/HttpUtil;
+; v3 : Lcom/fsharemobile/client/HttpUtil; , v5 : Lcom/fsharemobile/client/APICallTask;
+	invoke-virtual	{v3,v1},com/fsharemobile/client/HttpUtil/get	; get(Lcom/fsharemobile/client/HttpRequest;)Lcom/fsharemobile/client/HttpResponse;
+; v3 : Lcom/fsharemobile/client/HttpUtil; , v1 : Lcom/fsharemobile/client/HttpRequest;
+	move-result-object	v2
+; v2 : Lcom/fsharemobile/client/HttpResponse;
+l941da:
+.line 61
+	return-object	v2
+; v2 : Lcom/fsharemobile/client/HttpResponse;
+l941dc:
+.line 51
+	iget-object	v3,v5,com/fsharemobile/client/APICallTask.httputil Lcom/fsharemobile/client/HttpUtil;
+; v3 : Lcom/fsharemobile/client/HttpUtil; , v5 : Lcom/fsharemobile/client/APICallTask;
+	invoke-virtual	{v3,v1},com/fsharemobile/client/HttpUtil/post	; post(Lcom/fsharemobile/client/HttpRequest;)Lcom/fsharemobile/client/HttpResponse;
+; v3 : Lcom/fsharemobile/client/HttpUtil; , v1 : Lcom/fsharemobile/client/HttpRequest;
+l941e6:
+	move-result-object	v2
+; v2 : Lcom/fsharemobile/client/HttpResponse;
+	goto	l941da
+l941ea:
+.line 53
+	move-exception	v0
+; v0 : java/io/IOException
+.line 54
+	sget-object	v3,java/lang/System.out Ljava/io/PrintStream;
+; v3 : Ljava/io/PrintStream;
+	invoke-virtual	{v0},java/io/IOException/toString	; toString()Ljava/lang/String;
+; v0 : java/io/IOException
+	move-result-object	v4
+; v4 : Ljava/lang/String;
+	invoke-virtual	{v3,v4},java/io/PrintStream/println	; println(Ljava/lang/String;)V
+; v3 : Ljava/io/PrintStream; , v4 : Ljava/lang/String;
+.line 55
+	const-string	v3,"HttpResponse_DoInBackground_Exception"
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v0},java/io/IOException/toString	; toString()Ljava/lang/String;
+; v0 : java/io/IOException
+	move-result-object	v4
+; v4 : Ljava/lang/String;
+	invoke-static	{v3,v4},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v3 : Ljava/lang/String; , v4 : Ljava/lang/String;
+	goto	l941da
+.end method
+
+.method protected doInBackground([Ljava/lang/Object;)Ljava/lang/Object;
+.limit registers 3
+; this: v1 (Lcom/fsharemobile/client/APICallTask;)
+; parameter[0] : v2 ([Ljava/lang/Object;)
+.line 1
+	check-cast	v2,[Ljava/lang/Object
+; v2 : [Ljava/lang/Object
+	invoke-virtual	{v1,v2},com/fsharemobile/client/APICallTask/doInBackground	; doInBackground([Ljava/lang/Object;)Lcom/fsharemobile/client/HttpResponse;
+; v1 : Lcom/fsharemobile/client/APICallTask; , v2 : [Ljava/lang/Object
+	move-result-object	v0
+; v0 : Lcom/fsharemobile/client/HttpResponse;
+	return-object	v0
+; v0 : Lcom/fsharemobile/client/HttpResponse;
+.end method
+
+.method protected onPostExecute(Lcom/fsharemobile/client/HttpResponse;)V
+.limit registers 3
+; this: v1 (Lcom/fsharemobile/client/APICallTask;)
+; parameter[0] : v2 (Lcom/fsharemobile/client/HttpResponse;)
+.line 70
+	iget-object	v0,v1,com/fsharemobile/client/APICallTask.listener Lcom/fsharemobile/client/APICallTask$OnAPICallCompleted;
+; v0 : Lcom/fsharemobile/client/APICallTask$OnAPICallCompleted; , v1 : Lcom/fsharemobile/client/APICallTask;
+	invoke-interface	{v0,v2},com/fsharemobile/client/APICallTask$OnAPICallCompleted/onAPICallCompleted	; onAPICallCompleted(Lcom/fsharemobile/client/HttpResponse;)V
+; v0 : Lcom/fsharemobile/client/APICallTask$OnAPICallCompleted; , v2 : Lcom/fsharemobile/client/HttpResponse;
+.line 71
+	return-void	
+.end method
+
+.method protected onPostExecute(Ljava/lang/Object;)V
+.limit registers 2
+; this: v0 (Lcom/fsharemobile/client/APICallTask;)
+; parameter[0] : v1 (Ljava/lang/Object;)
+.line 1
+	check-cast	v1,com/fsharemobile/client/HttpResponse
+; v1 : Lcom/fsharemobile/client/HttpResponse;
+	invoke-virtual	{v0,v1},com/fsharemobile/client/APICallTask/onPostExecute	; onPostExecute(Lcom/fsharemobile/client/HttpResponse;)V
+; v0 : Lcom/fsharemobile/client/APICallTask; , v1 : Lcom/fsharemobile/client/HttpResponse;
+	return-void	
+.end method
+
+.method protected onPreExecute()V
+.limit registers 1
+; this: v0 (Lcom/fsharemobile/client/APICallTask;)
+.line 76
+	return-void	
+.end method
+
+.method protected onProgressUpdate([Ljava/lang/Object;)V
+.limit registers 2
+; this: v0 (Lcom/fsharemobile/client/APICallTask;)
+; parameter[0] : v1 ([Ljava/lang/Object;)
+.line 1
+	check-cast	v1,[Ljava/lang/Void
+; v1 : [Ljava/lang/Void
+	invoke-virtual	{v0,v1},com/fsharemobile/client/APICallTask/onProgressUpdate	; onProgressUpdate([Ljava/lang/Void;)V
+; v0 : Lcom/fsharemobile/client/APICallTask; , v1 : [Ljava/lang/Void
+	return-void	
+.end method
+
+.method protected onProgressUpdate([Ljava/lang/Void;)V
+.limit registers 2
+; this: v0 (Lcom/fsharemobile/client/APICallTask;)
+; parameter[0] : v1 ([Ljava/lang/Void;)
+.line 80
+	return-void	
+.end method
+
+

@@ -1,0 +1,188 @@
+.class com/squareup/picasso/ImageViewAction
+.super com/squareup/picasso/Action
+.source ImageViewAction.java
+
+.annotation systemVisibility Ldalvik/annotation/Signature;
+  value [Ljava/lang/String; = { "Lcom/squareup/picasso/Action" , "<" , "Landroid/widget/ImageView;" , ">;" }
+.end annotation
+
+.field callback Lcom/squareup/picasso/Callback;
+
+.method <init>(Lcom/squareup/picasso/Picasso;Landroid/widget/ImageView;Lcom/squareup/picasso/Request;ZZILandroid/graphics/drawable/Drawable;Ljava/lang/String;Lcom/squareup/picasso/Callback;)V
+.limit registers 10
+; this: v0 (Lcom/squareup/picasso/ImageViewAction;)
+; parameter[0] : v1 (Lcom/squareup/picasso/Picasso;)
+; parameter[1] : v2 (Landroid/widget/ImageView;)
+; parameter[2] : v3 (Lcom/squareup/picasso/Request;)
+; parameter[3] : v4 (Z)
+; parameter[4] : v5 (Z)
+; parameter[5] : v6 (I)
+; parameter[6] : v7 (Landroid/graphics/drawable/Drawable;)
+; parameter[7] : v8 (Ljava/lang/String;)
+; parameter[8] : v9 (Lcom/squareup/picasso/Callback;)
+.line 29
+	invoke-direct/range	{v0..v8},com/squareup/picasso/Action/<init>;	<init>(Lcom/squareup/picasso/Picasso;Ljava/lang/Object;Lcom/squareup/picasso/Request;ZZILandroid/graphics/drawable/Drawable;Ljava/lang/String;)V
+; v0 : Lcom/squareup/picasso/ImageViewAction; , v1 : Lcom/squareup/picasso/Picasso; , v2 : Landroid/widget/ImageView; , v3 : Lcom/squareup/picasso/Request; , v4 : single-length , v5 : single-length , v6 : single-length , v7 : Landroid/graphics/drawable/Drawable; , v8 : Ljava/lang/String;
+.line 30
+	iput-object	v9,v0,com/squareup/picasso/ImageViewAction.callback Lcom/squareup/picasso/Callback;
+; v9 : Lcom/squareup/picasso/Callback; , v0 : Lcom/squareup/picasso/ImageViewAction;
+.line 31
+	return-void	
+.end method
+
+.method cancel()V
+.limit registers 2
+; this: v1 (Lcom/squareup/picasso/ImageViewAction;)
+.line 70
+	invoke-super	{v1},com/squareup/picasso/Action/cancel	; cancel()V
+; v1 : Lcom/squareup/picasso/ImageViewAction;
+.line 71
+	iget-object	v0,v1,com/squareup/picasso/ImageViewAction.callback Lcom/squareup/picasso/Callback;
+; v0 : Lcom/squareup/picasso/Callback; , v1 : Lcom/squareup/picasso/ImageViewAction;
+	if-eqz	v0,lf3ee4
+; v0 : Lcom/squareup/picasso/Callback;
+.line 72
+	const/4	v0,0
+; v0 : single-length
+	iput-object	v0,v1,com/squareup/picasso/ImageViewAction.callback Lcom/squareup/picasso/Callback;
+; v0 : single-length , v1 : Lcom/squareup/picasso/ImageViewAction;
+lf3ee4:
+.line 74
+	return-void	
+.end method
+
+.method public complete(Landroid/graphics/Bitmap;Lcom/squareup/picasso/Picasso$LoadedFrom;)V
+.limit registers 10
+; this: v7 (Lcom/squareup/picasso/ImageViewAction;)
+; parameter[0] : v8 (Landroid/graphics/Bitmap;)
+; parameter[1] : v9 (Lcom/squareup/picasso/Picasso$LoadedFrom;)
+.line 34
+	if-nez	v8,lf3f20
+; v8 : Landroid/graphics/Bitmap;
+.line 35
+	new-instance	v2,java/lang/AssertionError
+; v2 : Ljava/lang/AssertionError;
+	const-string	v3,"Attempted to complete action with no result!
+%s"
+; v3 : Ljava/lang/String;
+	const/4	v4,1
+; v4 : single-length
+	new-array	v4,v4,[Ljava/lang/Object;
+; v4 : [Ljava/lang/Object; , v4 : [Ljava/lang/Object;
+	const/4	v6,0
+; v6 : single-length
+	aput-object	v7,v4,v6
+; v7 : Lcom/squareup/picasso/ImageViewAction; , v4 : [Ljava/lang/Object; , v6 : single-length
+	invoke-static	{v3,v4},java/lang/String/format	; format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+; v3 : Ljava/lang/String; , v4 : [Ljava/lang/Object;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-direct	{v2,v3},java/lang/AssertionError/<init>	; <init>(Ljava/lang/Object;)V
+; v2 : Ljava/lang/AssertionError; , v3 : Ljava/lang/String;
+	throw	v2
+; v2 : Ljava/lang/AssertionError;
+lf3f20:
+.line 39
+	iget-object	v2,v7,com/squareup/picasso/ImageViewAction.target Ljava/lang/ref/WeakReference;
+; v2 : Ljava/lang/ref/WeakReference; , v7 : Lcom/squareup/picasso/ImageViewAction;
+	invoke-virtual	{v2},java/lang/ref/WeakReference/get	; get()Ljava/lang/Object;
+; v2 : Ljava/lang/ref/WeakReference;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,android/widget/ImageView
+; v0 : Landroid/widget/ImageView;
+.line 40
+	if-nez	v0,lf3f36
+; v0 : Landroid/widget/ImageView;
+lf3f34:
+.line 51
+	return-void	
+lf3f36:
+.line 44
+	iget-object	v2,v7,com/squareup/picasso/ImageViewAction.picasso Lcom/squareup/picasso/Picasso;
+; v2 : Lcom/squareup/picasso/Picasso; , v7 : Lcom/squareup/picasso/ImageViewAction;
+	iget-object	v1,v2,com/squareup/picasso/Picasso.context Landroid/content/Context;
+; v1 : Landroid/content/Context; , v2 : Lcom/squareup/picasso/Picasso;
+.line 45
+	iget-object	v2,v7,com/squareup/picasso/ImageViewAction.picasso Lcom/squareup/picasso/Picasso;
+; v2 : Lcom/squareup/picasso/Picasso; , v7 : Lcom/squareup/picasso/ImageViewAction;
+	iget-boolean	v5,v2,com/squareup/picasso/Picasso.debugging Z
+; v5 : single-length , v2 : Lcom/squareup/picasso/Picasso;
+.line 46
+	iget-boolean	v4,v7,com/squareup/picasso/ImageViewAction.noFade Z
+; v4 : single-length , v7 : Lcom/squareup/picasso/ImageViewAction;
+	move-object	v2,v8
+; v2 : Landroid/graphics/Bitmap; , v8 : Landroid/graphics/Bitmap;
+	move-object	v3,v9
+; v3 : Lcom/squareup/picasso/Picasso$LoadedFrom; , v9 : Lcom/squareup/picasso/Picasso$LoadedFrom;
+	invoke-static/range	{v0..v5},com/squareup/picasso/PicassoDrawable/setBitmap;	setBitmap(Landroid/widget/ImageView;Landroid/content/Context;Landroid/graphics/Bitmap;Lcom/squareup/picasso/Picasso$LoadedFrom;ZZ)V
+; v0 : Landroid/widget/ImageView; , v1 : Landroid/content/Context; , v2 : Landroid/graphics/Bitmap; , v3 : Lcom/squareup/picasso/Picasso$LoadedFrom; , v4 : single-length , v5 : single-length
+.line 48
+	iget-object	v2,v7,com/squareup/picasso/ImageViewAction.callback Lcom/squareup/picasso/Callback;
+; v2 : Lcom/squareup/picasso/Callback; , v7 : Lcom/squareup/picasso/ImageViewAction;
+	if-eqz	v2,lf3f34
+; v2 : Lcom/squareup/picasso/Callback;
+.line 49
+	iget-object	v2,v7,com/squareup/picasso/ImageViewAction.callback Lcom/squareup/picasso/Callback;
+; v2 : Lcom/squareup/picasso/Callback; , v7 : Lcom/squareup/picasso/ImageViewAction;
+	invoke-interface	{v2},com/squareup/picasso/Callback/onSuccess	; onSuccess()V
+; v2 : Lcom/squareup/picasso/Callback;
+	goto	lf3f34
+.end method
+
+.method public error()V
+.limit registers 3
+; this: v2 (Lcom/squareup/picasso/ImageViewAction;)
+.line 54
+	iget-object	v1,v2,com/squareup/picasso/ImageViewAction.target Ljava/lang/ref/WeakReference;
+; v1 : Ljava/lang/ref/WeakReference; , v2 : Lcom/squareup/picasso/ImageViewAction;
+	invoke-virtual	{v1},java/lang/ref/WeakReference/get	; get()Ljava/lang/Object;
+; v1 : Ljava/lang/ref/WeakReference;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,android/widget/ImageView
+; v0 : Landroid/widget/ImageView;
+.line 55
+	if-nez	v0,lf3f8e
+; v0 : Landroid/widget/ImageView;
+lf3f8c:
+.line 67
+	return-void	
+lf3f8e:
+.line 58
+	iget	v1,v2,com/squareup/picasso/ImageViewAction.errorResId I
+; v1 : single-length , v2 : Lcom/squareup/picasso/ImageViewAction;
+	if-eqz	v1,lf3fb4
+; v1 : single-length
+.line 59
+	iget	v1,v2,com/squareup/picasso/ImageViewAction.errorResId I
+; v1 : single-length , v2 : Lcom/squareup/picasso/ImageViewAction;
+	invoke-virtual	{v0,v1},android/widget/ImageView/setImageResource	; setImageResource(I)V
+; v0 : Landroid/widget/ImageView; , v1 : single-length
+lf3fa0:
+.line 64
+	iget-object	v1,v2,com/squareup/picasso/ImageViewAction.callback Lcom/squareup/picasso/Callback;
+; v1 : Lcom/squareup/picasso/Callback; , v2 : Lcom/squareup/picasso/ImageViewAction;
+	if-eqz	v1,lf3f8c
+; v1 : Lcom/squareup/picasso/Callback;
+.line 65
+	iget-object	v1,v2,com/squareup/picasso/ImageViewAction.callback Lcom/squareup/picasso/Callback;
+; v1 : Lcom/squareup/picasso/Callback; , v2 : Lcom/squareup/picasso/ImageViewAction;
+	invoke-interface	{v1},com/squareup/picasso/Callback/onError	; onError()V
+; v1 : Lcom/squareup/picasso/Callback;
+	goto	lf3f8c
+lf3fb4:
+.line 60
+	iget-object	v1,v2,com/squareup/picasso/ImageViewAction.errorDrawable Landroid/graphics/drawable/Drawable;
+; v1 : Landroid/graphics/drawable/Drawable; , v2 : Lcom/squareup/picasso/ImageViewAction;
+	if-eqz	v1,lf3fa0
+; v1 : Landroid/graphics/drawable/Drawable;
+.line 61
+	iget-object	v1,v2,com/squareup/picasso/ImageViewAction.errorDrawable Landroid/graphics/drawable/Drawable;
+; v1 : Landroid/graphics/drawable/Drawable; , v2 : Lcom/squareup/picasso/ImageViewAction;
+	invoke-virtual	{v0,v1},android/widget/ImageView/setImageDrawable	; setImageDrawable(Landroid/graphics/drawable/Drawable;)V
+; v0 : Landroid/widget/ImageView; , v1 : Landroid/graphics/drawable/Drawable;
+	goto	lf3fa0
+.end method
+
+

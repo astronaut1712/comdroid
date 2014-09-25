@@ -1,0 +1,578 @@
+.class public com/a/a/a/m
+.super java/lang/Object
+.source MyApplication
+
+.field private static final a Lcom/a/a/a/m;
+.field private b Ljava/lang/reflect/Constructor;
+
+.method static <clinit>()V
+.limit registers 1
+.line 51
+	invoke-static	{},com/a/a/a/m/c	; c()Lcom/a/a/a/m;
+; 
+	nop	
+	move-result-object	v0
+; v0 : Lcom/a/a/a/m;
+	sput-object	v0,com/a/a/a/m.a Lcom/a/a/a/m;
+; v0 : Lcom/a/a/a/m;
+	return-void	
+.end method
+
+.method public <init>()V
+.limit registers 1
+; this: v0 (Lcom/a/a/a/m;)
+.line 50
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Lcom/a/a/a/m;
+.line 332
+	return-void	
+.end method
+
+.method public static a()Lcom/a/a/a/m;
+.limit registers 1
+.line 56
+	sget-object	v0,com/a/a/a/m.a Lcom/a/a/a/m;
+; v0 : Lcom/a/a/a/m;
+	return-object	v0
+; v0 : Lcom/a/a/a/m;
+.end method
+
+.method private static c()Lcom/a/a/a/m;
+.limit registers 8
+.catch java/lang/ClassNotFoundException from l739a2 to l73a80 using l73a84
+.catch java/lang/NoSuchMethodException from l739a2 to l73a80 using l73a94
+.catch java/lang/ClassNotFoundException from l73982 to l7399e using l739a0
+.catch java/lang/NoSuchMethodException from l73982 to l7399e using l73a98
+.catch java/lang/NoSuchMethodException from l73944 to l7397e using l73990
+.catch java/lang/ClassNotFoundException from l73944 to l7397e using l739a0
+.catch java/lang/ClassNotFoundException from l7390c to l73942 using l739a0
+.catch java/lang/NoSuchMethodException from l7390c to l73942 using l73a98
+.catch java/lang/ClassNotFoundException from l73900 to l7390a using l73980
+.catch java/lang/NoSuchMethodException from l73900 to l7390a using l73a98
+l73900:
+.line 145
+	const-string	v0,"com.android.org.conscrypt.OpenSSLSocketImpl"
+; v0 : Ljava/lang/String;
+	invoke-static	{v0},java/lang/Class/forName	; forName(Ljava/lang/String;)Ljava/lang/Class;
+; v0 : Ljava/lang/String;
+l7390a:
+	move-result-object	v1
+; v1 : Ljava/lang/Class;
+l7390c:
+.line 152
+	const-string	v0,"setUseSessionTickets"
+; v0 : Ljava/lang/String;
+	const/4	v2,1
+; v2 : single-length
+	new-array	v2,v2,[Ljava/lang/Class;
+; v2 : [Ljava/lang/Class; , v2 : [Ljava/lang/Class;
+	const/4	v3,0
+; v3 : single-length
+	sget-object	v4,java/lang/Boolean.TYPE Ljava/lang/Class;
+; v4 : Ljava/lang/Class;
+	aput-object	v4,v2,v3
+; v4 : Ljava/lang/Class; , v2 : [Ljava/lang/Class; , v3 : single-length
+	invoke-virtual	{v1,v0,v2},java/lang/Class/getMethod	; getMethod(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+; v1 : Ljava/lang/Class; , v0 : Ljava/lang/String; , v2 : [Ljava/lang/Class;
+	move-result-object	v2
+; v2 : Ljava/lang/reflect/Method;
+.line 153
+	const-string	v0,"setHostname"
+; v0 : Ljava/lang/String;
+	const/4	v3,1
+; v3 : single-length
+	new-array	v3,v3,[Ljava/lang/Class;
+; v3 : [Ljava/lang/Class; , v3 : [Ljava/lang/Class;
+	const/4	v4,0
+; v4 : single-length
+	const-class	v5,java/lang/String
+; v5 : Ljava/lang/Class;
+	aput-object	v5,v3,v4
+; v5 : Ljava/lang/Class; , v3 : [Ljava/lang/Class; , v4 : single-length
+	invoke-virtual	{v1,v0,v3},java/lang/Class/getMethod	; getMethod(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+; v1 : Ljava/lang/Class; , v0 : Ljava/lang/String; , v3 : [Ljava/lang/Class;
+l73942:
+	move-result-object	v3
+; v3 : Ljava/lang/reflect/Method;
+l73944:
+.line 157
+	const-string	v0,"setNpnProtocols"
+; v0 : Ljava/lang/String;
+	const/4	v4,1
+; v4 : single-length
+	new-array	v4,v4,[Ljava/lang/Class;
+; v4 : [Ljava/lang/Class; , v4 : [Ljava/lang/Class;
+	const/4	v5,0
+; v5 : single-length
+	const-class	v6,[B
+; v6 : Ljava/lang/Class;
+	aput-object	v6,v4,v5
+; v6 : Ljava/lang/Class; , v4 : [Ljava/lang/Class; , v5 : single-length
+	invoke-virtual	{v1,v0,v4},java/lang/Class/getMethod	; getMethod(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+; v1 : Ljava/lang/Class; , v0 : Ljava/lang/String; , v4 : [Ljava/lang/Class;
+	move-result-object	v4
+; v4 : Ljava/lang/reflect/Method;
+.line 158
+	const-string	v0,"getNpnSelectedProtocol"
+; v0 : Ljava/lang/String;
+	const/4	v5,0
+; v5 : single-length
+	new-array	v5,v5,[Ljava/lang/Class;
+; v5 : [Ljava/lang/Class; , v5 : [Ljava/lang/Class;
+	invoke-virtual	{v1,v0,v5},java/lang/Class/getMethod	; getMethod(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+; v1 : Ljava/lang/Class; , v0 : Ljava/lang/String; , v5 : [Ljava/lang/Class;
+	move-result-object	v5
+; v5 : Ljava/lang/reflect/Method;
+.line 159
+	new-instance	v0,com/a/a/a/p
+; v0 : Lcom/a/a/a/p;
+	const/4	v6,0
+; v6 : single-length
+	invoke-direct/range	{v0..v6},com/a/a/a/p/<init>;	<init>(Ljava/lang/Class;Ljava/lang/reflect/Method;Ljava/lang/reflect/Method;Ljava/lang/reflect/Method;Ljava/lang/reflect/Method;Lcom/a/a/a/n;)V
+; v0 : Lcom/a/a/a/p; , v1 : Ljava/lang/Class; , v2 : Ljava/lang/reflect/Method; , v3 : Ljava/lang/reflect/Method; , v4 : Ljava/lang/reflect/Method; , v5 : Ljava/lang/reflect/Method; , v6 : single-length
+l7397e:
+.line 187
+	return-object	v0
+; v0 : Lcom/a/a/a/m;
+l73980:
+.line 146
+	move-exception	v0
+; v0 : java/lang/ClassNotFoundException
+l73982:
+.line 148
+	const-string	v0,"org.apache.harmony.xnet.provider.jsse.OpenSSLSocketImpl"
+; v0 : Ljava/lang/String;
+	invoke-static	{v0},java/lang/Class/forName	; forName(Ljava/lang/String;)Ljava/lang/Class;
+; v0 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/Class;
+	goto	l7390c
+l73990:
+.line 161
+	move-exception	v0
+; v0 : java/lang/NoSuchMethodException
+.line 162
+	new-instance	v0,com/a/a/a/o
+; v0 : Lcom/a/a/a/o;
+	const/4	v4,0
+; v4 : single-length
+	invoke-direct	{v0,v1,v2,v3,v4},com/a/a/a/o/<init>	; <init>(Ljava/lang/Class;Ljava/lang/reflect/Method;Ljava/lang/reflect/Method;Lcom/a/a/a/n;)V
+; v0 : Lcom/a/a/a/o; , v1 : Ljava/lang/Class; , v2 : Ljava/lang/reflect/Method; , v3 : Ljava/lang/reflect/Method; , v4 : single-length
+l7399e:
+	goto	l7397e
+l739a0:
+.line 164
+	move-exception	v0
+; v0 : java/lang/ClassNotFoundException
+l739a2:
+.line 172
+	const-string	v0,"org.eclipse.jetty.npn.NextProtoNego"
+; v0 : Ljava/lang/String;
+.line 173
+	invoke-static	{v0},java/lang/Class/forName	; forName(Ljava/lang/String;)Ljava/lang/Class;
+; v0 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/Class;
+.line 174
+	new-instance	v2,java/lang/StringBuilder
+; v2 : Ljava/lang/StringBuilder;
+	invoke-direct	{v2},java/lang/StringBuilder/<init>	; <init>()V
+; v2 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v2,v0},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v0 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	const-string	v3,"$Provider"
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v2},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v2 : Ljava/lang/StringBuilder;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-static	{v2},java/lang/Class/forName	; forName(Ljava/lang/String;)Ljava/lang/Class;
+; v2 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/Class;
+.line 175
+	new-instance	v3,java/lang/StringBuilder
+; v3 : Ljava/lang/StringBuilder;
+	invoke-direct	{v3},java/lang/StringBuilder/<init>	; <init>()V
+; v3 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v3,v0},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v3 : Ljava/lang/StringBuilder; , v0 : Ljava/lang/String;
+	move-result-object	v3
+; v3 : Ljava/lang/StringBuilder;
+	const-string	v4,"$ClientProvider"
+; v4 : Ljava/lang/String;
+	invoke-virtual	{v3,v4},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v3 : Ljava/lang/StringBuilder; , v4 : Ljava/lang/String;
+	move-result-object	v3
+; v3 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v3},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v3 : Ljava/lang/StringBuilder;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-static	{v3},java/lang/Class/forName	; forName(Ljava/lang/String;)Ljava/lang/Class;
+; v3 : Ljava/lang/String;
+	move-result-object	v3
+; v3 : Ljava/lang/Class;
+.line 176
+	new-instance	v4,java/lang/StringBuilder
+; v4 : Ljava/lang/StringBuilder;
+	invoke-direct	{v4},java/lang/StringBuilder/<init>	; <init>()V
+; v4 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v4,v0},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v4 : Ljava/lang/StringBuilder; , v0 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	const-string	v4,"$ServerProvider"
+; v4 : Ljava/lang/String;
+	invoke-virtual	{v0,v4},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v4 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v0},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v0 : Ljava/lang/StringBuilder;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	invoke-static	{v0},java/lang/Class/forName	; forName(Ljava/lang/String;)Ljava/lang/Class;
+; v0 : Ljava/lang/String;
+	move-result-object	v4
+; v4 : Ljava/lang/Class;
+.line 177
+	const-string	v0,"put"
+; v0 : Ljava/lang/String;
+	const/4	v5,2
+; v5 : single-length
+	new-array	v5,v5,[Ljava/lang/Class;
+; v5 : [Ljava/lang/Class; , v5 : [Ljava/lang/Class;
+	const/4	v6,0
+; v6 : single-length
+	const-class	v7,javax/net/ssl/SSLSocket
+; v7 : Ljava/lang/Class;
+	aput-object	v7,v5,v6
+; v7 : Ljava/lang/Class; , v5 : [Ljava/lang/Class; , v6 : single-length
+	const/4	v6,1
+; v6 : single-length
+	aput-object	v2,v5,v6
+; v2 : Ljava/lang/Class; , v5 : [Ljava/lang/Class; , v6 : single-length
+	invoke-virtual	{v1,v0,v5},java/lang/Class/getMethod	; getMethod(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+; v1 : Ljava/lang/Class; , v0 : Ljava/lang/String; , v5 : [Ljava/lang/Class;
+	move-result-object	v2
+; v2 : Ljava/lang/reflect/Method;
+.line 178
+	const-string	v0,"get"
+; v0 : Ljava/lang/String;
+	const/4	v5,1
+; v5 : single-length
+	new-array	v5,v5,[Ljava/lang/Class;
+; v5 : [Ljava/lang/Class; , v5 : [Ljava/lang/Class;
+	const/4	v6,0
+; v6 : single-length
+	const-class	v7,javax/net/ssl/SSLSocket
+; v7 : Ljava/lang/Class;
+	aput-object	v7,v5,v6
+; v7 : Ljava/lang/Class; , v5 : [Ljava/lang/Class; , v6 : single-length
+	invoke-virtual	{v1,v0,v5},java/lang/Class/getMethod	; getMethod(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+; v1 : Ljava/lang/Class; , v0 : Ljava/lang/String; , v5 : [Ljava/lang/Class;
+	move-result-object	v1
+; v1 : Ljava/lang/reflect/Method;
+.line 179
+	new-instance	v0,com/a/a/a/q
+; v0 : Lcom/a/a/a/q;
+	invoke-direct	{v0,v2,v1,v3,v4},com/a/a/a/q/<init>	; <init>(Ljava/lang/reflect/Method;Ljava/lang/reflect/Method;Ljava/lang/Class;Ljava/lang/Class;)V
+; v0 : Lcom/a/a/a/q; , v2 : Ljava/lang/reflect/Method; , v1 : Ljava/lang/reflect/Method; , v3 : Ljava/lang/Class; , v4 : Ljava/lang/Class;
+l73a80:
+	goto/16	l7397e
+l73a84:
+.line 181
+	move-exception	v0
+; v0 : java/lang/ClassNotFoundException
+l73a86:
+.line 187
+	new-instance	v0,com/a/a/a/m
+; v0 : Lcom/a/a/a/m;
+	invoke-direct	{v0},com/a/a/a/m/<init>	; <init>()V
+; v0 : Lcom/a/a/a/m;
+	goto/16	l7397e
+l73a94:
+.line 183
+	move-exception	v0
+; v0 : java/lang/NoSuchMethodException
+	goto	l73a86
+l73a98:
+.line 166
+	move-exception	v0
+; v0 : java/lang/NoSuchMethodException
+	goto	l739a2
+.end method
+
+.method public a(Ljava/io/OutputStream;Ljava/util/zip/Deflater;Z)Ljava/io/OutputStream;
+.limit registers 8
+; this: v4 (Lcom/a/a/a/m;)
+; parameter[0] : v5 (Ljava/io/OutputStream;)
+; parameter[1] : v6 (Ljava/util/zip/Deflater;)
+; parameter[2] : v7 (Z)
+.catch java/lang/NoSuchMethodException from l73af8 to l73b60 using l73b62
+.catch java/lang/reflect/InvocationTargetException from l73af8 to l73b60 using l73b74
+.catch java/lang/InstantiationException from l73af8 to l73b60 using l73baa
+.catch java/lang/IllegalAccessException from l73af8 to l73b60 using l73bb8
+l73af8:
+.line 119
+	iget-object	v0,v4,com/a/a/a/m.b Ljava/lang/reflect/Constructor;
+; v0 : Ljava/lang/reflect/Constructor; , v4 : Lcom/a/a/a/m;
+.line 120
+	if-nez	v0,l73b34
+; v0 : Ljava/lang/reflect/Constructor;
+.line 121
+	const-class	v0,java/util/zip/DeflaterOutputStream
+; v0 : Ljava/lang/Class;
+	const/4	v1,3
+; v1 : single-length
+	new-array	v1,v1,[Ljava/lang/Class;
+; v1 : [Ljava/lang/Class; , v1 : [Ljava/lang/Class;
+	const/4	v2,0
+; v2 : single-length
+	const-class	v3,java/io/OutputStream
+; v3 : Ljava/lang/Class;
+	aput-object	v3,v1,v2
+; v3 : Ljava/lang/Class; , v1 : [Ljava/lang/Class; , v2 : single-length
+	const/4	v2,1
+; v2 : single-length
+	const-class	v3,java/util/zip/Deflater
+; v3 : Ljava/lang/Class;
+	aput-object	v3,v1,v2
+; v3 : Ljava/lang/Class; , v1 : [Ljava/lang/Class; , v2 : single-length
+	const/4	v2,2
+; v2 : single-length
+	sget-object	v3,java/lang/Boolean.TYPE Ljava/lang/Class;
+; v3 : Ljava/lang/Class;
+	aput-object	v3,v1,v2
+; v3 : Ljava/lang/Class; , v1 : [Ljava/lang/Class; , v2 : single-length
+	invoke-virtual	{v0,v1},java/lang/Class/getConstructor	; getConstructor([Ljava/lang/Class;)Ljava/lang/reflect/Constructor;
+; v0 : Ljava/lang/Class; , v1 : [Ljava/lang/Class;
+	move-result-object	v0
+; v0 : Ljava/lang/reflect/Constructor;
+	iput-object	v0,v4,com/a/a/a/m.b Ljava/lang/reflect/Constructor;
+; v0 : Ljava/lang/reflect/Constructor; , v4 : Lcom/a/a/a/m;
+l73b34:
+.line 124
+	const/4	v1,3
+; v1 : single-length
+	new-array	v1,v1,[Ljava/lang/Object;
+; v1 : [Ljava/lang/Object; , v1 : [Ljava/lang/Object;
+	const/4	v2,0
+; v2 : single-length
+	aput-object	v5,v1,v2
+; v5 : Ljava/io/OutputStream; , v1 : [Ljava/lang/Object; , v2 : single-length
+	const/4	v2,1
+; v2 : single-length
+	aput-object	v6,v1,v2
+; v6 : Ljava/util/zip/Deflater; , v1 : [Ljava/lang/Object; , v2 : single-length
+	const/4	v2,2
+; v2 : single-length
+	invoke-static	{v7},java/lang/Boolean/valueOf	; valueOf(Z)Ljava/lang/Boolean;
+; v7 : single-length
+	move-result-object	v3
+; v3 : Ljava/lang/Boolean;
+	aput-object	v3,v1,v2
+; v3 : Ljava/lang/Boolean; , v1 : [Ljava/lang/Object; , v2 : single-length
+	invoke-virtual	{v0,v1},java/lang/reflect/Constructor/newInstance	; newInstance([Ljava/lang/Object;)Ljava/lang/Object;
+; v0 : Ljava/lang/reflect/Constructor; , v1 : [Ljava/lang/Object;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,java/io/OutputStream
+; v0 : Ljava/io/OutputStream;
+l73b60:
+	return-object	v0
+; v0 : Ljava/io/OutputStream;
+l73b62:
+.line 125
+	move-exception	v0
+; v0 : java/lang/NoSuchMethodException
+.line 126
+	new-instance	v0,java/lang/UnsupportedOperationException
+; v0 : Ljava/lang/UnsupportedOperationException;
+	const-string	v1,"Cannot SPDY; no SYNC_FLUSH available"
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/UnsupportedOperationException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/UnsupportedOperationException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/UnsupportedOperationException;
+l73b74:
+.line 127
+	move-exception	v0
+; v0 : java/lang/reflect/InvocationTargetException
+	move-object	v1,v0
+; v1 : java/lang/reflect/InvocationTargetException , v0 : java/lang/reflect/InvocationTargetException
+.line 128
+	invoke-virtual	{v1},java/lang/reflect/InvocationTargetException/getCause	; getCause()Ljava/lang/Throwable;
+; v1 : java/lang/reflect/InvocationTargetException
+	move-result-object	v0
+; v0 : Ljava/lang/Throwable;
+	instance-of	v0,v0,java/lang/RuntimeException
+; v0 : single-length , v0 : single-length
+	if-eqz	v0,l73b96
+; v0 : single-length
+	invoke-virtual	{v1},java/lang/reflect/InvocationTargetException/getCause	; getCause()Ljava/lang/Throwable;
+; v1 : java/lang/reflect/InvocationTargetException
+	move-result-object	v0
+; v0 : Ljava/lang/Throwable;
+	check-cast	v0,java/lang/RuntimeException
+; v0 : Ljava/lang/RuntimeException;
+l73b94:
+	throw	v0
+; v0 : Ljava/lang/RuntimeException;
+l73b96:
+	new-instance	v0,java/lang/RuntimeException
+; v0 : Ljava/lang/RuntimeException;
+	invoke-virtual	{v1},java/lang/reflect/InvocationTargetException/getCause	; getCause()Ljava/lang/Throwable;
+; v1 : java/lang/reflect/InvocationTargetException
+	move-result-object	v1
+; v1 : Ljava/lang/Throwable;
+	invoke-direct	{v0,v1},java/lang/RuntimeException/<init>	; <init>(Ljava/lang/Throwable;)V
+; v0 : Ljava/lang/RuntimeException; , v1 : Ljava/lang/Throwable;
+	goto	l73b94
+l73baa:
+.line 130
+	move-exception	v0
+; v0 : java/lang/InstantiationException
+.line 131
+	new-instance	v1,java/lang/RuntimeException
+; v1 : Ljava/lang/RuntimeException;
+	invoke-direct	{v1,v0},java/lang/RuntimeException/<init>	; <init>(Ljava/lang/Throwable;)V
+; v1 : Ljava/lang/RuntimeException; , v0 : java/lang/InstantiationException
+	throw	v1
+; v1 : Ljava/lang/RuntimeException;
+l73bb8:
+.line 132
+	move-exception	v0
+; v0 : java/lang/IllegalAccessException
+.line 133
+	new-instance	v0,java/lang/AssertionError
+; v0 : Ljava/lang/AssertionError;
+	invoke-direct	{v0},java/lang/AssertionError/<init>	; <init>()V
+; v0 : Ljava/lang/AssertionError;
+	throw	v0
+; v0 : Ljava/lang/AssertionError;
+.end method
+
+.method public a(Ljava/net/URL;)Ljava/net/URI;
+.limit registers 3
+; this: v1 (Lcom/a/a/a/m;)
+; parameter[0] : v2 (Ljava/net/URL;)
+.line 75
+	invoke-virtual	{v2},java/net/URL/toURI	; toURI()Ljava/net/URI;
+; v2 : Ljava/net/URL;
+	move-result-object	v0
+; v0 : Ljava/net/URI;
+	return-object	v0
+; v0 : Ljava/net/URI;
+.end method
+
+.method public a(Ljava/lang/String;)V
+.limit registers 3
+; this: v1 (Lcom/a/a/a/m;)
+; parameter[0] : v2 (Ljava/lang/String;)
+.line 65
+	sget-object	v0,java/lang/System.out Ljava/io/PrintStream;
+; v0 : Ljava/io/PrintStream;
+	invoke-virtual	{v0,v2},java/io/PrintStream/println	; println(Ljava/lang/String;)V
+; v0 : Ljava/io/PrintStream; , v2 : Ljava/lang/String;
+.line 66
+	return-void	
+.end method
+
+.method public a(Ljava/net/Socket;)V
+.limit registers 2
+; this: v0 (Lcom/a/a/a/m;)
+; parameter[0] : v1 (Ljava/net/Socket;)
+.line 69
+	return-void	
+.end method
+
+.method public a(Ljava/net/Socket;Ljava/net/InetSocketAddress;I)V
+.limit registers 4
+; this: v0 (Lcom/a/a/a/m;)
+; parameter[0] : v1 (Ljava/net/Socket;)
+; parameter[1] : v2 (Ljava/net/InetSocketAddress;)
+; parameter[2] : v3 (I)
+.line 108
+	invoke-virtual	{v1,v2,v3},java/net/Socket/connect	; connect(Ljava/net/SocketAddress;I)V
+; v1 : Ljava/net/Socket; , v2 : Ljava/net/InetSocketAddress; , v3 : single-length
+.line 109
+	return-void	
+.end method
+
+.method public a(Ljavax/net/ssl/SSLSocket;)V
+.limit registers 5
+; this: v3 (Lcom/a/a/a/m;)
+; parameter[0] : v4 (Ljavax/net/ssl/SSLSocket;)
+.line 91
+	const/4	v0,1
+; v0 : single-length
+	new-array	v0,v0,[Ljava/lang/String;
+; v0 : [Ljava/lang/String; , v0 : [Ljava/lang/String;
+	const/4	v1,0
+; v1 : single-length
+	const-string	v2,"SSLv3"
+; v2 : Ljava/lang/String;
+	aput-object	v2,v0,v1
+; v2 : Ljava/lang/String; , v0 : [Ljava/lang/String; , v1 : single-length
+	invoke-virtual	{v4,v0},javax/net/ssl/SSLSocket/setEnabledProtocols	; setEnabledProtocols([Ljava/lang/String;)V
+; v4 : Ljavax/net/ssl/SSLSocket; , v0 : [Ljava/lang/String;
+.line 92
+	return-void	
+.end method
+
+.method public a(Ljavax/net/ssl/SSLSocket;Ljava/lang/String;)V
+.limit registers 3
+; this: v0 (Lcom/a/a/a/m;)
+; parameter[0] : v1 (Ljavax/net/ssl/SSLSocket;)
+; parameter[1] : v2 (Ljava/lang/String;)
+.line 84
+	return-void	
+.end method
+
+.method public a(Ljavax/net/ssl/SSLSocket;[B)V
+.limit registers 3
+; this: v0 (Lcom/a/a/a/m;)
+; parameter[0] : v1 (Ljavax/net/ssl/SSLSocket;)
+; parameter[1] : v2 ([B)
+.line 104
+	return-void	
+.end method
+
+.method public b()Ljava/lang/String;
+.limit registers 2
+; this: v1 (Lcom/a/a/a/m;)
+.line 61
+	const-string	v0,"OkHttp"
+; v0 : Ljava/lang/String;
+	return-object	v0
+; v0 : Ljava/lang/String;
+.end method
+
+.method public b(Ljava/net/Socket;)V
+.limit registers 2
+; this: v0 (Lcom/a/a/a/m;)
+; parameter[0] : v1 (Ljava/net/Socket;)
+.line 72
+	return-void	
+.end method
+
+.method public b(Ljavax/net/ssl/SSLSocket;)[B
+.limit registers 3
+; this: v1 (Lcom/a/a/a/m;)
+; parameter[0] : v2 (Ljavax/net/ssl/SSLSocket;)
+.line 96
+	const/4	v0,0
+; v0 : single-length
+	return-object	v0
+; v0 : single-length
+.end method
+
+

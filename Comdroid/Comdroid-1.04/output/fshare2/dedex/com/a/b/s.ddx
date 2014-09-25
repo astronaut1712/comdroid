@@ -1,0 +1,164 @@
+.class com/a/b/s
+.super android/content/BroadcastReceiver
+.source MyApplication
+
+.field final a Lcom/a/b/o;
+.field private final b Landroid/net/ConnectivityManager;
+
+.method <init>(Lcom/a/b/o;Landroid/content/Context;)V
+.limit registers 4
+; this: v1 (Lcom/a/b/s;)
+; parameter[0] : v2 (Lcom/a/b/o;)
+; parameter[1] : v3 (Landroid/content/Context;)
+.line 280
+	iput-object	v2,v1,com/a/b/s.a Lcom/a/b/o;
+; v2 : Lcom/a/b/o; , v1 : Lcom/a/b/s;
+	invoke-direct	{v1},android/content/BroadcastReceiver/<init>	; <init>()V
+; v1 : Lcom/a/b/s;
+.line 281
+	const-string	v0,"connectivity"
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v3,v0},android/content/Context/getSystemService	; getSystemService(Ljava/lang/String;)Ljava/lang/Object;
+; v3 : Landroid/content/Context; , v0 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,android/net/ConnectivityManager
+; v0 : Landroid/net/ConnectivityManager;
+	iput-object	v0,v1,com/a/b/s.b Landroid/net/ConnectivityManager;
+; v0 : Landroid/net/ConnectivityManager; , v1 : Lcom/a/b/s;
+.line 282
+	return-void	
+.end method
+
+.method a()V
+.limit registers 4
+; this: v3 (Lcom/a/b/s;)
+.line 285
+	iget-object	v0,v3,com/a/b/s.a Lcom/a/b/o;
+; v0 : Lcom/a/b/o; , v3 : Lcom/a/b/s;
+	iget-object	v0,v0,com/a/b/o.c Ljava/util/concurrent/ExecutorService;
+; v0 : Ljava/util/concurrent/ExecutorService; , v0 : Ljava/util/concurrent/ExecutorService;
+	instance-of	v0,v0,com/a/b/ao
+; v0 : single-length , v0 : single-length
+	if-eqz	v0,l7bf14
+; v0 : single-length
+	iget-object	v0,v3,com/a/b/s.a Lcom/a/b/o;
+; v0 : Lcom/a/b/o; , v3 : Lcom/a/b/s;
+	iget-object	v0,v0,com/a/b/o.b Landroid/content/Context;
+; v0 : Landroid/content/Context; , v0 : Landroid/content/Context;
+	const-string	v1,"android.permission.ACCESS_NETWORK_STATE"
+; v1 : Ljava/lang/String;
+	invoke-static	{v0,v1},com/a/b/bb/a	; a(Landroid/content/Context;Ljava/lang/String;)Z
+; v0 : Landroid/content/Context; , v1 : Ljava/lang/String;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,l7bf14
+; v0 : single-length
+	const/4	v0,1
+; v0 : single-length
+l7bee2:
+.line 287
+	new-instance	v1,android/content/IntentFilter
+; v1 : Landroid/content/IntentFilter;
+	invoke-direct	{v1},android/content/IntentFilter/<init>	; <init>()V
+; v1 : Landroid/content/IntentFilter;
+.line 288
+	const-string	v2,"android.intent.action.AIRPLANE_MODE"
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},android/content/IntentFilter/addAction	; addAction(Ljava/lang/String;)V
+; v1 : Landroid/content/IntentFilter; , v2 : Ljava/lang/String;
+.line 289
+	if-eqz	v0,l7bf04
+; v0 : single-length
+.line 290
+	const-string	v0,"android.net.conn.CONNECTIVITY_CHANGE"
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v1,v0},android/content/IntentFilter/addAction	; addAction(Ljava/lang/String;)V
+; v1 : Landroid/content/IntentFilter; , v0 : Ljava/lang/String;
+l7bf04:
+.line 292
+	iget-object	v0,v3,com/a/b/s.a Lcom/a/b/o;
+; v0 : Lcom/a/b/o; , v3 : Lcom/a/b/s;
+	iget-object	v0,v0,com/a/b/o.b Landroid/content/Context;
+; v0 : Landroid/content/Context; , v0 : Landroid/content/Context;
+	invoke-virtual	{v0,v3,v1},android/content/Context/registerReceiver	; registerReceiver(Landroid/content/BroadcastReceiver;Landroid/content/IntentFilter;)Landroid/content/Intent;
+; v0 : Landroid/content/Context; , v3 : Lcom/a/b/s; , v1 : Landroid/content/IntentFilter;
+.line 293
+	return-void	
+l7bf14:
+.line 285
+	const/4	v0,0
+; v0 : single-length
+	goto	l7bee2
+.end method
+
+.method public onReceive(Landroid/content/Context;Landroid/content/Intent;)V
+.limit registers 7
+; this: v4 (Lcom/a/b/s;)
+; parameter[0] : v5 (Landroid/content/Context;)
+; parameter[1] : v6 (Landroid/content/Intent;)
+.line 301
+	if-nez	v6,l7bf2e
+; v6 : Landroid/content/Intent;
+l7bf2c:
+.line 313
+	return-void	
+l7bf2e:
+.line 305
+	invoke-virtual	{v6},android/content/Intent/getAction	; getAction()Ljava/lang/String;
+; v6 : Landroid/content/Intent;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+.line 306
+	invoke-virtual	{v6},android/content/Intent/getExtras	; getExtras()Landroid/os/Bundle;
+; v6 : Landroid/content/Intent;
+	move-result-object	v1
+; v1 : Landroid/os/Bundle;
+.line 308
+	const-string	v2,"android.intent.action.AIRPLANE_MODE"
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v2,v0},java/lang/String/equals	; equals(Ljava/lang/Object;)Z
+; v2 : Ljava/lang/String; , v0 : Ljava/lang/String;
+	move-result	v2
+; v2 : single-length
+	if-eqz	v2,l7bf68
+; v2 : single-length
+.line 309
+	iget-object	v0,v4,com/a/b/s.a Lcom/a/b/o;
+; v0 : Lcom/a/b/o; , v4 : Lcom/a/b/s;
+	const-string	v2,"state"
+; v2 : Ljava/lang/String;
+	const/4	v3,0
+; v3 : single-length
+	invoke-virtual	{v1,v2,v3},android/os/Bundle/getBoolean	; getBoolean(Ljava/lang/String;Z)Z
+; v1 : Landroid/os/Bundle; , v2 : Ljava/lang/String; , v3 : single-length
+	move-result	v1
+; v1 : single-length
+	invoke-virtual	{v0,v1},com/a/b/o/a	; a(Z)V
+; v0 : Lcom/a/b/o; , v1 : single-length
+	goto	l7bf2c
+l7bf68:
+.line 310
+	const-string	v1,"android.net.conn.CONNECTIVITY_CHANGE"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v1,v0},java/lang/String/equals	; equals(Ljava/lang/Object;)Z
+; v1 : Ljava/lang/String; , v0 : Ljava/lang/String;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,l7bf2c
+; v0 : single-length
+.line 311
+	iget-object	v0,v4,com/a/b/s.a Lcom/a/b/o;
+; v0 : Lcom/a/b/o; , v4 : Lcom/a/b/s;
+	iget-object	v1,v4,com/a/b/s.b Landroid/net/ConnectivityManager;
+; v1 : Landroid/net/ConnectivityManager; , v4 : Lcom/a/b/s;
+	invoke-virtual	{v1},android/net/ConnectivityManager/getActiveNetworkInfo	; getActiveNetworkInfo()Landroid/net/NetworkInfo;
+; v1 : Landroid/net/ConnectivityManager;
+	move-result-object	v1
+; v1 : Landroid/net/NetworkInfo;
+	invoke-virtual	{v0,v1},com/a/b/o/a	; a(Landroid/net/NetworkInfo;)V
+; v0 : Lcom/a/b/o; , v1 : Landroid/net/NetworkInfo;
+	goto	l7bf2c
+.end method
+
+

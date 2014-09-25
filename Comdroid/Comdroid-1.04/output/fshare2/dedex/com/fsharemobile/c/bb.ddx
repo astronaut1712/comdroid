@@ -1,0 +1,104 @@
+.class com/fsharemobile/c/bb
+.super java/lang/Object
+.source MyApplication
+.implements com/fsharemobile/a/ao
+
+.field final a Lcom/fsharemobile/c/aw;
+
+.method <init>(Lcom/fsharemobile/c/aw;)V
+.limit registers 2
+; this: v0 (Lcom/fsharemobile/c/bb;)
+; parameter[0] : v1 (Lcom/fsharemobile/c/aw;)
+.line 1
+	iput-object	v1,v0,com/fsharemobile/c/bb.a Lcom/fsharemobile/c/aw;
+; v1 : Lcom/fsharemobile/c/aw; , v0 : Lcom/fsharemobile/c/bb;
+.line 300
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Lcom/fsharemobile/c/bb;
+	return-void	
+.end method
+
+.method public a(ILcom/fsharemobile/model/User;)V
+.limit registers 5
+; this: v2 (Lcom/fsharemobile/c/bb;)
+; parameter[0] : v3 (I)
+; parameter[1] : v4 (Lcom/fsharemobile/model/User;)
+.line 305
+	if-eqz	v3,l8de60
+; v3 : single-length
+.line 306
+	iget-object	v0,v2,com/fsharemobile/c/bb.a Lcom/fsharemobile/c/aw;
+; v0 : Lcom/fsharemobile/c/aw; , v2 : Lcom/fsharemobile/c/bb;
+	invoke-static	{v0,v3},com/fsharemobile/c/aw/a	; a(Lcom/fsharemobile/c/aw;I)V
+; v0 : Lcom/fsharemobile/c/aw; , v3 : single-length
+l8de5e:
+.line 318
+	return-void	
+l8de60:
+.line 308
+	iget-object	v0,v2,com/fsharemobile/c/bb.a Lcom/fsharemobile/c/aw;
+; v0 : Lcom/fsharemobile/c/aw; , v2 : Lcom/fsharemobile/c/bb;
+	invoke-virtual	{v0},com/fsharemobile/c/aw/isAdded	; isAdded()Z
+; v0 : Lcom/fsharemobile/c/aw;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,l8de5e
+; v0 : single-length
+.line 309
+	iget-object	v0,v2,com/fsharemobile/c/bb.a Lcom/fsharemobile/c/aw;
+; v0 : Lcom/fsharemobile/c/aw; , v2 : Lcom/fsharemobile/c/bb;
+	iput-object	v4,v0,com/fsharemobile/c/aw.o Lcom/fsharemobile/model/User;
+; v4 : Lcom/fsharemobile/model/User; , v0 : Lcom/fsharemobile/c/aw;
+.line 310
+	iget-object	v0,v2,com/fsharemobile/c/bb.a Lcom/fsharemobile/c/aw;
+; v0 : Lcom/fsharemobile/c/aw; , v2 : Lcom/fsharemobile/c/bb;
+	iget-object	v1,v2,com/fsharemobile/c/bb.a Lcom/fsharemobile/c/aw;
+; v1 : Lcom/fsharemobile/c/aw; , v2 : Lcom/fsharemobile/c/bb;
+	iget-object	v1,v1,com/fsharemobile/c/aw.o Lcom/fsharemobile/model/User;
+; v1 : Lcom/fsharemobile/model/User; , v1 : Lcom/fsharemobile/model/User;
+	invoke-static	{v0,v1},com/fsharemobile/c/aw/a	; a(Lcom/fsharemobile/c/aw;Lcom/fsharemobile/model/User;)V
+; v0 : Lcom/fsharemobile/c/aw; , v1 : Lcom/fsharemobile/model/User;
+.line 311
+	iget-object	v0,v2,com/fsharemobile/c/bb.a Lcom/fsharemobile/c/aw;
+; v0 : Lcom/fsharemobile/c/aw; , v2 : Lcom/fsharemobile/c/bb;
+	iget-object	v0,v0,com/fsharemobile/c/aw.r Lcom/fsharemobile/b/b;
+; v0 : Lcom/fsharemobile/b/b; , v0 : Lcom/fsharemobile/b/b;
+	invoke-virtual	{v0},com/fsharemobile/b/b/a	; a()Lcom/fsharemobile/b/b;
+; v0 : Lcom/fsharemobile/b/b;
+.line 312
+	iget-object	v0,v2,com/fsharemobile/c/bb.a Lcom/fsharemobile/c/aw;
+; v0 : Lcom/fsharemobile/c/aw; , v2 : Lcom/fsharemobile/c/bb;
+	iget-object	v0,v0,com/fsharemobile/c/aw.r Lcom/fsharemobile/b/b;
+; v0 : Lcom/fsharemobile/b/b; , v0 : Lcom/fsharemobile/b/b;
+	iget-object	v1,v2,com/fsharemobile/c/bb.a Lcom/fsharemobile/c/aw;
+; v1 : Lcom/fsharemobile/c/aw; , v2 : Lcom/fsharemobile/c/bb;
+	iget-object	v1,v1,com/fsharemobile/c/aw.o Lcom/fsharemobile/model/User;
+; v1 : Lcom/fsharemobile/model/User; , v1 : Lcom/fsharemobile/model/User;
+	invoke-virtual	{v1},com/fsharemobile/model/User/a	; a()Ljava/lang/String;
+; v1 : Lcom/fsharemobile/model/User;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},com/fsharemobile/b/b/b	; b(Ljava/lang/String;)V
+; v0 : Lcom/fsharemobile/b/b; , v1 : Ljava/lang/String;
+.line 313
+	iget-object	v0,v2,com/fsharemobile/c/bb.a Lcom/fsharemobile/c/aw;
+; v0 : Lcom/fsharemobile/c/aw; , v2 : Lcom/fsharemobile/c/bb;
+	iget-object	v0,v0,com/fsharemobile/c/aw.r Lcom/fsharemobile/b/b;
+; v0 : Lcom/fsharemobile/b/b; , v0 : Lcom/fsharemobile/b/b;
+	iget-object	v1,v2,com/fsharemobile/c/bb.a Lcom/fsharemobile/c/aw;
+; v1 : Lcom/fsharemobile/c/aw; , v2 : Lcom/fsharemobile/c/bb;
+	iget-object	v1,v1,com/fsharemobile/c/aw.o Lcom/fsharemobile/model/User;
+; v1 : Lcom/fsharemobile/model/User; , v1 : Lcom/fsharemobile/model/User;
+	invoke-virtual	{v0,v1},com/fsharemobile/b/b/a	; a(Lcom/fsharemobile/model/User;)J
+; v0 : Lcom/fsharemobile/b/b; , v1 : Lcom/fsharemobile/model/User;
+.line 314
+	iget-object	v0,v2,com/fsharemobile/c/bb.a Lcom/fsharemobile/c/aw;
+; v0 : Lcom/fsharemobile/c/aw; , v2 : Lcom/fsharemobile/c/bb;
+	iget-object	v0,v0,com/fsharemobile/c/aw.r Lcom/fsharemobile/b/b;
+; v0 : Lcom/fsharemobile/b/b; , v0 : Lcom/fsharemobile/b/b;
+	invoke-virtual	{v0},com/fsharemobile/b/b/b	; b()V
+; v0 : Lcom/fsharemobile/b/b;
+	goto	l8de5e
+.end method
+
+

@@ -1,0 +1,100 @@
+.class com/google/tagmanager/a
+.super java/lang/Object
+.source MyApplication
+.implements com/google/tagmanager/j
+
+.field private final a Landroid/content/Context;
+
+.method public <init>(Landroid/content/Context;)V
+.limit registers 2
+; this: v0 (Lcom/google/tagmanager/a;)
+; parameter[0] : v1 (Landroid/content/Context;)
+.line 15
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Lcom/google/tagmanager/a;
+.line 16
+	iput-object	v1,v0,com/google/tagmanager/a.a Landroid/content/Context;
+; v1 : Landroid/content/Context; , v0 : Lcom/google/tagmanager/a;
+.line 17
+	return-void	
+.end method
+
+.method public a(Ljava/util/Map;)V
+.limit registers 5
+; this: v3 (Lcom/google/tagmanager/a;)
+; parameter[0] : v4 (Ljava/util/Map;)
+.line 22
+	const-string	v0,"gtm.url"
+; v0 : Ljava/lang/String;
+	invoke-interface	{v4,v0},java/util/Map/get	; get(Ljava/lang/Object;)Ljava/lang/Object;
+; v4 : Ljava/util/Map; , v0 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/Object;
+.line 23
+	if-nez	v1,la064e
+; v1 : Ljava/lang/Object;
+.line 24
+	const-string	v0,"gtm"
+; v0 : Ljava/lang/String;
+	invoke-interface	{v4,v0},java/util/Map/get	; get(Ljava/lang/Object;)Ljava/lang/Object;
+; v4 : Ljava/util/Map; , v0 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+.line 25
+	if-eqz	v0,la064e
+; v0 : Ljava/lang/Object;
+	instance-of	v2,v0,java/util/Map
+; v2 : single-length , v0 : Ljava/lang/Object;
+	if-eqz	v2,la064e
+; v2 : single-length
+.line 26
+	check-cast	v0,java/util/Map
+; v0 : Ljava/util/Map;
+	const-string	v1,"url"
+; v1 : Ljava/lang/String;
+	invoke-interface	{v0,v1},java/util/Map/get	; get(Ljava/lang/Object;)Ljava/lang/Object;
+; v0 : Ljava/util/Map; , v1 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+la0618:
+.line 29
+	if-eqz	v0,la0624
+; v0 : Ljava/lang/Object;
+	instance-of	v1,v0,java/lang/String
+; v1 : single-length , v0 : Ljava/lang/Object;
+	if-nez	v1,la0626
+; v1 : single-length
+la0624:
+.line 37
+	return-void	
+la0626:
+.line 32
+	check-cast	v0,java/lang/String
+; v0 : Ljava/lang/String;
+	invoke-static	{v0},android/net/Uri/parse	; parse(Ljava/lang/String;)Landroid/net/Uri;
+; v0 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Landroid/net/Uri;
+.line 33
+	const-string	v1,"referrer"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},android/net/Uri/getQueryParameter	; getQueryParameter(Ljava/lang/String;)Ljava/lang/String;
+; v0 : Landroid/net/Uri; , v1 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+.line 34
+	if-eqz	v0,la0624
+; v0 : Ljava/lang/String;
+.line 35
+	iget-object	v1,v3,com/google/tagmanager/a.a Landroid/content/Context;
+; v1 : Landroid/content/Context; , v3 : Lcom/google/tagmanager/a;
+	invoke-static	{v1,v0},com/google/tagmanager/y/b	; b(Landroid/content/Context;Ljava/lang/String;)V
+; v1 : Landroid/content/Context; , v0 : Ljava/lang/String;
+	goto	la0624
+la064e:
+	move-object	v0,v1
+; v0 : Ljava/lang/Object; , v1 : Ljava/lang/Object;
+	goto	la0618
+.end method
+
+

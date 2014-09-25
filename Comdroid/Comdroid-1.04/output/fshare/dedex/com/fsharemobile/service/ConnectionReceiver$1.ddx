@@ -1,0 +1,128 @@
+.class com/fsharemobile/service/ConnectionReceiver$1
+.super java/lang/Object
+.source ConnectionReceiver.java
+.implements com/fsharemobile/client/UserProxy$OnLoginCompleted
+
+.enclosing method com/onReceive(Landroid/content/Context;Landroid/content/Intent;)V
+.field final this$0 Lcom/fsharemobile/service/ConnectionReceiver;
+.field private final val$mContext Landroid/content/Context;
+
+.method <init>(Lcom/fsharemobile/service/ConnectionReceiver;Landroid/content/Context;)V
+.limit registers 3
+; this: v0 (Lcom/fsharemobile/service/ConnectionReceiver$1;)
+; parameter[0] : v1 (Lcom/fsharemobile/service/ConnectionReceiver;)
+; parameter[1] : v2 (Landroid/content/Context;)
+.line 1
+	iput-object	v1,v0,com/fsharemobile/service/ConnectionReceiver$1.this$0 Lcom/fsharemobile/service/ConnectionReceiver;
+; v1 : Lcom/fsharemobile/service/ConnectionReceiver; , v0 : Lcom/fsharemobile/service/ConnectionReceiver$1;
+	iput-object	v2,v0,com/fsharemobile/service/ConnectionReceiver$1.val$mContext Landroid/content/Context;
+; v2 : Landroid/content/Context; , v0 : Lcom/fsharemobile/service/ConnectionReceiver$1;
+.line 53
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Lcom/fsharemobile/service/ConnectionReceiver$1;
+	return-void	
+.end method
+
+.method public onLoginCompleted(I)V
+.limit registers 6
+; this: v4 (Lcom/fsharemobile/service/ConnectionReceiver$1;)
+; parameter[0] : v5 (I)
+.var 0 is intent Landroid/content/Intent; from le07ba to le07ce
+.line 57
+	sget-object	v1,java/lang/System.out Ljava/io/PrintStream;
+; v1 : Ljava/io/PrintStream;
+	invoke-virtual	{v1,v5},java/io/PrintStream/println	; println(I)V
+; v1 : Ljava/io/PrintStream; , v5 : single-length
+.line 58
+	sget-object	v1,java/lang/System.out Ljava/io/PrintStream;
+; v1 : Ljava/io/PrintStream;
+	iget-object	v2,v4,com/fsharemobile/service/ConnectionReceiver$1.this$0 Lcom/fsharemobile/service/ConnectionReceiver;
+; v2 : Lcom/fsharemobile/service/ConnectionReceiver; , v4 : Lcom/fsharemobile/service/ConnectionReceiver$1;
+	invoke-static	{v2},com/fsharemobile/service/ConnectionReceiver/access$0	; access$0(Lcom/fsharemobile/service/ConnectionReceiver;)Lcom/fsharemobile/client/FClient;
+; v2 : Lcom/fsharemobile/service/ConnectionReceiver;
+	move-result-object	v2
+; v2 : Lcom/fsharemobile/client/FClient;
+	invoke-virtual	{v2},com/fsharemobile/client/FClient/getSessionid	; getSessionid()Ljava/lang/String;
+; v2 : Lcom/fsharemobile/client/FClient;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/io/PrintStream/println	; println(Ljava/lang/String;)V
+; v1 : Ljava/io/PrintStream; , v2 : Ljava/lang/String;
+.line 60
+	const-string	v1,"Login_errCode_UI"
+; v1 : Ljava/lang/String;
+	new-instance	v2,java/lang/StringBuilder
+; v2 : Ljava/lang/StringBuilder;
+	invoke-static	{v5},java/lang/String/valueOf	; valueOf(I)Ljava/lang/String;
+; v5 : single-length
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-direct	{v2,v3},java/lang/StringBuilder/<init>	; <init>(Ljava/lang/String;)V
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	invoke-virtual	{v2},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v2 : Ljava/lang/StringBuilder;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-static	{v1,v2},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v1 : Ljava/lang/String; , v2 : Ljava/lang/String;
+.line 62
+	if-eqz	v5,le07d0
+; v5 : single-length
+.line 69
+	new-instance	v0,android/content/Intent
+; v0 : Landroid/content/Intent;
+	iget-object	v1,v4,com/fsharemobile/service/ConnectionReceiver$1.val$mContext Landroid/content/Context;
+; v1 : Landroid/content/Context; , v4 : Lcom/fsharemobile/service/ConnectionReceiver$1;
+.line 70
+	const-class	v2,com/fsharemobile/LoginActivity
+; v2 : Ljava/lang/Class;
+.line 69
+	invoke-direct	{v0,v1,v2},android/content/Intent/<init>	; <init>(Landroid/content/Context;Ljava/lang/Class;)V
+; v0 : Landroid/content/Intent; , v1 : Landroid/content/Context; , v2 : Ljava/lang/Class;
+.line 71
+	const/high16	v1,4096
+; v1 : single-length
+	invoke-virtual	{v0,v1},android/content/Intent/addFlags	; addFlags(I)Landroid/content/Intent;
+; v0 : Landroid/content/Intent; , v1 : single-length
+.line 73
+	iget-object	v1,v4,com/fsharemobile/service/ConnectionReceiver$1.val$mContext Landroid/content/Context;
+; v1 : Landroid/content/Context; , v4 : Lcom/fsharemobile/service/ConnectionReceiver$1;
+	invoke-virtual	{v1,v0},android/content/Context/startActivity	; startActivity(Landroid/content/Intent;)V
+; v1 : Landroid/content/Context; , v0 : Landroid/content/Intent;
+le07ce:
+.line 90
+	return-void	
+le07d0:
+.line 84
+	iget-object	v1,v4,com/fsharemobile/service/ConnectionReceiver$1.val$mContext Landroid/content/Context;
+; v1 : Landroid/content/Context; , v4 : Lcom/fsharemobile/service/ConnectionReceiver$1;
+.line 85
+	iget-object	v2,v4,com/fsharemobile/service/ConnectionReceiver$1.val$mContext Landroid/content/Context;
+; v2 : Landroid/content/Context; , v4 : Lcom/fsharemobile/service/ConnectionReceiver$1;
+	invoke-virtual	{v2},android/content/Context/getResources	; getResources()Landroid/content/res/Resources;
+; v2 : Landroid/content/Context;
+	move-result-object	v2
+; v2 : Landroid/content/res/Resources;
+.line 87
+	const	v3,2131230890	; 0x7f0800aa
+; v3 : single-length
+.line 86
+	invoke-virtual	{v2,v3},android/content/res/Resources/getString	; getString(I)Ljava/lang/String;
+; v2 : Landroid/content/res/Resources; , v3 : single-length
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+.line 88
+	const/4	v3,0
+; v3 : single-length
+.line 83
+	invoke-static	{v1,v2,v3},android/widget/Toast/makeText	; makeText(Landroid/content/Context;Ljava/lang/CharSequence;I)Landroid/widget/Toast;
+; v1 : Landroid/content/Context; , v2 : Ljava/lang/String; , v3 : single-length
+	move-result-object	v1
+; v1 : Landroid/widget/Toast;
+.line 88
+	invoke-virtual	{v1},android/widget/Toast/show	; show()V
+; v1 : Landroid/widget/Toast;
+	goto	le07ce
+.end method
+
+

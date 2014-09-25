@@ -1,0 +1,257 @@
+.class com/fsharemobile/client/PhotoProxy$1
+.super java/lang/Object
+.source PhotoProxy.java
+.implements com/fsharemobile/client/APICallTask$OnAPICallCompleted
+
+.enclosing method com/getList(ILjava/lang/String;Lcom/fsharemobile/client/PhotoProxy$OnGetListCompleted;)V
+.field final this$0 Lcom/fsharemobile/client/PhotoProxy;
+.field private final val$callback Lcom/fsharemobile/client/PhotoProxy$OnGetListCompleted;
+
+.method <init>(Lcom/fsharemobile/client/PhotoProxy;Lcom/fsharemobile/client/PhotoProxy$OnGetListCompleted;)V
+.limit registers 3
+; this: v0 (Lcom/fsharemobile/client/PhotoProxy$1;)
+; parameter[0] : v1 (Lcom/fsharemobile/client/PhotoProxy;)
+; parameter[1] : v2 (Lcom/fsharemobile/client/PhotoProxy$OnGetListCompleted;)
+.line 1
+	iput-object	v1,v0,com/fsharemobile/client/PhotoProxy$1.this$0 Lcom/fsharemobile/client/PhotoProxy;
+; v1 : Lcom/fsharemobile/client/PhotoProxy; , v0 : Lcom/fsharemobile/client/PhotoProxy$1;
+	iput-object	v2,v0,com/fsharemobile/client/PhotoProxy$1.val$callback Lcom/fsharemobile/client/PhotoProxy$OnGetListCompleted;
+; v2 : Lcom/fsharemobile/client/PhotoProxy$OnGetListCompleted; , v0 : Lcom/fsharemobile/client/PhotoProxy$1;
+.line 46
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Lcom/fsharemobile/client/PhotoProxy$1;
+	return-void	
+.end method
+
+.method public onAPICallCompleted(Lcom/fsharemobile/client/HttpResponse;)V
+.limit registers 12
+; this: v10 (Lcom/fsharemobile/client/PhotoProxy$1;)
+; parameter[0] : v11 (Lcom/fsharemobile/client/HttpResponse;)
+.catch java/lang/Exception from ldaeea to ldafae using ldafcc
+.catch java/lang/Exception from ldaebc to ldaed6 using ldafcc
+.catch java/lang/Exception from ldae88 to ldaeba using ldafb4
+.var 6 is photoList Ljava/util/List; from ldae88 to ldaeba
+.var 5 is jsoArr Lorg/json/JSONArray; from ldaebc to ldaec0
+.var 2 is i I from ldaed0 to ldaede
+.var 5 is jsoArr Lorg/json/JSONArray; from ldaece to ldaede
+.var 7 is photoList Ljava/util/List; from ldaeba to ldaede
+.var 6 is photoList Ljava/util/List; from ldaede to ldaeea
+.var 1 is fphoto Lcom/fsharemobile/client/Photo; from ldaefc to ldafb4
+.var 2 is i I from ldaeea to ldafb4
+.var 4 is jso Lorg/json/JSONObject; from ldaef2 to ldafb4
+.var 5 is jsoArr Lorg/json/JSONArray; from ldaeea to ldafb4
+.var 7 is photoList Ljava/util/List; from ldaeea to ldafb4
+.var 3 is jex Ljava/lang/Exception; from ldafb6 to ldafcc
+.var 6 is photoList Ljava/util/List; from ldafb4 to ldafcc
+.var 7 is photoList Ljava/util/List; from ldafcc to ldafd0
+.line 50
+	const/4	v0,0
+; v0 : single-length
+.line 51
+	const/4	v6,0
+; v6 : single-length
+ldae88:
+.line 54
+	invoke-virtual	{v11},com/fsharemobile/client/HttpResponse/getHttpCode	; getHttpCode()I
+; v11 : Lcom/fsharemobile/client/HttpResponse;
+	move-result	v0
+; v0 : single-length
+.line 55
+	invoke-virtual	{v11},com/fsharemobile/client/HttpResponse/getHttpCode	; getHttpCode()I
+; v11 : Lcom/fsharemobile/client/HttpResponse;
+	move-result	v8
+; v8 : single-length
+	const/16	v9,200
+; v9 : single-length
+	if-eq	v8,v9,ldaeae
+; v8 : single-length , v9 : single-length
+.line 56
+	iget-object	v8,v10,com/fsharemobile/client/PhotoProxy$1.val$callback Lcom/fsharemobile/client/PhotoProxy$OnGetListCompleted;
+; v8 : Lcom/fsharemobile/client/PhotoProxy$OnGetListCompleted; , v10 : Lcom/fsharemobile/client/PhotoProxy$1;
+	const/4	v9,0
+; v9 : single-length
+	invoke-interface	{v8,v0,v9},com/fsharemobile/client/PhotoProxy$OnGetListCompleted/onGetListCompleted	; onGetListCompleted(ILjava/util/List;)V
+; v8 : Lcom/fsharemobile/client/PhotoProxy$OnGetListCompleted; , v0 : single-length , v9 : single-length
+ldaeac:
+.line 87
+	return-void	
+ldaeae:
+.line 59
+	const/4	v0,0
+; v0 : single-length
+.line 60
+	new-instance	v7,java/util/ArrayList
+; v7 : Ljava/util/ArrayList;
+	invoke-direct	{v7},java/util/ArrayList/<init>	; <init>()V
+; v7 : Ljava/util/ArrayList;
+ldaeba:
+.line 61
+	const/4	v5,0
+; v5 : single-length
+ldaebc:
+.line 62
+	new-instance	v5,org/json/JSONArray
+; v5 : Lorg/json/JSONArray;
+ldaec0:
+	invoke-virtual	{v11},com/fsharemobile/client/HttpResponse/getBodyAsString	; getBodyAsString()Ljava/lang/String;
+; v11 : Lcom/fsharemobile/client/HttpResponse;
+	move-result-object	v8
+; v8 : Ljava/lang/String;
+	invoke-direct	{v5,v8},org/json/JSONArray/<init>	; <init>(Ljava/lang/String;)V
+; v5 : Lorg/json/JSONArray; , v8 : Ljava/lang/String;
+.line 67
+	const/4	v2,0
+; v2 : single-length
+ldaed0:
+	invoke-virtual	{v5},org/json/JSONArray/length	; length()I
+; v5 : Lorg/json/JSONArray;
+ldaed6:
+	move-result	v8
+; v8 : single-length
+	if-lt	v2,v8,ldaeea
+; v2 : single-length , v8 : single-length
+	move-object	v6,v7
+; v6 : Ljava/util/ArrayList; , v7 : Ljava/util/ArrayList;
+ldaede:
+.line 86
+	iget-object	v8,v10,com/fsharemobile/client/PhotoProxy$1.val$callback Lcom/fsharemobile/client/PhotoProxy$OnGetListCompleted;
+; v8 : Lcom/fsharemobile/client/PhotoProxy$OnGetListCompleted; , v10 : Lcom/fsharemobile/client/PhotoProxy$1;
+	invoke-interface	{v8,v0,v6},com/fsharemobile/client/PhotoProxy$OnGetListCompleted/onGetListCompleted	; onGetListCompleted(ILjava/util/List;)V
+; v8 : Lcom/fsharemobile/client/PhotoProxy$OnGetListCompleted; , v0 : single-length , v6 : Ljava/util/ArrayList;
+	goto	ldaeac
+ldaeea:
+.line 68
+	invoke-virtual	{v5,v2},org/json/JSONArray/getJSONObject	; getJSONObject(I)Lorg/json/JSONObject;
+; v5 : Lorg/json/JSONArray; , v2 : single-length
+	move-result-object	v4
+; v4 : Lorg/json/JSONObject;
+.line 69
+	new-instance	v1,com/fsharemobile/client/Photo
+; v1 : Lcom/fsharemobile/client/Photo;
+	invoke-direct	{v1},com/fsharemobile/client/Photo/<init>	; <init>()V
+; v1 : Lcom/fsharemobile/client/Photo;
+.line 70
+	const-string	v8,"id"
+; v8 : Ljava/lang/String;
+	invoke-virtual	{v4,v8},org/json/JSONObject/getString	; getString(Ljava/lang/String;)Ljava/lang/String;
+; v4 : Lorg/json/JSONObject; , v8 : Ljava/lang/String;
+	move-result-object	v8
+; v8 : Ljava/lang/String;
+	invoke-virtual	{v1,v8},com/fsharemobile/client/Photo/setId	; setId(Ljava/lang/String;)V
+; v1 : Lcom/fsharemobile/client/Photo; , v8 : Ljava/lang/String;
+.line 71
+	const-string	v8,"linkcode"
+; v8 : Ljava/lang/String;
+	invoke-virtual	{v4,v8},org/json/JSONObject/getString	; getString(Ljava/lang/String;)Ljava/lang/String;
+; v4 : Lorg/json/JSONObject; , v8 : Ljava/lang/String;
+	move-result-object	v8
+; v8 : Ljava/lang/String;
+	invoke-virtual	{v1,v8},com/fsharemobile/client/Photo/setLinkCode	; setLinkCode(Ljava/lang/String;)V
+; v1 : Lcom/fsharemobile/client/Photo; , v8 : Ljava/lang/String;
+.line 72
+	const-string	v8,"name"
+; v8 : Ljava/lang/String;
+	invoke-virtual	{v4,v8},org/json/JSONObject/getString	; getString(Ljava/lang/String;)Ljava/lang/String;
+; v4 : Lorg/json/JSONObject; , v8 : Ljava/lang/String;
+	move-result-object	v8
+; v8 : Ljava/lang/String;
+	invoke-virtual	{v1,v8},com/fsharemobile/client/Photo/setName	; setName(Ljava/lang/String;)V
+; v1 : Lcom/fsharemobile/client/Photo; , v8 : Ljava/lang/String;
+.line 73
+	const-string	v8,"path"
+; v8 : Ljava/lang/String;
+	invoke-virtual	{v4,v8},org/json/JSONObject/getString	; getString(Ljava/lang/String;)Ljava/lang/String;
+; v4 : Lorg/json/JSONObject; , v8 : Ljava/lang/String;
+	move-result-object	v8
+; v8 : Ljava/lang/String;
+	invoke-virtual	{v1,v8},com/fsharemobile/client/Photo/setPath	; setPath(Ljava/lang/String;)V
+; v1 : Lcom/fsharemobile/client/Photo; , v8 : Ljava/lang/String;
+.line 74
+	const-string	v8,"created"
+; v8 : Ljava/lang/String;
+	invoke-virtual	{v4,v8},org/json/JSONObject/getString	; getString(Ljava/lang/String;)Ljava/lang/String;
+; v4 : Lorg/json/JSONObject; , v8 : Ljava/lang/String;
+	move-result-object	v8
+; v8 : Ljava/lang/String;
+	invoke-virtual	{v1,v8},com/fsharemobile/client/Photo/setCreated	; setCreated(Ljava/lang/String;)V
+; v1 : Lcom/fsharemobile/client/Photo; , v8 : Ljava/lang/String;
+.line 75
+	const-string	v8,"s"
+; v8 : Ljava/lang/String;
+	invoke-virtual	{v4,v8},org/json/JSONObject/getString	; getString(Ljava/lang/String;)Ljava/lang/String;
+; v4 : Lorg/json/JSONObject; , v8 : Ljava/lang/String;
+	move-result-object	v8
+; v8 : Ljava/lang/String;
+	invoke-virtual	{v1,v8},com/fsharemobile/client/Photo/setSphotolink	; setSphotolink(Ljava/lang/String;)V
+; v1 : Lcom/fsharemobile/client/Photo; , v8 : Ljava/lang/String;
+.line 76
+	const-string	v8,"l"
+; v8 : Ljava/lang/String;
+	invoke-virtual	{v4,v8},org/json/JSONObject/getString	; getString(Ljava/lang/String;)Ljava/lang/String;
+; v4 : Lorg/json/JSONObject; , v8 : Ljava/lang/String;
+	move-result-object	v8
+; v8 : Ljava/lang/String;
+	invoke-virtual	{v1,v8},com/fsharemobile/client/Photo/setLphotolink	; setLphotolink(Ljava/lang/String;)V
+; v1 : Lcom/fsharemobile/client/Photo; , v8 : Ljava/lang/String;
+.line 77
+	const-string	v8,"l"
+; v8 : Ljava/lang/String;
+	invoke-virtual	{v4,v8},org/json/JSONObject/getString	; getString(Ljava/lang/String;)Ljava/lang/String;
+; v4 : Lorg/json/JSONObject; , v8 : Ljava/lang/String;
+	move-result-object	v8
+; v8 : Ljava/lang/String;
+	const-string	v9,""
+; v9 : Ljava/lang/String;
+	invoke-virtual	{v8,v9},java/lang/String/equals	; equals(Ljava/lang/Object;)Z
+; v8 : Ljava/lang/String; , v9 : Ljava/lang/String;
+	move-result	v8
+; v8 : single-length
+	if-nez	v8,ldafa8
+; v8 : single-length
+.line 78
+	const-string	v8,"xs"
+; v8 : Ljava/lang/String;
+	invoke-virtual	{v4,v8},org/json/JSONObject/getString	; getString(Ljava/lang/String;)Ljava/lang/String;
+; v4 : Lorg/json/JSONObject; , v8 : Ljava/lang/String;
+	move-result-object	v8
+; v8 : Ljava/lang/String;
+	invoke-virtual	{v1,v8},com/fsharemobile/client/Photo/setXsphotolink	; setXsphotolink(Ljava/lang/String;)V
+; v1 : Lcom/fsharemobile/client/Photo; , v8 : Ljava/lang/String;
+ldafa8:
+.line 80
+	invoke-interface	{v7,v1},java/util/List/add	; add(Ljava/lang/Object;)Z
+; v7 : Ljava/util/ArrayList; , v1 : Lcom/fsharemobile/client/Photo;
+ldafae:
+.line 67
+	add-int/lit8	v2,v2,1
+; v2 : single-length , v2 : single-length
+	goto	ldaed0
+ldafb4:
+.line 82
+	move-exception	v3
+; v3 : java/lang/Exception
+ldafb6:
+.line 83
+	sget-object	v8,java/lang/System.out Ljava/io/PrintStream;
+; v8 : Ljava/io/PrintStream;
+	invoke-virtual	{v3},java/lang/Exception/toString	; toString()Ljava/lang/String;
+; v3 : java/lang/Exception
+	move-result-object	v9
+; v9 : Ljava/lang/String;
+	invoke-virtual	{v8,v9},java/io/PrintStream/println	; println(Ljava/lang/String;)V
+; v8 : Ljava/io/PrintStream; , v9 : Ljava/lang/String;
+.line 84
+	const/4	v0,1
+; v0 : single-length
+	goto	ldaede
+ldafcc:
+.line 82
+	move-exception	v3
+; v3 : java/lang/Exception
+	move-object	v6,v7
+; v6 : Ljava/util/ArrayList; , v7 : Ljava/util/ArrayList;
+ldafd0:
+	goto	ldafb6
+.end method
+
+

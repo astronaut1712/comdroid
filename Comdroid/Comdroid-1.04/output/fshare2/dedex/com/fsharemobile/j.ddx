@@ -1,0 +1,197 @@
+.class com/fsharemobile/j
+.super java/lang/Object
+.source MyApplication
+.implements java/lang/Runnable
+
+.field final a Lcom/fsharemobile/d;
+.field private final b I
+
+.method <init>(Lcom/fsharemobile/d;I)V
+.limit registers 3
+; this: v0 (Lcom/fsharemobile/j;)
+; parameter[0] : v1 (Lcom/fsharemobile/d;)
+; parameter[1] : v2 (I)
+.line 1
+	iput-object	v1,v0,com/fsharemobile/j.a Lcom/fsharemobile/d;
+; v1 : Lcom/fsharemobile/d; , v0 : Lcom/fsharemobile/j;
+	iput	v2,v0,com/fsharemobile/j.b I
+; v2 : single-length , v0 : Lcom/fsharemobile/j;
+.line 368
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Lcom/fsharemobile/j;
+	return-void	
+.end method
+
+.method public run()V
+.limit registers 5
+; this: v4 (Lcom/fsharemobile/j;)
+.catch android/content/res/Resources$NotFoundException from l91b72 to l91bb4 using l91bfa
+.line 371
+	new-instance	v0,java/lang/StringBuilder
+; v0 : Ljava/lang/StringBuilder;
+	const-string	v1,"err_"
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/StringBuilder/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/StringBuilder; , v1 : Ljava/lang/String;
+.line 372
+	iget	v1,v4,com/fsharemobile/j.b I
+; v1 : single-length , v4 : Lcom/fsharemobile/j;
+	invoke-virtual	{v0,v1},java/lang/StringBuilder/append	; append(I)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v1 : single-length
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+.line 371
+	invoke-virtual	{v0},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v0 : Ljava/lang/StringBuilder;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+.line 373
+	const-string	v1,"Upload_ErrCode_UI"
+; v1 : Ljava/lang/String;
+.line 374
+	new-instance	v2,java/lang/StringBuilder
+; v2 : Ljava/lang/StringBuilder;
+	iget	v3,v4,com/fsharemobile/j.b I
+; v3 : single-length , v4 : Lcom/fsharemobile/j;
+	invoke-static	{v3},java/lang/String/valueOf	; valueOf(I)Ljava/lang/String;
+; v3 : single-length
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-direct	{v2,v3},java/lang/StringBuilder/<init>	; <init>(Ljava/lang/String;)V
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	invoke-virtual	{v2},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v2 : Ljava/lang/StringBuilder;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+.line 373
+	invoke-static	{v1,v2},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v1 : Ljava/lang/String; , v2 : Ljava/lang/String;
+l91b72:
+.line 377
+	iget-object	v1,v4,com/fsharemobile/j.a Lcom/fsharemobile/d;
+; v1 : Lcom/fsharemobile/d; , v4 : Lcom/fsharemobile/j;
+	invoke-static	{v1},com/fsharemobile/d/a	; a(Lcom/fsharemobile/d;)Lcom/fsharemobile/c;
+; v1 : Lcom/fsharemobile/d;
+	move-result-object	v1
+; v1 : Lcom/fsharemobile/c;
+	invoke-static	{v1},com/fsharemobile/c/a	; a(Lcom/fsharemobile/c;)Lcom/fsharemobile/AddToShareActivity;
+; v1 : Lcom/fsharemobile/c;
+	move-result-object	v1
+; v1 : Lcom/fsharemobile/AddToShareActivity;
+	invoke-virtual	{v1},com/fsharemobile/AddToShareActivity/getResources	; getResources()Landroid/content/res/Resources;
+; v1 : Lcom/fsharemobile/AddToShareActivity;
+	move-result-object	v1
+; v1 : Landroid/content/res/Resources;
+.line 380
+	const-string	v2,"string"
+; v2 : Ljava/lang/String;
+.line 381
+	iget-object	v3,v4,com/fsharemobile/j.a Lcom/fsharemobile/d;
+; v3 : Lcom/fsharemobile/d; , v4 : Lcom/fsharemobile/j;
+	invoke-static	{v3},com/fsharemobile/d/a	; a(Lcom/fsharemobile/d;)Lcom/fsharemobile/c;
+; v3 : Lcom/fsharemobile/d;
+	move-result-object	v3
+; v3 : Lcom/fsharemobile/c;
+	invoke-static	{v3},com/fsharemobile/c/a	; a(Lcom/fsharemobile/c;)Lcom/fsharemobile/AddToShareActivity;
+; v3 : Lcom/fsharemobile/c;
+	move-result-object	v3
+; v3 : Lcom/fsharemobile/AddToShareActivity;
+	invoke-virtual	{v3},com/fsharemobile/AddToShareActivity/getPackageName	; getPackageName()Ljava/lang/String;
+; v3 : Lcom/fsharemobile/AddToShareActivity;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+.line 378
+	invoke-virtual	{v1,v0,v2,v3},android/content/res/Resources/getIdentifier	; getIdentifier(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)I
+; v1 : Landroid/content/res/Resources; , v0 : Ljava/lang/String; , v2 : Ljava/lang/String; , v3 : Ljava/lang/String;
+l91bb4:
+	move-result	v0
+; v0 : single-length
+l91bb6:
+.line 389
+	iget-object	v1,v4,com/fsharemobile/j.a Lcom/fsharemobile/d;
+; v1 : Lcom/fsharemobile/d; , v4 : Lcom/fsharemobile/j;
+	invoke-static	{v1},com/fsharemobile/d/a	; a(Lcom/fsharemobile/d;)Lcom/fsharemobile/c;
+; v1 : Lcom/fsharemobile/d;
+	move-result-object	v1
+; v1 : Lcom/fsharemobile/c;
+	invoke-static	{v1},com/fsharemobile/c/a	; a(Lcom/fsharemobile/c;)Lcom/fsharemobile/AddToShareActivity;
+; v1 : Lcom/fsharemobile/c;
+	move-result-object	v1
+; v1 : Lcom/fsharemobile/AddToShareActivity;
+.line 390
+	iget	v2,v4,com/fsharemobile/j.b I
+; v2 : single-length , v4 : Lcom/fsharemobile/j;
+.line 391
+	iget-object	v3,v4,com/fsharemobile/j.a Lcom/fsharemobile/d;
+; v3 : Lcom/fsharemobile/d; , v4 : Lcom/fsharemobile/j;
+	invoke-static	{v3},com/fsharemobile/d/a	; a(Lcom/fsharemobile/d;)Lcom/fsharemobile/c;
+; v3 : Lcom/fsharemobile/d;
+	move-result-object	v3
+; v3 : Lcom/fsharemobile/c;
+	invoke-static	{v3},com/fsharemobile/c/a	; a(Lcom/fsharemobile/c;)Lcom/fsharemobile/AddToShareActivity;
+; v3 : Lcom/fsharemobile/c;
+	move-result-object	v3
+; v3 : Lcom/fsharemobile/AddToShareActivity;
+	invoke-virtual	{v3},com/fsharemobile/AddToShareActivity/getResources	; getResources()Landroid/content/res/Resources;
+; v3 : Lcom/fsharemobile/AddToShareActivity;
+	move-result-object	v3
+; v3 : Landroid/content/res/Resources;
+.line 392
+	invoke-virtual	{v3,v0},android/content/res/Resources/getString	; getString(I)Ljava/lang/String;
+; v3 : Landroid/content/res/Resources; , v0 : single-length
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+.line 389
+	invoke-static	{v1,v2,v0},com/fsharemobile/AddToShareActivity/a	; a(Lcom/fsharemobile/AddToShareActivity;ILjava/lang/String;)V
+; v1 : Lcom/fsharemobile/AddToShareActivity; , v2 : single-length , v0 : Ljava/lang/String;
+.line 394
+	return-void	
+l91bfa:
+.line 382
+	move-exception	v0
+; v0 : android/content/res/Resources$NotFoundException
+.line 383
+	iget-object	v0,v4,com/fsharemobile/j.a Lcom/fsharemobile/d;
+; v0 : Lcom/fsharemobile/d; , v4 : Lcom/fsharemobile/j;
+	invoke-static	{v0},com/fsharemobile/d/a	; a(Lcom/fsharemobile/d;)Lcom/fsharemobile/c;
+; v0 : Lcom/fsharemobile/d;
+	move-result-object	v0
+; v0 : Lcom/fsharemobile/c;
+	invoke-static	{v0},com/fsharemobile/c/a	; a(Lcom/fsharemobile/c;)Lcom/fsharemobile/AddToShareActivity;
+; v0 : Lcom/fsharemobile/c;
+	move-result-object	v0
+; v0 : Lcom/fsharemobile/AddToShareActivity;
+	invoke-virtual	{v0},com/fsharemobile/AddToShareActivity/getResources	; getResources()Landroid/content/res/Resources;
+; v0 : Lcom/fsharemobile/AddToShareActivity;
+	move-result-object	v0
+; v0 : Landroid/content/res/Resources;
+.line 385
+	const-string	v1,"upload_failed"
+; v1 : Ljava/lang/String;
+.line 386
+	const-string	v2,"string"
+; v2 : Ljava/lang/String;
+.line 387
+	iget-object	v3,v4,com/fsharemobile/j.a Lcom/fsharemobile/d;
+; v3 : Lcom/fsharemobile/d; , v4 : Lcom/fsharemobile/j;
+	invoke-static	{v3},com/fsharemobile/d/a	; a(Lcom/fsharemobile/d;)Lcom/fsharemobile/c;
+; v3 : Lcom/fsharemobile/d;
+	move-result-object	v3
+; v3 : Lcom/fsharemobile/c;
+	invoke-static	{v3},com/fsharemobile/c/a	; a(Lcom/fsharemobile/c;)Lcom/fsharemobile/AddToShareActivity;
+; v3 : Lcom/fsharemobile/c;
+	move-result-object	v3
+; v3 : Lcom/fsharemobile/AddToShareActivity;
+	invoke-virtual	{v3},com/fsharemobile/AddToShareActivity/getPackageName	; getPackageName()Ljava/lang/String;
+; v3 : Lcom/fsharemobile/AddToShareActivity;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+.line 384
+	invoke-virtual	{v0,v1,v2,v3},android/content/res/Resources/getIdentifier	; getIdentifier(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)I
+; v0 : Landroid/content/res/Resources; , v1 : Ljava/lang/String; , v2 : Ljava/lang/String; , v3 : Ljava/lang/String;
+	move-result	v0
+; v0 : single-length
+	goto	l91bb6
+.end method
+
+

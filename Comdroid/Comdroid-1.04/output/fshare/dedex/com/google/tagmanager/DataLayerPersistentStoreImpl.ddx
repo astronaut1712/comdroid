@@ -1,0 +1,1693 @@
+.class com/google/tagmanager/DataLayerPersistentStoreImpl
+.super java/lang/Object
+.source DataLayerPersistentStoreImpl.java
+.implements com/google/tagmanager/DataLayer$PersistentStore
+
+.inner class KeyAndSerialized inner com/google/tagmanager/DataLayerPersistentStoreImpl$KeyAndSerialized outer com/google/tagmanager/DataLayerPersistentStoreImpl
+.inner class DatabaseHelper inner com/google/tagmanager/DataLayerPersistentStoreImpl$DatabaseHelper outer com/google/tagmanager/DataLayerPersistentStoreImpl
+.field private static final CREATE_MAPS_TABLE Ljava/lang/String; = null
+.field private static final DATABASE_NAME Ljava/lang/String; = "google_tagmanager.db"
+.field private static final EXPIRE_FIELD Ljava/lang/String; = "expires"
+.field private static final ID_FIELD Ljava/lang/String; = "ID"
+.field private static final KEY_FIELD Ljava/lang/String; = "key"
+.field private static final MAPS_TABLE Ljava/lang/String; = "datalayer"
+.field private static final MAX_NUM_STORED_ITEMS I = 2000	; 0x7d0
+.field private static final VALUE_FIELD Ljava/lang/String; = "value"
+.field private mClock Lcom/google/tagmanager/Clock;
+.field private final mContext Landroid/content/Context;
+.field private mDbHelper Lcom/google/tagmanager/DataLayerPersistentStoreImpl$DatabaseHelper;
+.field private final mExecutor Ljava/util/concurrent/Executor;
+.field private mMaxNumStoredItems I
+
+.method static <clinit>()V
+.limit registers 4
+.line 40
+	const-string	v0,"CREATE TABLE IF NOT EXISTS %s ( '%s' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, '%s' STRING NOT NULL, '%s' BLOB NOT NULL, '%s' INTEGER NOT NULL)"
+; v0 : Ljava/lang/String;
+	const/4	v1,5
+; v1 : single-length
+	new-array	v1,v1,[Ljava/lang/Object;
+; v1 : [Ljava/lang/Object; , v1 : [Ljava/lang/Object;
+	const/4	v2,0
+; v2 : single-length
+	const-string	v3,"datalayer"
+; v3 : Ljava/lang/String;
+	aput-object	v3,v1,v2
+; v3 : Ljava/lang/String; , v1 : [Ljava/lang/Object; , v2 : single-length
+	const/4	v2,1
+; v2 : single-length
+	const-string	v3,"ID"
+; v3 : Ljava/lang/String;
+	aput-object	v3,v1,v2
+; v3 : Ljava/lang/String; , v1 : [Ljava/lang/Object; , v2 : single-length
+	const/4	v2,2
+; v2 : single-length
+	const-string	v3,"key"
+; v3 : Ljava/lang/String;
+	aput-object	v3,v1,v2
+; v3 : Ljava/lang/String; , v1 : [Ljava/lang/Object; , v2 : single-length
+	const/4	v2,3
+; v2 : single-length
+	const-string	v3,"value"
+; v3 : Ljava/lang/String;
+	aput-object	v3,v1,v2
+; v3 : Ljava/lang/String; , v1 : [Ljava/lang/Object; , v2 : single-length
+	const/4	v2,4
+; v2 : single-length
+	const-string	v3,"expires"
+; v3 : Ljava/lang/String;
+	aput-object	v3,v1,v2
+; v3 : Ljava/lang/String; , v1 : [Ljava/lang/Object; , v2 : single-length
+	invoke-static	{v0,v1},java/lang/String/format	; format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+; v0 : Ljava/lang/String; , v1 : [Ljava/lang/Object;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	sput-object	v0,com/google/tagmanager/DataLayerPersistentStoreImpl.CREATE_MAPS_TABLE Ljava/lang/String;
+; v0 : Ljava/lang/String;
+	return-void	
+.end method
+
+.method public <init>(Landroid/content/Context;)V
+.annotation buildVisibility Lcom/google/android/gms/common/util/VisibleForTesting;
+.end annotation
+.limit registers 8
+; this: v6 (Lcom/google/tagmanager/DataLayerPersistentStoreImpl;)
+; parameter[0] : v7 (Landroid/content/Context;)
+.line 59
+	new-instance	v2,com/google/tagmanager/DataLayerPersistentStoreImpl$1
+; v2 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl$1;
+	invoke-direct	{v2},com/google/tagmanager/DataLayerPersistentStoreImpl$1/<init>	; <init>()V
+; v2 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl$1;
+	const-string	v3,"google_tagmanager.db"
+; v3 : Ljava/lang/String;
+	const/16	v4,2000
+; v4 : single-length
+	invoke-static	{},java/util/concurrent/Executors/newSingleThreadExecutor	; newSingleThreadExecutor()Ljava/util/concurrent/ExecutorService;
+; 
+	nop	
+	move-result-object	v5
+; v5 : Ljava/util/concurrent/ExecutorService;
+	move-object	v0,v6
+; v0 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl; , v6 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl;
+	move-object	v1,v7
+; v1 : Landroid/content/Context; , v7 : Landroid/content/Context;
+	invoke-direct/range	{v0..v5},com/google/tagmanager/DataLayerPersistentStoreImpl/<init>;	<init>(Landroid/content/Context;Lcom/google/tagmanager/Clock;Ljava/lang/String;ILjava/util/concurrent/Executor;)V
+; v0 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl; , v1 : Landroid/content/Context; , v2 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl$1; , v3 : Ljava/lang/String; , v4 : single-length , v5 : Ljava/util/concurrent/ExecutorService;
+.line 64
+	return-void	
+.end method
+
+.method <init>(Landroid/content/Context;Lcom/google/tagmanager/Clock;Ljava/lang/String;ILjava/util/concurrent/Executor;)V
+.annotation buildVisibility Lcom/google/android/gms/common/util/VisibleForTesting;
+.end annotation
+.limit registers 8
+; this: v2 (Lcom/google/tagmanager/DataLayerPersistentStoreImpl;)
+; parameter[0] : v3 (Landroid/content/Context;)
+; parameter[1] : v4 (Lcom/google/tagmanager/Clock;)
+; parameter[2] : v5 (Ljava/lang/String;)
+; parameter[3] : v6 (I)
+; parameter[4] : v7 (Ljava/util/concurrent/Executor;)
+.line 67
+	invoke-direct	{v2},java/lang/Object/<init>	; <init>()V
+; v2 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl;
+.line 68
+	iput-object	v3,v2,com/google/tagmanager/DataLayerPersistentStoreImpl.mContext Landroid/content/Context;
+; v3 : Landroid/content/Context; , v2 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl;
+.line 69
+	iput-object	v4,v2,com/google/tagmanager/DataLayerPersistentStoreImpl.mClock Lcom/google/tagmanager/Clock;
+; v4 : Lcom/google/tagmanager/Clock; , v2 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl;
+.line 70
+	iput	v6,v2,com/google/tagmanager/DataLayerPersistentStoreImpl.mMaxNumStoredItems I
+; v6 : single-length , v2 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl;
+.line 71
+	iput-object	v7,v2,com/google/tagmanager/DataLayerPersistentStoreImpl.mExecutor Ljava/util/concurrent/Executor;
+; v7 : Ljava/util/concurrent/Executor; , v2 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl;
+.line 72
+	new-instance	v0,com/google/tagmanager/DataLayerPersistentStoreImpl$DatabaseHelper
+; v0 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl$DatabaseHelper;
+	iget-object	v1,v2,com/google/tagmanager/DataLayerPersistentStoreImpl.mContext Landroid/content/Context;
+; v1 : Landroid/content/Context; , v2 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl;
+	invoke-direct	{v0,v2,v1,v5},com/google/tagmanager/DataLayerPersistentStoreImpl$DatabaseHelper/<init>	; <init>(Lcom/google/tagmanager/DataLayerPersistentStoreImpl;Landroid/content/Context;Ljava/lang/String;)V
+; v0 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl$DatabaseHelper; , v2 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl; , v1 : Landroid/content/Context; , v5 : Ljava/lang/String;
+	iput-object	v0,v2,com/google/tagmanager/DataLayerPersistentStoreImpl.mDbHelper Lcom/google/tagmanager/DataLayerPersistentStoreImpl$DatabaseHelper;
+; v0 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl$DatabaseHelper; , v2 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl;
+.line 73
+	return-void	
+.end method
+
+.method static access$000(Lcom/google/tagmanager/DataLayerPersistentStoreImpl;Ljava/util/List;J)V
+.limit registers 4
+; parameter[0] : v0 (Lcom/google/tagmanager/DataLayerPersistentStoreImpl;)
+; parameter[1] : v1 (Ljava/util/List;)
+; parameter[2] : v2 (J)
+.line 32
+	invoke-direct	{v0,v1,v2,v3},com/google/tagmanager/DataLayerPersistentStoreImpl/saveSingleThreaded	; saveSingleThreaded(Ljava/util/List;J)V
+; v0 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl; , v1 : Ljava/util/List; , v2 : double-length
+	return-void	
+.end method
+
+.method static access$100(Lcom/google/tagmanager/DataLayerPersistentStoreImpl;)Ljava/util/List;
+.limit registers 2
+; parameter[0] : v1 (Lcom/google/tagmanager/DataLayerPersistentStoreImpl;)
+.line 32
+	invoke-direct	{v1},com/google/tagmanager/DataLayerPersistentStoreImpl/loadSingleThreaded	; loadSingleThreaded()Ljava/util/List;
+; v1 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl;
+	move-result-object	v0
+; v0 : Ljava/util/List;
+	return-object	v0
+; v0 : Ljava/util/List;
+.end method
+
+.method static access$200(Lcom/google/tagmanager/DataLayerPersistentStoreImpl;Ljava/lang/String;)V
+.limit registers 2
+; parameter[0] : v0 (Lcom/google/tagmanager/DataLayerPersistentStoreImpl;)
+; parameter[1] : v1 (Ljava/lang/String;)
+.line 32
+	invoke-direct	{v0,v1},com/google/tagmanager/DataLayerPersistentStoreImpl/clearKeysWithPrefixSingleThreaded	; clearKeysWithPrefixSingleThreaded(Ljava/lang/String;)V
+; v0 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl; , v1 : Ljava/lang/String;
+	return-void	
+.end method
+
+.method static access$300(Lcom/google/tagmanager/DataLayerPersistentStoreImpl;)Landroid/content/Context;
+.limit registers 2
+; parameter[0] : v1 (Lcom/google/tagmanager/DataLayerPersistentStoreImpl;)
+.line 32
+	iget-object	v0,v1,com/google/tagmanager/DataLayerPersistentStoreImpl.mContext Landroid/content/Context;
+; v0 : Landroid/content/Context; , v1 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl;
+	return-object	v0
+; v0 : Landroid/content/Context;
+.end method
+
+.method static access$400()Ljava/lang/String;
+.limit registers 1
+.line 32
+	sget-object	v0,com/google/tagmanager/DataLayerPersistentStoreImpl.CREATE_MAPS_TABLE Ljava/lang/String;
+; v0 : Ljava/lang/String;
+	return-object	v0
+; v0 : Ljava/lang/String;
+.end method
+
+.method private clearKeysWithPrefixSingleThreaded(Ljava/lang/String;)V
+.limit registers 11
+; this: v9 (Lcom/google/tagmanager/DataLayerPersistentStoreImpl;)
+; parameter[0] : v10 (Ljava/lang/String;)
+.catch java/lang/Exception from le7538 to le7584 using le758c
+.catch android/database/sqlite/SQLiteException from le74ae to le752e using le7536
+.catch java/lang/Exception from le74ae to le752e using le758c
+.var 1 is deleted I from le74f6 to le7536
+.var 2 is e Landroid/database/sqlite/SQLiteException; from le7538 to le758c
+.line 233
+	const-string	v3,"Error opening database for clearKeysWithPrefix."
+; v3 : Ljava/lang/String;
+	invoke-direct	{v9,v3},com/google/tagmanager/DataLayerPersistentStoreImpl/getWritableDatabase	; getWritableDatabase(Ljava/lang/String;)Landroid/database/sqlite/SQLiteDatabase;
+; v9 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl; , v3 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Landroid/database/sqlite/SQLiteDatabase;
+.line 234
+	if-nez	v0,le74ae
+; v0 : Landroid/database/sqlite/SQLiteDatabase;
+le74ac:
+.line 247
+	return-void	
+le74ae:
+.line 239
+	const-string	v3,"datalayer"
+; v3 : Ljava/lang/String;
+	const-string	v4,"key = ? OR key LIKE ?"
+; v4 : Ljava/lang/String;
+	const/4	v5,2
+; v5 : single-length
+	new-array	v5,v5,[Ljava/lang/String;
+; v5 : [Ljava/lang/String; , v5 : [Ljava/lang/String;
+	const/4	v6,0
+; v6 : single-length
+	aput-object	v10,v5,v6
+; v10 : Ljava/lang/String; , v5 : [Ljava/lang/String; , v6 : single-length
+	const/4	v6,1
+; v6 : single-length
+	new-instance	v7,java/lang/StringBuilder
+; v7 : Ljava/lang/StringBuilder;
+	invoke-direct	{v7},java/lang/StringBuilder/<init>	; <init>()V
+; v7 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v7,v10},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v7 : Ljava/lang/StringBuilder; , v10 : Ljava/lang/String;
+	move-result-object	v7
+; v7 : Ljava/lang/StringBuilder;
+	const-string	v8,".%"
+; v8 : Ljava/lang/String;
+	invoke-virtual	{v7,v8},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v7 : Ljava/lang/StringBuilder; , v8 : Ljava/lang/String;
+	move-result-object	v7
+; v7 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v7},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v7 : Ljava/lang/StringBuilder;
+	move-result-object	v7
+; v7 : Ljava/lang/String;
+	aput-object	v7,v5,v6
+; v7 : Ljava/lang/String; , v5 : [Ljava/lang/String; , v6 : single-length
+	invoke-virtual	{v0,v3,v4,v5},android/database/sqlite/SQLiteDatabase/delete	; delete(Ljava/lang/String;Ljava/lang/String;[Ljava/lang/String;)I
+; v0 : Landroid/database/sqlite/SQLiteDatabase; , v3 : Ljava/lang/String; , v4 : Ljava/lang/String; , v5 : [Ljava/lang/String;
+	move-result	v1
+; v1 : single-length
+.line 241
+	new-instance	v3,java/lang/StringBuilder
+; v3 : Ljava/lang/StringBuilder;
+	invoke-direct	{v3},java/lang/StringBuilder/<init>	; <init>()V
+; v3 : Ljava/lang/StringBuilder;
+	const-string	v4,"Cleared "
+; v4 : Ljava/lang/String;
+	invoke-virtual	{v3,v4},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v3 : Ljava/lang/StringBuilder; , v4 : Ljava/lang/String;
+	move-result-object	v3
+; v3 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v3,v1},java/lang/StringBuilder/append	; append(I)Ljava/lang/StringBuilder;
+; v3 : Ljava/lang/StringBuilder; , v1 : single-length
+	move-result-object	v3
+; v3 : Ljava/lang/StringBuilder;
+	const-string	v4," items"
+; v4 : Ljava/lang/String;
+	invoke-virtual	{v3,v4},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v3 : Ljava/lang/StringBuilder; , v4 : Ljava/lang/String;
+	move-result-object	v3
+; v3 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v3},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v3 : Ljava/lang/StringBuilder;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-static	{v3},com/google/tagmanager/Log/v	; v(Ljava/lang/String;)V
+; v3 : Ljava/lang/String;
+le752e:
+.line 245
+	invoke-direct	{v9},com/google/tagmanager/DataLayerPersistentStoreImpl/closeDatabaseConnection	; closeDatabaseConnection()V
+; v9 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl;
+	goto	le74ac
+le7536:
+.line 242
+	move-exception	v2
+; v2 : android/database/sqlite/SQLiteException
+le7538:
+.line 243
+	new-instance	v3,java/lang/StringBuilder
+; v3 : Ljava/lang/StringBuilder;
+	invoke-direct	{v3},java/lang/StringBuilder/<init>	; <init>()V
+; v3 : Ljava/lang/StringBuilder;
+	const-string	v4,"Error deleting entries with key prefix: "
+; v4 : Ljava/lang/String;
+	invoke-virtual	{v3,v4},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v3 : Ljava/lang/StringBuilder; , v4 : Ljava/lang/String;
+	move-result-object	v3
+; v3 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v3,v10},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v3 : Ljava/lang/StringBuilder; , v10 : Ljava/lang/String;
+	move-result-object	v3
+; v3 : Ljava/lang/StringBuilder;
+	const-string	v4," ("
+; v4 : Ljava/lang/String;
+	invoke-virtual	{v3,v4},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v3 : Ljava/lang/StringBuilder; , v4 : Ljava/lang/String;
+	move-result-object	v3
+; v3 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v3,v2},java/lang/StringBuilder/append	; append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+; v3 : Ljava/lang/StringBuilder; , v2 : android/database/sqlite/SQLiteException
+	move-result-object	v3
+; v3 : Ljava/lang/StringBuilder;
+	const-string	v4,")."
+; v4 : Ljava/lang/String;
+	invoke-virtual	{v3,v4},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v3 : Ljava/lang/StringBuilder; , v4 : Ljava/lang/String;
+	move-result-object	v3
+; v3 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v3},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v3 : Ljava/lang/StringBuilder;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-static	{v3},com/google/tagmanager/Log/w	; w(Ljava/lang/String;)V
+; v3 : Ljava/lang/String;
+le7584:
+.line 245
+	invoke-direct	{v9},com/google/tagmanager/DataLayerPersistentStoreImpl/closeDatabaseConnection	; closeDatabaseConnection()V
+; v9 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl;
+	goto	le74ac
+le758c:
+	move-exception	v3
+; v3 : java/lang/Exception
+	invoke-direct	{v9},com/google/tagmanager/DataLayerPersistentStoreImpl/closeDatabaseConnection	; closeDatabaseConnection()V
+; v9 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl;
+	throw	v3
+; v3 : java/lang/Exception
+.end method
+
+.method private closeDatabaseConnection()V
+.limit registers 2
+; this: v1 (Lcom/google/tagmanager/DataLayerPersistentStoreImpl;)
+.catch android/database/sqlite/SQLiteException from le75c0 to le75ca using le75cc
+le75c0:
+.line 374
+	iget-object	v0,v1,com/google/tagmanager/DataLayerPersistentStoreImpl.mDbHelper Lcom/google/tagmanager/DataLayerPersistentStoreImpl$DatabaseHelper;
+; v0 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl$DatabaseHelper; , v1 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl;
+	invoke-virtual	{v0},com/google/tagmanager/DataLayerPersistentStoreImpl$DatabaseHelper/close	; close()V
+; v0 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl$DatabaseHelper;
+le75ca:
+.line 378
+	return-void	
+le75cc:
+.line 375
+	move-exception	v0
+; v0 : android/database/sqlite/SQLiteException
+	goto	le75ca
+.end method
+
+.method private deleteEntries([Ljava/lang/String;)V
+.limit registers 11
+; this: v9 (Lcom/google/tagmanager/DataLayerPersistentStoreImpl;)
+; parameter[0] : v10 ([Ljava/lang/String;)
+.catch android/database/sqlite/SQLiteException from le7644 to le764e using le7650
+.line 269
+	if-eqz	v10,le75f6
+; v10 : [Ljava/lang/String;
+	array-length	v3,v10
+; v3 : single-length , v10 : [Ljava/lang/String;
+	if-nez	v3,le75f8
+; v3 : single-length
+le75f6:
+.line 283
+	return-void	
+le75f8:
+.line 272
+	const-string	v3,"Error opening database for deleteEntries."
+; v3 : Ljava/lang/String;
+	invoke-direct	{v9,v3},com/google/tagmanager/DataLayerPersistentStoreImpl/getWritableDatabase	; getWritableDatabase(Ljava/lang/String;)Landroid/database/sqlite/SQLiteDatabase;
+; v9 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl; , v3 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Landroid/database/sqlite/SQLiteDatabase;
+.line 273
+	if-eqz	v0,le75f6
+; v0 : Landroid/database/sqlite/SQLiteDatabase;
+.line 276
+	const-string	v3,"%s in (%s)"
+; v3 : Ljava/lang/String;
+	const/4	v4,2
+; v4 : single-length
+	new-array	v4,v4,[Ljava/lang/Object;
+; v4 : [Ljava/lang/Object; , v4 : [Ljava/lang/Object;
+	const/4	v5,0
+; v5 : single-length
+	const-string	v6,"ID"
+; v6 : Ljava/lang/String;
+	aput-object	v6,v4,v5
+; v6 : Ljava/lang/String; , v4 : [Ljava/lang/Object; , v5 : single-length
+	const/4	v5,1
+; v5 : single-length
+	const-string	v6,","
+; v6 : Ljava/lang/String;
+	array-length	v7,v10
+; v7 : single-length , v10 : [Ljava/lang/String;
+	const-string	v8,"?"
+; v8 : Ljava/lang/String;
+	invoke-static	{v7,v8},java/util/Collections/nCopies	; nCopies(ILjava/lang/Object;)Ljava/util/List;
+; v7 : single-length , v8 : Ljava/lang/String;
+	move-result-object	v7
+; v7 : Ljava/util/List;
+	invoke-static	{v6,v7},android/text/TextUtils/join	; join(Ljava/lang/CharSequence;Ljava/lang/Iterable;)Ljava/lang/String;
+; v6 : Ljava/lang/String; , v7 : Ljava/util/List;
+	move-result-object	v6
+; v6 : Ljava/lang/String;
+	aput-object	v6,v4,v5
+; v6 : Ljava/lang/String; , v4 : [Ljava/lang/Object; , v5 : single-length
+	invoke-static	{v3,v4},java/lang/String/format	; format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+; v3 : Ljava/lang/String; , v4 : [Ljava/lang/Object;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+le7644:
+.line 279
+	const-string	v3,"datalayer"
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v0,v3,v2,v10},android/database/sqlite/SQLiteDatabase/delete	; delete(Ljava/lang/String;Ljava/lang/String;[Ljava/lang/String;)I
+; v0 : Landroid/database/sqlite/SQLiteDatabase; , v3 : Ljava/lang/String; , v2 : Ljava/lang/String; , v10 : [Ljava/lang/String;
+le764e:
+	goto	le75f6
+le7650:
+.line 280
+	move-exception	v1
+; v1 : android/database/sqlite/SQLiteException
+.line 281
+	new-instance	v3,java/lang/StringBuilder
+; v3 : Ljava/lang/StringBuilder;
+	invoke-direct	{v3},java/lang/StringBuilder/<init>	; <init>()V
+; v3 : Ljava/lang/StringBuilder;
+	const-string	v4,"Error deleting entries "
+; v4 : Ljava/lang/String;
+	invoke-virtual	{v3,v4},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v3 : Ljava/lang/StringBuilder; , v4 : Ljava/lang/String;
+	move-result-object	v3
+; v3 : Ljava/lang/StringBuilder;
+	invoke-static	{v10},java/util/Arrays/toString	; toString([Ljava/lang/Object;)Ljava/lang/String;
+; v10 : [Ljava/lang/String;
+	move-result-object	v4
+; v4 : Ljava/lang/String;
+	invoke-virtual	{v3,v4},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v3 : Ljava/lang/StringBuilder; , v4 : Ljava/lang/String;
+	move-result-object	v3
+; v3 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v3},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v3 : Ljava/lang/StringBuilder;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-static	{v3},com/google/tagmanager/Log/w	; w(Ljava/lang/String;)V
+; v3 : Ljava/lang/String;
+	goto	le75f6
+.end method
+
+.method private deleteEntriesOlderThan(J)V
+.limit registers 11
+; this: v8 (Lcom/google/tagmanager/DataLayerPersistentStoreImpl;)
+; parameter[0] : v9 (J)
+.catch android/database/sqlite/SQLiteException from le76b6 to le7712 using le7714
+.var 1 is deleted I from le76da to le7714
+.line 250
+	const-string	v3,"Error opening database for deleteOlderThan."
+; v3 : Ljava/lang/String;
+	invoke-direct	{v8,v3},com/google/tagmanager/DataLayerPersistentStoreImpl/getWritableDatabase	; getWritableDatabase(Ljava/lang/String;)Landroid/database/sqlite/SQLiteDatabase;
+; v8 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl; , v3 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Landroid/database/sqlite/SQLiteDatabase;
+.line 251
+	if-nez	v0,le76b6
+; v0 : Landroid/database/sqlite/SQLiteDatabase;
+le76b4:
+.line 261
+	return-void	
+le76b6:
+.line 255
+	const-string	v3,"datalayer"
+; v3 : Ljava/lang/String;
+	const-string	v4,"expires <= ?"
+; v4 : Ljava/lang/String;
+	const/4	v5,1
+; v5 : single-length
+	new-array	v5,v5,[Ljava/lang/String;
+; v5 : [Ljava/lang/String; , v5 : [Ljava/lang/String;
+	const/4	v6,0
+; v6 : single-length
+	invoke-static	{v9,v10},java/lang/Long/toString	; toString(J)Ljava/lang/String;
+; v9 : double-length
+	move-result-object	v7
+; v7 : Ljava/lang/String;
+	aput-object	v7,v5,v6
+; v7 : Ljava/lang/String; , v5 : [Ljava/lang/String; , v6 : single-length
+	invoke-virtual	{v0,v3,v4,v5},android/database/sqlite/SQLiteDatabase/delete	; delete(Ljava/lang/String;Ljava/lang/String;[Ljava/lang/String;)I
+; v0 : Landroid/database/sqlite/SQLiteDatabase; , v3 : Ljava/lang/String; , v4 : Ljava/lang/String; , v5 : [Ljava/lang/String;
+	move-result	v1
+; v1 : single-length
+.line 257
+	new-instance	v3,java/lang/StringBuilder
+; v3 : Ljava/lang/StringBuilder;
+	invoke-direct	{v3},java/lang/StringBuilder/<init>	; <init>()V
+; v3 : Ljava/lang/StringBuilder;
+	const-string	v4,"Deleted "
+; v4 : Ljava/lang/String;
+	invoke-virtual	{v3,v4},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v3 : Ljava/lang/StringBuilder; , v4 : Ljava/lang/String;
+	move-result-object	v3
+; v3 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v3,v1},java/lang/StringBuilder/append	; append(I)Ljava/lang/StringBuilder;
+; v3 : Ljava/lang/StringBuilder; , v1 : single-length
+	move-result-object	v3
+; v3 : Ljava/lang/StringBuilder;
+	const-string	v4," expired items"
+; v4 : Ljava/lang/String;
+	invoke-virtual	{v3,v4},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v3 : Ljava/lang/StringBuilder; , v4 : Ljava/lang/String;
+	move-result-object	v3
+; v3 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v3},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v3 : Ljava/lang/StringBuilder;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-static	{v3},com/google/tagmanager/Log/v	; v(Ljava/lang/String;)V
+; v3 : Ljava/lang/String;
+le7712:
+	goto	le76b4
+le7714:
+.line 258
+	move-exception	v2
+; v2 : android/database/sqlite/SQLiteException
+.line 259
+	const-string	v3,"Error deleting old entries."
+; v3 : Ljava/lang/String;
+	invoke-static	{v3},com/google/tagmanager/Log/w	; w(Ljava/lang/String;)V
+; v3 : Ljava/lang/String;
+	goto	le76b4
+.end method
+
+.method private getNumStoredEntries()I
+.limit registers 8
+; this: v7 (Lcom/google/tagmanager/DataLayerPersistentStoreImpl;)
+.catch java/lang/Exception from le778e to le7798 using le77a4
+.catch android/database/sqlite/SQLiteException from le7758 to le777a using le778c
+.catch java/lang/Exception from le7758 to le777a using le77a4
+.var 3 is numStoredEntries I from le7742 to le7754
+.var 4 is numStoredEntries I from le7754 to le7756
+.var 3 is numStoredEntries I from le7756 to le778a
+.var 4 is numStoredEntries I from le778a to le778c
+.var 2 is e Landroid/database/sqlite/SQLiteException; from le778e to le77a4
+.line 330
+	const/4	v3,0
+; v3 : single-length
+.line 331
+	const-string	v5,"Error opening database for getNumStoredEntries."
+; v5 : Ljava/lang/String;
+	invoke-direct	{v7,v5},com/google/tagmanager/DataLayerPersistentStoreImpl/getWritableDatabase	; getWritableDatabase(Ljava/lang/String;)Landroid/database/sqlite/SQLiteDatabase;
+; v7 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl; , v5 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Landroid/database/sqlite/SQLiteDatabase;
+.line 332
+	if-nez	v1,le7756
+; v1 : Landroid/database/sqlite/SQLiteDatabase;
+	move	v4,v3
+; v4 : single-length , v3 : single-length
+le7754:
+.line 348
+	return	v4
+; v4 : single-length
+le7756:
+.line 335
+	const/4	v0,0
+; v0 : single-length
+le7758:
+.line 337
+	const-string	v5,"SELECT COUNT(*) from datalayer"
+; v5 : Ljava/lang/String;
+	const/4	v6,0
+; v6 : single-length
+	invoke-virtual	{v1,v5,v6},android/database/sqlite/SQLiteDatabase/rawQuery	; rawQuery(Ljava/lang/String;[Ljava/lang/String;)Landroid/database/Cursor;
+; v1 : Landroid/database/sqlite/SQLiteDatabase; , v5 : Ljava/lang/String; , v6 : single-length
+	move-result-object	v0
+; v0 : Landroid/database/Cursor;
+.line 338
+	invoke-interface	{v0},android/database/Cursor/moveToFirst	; moveToFirst()Z
+; v0 : Landroid/database/Cursor;
+	move-result	v5
+; v5 : single-length
+	if-eqz	v5,le777e
+; v5 : single-length
+.line 339
+	const/4	v5,0
+; v5 : single-length
+	invoke-interface	{v0,v5},android/database/Cursor/getLong	; getLong(I)J
+; v0 : Landroid/database/Cursor; , v5 : single-length
+le777a:
+	move-result-wide	v5
+; v5 : double-length
+	long-to-int	v3,v5
+; v3 : single-length , v5 : double-length
+le777e:
+.line 344
+	if-eqz	v0,le7788
+; v0 : Landroid/database/Cursor;
+.line 345
+	invoke-interface	{v0},android/database/Cursor/close	; close()V
+; v0 : Landroid/database/Cursor;
+le7788:
+	move	v4,v3
+; v4 : single-length , v3 : single-length
+.line 348
+	goto	le7754
+le778c:
+.line 341
+	move-exception	v2
+; v2 : android/database/sqlite/SQLiteException
+le778e:
+.line 342
+	const-string	v5,"Error getting numStoredEntries"
+; v5 : Ljava/lang/String;
+	invoke-static	{v5},com/google/tagmanager/Log/w	; w(Ljava/lang/String;)V
+; v5 : Ljava/lang/String;
+le7798:
+.line 344
+	if-eqz	v0,le7788
+; v0 : Landroid/database/Cursor;
+.line 345
+	invoke-interface	{v0},android/database/Cursor/close	; close()V
+; v0 : Landroid/database/Cursor;
+	goto	le7788
+le77a4:
+.line 344
+	move-exception	v5
+; v5 : java/lang/Exception
+	if-eqz	v0,le77b0
+; v0 : Landroid/database/Cursor;
+.line 345
+	invoke-interface	{v0},android/database/Cursor/close	; close()V
+; v0 : Landroid/database/Cursor;
+le77b0:
+	throw	v5
+; v5 : java/lang/Exception
+.end method
+
+.method private getWritableDatabase(Ljava/lang/String;)Landroid/database/sqlite/SQLiteDatabase;
+.limit registers 5
+; this: v3 (Lcom/google/tagmanager/DataLayerPersistentStoreImpl;)
+; parameter[0] : v4 (Ljava/lang/String;)
+.catch android/database/sqlite/SQLiteException from le77de to le77e8 using le77ee
+.line 359
+	const/4	v0,0
+; v0 : single-length
+le77de:
+.line 361
+	iget-object	v2,v3,com/google/tagmanager/DataLayerPersistentStoreImpl.mDbHelper Lcom/google/tagmanager/DataLayerPersistentStoreImpl$DatabaseHelper;
+; v2 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl$DatabaseHelper; , v3 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl;
+	invoke-virtual	{v2},com/google/tagmanager/DataLayerPersistentStoreImpl$DatabaseHelper/getWritableDatabase	; getWritableDatabase()Landroid/database/sqlite/SQLiteDatabase;
+; v2 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl$DatabaseHelper;
+le77e8:
+	move-result-object	v0
+; v0 : Landroid/database/sqlite/SQLiteDatabase;
+	move-object	v2,v0
+; v2 : Landroid/database/sqlite/SQLiteDatabase; , v0 : Landroid/database/sqlite/SQLiteDatabase;
+le77ec:
+.line 366
+	return-object	v2
+; v2 : single-length
+le77ee:
+.line 362
+	move-exception	v1
+; v1 : android/database/sqlite/SQLiteException
+.line 363
+	invoke-static	{v4},com/google/tagmanager/Log/w	; w(Ljava/lang/String;)V
+; v4 : Ljava/lang/String;
+.line 364
+	const/4	v2,0
+; v2 : single-length
+	goto	le77ec
+.end method
+
+.method private loadSerialized()Ljava/util/List;
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "()" , "Ljava/util/List" , "<" , "Lcom/google/tagmanager/DataLayerPersistentStoreImpl$KeyAndSerialized;" , ">;" }
+.end annotation
+.limit registers 12
+; this: v11 (Lcom/google/tagmanager/DataLayerPersistentStoreImpl;)
+.catch java/lang/Exception from le7868 to le7898 using le789a
+	const/4	v5,1
+; v5 : single-length
+	const/4	v4,0
+; v4 : single-length
+	const/4	v3,0
+; v3 : single-length
+.line 190
+	const-string	v1,"Error opening database for loadSerialized."
+; v1 : Ljava/lang/String;
+	invoke-direct	{v11,v1},com/google/tagmanager/DataLayerPersistentStoreImpl/getWritableDatabase	; getWritableDatabase(Ljava/lang/String;)Landroid/database/sqlite/SQLiteDatabase;
+; v11 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl; , v1 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Landroid/database/sqlite/SQLiteDatabase;
+.line 191
+	new-instance	v9,java/util/ArrayList
+; v9 : Ljava/util/ArrayList;
+	invoke-direct	{v9},java/util/ArrayList/<init>	; <init>()V
+; v9 : Ljava/util/ArrayList;
+.line 192
+	if-nez	v0,le783a
+; v0 : Landroid/database/sqlite/SQLiteDatabase;
+le7838:
+.line 205
+	return-object	v9
+; v9 : Ljava/util/ArrayList;
+le783a:
+.line 195
+	const/4	v1,2
+; v1 : single-length
+	new-array	v2,v1,[Ljava/lang/String;
+; v2 : [Ljava/lang/String; , v1 : single-length
+	const-string	v1,"key"
+; v1 : Ljava/lang/String;
+	aput-object	v1,v2,v4
+; v1 : Ljava/lang/String; , v2 : [Ljava/lang/String; , v4 : single-length
+	const-string	v1,"value"
+; v1 : Ljava/lang/String;
+	aput-object	v1,v2,v5
+; v1 : Ljava/lang/String; , v2 : [Ljava/lang/String; , v5 : single-length
+.line 197
+	const-string	v1,"datalayer"
+; v1 : Ljava/lang/String;
+	const-string	v7,"ID"
+; v7 : Ljava/lang/String;
+	move-object	v4,v3
+; v4 : single-length , v3 : single-length
+	move-object	v5,v3
+; v5 : single-length , v3 : single-length
+	move-object	v6,v3
+; v6 : single-length , v3 : single-length
+	move-object	v8,v3
+; v8 : single-length , v3 : single-length
+	invoke-virtual/range	{v0..v8},android/database/sqlite/SQLiteDatabase/query;	query(Ljava/lang/String;[Ljava/lang/String;Ljava/lang/String;[Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Landroid/database/Cursor;
+; v0 : Landroid/database/sqlite/SQLiteDatabase; , v1 : Ljava/lang/String; , v2 : [Ljava/lang/String; , v3 : single-length , v4 : single-length , v5 : single-length , v6 : single-length , v7 : Ljava/lang/String; , v8 : single-length
+	move-result-object	v10
+; v10 : Landroid/database/Cursor;
+le7868:
+.line 199
+	invoke-interface	{v10},android/database/Cursor/moveToNext	; moveToNext()Z
+; v10 : Landroid/database/Cursor;
+	move-result	v1
+; v1 : single-length
+	if-eqz	v1,le78a4
+; v1 : single-length
+.line 200
+	new-instance	v1,com/google/tagmanager/DataLayerPersistentStoreImpl$KeyAndSerialized
+; v1 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl$KeyAndSerialized;
+	const/4	v3,0
+; v3 : single-length
+	invoke-interface	{v10,v3},android/database/Cursor/getString	; getString(I)Ljava/lang/String;
+; v10 : Landroid/database/Cursor; , v3 : single-length
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	const/4	v4,1
+; v4 : single-length
+	invoke-interface	{v10,v4},android/database/Cursor/getBlob	; getBlob(I)[B
+; v10 : Landroid/database/Cursor; , v4 : single-length
+	move-result-object	v4
+; v4 : [B
+	invoke-direct	{v1,v3,v4},com/google/tagmanager/DataLayerPersistentStoreImpl$KeyAndSerialized/<init>	; <init>(Ljava/lang/String;[B)V
+; v1 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl$KeyAndSerialized; , v3 : Ljava/lang/String; , v4 : [B
+	invoke-interface	{v9,v1},java/util/List/add	; add(Ljava/lang/Object;)Z
+; v9 : Ljava/util/ArrayList; , v1 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl$KeyAndSerialized;
+le7898:
+	goto	le7868
+le789a:
+.line 203
+	move-exception	v1
+; v1 : java/lang/Exception
+	invoke-interface	{v10},android/database/Cursor/close	; close()V
+; v10 : Landroid/database/Cursor;
+	throw	v1
+; v1 : java/lang/Exception
+le78a4:
+	invoke-interface	{v10},android/database/Cursor/close	; close()V
+; v10 : Landroid/database/Cursor;
+	goto	le7838
+.end method
+
+.method private loadSingleThreaded()Ljava/util/List;
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "()" , "Ljava/util/List" , "<" , "Lcom/google/tagmanager/DataLayer$KeyValue;" , ">;" }
+.end annotation
+.limit registers 3
+; this: v2 (Lcom/google/tagmanager/DataLayerPersistentStoreImpl;)
+.catch java/lang/Exception from le78c8 to le78e8 using le78f2
+le78c8:
+.line 105
+	iget-object	v0,v2,com/google/tagmanager/DataLayerPersistentStoreImpl.mClock Lcom/google/tagmanager/Clock;
+; v0 : Lcom/google/tagmanager/Clock; , v2 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl;
+	invoke-interface	{v0},com/google/tagmanager/Clock/currentTimeMillis	; currentTimeMillis()J
+; v0 : Lcom/google/tagmanager/Clock;
+	move-result-wide	v0
+; v0 : double-length
+	invoke-direct	{v2,v0,v1},com/google/tagmanager/DataLayerPersistentStoreImpl/deleteEntriesOlderThan	; deleteEntriesOlderThan(J)V
+; v2 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl; , v0 : double-length
+.line 106
+	invoke-direct	{v2},com/google/tagmanager/DataLayerPersistentStoreImpl/loadSerialized	; loadSerialized()Ljava/util/List;
+; v2 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl;
+	move-result-object	v0
+; v0 : Ljava/util/List;
+	invoke-direct	{v2,v0},com/google/tagmanager/DataLayerPersistentStoreImpl/unserializeValues	; unserializeValues(Ljava/util/List;)Ljava/util/List;
+; v2 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl; , v0 : Ljava/util/List;
+le78e8:
+	move-result-object	v0
+; v0 : Ljava/util/List;
+.line 108
+	invoke-direct	{v2},com/google/tagmanager/DataLayerPersistentStoreImpl/closeDatabaseConnection	; closeDatabaseConnection()V
+; v2 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl;
+	return-object	v0
+; v0 : Ljava/util/List;
+le78f2:
+	move-exception	v0
+; v0 : java/lang/Exception
+	invoke-direct	{v2},com/google/tagmanager/DataLayerPersistentStoreImpl/closeDatabaseConnection	; closeDatabaseConnection()V
+; v2 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl;
+	throw	v0
+; v0 : java/lang/Exception
+.end method
+
+.method private makeRoomForEntries(I)V
+.limit registers 6
+; this: v4 (Lcom/google/tagmanager/DataLayerPersistentStoreImpl;)
+; parameter[0] : v5 (I)
+.var 1 is entrysToDelete Ljava/util/List; from le7936 to le798e
+.line 224
+	invoke-direct	{v4},com/google/tagmanager/DataLayerPersistentStoreImpl/getNumStoredEntries	; getNumStoredEntries()I
+; v4 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl;
+	move-result	v2
+; v2 : single-length
+	iget	v3,v4,com/google/tagmanager/DataLayerPersistentStoreImpl.mMaxNumStoredItems I
+; v3 : single-length , v4 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl;
+	sub-int/2addr	v2,v3
+; v2 : single-length , v3 : single-length
+	add-int	v0,v2,v5
+; v0 : single-length , v2 : single-length , v5 : single-length
+.line 225
+	if-lez	v0,le798e
+; v0 : single-length
+.line 226
+	invoke-direct	{v4,v0},com/google/tagmanager/DataLayerPersistentStoreImpl/peekEntryIds	; peekEntryIds(I)Ljava/util/List;
+; v4 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl; , v0 : single-length
+	move-result-object	v1
+; v1 : Ljava/util/List;
+.line 227
+	new-instance	v2,java/lang/StringBuilder
+; v2 : Ljava/lang/StringBuilder;
+	invoke-direct	{v2},java/lang/StringBuilder/<init>	; <init>()V
+; v2 : Ljava/lang/StringBuilder;
+	const-string	v3,"DataLayer store full, deleting "
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	invoke-interface	{v1},java/util/List/size	; size()I
+; v1 : Ljava/util/List;
+	move-result	v3
+; v3 : single-length
+	invoke-virtual	{v2,v3},java/lang/StringBuilder/append	; append(I)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v3 : single-length
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	const-string	v3," entries to make room."
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v2},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v2 : Ljava/lang/StringBuilder;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-static	{v2},com/google/tagmanager/Log/i	; i(Ljava/lang/String;)V
+; v2 : Ljava/lang/String;
+.line 228
+	const/4	v2,0
+; v2 : single-length
+	new-array	v2,v2,[Ljava/lang/String;
+; v2 : [Ljava/lang/String; , v2 : [Ljava/lang/String;
+	invoke-interface	{v1,v2},java/util/List/toArray	; toArray([Ljava/lang/Object;)[Ljava/lang/Object;
+; v1 : Ljava/util/List; , v2 : [Ljava/lang/String;
+	move-result-object	v2
+; v2 : [Ljava/lang/Object;
+	check-cast	v2,[Ljava/lang/String
+; v2 : [Ljava/lang/String
+	invoke-direct	{v4,v2},com/google/tagmanager/DataLayerPersistentStoreImpl/deleteEntries	; deleteEntries([Ljava/lang/String;)V
+; v4 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl; , v2 : [Ljava/lang/String
+le798e:
+.line 230
+	return-void	
+.end method
+
+.method private peekEntryIds(I)Ljava/util/List;
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "(I)" , "Ljava/util/List" , "<" , "Ljava/lang/String;" , ">;" }
+.end annotation
+.limit registers 16
+; this: v14 (Lcom/google/tagmanager/DataLayerPersistentStoreImpl;)
+; parameter[0] : v15 (I)
+.catch java/lang/Exception from le7a52 to le7a86 using le7a92
+.catch android/database/sqlite/SQLiteException from le79cc to le7a3e using le7a50
+.catch java/lang/Exception from le79cc to le7a3e using le7a92
+.var 10 is e Landroid/database/sqlite/SQLiteException; from le7a52 to le7a92
+.line 294
+	new-instance	v11,java/util/ArrayList
+; v11 : Ljava/util/ArrayList;
+	invoke-direct	{v11},java/util/ArrayList/<init>	; <init>()V
+; v11 : Ljava/util/ArrayList;
+.line 295
+	if-gtz	v15,le79ba
+; v15 : single-length
+.line 296
+	const-string	v1,"Invalid maxEntries specified. Skipping."
+; v1 : Ljava/lang/String;
+	invoke-static	{v1},com/google/tagmanager/Log/w	; w(Ljava/lang/String;)V
+; v1 : Ljava/lang/String;
+le79b8:
+.line 326
+	return-object	v11
+; v11 : Ljava/util/ArrayList;
+le79ba:
+.line 299
+	const-string	v1,"Error opening database for peekEntryIds."
+; v1 : Ljava/lang/String;
+	invoke-direct	{v14,v1},com/google/tagmanager/DataLayerPersistentStoreImpl/getWritableDatabase	; getWritableDatabase(Ljava/lang/String;)Landroid/database/sqlite/SQLiteDatabase;
+; v14 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl; , v1 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Landroid/database/sqlite/SQLiteDatabase;
+.line 300
+	if-eqz	v0,le79b8
+; v0 : Landroid/database/sqlite/SQLiteDatabase;
+.line 304
+	const/4	v9,0
+; v9 : single-length
+le79cc:
+.line 306
+	const-string	v1,"datalayer"
+; v1 : Ljava/lang/String;
+	const/4	v2,1
+; v2 : single-length
+	new-array	v2,v2,[Ljava/lang/String;
+; v2 : [Ljava/lang/String; , v2 : [Ljava/lang/String;
+	const/4	v3,0
+; v3 : single-length
+	const-string	v4,"ID"
+; v4 : Ljava/lang/String;
+	aput-object	v4,v2,v3
+; v4 : Ljava/lang/String; , v2 : [Ljava/lang/String; , v3 : single-length
+	const/4	v3,0
+; v3 : single-length
+	const/4	v4,0
+; v4 : single-length
+	const/4	v5,0
+; v5 : single-length
+	const/4	v6,0
+; v6 : single-length
+	const-string	v7,"%s ASC"
+; v7 : Ljava/lang/String;
+	const/4	v8,1
+; v8 : single-length
+	new-array	v8,v8,[Ljava/lang/Object;
+; v8 : [Ljava/lang/Object; , v8 : [Ljava/lang/Object;
+	const/4	v12,0
+; v12 : single-length
+	const-string	v13,"ID"
+; v13 : Ljava/lang/String;
+	aput-object	v13,v8,v12
+; v13 : Ljava/lang/String; , v8 : [Ljava/lang/Object; , v12 : single-length
+	invoke-static	{v7,v8},java/lang/String/format	; format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+; v7 : Ljava/lang/String; , v8 : [Ljava/lang/Object;
+	move-result-object	v7
+; v7 : Ljava/lang/String;
+	invoke-static	{v15},java/lang/Integer/toString	; toString(I)Ljava/lang/String;
+; v15 : single-length
+	move-result-object	v8
+; v8 : Ljava/lang/String;
+	invoke-virtual/range	{v0..v8},android/database/sqlite/SQLiteDatabase/query;	query(Ljava/lang/String;[Ljava/lang/String;Ljava/lang/String;[Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Landroid/database/Cursor;
+; v0 : Landroid/database/sqlite/SQLiteDatabase; , v1 : Ljava/lang/String; , v2 : [Ljava/lang/String; , v3 : single-length , v4 : single-length , v5 : single-length , v6 : single-length , v7 : Ljava/lang/String; , v8 : Ljava/lang/String;
+	move-result-object	v9
+; v9 : Landroid/database/Cursor;
+.line 314
+	invoke-interface	{v9},android/database/Cursor/moveToFirst	; moveToFirst()Z
+; v9 : Landroid/database/Cursor;
+	move-result	v1
+; v1 : single-length
+	if-eqz	v1,le7a44
+; v1 : single-length
+le7a20:
+.line 316
+	const/4	v1,0
+; v1 : single-length
+	invoke-interface	{v9,v1},android/database/Cursor/getLong	; getLong(I)J
+; v9 : Landroid/database/Cursor; , v1 : single-length
+	move-result-wide	v1
+; v1 : double-length
+	invoke-static	{v1,v2},java/lang/String/valueOf	; valueOf(J)Ljava/lang/String;
+; v1 : double-length
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-interface	{v11,v1},java/util/List/add	; add(Ljava/lang/Object;)Z
+; v11 : Ljava/util/ArrayList; , v1 : Ljava/lang/String;
+.line 317
+	invoke-interface	{v9},android/database/Cursor/moveToNext	; moveToNext()Z
+; v9 : Landroid/database/Cursor;
+le7a3e:
+	move-result	v1
+; v1 : single-length
+	if-nez	v1,le7a20
+; v1 : single-length
+le7a44:
+.line 322
+	if-eqz	v9,le79b8
+; v9 : Landroid/database/Cursor;
+.line 323
+	invoke-interface	{v9},android/database/Cursor/close	; close()V
+; v9 : Landroid/database/Cursor;
+	goto	le79b8
+le7a50:
+.line 319
+	move-exception	v10
+; v10 : android/database/sqlite/SQLiteException
+le7a52:
+.line 320
+	new-instance	v1,java/lang/StringBuilder
+; v1 : Ljava/lang/StringBuilder;
+	invoke-direct	{v1},java/lang/StringBuilder/<init>	; <init>()V
+; v1 : Ljava/lang/StringBuilder;
+	const-string	v2,"Error in peekEntries fetching entryIds: "
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v10},android/database/sqlite/SQLiteException/getMessage	; getMessage()Ljava/lang/String;
+; v10 : android/database/sqlite/SQLiteException
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v1},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v1 : Ljava/lang/StringBuilder;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-static	{v1},com/google/tagmanager/Log/w	; w(Ljava/lang/String;)V
+; v1 : Ljava/lang/String;
+le7a86:
+.line 322
+	if-eqz	v9,le79b8
+; v9 : Landroid/database/Cursor;
+.line 323
+	invoke-interface	{v9},android/database/Cursor/close	; close()V
+; v9 : Landroid/database/Cursor;
+	goto	le79b8
+le7a92:
+.line 322
+	move-exception	v1
+; v1 : java/lang/Exception
+	if-eqz	v9,le7a9e
+; v9 : Landroid/database/Cursor;
+.line 323
+	invoke-interface	{v9},android/database/Cursor/close	; close()V
+; v9 : Landroid/database/Cursor;
+le7a9e:
+	throw	v1
+; v1 : java/lang/Exception
+.end method
+
+.method private synchronized saveSingleThreaded(Ljava/util/List;J)V
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "(" , "Ljava/util/List" , "<" , "Lcom/google/tagmanager/DataLayerPersistentStoreImpl$KeyAndSerialized;" , ">;J)V" }
+.end annotation
+.limit registers 8
+; this: v4 (Lcom/google/tagmanager/DataLayerPersistentStoreImpl;)
+; parameter[0] : v5 (Ljava/util/List;)
+; parameter[1] : v6 (J)
+.catch java/lang/Exception from le7b00 to le7b08 using le7b08
+.catch java/lang/Exception from le7af4 to le7afa using le7b08
+.catch java/lang/Exception from le7aca to le7af4 using le7afe
+.var 0 is now J from le7ad6 to le7afe
+.line 180
+	monitor-enter	v4
+; v4 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl;
+le7aca:
+	iget-object	v2,v4,com/google/tagmanager/DataLayerPersistentStoreImpl.mClock Lcom/google/tagmanager/Clock;
+; v2 : Lcom/google/tagmanager/Clock; , v4 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl;
+	invoke-interface	{v2},com/google/tagmanager/Clock/currentTimeMillis	; currentTimeMillis()J
+; v2 : Lcom/google/tagmanager/Clock;
+	move-result-wide	v0
+; v0 : double-length
+.line 181
+	invoke-direct	{v4,v0,v1},com/google/tagmanager/DataLayerPersistentStoreImpl/deleteEntriesOlderThan	; deleteEntriesOlderThan(J)V
+; v4 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl; , v0 : double-length
+.line 182
+	invoke-interface	{v5},java/util/List/size	; size()I
+; v5 : Ljava/util/List;
+	move-result	v2
+; v2 : single-length
+	invoke-direct	{v4,v2},com/google/tagmanager/DataLayerPersistentStoreImpl/makeRoomForEntries	; makeRoomForEntries(I)V
+; v4 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl; , v2 : single-length
+.line 183
+	add-long	v2,v0,v6
+; v2 : double-length , v0 : double-length , v6 : double-length
+	invoke-direct	{v4,v5,v2,v3},com/google/tagmanager/DataLayerPersistentStoreImpl/writeEntriesToDatabase	; writeEntriesToDatabase(Ljava/util/List;J)V
+; v4 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl; , v5 : Ljava/util/List; , v2 : double-length
+le7af4:
+.line 185
+	invoke-direct	{v4},com/google/tagmanager/DataLayerPersistentStoreImpl/closeDatabaseConnection	; closeDatabaseConnection()V
+; v4 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl;
+le7afa:
+.line 187
+	monitor-exit	v4
+; v4 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl;
+	return-void	
+le7afe:
+.line 185
+	move-exception	v2
+; v2 : java/lang/Exception
+le7b00:
+	invoke-direct	{v4},com/google/tagmanager/DataLayerPersistentStoreImpl/closeDatabaseConnection	; closeDatabaseConnection()V
+; v4 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl;
+	throw	v2
+; v2 : java/lang/Exception
+le7b08:
+.line 180
+	move-exception	v2
+; v2 : java/lang/Exception
+	monitor-exit	v4
+; v4 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl;
+	throw	v2
+; v2 : java/lang/Exception
+.end method
+
+.method private serialize(Ljava/lang/Object;)[B
+.limit registers 8
+; this: v6 (Lcom/google/tagmanager/DataLayerPersistentStoreImpl;)
+; parameter[0] : v7 (Ljava/lang/Object;)
+.catch java/io/IOException from le7b98 to le7ba4 using le7ba6
+.catch java/io/IOException from le7b80 to le7b8c using le7b8e
+.catch java/io/IOException from le7b68 to le7b74 using le7bb6
+.catch java/io/IOException from le7b56 to le7b62 using le7bb0
+.catch java/lang/Exception from le7b56 to le7b62 using le7baa
+.catch java/io/IOException from le7b4c to le7b56 using le7b78
+.catch java/lang/Exception from le7b4c to le7b56 using le7b92
+.var 2 is objectOutput Ljava/io/ObjectOutputStream; from le7b4c to le7b56
+.var 3 is objectOutput Ljava/io/ObjectOutputStream; from le7b56 to le7b76
+.var 1 is e Ljava/io/IOException; from le7b7a to le7b92
+.var 2 is objectOutput Ljava/io/ObjectOutputStream; from le7b76 to le7baa
+.var 3 is objectOutput Ljava/io/ObjectOutputStream; from le7baa to le7bae
+.var 2 is objectOutput Ljava/io/ObjectOutputStream; from le7bae to le7bb0
+.var 3 is objectOutput Ljava/io/ObjectOutputStream; from le7bb0 to le7bb4
+.var 2 is objectOutput Ljava/io/ObjectOutputStream; from le7bb4 to le7bb6
+.line 157
+	new-instance	v0,java/io/ByteArrayOutputStream
+; v0 : Ljava/io/ByteArrayOutputStream;
+	invoke-direct	{v0},java/io/ByteArrayOutputStream/<init>	; <init>()V
+; v0 : Ljava/io/ByteArrayOutputStream;
+.line 158
+	const/4	v2,0
+; v2 : single-length
+le7b4c:
+.line 160
+	new-instance	v3,java/io/ObjectOutputStream
+; v3 : Ljava/io/ObjectOutputStream;
+	invoke-direct	{v3,v0},java/io/ObjectOutputStream/<init>	; <init>(Ljava/io/OutputStream;)V
+; v3 : Ljava/io/ObjectOutputStream; , v0 : Ljava/io/ByteArrayOutputStream;
+le7b56:
+.line 161
+	invoke-virtual	{v3,v7},java/io/ObjectOutputStream/writeObject	; writeObject(Ljava/lang/Object;)V
+; v3 : Ljava/io/ObjectOutputStream; , v7 : Ljava/lang/Object;
+.line 162
+	invoke-virtual	{v0},java/io/ByteArrayOutputStream/toByteArray	; toByteArray()[B
+; v0 : Ljava/io/ByteArrayOutputStream;
+le7b62:
+	move-result-object	v4
+; v4 : [B
+.line 167
+	if-eqz	v3,le7b6e
+; v3 : Ljava/io/ObjectOutputStream;
+le7b68:
+.line 168
+	invoke-virtual	{v3},java/io/ObjectOutputStream/close	; close()V
+; v3 : Ljava/io/ObjectOutputStream;
+le7b6e:
+.line 170
+	invoke-virtual	{v0},java/io/ByteArrayOutputStream/close	; close()V
+; v0 : Ljava/io/ByteArrayOutputStream;
+le7b74:
+	move-object	v2,v3
+; v2 : Ljava/io/ObjectOutputStream; , v3 : Ljava/io/ObjectOutputStream;
+le7b76:
+.line 173
+	return-object	v4
+; v4 : [B
+le7b78:
+.line 163
+	move-exception	v1
+; v1 : java/io/IOException
+le7b7a:
+.line 164
+	const/4	v4,0
+; v4 : single-length
+.line 167
+	if-eqz	v2,le7b86
+; v2 : Ljava/io/ObjectOutputStream;
+le7b80:
+.line 168
+	invoke-virtual	{v2},java/io/ObjectOutputStream/close	; close()V
+; v2 : Ljava/io/ObjectOutputStream;
+le7b86:
+.line 170
+	invoke-virtual	{v0},java/io/ByteArrayOutputStream/close	; close()V
+; v0 : Ljava/io/ByteArrayOutputStream;
+le7b8c:
+	goto	le7b76
+le7b8e:
+.line 171
+	move-exception	v5
+; v5 : java/io/IOException
+	goto	le7b76
+le7b92:
+.line 166
+	move-exception	v4
+; v4 : java/lang/Exception
+le7b94:
+.line 167
+	if-eqz	v2,le7b9e
+; v2 : Ljava/io/ObjectOutputStream;
+le7b98:
+.line 168
+	invoke-virtual	{v2},java/io/ObjectOutputStream/close	; close()V
+; v2 : Ljava/io/ObjectOutputStream;
+le7b9e:
+.line 170
+	invoke-virtual	{v0},java/io/ByteArrayOutputStream/close	; close()V
+; v0 : Ljava/io/ByteArrayOutputStream;
+le7ba4:
+.line 173
+	throw	v4
+; v4 : java/lang/Exception
+le7ba6:
+.line 171
+	move-exception	v5
+; v5 : java/io/IOException
+	goto	le7ba4
+le7baa:
+.line 166
+	move-exception	v4
+; v4 : java/lang/Exception
+	move-object	v2,v3
+; v2 : Ljava/io/ObjectOutputStream; , v3 : Ljava/io/ObjectOutputStream;
+le7bae:
+	goto	le7b94
+le7bb0:
+.line 163
+	move-exception	v1
+; v1 : java/io/IOException
+	move-object	v2,v3
+; v2 : Ljava/io/ObjectOutputStream; , v3 : Ljava/io/ObjectOutputStream;
+le7bb4:
+	goto	le7b7a
+le7bb6:
+.line 171
+	move-exception	v5
+; v5 : java/io/IOException
+	goto	le7b74
+.end method
+
+.method private serializeValues(Ljava/util/List;)Ljava/util/List;
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "(" , "Ljava/util/List" , "<" , "Lcom/google/tagmanager/DataLayer$KeyValue;" , ">;)" , "Ljava/util/List" , "<" , "Lcom/google/tagmanager/DataLayerPersistentStoreImpl$KeyAndSerialized;" , ">;" }
+.end annotation
+.limit registers 8
+; this: v6 (Lcom/google/tagmanager/DataLayerPersistentStoreImpl;)
+; parameter[0] : v7 (Ljava/util/List;)
+.var 1 is keyAndValue Lcom/google/tagmanager/DataLayer$KeyValue; from le7c36 to le7c58
+.line 127
+	new-instance	v2,java/util/ArrayList
+; v2 : Ljava/util/ArrayList;
+	invoke-direct	{v2},java/util/ArrayList/<init>	; <init>()V
+; v2 : Ljava/util/ArrayList;
+.line 128
+	invoke-interface	{v7},java/util/List/iterator	; iterator()Ljava/util/Iterator;
+; v7 : Ljava/util/List;
+	move-result-object	v0
+; v0 : Ljava/util/Iterator;
+le7c1e:
+	invoke-interface	{v0},java/util/Iterator/hasNext	; hasNext()Z
+; v0 : Ljava/util/Iterator;
+	move-result	v3
+; v3 : single-length
+	if-eqz	v3,le7c58
+; v3 : single-length
+	invoke-interface	{v0},java/util/Iterator/next	; next()Ljava/lang/Object;
+; v0 : Ljava/util/Iterator;
+	move-result-object	v1
+; v1 : Ljava/lang/Object;
+	check-cast	v1,com/google/tagmanager/DataLayer$KeyValue
+; v1 : Lcom/google/tagmanager/DataLayer$KeyValue;
+.line 129
+	new-instance	v3,com/google/tagmanager/DataLayerPersistentStoreImpl$KeyAndSerialized
+; v3 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl$KeyAndSerialized;
+	iget-object	v4,v1,com/google/tagmanager/DataLayer$KeyValue.mKey Ljava/lang/String;
+; v4 : Ljava/lang/String; , v1 : Lcom/google/tagmanager/DataLayer$KeyValue;
+	iget-object	v5,v1,com/google/tagmanager/DataLayer$KeyValue.mValue Ljava/lang/Object;
+; v5 : Ljava/lang/Object; , v1 : Lcom/google/tagmanager/DataLayer$KeyValue;
+	invoke-direct	{v6,v5},com/google/tagmanager/DataLayerPersistentStoreImpl/serialize	; serialize(Ljava/lang/Object;)[B
+; v6 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl; , v5 : Ljava/lang/Object;
+	move-result-object	v5
+; v5 : [B
+	invoke-direct	{v3,v4,v5},com/google/tagmanager/DataLayerPersistentStoreImpl$KeyAndSerialized/<init>	; <init>(Ljava/lang/String;[B)V
+; v3 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl$KeyAndSerialized; , v4 : Ljava/lang/String; , v5 : [B
+	invoke-interface	{v2,v3},java/util/List/add	; add(Ljava/lang/Object;)Z
+; v2 : Ljava/util/ArrayList; , v3 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl$KeyAndSerialized;
+	goto	le7c1e
+le7c58:
+.line 131
+	return-object	v2
+; v2 : Ljava/util/ArrayList;
+.end method
+
+.method private unserialize([B)Ljava/lang/Object;
+.limit registers 8
+; this: v6 (Lcom/google/tagmanager/DataLayerPersistentStoreImpl;)
+; parameter[0] : v7 ([B)
+.catch java/io/IOException from le7cd6 to le7ce2 using le7ce4
+.catch java/io/IOException from le7cbe to le7cca using le7ccc
+.catch java/io/IOException from le7ca6 to le7cb2 using le7cb4
+.catch java/io/IOException from le7c90 to le7c9c using le7cfa
+.catch java/io/IOException from le7c84 to le7c8a using le7cf4
+.catch java/lang/ClassNotFoundException from le7c84 to le7c8a using le7cee
+.catch java/lang/Exception from le7c84 to le7c8a using le7ce8
+.catch java/io/IOException from le7c7a to le7c84 using le7ca0
+.catch java/lang/ClassNotFoundException from le7c7a to le7c84 using le7cb8
+.catch java/lang/Exception from le7c7a to le7c84 using le7cd0
+.var 2 is objectInput Ljava/io/ObjectInputStream; from le7c7a to le7c84
+.var 3 is objectInput Ljava/io/ObjectInputStream; from le7c84 to le7c9e
+.var 1 is e Ljava/io/IOException; from le7ca2 to le7cb8
+.var 1 is e Ljava/lang/ClassNotFoundException; from le7cba to le7cd0
+.var 2 is objectInput Ljava/io/ObjectInputStream; from le7c9e to le7ce8
+.var 3 is objectInput Ljava/io/ObjectInputStream; from le7ce8 to le7cec
+.var 2 is objectInput Ljava/io/ObjectInputStream; from le7cec to le7cee
+.var 3 is objectInput Ljava/io/ObjectInputStream; from le7cee to le7cf2
+.var 2 is objectInput Ljava/io/ObjectInputStream; from le7cf2 to le7cf4
+.var 3 is objectInput Ljava/io/ObjectInputStream; from le7cf4 to le7cf8
+.var 2 is objectInput Ljava/io/ObjectInputStream; from le7cf8 to le7cfa
+	const/4	v4,0
+; v4 : single-length
+.line 135
+	new-instance	v0,java/io/ByteArrayInputStream
+; v0 : Ljava/io/ByteArrayInputStream;
+	invoke-direct	{v0,v7},java/io/ByteArrayInputStream/<init>	; <init>([B)V
+; v0 : Ljava/io/ByteArrayInputStream; , v7 : [B
+.line 136
+	const/4	v2,0
+; v2 : single-length
+le7c7a:
+.line 138
+	new-instance	v3,java/io/ObjectInputStream
+; v3 : Ljava/io/ObjectInputStream;
+	invoke-direct	{v3,v0},java/io/ObjectInputStream/<init>	; <init>(Ljava/io/InputStream;)V
+; v3 : Ljava/io/ObjectInputStream; , v0 : Ljava/io/ByteArrayInputStream;
+le7c84:
+.line 139
+	invoke-virtual	{v3},java/io/ObjectInputStream/readObject	; readObject()Ljava/lang/Object;
+; v3 : Ljava/io/ObjectInputStream;
+le7c8a:
+	move-result-object	v4
+; v4 : Ljava/lang/Object;
+.line 146
+	if-eqz	v3,le7c96
+; v3 : Ljava/io/ObjectInputStream;
+le7c90:
+.line 147
+	invoke-virtual	{v3},java/io/ObjectInputStream/close	; close()V
+; v3 : Ljava/io/ObjectInputStream;
+le7c96:
+.line 149
+	invoke-virtual	{v0},java/io/ByteArrayInputStream/close	; close()V
+; v0 : Ljava/io/ByteArrayInputStream;
+le7c9c:
+	move-object	v2,v3
+; v2 : Ljava/io/ObjectInputStream; , v3 : Ljava/io/ObjectInputStream;
+le7c9e:
+.line 152
+	return-object	v4
+; v4 : Ljava/lang/Object;
+le7ca0:
+.line 140
+	move-exception	v1
+; v1 : java/io/IOException
+le7ca2:
+.line 146
+	if-eqz	v2,le7cac
+; v2 : Ljava/io/ObjectInputStream;
+le7ca6:
+.line 147
+	invoke-virtual	{v2},java/io/ObjectInputStream/close	; close()V
+; v2 : Ljava/io/ObjectInputStream;
+le7cac:
+.line 149
+	invoke-virtual	{v0},java/io/ByteArrayInputStream/close	; close()V
+; v0 : Ljava/io/ByteArrayInputStream;
+le7cb2:
+	goto	le7c9e
+le7cb4:
+.line 150
+	move-exception	v5
+; v5 : java/io/IOException
+	goto	le7c9e
+le7cb8:
+.line 142
+	move-exception	v1
+; v1 : java/lang/ClassNotFoundException
+le7cba:
+.line 146
+	if-eqz	v2,le7cc4
+; v2 : Ljava/io/ObjectInputStream;
+le7cbe:
+.line 147
+	invoke-virtual	{v2},java/io/ObjectInputStream/close	; close()V
+; v2 : Ljava/io/ObjectInputStream;
+le7cc4:
+.line 149
+	invoke-virtual	{v0},java/io/ByteArrayInputStream/close	; close()V
+; v0 : Ljava/io/ByteArrayInputStream;
+le7cca:
+	goto	le7c9e
+le7ccc:
+.line 150
+	move-exception	v5
+; v5 : java/io/IOException
+	goto	le7c9e
+le7cd0:
+.line 145
+	move-exception	v4
+; v4 : java/lang/Exception
+le7cd2:
+.line 146
+	if-eqz	v2,le7cdc
+; v2 : Ljava/io/ObjectInputStream;
+le7cd6:
+.line 147
+	invoke-virtual	{v2},java/io/ObjectInputStream/close	; close()V
+; v2 : Ljava/io/ObjectInputStream;
+le7cdc:
+.line 149
+	invoke-virtual	{v0},java/io/ByteArrayInputStream/close	; close()V
+; v0 : Ljava/io/ByteArrayInputStream;
+le7ce2:
+.line 152
+	throw	v4
+; v4 : java/lang/Exception
+le7ce4:
+.line 150
+	move-exception	v5
+; v5 : java/io/IOException
+	goto	le7ce2
+le7ce8:
+.line 145
+	move-exception	v4
+; v4 : java/lang/Exception
+	move-object	v2,v3
+; v2 : Ljava/io/ObjectInputStream; , v3 : Ljava/io/ObjectInputStream;
+le7cec:
+	goto	le7cd2
+le7cee:
+.line 142
+	move-exception	v1
+; v1 : java/lang/ClassNotFoundException
+	move-object	v2,v3
+; v2 : Ljava/io/ObjectInputStream; , v3 : Ljava/io/ObjectInputStream;
+le7cf2:
+	goto	le7cba
+le7cf4:
+.line 140
+	move-exception	v1
+; v1 : java/io/IOException
+	move-object	v2,v3
+; v2 : Ljava/io/ObjectInputStream; , v3 : Ljava/io/ObjectInputStream;
+le7cf8:
+	goto	le7ca2
+le7cfa:
+.line 150
+	move-exception	v5
+; v5 : java/io/IOException
+	goto	le7c9c
+.end method
+
+.method private unserializeValues(Ljava/util/List;)Ljava/util/List;
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "(" , "Ljava/util/List" , "<" , "Lcom/google/tagmanager/DataLayerPersistentStoreImpl$KeyAndSerialized;" , ">;)" , "Ljava/util/List" , "<" , "Lcom/google/tagmanager/DataLayer$KeyValue;" , ">;" }
+.end annotation
+.limit registers 8
+; this: v6 (Lcom/google/tagmanager/DataLayerPersistentStoreImpl;)
+; parameter[0] : v7 (Ljava/util/List;)
+.var 1 is keyAndSerialized Lcom/google/tagmanager/DataLayerPersistentStoreImpl$KeyAndSerialized; from le7d8e to le7db0
+.line 116
+	new-instance	v2,java/util/ArrayList
+; v2 : Ljava/util/ArrayList;
+	invoke-direct	{v2},java/util/ArrayList/<init>	; <init>()V
+; v2 : Ljava/util/ArrayList;
+.line 117
+	invoke-interface	{v7},java/util/List/iterator	; iterator()Ljava/util/Iterator;
+; v7 : Ljava/util/List;
+	move-result-object	v0
+; v0 : Ljava/util/Iterator;
+le7d76:
+	invoke-interface	{v0},java/util/Iterator/hasNext	; hasNext()Z
+; v0 : Ljava/util/Iterator;
+	move-result	v3
+; v3 : single-length
+	if-eqz	v3,le7db0
+; v3 : single-length
+	invoke-interface	{v0},java/util/Iterator/next	; next()Ljava/lang/Object;
+; v0 : Ljava/util/Iterator;
+	move-result-object	v1
+; v1 : Ljava/lang/Object;
+	check-cast	v1,com/google/tagmanager/DataLayerPersistentStoreImpl$KeyAndSerialized
+; v1 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl$KeyAndSerialized;
+.line 118
+	new-instance	v3,com/google/tagmanager/DataLayer$KeyValue
+; v3 : Lcom/google/tagmanager/DataLayer$KeyValue;
+	iget-object	v4,v1,com/google/tagmanager/DataLayerPersistentStoreImpl$KeyAndSerialized.mKey Ljava/lang/String;
+; v4 : Ljava/lang/String; , v1 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl$KeyAndSerialized;
+	iget-object	v5,v1,com/google/tagmanager/DataLayerPersistentStoreImpl$KeyAndSerialized.mSerialized [B
+; v5 : [B , v1 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl$KeyAndSerialized;
+	invoke-direct	{v6,v5},com/google/tagmanager/DataLayerPersistentStoreImpl/unserialize	; unserialize([B)Ljava/lang/Object;
+; v6 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl; , v5 : [B
+	move-result-object	v5
+; v5 : Ljava/lang/Object;
+	invoke-direct	{v3,v4,v5},com/google/tagmanager/DataLayer$KeyValue/<init>	; <init>(Ljava/lang/String;Ljava/lang/Object;)V
+; v3 : Lcom/google/tagmanager/DataLayer$KeyValue; , v4 : Ljava/lang/String; , v5 : Ljava/lang/Object;
+	invoke-interface	{v2,v3},java/util/List/add	; add(Ljava/lang/Object;)Z
+; v2 : Ljava/util/ArrayList; , v3 : Lcom/google/tagmanager/DataLayer$KeyValue;
+	goto	le7d76
+le7db0:
+.line 120
+	return-object	v2
+; v2 : Ljava/util/ArrayList;
+.end method
+
+.method private writeEntriesToDatabase(Ljava/util/List;J)V
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "(" , "Ljava/util/List" , "<" , "Lcom/google/tagmanager/DataLayerPersistentStoreImpl$KeyAndSerialized;" , ">;J)V" }
+.end annotation
+.limit registers 10
+; this: v6 (Lcom/google/tagmanager/DataLayerPersistentStoreImpl;)
+; parameter[0] : v7 (Ljava/util/List;)
+; parameter[1] : v8 (J)
+.line 209
+	const-string	v4,"Error opening database for writeEntryToDatabase."
+; v4 : Ljava/lang/String;
+	invoke-direct	{v6,v4},com/google/tagmanager/DataLayerPersistentStoreImpl/getWritableDatabase	; getWritableDatabase(Ljava/lang/String;)Landroid/database/sqlite/SQLiteDatabase;
+; v6 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl; , v4 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Landroid/database/sqlite/SQLiteDatabase;
+.line 210
+	if-nez	v0,le7dd6
+; v0 : Landroid/database/sqlite/SQLiteDatabase;
+le7dd4:
+.line 220
+	return-void	
+le7dd6:
+.line 213
+	invoke-interface	{v7},java/util/List/iterator	; iterator()Ljava/util/Iterator;
+; v7 : Ljava/util/List;
+	move-result-object	v1
+; v1 : Ljava/util/Iterator;
+le7dde:
+	invoke-interface	{v1},java/util/Iterator/hasNext	; hasNext()Z
+; v1 : Ljava/util/Iterator;
+	move-result	v4
+; v4 : single-length
+	if-eqz	v4,le7dd4
+; v4 : single-length
+	invoke-interface	{v1},java/util/Iterator/next	; next()Ljava/lang/Object;
+; v1 : Ljava/util/Iterator;
+	move-result-object	v2
+; v2 : Ljava/lang/Object;
+	check-cast	v2,com/google/tagmanager/DataLayerPersistentStoreImpl$KeyAndSerialized
+; v2 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl$KeyAndSerialized;
+.line 214
+	new-instance	v3,android/content/ContentValues
+; v3 : Landroid/content/ContentValues;
+	invoke-direct	{v3},android/content/ContentValues/<init>	; <init>()V
+; v3 : Landroid/content/ContentValues;
+.line 215
+	const-string	v4,"expires"
+; v4 : Ljava/lang/String;
+	invoke-static	{v8,v9},java/lang/Long/valueOf	; valueOf(J)Ljava/lang/Long;
+; v8 : double-length
+	move-result-object	v5
+; v5 : Ljava/lang/Long;
+	invoke-virtual	{v3,v4,v5},android/content/ContentValues/put	; put(Ljava/lang/String;Ljava/lang/Long;)V
+; v3 : Landroid/content/ContentValues; , v4 : Ljava/lang/String; , v5 : Ljava/lang/Long;
+.line 216
+	const-string	v4,"key"
+; v4 : Ljava/lang/String;
+	iget-object	v5,v2,com/google/tagmanager/DataLayerPersistentStoreImpl$KeyAndSerialized.mKey Ljava/lang/String;
+; v5 : Ljava/lang/String; , v2 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl$KeyAndSerialized;
+	invoke-virtual	{v3,v4,v5},android/content/ContentValues/put	; put(Ljava/lang/String;Ljava/lang/String;)V
+; v3 : Landroid/content/ContentValues; , v4 : Ljava/lang/String; , v5 : Ljava/lang/String;
+.line 217
+	const-string	v4,"value"
+; v4 : Ljava/lang/String;
+	iget-object	v5,v2,com/google/tagmanager/DataLayerPersistentStoreImpl$KeyAndSerialized.mSerialized [B
+; v5 : [B , v2 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl$KeyAndSerialized;
+	invoke-virtual	{v3,v4,v5},android/content/ContentValues/put	; put(Ljava/lang/String;[B)V
+; v3 : Landroid/content/ContentValues; , v4 : Ljava/lang/String; , v5 : [B
+.line 218
+	const-string	v4,"datalayer"
+; v4 : Ljava/lang/String;
+	const/4	v5,0
+; v5 : single-length
+	invoke-virtual	{v0,v4,v5,v3},android/database/sqlite/SQLiteDatabase/insert	; insert(Ljava/lang/String;Ljava/lang/String;Landroid/content/ContentValues;)J
+; v0 : Landroid/database/sqlite/SQLiteDatabase; , v4 : Ljava/lang/String; , v5 : single-length , v3 : Landroid/content/ContentValues;
+	goto	le7dde
+.end method
+
+.method public clearKeysWithPrefix(Ljava/lang/String;)V
+.limit registers 4
+; this: v2 (Lcom/google/tagmanager/DataLayerPersistentStoreImpl;)
+; parameter[0] : v3 (Ljava/lang/String;)
+.line 96
+	iget-object	v0,v2,com/google/tagmanager/DataLayerPersistentStoreImpl.mExecutor Ljava/util/concurrent/Executor;
+; v0 : Ljava/util/concurrent/Executor; , v2 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl;
+	new-instance	v1,com/google/tagmanager/DataLayerPersistentStoreImpl$4
+; v1 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl$4;
+	invoke-direct	{v1,v2,v3},com/google/tagmanager/DataLayerPersistentStoreImpl$4/<init>	; <init>(Lcom/google/tagmanager/DataLayerPersistentStoreImpl;Ljava/lang/String;)V
+; v1 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl$4; , v2 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl; , v3 : Ljava/lang/String;
+	invoke-interface	{v0,v1},java/util/concurrent/Executor/execute	; execute(Ljava/lang/Runnable;)V
+; v0 : Ljava/util/concurrent/Executor; , v1 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl$4;
+.line 101
+	return-void	
+.end method
+
+.method public loadSaved(Lcom/google/tagmanager/DataLayer$PersistentStore$Callback;)V
+.limit registers 4
+; this: v2 (Lcom/google/tagmanager/DataLayerPersistentStoreImpl;)
+; parameter[0] : v3 (Lcom/google/tagmanager/DataLayer$PersistentStore$Callback;)
+.line 87
+	iget-object	v0,v2,com/google/tagmanager/DataLayerPersistentStoreImpl.mExecutor Ljava/util/concurrent/Executor;
+; v0 : Ljava/util/concurrent/Executor; , v2 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl;
+	new-instance	v1,com/google/tagmanager/DataLayerPersistentStoreImpl$3
+; v1 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl$3;
+	invoke-direct	{v1,v2,v3},com/google/tagmanager/DataLayerPersistentStoreImpl$3/<init>	; <init>(Lcom/google/tagmanager/DataLayerPersistentStoreImpl;Lcom/google/tagmanager/DataLayer$PersistentStore$Callback;)V
+; v1 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl$3; , v2 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl; , v3 : Lcom/google/tagmanager/DataLayer$PersistentStore$Callback;
+	invoke-interface	{v0,v1},java/util/concurrent/Executor/execute	; execute(Ljava/lang/Runnable;)V
+; v0 : Ljava/util/concurrent/Executor; , v1 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl$3;
+.line 92
+	return-void	
+.end method
+
+.method public saveKeyValues(Ljava/util/List;J)V
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "(" , "Ljava/util/List" , "<" , "Lcom/google/tagmanager/DataLayer$KeyValue;" , ">;J)V" }
+.end annotation
+.limit registers 7
+; this: v3 (Lcom/google/tagmanager/DataLayerPersistentStoreImpl;)
+; parameter[0] : v4 (Ljava/util/List;)
+; parameter[1] : v5 (J)
+.line 77
+	invoke-direct	{v3,v4},com/google/tagmanager/DataLayerPersistentStoreImpl/serializeValues	; serializeValues(Ljava/util/List;)Ljava/util/List;
+; v3 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl; , v4 : Ljava/util/List;
+	move-result-object	v0
+; v0 : Ljava/util/List;
+.line 78
+	iget-object	v1,v3,com/google/tagmanager/DataLayerPersistentStoreImpl.mExecutor Ljava/util/concurrent/Executor;
+; v1 : Ljava/util/concurrent/Executor; , v3 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl;
+	new-instance	v2,com/google/tagmanager/DataLayerPersistentStoreImpl$2
+; v2 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl$2;
+	invoke-direct	{v2,v3,v0,v5,v6},com/google/tagmanager/DataLayerPersistentStoreImpl$2/<init>	; <init>(Lcom/google/tagmanager/DataLayerPersistentStoreImpl;Ljava/util/List;J)V
+; v2 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl$2; , v3 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl; , v0 : Ljava/util/List; , v5 : double-length
+	invoke-interface	{v1,v2},java/util/concurrent/Executor/execute	; execute(Ljava/lang/Runnable;)V
+; v1 : Ljava/util/concurrent/Executor; , v2 : Lcom/google/tagmanager/DataLayerPersistentStoreImpl$2;
+.line 83
+	return-void	
+.end method
+
+

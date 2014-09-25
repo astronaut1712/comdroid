@@ -1,0 +1,279 @@
+.class final com/squareup/okhttp/internal/http/HttpAuthenticator$1
+.super java/lang/Object
+.source HttpAuthenticator.java
+.implements com/squareup/okhttp/OkAuthenticator
+
+.inner class 1 inner com/squareup/okhttp/internal/http/HttpAuthenticator$1 outer com/squareup/okhttp/internal/http/HttpAuthenticator
+
+.method <init>()V
+.limit registers 1
+; this: v0 (Lcom/squareup/okhttp/internal/http/HttpAuthenticator$1;)
+.line 38
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Lcom/squareup/okhttp/internal/http/HttpAuthenticator$1;
+	return-void	
+.end method
+
+.method private getConnectToInetAddress(Ljava/net/Proxy;Ljava/net/URL;)Ljava/net/InetAddress;
+.throws Ljava/io/IOException;
+.limit registers 5
+; this: v2 (Lcom/squareup/okhttp/internal/http/HttpAuthenticator$1;)
+; parameter[0] : v3 (Ljava/net/Proxy;)
+; parameter[1] : v4 (Ljava/net/URL;)
+.line 76
+	if-eqz	v3,lef3ce
+; v3 : Ljava/net/Proxy;
+	invoke-virtual	{v3},java/net/Proxy/type	; type()Ljava/net/Proxy$Type;
+; v3 : Ljava/net/Proxy;
+	move-result-object	v0
+; v0 : Ljava/net/Proxy$Type;
+	sget-object	v1,java/net/Proxy$Type.DIRECT Ljava/net/Proxy$Type;
+; v1 : Ljava/net/Proxy$Type;
+	if-eq	v0,v1,lef3ce
+; v0 : Ljava/net/Proxy$Type; , v1 : Ljava/net/Proxy$Type;
+	invoke-virtual	{v3},java/net/Proxy/address	; address()Ljava/net/SocketAddress;
+; v3 : Ljava/net/Proxy;
+	move-result-object	v0
+; v0 : Ljava/net/SocketAddress;
+	check-cast	v0,java/net/InetSocketAddress
+; v0 : Ljava/net/InetSocketAddress;
+	invoke-virtual	{v0},java/net/InetSocketAddress/getAddress	; getAddress()Ljava/net/InetAddress;
+; v0 : Ljava/net/InetSocketAddress;
+	move-result-object	v0
+; v0 : Ljava/net/InetAddress;
+lef3cc:
+	return-object	v0
+; v0 : Ljava/net/InetAddress;
+lef3ce:
+	invoke-virtual	{v4},java/net/URL/getHost	; getHost()Ljava/lang/String;
+; v4 : Ljava/net/URL;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	invoke-static	{v0},java/net/InetAddress/getByName	; getByName(Ljava/lang/String;)Ljava/net/InetAddress;
+; v0 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/net/InetAddress;
+	goto	lef3cc
+.end method
+
+.method public authenticate(Ljava/net/Proxy;Ljava/net/URL;Ljava/util/List;)Lcom/squareup/okhttp/OkAuthenticator$Credential;
+.throws Ljava/io/IOException;
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "(" , "Ljava/net/Proxy;" , "Ljava/net/URL;" , "Ljava/util/List" , "<" , "Lcom/squareup/okhttp/OkAuthenticator$Challenge;" , ">;)" , "Lcom/squareup/okhttp/OkAuthenticator$Credential;" }
+.end annotation
+.limit registers 15
+; this: v11 (Lcom/squareup/okhttp/internal/http/HttpAuthenticator$1;)
+; parameter[0] : v12 (Ljava/net/Proxy;)
+; parameter[1] : v13 (Ljava/net/URL;)
+; parameter[2] : v14 (Ljava/util/List;)
+.var 8 is auth Ljava/net/PasswordAuthentication; from lef466 to lef48c
+.var 9 is challenge Lcom/squareup/okhttp/OkAuthenticator$Challenge; from lef410 to lef48c
+.line 41
+	invoke-interface	{v14},java/util/List/iterator	; iterator()Ljava/util/Iterator;
+; v14 : Ljava/util/List;
+	move-result-object	v10
+; v10 : Ljava/util/Iterator;
+lef3f8:
+	invoke-interface	{v10},java/util/Iterator/hasNext	; hasNext()Z
+; v10 : Ljava/util/Iterator;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,lef48e
+; v0 : single-length
+	invoke-interface	{v10},java/util/Iterator/next	; next()Ljava/lang/Object;
+; v10 : Ljava/util/Iterator;
+	move-result-object	v9
+; v9 : Ljava/lang/Object;
+	check-cast	v9,com/squareup/okhttp/OkAuthenticator$Challenge
+; v9 : Lcom/squareup/okhttp/OkAuthenticator$Challenge;
+.line 42
+	const-string	v0,"Basic"
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v9},com/squareup/okhttp/OkAuthenticator$Challenge/getScheme	; getScheme()Ljava/lang/String;
+; v9 : Lcom/squareup/okhttp/OkAuthenticator$Challenge;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/String/equalsIgnoreCase	; equalsIgnoreCase(Ljava/lang/String;)Z
+; v0 : Ljava/lang/String; , v1 : Ljava/lang/String;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,lef3f8
+; v0 : single-length
+.line 46
+	invoke-virtual	{v13},java/net/URL/getHost	; getHost()Ljava/lang/String;
+; v13 : Ljava/net/URL;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	invoke-direct	{v11,v12,v13},com/squareup/okhttp/internal/http/HttpAuthenticator$1/getConnectToInetAddress	; getConnectToInetAddress(Ljava/net/Proxy;Ljava/net/URL;)Ljava/net/InetAddress;
+; v11 : Lcom/squareup/okhttp/internal/http/HttpAuthenticator$1; , v12 : Ljava/net/Proxy; , v13 : Ljava/net/URL;
+	move-result-object	v1
+; v1 : Ljava/net/InetAddress;
+	invoke-virtual	{v13},java/net/URL/getPort	; getPort()I
+; v13 : Ljava/net/URL;
+	move-result	v2
+; v2 : single-length
+	invoke-virtual	{v13},java/net/URL/getProtocol	; getProtocol()Ljava/lang/String;
+; v13 : Ljava/net/URL;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v9},com/squareup/okhttp/OkAuthenticator$Challenge/getRealm	; getRealm()Ljava/lang/String;
+; v9 : Lcom/squareup/okhttp/OkAuthenticator$Challenge;
+	move-result-object	v4
+; v4 : Ljava/lang/String;
+	invoke-virtual	{v9},com/squareup/okhttp/OkAuthenticator$Challenge/getScheme	; getScheme()Ljava/lang/String;
+; v9 : Lcom/squareup/okhttp/OkAuthenticator$Challenge;
+	move-result-object	v5
+; v5 : Ljava/lang/String;
+	sget-object	v7,java/net/Authenticator$RequestorType.SERVER Ljava/net/Authenticator$RequestorType;
+; v7 : Ljava/net/Authenticator$RequestorType;
+	move-object	v6,v13
+; v6 : Ljava/net/URL; , v13 : Ljava/net/URL;
+	invoke-static/range	{v0..v7},java/net/Authenticator/requestPasswordAuthentication;	requestPasswordAuthentication(Ljava/lang/String;Ljava/net/InetAddress;ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/net/URL;Ljava/net/Authenticator$RequestorType;)Ljava/net/PasswordAuthentication;
+; v0 : Ljava/lang/String; , v1 : Ljava/net/InetAddress; , v2 : single-length , v3 : Ljava/lang/String; , v4 : Ljava/lang/String; , v5 : Ljava/lang/String; , v6 : Ljava/net/URL; , v7 : Ljava/net/Authenticator$RequestorType;
+	move-result-object	v8
+; v8 : Ljava/net/PasswordAuthentication;
+.line 49
+	if-eqz	v8,lef3f8
+; v8 : Ljava/net/PasswordAuthentication;
+.line 50
+	invoke-virtual	{v8},java/net/PasswordAuthentication/getUserName	; getUserName()Ljava/lang/String;
+; v8 : Ljava/net/PasswordAuthentication;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	new-instance	v1,java/lang/String
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v8},java/net/PasswordAuthentication/getPassword	; getPassword()[C
+; v8 : Ljava/net/PasswordAuthentication;
+	move-result-object	v2
+; v2 : [C
+	invoke-direct	{v1,v2},java/lang/String/<init>	; <init>([C)V
+; v1 : Ljava/lang/String; , v2 : [C
+	invoke-static	{v0,v1},com/squareup/okhttp/OkAuthenticator$Credential/basic	; basic(Ljava/lang/String;Ljava/lang/String;)Lcom/squareup/okhttp/OkAuthenticator$Credential;
+; v0 : Ljava/lang/String; , v1 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Lcom/squareup/okhttp/OkAuthenticator$Credential;
+lef48c:
+.line 53
+	return-object	v0
+; v0 : single-length
+lef48e:
+	const/4	v0,0
+; v0 : single-length
+	goto	lef48c
+.end method
+
+.method public authenticateProxy(Ljava/net/Proxy;Ljava/net/URL;Ljava/util/List;)Lcom/squareup/okhttp/OkAuthenticator$Credential;
+.throws Ljava/io/IOException;
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "(" , "Ljava/net/Proxy;" , "Ljava/net/URL;" , "Ljava/util/List" , "<" , "Lcom/squareup/okhttp/OkAuthenticator$Challenge;" , ">;)" , "Lcom/squareup/okhttp/OkAuthenticator$Credential;" }
+.end annotation
+.limit registers 16
+; this: v12 (Lcom/squareup/okhttp/internal/http/HttpAuthenticator$1;)
+; parameter[0] : v13 (Ljava/net/Proxy;)
+; parameter[1] : v14 (Ljava/net/URL;)
+; parameter[2] : v15 (Ljava/util/List;)
+.var 8 is auth Ljava/net/PasswordAuthentication; from lef526 to lef54c
+.var 9 is challenge Lcom/squareup/okhttp/OkAuthenticator$Challenge; from lef4c4 to lef54c
+.var 11 is proxyAddress Ljava/net/InetSocketAddress; from lef4e8 to lef54c
+.line 58
+	invoke-interface	{v15},java/util/List/iterator	; iterator()Ljava/util/Iterator;
+; v15 : Ljava/util/List;
+	move-result-object	v10
+; v10 : Ljava/util/Iterator;
+lef4ac:
+	invoke-interface	{v10},java/util/Iterator/hasNext	; hasNext()Z
+; v10 : Ljava/util/Iterator;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,lef54e
+; v0 : single-length
+	invoke-interface	{v10},java/util/Iterator/next	; next()Ljava/lang/Object;
+; v10 : Ljava/util/Iterator;
+	move-result-object	v9
+; v9 : Ljava/lang/Object;
+	check-cast	v9,com/squareup/okhttp/OkAuthenticator$Challenge
+; v9 : Lcom/squareup/okhttp/OkAuthenticator$Challenge;
+.line 59
+	const-string	v0,"Basic"
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v9},com/squareup/okhttp/OkAuthenticator$Challenge/getScheme	; getScheme()Ljava/lang/String;
+; v9 : Lcom/squareup/okhttp/OkAuthenticator$Challenge;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/String/equalsIgnoreCase	; equalsIgnoreCase(Ljava/lang/String;)Z
+; v0 : Ljava/lang/String; , v1 : Ljava/lang/String;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,lef4ac
+; v0 : single-length
+.line 63
+	invoke-virtual	{v13},java/net/Proxy/address	; address()Ljava/net/SocketAddress;
+; v13 : Ljava/net/Proxy;
+	move-result-object	v11
+; v11 : Ljava/net/SocketAddress;
+	check-cast	v11,java/net/InetSocketAddress
+; v11 : Ljava/net/InetSocketAddress;
+.line 64
+	invoke-virtual	{v11},java/net/InetSocketAddress/getHostName	; getHostName()Ljava/lang/String;
+; v11 : Ljava/net/InetSocketAddress;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	invoke-direct	{v12,v13,v14},com/squareup/okhttp/internal/http/HttpAuthenticator$1/getConnectToInetAddress	; getConnectToInetAddress(Ljava/net/Proxy;Ljava/net/URL;)Ljava/net/InetAddress;
+; v12 : Lcom/squareup/okhttp/internal/http/HttpAuthenticator$1; , v13 : Ljava/net/Proxy; , v14 : Ljava/net/URL;
+	move-result-object	v1
+; v1 : Ljava/net/InetAddress;
+	invoke-virtual	{v11},java/net/InetSocketAddress/getPort	; getPort()I
+; v11 : Ljava/net/InetSocketAddress;
+	move-result	v2
+; v2 : single-length
+	invoke-virtual	{v14},java/net/URL/getProtocol	; getProtocol()Ljava/lang/String;
+; v14 : Ljava/net/URL;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v9},com/squareup/okhttp/OkAuthenticator$Challenge/getRealm	; getRealm()Ljava/lang/String;
+; v9 : Lcom/squareup/okhttp/OkAuthenticator$Challenge;
+	move-result-object	v4
+; v4 : Ljava/lang/String;
+	invoke-virtual	{v9},com/squareup/okhttp/OkAuthenticator$Challenge/getScheme	; getScheme()Ljava/lang/String;
+; v9 : Lcom/squareup/okhttp/OkAuthenticator$Challenge;
+	move-result-object	v5
+; v5 : Ljava/lang/String;
+	sget-object	v7,java/net/Authenticator$RequestorType.PROXY Ljava/net/Authenticator$RequestorType;
+; v7 : Ljava/net/Authenticator$RequestorType;
+	move-object	v6,v14
+; v6 : Ljava/net/URL; , v14 : Ljava/net/URL;
+	invoke-static/range	{v0..v7},java/net/Authenticator/requestPasswordAuthentication;	requestPasswordAuthentication(Ljava/lang/String;Ljava/net/InetAddress;ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/net/URL;Ljava/net/Authenticator$RequestorType;)Ljava/net/PasswordAuthentication;
+; v0 : Ljava/lang/String; , v1 : Ljava/net/InetAddress; , v2 : single-length , v3 : Ljava/lang/String; , v4 : Ljava/lang/String; , v5 : Ljava/lang/String; , v6 : Ljava/net/URL; , v7 : Ljava/net/Authenticator$RequestorType;
+	move-result-object	v8
+; v8 : Ljava/net/PasswordAuthentication;
+.line 68
+	if-eqz	v8,lef4ac
+; v8 : Ljava/net/PasswordAuthentication;
+.line 69
+	invoke-virtual	{v8},java/net/PasswordAuthentication/getUserName	; getUserName()Ljava/lang/String;
+; v8 : Ljava/net/PasswordAuthentication;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	new-instance	v1,java/lang/String
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v8},java/net/PasswordAuthentication/getPassword	; getPassword()[C
+; v8 : Ljava/net/PasswordAuthentication;
+	move-result-object	v2
+; v2 : [C
+	invoke-direct	{v1,v2},java/lang/String/<init>	; <init>([C)V
+; v1 : Ljava/lang/String; , v2 : [C
+	invoke-static	{v0,v1},com/squareup/okhttp/OkAuthenticator$Credential/basic	; basic(Ljava/lang/String;Ljava/lang/String;)Lcom/squareup/okhttp/OkAuthenticator$Credential;
+; v0 : Ljava/lang/String; , v1 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Lcom/squareup/okhttp/OkAuthenticator$Credential;
+lef54c:
+.line 72
+	return-object	v0
+; v0 : single-length
+lef54e:
+	const/4	v0,0
+; v0 : single-length
+	goto	lef54c
+.end method
+
+

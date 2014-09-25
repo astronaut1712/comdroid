@@ -1,0 +1,917 @@
+.class final com/a/a/a/b/v
+.super java/lang/Object
+.source MyApplication
+.implements com/a/a/a/b/b
+
+.field private final a Ljava/io/DataInputStream;
+.field private final b Z
+.field private final c Lcom/a/a/a/b/o;
+
+.method <init>(Ljava/io/InputStream;Z)V
+.limit registers 4
+; this: v1 (Lcom/a/a/a/b/v;)
+; parameter[0] : v2 (Ljava/io/InputStream;)
+; parameter[1] : v3 (Z)
+.line 104
+	invoke-direct	{v1},java/lang/Object/<init>	; <init>()V
+; v1 : Lcom/a/a/a/b/v;
+.line 105
+	new-instance	v0,java/io/DataInputStream
+; v0 : Ljava/io/DataInputStream;
+	invoke-direct	{v0,v2},java/io/DataInputStream/<init>	; <init>(Ljava/io/InputStream;)V
+; v0 : Ljava/io/DataInputStream; , v2 : Ljava/io/InputStream;
+	iput-object	v0,v1,com/a/a/a/b/v.a Ljava/io/DataInputStream;
+; v0 : Ljava/io/DataInputStream; , v1 : Lcom/a/a/a/b/v;
+.line 106
+	new-instance	v0,com/a/a/a/b/o
+; v0 : Lcom/a/a/a/b/o;
+	invoke-direct	{v0,v2},com/a/a/a/b/o/<init>	; <init>(Ljava/io/InputStream;)V
+; v0 : Lcom/a/a/a/b/o; , v2 : Ljava/io/InputStream;
+	iput-object	v0,v1,com/a/a/a/b/v.c Lcom/a/a/a/b/o;
+; v0 : Lcom/a/a/a/b/o; , v1 : Lcom/a/a/a/b/v;
+.line 107
+	iput-boolean	v3,v1,com/a/a/a/b/v.b Z
+; v3 : single-length , v1 : Lcom/a/a/a/b/v;
+.line 108
+	return-void	
+.end method
+
+.method private static a(Ljava/lang/String;[Ljava/lang/Object;)Ljava/io/IOException;
+.limit registers 4
+; parameter[0] : v2 (Ljava/lang/String;)
+; parameter[1] : v3 ([Ljava/lang/Object;)
+.line 278
+	new-instance	v0,java/io/IOException
+; v0 : Ljava/io/IOException;
+	invoke-static	{v2,v3},java/lang/String/format	; format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+; v2 : Ljava/lang/String; , v3 : [Ljava/lang/Object;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/io/IOException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/io/IOException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/io/IOException;
+.end method
+
+.method private a(Lcom/a/a/a/b/c;II)V
+.limit registers 12
+; this: v8 (Lcom/a/a/a/b/v;)
+; parameter[0] : v9 (Lcom/a/a/a/b/c;)
+; parameter[1] : v10 (I)
+; parameter[2] : v11 (I)
+	const	v5,2147483647	; 0x7fffffff
+; v5 : single-length
+	const/4	v1,1
+; v1 : single-length
+	const/4	v0,0
+; v0 : single-length
+.line 192
+	iget-object	v2,v8,com/a/a/a/b/v.a Ljava/io/DataInputStream;
+; v2 : Ljava/io/DataInputStream; , v8 : Lcom/a/a/a/b/v;
+	invoke-virtual	{v2},java/io/DataInputStream/readInt	; readInt()I
+; v2 : Ljava/io/DataInputStream;
+	move-result	v2
+; v2 : single-length
+.line 193
+	iget-object	v3,v8,com/a/a/a/b/v.a Ljava/io/DataInputStream;
+; v3 : Ljava/io/DataInputStream; , v8 : Lcom/a/a/a/b/v;
+	invoke-virtual	{v3},java/io/DataInputStream/readInt	; readInt()I
+; v3 : Ljava/io/DataInputStream;
+	move-result	v4
+; v4 : single-length
+.line 194
+	iget-object	v3,v8,com/a/a/a/b/v.a Ljava/io/DataInputStream;
+; v3 : Ljava/io/DataInputStream; , v8 : Lcom/a/a/a/b/v;
+	invoke-virtual	{v3},java/io/DataInputStream/readShort	; readShort()S
+; v3 : Ljava/io/DataInputStream;
+	move-result	v6
+; v6 : single-length
+.line 195
+	and-int	v3,v2,v5
+; v3 : single-length , v2 : single-length , v5 : single-length
+.line 196
+	and-int/2addr	v4,v5
+; v4 : single-length , v5 : single-length
+.line 197
+	const	v2,57344	; 0xe000
+; v2 : single-length
+	and-int/2addr	v2,v6
+; v2 : single-length , v6 : single-length
+	ushr-int/lit8	v5,v2,13
+; v5 : single-length , v2 : single-length
+.line 198
+	and-int/lit16	v2,v6,255
+; v2 : single-length , v6 : single-length
+.line 199
+	iget-object	v2,v8,com/a/a/a/b/v.c Lcom/a/a/a/b/o;
+; v2 : Lcom/a/a/a/b/o; , v8 : Lcom/a/a/a/b/v;
+	add-int/lit8	v6,v11,246
+; v6 : single-length , v11 : single-length
+	invoke-virtual	{v2,v6},com/a/a/a/b/o/a	; a(I)Ljava/util/List;
+; v2 : Lcom/a/a/a/b/o; , v6 : single-length
+	move-result-object	v6
+; v6 : Ljava/util/List;
+.line 201
+	and-int/lit8	v2,v10,1
+; v2 : single-length , v10 : single-length
+	if-eqz	v2,l6f598
+; v2 : single-length
+	move	v2,v1
+; v2 : single-length , v1 : single-length
+l6f582:
+.line 202
+	and-int/lit8	v7,v10,2
+; v7 : single-length , v10 : single-length
+	if-eqz	v7,l6f59c
+; v7 : single-length
+l6f58a:
+.line 203
+	sget-object	v7,com/a/a/a/b/e.a Lcom/a/a/a/b/e;
+; v7 : Lcom/a/a/a/b/e;
+	move-object	v0,v9
+; v0 : Lcom/a/a/a/b/c; , v9 : Lcom/a/a/a/b/c;
+	invoke-interface/range	{v0..v7},com/a/a/a/b/c/a;	a(ZZIIILjava/util/List;Lcom/a/a/a/b/e;)V
+; v0 : Lcom/a/a/a/b/c; , v1 : single-length , v2 : single-length , v3 : single-length , v4 : single-length , v5 : single-length , v6 : Ljava/util/List; , v7 : Lcom/a/a/a/b/e;
+.line 205
+	return-void	
+l6f598:
+	move	v2,v0
+; v2 : single-length , v0 : single-length
+.line 201
+	goto	l6f582
+l6f59c:
+	move	v1,v0
+; v1 : single-length , v0 : single-length
+.line 202
+	goto	l6f58a
+.end method
+
+.method private b(Lcom/a/a/a/b/c;II)V
+.limit registers 12
+; this: v8 (Lcom/a/a/a/b/v;)
+; parameter[0] : v9 (Lcom/a/a/a/b/c;)
+; parameter[1] : v10 (I)
+; parameter[2] : v11 (I)
+	const/4	v1,0
+; v1 : single-length
+	const/4	v4,15
+; v4 : single-length
+.line 208
+	iget-object	v0,v8,com/a/a/a/b/v.a Ljava/io/DataInputStream;
+; v0 : Ljava/io/DataInputStream; , v8 : Lcom/a/a/a/b/v;
+	invoke-virtual	{v0},java/io/DataInputStream/readInt	; readInt()I
+; v0 : Ljava/io/DataInputStream;
+	move-result	v0
+; v0 : single-length
+.line 209
+	const	v2,2147483647	; 0x7fffffff
+; v2 : single-length
+	and-int	v3,v0,v2
+; v3 : single-length , v0 : single-length , v2 : single-length
+.line 210
+	iget-object	v0,v8,com/a/a/a/b/v.c Lcom/a/a/a/b/o;
+; v0 : Lcom/a/a/a/b/o; , v8 : Lcom/a/a/a/b/v;
+	add-int/lit8	v2,v11,252
+; v2 : single-length , v11 : single-length
+	invoke-virtual	{v0,v2},com/a/a/a/b/o/a	; a(I)Ljava/util/List;
+; v0 : Lcom/a/a/a/b/o; , v2 : single-length
+	move-result-object	v6
+; v6 : Ljava/util/List;
+.line 211
+	and-int/lit8	v0,v10,1
+; v0 : single-length , v10 : single-length
+	if-eqz	v0,l6f5f4
+; v0 : single-length
+	const/4	v2,1
+; v2 : single-length
+l6f5e4:
+.line 212
+	sget-object	v7,com/a/a/a/b/e.b Lcom/a/a/a/b/e;
+; v7 : Lcom/a/a/a/b/e;
+	move-object	v0,v9
+; v0 : Lcom/a/a/a/b/c; , v9 : Lcom/a/a/a/b/c;
+	move	v5,v4
+; v5 : single-length , v4 : single-length
+	invoke-interface/range	{v0..v7},com/a/a/a/b/c/a;	a(ZZIIILjava/util/List;Lcom/a/a/a/b/e;)V
+; v0 : Lcom/a/a/a/b/c; , v1 : single-length , v2 : single-length , v3 : single-length , v4 : single-length , v5 : single-length , v6 : Ljava/util/List; , v7 : Lcom/a/a/a/b/e;
+.line 213
+	return-void	
+l6f5f4:
+	move	v2,v1
+; v2 : single-length , v1 : single-length
+.line 211
+	goto	l6f5e4
+.end method
+
+.method private c(Lcom/a/a/a/b/c;II)V
+.limit registers 9
+; this: v5 (Lcom/a/a/a/b/v;)
+; parameter[0] : v6 (Lcom/a/a/a/b/c;)
+; parameter[1] : v7 (I)
+; parameter[2] : v8 (I)
+	const/4	v4,1
+; v4 : single-length
+	const/4	v3,0
+; v3 : single-length
+.line 216
+	const/16	v0,8
+; v0 : single-length
+	if-eq	v8,v0,l6f632
+; v8 : single-length , v0 : single-length
+	const-string	v0,"TYPE_RST_STREAM length: %d != 8"
+; v0 : Ljava/lang/String;
+	new-array	v1,v4,[Ljava/lang/Object;
+; v1 : [Ljava/lang/Object; , v4 : single-length
+	invoke-static	{v8},java/lang/Integer/valueOf	; valueOf(I)Ljava/lang/Integer;
+; v8 : single-length
+	move-result-object	v2
+; v2 : Ljava/lang/Integer;
+	aput-object	v2,v1,v3
+; v2 : Ljava/lang/Integer; , v1 : [Ljava/lang/Object; , v3 : single-length
+	invoke-static	{v0,v1},com/a/a/a/b/v/a	; a(Ljava/lang/String;[Ljava/lang/Object;)Ljava/io/IOException;
+; v0 : Ljava/lang/String; , v1 : [Ljava/lang/Object;
+	move-result-object	v0
+; v0 : Ljava/io/IOException;
+	throw	v0
+; v0 : Ljava/io/IOException;
+l6f632:
+.line 217
+	iget-object	v0,v5,com/a/a/a/b/v.a Ljava/io/DataInputStream;
+; v0 : Ljava/io/DataInputStream; , v5 : Lcom/a/a/a/b/v;
+	invoke-virtual	{v0},java/io/DataInputStream/readInt	; readInt()I
+; v0 : Ljava/io/DataInputStream;
+	move-result	v0
+; v0 : single-length
+	const	v1,2147483647	; 0x7fffffff
+; v1 : single-length
+	and-int/2addr	v0,v1
+; v0 : single-length , v1 : single-length
+.line 218
+	iget-object	v1,v5,com/a/a/a/b/v.a Ljava/io/DataInputStream;
+; v1 : Ljava/io/DataInputStream; , v5 : Lcom/a/a/a/b/v;
+	invoke-virtual	{v1},java/io/DataInputStream/readInt	; readInt()I
+; v1 : Ljava/io/DataInputStream;
+	move-result	v1
+; v1 : single-length
+.line 219
+	invoke-static	{v1},com/a/a/a/b/a/a	; a(I)Lcom/a/a/a/b/a;
+; v1 : single-length
+	move-result-object	v2
+; v2 : Lcom/a/a/a/b/a;
+.line 220
+	if-nez	v2,l6f67c
+; v2 : Lcom/a/a/a/b/a;
+.line 221
+	const-string	v0,"TYPE_RST_STREAM unexpected error code: %d"
+; v0 : Ljava/lang/String;
+	new-array	v2,v4,[Ljava/lang/Object;
+; v2 : [Ljava/lang/Object; , v4 : single-length
+	invoke-static	{v1},java/lang/Integer/valueOf	; valueOf(I)Ljava/lang/Integer;
+; v1 : single-length
+	move-result-object	v1
+; v1 : Ljava/lang/Integer;
+	aput-object	v1,v2,v3
+; v1 : Ljava/lang/Integer; , v2 : [Ljava/lang/Object; , v3 : single-length
+	invoke-static	{v0,v2},com/a/a/a/b/v/a	; a(Ljava/lang/String;[Ljava/lang/Object;)Ljava/io/IOException;
+; v0 : Ljava/lang/String; , v2 : [Ljava/lang/Object;
+	move-result-object	v0
+; v0 : Ljava/io/IOException;
+	throw	v0
+; v0 : Ljava/io/IOException;
+l6f67c:
+.line 223
+	invoke-interface	{v6,v0,v2},com/a/a/a/b/c/a	; a(ILcom/a/a/a/b/a;)V
+; v6 : Lcom/a/a/a/b/c; , v0 : single-length , v2 : Lcom/a/a/a/b/a;
+.line 224
+	return-void	
+.end method
+
+.method private d(Lcom/a/a/a/b/c;II)V
+.limit registers 12
+; this: v8 (Lcom/a/a/a/b/v;)
+; parameter[0] : v9 (Lcom/a/a/a/b/c;)
+; parameter[1] : v10 (I)
+; parameter[2] : v11 (I)
+	const/4	v1,0
+; v1 : single-length
+	const/4	v4,15
+; v4 : single-length
+.line 227
+	iget-object	v0,v8,com/a/a/a/b/v.a Ljava/io/DataInputStream;
+; v0 : Ljava/io/DataInputStream; , v8 : Lcom/a/a/a/b/v;
+	invoke-virtual	{v0},java/io/DataInputStream/readInt	; readInt()I
+; v0 : Ljava/io/DataInputStream;
+	move-result	v0
+; v0 : single-length
+.line 228
+	const	v2,2147483647	; 0x7fffffff
+; v2 : single-length
+	and-int	v3,v0,v2
+; v3 : single-length , v0 : single-length , v2 : single-length
+.line 229
+	iget-object	v0,v8,com/a/a/a/b/v.c Lcom/a/a/a/b/o;
+; v0 : Lcom/a/a/a/b/o; , v8 : Lcom/a/a/a/b/v;
+	add-int/lit8	v2,v11,252
+; v2 : single-length , v11 : single-length
+	invoke-virtual	{v0,v2},com/a/a/a/b/o/a	; a(I)Ljava/util/List;
+; v0 : Lcom/a/a/a/b/o; , v2 : single-length
+	move-result-object	v6
+; v6 : Ljava/util/List;
+.line 230
+	sget-object	v7,com/a/a/a/b/e.c Lcom/a/a/a/b/e;
+; v7 : Lcom/a/a/a/b/e;
+	move-object	v0,v9
+; v0 : Lcom/a/a/a/b/c; , v9 : Lcom/a/a/a/b/c;
+	move	v2,v1
+; v2 : single-length , v1 : single-length
+	move	v5,v4
+; v5 : single-length , v4 : single-length
+	invoke-interface/range	{v0..v7},com/a/a/a/b/c/a;	a(ZZIIILjava/util/List;Lcom/a/a/a/b/e;)V
+; v0 : Lcom/a/a/a/b/c; , v1 : single-length , v2 : single-length , v3 : single-length , v4 : single-length , v5 : single-length , v6 : Ljava/util/List; , v7 : Lcom/a/a/a/b/e;
+.line 231
+	return-void	
+.end method
+
+.method private e(Lcom/a/a/a/b/c;II)V
+.limit registers 8
+; this: v4 (Lcom/a/a/a/b/v;)
+; parameter[0] : v5 (Lcom/a/a/a/b/c;)
+; parameter[1] : v6 (I)
+; parameter[2] : v7 (I)
+	const	v2,2147483647	; 0x7fffffff
+; v2 : single-length
+	const/4	v3,0
+; v3 : single-length
+.line 234
+	const/16	v0,8
+; v0 : single-length
+	if-eq	v7,v0,l6f710
+; v7 : single-length , v0 : single-length
+	const-string	v0,"TYPE_WINDOW_UPDATE length: %d != 8"
+; v0 : Ljava/lang/String;
+	const/4	v1,1
+; v1 : single-length
+	new-array	v1,v1,[Ljava/lang/Object;
+; v1 : [Ljava/lang/Object; , v1 : [Ljava/lang/Object;
+	invoke-static	{v7},java/lang/Integer/valueOf	; valueOf(I)Ljava/lang/Integer;
+; v7 : single-length
+	move-result-object	v2
+; v2 : Ljava/lang/Integer;
+	aput-object	v2,v1,v3
+; v2 : Ljava/lang/Integer; , v1 : [Ljava/lang/Object; , v3 : single-length
+	invoke-static	{v0,v1},com/a/a/a/b/v/a	; a(Ljava/lang/String;[Ljava/lang/Object;)Ljava/io/IOException;
+; v0 : Ljava/lang/String; , v1 : [Ljava/lang/Object;
+	move-result-object	v0
+; v0 : Ljava/io/IOException;
+	throw	v0
+; v0 : Ljava/io/IOException;
+l6f710:
+.line 235
+	iget-object	v0,v4,com/a/a/a/b/v.a Ljava/io/DataInputStream;
+; v0 : Ljava/io/DataInputStream; , v4 : Lcom/a/a/a/b/v;
+	invoke-virtual	{v0},java/io/DataInputStream/readInt	; readInt()I
+; v0 : Ljava/io/DataInputStream;
+	move-result	v0
+; v0 : single-length
+.line 236
+	iget-object	v1,v4,com/a/a/a/b/v.a Ljava/io/DataInputStream;
+; v1 : Ljava/io/DataInputStream; , v4 : Lcom/a/a/a/b/v;
+	invoke-virtual	{v1},java/io/DataInputStream/readInt	; readInt()I
+; v1 : Ljava/io/DataInputStream;
+	move-result	v1
+; v1 : single-length
+.line 237
+	and-int/2addr	v0,v2
+; v0 : single-length , v2 : single-length
+.line 238
+	and-int/2addr	v1,v2
+; v1 : single-length , v2 : single-length
+.line 239
+	invoke-interface	{v5,v0,v1,v3},com/a/a/a/b/c/a	; a(IIZ)V
+; v5 : Lcom/a/a/a/b/c; , v0 : single-length , v1 : single-length , v3 : single-length
+.line 240
+	return-void	
+.end method
+
+.method private f(Lcom/a/a/a/b/c;II)V
+.limit registers 9
+; this: v5 (Lcom/a/a/a/b/v;)
+; parameter[0] : v6 (Lcom/a/a/a/b/c;)
+; parameter[1] : v7 (I)
+; parameter[2] : v8 (I)
+	const/4	v0,1
+; v0 : single-length
+	const/4	v1,0
+; v1 : single-length
+.line 243
+	const/4	v2,4
+; v2 : single-length
+	if-eq	v8,v2,l6f76c
+; v8 : single-length , v2 : single-length
+	const-string	v2,"TYPE_PING length: %d != 4"
+; v2 : Ljava/lang/String;
+	new-array	v0,v0,[Ljava/lang/Object;
+; v0 : [Ljava/lang/Object; , v0 : [Ljava/lang/Object;
+	invoke-static	{v8},java/lang/Integer/valueOf	; valueOf(I)Ljava/lang/Integer;
+; v8 : single-length
+	move-result-object	v3
+; v3 : Ljava/lang/Integer;
+	aput-object	v3,v0,v1
+; v3 : Ljava/lang/Integer; , v0 : [Ljava/lang/Object; , v1 : single-length
+	invoke-static	{v2,v0},com/a/a/a/b/v/a	; a(Ljava/lang/String;[Ljava/lang/Object;)Ljava/io/IOException;
+; v2 : Ljava/lang/String; , v0 : [Ljava/lang/Object;
+	move-result-object	v0
+; v0 : Ljava/io/IOException;
+	throw	v0
+; v0 : Ljava/io/IOException;
+l6f76c:
+.line 244
+	iget-object	v2,v5,com/a/a/a/b/v.a Ljava/io/DataInputStream;
+; v2 : Ljava/io/DataInputStream; , v5 : Lcom/a/a/a/b/v;
+	invoke-virtual	{v2},java/io/DataInputStream/readInt	; readInt()I
+; v2 : Ljava/io/DataInputStream;
+	move-result	v3
+; v3 : single-length
+.line 245
+	iget-boolean	v4,v5,com/a/a/a/b/v.b Z
+; v4 : single-length , v5 : Lcom/a/a/a/b/v;
+	rem-int/lit8	v2,v3,2
+; v2 : single-length , v3 : single-length
+	if-ne	v2,v0,l6f792
+; v2 : single-length , v0 : single-length
+	move	v2,v0
+; v2 : single-length , v0 : single-length
+l6f786:
+	if-ne	v4,v2,l6f796
+; v4 : single-length , v2 : single-length
+l6f78a:
+.line 246
+	invoke-interface	{v6,v0,v3,v1},com/a/a/a/b/c/a	; a(ZII)V
+; v6 : Lcom/a/a/a/b/c; , v0 : single-length , v3 : single-length , v1 : single-length
+.line 247
+	return-void	
+l6f792:
+	move	v2,v1
+; v2 : single-length , v1 : single-length
+.line 245
+	goto	l6f786
+l6f796:
+	move	v0,v1
+; v0 : single-length , v1 : single-length
+	goto	l6f78a
+.end method
+
+.method private g(Lcom/a/a/a/b/c;II)V
+.limit registers 9
+; this: v5 (Lcom/a/a/a/b/v;)
+; parameter[0] : v6 (Lcom/a/a/a/b/c;)
+; parameter[1] : v7 (I)
+; parameter[2] : v8 (I)
+	const/4	v4,1
+; v4 : single-length
+	const/4	v3,0
+; v3 : single-length
+.line 250
+	const/16	v0,8
+; v0 : single-length
+	if-eq	v8,v0,l6f7d6
+; v8 : single-length , v0 : single-length
+	const-string	v0,"TYPE_GOAWAY length: %d != 8"
+; v0 : Ljava/lang/String;
+	new-array	v1,v4,[Ljava/lang/Object;
+; v1 : [Ljava/lang/Object; , v4 : single-length
+	invoke-static	{v8},java/lang/Integer/valueOf	; valueOf(I)Ljava/lang/Integer;
+; v8 : single-length
+	move-result-object	v2
+; v2 : Ljava/lang/Integer;
+	aput-object	v2,v1,v3
+; v2 : Ljava/lang/Integer; , v1 : [Ljava/lang/Object; , v3 : single-length
+	invoke-static	{v0,v1},com/a/a/a/b/v/a	; a(Ljava/lang/String;[Ljava/lang/Object;)Ljava/io/IOException;
+; v0 : Ljava/lang/String; , v1 : [Ljava/lang/Object;
+	move-result-object	v0
+; v0 : Ljava/io/IOException;
+	throw	v0
+; v0 : Ljava/io/IOException;
+l6f7d6:
+.line 251
+	iget-object	v0,v5,com/a/a/a/b/v.a Ljava/io/DataInputStream;
+; v0 : Ljava/io/DataInputStream; , v5 : Lcom/a/a/a/b/v;
+	invoke-virtual	{v0},java/io/DataInputStream/readInt	; readInt()I
+; v0 : Ljava/io/DataInputStream;
+	move-result	v0
+; v0 : single-length
+	const	v1,2147483647	; 0x7fffffff
+; v1 : single-length
+	and-int/2addr	v0,v1
+; v0 : single-length , v1 : single-length
+.line 252
+	iget-object	v1,v5,com/a/a/a/b/v.a Ljava/io/DataInputStream;
+; v1 : Ljava/io/DataInputStream; , v5 : Lcom/a/a/a/b/v;
+	invoke-virtual	{v1},java/io/DataInputStream/readInt	; readInt()I
+; v1 : Ljava/io/DataInputStream;
+	move-result	v1
+; v1 : single-length
+.line 253
+	invoke-static	{v1},com/a/a/a/b/a/c	; c(I)Lcom/a/a/a/b/a;
+; v1 : single-length
+	move-result-object	v2
+; v2 : Lcom/a/a/a/b/a;
+.line 254
+	if-nez	v2,l6f820
+; v2 : Lcom/a/a/a/b/a;
+.line 255
+	const-string	v0,"TYPE_GOAWAY unexpected error code: %d"
+; v0 : Ljava/lang/String;
+	new-array	v2,v4,[Ljava/lang/Object;
+; v2 : [Ljava/lang/Object; , v4 : single-length
+	invoke-static	{v1},java/lang/Integer/valueOf	; valueOf(I)Ljava/lang/Integer;
+; v1 : single-length
+	move-result-object	v1
+; v1 : Ljava/lang/Integer;
+	aput-object	v1,v2,v3
+; v1 : Ljava/lang/Integer; , v2 : [Ljava/lang/Object; , v3 : single-length
+	invoke-static	{v0,v2},com/a/a/a/b/v/a	; a(Ljava/lang/String;[Ljava/lang/Object;)Ljava/io/IOException;
+; v0 : Ljava/lang/String; , v2 : [Ljava/lang/Object;
+	move-result-object	v0
+; v0 : Ljava/io/IOException;
+	throw	v0
+; v0 : Ljava/io/IOException;
+l6f820:
+.line 257
+	invoke-interface	{v6,v0,v2},com/a/a/a/b/c/b	; b(ILcom/a/a/a/b/a;)V
+; v6 : Lcom/a/a/a/b/c; , v0 : single-length , v2 : Lcom/a/a/a/b/a;
+.line 258
+	return-void	
+.end method
+
+.method private h(Lcom/a/a/a/b/c;II)V
+.limit registers 13
+; this: v9 (Lcom/a/a/a/b/v;)
+; parameter[0] : v10 (Lcom/a/a/a/b/c;)
+; parameter[1] : v11 (I)
+; parameter[2] : v12 (I)
+	const/4	v0,1
+; v0 : single-length
+	const/4	v1,0
+; v1 : single-length
+.line 261
+	iget-object	v2,v9,com/a/a/a/b/v.a Ljava/io/DataInputStream;
+; v2 : Ljava/io/DataInputStream; , v9 : Lcom/a/a/a/b/v;
+	invoke-virtual	{v2},java/io/DataInputStream/readInt	; readInt()I
+; v2 : Ljava/io/DataInputStream;
+	move-result	v3
+; v3 : single-length
+.line 262
+	mul-int/lit-8	v2,v3,8
+; v2 : single-length , v3 : single-length
+	add-int/lit8	v2,v2,4
+; v2 : single-length , v2 : single-length
+	if-eq	v12,v2,l6f880
+; v12 : single-length , v2 : single-length
+.line 263
+	const-string	v2,"TYPE_SETTINGS length: %d != 4 + 8 * %d"
+; v2 : Ljava/lang/String;
+	const/4	v4,2
+; v4 : single-length
+	new-array	v4,v4,[Ljava/lang/Object;
+; v4 : [Ljava/lang/Object; , v4 : [Ljava/lang/Object;
+	invoke-static	{v12},java/lang/Integer/valueOf	; valueOf(I)Ljava/lang/Integer;
+; v12 : single-length
+	move-result-object	v5
+; v5 : Ljava/lang/Integer;
+	aput-object	v5,v4,v1
+; v5 : Ljava/lang/Integer; , v4 : [Ljava/lang/Object; , v1 : single-length
+	invoke-static	{v3},java/lang/Integer/valueOf	; valueOf(I)Ljava/lang/Integer;
+; v3 : single-length
+	move-result-object	v1
+; v1 : Ljava/lang/Integer;
+	aput-object	v1,v4,v0
+; v1 : Ljava/lang/Integer; , v4 : [Ljava/lang/Object; , v0 : single-length
+	invoke-static	{v2,v4},com/a/a/a/b/v/a	; a(Ljava/lang/String;[Ljava/lang/Object;)Ljava/io/IOException;
+; v2 : Ljava/lang/String; , v4 : [Ljava/lang/Object;
+	move-result-object	v0
+; v0 : Ljava/io/IOException;
+	throw	v0
+; v0 : Ljava/io/IOException;
+l6f880:
+.line 265
+	new-instance	v4,com/a/a/a/b/t
+; v4 : Lcom/a/a/a/b/t;
+	invoke-direct	{v4},com/a/a/a/b/t/<init>	; <init>()V
+; v4 : Lcom/a/a/a/b/t;
+	move	v2,v1
+; v2 : single-length , v1 : single-length
+l6f88c:
+.line 266
+	if-ge	v2,v3,l6f8c6
+; v2 : single-length , v3 : single-length
+.line 267
+	iget-object	v5,v9,com/a/a/a/b/v.a Ljava/io/DataInputStream;
+; v5 : Ljava/io/DataInputStream; , v9 : Lcom/a/a/a/b/v;
+	invoke-virtual	{v5},java/io/DataInputStream/readInt	; readInt()I
+; v5 : Ljava/io/DataInputStream;
+	move-result	v5
+; v5 : single-length
+.line 268
+	iget-object	v6,v9,com/a/a/a/b/v.a Ljava/io/DataInputStream;
+; v6 : Ljava/io/DataInputStream; , v9 : Lcom/a/a/a/b/v;
+	invoke-virtual	{v6},java/io/DataInputStream/readInt	; readInt()I
+; v6 : Ljava/io/DataInputStream;
+	move-result	v6
+; v6 : single-length
+.line 269
+	const/high16	v7,65280
+; v7 : single-length
+	and-int/2addr	v7,v5
+; v7 : single-length , v5 : single-length
+	ushr-int/lit8	v7,v7,24
+; v7 : single-length , v7 : single-length
+.line 270
+	const	v8,16777215	; 0xffffff
+; v8 : single-length
+	and-int/2addr	v5,v8
+; v5 : single-length , v8 : single-length
+.line 271
+	invoke-virtual	{v4,v5,v7,v6},com/a/a/a/b/t/a	; a(III)V
+; v4 : Lcom/a/a/a/b/t; , v5 : single-length , v7 : single-length , v6 : single-length
+.line 266
+	add-int/lit8	v2,v2,1
+; v2 : single-length , v2 : single-length
+	goto	l6f88c
+l6f8c6:
+.line 273
+	and-int/lit8	v2,v11,1
+; v2 : single-length , v11 : single-length
+	if-eqz	v2,l6f8d6
+; v2 : single-length
+l6f8ce:
+.line 274
+	invoke-interface	{v10,v0,v4},com/a/a/a/b/c/a	; a(ZLcom/a/a/a/b/t;)V
+; v10 : Lcom/a/a/a/b/c; , v0 : single-length , v4 : Lcom/a/a/a/b/t;
+.line 275
+	return-void	
+l6f8d6:
+	move	v0,v1
+; v0 : single-length , v1 : single-length
+.line 273
+	goto	l6f8ce
+.end method
+
+.method public a(Lcom/a/a/a/b/c;)Z
+.limit registers 9
+; this: v7 (Lcom/a/a/a/b/v;)
+; parameter[0] : v8 (Lcom/a/a/a/b/c;)
+.catch java/io/IOException from l6f8f0 to l6f8fa using l6f974
+	const/4	v0,0
+; v0 : single-length
+	const/4	v1,1
+; v1 : single-length
+l6f8f0:
+.line 120
+	iget-object	v2,v7,com/a/a/a/b/v.a Ljava/io/DataInputStream;
+; v2 : Ljava/io/DataInputStream; , v7 : Lcom/a/a/a/b/v;
+	invoke-virtual	{v2},java/io/DataInputStream/readInt	; readInt()I
+; v2 : Ljava/io/DataInputStream;
+l6f8fa:
+	move-result	v3
+; v3 : single-length
+.line 124
+	iget-object	v2,v7,com/a/a/a/b/v.a Ljava/io/DataInputStream;
+; v2 : Ljava/io/DataInputStream; , v7 : Lcom/a/a/a/b/v;
+	invoke-virtual	{v2},java/io/DataInputStream/readInt	; readInt()I
+; v2 : Ljava/io/DataInputStream;
+	move-result	v4
+; v4 : single-length
+.line 126
+	const/high16	v2,32768
+; v2 : single-length
+	and-int/2addr	v2,v3
+; v2 : single-length , v3 : single-length
+	if-eqz	v2,l6f97a
+; v2 : single-length
+	move	v2,v1
+; v2 : single-length , v1 : single-length
+l6f914:
+.line 127
+	const/high16	v5,65280
+; v5 : single-length
+	and-int/2addr	v5,v4
+; v5 : single-length , v4 : single-length
+	ushr-int/lit8	v5,v5,24
+; v5 : single-length , v5 : single-length
+.line 128
+	const	v6,16777215	; 0xffffff
+; v6 : single-length
+	and-int/2addr	v4,v6
+; v4 : single-length , v6 : single-length
+.line 130
+	if-eqz	v2,l6fa1a
+; v2 : single-length
+.line 131
+	const/high16	v2,32767
+; v2 : single-length
+	and-int/2addr	v2,v3
+; v2 : single-length , v3 : single-length
+	ushr-int/lit8	v2,v2,16
+; v2 : single-length , v2 : single-length
+.line 132
+	const	v6,65535	; 0xffff
+; v6 : single-length
+	and-int/2addr	v3,v6
+; v3 : single-length , v6 : single-length
+.line 134
+	const/4	v6,3
+; v6 : single-length
+	if-eq	v2,v6,l6f97e
+; v2 : single-length , v6 : single-length
+.line 135
+	new-instance	v0,java/net/ProtocolException
+; v0 : Ljava/net/ProtocolException;
+	new-instance	v1,java/lang/StringBuilder
+; v1 : Ljava/lang/StringBuilder;
+	invoke-direct	{v1},java/lang/StringBuilder/<init>	; <init>()V
+; v1 : Ljava/lang/StringBuilder;
+	const-string	v3,"version != 3: "
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v1,v3},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(I)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : single-length
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v1},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v1 : Ljava/lang/StringBuilder;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/net/ProtocolException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/net/ProtocolException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/net/ProtocolException;
+l6f974:
+.line 121
+	move-exception	v1
+; v1 : java/io/IOException
+	move	v1,v0
+; v1 : single-length , v0 : single-length
+l6f978:
+.line 187
+	return	v1
+; v1 : single-length
+l6f97a:
+	move	v2,v0
+; v2 : single-length , v0 : single-length
+.line 126
+	goto	l6f914
+l6f97e:
+.line 138
+	packed-switch	v3,1
+		ps6f97e_6f994	; case 1
+		ps6f97e_6f99c	; case 2
+		ps6f97e_6f9a4	; case 3
+		ps6f97e_6f9ac	; case 4
+		ps6f97e_6f9b4	; case 5
+		ps6f97e_6f9de	; case 6
+		ps6f97e_6f9e6	; case 7
+		ps6f97e_6f9ee	; case 8
+		ps6f97e_6f9f6	; case 9
+		ps6f97e_6f984	; case 10
+		ps6f97e_6f984	; case 11
+		ps6f97e_6f984	; case 12
+		ps6f97e_6f984	; case 13
+		ps6f97e_6f984	; case 14
+		ps6f97e_6f984	; case 15
+		ps6f97e_6f9fe	; case 16
+		default: ps6f97e_default
+; v3 : single-length
+ps6f97e_default:
+.line 181
+	new-instance	v0,java/io/IOException
+; v0 : Ljava/io/IOException;
+	const-string	v1,"Unexpected frame"
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/io/IOException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/io/IOException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/io/IOException;
+ps6f97e_6f994:
+.line 140
+	invoke-direct	{v7,v8,v5,v4},com/a/a/a/b/v/a	; a(Lcom/a/a/a/b/c;II)V
+; v7 : Lcom/a/a/a/b/v; , v8 : Lcom/a/a/a/b/c; , v5 : single-length , v4 : single-length
+	goto	l6f978
+ps6f97e_6f99c:
+.line 144
+	invoke-direct	{v7,v8,v5,v4},com/a/a/a/b/v/b	; b(Lcom/a/a/a/b/c;II)V
+; v7 : Lcom/a/a/a/b/v; , v8 : Lcom/a/a/a/b/c; , v5 : single-length , v4 : single-length
+	goto	l6f978
+ps6f97e_6f9a4:
+.line 148
+	invoke-direct	{v7,v8,v5,v4},com/a/a/a/b/v/c	; c(Lcom/a/a/a/b/c;II)V
+; v7 : Lcom/a/a/a/b/v; , v8 : Lcom/a/a/a/b/c; , v5 : single-length , v4 : single-length
+	goto	l6f978
+ps6f97e_6f9ac:
+.line 152
+	invoke-direct	{v7,v8,v5,v4},com/a/a/a/b/v/h	; h(Lcom/a/a/a/b/c;II)V
+; v7 : Lcom/a/a/a/b/v; , v8 : Lcom/a/a/a/b/c; , v5 : single-length , v4 : single-length
+	goto	l6f978
+ps6f97e_6f9b4:
+.line 156
+	if-eqz	v4,l6f9d6
+; v4 : single-length
+	const-string	v2,"TYPE_NOOP length: %d != 0"
+; v2 : Ljava/lang/String;
+	new-array	v1,v1,[Ljava/lang/Object;
+; v1 : [Ljava/lang/Object; , v1 : [Ljava/lang/Object;
+	invoke-static	{v4},java/lang/Integer/valueOf	; valueOf(I)Ljava/lang/Integer;
+; v4 : single-length
+	move-result-object	v3
+; v3 : Ljava/lang/Integer;
+	aput-object	v3,v1,v0
+; v3 : Ljava/lang/Integer; , v1 : [Ljava/lang/Object; , v0 : single-length
+	invoke-static	{v2,v1},com/a/a/a/b/v/a	; a(Ljava/lang/String;[Ljava/lang/Object;)Ljava/io/IOException;
+; v2 : Ljava/lang/String; , v1 : [Ljava/lang/Object;
+	move-result-object	v0
+; v0 : Ljava/io/IOException;
+	throw	v0
+; v0 : Ljava/io/IOException;
+l6f9d6:
+.line 157
+	invoke-interface	{v8},com/a/a/a/b/c/a	; a()V
+; v8 : Lcom/a/a/a/b/c;
+	goto	l6f978
+ps6f97e_6f9de:
+.line 161
+	invoke-direct	{v7,v8,v5,v4},com/a/a/a/b/v/f	; f(Lcom/a/a/a/b/c;II)V
+; v7 : Lcom/a/a/a/b/v; , v8 : Lcom/a/a/a/b/c; , v5 : single-length , v4 : single-length
+	goto	l6f978
+ps6f97e_6f9e6:
+.line 165
+	invoke-direct	{v7,v8,v5,v4},com/a/a/a/b/v/g	; g(Lcom/a/a/a/b/c;II)V
+; v7 : Lcom/a/a/a/b/v; , v8 : Lcom/a/a/a/b/c; , v5 : single-length , v4 : single-length
+	goto	l6f978
+ps6f97e_6f9ee:
+.line 169
+	invoke-direct	{v7,v8,v5,v4},com/a/a/a/b/v/d	; d(Lcom/a/a/a/b/c;II)V
+; v7 : Lcom/a/a/a/b/v; , v8 : Lcom/a/a/a/b/c; , v5 : single-length , v4 : single-length
+	goto	l6f978
+ps6f97e_6f9f6:
+.line 173
+	invoke-direct	{v7,v8,v5,v4},com/a/a/a/b/v/e	; e(Lcom/a/a/a/b/c;II)V
+; v7 : Lcom/a/a/a/b/v; , v8 : Lcom/a/a/a/b/c; , v5 : single-length , v4 : single-length
+	goto	l6f978
+ps6f97e_6f9fe:
+.line 177
+	iget-object	v0,v7,com/a/a/a/b/v.a Ljava/io/DataInputStream;
+; v0 : Ljava/io/DataInputStream; , v7 : Lcom/a/a/a/b/v;
+	int-to-long	v1,v4
+; v1 : double-length , v4 : single-length
+	invoke-static	{v0,v1,v2},com/a/a/a/u/a	; a(Ljava/io/InputStream;J)J
+; v0 : Ljava/io/DataInputStream; , v1 : double-length
+.line 178
+	new-instance	v0,java/lang/UnsupportedOperationException
+; v0 : Ljava/lang/UnsupportedOperationException;
+	const-string	v1,"TODO"
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/UnsupportedOperationException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/UnsupportedOperationException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/UnsupportedOperationException;
+l6fa1a:
+.line 184
+	const	v2,2147483647	; 0x7fffffff
+; v2 : single-length
+	and-int/2addr	v2,v3
+; v2 : single-length , v3 : single-length
+.line 185
+	and-int/lit8	v3,v5,1
+; v3 : single-length , v5 : single-length
+	if-eqz	v3,l6fa2c
+; v3 : single-length
+	move	v0,v1
+; v0 : single-length , v1 : single-length
+l6fa2c:
+.line 186
+	iget-object	v3,v7,com/a/a/a/b/v.a Ljava/io/DataInputStream;
+; v3 : Ljava/io/DataInputStream; , v7 : Lcom/a/a/a/b/v;
+	invoke-interface	{v8,v0,v2,v3,v4},com/a/a/a/b/c/a	; a(ZILjava/io/InputStream;I)V
+; v8 : Lcom/a/a/a/b/c; , v0 : single-length , v2 : single-length , v3 : Ljava/io/DataInputStream; , v4 : single-length
+	goto	l6f978
+.line 138
+.end method
+
+.method public close()V
+.limit registers 3
+; this: v2 (Lcom/a/a/a/b/v;)
+.line 282
+	iget-object	v0,v2,com/a/a/a/b/v.a Ljava/io/DataInputStream;
+; v0 : Ljava/io/DataInputStream; , v2 : Lcom/a/a/a/b/v;
+	iget-object	v1,v2,com/a/a/a/b/v.c Lcom/a/a/a/b/o;
+; v1 : Lcom/a/a/a/b/o; , v2 : Lcom/a/a/a/b/v;
+	invoke-static	{v0,v1},com/a/a/a/u/a	; a(Ljava/io/Closeable;Ljava/io/Closeable;)V
+; v0 : Ljava/io/DataInputStream; , v1 : Lcom/a/a/a/b/o;
+.line 283
+	return-void	
+.end method
+
+

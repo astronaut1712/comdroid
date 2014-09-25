@@ -1,0 +1,388 @@
+.class public com/google/tagmanager/d
+.super java/lang/Object
+.source MyApplication
+
+.field private final a Lcom/google/tagmanager/be;
+.field private b Lcom/google/analytics/a/b/j;
+.field private c Lcom/google/tagmanager/e;
+.field private d Lcom/google/tagmanager/aw;
+.field private e Lcom/google/tagmanager/c;
+.field private volatile f Ljava/lang/String;
+.field private volatile g J
+.field private volatile h I
+
+.method private b(J)Z
+.limit registers 10
+; this: v7 (Lcom/google/tagmanager/d;)
+; parameter[0] : v8 (J)
+	const/16	v6,30
+; v6 : single-length
+	const/4	v0,1
+; v0 : single-length
+	const/4	v1,0
+; v1 : single-length
+.line 754
+	iget-wide	v2,v7,com/google/tagmanager/d.g J
+; v2 : double-length , v7 : Lcom/google/tagmanager/d;
+	const-wide/16	v4,0
+; v4 : double-length
+	cmp-long	v2,v2,v4
+; v2 : single-length , v2 : single-length , v4 : double-length
+	if-nez	v2,la2fc2
+; v2 : single-length
+.line 755
+	iget	v1,v7,com/google/tagmanager/d.h I
+; v1 : single-length , v7 : Lcom/google/tagmanager/d;
+	add-int/lit8	v1,v1,255
+; v1 : single-length , v1 : single-length
+	iput	v1,v7,com/google/tagmanager/d.h I
+; v1 : single-length , v7 : Lcom/google/tagmanager/d;
+la2fc0:
+.line 773
+	return	v0
+; v0 : single-length
+la2fc2:
+.line 759
+	iget-wide	v2,v7,com/google/tagmanager/d.g J
+; v2 : double-length , v7 : Lcom/google/tagmanager/d;
+	sub-long	v2,v8,v2
+; v2 : double-length , v8 : double-length , v2 : double-length
+.line 760
+	const-wide/16	v4,5000
+; v4 : double-length
+	cmp-long	v4,v2,v4
+; v4 : single-length , v2 : double-length , v4 : single-length
+	if-gez	v4,la2fda
+; v4 : single-length
+	move	v0,v1
+; v0 : single-length , v1 : single-length
+.line 761
+	goto	la2fc0
+la2fda:
+.line 763
+	iget	v4,v7,com/google/tagmanager/d.h I
+; v4 : single-length , v7 : Lcom/google/tagmanager/d;
+	if-ge	v4,v6,la3008
+; v4 : single-length , v6 : single-length
+.line 764
+	const-wide/32	v4,900000	; 0xdbba0
+; v4 : double-length
+	div-long/2addr	v2,v4
+; v2 : double-length , v4 : double-length
+	long-to-double	v2,v2
+; v2 : double-length , v2 : double-length
+	invoke-static	{v2,v3},java/lang/Math/floor	; floor(D)D
+; v2 : double-length
+	move-result-wide	v2
+; v2 : double-length
+	double-to-int	v2,v2
+; v2 : single-length , v2 : single-length
+.line 765
+	iget	v3,v7,com/google/tagmanager/d.h I
+; v3 : single-length , v7 : Lcom/google/tagmanager/d;
+	add-int/2addr	v2,v3
+; v2 : single-length , v3 : single-length
+	invoke-static	{v6,v2},java/lang/Math/min	; min(II)I
+; v6 : single-length , v2 : single-length
+	move-result	v2
+; v2 : single-length
+	iput	v2,v7,com/google/tagmanager/d.h I
+; v2 : single-length , v7 : Lcom/google/tagmanager/d;
+la3008:
+.line 768
+	iget	v2,v7,com/google/tagmanager/d.h I
+; v2 : single-length , v7 : Lcom/google/tagmanager/d;
+	if-lez	v2,la301e
+; v2 : single-length
+.line 769
+	iget	v1,v7,com/google/tagmanager/d.h I
+; v1 : single-length , v7 : Lcom/google/tagmanager/d;
+	add-int/lit8	v1,v1,255
+; v1 : single-length , v1 : single-length
+	iput	v1,v7,com/google/tagmanager/d.h I
+; v1 : single-length , v7 : Lcom/google/tagmanager/d;
+	goto	la2fc0
+la301e:
+	move	v0,v1
+; v0 : single-length , v1 : single-length
+.line 773
+	goto	la2fc0
+.end method
+
+.method private synchronized c()Lcom/google/tagmanager/aw;
+.limit registers 2
+; this: v1 (Lcom/google/tagmanager/d;)
+.catch java/lang/Exception from la3036 to la303a using la303e
+.line 702
+	monitor-enter	v1
+; v1 : Lcom/google/tagmanager/d;
+la3036:
+	iget-object	v0,v1,com/google/tagmanager/d.d Lcom/google/tagmanager/aw;
+; v0 : Lcom/google/tagmanager/aw; , v1 : Lcom/google/tagmanager/d;
+la303a:
+	monitor-exit	v1
+; v1 : Lcom/google/tagmanager/d;
+	return-object	v0
+; v0 : Lcom/google/tagmanager/aw;
+la303e:
+	move-exception	v0
+; v0 : java/lang/Exception
+	monitor-exit	v1
+; v1 : Lcom/google/tagmanager/d;
+	throw	v0
+; v0 : java/lang/Exception
+.end method
+
+.method private d()Z
+.limit registers 3
+; this: v2 (Lcom/google/tagmanager/d;)
+.line 750
+	iget-object	v0,v2,com/google/tagmanager/d.a Lcom/google/tagmanager/be;
+; v0 : Lcom/google/tagmanager/be; , v2 : Lcom/google/tagmanager/d;
+	invoke-virtual	{v0},com/google/tagmanager/be/a	; a()Lcom/google/tagmanager/bj;
+; v0 : Lcom/google/tagmanager/be;
+	move-result-object	v0
+; v0 : Lcom/google/tagmanager/bj;
+	sget-object	v1,com/google/tagmanager/bj.b Lcom/google/tagmanager/bj;
+; v1 : Lcom/google/tagmanager/bj;
+	if-ne	v0,v1,la3078
+; v0 : Lcom/google/tagmanager/bj; , v1 : Lcom/google/tagmanager/bj;
+	const/4	v0,1
+; v0 : single-length
+la3076:
+	return	v0
+; v0 : single-length
+la3078:
+	const/4	v0,0
+; v0 : single-length
+	goto	la3076
+.end method
+
+.method public synchronized a()V
+.limit registers 5
+; this: v4 (Lcom/google/tagmanager/d;)
+.catch java/lang/Exception from la30fe to la313a using la30c0
+.catch java/lang/Exception from la30fe to la313a using la30f8
+.catch java/lang/Exception from la30c2 to la30f6 using la30f8
+.catch java/lang/Exception from la30a8 to la30be using la30c0
+.catch java/lang/Exception from la30a8 to la30be using la30f8
+.catch java/lang/Exception from la308e to la30a4 using la30f8
+.line 326
+	monitor-enter	v4
+; v4 : Lcom/google/tagmanager/d;
+la308e:
+	invoke-direct	{v4},com/google/tagmanager/d/c	; c()Lcom/google/tagmanager/aw;
+; v4 : Lcom/google/tagmanager/d;
+	move-result-object	v0
+; v0 : Lcom/google/tagmanager/aw;
+	if-nez	v0,la30a8
+; v0 : Lcom/google/tagmanager/aw;
+.line 327
+	const-string	v0,"refresh called for closed container"
+; v0 : Ljava/lang/String;
+	invoke-static	{v0},com/google/tagmanager/z/b	; b(Ljava/lang/String;)V
+; v0 : Ljava/lang/String;
+la30a4:
+.line 347
+	monitor-exit	v4
+; v4 : Lcom/google/tagmanager/d;
+	return-void	
+la30a8:
+.line 331
+	invoke-direct	{v4},com/google/tagmanager/d/d	; d()Z
+; v4 : Lcom/google/tagmanager/d;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,la30fe
+; v0 : single-length
+.line 332
+	const-string	v0,"Container is in DEFAULT_CONTAINER mode. Refresh request is ignored."
+; v0 : Ljava/lang/String;
+	invoke-static	{v0},com/google/tagmanager/z/b	; b(Ljava/lang/String;)V
+; v0 : Ljava/lang/String;
+la30be:
+	goto	la30a4
+la30c0:
+.line 344
+	move-exception	v0
+; v0 : java/lang/Exception
+la30c2:
+.line 345
+	new-instance	v1,java/lang/StringBuilder
+; v1 : Ljava/lang/StringBuilder;
+	invoke-direct	{v1},java/lang/StringBuilder/<init>	; <init>()V
+; v1 : Ljava/lang/StringBuilder;
+	const-string	v2,"Calling refresh() throws an exception: "
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v0},java/lang/Exception/getMessage	; getMessage()Ljava/lang/String;
+; v0 : java/lang/Exception
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v1,v0},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v0 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v0},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v0 : Ljava/lang/StringBuilder;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	invoke-static	{v0},com/google/tagmanager/z/a	; a(Ljava/lang/String;)V
+; v0 : Ljava/lang/String;
+la30f6:
+	goto	la30a4
+la30f8:
+.line 326
+	move-exception	v0
+; v0 : java/lang/Exception
+	monitor-exit	v4
+; v4 : Lcom/google/tagmanager/d;
+	throw	v0
+; v0 : java/lang/Exception
+la30fe:
+.line 336
+	iget-object	v0,v4,com/google/tagmanager/d.e Lcom/google/tagmanager/c;
+; v0 : Lcom/google/tagmanager/c; , v4 : Lcom/google/tagmanager/d;
+	invoke-interface	{v0},com/google/tagmanager/c/a	; a()J
+; v0 : Lcom/google/tagmanager/c;
+	move-result-wide	v0
+; v0 : double-length
+.line 337
+	invoke-direct	{v4,v0,v1},com/google/tagmanager/d/b	; b(J)Z
+; v4 : Lcom/google/tagmanager/d; , v0 : double-length
+	move-result	v2
+; v2 : single-length
+	if-eqz	v2,la3130
+; v2 : single-length
+.line 338
+	const-string	v2,"Container refresh requested"
+; v2 : Ljava/lang/String;
+	invoke-static	{v2},com/google/tagmanager/z/d	; d(Ljava/lang/String;)V
+; v2 : Ljava/lang/String;
+.line 339
+	const-wide/16	v2,0
+; v2 : double-length
+	invoke-virtual	{v4,v2,v3},com/google/tagmanager/d/a	; a(J)V
+; v4 : Lcom/google/tagmanager/d; , v2 : double-length
+.line 340
+	iput-wide	v0,v4,com/google/tagmanager/d.g J
+; v0 : double-length , v4 : Lcom/google/tagmanager/d;
+	goto	la30a4
+la3130:
+.line 342
+	const-string	v0,"Container refresh was called too often. Ignored."
+; v0 : Ljava/lang/String;
+	invoke-static	{v0},com/google/tagmanager/z/d	; d(Ljava/lang/String;)V
+; v0 : Ljava/lang/String;
+la313a:
+	goto	la30a4
+.end method
+
+.method synchronized a(J)V
+.limit registers 5
+; this: v2 (Lcom/google/tagmanager/d;)
+; parameter[0] : v3 (J)
+.catch java/lang/Exception from la3176 to la319c using la31a0
+.line 632
+	monitor-enter	v2
+; v2 : Lcom/google/tagmanager/d;
+la3176:
+	iget-object	v0,v2,com/google/tagmanager/d.c Lcom/google/tagmanager/e;
+; v0 : Lcom/google/tagmanager/e; , v2 : Lcom/google/tagmanager/d;
+	if-eqz	v0,la319c
+; v0 : Lcom/google/tagmanager/e;
+	invoke-direct	{v2},com/google/tagmanager/d/d	; d()Z
+; v2 : Lcom/google/tagmanager/d;
+	move-result	v0
+; v0 : single-length
+	if-nez	v0,la319c
+; v0 : single-length
+.line 633
+	iget-object	v0,v2,com/google/tagmanager/d.c Lcom/google/tagmanager/e;
+; v0 : Lcom/google/tagmanager/e; , v2 : Lcom/google/tagmanager/d;
+	iget-object	v1,v2,com/google/tagmanager/d.b Lcom/google/analytics/a/b/j;
+; v1 : Lcom/google/analytics/a/b/j; , v2 : Lcom/google/tagmanager/d;
+	iget-object	v1,v1,com/google/analytics/a/b/j.d Ljava/lang/String;
+; v1 : Ljava/lang/String; , v1 : Ljava/lang/String;
+	invoke-interface	{v0,v3,v4,v1},com/google/tagmanager/e/a	; a(JLjava/lang/String;)V
+; v0 : Lcom/google/tagmanager/e; , v3 : double-length , v1 : Ljava/lang/String;
+la319c:
+.line 635
+	monitor-exit	v2
+; v2 : Lcom/google/tagmanager/d;
+	return-void	
+la31a0:
+.line 632
+	move-exception	v0
+; v0 : java/lang/Exception
+	monitor-exit	v2
+; v2 : Lcom/google/tagmanager/d;
+	throw	v0
+; v0 : java/lang/Exception
+.end method
+
+.method a(Ljava/lang/String;)V
+.limit registers 3
+; this: v1 (Lcom/google/tagmanager/d;)
+; parameter[0] : v2 (Ljava/lang/String;)
+.line 459
+	invoke-direct	{v1},com/google/tagmanager/d/c	; c()Lcom/google/tagmanager/aw;
+; v1 : Lcom/google/tagmanager/d;
+	move-result-object	v0
+; v0 : Lcom/google/tagmanager/aw;
+	invoke-virtual	{v0,v2},com/google/tagmanager/aw/a	; a(Ljava/lang/String;)V
+; v0 : Lcom/google/tagmanager/aw; , v2 : Ljava/lang/String;
+.line 460
+	return-void	
+.end method
+
+.method b()Ljava/lang/String;
+.limit registers 2
+; this: v1 (Lcom/google/tagmanager/d;)
+.line 722
+	iget-object	v0,v1,com/google/tagmanager/d.f Ljava/lang/String;
+; v0 : Ljava/lang/String; , v1 : Lcom/google/tagmanager/d;
+	return-object	v0
+; v0 : Ljava/lang/String;
+.end method
+
+.method synchronized b(Ljava/lang/String;)V
+.limit registers 3
+; this: v1 (Lcom/google/tagmanager/d;)
+; parameter[0] : v2 (Ljava/lang/String;)
+.catch java/lang/Exception from la31fe to la3214 using la3218
+.line 715
+	monitor-enter	v1
+; v1 : Lcom/google/tagmanager/d;
+la31fe:
+	iput-object	v2,v1,com/google/tagmanager/d.f Ljava/lang/String;
+; v2 : Ljava/lang/String; , v1 : Lcom/google/tagmanager/d;
+.line 716
+	iget-object	v0,v1,com/google/tagmanager/d.c Lcom/google/tagmanager/e;
+; v0 : Lcom/google/tagmanager/e; , v1 : Lcom/google/tagmanager/d;
+	if-eqz	v0,la3214
+; v0 : Lcom/google/tagmanager/e;
+.line 717
+	iget-object	v0,v1,com/google/tagmanager/d.c Lcom/google/tagmanager/e;
+; v0 : Lcom/google/tagmanager/e; , v1 : Lcom/google/tagmanager/d;
+	invoke-interface	{v0,v2},com/google/tagmanager/e/a	; a(Ljava/lang/String;)V
+; v0 : Lcom/google/tagmanager/e; , v2 : Ljava/lang/String;
+la3214:
+.line 719
+	monitor-exit	v1
+; v1 : Lcom/google/tagmanager/d;
+	return-void	
+la3218:
+.line 715
+	move-exception	v0
+; v0 : java/lang/Exception
+	monitor-exit	v1
+; v1 : Lcom/google/tagmanager/d;
+	throw	v0
+; v0 : java/lang/Exception
+.end method
+
+

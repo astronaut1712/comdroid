@@ -1,0 +1,323 @@
+.class com/google/tagmanager/Runtime$MacroInfo
+.super java/lang/Object
+.source Runtime.java
+
+.inner class MacroInfo inner com/google/tagmanager/Runtime$MacroInfo outer com/google/tagmanager/Runtime
+.field private final mAddMacroNames Ljava/util/Map;
+  .annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "Ljava/util/Map" , "<" , "Lcom/google/tagmanager/ResourceUtil$ExpandedRule;" , "Ljava/util/List" , "<" , "Ljava/lang/String;" , ">;>;" }
+  .end annotation
+.end field
+.field private final mAddMacros Ljava/util/Map;
+  .annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "Ljava/util/Map" , "<" , "Lcom/google/tagmanager/ResourceUtil$ExpandedRule;" , "Ljava/util/List" , "<" , "Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;" , ">;>;" }
+  .end annotation
+.end field
+.field private mDefault Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;
+.field private final mRemoveMacroNames Ljava/util/Map;
+  .annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "Ljava/util/Map" , "<" , "Lcom/google/tagmanager/ResourceUtil$ExpandedRule;" , "Ljava/util/List" , "<" , "Ljava/lang/String;" , ">;>;" }
+  .end annotation
+.end field
+.field private final mRemoveMacros Ljava/util/Map;
+  .annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "Ljava/util/Map" , "<" , "Lcom/google/tagmanager/ResourceUtil$ExpandedRule;" , "Ljava/util/List" , "<" , "Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;" , ">;>;" }
+  .end annotation
+.end field
+.field private final mRules Ljava/util/Set;
+  .annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "Ljava/util/Set" , "<" , "Lcom/google/tagmanager/ResourceUtil$ExpandedRule;" , ">;" }
+  .end annotation
+.end field
+
+.method public <init>()V
+.limit registers 2
+; this: v1 (Lcom/google/tagmanager/Runtime$MacroInfo;)
+.line 51
+	invoke-direct	{v1},java/lang/Object/<init>	; <init>()V
+; v1 : Lcom/google/tagmanager/Runtime$MacroInfo;
+.line 52
+	new-instance	v0,java/util/HashSet
+; v0 : Ljava/util/HashSet;
+	invoke-direct	{v0},java/util/HashSet/<init>	; <init>()V
+; v0 : Ljava/util/HashSet;
+	iput-object	v0,v1,com/google/tagmanager/Runtime$MacroInfo.mRules Ljava/util/Set;
+; v0 : Ljava/util/HashSet; , v1 : Lcom/google/tagmanager/Runtime$MacroInfo;
+.line 53
+	new-instance	v0,java/util/HashMap
+; v0 : Ljava/util/HashMap;
+	invoke-direct	{v0},java/util/HashMap/<init>	; <init>()V
+; v0 : Ljava/util/HashMap;
+	iput-object	v0,v1,com/google/tagmanager/Runtime$MacroInfo.mAddMacros Ljava/util/Map;
+; v0 : Ljava/util/HashMap; , v1 : Lcom/google/tagmanager/Runtime$MacroInfo;
+.line 54
+	new-instance	v0,java/util/HashMap
+; v0 : Ljava/util/HashMap;
+	invoke-direct	{v0},java/util/HashMap/<init>	; <init>()V
+; v0 : Ljava/util/HashMap;
+	iput-object	v0,v1,com/google/tagmanager/Runtime$MacroInfo.mAddMacroNames Ljava/util/Map;
+; v0 : Ljava/util/HashMap; , v1 : Lcom/google/tagmanager/Runtime$MacroInfo;
+.line 55
+	new-instance	v0,java/util/HashMap
+; v0 : Ljava/util/HashMap;
+	invoke-direct	{v0},java/util/HashMap/<init>	; <init>()V
+; v0 : Ljava/util/HashMap;
+	iput-object	v0,v1,com/google/tagmanager/Runtime$MacroInfo.mRemoveMacros Ljava/util/Map;
+; v0 : Ljava/util/HashMap; , v1 : Lcom/google/tagmanager/Runtime$MacroInfo;
+.line 56
+	new-instance	v0,java/util/HashMap
+; v0 : Ljava/util/HashMap;
+	invoke-direct	{v0},java/util/HashMap/<init>	; <init>()V
+; v0 : Ljava/util/HashMap;
+	iput-object	v0,v1,com/google/tagmanager/Runtime$MacroInfo.mRemoveMacroNames Ljava/util/Map;
+; v0 : Ljava/util/HashMap; , v1 : Lcom/google/tagmanager/Runtime$MacroInfo;
+.line 57
+	return-void	
+.end method
+
+.method public addAddMacroForRule(Lcom/google/tagmanager/ResourceUtil$ExpandedRule;Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;)V
+.limit registers 5
+; this: v2 (Lcom/google/tagmanager/Runtime$MacroInfo;)
+; parameter[0] : v3 (Lcom/google/tagmanager/ResourceUtil$ExpandedRule;)
+; parameter[1] : v4 (Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;)
+.var 0 is result Ljava/util/List; from laa154 to laa15c
+.line 93
+	iget-object	v1,v2,com/google/tagmanager/Runtime$MacroInfo.mAddMacros Ljava/util/Map;
+; v1 : Ljava/util/Map; , v2 : Lcom/google/tagmanager/Runtime$MacroInfo;
+	invoke-interface	{v1,v3},java/util/Map/get	; get(Ljava/lang/Object;)Ljava/lang/Object;
+; v1 : Ljava/util/Map; , v3 : Lcom/google/tagmanager/ResourceUtil$ExpandedRule;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,java/util/List
+; v0 : Ljava/util/List;
+.line 94
+	if-nez	v0,laa16c
+; v0 : Ljava/util/List;
+.line 95
+	new-instance	v0,java/util/ArrayList
+; v0 : Ljava/util/ArrayList;
+laa15c:
+	invoke-direct	{v0},java/util/ArrayList/<init>	; <init>()V
+; v0 : Ljava/util/ArrayList;
+.line 96
+	iget-object	v1,v2,com/google/tagmanager/Runtime$MacroInfo.mAddMacros Ljava/util/Map;
+; v1 : Ljava/util/Map; , v2 : Lcom/google/tagmanager/Runtime$MacroInfo;
+	invoke-interface	{v1,v3,v0},java/util/Map/put	; put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+; v1 : Ljava/util/Map; , v3 : Lcom/google/tagmanager/ResourceUtil$ExpandedRule; , v0 : Ljava/util/ArrayList;
+laa16c:
+.line 98
+	invoke-interface	{v0,v4},java/util/List/add	; add(Ljava/lang/Object;)Z
+; v0 : Ljava/util/List; , v4 : Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;
+.line 99
+	return-void	
+.end method
+
+.method public addAddMacroRuleNameForRule(Lcom/google/tagmanager/ResourceUtil$ExpandedRule;Ljava/lang/String;)V
+.limit registers 5
+; this: v2 (Lcom/google/tagmanager/Runtime$MacroInfo;)
+; parameter[0] : v3 (Lcom/google/tagmanager/ResourceUtil$ExpandedRule;)
+; parameter[1] : v4 (Ljava/lang/String;)
+.var 0 is result Ljava/util/List; from laa194 to laa19c
+.line 112
+	iget-object	v1,v2,com/google/tagmanager/Runtime$MacroInfo.mAddMacroNames Ljava/util/Map;
+; v1 : Ljava/util/Map; , v2 : Lcom/google/tagmanager/Runtime$MacroInfo;
+	invoke-interface	{v1,v3},java/util/Map/get	; get(Ljava/lang/Object;)Ljava/lang/Object;
+; v1 : Ljava/util/Map; , v3 : Lcom/google/tagmanager/ResourceUtil$ExpandedRule;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,java/util/List
+; v0 : Ljava/util/List;
+.line 113
+	if-nez	v0,laa1ac
+; v0 : Ljava/util/List;
+.line 114
+	new-instance	v0,java/util/ArrayList
+; v0 : Ljava/util/ArrayList;
+laa19c:
+	invoke-direct	{v0},java/util/ArrayList/<init>	; <init>()V
+; v0 : Ljava/util/ArrayList;
+.line 115
+	iget-object	v1,v2,com/google/tagmanager/Runtime$MacroInfo.mAddMacroNames Ljava/util/Map;
+; v1 : Ljava/util/Map; , v2 : Lcom/google/tagmanager/Runtime$MacroInfo;
+	invoke-interface	{v1,v3,v0},java/util/Map/put	; put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+; v1 : Ljava/util/Map; , v3 : Lcom/google/tagmanager/ResourceUtil$ExpandedRule; , v0 : Ljava/util/ArrayList;
+laa1ac:
+.line 117
+	invoke-interface	{v0,v4},java/util/List/add	; add(Ljava/lang/Object;)Z
+; v0 : Ljava/util/List; , v4 : Ljava/lang/String;
+.line 118
+	return-void	
+.end method
+
+.method public addRemoveMacroForRule(Lcom/google/tagmanager/ResourceUtil$ExpandedRule;Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;)V
+.limit registers 5
+; this: v2 (Lcom/google/tagmanager/Runtime$MacroInfo;)
+; parameter[0] : v3 (Lcom/google/tagmanager/ResourceUtil$ExpandedRule;)
+; parameter[1] : v4 (Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;)
+.var 0 is result Ljava/util/List; from laa1d4 to laa1dc
+.line 135
+	iget-object	v1,v2,com/google/tagmanager/Runtime$MacroInfo.mRemoveMacros Ljava/util/Map;
+; v1 : Ljava/util/Map; , v2 : Lcom/google/tagmanager/Runtime$MacroInfo;
+	invoke-interface	{v1,v3},java/util/Map/get	; get(Ljava/lang/Object;)Ljava/lang/Object;
+; v1 : Ljava/util/Map; , v3 : Lcom/google/tagmanager/ResourceUtil$ExpandedRule;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,java/util/List
+; v0 : Ljava/util/List;
+.line 136
+	if-nez	v0,laa1ec
+; v0 : Ljava/util/List;
+.line 137
+	new-instance	v0,java/util/ArrayList
+; v0 : Ljava/util/ArrayList;
+laa1dc:
+	invoke-direct	{v0},java/util/ArrayList/<init>	; <init>()V
+; v0 : Ljava/util/ArrayList;
+.line 138
+	iget-object	v1,v2,com/google/tagmanager/Runtime$MacroInfo.mRemoveMacros Ljava/util/Map;
+; v1 : Ljava/util/Map; , v2 : Lcom/google/tagmanager/Runtime$MacroInfo;
+	invoke-interface	{v1,v3,v0},java/util/Map/put	; put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+; v1 : Ljava/util/Map; , v3 : Lcom/google/tagmanager/ResourceUtil$ExpandedRule; , v0 : Ljava/util/ArrayList;
+laa1ec:
+.line 140
+	invoke-interface	{v0,v4},java/util/List/add	; add(Ljava/lang/Object;)Z
+; v0 : Ljava/util/List; , v4 : Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;
+.line 141
+	return-void	
+.end method
+
+.method public addRemoveMacroRuleNameForRule(Lcom/google/tagmanager/ResourceUtil$ExpandedRule;Ljava/lang/String;)V
+.limit registers 5
+; this: v2 (Lcom/google/tagmanager/Runtime$MacroInfo;)
+; parameter[0] : v3 (Lcom/google/tagmanager/ResourceUtil$ExpandedRule;)
+; parameter[1] : v4 (Ljava/lang/String;)
+.var 0 is result Ljava/util/List; from laa214 to laa21c
+.line 155
+	iget-object	v1,v2,com/google/tagmanager/Runtime$MacroInfo.mRemoveMacroNames Ljava/util/Map;
+; v1 : Ljava/util/Map; , v2 : Lcom/google/tagmanager/Runtime$MacroInfo;
+	invoke-interface	{v1,v3},java/util/Map/get	; get(Ljava/lang/Object;)Ljava/lang/Object;
+; v1 : Ljava/util/Map; , v3 : Lcom/google/tagmanager/ResourceUtil$ExpandedRule;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,java/util/List
+; v0 : Ljava/util/List;
+.line 156
+	if-nez	v0,laa22c
+; v0 : Ljava/util/List;
+.line 157
+	new-instance	v0,java/util/ArrayList
+; v0 : Ljava/util/ArrayList;
+laa21c:
+	invoke-direct	{v0},java/util/ArrayList/<init>	; <init>()V
+; v0 : Ljava/util/ArrayList;
+.line 158
+	iget-object	v1,v2,com/google/tagmanager/Runtime$MacroInfo.mRemoveMacroNames Ljava/util/Map;
+; v1 : Ljava/util/Map; , v2 : Lcom/google/tagmanager/Runtime$MacroInfo;
+	invoke-interface	{v1,v3,v0},java/util/Map/put	; put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+; v1 : Ljava/util/Map; , v3 : Lcom/google/tagmanager/ResourceUtil$ExpandedRule; , v0 : Ljava/util/ArrayList;
+laa22c:
+.line 160
+	invoke-interface	{v0,v4},java/util/List/add	; add(Ljava/lang/Object;)Z
+; v0 : Ljava/util/List; , v4 : Ljava/lang/String;
+.line 161
+	return-void	
+.end method
+
+.method public addRule(Lcom/google/tagmanager/ResourceUtil$ExpandedRule;)V
+.limit registers 3
+; this: v1 (Lcom/google/tagmanager/Runtime$MacroInfo;)
+; parameter[0] : v2 (Lcom/google/tagmanager/ResourceUtil$ExpandedRule;)
+.line 63
+	iget-object	v0,v1,com/google/tagmanager/Runtime$MacroInfo.mRules Ljava/util/Set;
+; v0 : Ljava/util/Set; , v1 : Lcom/google/tagmanager/Runtime$MacroInfo;
+	invoke-interface	{v0,v2},java/util/Set/add	; add(Ljava/lang/Object;)Z
+; v0 : Ljava/util/Set; , v2 : Lcom/google/tagmanager/ResourceUtil$ExpandedRule;
+	return-void	
+.end method
+
+.method public getAddMacroRuleNames()Ljava/util/Map;
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "()" , "Ljava/util/Map" , "<" , "Lcom/google/tagmanager/ResourceUtil$ExpandedRule;" , "Ljava/util/List" , "<" , "Ljava/lang/String;" , ">;>;" }
+.end annotation
+.limit registers 2
+; this: v1 (Lcom/google/tagmanager/Runtime$MacroInfo;)
+.line 76
+	iget-object	v0,v1,com/google/tagmanager/Runtime$MacroInfo.mAddMacroNames Ljava/util/Map;
+; v0 : Ljava/util/Map; , v1 : Lcom/google/tagmanager/Runtime$MacroInfo;
+	return-object	v0
+; v0 : Ljava/util/Map;
+.end method
+
+.method public getAddMacros()Ljava/util/Map;
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "()" , "Ljava/util/Map" , "<" , "Lcom/google/tagmanager/ResourceUtil$ExpandedRule;" , "Ljava/util/List" , "<" , "Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;" , ">;>;" }
+.end annotation
+.limit registers 2
+; this: v1 (Lcom/google/tagmanager/Runtime$MacroInfo;)
+.line 69
+	iget-object	v0,v1,com/google/tagmanager/Runtime$MacroInfo.mAddMacros Ljava/util/Map;
+; v0 : Ljava/util/Map; , v1 : Lcom/google/tagmanager/Runtime$MacroInfo;
+	return-object	v0
+; v0 : Ljava/util/Map;
+.end method
+
+.method public getDefault()Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;
+.limit registers 2
+; this: v1 (Lcom/google/tagmanager/Runtime$MacroInfo;)
+.line 166
+	iget-object	v0,v1,com/google/tagmanager/Runtime$MacroInfo.mDefault Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;
+; v0 : Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall; , v1 : Lcom/google/tagmanager/Runtime$MacroInfo;
+	return-object	v0
+; v0 : Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;
+.end method
+
+.method public getRemoveMacroRuleNames()Ljava/util/Map;
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "()" , "Ljava/util/Map" , "<" , "Lcom/google/tagmanager/ResourceUtil$ExpandedRule;" , "Ljava/util/List" , "<" , "Ljava/lang/String;" , ">;>;" }
+.end annotation
+.limit registers 2
+; this: v1 (Lcom/google/tagmanager/Runtime$MacroInfo;)
+.line 83
+	iget-object	v0,v1,com/google/tagmanager/Runtime$MacroInfo.mRemoveMacroNames Ljava/util/Map;
+; v0 : Ljava/util/Map; , v1 : Lcom/google/tagmanager/Runtime$MacroInfo;
+	return-object	v0
+; v0 : Ljava/util/Map;
+.end method
+
+.method public getRemoveMacros()Ljava/util/Map;
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "()" , "Ljava/util/Map" , "<" , "Lcom/google/tagmanager/ResourceUtil$ExpandedRule;" , "Ljava/util/List" , "<" , "Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;" , ">;>;" }
+.end annotation
+.limit registers 2
+; this: v1 (Lcom/google/tagmanager/Runtime$MacroInfo;)
+.line 125
+	iget-object	v0,v1,com/google/tagmanager/Runtime$MacroInfo.mRemoveMacros Ljava/util/Map;
+; v0 : Ljava/util/Map; , v1 : Lcom/google/tagmanager/Runtime$MacroInfo;
+	return-object	v0
+; v0 : Ljava/util/Map;
+.end method
+
+.method public getRules()Ljava/util/Set;
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "()" , "Ljava/util/Set" , "<" , "Lcom/google/tagmanager/ResourceUtil$ExpandedRule;" , ">;" }
+.end annotation
+.limit registers 2
+; this: v1 (Lcom/google/tagmanager/Runtime$MacroInfo;)
+.line 62
+	iget-object	v0,v1,com/google/tagmanager/Runtime$MacroInfo.mRules Ljava/util/Set;
+; v0 : Ljava/util/Set; , v1 : Lcom/google/tagmanager/Runtime$MacroInfo;
+	return-object	v0
+; v0 : Ljava/util/Set;
+.end method
+
+.method public setDefault(Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;)V
+.limit registers 2
+; this: v0 (Lcom/google/tagmanager/Runtime$MacroInfo;)
+; parameter[0] : v1 (Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;)
+.line 167
+	iput-object	v1,v0,com/google/tagmanager/Runtime$MacroInfo.mDefault Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;
+; v1 : Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall; , v0 : Lcom/google/tagmanager/Runtime$MacroInfo;
+	return-void	
+.end method
+
+

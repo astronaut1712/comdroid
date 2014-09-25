@@ -1,0 +1,88 @@
+.class com/google/tagmanager/DebugEventInfoDistributor
+.super java/lang/Object
+.source DebugEventInfoDistributor.java
+.implements com/google/tagmanager/EventInfoDistributor
+
+.field private containerId Ljava/lang/String;
+.field private containerVersion Ljava/lang/String;
+.field private handler Lcom/google/tagmanager/DebugInformationHandler;
+
+.method public <init>(Lcom/google/tagmanager/DebugInformationHandler;Ljava/lang/String;Ljava/lang/String;)V
+.limit registers 4
+; this: v0 (Lcom/google/tagmanager/DebugEventInfoDistributor;)
+; parameter[0] : v1 (Lcom/google/tagmanager/DebugInformationHandler;)
+; parameter[1] : v2 (Ljava/lang/String;)
+; parameter[2] : v3 (Ljava/lang/String;)
+.line 15
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Lcom/google/tagmanager/DebugEventInfoDistributor;
+.line 16
+	iput-object	v1,v0,com/google/tagmanager/DebugEventInfoDistributor.handler Lcom/google/tagmanager/DebugInformationHandler;
+; v1 : Lcom/google/tagmanager/DebugInformationHandler; , v0 : Lcom/google/tagmanager/DebugEventInfoDistributor;
+.line 17
+	iput-object	v2,v0,com/google/tagmanager/DebugEventInfoDistributor.containerVersion Ljava/lang/String;
+; v2 : Ljava/lang/String; , v0 : Lcom/google/tagmanager/DebugEventInfoDistributor;
+.line 18
+	iput-object	v3,v0,com/google/tagmanager/DebugEventInfoDistributor.containerId Ljava/lang/String;
+; v3 : Ljava/lang/String; , v0 : Lcom/google/tagmanager/DebugEventInfoDistributor;
+.line 19
+	return-void	
+.end method
+
+.method public createDataLayerEventEvaluationEventInfo(Ljava/lang/String;)Lcom/google/tagmanager/EventInfoBuilder;
+.limit registers 8
+; this: v6 (Lcom/google/tagmanager/DebugEventInfoDistributor;)
+; parameter[0] : v7 (Ljava/lang/String;)
+.line 29
+	new-instance	v0,com/google/tagmanager/DebugEventInfoBuilder
+; v0 : Lcom/google/tagmanager/DebugEventInfoBuilder;
+	const/4	v1,1
+; v1 : single-length
+	iget-object	v2,v6,com/google/tagmanager/DebugEventInfoDistributor.containerVersion Ljava/lang/String;
+; v2 : Ljava/lang/String; , v6 : Lcom/google/tagmanager/DebugEventInfoDistributor;
+	iget-object	v3,v6,com/google/tagmanager/DebugEventInfoDistributor.containerId Ljava/lang/String;
+; v3 : Ljava/lang/String; , v6 : Lcom/google/tagmanager/DebugEventInfoDistributor;
+	iget-object	v5,v6,com/google/tagmanager/DebugEventInfoDistributor.handler Lcom/google/tagmanager/DebugInformationHandler;
+; v5 : Lcom/google/tagmanager/DebugInformationHandler; , v6 : Lcom/google/tagmanager/DebugEventInfoDistributor;
+	move-object	v4,v7
+; v4 : Ljava/lang/String; , v7 : Ljava/lang/String;
+	invoke-direct/range	{v0..v5},com/google/tagmanager/DebugEventInfoBuilder/<init>;	<init>(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/google/tagmanager/DebugInformationHandler;)V
+; v0 : Lcom/google/tagmanager/DebugEventInfoBuilder; , v1 : single-length , v2 : Ljava/lang/String; , v3 : Ljava/lang/String; , v4 : Ljava/lang/String; , v5 : Lcom/google/tagmanager/DebugInformationHandler;
+	return-object	v0
+; v0 : Lcom/google/tagmanager/DebugEventInfoBuilder;
+.end method
+
+.method public createMacroEvalutionEventInfo(Ljava/lang/String;)Lcom/google/tagmanager/EventInfoBuilder;
+.limit registers 8
+; this: v6 (Lcom/google/tagmanager/DebugEventInfoDistributor;)
+; parameter[0] : v7 (Ljava/lang/String;)
+.line 23
+	new-instance	v0,com/google/tagmanager/DebugEventInfoBuilder
+; v0 : Lcom/google/tagmanager/DebugEventInfoBuilder;
+	const/4	v1,2
+; v1 : single-length
+	iget-object	v2,v6,com/google/tagmanager/DebugEventInfoDistributor.containerVersion Ljava/lang/String;
+; v2 : Ljava/lang/String; , v6 : Lcom/google/tagmanager/DebugEventInfoDistributor;
+	iget-object	v3,v6,com/google/tagmanager/DebugEventInfoDistributor.containerId Ljava/lang/String;
+; v3 : Ljava/lang/String; , v6 : Lcom/google/tagmanager/DebugEventInfoDistributor;
+	iget-object	v5,v6,com/google/tagmanager/DebugEventInfoDistributor.handler Lcom/google/tagmanager/DebugInformationHandler;
+; v5 : Lcom/google/tagmanager/DebugInformationHandler; , v6 : Lcom/google/tagmanager/DebugEventInfoDistributor;
+	move-object	v4,v7
+; v4 : Ljava/lang/String; , v7 : Ljava/lang/String;
+	invoke-direct/range	{v0..v5},com/google/tagmanager/DebugEventInfoBuilder/<init>;	<init>(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/google/tagmanager/DebugInformationHandler;)V
+; v0 : Lcom/google/tagmanager/DebugEventInfoBuilder; , v1 : single-length , v2 : Ljava/lang/String; , v3 : Ljava/lang/String; , v4 : Ljava/lang/String; , v5 : Lcom/google/tagmanager/DebugInformationHandler;
+	return-object	v0
+; v0 : Lcom/google/tagmanager/DebugEventInfoBuilder;
+.end method
+
+.method public debugMode()Z
+.limit registers 2
+; this: v1 (Lcom/google/tagmanager/DebugEventInfoDistributor;)
+.line 35
+	const/4	v0,1
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+

@@ -1,0 +1,171 @@
+.class com/google/tagmanager/AdwordsClickReferrerMacro
+.super com/google/tagmanager/FunctionCallImplementation
+.source AdwordsClickReferrerMacro.java
+
+.field private static final COMPONENT Ljava/lang/String;
+.field private static final CONVERSION_ID Ljava/lang/String;
+.field private static final ID Ljava/lang/String;
+.field private final context Landroid/content/Context;
+
+.method static <clinit>()V
+.limit registers 1
+.line 15
+	sget-object	v0,com/google/analytics/containertag/common/FunctionType.ADWORDS_CLICK_REFERRER Lcom/google/analytics/containertag/common/FunctionType;
+; v0 : Lcom/google/analytics/containertag/common/FunctionType;
+	invoke-virtual	{v0},com/google/analytics/containertag/common/FunctionType/toString	; toString()Ljava/lang/String;
+; v0 : Lcom/google/analytics/containertag/common/FunctionType;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	sput-object	v0,com/google/tagmanager/AdwordsClickReferrerMacro.ID Ljava/lang/String;
+; v0 : Ljava/lang/String;
+.line 16
+	sget-object	v0,com/google/analytics/containertag/common/Key.COMPONENT Lcom/google/analytics/containertag/common/Key;
+; v0 : Lcom/google/analytics/containertag/common/Key;
+	invoke-virtual	{v0},com/google/analytics/containertag/common/Key/toString	; toString()Ljava/lang/String;
+; v0 : Lcom/google/analytics/containertag/common/Key;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	sput-object	v0,com/google/tagmanager/AdwordsClickReferrerMacro.COMPONENT Ljava/lang/String;
+; v0 : Ljava/lang/String;
+.line 17
+	sget-object	v0,com/google/analytics/containertag/common/Key.CONVERSION_ID Lcom/google/analytics/containertag/common/Key;
+; v0 : Lcom/google/analytics/containertag/common/Key;
+	invoke-virtual	{v0},com/google/analytics/containertag/common/Key/toString	; toString()Ljava/lang/String;
+; v0 : Lcom/google/analytics/containertag/common/Key;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	sput-object	v0,com/google/tagmanager/AdwordsClickReferrerMacro.CONVERSION_ID Ljava/lang/String;
+; v0 : Ljava/lang/String;
+	return-void	
+.end method
+
+.method public <init>(Landroid/content/Context;)V
+.limit registers 6
+; this: v4 (Lcom/google/tagmanager/AdwordsClickReferrerMacro;)
+; parameter[0] : v5 (Landroid/content/Context;)
+.line 26
+	sget-object	v0,com/google/tagmanager/AdwordsClickReferrerMacro.ID Ljava/lang/String;
+; v0 : Ljava/lang/String;
+	const/4	v1,1
+; v1 : single-length
+	new-array	v1,v1,[Ljava/lang/String;
+; v1 : [Ljava/lang/String; , v1 : [Ljava/lang/String;
+	const/4	v2,0
+; v2 : single-length
+	sget-object	v3,com/google/tagmanager/AdwordsClickReferrerMacro.CONVERSION_ID Ljava/lang/String;
+; v3 : Ljava/lang/String;
+	aput-object	v3,v1,v2
+; v3 : Ljava/lang/String; , v1 : [Ljava/lang/String; , v2 : single-length
+	invoke-direct	{v4,v0,v1},com/google/tagmanager/FunctionCallImplementation/<init>	; <init>(Ljava/lang/String;[Ljava/lang/String;)V
+; v4 : Lcom/google/tagmanager/AdwordsClickReferrerMacro; , v0 : Ljava/lang/String; , v1 : [Ljava/lang/String;
+.line 27
+	iput-object	v5,v4,com/google/tagmanager/AdwordsClickReferrerMacro.context Landroid/content/Context;
+; v5 : Landroid/content/Context; , v4 : Lcom/google/tagmanager/AdwordsClickReferrerMacro;
+.line 28
+	return-void	
+.end method
+
+.method public static getFunctionId()Ljava/lang/String;
+.limit registers 1
+.line 22
+	sget-object	v0,com/google/tagmanager/AdwordsClickReferrerMacro.ID Ljava/lang/String;
+; v0 : Ljava/lang/String;
+	return-object	v0
+; v0 : Ljava/lang/String;
+.end method
+
+.method public evaluate(Ljava/util/Map;)Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "(" , "Ljava/util/Map" , "<" , "Ljava/lang/String;" , "Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;" , ">;)" , "Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;" }
+.end annotation
+.limit registers 8
+; this: v6 (Lcom/google/tagmanager/AdwordsClickReferrerMacro;)
+; parameter[0] : v7 (Ljava/util/Map;)
+.var 0 is component Ljava/lang/String; from le608a to le60a4
+.var 4 is referrer Ljava/lang/String; from le6096 to le60a4
+.line 37
+	sget-object	v5,com/google/tagmanager/AdwordsClickReferrerMacro.CONVERSION_ID Ljava/lang/String;
+; v5 : Ljava/lang/String;
+	invoke-interface	{v7,v5},java/util/Map/get	; get(Ljava/lang/Object;)Ljava/lang/Object;
+; v7 : Ljava/util/Map; , v5 : Ljava/lang/String;
+	move-result-object	v3
+; v3 : Ljava/lang/Object;
+	check-cast	v3,com/google/analytics/midtier/proto/containertag/TypeSystem$Value
+; v3 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+.line 38
+	if-nez	v3,le6066
+; v3 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+.line 39
+	invoke-static	{},com/google/tagmanager/Types/getDefaultValue	; getDefaultValue()Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+; 
+	nop	
+	move-result-object	v5
+; v5 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+le6064:
+.line 47
+	return-object	v5
+; v5 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+le6066:
+.line 41
+	invoke-static	{v3},com/google/tagmanager/Types/valueToString	; valueToString(Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;)Ljava/lang/String;
+; v3 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+.line 43
+	sget-object	v5,com/google/tagmanager/AdwordsClickReferrerMacro.COMPONENT Ljava/lang/String;
+; v5 : Ljava/lang/String;
+	invoke-interface	{v7,v5},java/util/Map/get	; get(Ljava/lang/Object;)Ljava/lang/Object;
+; v7 : Ljava/util/Map; , v5 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/Object;
+	check-cast	v1,com/google/analytics/midtier/proto/containertag/TypeSystem$Value
+; v1 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+.line 44
+	if-eqz	v1,le60a4
+; v1 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	invoke-static	{v1},com/google/tagmanager/Types/valueToString	; valueToString(Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;)Ljava/lang/String;
+; v1 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+le608a:
+.line 46
+	iget-object	v5,v6,com/google/tagmanager/AdwordsClickReferrerMacro.context Landroid/content/Context;
+; v5 : Landroid/content/Context; , v6 : Lcom/google/tagmanager/AdwordsClickReferrerMacro;
+	invoke-static	{v5,v2,v0},com/google/tagmanager/InstallReferrerUtil/getClickReferrer	; getClickReferrer(Landroid/content/Context;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+; v5 : Landroid/content/Context; , v2 : Ljava/lang/String; , v0 : single-length
+	move-result-object	v4
+; v4 : Ljava/lang/String;
+.line 47
+	if-eqz	v4,le60a8
+; v4 : Ljava/lang/String;
+	invoke-static	{v4},com/google/tagmanager/Types/objectToValue	; objectToValue(Ljava/lang/Object;)Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+; v4 : Ljava/lang/String;
+	move-result-object	v5
+; v5 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	goto	le6064
+le60a4:
+.line 44
+	const/4	v0,0
+; v0 : single-length
+	goto	le608a
+le60a8:
+.line 47
+	invoke-static	{},com/google/tagmanager/Types/getDefaultValue	; getDefaultValue()Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+; 
+	nop	
+	move-result-object	v5
+; v5 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	goto	le6064
+.end method
+
+.method public isCacheable()Z
+.limit registers 2
+; this: v1 (Lcom/google/tagmanager/AdwordsClickReferrerMacro;)
+.line 32
+	const/4	v0,1
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+

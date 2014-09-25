@@ -1,0 +1,1616 @@
+.class final com/google/tagmanager/Base64
+.super java/lang/Object
+.source Base64.java
+
+.inner class Base64DecoderException inner com/google/tagmanager/Base64$Base64DecoderException outer com/google/tagmanager/Base64
+.field private static final ALPHABET [B = null
+.field private static final DECODABET [B = null
+.field private static final EQUALS_SIGN_ENC B = -1
+.field private static final NEW_LINE B = 10
+.field private static final PADDING_BYTE B = 61
+.field private static final WEBSAFE_ALPHABET [B = null
+.field private static final WEBSAFE_DECODABET [B = null
+.field private static final WHITE_SPACE_ENC B = -5
+
+.method static <clinit>()V
+.limit registers 3
+	const/16	v2,128
+; v2 : single-length
+	const/16	v1,64
+; v1 : single-length
+.line 55
+	new-array	v0,v1,[B
+; v0 : [B , v1 : single-length
+	fill-array-data	v0,la3a0c
+; v0 : [B
+	sput-object	v0,com/google/tagmanager/Base64.ALPHABET [B
+; v0 : [B
+.line 73
+	new-array	v0,v1,[B
+; v0 : [B , v1 : single-length
+	fill-array-data	v0,la3a54
+; v0 : [B
+	sput-object	v0,com/google/tagmanager/Base64.WEBSAFE_ALPHABET [B
+; v0 : [B
+.line 92
+	new-array	v0,v2,[B
+; v0 : [B , v2 : single-length
+	fill-array-data	v0,la3a9c
+; v0 : [B
+	sput-object	v0,com/google/tagmanager/Base64.DECODABET [B
+; v0 : [B
+.line 127
+	new-array	v0,v2,[B
+; v0 : [B , v2 : single-length
+	fill-array-data	v0,la3b24
+; v0 : [B
+	sput-object	v0,com/google/tagmanager/Base64.WEBSAFE_DECODABET [B
+; v0 : [B
+	return-void	
+.line 55
+la3a0a:	data-array
+		0x00, 0x00
+	end data-array
+la3a0c:	data-array
+		0x41	; #0
+		0x42	; #1
+		0x43	; #2
+		0x44	; #3
+		0x45	; #4
+		0x46	; #5
+		0x47	; #6
+		0x48	; #7
+		0x49	; #8
+		0x4A	; #9
+		0x4B	; #10
+		0x4C	; #11
+		0x4D	; #12
+		0x4E	; #13
+		0x4F	; #14
+		0x50	; #15
+		0x51	; #16
+		0x52	; #17
+		0x53	; #18
+		0x54	; #19
+		0x55	; #20
+		0x56	; #21
+		0x57	; #22
+		0x58	; #23
+		0x59	; #24
+		0x5A	; #25
+		0x61	; #26
+		0x62	; #27
+		0x63	; #28
+		0x64	; #29
+		0x65	; #30
+		0x66	; #31
+		0x67	; #32
+		0x68	; #33
+		0x69	; #34
+		0x6A	; #35
+		0x6B	; #36
+		0x6C	; #37
+		0x6D	; #38
+		0x6E	; #39
+		0x6F	; #40
+		0x70	; #41
+		0x71	; #42
+		0x72	; #43
+		0x73	; #44
+		0x74	; #45
+		0x75	; #46
+		0x76	; #47
+		0x77	; #48
+		0x78	; #49
+		0x79	; #50
+		0x7A	; #51
+		0x30	; #52
+		0x31	; #53
+		0x32	; #54
+		0x33	; #55
+		0x34	; #56
+		0x35	; #57
+		0x36	; #58
+		0x37	; #59
+		0x38	; #60
+		0x39	; #61
+		0x2B	; #62
+		0x2F	; #63
+	end data-array
+.line 73
+la3a54:	data-array
+		0x41	; #0
+		0x42	; #1
+		0x43	; #2
+		0x44	; #3
+		0x45	; #4
+		0x46	; #5
+		0x47	; #6
+		0x48	; #7
+		0x49	; #8
+		0x4A	; #9
+		0x4B	; #10
+		0x4C	; #11
+		0x4D	; #12
+		0x4E	; #13
+		0x4F	; #14
+		0x50	; #15
+		0x51	; #16
+		0x52	; #17
+		0x53	; #18
+		0x54	; #19
+		0x55	; #20
+		0x56	; #21
+		0x57	; #22
+		0x58	; #23
+		0x59	; #24
+		0x5A	; #25
+		0x61	; #26
+		0x62	; #27
+		0x63	; #28
+		0x64	; #29
+		0x65	; #30
+		0x66	; #31
+		0x67	; #32
+		0x68	; #33
+		0x69	; #34
+		0x6A	; #35
+		0x6B	; #36
+		0x6C	; #37
+		0x6D	; #38
+		0x6E	; #39
+		0x6F	; #40
+		0x70	; #41
+		0x71	; #42
+		0x72	; #43
+		0x73	; #44
+		0x74	; #45
+		0x75	; #46
+		0x76	; #47
+		0x77	; #48
+		0x78	; #49
+		0x79	; #50
+		0x7A	; #51
+		0x30	; #52
+		0x31	; #53
+		0x32	; #54
+		0x33	; #55
+		0x34	; #56
+		0x35	; #57
+		0x36	; #58
+		0x37	; #59
+		0x38	; #60
+		0x39	; #61
+		0x2D	; #62
+		0x5F	; #63
+	end data-array
+.line 92
+la3a9c:	data-array
+		0xF7	; #0
+		0xF7	; #1
+		0xF7	; #2
+		0xF7	; #3
+		0xF7	; #4
+		0xF7	; #5
+		0xF7	; #6
+		0xF7	; #7
+		0xF7	; #8
+		0xFB	; #9
+		0xFB	; #10
+		0xF7	; #11
+		0xF7	; #12
+		0xFB	; #13
+		0xF7	; #14
+		0xF7	; #15
+		0xF7	; #16
+		0xF7	; #17
+		0xF7	; #18
+		0xF7	; #19
+		0xF7	; #20
+		0xF7	; #21
+		0xF7	; #22
+		0xF7	; #23
+		0xF7	; #24
+		0xF7	; #25
+		0xF7	; #26
+		0xF7	; #27
+		0xF7	; #28
+		0xF7	; #29
+		0xF7	; #30
+		0xF7	; #31
+		0xFB	; #32
+		0xF7	; #33
+		0xF7	; #34
+		0xF7	; #35
+		0xF7	; #36
+		0xF7	; #37
+		0xF7	; #38
+		0xF7	; #39
+		0xF7	; #40
+		0xF7	; #41
+		0xF7	; #42
+		0x3E	; #43
+		0xF7	; #44
+		0xF7	; #45
+		0xF7	; #46
+		0x3F	; #47
+		0x34	; #48
+		0x35	; #49
+		0x36	; #50
+		0x37	; #51
+		0x38	; #52
+		0x39	; #53
+		0x3A	; #54
+		0x3B	; #55
+		0x3C	; #56
+		0x3D	; #57
+		0xF7	; #58
+		0xF7	; #59
+		0xF7	; #60
+		0xFF	; #61
+		0xF7	; #62
+		0xF7	; #63
+		0xF7	; #64
+		0x00	; #65
+		0x01	; #66
+		0x02	; #67
+		0x03	; #68
+		0x04	; #69
+		0x05	; #70
+		0x06	; #71
+		0x07	; #72
+		0x08	; #73
+		0x09	; #74
+		0x0A	; #75
+		0x0B	; #76
+		0x0C	; #77
+		0x0D	; #78
+		0x0E	; #79
+		0x0F	; #80
+		0x10	; #81
+		0x11	; #82
+		0x12	; #83
+		0x13	; #84
+		0x14	; #85
+		0x15	; #86
+		0x16	; #87
+		0x17	; #88
+		0x18	; #89
+		0x19	; #90
+		0xF7	; #91
+		0xF7	; #92
+		0xF7	; #93
+		0xF7	; #94
+		0xF7	; #95
+		0xF7	; #96
+		0x1A	; #97
+		0x1B	; #98
+		0x1C	; #99
+		0x1D	; #100
+		0x1E	; #101
+		0x1F	; #102
+		0x20	; #103
+		0x21	; #104
+		0x22	; #105
+		0x23	; #106
+		0x24	; #107
+		0x25	; #108
+		0x26	; #109
+		0x27	; #110
+		0x28	; #111
+		0x29	; #112
+		0x2A	; #113
+		0x2B	; #114
+		0x2C	; #115
+		0x2D	; #116
+		0x2E	; #117
+		0x2F	; #118
+		0x30	; #119
+		0x31	; #120
+		0x32	; #121
+		0x33	; #122
+		0xF7	; #123
+		0xF7	; #124
+		0xF7	; #125
+		0xF7	; #126
+		0xF7	; #127
+	end data-array
+.line 127
+la3b24:	data-array
+		0xF7	; #0
+		0xF7	; #1
+		0xF7	; #2
+		0xF7	; #3
+		0xF7	; #4
+		0xF7	; #5
+		0xF7	; #6
+		0xF7	; #7
+		0xF7	; #8
+		0xFB	; #9
+		0xFB	; #10
+		0xF7	; #11
+		0xF7	; #12
+		0xFB	; #13
+		0xF7	; #14
+		0xF7	; #15
+		0xF7	; #16
+		0xF7	; #17
+		0xF7	; #18
+		0xF7	; #19
+		0xF7	; #20
+		0xF7	; #21
+		0xF7	; #22
+		0xF7	; #23
+		0xF7	; #24
+		0xF7	; #25
+		0xF7	; #26
+		0xF7	; #27
+		0xF7	; #28
+		0xF7	; #29
+		0xF7	; #30
+		0xF7	; #31
+		0xFB	; #32
+		0xF7	; #33
+		0xF7	; #34
+		0xF7	; #35
+		0xF7	; #36
+		0xF7	; #37
+		0xF7	; #38
+		0xF7	; #39
+		0xF7	; #40
+		0xF7	; #41
+		0xF7	; #42
+		0xF7	; #43
+		0xF7	; #44
+		0x3E	; #45
+		0xF7	; #46
+		0xF7	; #47
+		0x34	; #48
+		0x35	; #49
+		0x36	; #50
+		0x37	; #51
+		0x38	; #52
+		0x39	; #53
+		0x3A	; #54
+		0x3B	; #55
+		0x3C	; #56
+		0x3D	; #57
+		0xF7	; #58
+		0xF7	; #59
+		0xF7	; #60
+		0xFF	; #61
+		0xF7	; #62
+		0xF7	; #63
+		0xF7	; #64
+		0x00	; #65
+		0x01	; #66
+		0x02	; #67
+		0x03	; #68
+		0x04	; #69
+		0x05	; #70
+		0x06	; #71
+		0x07	; #72
+		0x08	; #73
+		0x09	; #74
+		0x0A	; #75
+		0x0B	; #76
+		0x0C	; #77
+		0x0D	; #78
+		0x0E	; #79
+		0x0F	; #80
+		0x10	; #81
+		0x11	; #82
+		0x12	; #83
+		0x13	; #84
+		0x14	; #85
+		0x15	; #86
+		0x16	; #87
+		0x17	; #88
+		0x18	; #89
+		0x19	; #90
+		0xF7	; #91
+		0xF7	; #92
+		0xF7	; #93
+		0xF7	; #94
+		0x3F	; #95
+		0xF7	; #96
+		0x1A	; #97
+		0x1B	; #98
+		0x1C	; #99
+		0x1D	; #100
+		0x1E	; #101
+		0x1F	; #102
+		0x20	; #103
+		0x21	; #104
+		0x22	; #105
+		0x23	; #106
+		0x24	; #107
+		0x25	; #108
+		0x26	; #109
+		0x27	; #110
+		0x28	; #111
+		0x29	; #112
+		0x2A	; #113
+		0x2B	; #114
+		0x2C	; #115
+		0x2D	; #116
+		0x2E	; #117
+		0x2F	; #118
+		0x30	; #119
+		0x31	; #120
+		0x32	; #121
+		0x33	; #122
+		0xF7	; #123
+		0xF7	; #124
+		0xF7	; #125
+		0xF7	; #126
+		0xF7	; #127
+	end data-array
+.end method
+
+.method private <init>()V
+.limit registers 1
+; this: v0 (Lcom/google/tagmanager/Base64;)
+.line 168
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Lcom/google/tagmanager/Base64;
+.line 169
+	return-void	
+.end method
+
+.method public static decode(Ljava/lang/String;)[B
+.throws Lcom/google/tagmanager/Base64$Base64DecoderException;
+.limit registers 4
+; parameter[0] : v3 (Ljava/lang/String;)
+.line 447
+	invoke-virtual	{v3},java/lang/String/getBytes	; getBytes()[B
+; v3 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : [B
+.line 448
+	const/4	v1,0
+; v1 : single-length
+	array-length	v2,v0
+; v2 : single-length , v0 : [B
+	invoke-static	{v0,v1,v2},com/google/tagmanager/Base64/decode	; decode([BII)[B
+; v0 : [B , v1 : single-length , v2 : single-length
+	move-result-object	v1
+; v1 : [B
+	return-object	v1
+; v1 : [B
+.end method
+
+.method public static decode([B)[B
+.throws Lcom/google/tagmanager/Base64$Base64DecoderException;
+.limit registers 3
+; parameter[0] : v2 ([B)
+.line 473
+	const/4	v0,0
+; v0 : single-length
+	array-length	v1,v2
+; v1 : single-length , v2 : [B
+	invoke-static	{v2,v0,v1},com/google/tagmanager/Base64/decode	; decode([BII)[B
+; v2 : [B , v0 : single-length , v1 : single-length
+	move-result-object	v0
+; v0 : [B
+	return-object	v0
+; v0 : [B
+.end method
+
+.method public static decode([BII)[B
+.throws Lcom/google/tagmanager/Base64$Base64DecoderException;
+.limit registers 4
+; parameter[0] : v1 ([B)
+; parameter[1] : v2 (I)
+; parameter[2] : v3 (I)
+.line 502
+	sget-object	v0,com/google/tagmanager/Base64.DECODABET [B
+; v0 : [B
+	invoke-static	{v1,v2,v3,v0},com/google/tagmanager/Base64/decode	; decode([BII[B)[B
+; v1 : [B , v2 : single-length , v3 : single-length , v0 : [B
+	move-result-object	v0
+; v0 : [B
+	return-object	v0
+; v0 : [B
+.end method
+
+.method private static decode([BII[B)[B
+.throws Lcom/google/tagmanager/Base64$Base64DecoderException;
+.limit registers 20
+; parameter[0] : v16 ([B)
+; parameter[1] : v17 (I)
+; parameter[2] : v18 (I)
+; parameter[3] : v19 ([B)
+.var 2 is b4Posn I from la3c56 to la3c62
+.var 3 is b4Posn I from la3c62 to la3cf0
+.var 2 is b4Posn I from la3cf0 to la3cf6
+.var 3 is b4Posn I from la3cf6 to la3d66
+.var 2 is b4Posn I from la3d66 to la3d68
+.var 5 is lastByte B from la3d44 to la3d68
+.var 3 is b4Posn I from la3d68 to la3da2
+.var 2 is b4Posn I from la3da2 to la3dc0
+.var 7 is out [B from la3e1c to la3e28
+.var 3 is b4Posn I from la3dc0 to la3e2a
+.line 532
+	mul-int/lit-8	v13,v18,3
+; v13 : single-length , v18 : single-length
+	div-int/lit8	v6,v13,4
+; v6 : single-length , v13 : single-length
+.line 533
+	add-int/lit8	v13,v6,2
+; v13 : single-length , v6 : single-length
+	new-array	v8,v13,[B
+; v8 : [B , v13 : single-length
+.line 534
+	const/4	v9,0
+; v9 : single-length
+.line 536
+	const/4	v13,4
+; v13 : single-length
+	new-array	v1,v13,[B
+; v1 : [B , v13 : single-length
+.line 537
+	const/4	v2,0
+; v2 : single-length
+.line 538
+	const/4	v4,0
+; v4 : single-length
+.line 539
+	const/4	v11,0
+; v11 : single-length
+.line 540
+	const/4	v12,0
+; v12 : single-length
+.line 541
+	const/4	v10,0
+; v10 : single-length
+.line 542
+	const/4	v4,0
+; v4 : single-length
+	move	v3,v2
+; v3 : single-length , v2 : single-length
+la3c62:
+	move/from16	v0,v18
+; v0 : single-length , v18 : single-length
+	if-ge	v4,v0,la3dc0
+; v4 : single-length , v0 : single-length
+.line 543
+	add-int	v13,v4,v17
+; v13 : single-length , v4 : single-length , v17 : single-length
+	aget-byte	v13,v16,v13
+; v13 : single-length , v16 : [B , v13 : single-length
+	and-int/lit8	v13,v13,127
+; v13 : single-length , v13 : single-length
+	int-to-byte	v11,v13
+; v11 : single-length , v13 : single-length
+.line 544
+	aget-byte	v12,v19,v11
+; v12 : single-length , v19 : [B , v11 : single-length
+.line 546
+	const/4	v13,11
+; v13 : single-length
+	if-ge	v12,v13,la3cdc
+; v12 : single-length , v13 : single-length
+.line 547
+	new-instance	v13,com/google/tagmanager/Base64$Base64DecoderException
+; v13 : Lcom/google/tagmanager/Base64$Base64DecoderException;
+	new-instance	v14,java/lang/StringBuilder
+; v14 : Ljava/lang/StringBuilder;
+	invoke-direct	{v14},java/lang/StringBuilder/<init>	; <init>()V
+; v14 : Ljava/lang/StringBuilder;
+	const-string	v15,"Bad Base64 input character at "
+; v15 : Ljava/lang/String;
+	invoke-virtual	{v14,v15},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v14 : Ljava/lang/StringBuilder; , v15 : Ljava/lang/String;
+	move-result-object	v14
+; v14 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v14,v4},java/lang/StringBuilder/append	; append(I)Ljava/lang/StringBuilder;
+; v14 : Ljava/lang/StringBuilder; , v4 : single-length
+	move-result-object	v14
+; v14 : Ljava/lang/StringBuilder;
+	const-string	v15,": "
+; v15 : Ljava/lang/String;
+	invoke-virtual	{v14,v15},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v14 : Ljava/lang/StringBuilder; , v15 : Ljava/lang/String;
+	move-result-object	v14
+; v14 : Ljava/lang/StringBuilder;
+	add-int	v15,v4,v17
+; v15 : single-length , v4 : single-length , v17 : single-length
+	aget-byte	v15,v16,v15
+; v15 : single-length , v16 : [B , v15 : single-length
+	invoke-virtual	{v14,v15},java/lang/StringBuilder/append	; append(I)Ljava/lang/StringBuilder;
+; v14 : Ljava/lang/StringBuilder; , v15 : single-length
+	move-result-object	v14
+; v14 : Ljava/lang/StringBuilder;
+	const-string	v15,"(decimal)"
+; v15 : Ljava/lang/String;
+	invoke-virtual	{v14,v15},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v14 : Ljava/lang/StringBuilder; , v15 : Ljava/lang/String;
+	move-result-object	v14
+; v14 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v14},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v14 : Ljava/lang/StringBuilder;
+	move-result-object	v14
+; v14 : Ljava/lang/String;
+	invoke-direct	{v13,v14},com/google/tagmanager/Base64$Base64DecoderException/<init>	; <init>(Ljava/lang/String;)V
+; v13 : Lcom/google/tagmanager/Base64$Base64DecoderException; , v14 : Ljava/lang/String;
+	throw	v13
+; v13 : Lcom/google/tagmanager/Base64$Base64DecoderException;
+la3cdc:
+.line 551
+	const/4	v13,15
+; v13 : single-length
+	if-lt	v12,v13,la3e28
+; v12 : single-length , v13 : single-length
+.line 552
+	const/16	v13,61
+; v13 : single-length
+	if-ne	v11,v13,la3d68
+; v11 : single-length , v13 : single-length
+.line 553
+	if-eqz	v10,la3cf8
+; v10 : single-length
+	move	v2,v3
+; v2 : single-length , v3 : single-length
+la3cf0:
+.line 542
+	add-int/lit8	v4,v4,1
+; v4 : single-length , v4 : single-length
+	move	v3,v2
+; v3 : single-length , v2 : single-length
+la3cf6:
+	goto	la3c62
+la3cf8:
+.line 558
+	const/4	v13,2
+; v13 : single-length
+	if-ge	v4,v13,la3d30
+; v4 : single-length , v13 : single-length
+.line 559
+	new-instance	v13,com/google/tagmanager/Base64$Base64DecoderException
+; v13 : Lcom/google/tagmanager/Base64$Base64DecoderException;
+	new-instance	v14,java/lang/StringBuilder
+; v14 : Ljava/lang/StringBuilder;
+	invoke-direct	{v14},java/lang/StringBuilder/<init>	; <init>()V
+; v14 : Ljava/lang/StringBuilder;
+	const-string	v15,"Invalid padding byte found in position "
+; v15 : Ljava/lang/String;
+	invoke-virtual	{v14,v15},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v14 : Ljava/lang/StringBuilder; , v15 : Ljava/lang/String;
+	move-result-object	v14
+; v14 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v14,v4},java/lang/StringBuilder/append	; append(I)Ljava/lang/StringBuilder;
+; v14 : Ljava/lang/StringBuilder; , v4 : single-length
+	move-result-object	v14
+; v14 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v14},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v14 : Ljava/lang/StringBuilder;
+	move-result-object	v14
+; v14 : Ljava/lang/String;
+	invoke-direct	{v13,v14},com/google/tagmanager/Base64$Base64DecoderException/<init>	; <init>(Ljava/lang/String;)V
+; v13 : Lcom/google/tagmanager/Base64$Base64DecoderException; , v14 : Ljava/lang/String;
+	throw	v13
+; v13 : Lcom/google/tagmanager/Base64$Base64DecoderException;
+la3d30:
+.line 562
+	const/4	v10,1
+; v10 : single-length
+.line 563
+	add-int/lit8	v13,v18,255
+; v13 : single-length , v18 : single-length
+	add-int	v13,v13,v17
+; v13 : single-length , v13 : single-length , v17 : single-length
+	aget-byte	v13,v16,v13
+; v13 : single-length , v16 : [B , v13 : single-length
+	and-int/lit8	v13,v13,127
+; v13 : single-length , v13 : single-length
+	int-to-byte	v5,v13
+; v5 : single-length , v13 : single-length
+.line 564
+	const/16	v13,61
+; v13 : single-length
+	if-eq	v5,v13,la3d64
+; v5 : single-length , v13 : single-length
+	const/16	v13,10
+; v13 : single-length
+	if-eq	v5,v13,la3d64
+; v5 : single-length , v13 : single-length
+.line 565
+	new-instance	v13,com/google/tagmanager/Base64$Base64DecoderException
+; v13 : Lcom/google/tagmanager/Base64$Base64DecoderException;
+	const-string	v14,"encoded value has invalid trailing byte"
+; v14 : Ljava/lang/String;
+	invoke-direct	{v13,v14},com/google/tagmanager/Base64$Base64DecoderException/<init>	; <init>(Ljava/lang/String;)V
+; v13 : Lcom/google/tagmanager/Base64$Base64DecoderException; , v14 : Ljava/lang/String;
+	throw	v13
+; v13 : Lcom/google/tagmanager/Base64$Base64DecoderException;
+la3d64:
+	move	v2,v3
+; v2 : single-length , v3 : single-length
+.line 569
+	goto	la3cf0
+la3d68:
+	if-eqz	v10,la3d9e
+; v10 : single-length
+.line 570
+	new-instance	v13,com/google/tagmanager/Base64$Base64DecoderException
+; v13 : Lcom/google/tagmanager/Base64$Base64DecoderException;
+	new-instance	v14,java/lang/StringBuilder
+; v14 : Ljava/lang/StringBuilder;
+	invoke-direct	{v14},java/lang/StringBuilder/<init>	; <init>()V
+; v14 : Ljava/lang/StringBuilder;
+	const-string	v15,"Data found after trailing padding byte at index "
+; v15 : Ljava/lang/String;
+	invoke-virtual	{v14,v15},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v14 : Ljava/lang/StringBuilder; , v15 : Ljava/lang/String;
+	move-result-object	v14
+; v14 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v14,v4},java/lang/StringBuilder/append	; append(I)Ljava/lang/StringBuilder;
+; v14 : Ljava/lang/StringBuilder; , v4 : single-length
+	move-result-object	v14
+; v14 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v14},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v14 : Ljava/lang/StringBuilder;
+	move-result-object	v14
+; v14 : Ljava/lang/String;
+	invoke-direct	{v13,v14},com/google/tagmanager/Base64$Base64DecoderException/<init>	; <init>(Ljava/lang/String;)V
+; v13 : Lcom/google/tagmanager/Base64$Base64DecoderException; , v14 : Ljava/lang/String;
+	throw	v13
+; v13 : Lcom/google/tagmanager/Base64$Base64DecoderException;
+la3d9e:
+.line 574
+	add-int/lit8	v2,v3,1
+; v2 : single-length , v3 : single-length
+la3da2:
+	aput-byte	v11,v1,v3
+; v11 : single-length , v1 : [B , v3 : single-length
+.line 575
+	const/4	v13,4
+; v13 : single-length
+	if-ne	v2,v13,la3cf0
+; v2 : single-length , v13 : single-length
+.line 576
+	const/4	v13,0
+; v13 : single-length
+	move-object/from16	v0,v19
+; v0 : [B , v19 : [B
+	invoke-static	{v1,v13,v8,v9,v0},com/google/tagmanager/Base64/decode4to3	; decode4to3([BI[BI[B)I
+; v1 : [B , v13 : single-length , v8 : [B , v9 : single-length , v0 : [B
+	move-result	v13
+; v13 : single-length
+	add-int/2addr	v9,v13
+; v9 : single-length , v13 : single-length
+.line 577
+	const/4	v2,0
+; v2 : single-length
+	goto	la3cf0
+la3dc0:
+.line 589
+	if-eqz	v3,la3e18
+; v3 : single-length
+.line 590
+	const/4	v13,1
+; v13 : single-length
+	if-ne	v3,v13,la3e00
+; v3 : single-length , v13 : single-length
+.line 591
+	new-instance	v13,com/google/tagmanager/Base64$Base64DecoderException
+; v13 : Lcom/google/tagmanager/Base64$Base64DecoderException;
+	new-instance	v14,java/lang/StringBuilder
+; v14 : Ljava/lang/StringBuilder;
+	invoke-direct	{v14},java/lang/StringBuilder/<init>	; <init>()V
+; v14 : Ljava/lang/StringBuilder;
+	const-string	v15,"single trailing character at offset "
+; v15 : Ljava/lang/String;
+	invoke-virtual	{v14,v15},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v14 : Ljava/lang/StringBuilder; , v15 : Ljava/lang/String;
+	move-result-object	v14
+; v14 : Ljava/lang/StringBuilder;
+	add-int/lit8	v15,v18,255
+; v15 : single-length , v18 : single-length
+	invoke-virtual	{v14,v15},java/lang/StringBuilder/append	; append(I)Ljava/lang/StringBuilder;
+; v14 : Ljava/lang/StringBuilder; , v15 : single-length
+	move-result-object	v14
+; v14 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v14},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v14 : Ljava/lang/StringBuilder;
+	move-result-object	v14
+; v14 : Ljava/lang/String;
+	invoke-direct	{v13,v14},com/google/tagmanager/Base64$Base64DecoderException/<init>	; <init>(Ljava/lang/String;)V
+; v13 : Lcom/google/tagmanager/Base64$Base64DecoderException; , v14 : Ljava/lang/String;
+	throw	v13
+; v13 : Lcom/google/tagmanager/Base64$Base64DecoderException;
+la3e00:
+.line 593
+	const/16	v13,61
+; v13 : single-length
+	aput-byte	v13,v1,v3
+; v13 : single-length , v1 : [B , v3 : single-length
+.line 594
+	const/4	v13,0
+; v13 : single-length
+	move-object/from16	v0,v19
+; v0 : [B , v19 : [B
+	invoke-static	{v1,v13,v8,v9,v0},com/google/tagmanager/Base64/decode4to3	; decode4to3([BI[BI[B)I
+; v1 : [B , v13 : single-length , v8 : [B , v9 : single-length , v0 : [B
+	move-result	v13
+; v13 : single-length
+	add-int/2addr	v9,v13
+; v9 : single-length , v13 : single-length
+la3e18:
+.line 597
+	new-array	v7,v9,[B
+; v7 : [B , v9 : single-length
+.line 598
+	const/4	v13,0
+; v13 : single-length
+	const/4	v14,0
+; v14 : single-length
+	invoke-static	{v8,v13,v7,v14,v9},java/lang/System/arraycopy	; arraycopy(Ljava/lang/Object;ILjava/lang/Object;II)V
+; v8 : [B , v13 : single-length , v7 : [B , v14 : single-length , v9 : single-length
+.line 599
+	return-object	v7
+; v7 : [B
+la3e28:
+	move	v2,v3
+; v2 : single-length , v3 : single-length
+la3e2a:
+	goto/16	la3cf0
+.end method
+
+.method private static decode4to3([BI[BI[B)I
+.limit registers 8
+; parameter[0] : v3 ([B)
+; parameter[1] : v4 (I)
+; parameter[2] : v5 ([B)
+; parameter[3] : v6 (I)
+; parameter[4] : v7 ([B)
+.var 0 is outBuff I from la3e78 to la3e86
+.var 0 is outBuff I from la3ed0 to la3eec
+	const/16	v2,61
+; v2 : single-length
+.line 404
+	add-int/lit8	v1,v4,2
+; v1 : single-length , v4 : single-length
+	aget-byte	v1,v3,v1
+; v1 : single-length , v3 : [B , v1 : single-length
+	if-ne	v1,v2,la3e86
+; v1 : single-length , v2 : single-length
+.line 405
+	aget-byte	v1,v3,v4
+; v1 : single-length , v3 : [B , v4 : single-length
+	aget-byte	v1,v7,v1
+; v1 : single-length , v7 : [B , v1 : single-length
+	shl-int/lit8	v1,v1,24
+; v1 : single-length , v1 : single-length
+	ushr-int/lit8	v1,v1,6
+; v1 : single-length , v1 : single-length
+	add-int/lit8	v2,v4,1
+; v2 : single-length , v4 : single-length
+	aget-byte	v2,v3,v2
+; v2 : single-length , v3 : [B , v2 : single-length
+	aget-byte	v2,v7,v2
+; v2 : single-length , v7 : [B , v2 : single-length
+	shl-int/lit8	v2,v2,24
+; v2 : single-length , v2 : single-length
+	ushr-int/lit8	v2,v2,12
+; v2 : single-length , v2 : single-length
+	or-int	v0,v1,v2
+; v0 : single-length , v1 : single-length , v2 : single-length
+.line 409
+	ushr-int/lit8	v1,v0,16
+; v1 : single-length , v0 : single-length
+	int-to-byte	v1,v1
+; v1 : single-length , v1 : single-length
+	aput-byte	v1,v5,v6
+; v1 : single-length , v5 : [B , v6 : single-length
+.line 410
+	const/4	v1,1
+; v1 : single-length
+la3e84:
+.line 432
+	return	v1
+; v1 : single-length
+la3e86:
+.line 411
+	add-int/lit8	v1,v4,3
+; v1 : single-length , v4 : single-length
+	aget-byte	v1,v3,v1
+; v1 : single-length , v3 : [B , v1 : single-length
+	if-ne	v1,v2,la3eec
+; v1 : single-length , v2 : single-length
+.line 413
+	aget-byte	v1,v3,v4
+; v1 : single-length , v3 : [B , v4 : single-length
+	aget-byte	v1,v7,v1
+; v1 : single-length , v7 : [B , v1 : single-length
+	shl-int/lit8	v1,v1,24
+; v1 : single-length , v1 : single-length
+	ushr-int/lit8	v1,v1,6
+; v1 : single-length , v1 : single-length
+	add-int/lit8	v2,v4,1
+; v2 : single-length , v4 : single-length
+	aget-byte	v2,v3,v2
+; v2 : single-length , v3 : [B , v2 : single-length
+	aget-byte	v2,v7,v2
+; v2 : single-length , v7 : [B , v2 : single-length
+	shl-int/lit8	v2,v2,24
+; v2 : single-length , v2 : single-length
+	ushr-int/lit8	v2,v2,12
+; v2 : single-length , v2 : single-length
+	or-int/2addr	v1,v2
+; v1 : single-length , v2 : single-length
+	add-int/lit8	v2,v4,2
+; v2 : single-length , v4 : single-length
+	aget-byte	v2,v3,v2
+; v2 : single-length , v3 : [B , v2 : single-length
+	aget-byte	v2,v7,v2
+; v2 : single-length , v7 : [B , v2 : single-length
+	shl-int/lit8	v2,v2,24
+; v2 : single-length , v2 : single-length
+	ushr-int/lit8	v2,v2,18
+; v2 : single-length , v2 : single-length
+	or-int	v0,v1,v2
+; v0 : single-length , v1 : single-length , v2 : single-length
+.line 418
+	ushr-int/lit8	v1,v0,16
+; v1 : single-length , v0 : single-length
+	int-to-byte	v1,v1
+; v1 : single-length , v1 : single-length
+	aput-byte	v1,v5,v6
+; v1 : single-length , v5 : [B , v6 : single-length
+.line 419
+	add-int/lit8	v1,v6,1
+; v1 : single-length , v6 : single-length
+	ushr-int/lit8	v2,v0,8
+; v2 : single-length , v0 : single-length
+	int-to-byte	v2,v2
+; v2 : single-length , v2 : single-length
+	aput-byte	v2,v5,v1
+; v2 : single-length , v5 : [B , v1 : single-length
+.line 420
+	const/4	v1,2
+; v1 : single-length
+	goto	la3e84
+la3eec:
+.line 423
+	aget-byte	v1,v3,v4
+; v1 : single-length , v3 : [B , v4 : single-length
+	aget-byte	v1,v7,v1
+; v1 : single-length , v7 : [B , v1 : single-length
+	shl-int/lit8	v1,v1,24
+; v1 : single-length , v1 : single-length
+	ushr-int/lit8	v1,v1,6
+; v1 : single-length , v1 : single-length
+	add-int/lit8	v2,v4,1
+; v2 : single-length , v4 : single-length
+	aget-byte	v2,v3,v2
+; v2 : single-length , v3 : [B , v2 : single-length
+	aget-byte	v2,v7,v2
+; v2 : single-length , v7 : [B , v2 : single-length
+	shl-int/lit8	v2,v2,24
+; v2 : single-length , v2 : single-length
+	ushr-int/lit8	v2,v2,12
+; v2 : single-length , v2 : single-length
+	or-int/2addr	v1,v2
+; v1 : single-length , v2 : single-length
+	add-int/lit8	v2,v4,2
+; v2 : single-length , v4 : single-length
+	aget-byte	v2,v3,v2
+; v2 : single-length , v3 : [B , v2 : single-length
+	aget-byte	v2,v7,v2
+; v2 : single-length , v7 : [B , v2 : single-length
+	shl-int/lit8	v2,v2,24
+; v2 : single-length , v2 : single-length
+	ushr-int/lit8	v2,v2,18
+; v2 : single-length , v2 : single-length
+	or-int/2addr	v1,v2
+; v1 : single-length , v2 : single-length
+	add-int/lit8	v2,v4,3
+; v2 : single-length , v4 : single-length
+	aget-byte	v2,v3,v2
+; v2 : single-length , v3 : [B , v2 : single-length
+	aget-byte	v2,v7,v2
+; v2 : single-length , v7 : [B , v2 : single-length
+	shl-int/lit8	v2,v2,24
+; v2 : single-length , v2 : single-length
+	ushr-int/lit8	v2,v2,24
+; v2 : single-length , v2 : single-length
+	or-int	v0,v1,v2
+; v0 : single-length , v1 : single-length , v2 : single-length
+.line 429
+	shr-int/lit8	v1,v0,16
+; v1 : single-length , v0 : single-length
+	int-to-byte	v1,v1
+; v1 : single-length , v1 : single-length
+	aput-byte	v1,v5,v6
+; v1 : single-length , v5 : [B , v6 : single-length
+.line 430
+	add-int/lit8	v1,v6,1
+; v1 : single-length , v6 : single-length
+	shr-int/lit8	v2,v0,8
+; v2 : single-length , v0 : single-length
+	int-to-byte	v2,v2
+; v2 : single-length , v2 : single-length
+	aput-byte	v2,v5,v1
+; v2 : single-length , v5 : [B , v1 : single-length
+.line 431
+	add-int/lit8	v1,v6,2
+; v1 : single-length , v6 : single-length
+	int-to-byte	v2,v0
+; v2 : single-length , v0 : single-length
+	aput-byte	v2,v5,v1
+; v2 : single-length , v5 : [B , v1 : single-length
+.line 432
+	const/4	v1,3
+; v1 : single-length
+	goto	la3e84
+.end method
+
+.method public static decodeWebSafe(Ljava/lang/String;)[B
+.throws Lcom/google/tagmanager/Base64$Base64DecoderException;
+.limit registers 4
+; parameter[0] : v3 (Ljava/lang/String;)
+.line 459
+	invoke-virtual	{v3},java/lang/String/getBytes	; getBytes()[B
+; v3 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : [B
+.line 460
+	const/4	v1,0
+; v1 : single-length
+	array-length	v2,v0
+; v2 : single-length , v0 : [B
+	invoke-static	{v0,v1,v2},com/google/tagmanager/Base64/decodeWebSafe	; decodeWebSafe([BII)[B
+; v0 : [B , v1 : single-length , v2 : single-length
+	move-result-object	v1
+; v1 : [B
+	return-object	v1
+; v1 : [B
+.end method
+
+.method public static decodeWebSafe([B)[B
+.throws Lcom/google/tagmanager/Base64$Base64DecoderException;
+.limit registers 3
+; parameter[0] : v2 ([B)
+.line 486
+	const/4	v0,0
+; v0 : single-length
+	array-length	v1,v2
+; v1 : single-length , v2 : [B
+	invoke-static	{v2,v0,v1},com/google/tagmanager/Base64/decodeWebSafe	; decodeWebSafe([BII)[B
+; v2 : [B , v0 : single-length , v1 : single-length
+	move-result-object	v0
+; v0 : [B
+	return-object	v0
+; v0 : [B
+.end method
+
+.method public static decodeWebSafe([BII)[B
+.throws Lcom/google/tagmanager/Base64$Base64DecoderException;
+.limit registers 4
+; parameter[0] : v1 ([B)
+; parameter[1] : v2 (I)
+; parameter[2] : v3 (I)
+.line 517
+	sget-object	v0,com/google/tagmanager/Base64.WEBSAFE_DECODABET [B
+; v0 : [B
+	invoke-static	{v1,v2,v3,v0},com/google/tagmanager/Base64/decode	; decode([BII[B)[B
+; v1 : [B , v2 : single-length , v3 : single-length , v0 : [B
+	move-result-object	v0
+; v0 : [B
+	return-object	v0
+; v0 : [B
+.end method
+
+.method public static encode([B)Ljava/lang/String;
+.annotation runtimeVisibility Ljava/lang/Deprecated;
+.end annotation
+.limit registers 5
+; parameter[0] : v4 ([B)
+.line 262
+	const/4	v0,0
+; v0 : single-length
+	array-length	v1,v4
+; v1 : single-length , v4 : [B
+	sget-object	v2,com/google/tagmanager/Base64.ALPHABET [B
+; v2 : [B
+	const/4	v3,1
+; v3 : single-length
+	invoke-static	{v4,v0,v1,v2,v3},com/google/tagmanager/Base64/encode	; encode([BII[BZ)Ljava/lang/String;
+; v4 : [B , v0 : single-length , v1 : single-length , v2 : [B , v3 : single-length
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	return-object	v0
+; v0 : Ljava/lang/String;
+.end method
+
+.method private static encode([BII[BZ)Ljava/lang/String;
+.annotation runtimeVisibility Ljava/lang/Deprecated;
+.end annotation
+.limit registers 9
+; parameter[0] : v4 ([B)
+; parameter[1] : v5 (I)
+; parameter[2] : v6 (I)
+; parameter[3] : v7 ([B)
+; parameter[4] : v8 (Z)
+.line 300
+	const	v2,2147483647	; 0x7fffffff
+; v2 : single-length
+	invoke-static	{v4,v5,v6,v7,v2},com/google/tagmanager/Base64/encode	; encode([BII[BI)[B
+; v4 : [B , v5 : single-length , v6 : single-length , v7 : [B , v2 : single-length
+	move-result-object	v0
+; v0 : [B
+.line 301
+	array-length	v1,v0
+; v1 : single-length , v0 : [B
+la4014:
+.line 305
+	if-nez	v8,la402c
+; v8 : single-length
+	if-lez	v1,la402c
+; v1 : single-length
+.line 306
+	add-int/lit8	v2,v1,255
+; v2 : single-length , v1 : single-length
+	aget-byte	v2,v0,v2
+; v2 : single-length , v0 : [B , v2 : single-length
+	const/16	v3,61
+; v3 : single-length
+	if-eq	v2,v3,la403a
+; v2 : single-length , v3 : single-length
+la402c:
+.line 312
+	new-instance	v2,java/lang/String
+; v2 : Ljava/lang/String;
+	const/4	v3,0
+; v3 : single-length
+	invoke-direct	{v2,v0,v3,v1},java/lang/String/<init>	; <init>([BII)V
+; v2 : Ljava/lang/String; , v0 : [B , v3 : single-length , v1 : single-length
+	return-object	v2
+; v2 : Ljava/lang/String;
+la403a:
+.line 309
+	add-int/lit8	v1,v1,255
+; v1 : single-length , v1 : single-length
+	goto	la4014
+.end method
+
+.method public static encode([BZ)Ljava/lang/String;
+.annotation runtimeVisibility Ljava/lang/Deprecated;
+.end annotation
+.limit registers 5
+; parameter[0] : v3 ([B)
+; parameter[1] : v4 (Z)
+.line 273
+	const/4	v0,0
+; v0 : single-length
+	array-length	v1,v3
+; v1 : single-length , v3 : [B
+	sget-object	v2,com/google/tagmanager/Base64.ALPHABET [B
+; v2 : [B
+	invoke-static	{v3,v0,v1,v2,v4},com/google/tagmanager/Base64/encode	; encode([BII[BZ)Ljava/lang/String;
+; v3 : [B , v0 : single-length , v1 : single-length , v2 : [B , v4 : single-length
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	return-object	v0
+; v0 : Ljava/lang/String;
+.end method
+
+.method public static encode([BII[BI)[B
+.annotation runtimeVisibility Ljava/lang/Deprecated;
+.end annotation
+.limit registers 18
+; parameter[0] : v13 ([B)
+; parameter[1] : v14 (I)
+; parameter[2] : v15 (I)
+; parameter[3] : v16 ([B)
+; parameter[4] : v17 (I)
+.var 8 is inBuff I from la40d2 to la413e
+.line 327
+	add-int/lit8	v1,v15,2
+; v1 : single-length , v15 : single-length
+	div-int/lit8	v11,v1,3
+; v11 : single-length , v1 : single-length
+.line 328
+	mul-int/lit-8	v10,v11,4
+; v10 : single-length , v11 : single-length
+.line 329
+	div-int	v1,v10,v17
+; v1 : single-length , v10 : single-length , v17 : single-length
+	add-int/2addr	v1,v10
+; v1 : single-length , v10 : single-length
+	new-array	v4,v1,[B
+; v4 : [B , v1 : single-length
+.line 332
+	const/4	v7,0
+; v7 : single-length
+.line 333
+	const/4	v5,0
+; v5 : single-length
+.line 334
+	add-int/lit8	v9,v15,254
+; v9 : single-length , v15 : single-length
+.line 335
+	const/4	v12,0
+; v12 : single-length
+la4094:
+.line 336
+	if-ge	v7,v9,la413e
+; v7 : single-length , v9 : single-length
+.line 341
+	add-int	v1,v7,v14
+; v1 : single-length , v7 : single-length , v14 : single-length
+	aget-byte	v1,v13,v1
+; v1 : single-length , v13 : [B , v1 : single-length
+	shl-int/lit8	v1,v1,24
+; v1 : single-length , v1 : single-length
+	ushr-int/lit8	v1,v1,8
+; v1 : single-length , v1 : single-length
+	add-int/lit8	v2,v7,1
+; v2 : single-length , v7 : single-length
+	add-int/2addr	v2,v14
+; v2 : single-length , v14 : single-length
+	aget-byte	v2,v13,v2
+; v2 : single-length , v13 : [B , v2 : single-length
+	shl-int/lit8	v2,v2,24
+; v2 : single-length , v2 : single-length
+	ushr-int/lit8	v2,v2,16
+; v2 : single-length , v2 : single-length
+	or-int/2addr	v1,v2
+; v1 : single-length , v2 : single-length
+	add-int/lit8	v2,v7,2
+; v2 : single-length , v7 : single-length
+	add-int/2addr	v2,v14
+; v2 : single-length , v14 : single-length
+	aget-byte	v2,v13,v2
+; v2 : single-length , v13 : [B , v2 : single-length
+	shl-int/lit8	v2,v2,24
+; v2 : single-length , v2 : single-length
+	ushr-int/lit8	v2,v2,24
+; v2 : single-length , v2 : single-length
+	or-int	v8,v1,v2
+; v8 : single-length , v1 : single-length , v2 : single-length
+.line 345
+	ushr-int/lit8	v1,v8,18
+; v1 : single-length , v8 : single-length
+	aget-byte	v1,v16,v1
+; v1 : single-length , v16 : [B , v1 : single-length
+	aput-byte	v1,v4,v5
+; v1 : single-length , v4 : [B , v5 : single-length
+.line 346
+	add-int/lit8	v1,v5,1
+; v1 : single-length , v5 : single-length
+	ushr-int/lit8	v2,v8,12
+; v2 : single-length , v8 : single-length
+	and-int/lit8	v2,v2,63
+; v2 : single-length , v2 : single-length
+	aget-byte	v2,v16,v2
+; v2 : single-length , v16 : [B , v2 : single-length
+	aput-byte	v2,v4,v1
+; v2 : single-length , v4 : [B , v1 : single-length
+.line 347
+	add-int/lit8	v1,v5,2
+; v1 : single-length , v5 : single-length
+	ushr-int/lit8	v2,v8,6
+; v2 : single-length , v8 : single-length
+	and-int/lit8	v2,v2,63
+; v2 : single-length , v2 : single-length
+	aget-byte	v2,v16,v2
+; v2 : single-length , v16 : [B , v2 : single-length
+	aput-byte	v2,v4,v1
+; v2 : single-length , v4 : [B , v1 : single-length
+.line 348
+	add-int/lit8	v1,v5,3
+; v1 : single-length , v5 : single-length
+	and-int/lit8	v2,v8,63
+; v2 : single-length , v8 : single-length
+	aget-byte	v2,v16,v2
+; v2 : single-length , v16 : [B , v2 : single-length
+	aput-byte	v2,v4,v1
+; v2 : single-length , v4 : [B , v1 : single-length
+.line 350
+	add-int/lit8	v12,v12,4
+; v12 : single-length , v12 : single-length
+.line 351
+	move/from16	v0,v17
+; v0 : single-length , v17 : single-length
+	if-ne	v12,v0,la4134
+; v12 : single-length , v0 : single-length
+.line 352
+	add-int/lit8	v1,v5,4
+; v1 : single-length , v5 : single-length
+	const/16	v2,10
+; v2 : single-length
+	aput-byte	v2,v4,v1
+; v2 : single-length , v4 : [B , v1 : single-length
+.line 353
+	add-int/lit8	v5,v5,1
+; v5 : single-length , v5 : single-length
+.line 354
+	const/4	v12,0
+; v12 : single-length
+la4134:
+.line 336
+	add-int/lit8	v7,v7,3
+; v7 : single-length , v7 : single-length
+	add-int/lit8	v5,v5,4
+; v5 : single-length , v5 : single-length
+	goto	la4094
+la413e:
+.line 358
+	if-ge	v7,v15,la4176
+; v7 : single-length , v15 : single-length
+.line 359
+	add-int	v2,v7,v14
+; v2 : single-length , v7 : single-length , v14 : single-length
+	sub-int	v3,v15,v7
+; v3 : single-length , v15 : single-length , v7 : single-length
+	move-object	v1,v13
+; v1 : [B , v13 : [B
+	move-object/from16	v6,v16
+; v6 : [B , v16 : [B
+	invoke-static/range	{v1..v6},com/google/tagmanager/Base64/encode3to4;	encode3to4([BII[BI[B)[B
+; v1 : [B , v2 : single-length , v3 : single-length , v4 : [B , v5 : single-length , v6 : [B
+.line 361
+	add-int/lit8	v12,v12,4
+; v12 : single-length , v12 : single-length
+.line 362
+	move/from16	v0,v17
+; v0 : single-length , v17 : single-length
+	if-ne	v12,v0,la4172
+; v12 : single-length , v0 : single-length
+.line 364
+	add-int/lit8	v1,v5,4
+; v1 : single-length , v5 : single-length
+	const/16	v2,10
+; v2 : single-length
+	aput-byte	v2,v4,v1
+; v2 : single-length , v4 : [B , v1 : single-length
+.line 365
+	add-int/lit8	v5,v5,1
+; v5 : single-length , v5 : single-length
+la4172:
+.line 367
+	add-int/lit8	v5,v5,4
+; v5 : single-length , v5 : single-length
+la4176:
+.line 371
+	return-object	v4
+; v4 : [B
+.end method
+
+.method private static encode3to4([BII[BI[B)[B
+.limit registers 11
+; parameter[0] : v5 ([B)
+; parameter[1] : v6 (I)
+; parameter[2] : v7 (I)
+; parameter[3] : v8 ([B)
+; parameter[4] : v9 (I)
+; parameter[5] : v10 ([B)
+.var 0 is inBuff I from la41d2 to la41da
+	const/16	v4,61
+; v4 : single-length
+	const/4	v1,0
+; v1 : single-length
+.line 222
+	if-lez	v7,la41da
+; v7 : single-length
+	aget-byte	v2,v5,v6
+; v2 : single-length , v5 : [B , v6 : single-length
+	shl-int/lit8	v2,v2,24
+; v2 : single-length , v2 : single-length
+	ushr-int/lit8	v2,v2,8
+; v2 : single-length , v2 : single-length
+	move	v3,v2
+; v3 : single-length , v2 : single-length
+la41a0:
+	const/4	v2,1
+; v2 : single-length
+	if-le	v7,v2,la41de
+; v7 : single-length , v2 : single-length
+	add-int/lit8	v2,v6,1
+; v2 : single-length , v6 : single-length
+	aget-byte	v2,v5,v2
+; v2 : single-length , v5 : [B , v2 : single-length
+	shl-int/lit8	v2,v2,24
+; v2 : single-length , v2 : single-length
+	ushr-int/lit8	v2,v2,16
+; v2 : single-length , v2 : single-length
+la41b6:
+	or-int/2addr	v2,v3
+; v2 : single-length , v3 : single-length
+	const/4	v3,2
+; v3 : single-length
+	if-le	v7,v3,la41ce
+; v7 : single-length , v3 : single-length
+	add-int/lit8	v1,v6,2
+; v1 : single-length , v6 : single-length
+	aget-byte	v1,v5,v1
+; v1 : single-length , v5 : [B , v1 : single-length
+	shl-int/lit8	v1,v1,24
+; v1 : single-length , v1 : single-length
+	ushr-int/lit8	v1,v1,24
+; v1 : single-length , v1 : single-length
+la41ce:
+	or-int	v0,v2,v1
+; v0 : single-length , v2 : single-length , v1 : single-length
+.line 227
+	packed-switch	v7,1
+		psa41d2_a4266	; case 1
+		psa41d2_a4228	; case 2
+		psa41d2_a41e2	; case 3
+		default: psa41d2_default
+; v7 : single-length
+la41d8:
+.line 247
+	return-object	v8
+; v8 : [B
+la41da:
+	move	v3,v1
+; v3 : single-length , v1 : single-length
+.line 222
+	goto	la41a0
+la41de:
+	move	v2,v1
+; v2 : single-length , v1 : single-length
+	goto	la41b6
+psa41d2_a41e2:
+.line 229
+	ushr-int/lit8	v1,v0,18
+; v1 : single-length , v0 : single-length
+	aget-byte	v1,v10,v1
+; v1 : single-length , v10 : [B , v1 : single-length
+	aput-byte	v1,v8,v9
+; v1 : single-length , v8 : [B , v9 : single-length
+.line 230
+	add-int/lit8	v1,v9,1
+; v1 : single-length , v9 : single-length
+	ushr-int/lit8	v2,v0,12
+; v2 : single-length , v0 : single-length
+	and-int/lit8	v2,v2,63
+; v2 : single-length , v2 : single-length
+	aget-byte	v2,v10,v2
+; v2 : single-length , v10 : [B , v2 : single-length
+	aput-byte	v2,v8,v1
+; v2 : single-length , v8 : [B , v1 : single-length
+.line 231
+	add-int/lit8	v1,v9,2
+; v1 : single-length , v9 : single-length
+	ushr-int/lit8	v2,v0,6
+; v2 : single-length , v0 : single-length
+	and-int/lit8	v2,v2,63
+; v2 : single-length , v2 : single-length
+	aget-byte	v2,v10,v2
+; v2 : single-length , v10 : [B , v2 : single-length
+	aput-byte	v2,v8,v1
+; v2 : single-length , v8 : [B , v1 : single-length
+.line 232
+	add-int/lit8	v1,v9,3
+; v1 : single-length , v9 : single-length
+	and-int/lit8	v2,v0,63
+; v2 : single-length , v0 : single-length
+	aget-byte	v2,v10,v2
+; v2 : single-length , v10 : [B , v2 : single-length
+	aput-byte	v2,v8,v1
+; v2 : single-length , v8 : [B , v1 : single-length
+	goto	la41d8
+psa41d2_a4228:
+.line 235
+	ushr-int/lit8	v1,v0,18
+; v1 : single-length , v0 : single-length
+	aget-byte	v1,v10,v1
+; v1 : single-length , v10 : [B , v1 : single-length
+	aput-byte	v1,v8,v9
+; v1 : single-length , v8 : [B , v9 : single-length
+.line 236
+	add-int/lit8	v1,v9,1
+; v1 : single-length , v9 : single-length
+	ushr-int/lit8	v2,v0,12
+; v2 : single-length , v0 : single-length
+	and-int/lit8	v2,v2,63
+; v2 : single-length , v2 : single-length
+	aget-byte	v2,v10,v2
+; v2 : single-length , v10 : [B , v2 : single-length
+	aput-byte	v2,v8,v1
+; v2 : single-length , v8 : [B , v1 : single-length
+.line 237
+	add-int/lit8	v1,v9,2
+; v1 : single-length , v9 : single-length
+	ushr-int/lit8	v2,v0,6
+; v2 : single-length , v0 : single-length
+	and-int/lit8	v2,v2,63
+; v2 : single-length , v2 : single-length
+	aget-byte	v2,v10,v2
+; v2 : single-length , v10 : [B , v2 : single-length
+	aput-byte	v2,v8,v1
+; v2 : single-length , v8 : [B , v1 : single-length
+.line 238
+	add-int/lit8	v1,v9,3
+; v1 : single-length , v9 : single-length
+	aput-byte	v4,v8,v1
+; v4 : single-length , v8 : [B , v1 : single-length
+	goto	la41d8
+psa41d2_a4266:
+.line 241
+	ushr-int/lit8	v1,v0,18
+; v1 : single-length , v0 : single-length
+	aget-byte	v1,v10,v1
+; v1 : single-length , v10 : [B , v1 : single-length
+	aput-byte	v1,v8,v9
+; v1 : single-length , v8 : [B , v9 : single-length
+.line 242
+	add-int/lit8	v1,v9,1
+; v1 : single-length , v9 : single-length
+	ushr-int/lit8	v2,v0,12
+; v2 : single-length , v0 : single-length
+	and-int/lit8	v2,v2,63
+; v2 : single-length , v2 : single-length
+	aget-byte	v2,v10,v2
+; v2 : single-length , v10 : [B , v2 : single-length
+	aput-byte	v2,v8,v1
+; v2 : single-length , v8 : [B , v1 : single-length
+.line 243
+	add-int/lit8	v1,v9,2
+; v1 : single-length , v9 : single-length
+	aput-byte	v4,v8,v1
+; v4 : single-length , v8 : [B , v1 : single-length
+.line 244
+	add-int/lit8	v1,v9,3
+; v1 : single-length , v9 : single-length
+	aput-byte	v4,v8,v1
+; v4 : single-length , v8 : [B , v1 : single-length
+	goto	la41d8
+.line 227
+.end method
+
+.method public static encodeWebSafe([BZ)Ljava/lang/String;
+.limit registers 5
+; parameter[0] : v3 ([B)
+; parameter[1] : v4 (Z)
+.line 284
+	const/4	v0,0
+; v0 : single-length
+	array-length	v1,v3
+; v1 : single-length , v3 : [B
+	sget-object	v2,com/google/tagmanager/Base64.WEBSAFE_ALPHABET [B
+; v2 : [B
+	invoke-static	{v3,v0,v1,v2,v4},com/google/tagmanager/Base64/encode	; encode([BII[BZ)Ljava/lang/String;
+; v3 : [B , v0 : single-length , v1 : single-length , v2 : [B , v4 : single-length
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	return-object	v0
+; v0 : Ljava/lang/String;
+.end method
+
+.method public static getAlphabet()[B
+.limit registers 1
+.line 175
+	sget-object	v0,com/google/tagmanager/Base64.ALPHABET [B
+; v0 : [B
+	invoke-virtual	{v0},[B/clone	; clone()Ljava/lang/Object;
+; v0 : [B
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,[B
+; v0 : [B
+	return-object	v0
+; v0 : [B
+.end method
+
+.method public static getWebsafeAlphabet()[B
+.limit registers 1
+.line 182
+	sget-object	v0,com/google/tagmanager/Base64.WEBSAFE_ALPHABET [B
+; v0 : [B
+	invoke-virtual	{v0},[B/clone	; clone()Ljava/lang/Object;
+; v0 : [B
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,[B
+; v0 : [B
+	return-object	v0
+; v0 : [B
+.end method
+
+

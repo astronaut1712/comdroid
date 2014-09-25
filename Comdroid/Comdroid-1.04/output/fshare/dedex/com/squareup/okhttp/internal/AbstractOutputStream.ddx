@@ -1,0 +1,71 @@
+.class public abstract com/squareup/okhttp/internal/AbstractOutputStream
+.super java/io/OutputStream
+.source AbstractOutputStream.java
+
+.field protected closed Z
+
+.method public <init>()V
+.limit registers 1
+; this: v0 (Lcom/squareup/okhttp/internal/AbstractOutputStream;)
+.line 28
+	invoke-direct	{v0},java/io/OutputStream/<init>	; <init>()V
+; v0 : Lcom/squareup/okhttp/internal/AbstractOutputStream;
+	return-void	
+.end method
+
+.method protected final checkNotClosed()V
+.throws Ljava/io/IOException;
+.limit registers 3
+; this: v2 (Lcom/squareup/okhttp/internal/AbstractOutputStream;)
+.line 36
+	iget-boolean	v0,v2,com/squareup/okhttp/internal/AbstractOutputStream.closed Z
+; v0 : single-length , v2 : Lcom/squareup/okhttp/internal/AbstractOutputStream;
+	if-eqz	v0,lb5f34
+; v0 : single-length
+.line 37
+	new-instance	v0,java/io/IOException
+; v0 : Ljava/io/IOException;
+	const-string	v1,"stream closed"
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/io/IOException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/io/IOException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/io/IOException;
+lb5f34:
+.line 39
+	return-void	
+.end method
+
+.method public isClosed()Z
+.limit registers 2
+; this: v1 (Lcom/squareup/okhttp/internal/AbstractOutputStream;)
+.line 43
+	iget-boolean	v0,v1,com/squareup/okhttp/internal/AbstractOutputStream.closed Z
+; v0 : single-length , v1 : Lcom/squareup/okhttp/internal/AbstractOutputStream;
+	return	v0
+; v0 : single-length
+.end method
+
+.method public final write(I)V
+.throws Ljava/io/IOException;
+.limit registers 5
+; this: v3 (Lcom/squareup/okhttp/internal/AbstractOutputStream;)
+; parameter[0] : v4 (I)
+.line 32
+	const/4	v0,1
+; v0 : single-length
+	new-array	v0,v0,[B
+; v0 : [B , v0 : [B
+	const/4	v1,0
+; v1 : single-length
+	int-to-byte	v2,v4
+; v2 : single-length , v4 : single-length
+	aput-byte	v2,v0,v1
+; v2 : single-length , v0 : [B , v1 : single-length
+	invoke-virtual	{v3,v0},com/squareup/okhttp/internal/AbstractOutputStream/write	; write([B)V
+; v3 : Lcom/squareup/okhttp/internal/AbstractOutputStream; , v0 : [B
+.line 33
+	return-void	
+.end method
+
+

@@ -1,0 +1,514 @@
+.class public com/ipaulpro/afilechooser/FileChooserActivity
+.super android/support/v4/app/FragmentActivity
+.source FileChooserActivity.java
+.implements android/support/v4/app/FragmentManager$OnBackStackChangedListener
+.implements com/ipaulpro/afilechooser/FileListFragment$Callbacks
+
+.field public static final EXTERNAL_BASE_PATH Ljava/lang/String; = null
+.field private static final HAS_ACTIONBAR Z = false
+.field public static final PATH Ljava/lang/String; = "path"
+.field private mFragmentManager Landroid/support/v4/app/FragmentManager;
+.field private mPath Ljava/lang/String;
+.field private mStorageListener Landroid/content/BroadcastReceiver;
+
+.method static <clinit>()V
+.limit registers 2
+.line 50
+	invoke-static	{},android/os/Environment/getExternalStorageDirectory	; getExternalStorageDirectory()Ljava/io/File;
+; 
+	nop	
+	move-result-object	v0
+; v0 : Ljava/io/File;
+	invoke-virtual	{v0},java/io/File/getAbsolutePath	; getAbsolutePath()Ljava/lang/String;
+; v0 : Ljava/io/File;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+.line 49
+	sput-object	v0,com/ipaulpro/afilechooser/FileChooserActivity.EXTERNAL_BASE_PATH Ljava/lang/String;
+; v0 : Ljava/lang/String;
+.line 52
+	sget	v0,android/os/Build$VERSION.SDK_INT I
+; v0 : single-length
+	const/16	v1,11
+; v1 : single-length
+	if-lt	v0,v1,ledaa4
+; v0 : single-length , v1 : single-length
+	const/4	v0,1
+; v0 : single-length
+leda9e:
+	sput-boolean	v0,com/ipaulpro/afilechooser/FileChooserActivity.HAS_ACTIONBAR Z
+; v0 : Z
+	return-void	
+ledaa4:
+	const/4	v0,0
+; v0 : single-length
+	goto	leda9e
+.end method
+
+.method public <init>()V
+.limit registers 2
+; this: v1 (Lcom/ipaulpro/afilechooser/FileChooserActivity;)
+.line 45
+	invoke-direct	{v1},android/support/v4/app/FragmentActivity/<init>	; <init>()V
+; v1 : Lcom/ipaulpro/afilechooser/FileChooserActivity;
+.line 55
+	new-instance	v0,com/ipaulpro/afilechooser/FileChooserActivity$1
+; v0 : Lcom/ipaulpro/afilechooser/FileChooserActivity$1;
+	invoke-direct	{v0,v1},com/ipaulpro/afilechooser/FileChooserActivity$1/<init>	; <init>(Lcom/ipaulpro/afilechooser/FileChooserActivity;)V
+; v0 : Lcom/ipaulpro/afilechooser/FileChooserActivity$1; , v1 : Lcom/ipaulpro/afilechooser/FileChooserActivity;
+	iput-object	v0,v1,com/ipaulpro/afilechooser/FileChooserActivity.mStorageListener Landroid/content/BroadcastReceiver;
+; v0 : Lcom/ipaulpro/afilechooser/FileChooserActivity$1; , v1 : Lcom/ipaulpro/afilechooser/FileChooserActivity;
+.line 45
+	return-void	
+.end method
+
+.method static access$0(Lcom/ipaulpro/afilechooser/FileChooserActivity;Ljava/io/File;)V
+.limit registers 2
+; parameter[0] : v0 (Lcom/ipaulpro/afilechooser/FileChooserActivity;)
+; parameter[1] : v1 (Ljava/io/File;)
+.line 173
+	invoke-direct	{v0,v1},com/ipaulpro/afilechooser/FileChooserActivity/finishWithResult	; finishWithResult(Ljava/io/File;)V
+; v0 : Lcom/ipaulpro/afilechooser/FileChooserActivity; , v1 : Ljava/io/File;
+	return-void	
+.end method
+
+.method private addFragment()V
+.limit registers 4
+; this: v3 (Lcom/ipaulpro/afilechooser/FileChooserActivity;)
+.line 147
+	iget-object	v1,v3,com/ipaulpro/afilechooser/FileChooserActivity.mPath Ljava/lang/String;
+; v1 : Ljava/lang/String; , v3 : Lcom/ipaulpro/afilechooser/FileChooserActivity;
+	invoke-static	{v1},com/ipaulpro/afilechooser/FileListFragment/newInstance	; newInstance(Ljava/lang/String;)Lcom/ipaulpro/afilechooser/FileListFragment;
+; v1 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Lcom/ipaulpro/afilechooser/FileListFragment;
+.line 148
+	iget-object	v1,v3,com/ipaulpro/afilechooser/FileChooserActivity.mFragmentManager Landroid/support/v4/app/FragmentManager;
+; v1 : Landroid/support/v4/app/FragmentManager; , v3 : Lcom/ipaulpro/afilechooser/FileChooserActivity;
+	invoke-virtual	{v1},android/support/v4/app/FragmentManager/beginTransaction	; beginTransaction()Landroid/support/v4/app/FragmentTransaction;
+; v1 : Landroid/support/v4/app/FragmentManager;
+	move-result-object	v1
+; v1 : Landroid/support/v4/app/FragmentTransaction;
+.line 149
+	const	v2,16908290	; 0x1020002
+; v2 : single-length
+	invoke-virtual	{v1,v2,v0},android/support/v4/app/FragmentTransaction/add	; add(ILandroid/support/v4/app/Fragment;)Landroid/support/v4/app/FragmentTransaction;
+; v1 : Landroid/support/v4/app/FragmentTransaction; , v2 : single-length , v0 : Lcom/ipaulpro/afilechooser/FileListFragment;
+	move-result-object	v1
+; v1 : Landroid/support/v4/app/FragmentTransaction;
+	invoke-virtual	{v1},android/support/v4/app/FragmentTransaction/commit	; commit()I
+; v1 : Landroid/support/v4/app/FragmentTransaction;
+.line 150
+	return-void	
+.end method
+
+.method private finishWithResult(Ljava/io/File;)V
+.limit registers 5
+; this: v3 (Lcom/ipaulpro/afilechooser/FileChooserActivity;)
+; parameter[0] : v4 (Ljava/io/File;)
+.var 0 is uri Landroid/net/Uri; from ledb44 to ledb64
+.line 174
+	if-eqz	v4,ledb66
+; v4 : Ljava/io/File;
+.line 175
+	invoke-static	{v4},android/net/Uri/fromFile	; fromFile(Ljava/io/File;)Landroid/net/Uri;
+; v4 : Ljava/io/File;
+	move-result-object	v0
+; v0 : Landroid/net/Uri;
+.line 176
+	const/4	v1,15
+; v1 : single-length
+	new-instance	v2,android/content/Intent
+; v2 : Landroid/content/Intent;
+	invoke-direct	{v2},android/content/Intent/<init>	; <init>()V
+; v2 : Landroid/content/Intent;
+	invoke-virtual	{v2,v0},android/content/Intent/setData	; setData(Landroid/net/Uri;)Landroid/content/Intent;
+; v2 : Landroid/content/Intent; , v0 : Landroid/net/Uri;
+	move-result-object	v2
+; v2 : Landroid/content/Intent;
+	invoke-virtual	{v3,v1,v2},com/ipaulpro/afilechooser/FileChooserActivity/setResult	; setResult(ILandroid/content/Intent;)V
+; v3 : Lcom/ipaulpro/afilechooser/FileChooserActivity; , v1 : single-length , v2 : Landroid/content/Intent;
+.line 177
+	invoke-virtual	{v3},com/ipaulpro/afilechooser/FileChooserActivity/finish	; finish()V
+; v3 : Lcom/ipaulpro/afilechooser/FileChooserActivity;
+ledb64:
+.line 182
+	return-void	
+ledb66:
+.line 179
+	const/4	v1,0
+; v1 : single-length
+	invoke-virtual	{v3,v1},com/ipaulpro/afilechooser/FileChooserActivity/setResult	; setResult(I)V
+; v3 : Lcom/ipaulpro/afilechooser/FileChooserActivity; , v1 : single-length
+.line 180
+	invoke-virtual	{v3},com/ipaulpro/afilechooser/FileChooserActivity/finish	; finish()V
+; v3 : Lcom/ipaulpro/afilechooser/FileChooserActivity;
+	goto	ledb64
+.end method
+
+.method private registerStorageListener()V
+.limit registers 3
+; this: v2 (Lcom/ipaulpro/afilechooser/FileChooserActivity;)
+.line 207
+	new-instance	v0,android/content/IntentFilter
+; v0 : Landroid/content/IntentFilter;
+	invoke-direct	{v0},android/content/IntentFilter/<init>	; <init>()V
+; v0 : Landroid/content/IntentFilter;
+.line 208
+	const-string	v1,"android.intent.action.MEDIA_REMOVED"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},android/content/IntentFilter/addAction	; addAction(Ljava/lang/String;)V
+; v0 : Landroid/content/IntentFilter; , v1 : Ljava/lang/String;
+.line 209
+	iget-object	v1,v2,com/ipaulpro/afilechooser/FileChooserActivity.mStorageListener Landroid/content/BroadcastReceiver;
+; v1 : Landroid/content/BroadcastReceiver; , v2 : Lcom/ipaulpro/afilechooser/FileChooserActivity;
+	invoke-virtual	{v2,v1,v0},com/ipaulpro/afilechooser/FileChooserActivity/registerReceiver	; registerReceiver(Landroid/content/BroadcastReceiver;Landroid/content/IntentFilter;)Landroid/content/Intent;
+; v2 : Lcom/ipaulpro/afilechooser/FileChooserActivity; , v1 : Landroid/content/BroadcastReceiver; , v0 : Landroid/content/IntentFilter;
+.line 210
+	return-void	
+.end method
+
+.method private replaceFragment(Ljava/io/File;)V
+.limit registers 5
+; this: v3 (Lcom/ipaulpro/afilechooser/FileChooserActivity;)
+; parameter[0] : v4 (Ljava/io/File;)
+.line 159
+	invoke-virtual	{v4},java/io/File/getAbsolutePath	; getAbsolutePath()Ljava/lang/String;
+; v4 : Ljava/io/File;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	iput-object	v1,v3,com/ipaulpro/afilechooser/FileChooserActivity.mPath Ljava/lang/String;
+; v1 : Ljava/lang/String; , v3 : Lcom/ipaulpro/afilechooser/FileChooserActivity;
+.line 161
+	iget-object	v1,v3,com/ipaulpro/afilechooser/FileChooserActivity.mPath Ljava/lang/String;
+; v1 : Ljava/lang/String; , v3 : Lcom/ipaulpro/afilechooser/FileChooserActivity;
+	invoke-static	{v1},com/ipaulpro/afilechooser/FileListFragment/newInstance	; newInstance(Ljava/lang/String;)Lcom/ipaulpro/afilechooser/FileListFragment;
+; v1 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Lcom/ipaulpro/afilechooser/FileListFragment;
+.line 162
+	iget-object	v1,v3,com/ipaulpro/afilechooser/FileChooserActivity.mFragmentManager Landroid/support/v4/app/FragmentManager;
+; v1 : Landroid/support/v4/app/FragmentManager; , v3 : Lcom/ipaulpro/afilechooser/FileChooserActivity;
+	invoke-virtual	{v1},android/support/v4/app/FragmentManager/beginTransaction	; beginTransaction()Landroid/support/v4/app/FragmentTransaction;
+; v1 : Landroid/support/v4/app/FragmentManager;
+	move-result-object	v1
+; v1 : Landroid/support/v4/app/FragmentTransaction;
+.line 163
+	const	v2,16908290	; 0x1020002
+; v2 : single-length
+	invoke-virtual	{v1,v2,v0},android/support/v4/app/FragmentTransaction/replace	; replace(ILandroid/support/v4/app/Fragment;)Landroid/support/v4/app/FragmentTransaction;
+; v1 : Landroid/support/v4/app/FragmentTransaction; , v2 : single-length , v0 : Lcom/ipaulpro/afilechooser/FileListFragment;
+	move-result-object	v1
+; v1 : Landroid/support/v4/app/FragmentTransaction;
+.line 164
+	const/16	v2,4097
+; v2 : single-length
+	invoke-virtual	{v1,v2},android/support/v4/app/FragmentTransaction/setTransition	; setTransition(I)Landroid/support/v4/app/FragmentTransaction;
+; v1 : Landroid/support/v4/app/FragmentTransaction; , v2 : single-length
+	move-result-object	v1
+; v1 : Landroid/support/v4/app/FragmentTransaction;
+.line 165
+	iget-object	v2,v3,com/ipaulpro/afilechooser/FileChooserActivity.mPath Ljava/lang/String;
+; v2 : Ljava/lang/String; , v3 : Lcom/ipaulpro/afilechooser/FileChooserActivity;
+	invoke-virtual	{v1,v2},android/support/v4/app/FragmentTransaction/addToBackStack	; addToBackStack(Ljava/lang/String;)Landroid/support/v4/app/FragmentTransaction;
+; v1 : Landroid/support/v4/app/FragmentTransaction; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Landroid/support/v4/app/FragmentTransaction;
+	invoke-virtual	{v1},android/support/v4/app/FragmentTransaction/commit	; commit()I
+; v1 : Landroid/support/v4/app/FragmentTransaction;
+.line 166
+	return-void	
+.end method
+
+.method private unregisterStorageListener()V
+.limit registers 2
+; this: v1 (Lcom/ipaulpro/afilechooser/FileChooserActivity;)
+.line 216
+	iget-object	v0,v1,com/ipaulpro/afilechooser/FileChooserActivity.mStorageListener Landroid/content/BroadcastReceiver;
+; v0 : Landroid/content/BroadcastReceiver; , v1 : Lcom/ipaulpro/afilechooser/FileChooserActivity;
+	invoke-virtual	{v1,v0},com/ipaulpro/afilechooser/FileChooserActivity/unregisterReceiver	; unregisterReceiver(Landroid/content/BroadcastReceiver;)V
+; v1 : Lcom/ipaulpro/afilechooser/FileChooserActivity; , v0 : Landroid/content/BroadcastReceiver;
+.line 217
+	return-void	
+.end method
+
+.method public onBackStackChanged()V
+.limit registers 5
+; this: v4 (Lcom/ipaulpro/afilechooser/FileChooserActivity;)
+.var 1 is fragment Landroid/support/v4/app/FragmentManager$BackStackEntry; from ledc58 to ledc64
+.line 106
+	iget-object	v2,v4,com/ipaulpro/afilechooser/FileChooserActivity.mFragmentManager Landroid/support/v4/app/FragmentManager;
+; v2 : Landroid/support/v4/app/FragmentManager; , v4 : Lcom/ipaulpro/afilechooser/FileChooserActivity;
+	invoke-virtual	{v2},android/support/v4/app/FragmentManager/getBackStackEntryCount	; getBackStackEntryCount()I
+; v2 : Landroid/support/v4/app/FragmentManager;
+	move-result	v0
+; v0 : single-length
+.line 107
+	if-lez	v0,ledc7e
+; v0 : single-length
+.line 108
+	iget-object	v2,v4,com/ipaulpro/afilechooser/FileChooserActivity.mFragmentManager Landroid/support/v4/app/FragmentManager;
+; v2 : Landroid/support/v4/app/FragmentManager; , v4 : Lcom/ipaulpro/afilechooser/FileChooserActivity;
+	add-int/lit8	v3,v0,255
+; v3 : single-length , v0 : single-length
+	invoke-virtual	{v2,v3},android/support/v4/app/FragmentManager/getBackStackEntryAt	; getBackStackEntryAt(I)Landroid/support/v4/app/FragmentManager$BackStackEntry;
+; v2 : Landroid/support/v4/app/FragmentManager; , v3 : single-length
+	move-result-object	v1
+; v1 : Landroid/support/v4/app/FragmentManager$BackStackEntry;
+.line 109
+	invoke-interface	{v1},android/support/v4/app/FragmentManager$BackStackEntry/getName	; getName()Ljava/lang/String;
+; v1 : Landroid/support/v4/app/FragmentManager$BackStackEntry;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	iput-object	v2,v4,com/ipaulpro/afilechooser/FileChooserActivity.mPath Ljava/lang/String;
+; v2 : Ljava/lang/String; , v4 : Lcom/ipaulpro/afilechooser/FileChooserActivity;
+ledc64:
+.line 114
+	iget-object	v2,v4,com/ipaulpro/afilechooser/FileChooserActivity.mPath Ljava/lang/String;
+; v2 : Ljava/lang/String; , v4 : Lcom/ipaulpro/afilechooser/FileChooserActivity;
+	invoke-virtual	{v4,v2},com/ipaulpro/afilechooser/FileChooserActivity/setTitle	; setTitle(Ljava/lang/CharSequence;)V
+; v4 : Lcom/ipaulpro/afilechooser/FileChooserActivity; , v2 : Ljava/lang/String;
+.line 115
+	sget-boolean	v2,com/ipaulpro/afilechooser/FileChooserActivity.HAS_ACTIONBAR Z
+; v2 : single-length
+	if-eqz	v2,ledc7c
+; v2 : single-length
+.line 116
+	invoke-virtual	{v4},com/ipaulpro/afilechooser/FileChooserActivity/invalidateOptionsMenu	; invalidateOptionsMenu()V
+; v4 : Lcom/ipaulpro/afilechooser/FileChooserActivity;
+ledc7c:
+.line 117
+	return-void	
+ledc7e:
+.line 111
+	sget-object	v2,com/ipaulpro/afilechooser/FileChooserActivity.EXTERNAL_BASE_PATH Ljava/lang/String;
+; v2 : Ljava/lang/String;
+	iput-object	v2,v4,com/ipaulpro/afilechooser/FileChooserActivity.mPath Ljava/lang/String;
+; v2 : Ljava/lang/String; , v4 : Lcom/ipaulpro/afilechooser/FileChooserActivity;
+	goto	ledc64
+.end method
+
+.method protected onCreate(Landroid/os/Bundle;)V
+.limit registers 3
+; this: v1 (Lcom/ipaulpro/afilechooser/FileChooserActivity;)
+; parameter[0] : v2 (Landroid/os/Bundle;)
+.line 67
+	invoke-super	{v1,v2},android/support/v4/app/FragmentActivity/onCreate	; onCreate(Landroid/os/Bundle;)V
+; v1 : Lcom/ipaulpro/afilechooser/FileChooserActivity; , v2 : Landroid/os/Bundle;
+.line 69
+	invoke-virtual	{v1},com/ipaulpro/afilechooser/FileChooserActivity/getSupportFragmentManager	; getSupportFragmentManager()Landroid/support/v4/app/FragmentManager;
+; v1 : Lcom/ipaulpro/afilechooser/FileChooserActivity;
+	move-result-object	v0
+; v0 : Landroid/support/v4/app/FragmentManager;
+	iput-object	v0,v1,com/ipaulpro/afilechooser/FileChooserActivity.mFragmentManager Landroid/support/v4/app/FragmentManager;
+; v0 : Landroid/support/v4/app/FragmentManager; , v1 : Lcom/ipaulpro/afilechooser/FileChooserActivity;
+.line 70
+	iget-object	v0,v1,com/ipaulpro/afilechooser/FileChooserActivity.mFragmentManager Landroid/support/v4/app/FragmentManager;
+; v0 : Landroid/support/v4/app/FragmentManager; , v1 : Lcom/ipaulpro/afilechooser/FileChooserActivity;
+	invoke-virtual	{v0,v1},android/support/v4/app/FragmentManager/addOnBackStackChangedListener	; addOnBackStackChangedListener(Landroid/support/v4/app/FragmentManager$OnBackStackChangedListener;)V
+; v0 : Landroid/support/v4/app/FragmentManager; , v1 : Lcom/ipaulpro/afilechooser/FileChooserActivity;
+.line 72
+	if-nez	v2,ledcd2
+; v2 : Landroid/os/Bundle;
+.line 73
+	sget-object	v0,com/ipaulpro/afilechooser/FileChooserActivity.EXTERNAL_BASE_PATH Ljava/lang/String;
+; v0 : Ljava/lang/String;
+	iput-object	v0,v1,com/ipaulpro/afilechooser/FileChooserActivity.mPath Ljava/lang/String;
+; v0 : Ljava/lang/String; , v1 : Lcom/ipaulpro/afilechooser/FileChooserActivity;
+.line 74
+	invoke-direct	{v1},com/ipaulpro/afilechooser/FileChooserActivity/addFragment	; addFragment()V
+; v1 : Lcom/ipaulpro/afilechooser/FileChooserActivity;
+ledcc6:
+.line 79
+	iget-object	v0,v1,com/ipaulpro/afilechooser/FileChooserActivity.mPath Ljava/lang/String;
+; v0 : Ljava/lang/String; , v1 : Lcom/ipaulpro/afilechooser/FileChooserActivity;
+	invoke-virtual	{v1,v0},com/ipaulpro/afilechooser/FileChooserActivity/setTitle	; setTitle(Ljava/lang/CharSequence;)V
+; v1 : Lcom/ipaulpro/afilechooser/FileChooserActivity; , v0 : Ljava/lang/String;
+.line 80
+	return-void	
+ledcd2:
+.line 76
+	const-string	v0,"path"
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v2,v0},android/os/Bundle/getString	; getString(Ljava/lang/String;)Ljava/lang/String;
+; v2 : Landroid/os/Bundle; , v0 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	iput-object	v0,v1,com/ipaulpro/afilechooser/FileChooserActivity.mPath Ljava/lang/String;
+; v0 : Ljava/lang/String; , v1 : Lcom/ipaulpro/afilechooser/FileChooserActivity;
+	goto	ledcc6
+.end method
+
+.method public onCreateOptionsMenu(Landroid/view/Menu;)Z
+.limit registers 6
+; this: v4 (Lcom/ipaulpro/afilechooser/FileChooserActivity;)
+; parameter[0] : v5 (Landroid/view/Menu;)
+.var 0 is actionBar Landroid/app/ActionBar; from ledd18 to ledd24
+.var 1 is hasBackStack Z from ledd10 to ledd24
+	const/4	v2,1
+; v2 : single-length
+.line 121
+	sget-boolean	v3,com/ipaulpro/afilechooser/FileChooserActivity.HAS_ACTIONBAR Z
+; v3 : single-length
+	if-eqz	v3,ledd24
+; v3 : single-length
+.line 122
+	iget-object	v3,v4,com/ipaulpro/afilechooser/FileChooserActivity.mFragmentManager Landroid/support/v4/app/FragmentManager;
+; v3 : Landroid/support/v4/app/FragmentManager; , v4 : Lcom/ipaulpro/afilechooser/FileChooserActivity;
+	invoke-virtual	{v3},android/support/v4/app/FragmentManager/getBackStackEntryCount	; getBackStackEntryCount()I
+; v3 : Landroid/support/v4/app/FragmentManager;
+	move-result	v3
+; v3 : single-length
+	if-lez	v3,ledd26
+; v3 : single-length
+	move	v1,v2
+; v1 : single-length , v2 : single-length
+ledd10:
+.line 124
+	invoke-virtual	{v4},com/ipaulpro/afilechooser/FileChooserActivity/getActionBar	; getActionBar()Landroid/app/ActionBar;
+; v4 : Lcom/ipaulpro/afilechooser/FileChooserActivity;
+	move-result-object	v0
+; v0 : Landroid/app/ActionBar;
+.line 125
+	invoke-virtual	{v0,v1},android/app/ActionBar/setDisplayHomeAsUpEnabled	; setDisplayHomeAsUpEnabled(Z)V
+; v0 : Landroid/app/ActionBar; , v1 : single-length
+.line 126
+	invoke-virtual	{v0,v1},android/app/ActionBar/setHomeButtonEnabled	; setHomeButtonEnabled(Z)V
+; v0 : Landroid/app/ActionBar; , v1 : single-length
+ledd24:
+.line 129
+	return	v2
+; v2 : single-length
+ledd26:
+.line 122
+	const/4	v1,0
+; v1 : single-length
+	goto	ledd10
+.end method
+
+.method public onFileSelected(Ljava/io/File;)V
+.limit registers 4
+; this: v2 (Lcom/ipaulpro/afilechooser/FileChooserActivity;)
+; parameter[0] : v3 (Ljava/io/File;)
+.line 191
+	if-eqz	v3,ledd5c
+; v3 : Ljava/io/File;
+.line 192
+	invoke-virtual	{v3},java/io/File/isDirectory	; isDirectory()Z
+; v3 : Ljava/io/File;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,ledd54
+; v0 : single-length
+.line 193
+	invoke-direct	{v2,v3},com/ipaulpro/afilechooser/FileChooserActivity/replaceFragment	; replaceFragment(Ljava/io/File;)V
+; v2 : Lcom/ipaulpro/afilechooser/FileChooserActivity; , v3 : Ljava/io/File;
+ledd52:
+.line 201
+	return-void	
+ledd54:
+.line 195
+	invoke-direct	{v2,v3},com/ipaulpro/afilechooser/FileChooserActivity/finishWithResult	; finishWithResult(Ljava/io/File;)V
+; v2 : Lcom/ipaulpro/afilechooser/FileChooserActivity; , v3 : Ljava/io/File;
+	goto	ledd52
+ledd5c:
+.line 198
+	sget	v0,com/ipaulpro/afilechooser/R$string.error_selecting_file I
+; v0 : single-length
+.line 199
+	const/4	v1,0
+; v1 : single-length
+.line 198
+	invoke-static	{v2,v0,v1},android/widget/Toast/makeText	; makeText(Landroid/content/Context;II)Landroid/widget/Toast;
+; v2 : Lcom/ipaulpro/afilechooser/FileChooserActivity; , v0 : single-length , v1 : single-length
+	move-result-object	v0
+; v0 : Landroid/widget/Toast;
+.line 199
+	invoke-virtual	{v0},android/widget/Toast/show	; show()V
+; v0 : Landroid/widget/Toast;
+	goto	ledd52
+.end method
+
+.method public onOptionsItemSelected(Landroid/view/MenuItem;)Z
+.limit registers 3
+; this: v1 (Lcom/ipaulpro/afilechooser/FileChooserActivity;)
+; parameter[0] : v2 (Landroid/view/MenuItem;)
+.line 134
+	invoke-interface	{v2},android/view/MenuItem/getItemId	; getItemId()I
+; v2 : Landroid/view/MenuItem;
+	move-result	v0
+; v0 : single-length
+	packed-switch	v0,16908332
+		psedd8c_edd9c	; case 16908332
+		default: psedd8c_default
+; v0 : single-length
+psedd8c_default:
+.line 140
+	invoke-super	{v1,v2},android/support/v4/app/FragmentActivity/onOptionsItemSelected	; onOptionsItemSelected(Landroid/view/MenuItem;)Z
+; v1 : Lcom/ipaulpro/afilechooser/FileChooserActivity; , v2 : Landroid/view/MenuItem;
+	move-result	v0
+; v0 : single-length
+ledd9a:
+	return	v0
+; v0 : single-length
+psedd8c_edd9c:
+.line 136
+	iget-object	v0,v1,com/ipaulpro/afilechooser/FileChooserActivity.mFragmentManager Landroid/support/v4/app/FragmentManager;
+; v0 : Landroid/support/v4/app/FragmentManager; , v1 : Lcom/ipaulpro/afilechooser/FileChooserActivity;
+	invoke-virtual	{v0},android/support/v4/app/FragmentManager/popBackStack	; popBackStack()V
+; v0 : Landroid/support/v4/app/FragmentManager;
+.line 137
+	const/4	v0,1
+; v0 : single-length
+	goto	ledd9a
+.line 134
+leddaa:	data-array
+		0x00, 0x00
+	end data-array
+.end method
+
+.method protected onPause()V
+.limit registers 1
+; this: v0 (Lcom/ipaulpro/afilechooser/FileChooserActivity;)
+.line 84
+	invoke-super	{v0},android/support/v4/app/FragmentActivity/onPause	; onPause()V
+; v0 : Lcom/ipaulpro/afilechooser/FileChooserActivity;
+.line 86
+	invoke-direct	{v0},com/ipaulpro/afilechooser/FileChooserActivity/unregisterStorageListener	; unregisterStorageListener()V
+; v0 : Lcom/ipaulpro/afilechooser/FileChooserActivity;
+.line 87
+	return-void	
+.end method
+
+.method protected onResume()V
+.limit registers 1
+; this: v0 (Lcom/ipaulpro/afilechooser/FileChooserActivity;)
+.line 91
+	invoke-super	{v0},android/support/v4/app/FragmentActivity/onResume	; onResume()V
+; v0 : Lcom/ipaulpro/afilechooser/FileChooserActivity;
+.line 93
+	invoke-direct	{v0},com/ipaulpro/afilechooser/FileChooserActivity/registerStorageListener	; registerStorageListener()V
+; v0 : Lcom/ipaulpro/afilechooser/FileChooserActivity;
+.line 94
+	return-void	
+.end method
+
+.method protected onSaveInstanceState(Landroid/os/Bundle;)V
+.limit registers 4
+; this: v2 (Lcom/ipaulpro/afilechooser/FileChooserActivity;)
+; parameter[0] : v3 (Landroid/os/Bundle;)
+.line 98
+	invoke-super	{v2,v3},android/support/v4/app/FragmentActivity/onSaveInstanceState	; onSaveInstanceState(Landroid/os/Bundle;)V
+; v2 : Lcom/ipaulpro/afilechooser/FileChooserActivity; , v3 : Landroid/os/Bundle;
+.line 100
+	const-string	v0,"path"
+; v0 : Ljava/lang/String;
+	iget-object	v1,v2,com/ipaulpro/afilechooser/FileChooserActivity.mPath Ljava/lang/String;
+; v1 : Ljava/lang/String; , v2 : Lcom/ipaulpro/afilechooser/FileChooserActivity;
+	invoke-virtual	{v3,v0,v1},android/os/Bundle/putString	; putString(Ljava/lang/String;Ljava/lang/String;)V
+; v3 : Landroid/os/Bundle; , v0 : Ljava/lang/String; , v1 : Ljava/lang/String;
+.line 101
+	return-void	
+.end method
+
+

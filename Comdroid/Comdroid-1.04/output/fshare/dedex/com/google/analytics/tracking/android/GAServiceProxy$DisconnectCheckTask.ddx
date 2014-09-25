@@ -1,0 +1,123 @@
+.class com/google/analytics/tracking/android/GAServiceProxy$DisconnectCheckTask
+.super java/util/TimerTask
+.source GAServiceProxy.java
+
+.inner class DisconnectCheckTask inner com/google/analytics/tracking/android/GAServiceProxy$DisconnectCheckTask outer com/google/analytics/tracking/android/GAServiceProxy
+.field final this$0 Lcom/google/analytics/tracking/android/GAServiceProxy;
+
+.method private <init>(Lcom/google/analytics/tracking/android/GAServiceProxy;)V
+.limit registers 2
+; this: v0 (Lcom/google/analytics/tracking/android/GAServiceProxy$DisconnectCheckTask;)
+; parameter[0] : v1 (Lcom/google/analytics/tracking/android/GAServiceProxy;)
+.line 419
+	iput-object	v1,v0,com/google/analytics/tracking/android/GAServiceProxy$DisconnectCheckTask.this$0 Lcom/google/analytics/tracking/android/GAServiceProxy;
+; v1 : Lcom/google/analytics/tracking/android/GAServiceProxy; , v0 : Lcom/google/analytics/tracking/android/GAServiceProxy$DisconnectCheckTask;
+	invoke-direct	{v0},java/util/TimerTask/<init>	; <init>()V
+; v0 : Lcom/google/analytics/tracking/android/GAServiceProxy$DisconnectCheckTask;
+	return-void	
+.end method
+
+.method <init>(Lcom/google/analytics/tracking/android/GAServiceProxy;Lcom/google/analytics/tracking/android/GAServiceProxy$1;)V
+.limit registers 3
+; this: v0 (Lcom/google/analytics/tracking/android/GAServiceProxy$DisconnectCheckTask;)
+; parameter[0] : v1 (Lcom/google/analytics/tracking/android/GAServiceProxy;)
+; parameter[1] : v2 (Lcom/google/analytics/tracking/android/GAServiceProxy$1;)
+.line 419
+	invoke-direct	{v0,v1},com/google/analytics/tracking/android/GAServiceProxy$DisconnectCheckTask/<init>	; <init>(Lcom/google/analytics/tracking/android/GAServiceProxy;)V
+; v0 : Lcom/google/analytics/tracking/android/GAServiceProxy$DisconnectCheckTask; , v1 : Lcom/google/analytics/tracking/android/GAServiceProxy;
+	return-void	
+.end method
+
+.method public run()V
+.limit registers 5
+; this: v4 (Lcom/google/analytics/tracking/android/GAServiceProxy$DisconnectCheckTask;)
+.line 422
+	iget-object	v0,v4,com/google/analytics/tracking/android/GAServiceProxy$DisconnectCheckTask.this$0 Lcom/google/analytics/tracking/android/GAServiceProxy;
+; v0 : Lcom/google/analytics/tracking/android/GAServiceProxy; , v4 : Lcom/google/analytics/tracking/android/GAServiceProxy$DisconnectCheckTask;
+	invoke-static	{v0},com/google/analytics/tracking/android/GAServiceProxy/access$400	; access$400(Lcom/google/analytics/tracking/android/GAServiceProxy;)Lcom/google/analytics/tracking/android/GAServiceProxy$ConnectState;
+; v0 : Lcom/google/analytics/tracking/android/GAServiceProxy;
+	move-result-object	v0
+; v0 : Lcom/google/analytics/tracking/android/GAServiceProxy$ConnectState;
+	sget-object	v1,com/google/analytics/tracking/android/GAServiceProxy$ConnectState.CONNECTED_SERVICE Lcom/google/analytics/tracking/android/GAServiceProxy$ConnectState;
+; v1 : Lcom/google/analytics/tracking/android/GAServiceProxy$ConnectState;
+	if-ne	v0,v1,la0ff0
+; v0 : Lcom/google/analytics/tracking/android/GAServiceProxy$ConnectState; , v1 : Lcom/google/analytics/tracking/android/GAServiceProxy$ConnectState;
+	iget-object	v0,v4,com/google/analytics/tracking/android/GAServiceProxy$DisconnectCheckTask.this$0 Lcom/google/analytics/tracking/android/GAServiceProxy;
+; v0 : Lcom/google/analytics/tracking/android/GAServiceProxy; , v4 : Lcom/google/analytics/tracking/android/GAServiceProxy$DisconnectCheckTask;
+	invoke-static	{v0},com/google/analytics/tracking/android/GAServiceProxy/access$700	; access$700(Lcom/google/analytics/tracking/android/GAServiceProxy;)Ljava/util/Queue;
+; v0 : Lcom/google/analytics/tracking/android/GAServiceProxy;
+	move-result-object	v0
+; v0 : Ljava/util/Queue;
+	invoke-interface	{v0},java/util/Queue/isEmpty	; isEmpty()Z
+; v0 : Ljava/util/Queue;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,la0ff0
+; v0 : single-length
+	iget-object	v0,v4,com/google/analytics/tracking/android/GAServiceProxy$DisconnectCheckTask.this$0 Lcom/google/analytics/tracking/android/GAServiceProxy;
+; v0 : Lcom/google/analytics/tracking/android/GAServiceProxy; , v4 : Lcom/google/analytics/tracking/android/GAServiceProxy$DisconnectCheckTask;
+	invoke-static	{v0},com/google/analytics/tracking/android/GAServiceProxy/access$800	; access$800(Lcom/google/analytics/tracking/android/GAServiceProxy;)J
+; v0 : Lcom/google/analytics/tracking/android/GAServiceProxy;
+	move-result-wide	v0
+; v0 : double-length
+	iget-object	v2,v4,com/google/analytics/tracking/android/GAServiceProxy$DisconnectCheckTask.this$0 Lcom/google/analytics/tracking/android/GAServiceProxy;
+; v2 : Lcom/google/analytics/tracking/android/GAServiceProxy; , v4 : Lcom/google/analytics/tracking/android/GAServiceProxy$DisconnectCheckTask;
+	invoke-static	{v2},com/google/analytics/tracking/android/GAServiceProxy/access$900	; access$900(Lcom/google/analytics/tracking/android/GAServiceProxy;)J
+; v2 : Lcom/google/analytics/tracking/android/GAServiceProxy;
+	move-result-wide	v2
+; v2 : double-length
+	add-long/2addr	v0,v2
+; v0 : double-length , v2 : double-length
+	iget-object	v2,v4,com/google/analytics/tracking/android/GAServiceProxy$DisconnectCheckTask.this$0 Lcom/google/analytics/tracking/android/GAServiceProxy;
+; v2 : Lcom/google/analytics/tracking/android/GAServiceProxy; , v4 : Lcom/google/analytics/tracking/android/GAServiceProxy$DisconnectCheckTask;
+	invoke-static	{v2},com/google/analytics/tracking/android/GAServiceProxy/access$1000	; access$1000(Lcom/google/analytics/tracking/android/GAServiceProxy;)Lcom/google/analytics/tracking/android/Clock;
+; v2 : Lcom/google/analytics/tracking/android/GAServiceProxy;
+	move-result-object	v2
+; v2 : Lcom/google/analytics/tracking/android/Clock;
+	invoke-interface	{v2},com/google/analytics/tracking/android/Clock/currentTimeMillis	; currentTimeMillis()J
+; v2 : Lcom/google/analytics/tracking/android/Clock;
+	move-result-wide	v2
+; v2 : double-length
+	cmp-long	v0,v0,v2
+; v0 : single-length , v0 : single-length , v2 : double-length
+	if-gez	v0,la0ff0
+; v0 : single-length
+.line 425
+	const-string	v0,"Disconnecting due to inactivity"
+; v0 : Ljava/lang/String;
+	invoke-static	{v0},com/google/analytics/tracking/android/Log/v	; v(Ljava/lang/String;)V
+; v0 : Ljava/lang/String;
+.line 426
+	iget-object	v0,v4,com/google/analytics/tracking/android/GAServiceProxy$DisconnectCheckTask.this$0 Lcom/google/analytics/tracking/android/GAServiceProxy;
+; v0 : Lcom/google/analytics/tracking/android/GAServiceProxy; , v4 : Lcom/google/analytics/tracking/android/GAServiceProxy$DisconnectCheckTask;
+	invoke-static	{v0},com/google/analytics/tracking/android/GAServiceProxy/access$1100	; access$1100(Lcom/google/analytics/tracking/android/GAServiceProxy;)V
+; v0 : Lcom/google/analytics/tracking/android/GAServiceProxy;
+la0fee:
+.line 430
+	return-void	
+la0ff0:
+.line 428
+	iget-object	v0,v4,com/google/analytics/tracking/android/GAServiceProxy$DisconnectCheckTask.this$0 Lcom/google/analytics/tracking/android/GAServiceProxy;
+; v0 : Lcom/google/analytics/tracking/android/GAServiceProxy; , v4 : Lcom/google/analytics/tracking/android/GAServiceProxy$DisconnectCheckTask;
+	invoke-static	{v0},com/google/analytics/tracking/android/GAServiceProxy/access$1200	; access$1200(Lcom/google/analytics/tracking/android/GAServiceProxy;)Ljava/util/Timer;
+; v0 : Lcom/google/analytics/tracking/android/GAServiceProxy;
+	move-result-object	v0
+; v0 : Ljava/util/Timer;
+	new-instance	v1,com/google/analytics/tracking/android/GAServiceProxy$DisconnectCheckTask
+; v1 : Lcom/google/analytics/tracking/android/GAServiceProxy$DisconnectCheckTask;
+	iget-object	v2,v4,com/google/analytics/tracking/android/GAServiceProxy$DisconnectCheckTask.this$0 Lcom/google/analytics/tracking/android/GAServiceProxy;
+; v2 : Lcom/google/analytics/tracking/android/GAServiceProxy; , v4 : Lcom/google/analytics/tracking/android/GAServiceProxy$DisconnectCheckTask;
+	invoke-direct	{v1,v2},com/google/analytics/tracking/android/GAServiceProxy$DisconnectCheckTask/<init>	; <init>(Lcom/google/analytics/tracking/android/GAServiceProxy;)V
+; v1 : Lcom/google/analytics/tracking/android/GAServiceProxy$DisconnectCheckTask; , v2 : Lcom/google/analytics/tracking/android/GAServiceProxy;
+	iget-object	v2,v4,com/google/analytics/tracking/android/GAServiceProxy$DisconnectCheckTask.this$0 Lcom/google/analytics/tracking/android/GAServiceProxy;
+; v2 : Lcom/google/analytics/tracking/android/GAServiceProxy; , v4 : Lcom/google/analytics/tracking/android/GAServiceProxy$DisconnectCheckTask;
+	invoke-static	{v2},com/google/analytics/tracking/android/GAServiceProxy/access$900	; access$900(Lcom/google/analytics/tracking/android/GAServiceProxy;)J
+; v2 : Lcom/google/analytics/tracking/android/GAServiceProxy;
+	move-result-wide	v2
+; v2 : double-length
+	invoke-virtual	{v0,v1,v2,v3},java/util/Timer/schedule	; schedule(Ljava/util/TimerTask;J)V
+; v0 : Ljava/util/Timer; , v1 : Lcom/google/analytics/tracking/android/GAServiceProxy$DisconnectCheckTask; , v2 : double-length
+	goto	la0fee
+.end method
+
+

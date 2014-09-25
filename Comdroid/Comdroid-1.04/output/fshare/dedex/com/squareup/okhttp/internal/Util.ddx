@@ -1,0 +1,1257 @@
+.class public final com/squareup/okhttp/internal/Util
+.super java/lang/Object
+.source Util.java
+
+.field private static final DIGITS [C
+.field public static final EMPTY_BYTE_ARRAY [B
+.field public static final EMPTY_STRING_ARRAY [Ljava/lang/String;
+.field public static final ISO_8859_1 Ljava/nio/charset/Charset;
+.field public static final US_ASCII Ljava/nio/charset/Charset;
+.field public static final UTF_8 Ljava/nio/charset/Charset;
+.field private static skipBuffer Ljava/util/concurrent/atomic/AtomicReference;
+  .annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "Ljava/util/concurrent/atomic/AtomicReference" , "<[B>;" }
+  .end annotation
+.end field
+
+.method static <clinit>()V
+.limit registers 2
+	const/4	v1,0
+; v1 : single-length
+.line 44
+	new-array	v0,v1,[B
+; v0 : [B , v1 : single-length
+	sput-object	v0,com/squareup/okhttp/internal/Util.EMPTY_BYTE_ARRAY [B
+; v0 : [B
+.line 45
+	new-array	v0,v1,[Ljava/lang/String;
+; v0 : [Ljava/lang/String; , v1 : single-length
+	sput-object	v0,com/squareup/okhttp/internal/Util.EMPTY_STRING_ARRAY [Ljava/lang/String;
+; v0 : [Ljava/lang/String;
+.line 48
+	const-string	v0,"ISO-8859-1"
+; v0 : Ljava/lang/String;
+	invoke-static	{v0},java/nio/charset/Charset/forName	; forName(Ljava/lang/String;)Ljava/nio/charset/Charset;
+; v0 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/nio/charset/Charset;
+	sput-object	v0,com/squareup/okhttp/internal/Util.ISO_8859_1 Ljava/nio/charset/Charset;
+; v0 : Ljava/nio/charset/Charset;
+.line 51
+	const-string	v0,"US-ASCII"
+; v0 : Ljava/lang/String;
+	invoke-static	{v0},java/nio/charset/Charset/forName	; forName(Ljava/lang/String;)Ljava/nio/charset/Charset;
+; v0 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/nio/charset/Charset;
+	sput-object	v0,com/squareup/okhttp/internal/Util.US_ASCII Ljava/nio/charset/Charset;
+; v0 : Ljava/nio/charset/Charset;
+.line 54
+	const-string	v0,"UTF-8"
+; v0 : Ljava/lang/String;
+	invoke-static	{v0},java/nio/charset/Charset/forName	; forName(Ljava/lang/String;)Ljava/nio/charset/Charset;
+; v0 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/nio/charset/Charset;
+	sput-object	v0,com/squareup/okhttp/internal/Util.UTF_8 Ljava/nio/charset/Charset;
+; v0 : Ljava/nio/charset/Charset;
+.line 55
+	new-instance	v0,java/util/concurrent/atomic/AtomicReference
+; v0 : Ljava/util/concurrent/atomic/AtomicReference;
+	invoke-direct	{v0},java/util/concurrent/atomic/AtomicReference/<init>	; <init>()V
+; v0 : Ljava/util/concurrent/atomic/AtomicReference;
+	sput-object	v0,com/squareup/okhttp/internal/Util.skipBuffer Ljava/util/concurrent/atomic/AtomicReference;
+; v0 : Ljava/util/concurrent/atomic/AtomicReference;
+.line 57
+	const/16	v0,16
+; v0 : single-length
+	new-array	v0,v0,[C
+; v0 : [C , v0 : [C
+	fill-array-data	v0,lb8a7c
+; v0 : [C
+	sput-object	v0,com/squareup/okhttp/internal/Util.DIGITS [C
+; v0 : [C
+	return-void	
+lb8a7c:	data-array
+		0x30, 0x00	; #0
+		0x31, 0x00	; #1
+		0x32, 0x00	; #2
+		0x33, 0x00	; #3
+		0x34, 0x00	; #4
+		0x35, 0x00	; #5
+		0x36, 0x00	; #6
+		0x37, 0x00	; #7
+		0x38, 0x00	; #8
+		0x39, 0x00	; #9
+		0x61, 0x00	; #10
+		0x62, 0x00	; #11
+		0x63, 0x00	; #12
+		0x64, 0x00	; #13
+		0x65, 0x00	; #14
+		0x66, 0x00	; #15
+	end data-array
+.end method
+
+.method private <init>()V
+.limit registers 1
+; this: v0 (Lcom/squareup/okhttp/internal/Util;)
+.line 60
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Lcom/squareup/okhttp/internal/Util;
+.line 61
+	return-void	
+.end method
+
+.method private static bytesToHexString([B)Ljava/lang/String;
+.limit registers 10
+; parameter[0] : v9 ([B)
+.var 3 is c I from lb8adc to lb8ae4
+.var 4 is c I from lb8ae4 to lb8af0
+.var 3 is c I from lb8af0 to lb8b04
+.var 1 is b B from lb8aec to lb8b16
+.line 370
+	sget-object	v5,com/squareup/okhttp/internal/Util.DIGITS [C
+; v5 : [C
+.line 371
+	array-length	v8,v9
+; v8 : single-length , v9 : [B
+	mul-int/lit-8	v8,v8,2
+; v8 : single-length , v8 : single-length
+	new-array	v2,v8,[C
+; v2 : [C , v8 : single-length
+.line 372
+	const/4	v3,0
+; v3 : single-length
+.line 373
+	move-object	v0,v9
+; v0 : [B , v9 : [B
+	array-length	v7,v0
+; v7 : single-length , v0 : [B
+	const/4	v6,0
+; v6 : single-length
+	move	v4,v3
+; v4 : single-length , v3 : single-length
+lb8ae4:
+	if-ge	v6,v7,lb8b16
+; v6 : single-length , v7 : single-length
+	aget-byte	v1,v0,v6
+; v1 : single-length , v0 : [B , v6 : single-length
+.line 374
+	add-int/lit8	v3,v4,1
+; v3 : single-length , v4 : single-length
+lb8af0:
+	shr-int/lit8	v8,v1,4
+; v8 : single-length , v1 : single-length
+	and-int/lit8	v8,v8,15
+; v8 : single-length , v8 : single-length
+	aget-char	v8,v5,v8
+; v8 : single-length , v5 : [C , v8 : single-length
+	aput-char	v8,v2,v4
+; v8 : single-length , v2 : [C , v4 : single-length
+.line 375
+	add-int/lit8	v4,v3,1
+; v4 : single-length , v3 : single-length
+lb8b04:
+	and-int/lit8	v8,v1,15
+; v8 : single-length , v1 : single-length
+	aget-char	v8,v5,v8
+; v8 : single-length , v5 : [C , v8 : single-length
+	aput-char	v8,v2,v3
+; v8 : single-length , v2 : [C , v3 : single-length
+.line 373
+	add-int/lit8	v6,v6,1
+; v6 : single-length , v6 : single-length
+	goto	lb8ae4
+lb8b16:
+.line 377
+	new-instance	v8,java/lang/String
+; v8 : Ljava/lang/String;
+	invoke-direct	{v8,v2},java/lang/String/<init>	; <init>([C)V
+; v8 : Ljava/lang/String; , v2 : [C
+	return-object	v8
+; v8 : Ljava/lang/String;
+.end method
+
+.method public static checkOffsetAndCount(III)V
+.limit registers 4
+; parameter[0] : v1 (I)
+; parameter[1] : v2 (I)
+; parameter[2] : v3 (I)
+.line 86
+	or-int	v0,v2,v3
+; v0 : single-length , v2 : single-length , v3 : single-length
+	if-ltz	v0,lb8b48
+; v0 : single-length
+	if-gt	v2,v1,lb8b48
+; v2 : single-length , v1 : single-length
+	sub-int	v0,v1,v2
+; v0 : single-length , v1 : single-length , v2 : single-length
+	if-ge	v0,v3,lb8b54
+; v0 : single-length , v3 : single-length
+lb8b48:
+.line 87
+	new-instance	v0,java/lang/ArrayIndexOutOfBoundsException
+; v0 : Ljava/lang/ArrayIndexOutOfBoundsException;
+	invoke-direct	{v0},java/lang/ArrayIndexOutOfBoundsException/<init>	; <init>()V
+; v0 : Ljava/lang/ArrayIndexOutOfBoundsException;
+	throw	v0
+; v0 : Ljava/lang/ArrayIndexOutOfBoundsException;
+lb8b54:
+.line 89
+	return-void	
+.end method
+
+.method public static closeAll(Ljava/io/Closeable;Ljava/io/Closeable;)V
+.throws Ljava/io/IOException;
+.limit registers 5
+; parameter[0] : v3 (Ljava/io/Closeable;)
+; parameter[1] : v4 (Ljava/io/Closeable;)
+.catch java/lang/Throwable from lb8b70 to lb8b76 using lb8b82
+.catch java/lang/Throwable from lb8b6a to lb8b70 using lb8b7c
+.var 0 is e Ljava/lang/Throwable; from lb8b7e to lb8b82
+.var 0 is e Ljava/lang/Throwable; from lb8b84 to lb8b8c
+.var 1 is thrown Ljava/lang/Throwable; from lb8b6a to lb8b98
+.var 1 is thrown Ljava/lang/Throwable; from lb8b9a to lb8ba6
+.var 1 is thrown Ljava/lang/Throwable; from lb8ba8 to lb8bb4
+.line 160
+	const/4	v1,0
+; v1 : single-length
+lb8b6a:
+.line 162
+	invoke-interface	{v3},java/io/Closeable/close	; close()V
+; v3 : Ljava/io/Closeable;
+lb8b70:
+.line 167
+	invoke-interface	{v4},java/io/Closeable/close	; close()V
+; v4 : Ljava/io/Closeable;
+lb8b76:
+.line 171
+	if-nez	v1,lb8b8c
+; v1 : java/lang/Throwable
+	return-void	
+lb8b7c:
+.line 163
+	move-exception	v0
+; v0 : java/lang/Throwable
+.line 164
+	move-object	v1,v0
+; v1 : java/lang/Throwable , v0 : java/lang/Throwable
+	goto	lb8b70
+lb8b82:
+.line 168
+	move-exception	v0
+; v0 : java/lang/Throwable
+.line 169
+	if-nez	v1,lb8b76
+; v1 : single-length
+	move-object	v1,v0
+; v1 : java/lang/Throwable , v0 : java/lang/Throwable
+	goto	lb8b76
+lb8b8c:
+.line 172
+	instance-of	v2,v1,java/io/IOException
+; v2 : single-length , v1 : java/lang/Throwable
+	if-eqz	v2,lb8b9a
+; v2 : single-length
+	check-cast	v1,java/io/IOException
+; v1 : Ljava/io/IOException;
+lb8b98:
+	throw	v1
+; v1 : Ljava/io/IOException;
+lb8b9a:
+.line 173
+	instance-of	v2,v1,java/lang/RuntimeException
+; v2 : single-length , v1 : java/lang/Throwable
+	if-eqz	v2,lb8ba8
+; v2 : single-length
+	check-cast	v1,java/lang/RuntimeException
+; v1 : Ljava/lang/RuntimeException;
+lb8ba6:
+	throw	v1
+; v1 : Ljava/lang/RuntimeException;
+lb8ba8:
+.line 174
+	instance-of	v2,v1,java/lang/Error
+; v2 : single-length , v1 : java/lang/Throwable
+	if-eqz	v2,lb8bb6
+; v2 : single-length
+	check-cast	v1,java/lang/Error
+; v1 : Ljava/lang/Error;
+lb8bb4:
+	throw	v1
+; v1 : Ljava/lang/Error;
+lb8bb6:
+.line 175
+	new-instance	v2,java/lang/AssertionError
+; v2 : Ljava/lang/AssertionError;
+	invoke-direct	{v2,v1},java/lang/AssertionError/<init>	; <init>(Ljava/lang/Object;)V
+; v2 : Ljava/lang/AssertionError; , v1 : java/lang/Throwable
+	throw	v2
+; v2 : Ljava/lang/AssertionError;
+.end method
+
+.method public static closeQuietly(Ljava/io/Closeable;)V
+.limit registers 3
+; parameter[0] : v2 (Ljava/io/Closeable;)
+.catch java/lang/RuntimeException from lb8bf4 to lb8bfa using lb8bfc
+.catch java/lang/Exception from lb8bf4 to lb8bfa using lb8c00
+.var 0 is rethrown Ljava/lang/RuntimeException; from lb8bfe to lb8c00
+.line 115
+	if-eqz	v2,lb8bfa
+; v2 : Ljava/io/Closeable;
+lb8bf4:
+.line 117
+	invoke-interface	{v2},java/io/Closeable/close	; close()V
+; v2 : Ljava/io/Closeable;
+lb8bfa:
+.line 123
+	return-void	
+lb8bfc:
+.line 118
+	move-exception	v0
+; v0 : java/lang/RuntimeException
+.line 119
+	throw	v0
+; v0 : java/lang/RuntimeException
+lb8c00:
+.line 120
+	move-exception	v1
+; v1 : java/lang/Exception
+	goto	lb8bfa
+.end method
+
+.method public static closeQuietly(Ljava/net/ServerSocket;)V
+.limit registers 3
+; parameter[0] : v2 (Ljava/net/ServerSocket;)
+.catch java/lang/RuntimeException from lb8c28 to lb8c2e using lb8c30
+.catch java/lang/Exception from lb8c28 to lb8c2e using lb8c34
+.var 0 is rethrown Ljava/lang/RuntimeException; from lb8c32 to lb8c34
+.line 145
+	if-eqz	v2,lb8c2e
+; v2 : Ljava/net/ServerSocket;
+lb8c28:
+.line 147
+	invoke-virtual	{v2},java/net/ServerSocket/close	; close()V
+; v2 : Ljava/net/ServerSocket;
+lb8c2e:
+.line 153
+	return-void	
+lb8c30:
+.line 148
+	move-exception	v0
+; v0 : java/lang/RuntimeException
+.line 149
+	throw	v0
+; v0 : java/lang/RuntimeException
+lb8c34:
+.line 150
+	move-exception	v1
+; v1 : java/lang/Exception
+	goto	lb8c2e
+.end method
+
+.method public static closeQuietly(Ljava/net/Socket;)V
+.limit registers 3
+; parameter[0] : v2 (Ljava/net/Socket;)
+.catch java/lang/RuntimeException from lb8c5c to lb8c62 using lb8c64
+.catch java/lang/Exception from lb8c5c to lb8c62 using lb8c68
+.var 0 is rethrown Ljava/lang/RuntimeException; from lb8c66 to lb8c68
+.line 130
+	if-eqz	v2,lb8c62
+; v2 : Ljava/net/Socket;
+lb8c5c:
+.line 132
+	invoke-virtual	{v2},java/net/Socket/close	; close()V
+; v2 : Ljava/net/Socket;
+lb8c62:
+.line 138
+	return-void	
+lb8c64:
+.line 133
+	move-exception	v0
+; v0 : java/lang/RuntimeException
+.line 134
+	throw	v0
+; v0 : java/lang/RuntimeException
+lb8c68:
+.line 135
+	move-exception	v1
+; v1 : java/lang/Exception
+	goto	lb8c62
+.end method
+
+.method public static copy(Ljava/io/InputStream;Ljava/io/OutputStream;)I
+.throws Ljava/io/IOException;
+.limit registers 6
+; parameter[0] : v4 (Ljava/io/InputStream;)
+; parameter[1] : v5 (Ljava/io/OutputStream;)
+.line 319
+	const/4	v2,0
+; v2 : single-length
+.line 320
+	const/16	v3,8192
+; v3 : single-length
+	new-array	v0,v3,[B
+; v0 : [B , v3 : single-length
+lb8c96:
+.line 322
+	invoke-virtual	{v4,v0},java/io/InputStream/read	; read([B)I
+; v4 : Ljava/io/InputStream; , v0 : [B
+	move-result	v1
+; v1 : single-length
+	const/4	v3,15
+; v3 : single-length
+	if-eq	v1,v3,lb8cb0
+; v1 : single-length , v3 : single-length
+.line 323
+	add-int/2addr	v2,v1
+; v2 : single-length , v1 : single-length
+.line 324
+	const/4	v3,0
+; v3 : single-length
+	invoke-virtual	{v5,v0,v3,v1},java/io/OutputStream/write	; write([BII)V
+; v5 : Ljava/io/OutputStream; , v0 : [B , v3 : single-length , v1 : single-length
+	goto	lb8c96
+lb8cb0:
+.line 326
+	return	v2
+; v2 : single-length
+.end method
+
+.method public static daemonThreadFactory(Ljava/lang/String;)Ljava/util/concurrent/ThreadFactory;
+.limit registers 2
+; parameter[0] : v1 (Ljava/lang/String;)
+.line 386
+	new-instance	v0,com/squareup/okhttp/internal/Util$1
+; v0 : Lcom/squareup/okhttp/internal/Util$1;
+	invoke-direct	{v0,v1},com/squareup/okhttp/internal/Util$1/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Lcom/squareup/okhttp/internal/Util$1; , v1 : Ljava/lang/String;
+	return-object	v0
+; v0 : Lcom/squareup/okhttp/internal/Util$1;
+.end method
+
+.method public static deleteContents(Ljava/io/File;)V
+.throws Ljava/io/IOException;
+.limit registers 9
+; parameter[0] : v8 (Ljava/io/File;)
+.var 1 is file Ljava/io/File; from lb8d2c to lb8d82
+.line 183
+	invoke-virtual	{v8},java/io/File/listFiles	; listFiles()[Ljava/io/File;
+; v8 : Ljava/io/File;
+	move-result-object	v2
+; v2 : [Ljava/io/File;
+.line 184
+	if-nez	v2,lb8d1e
+; v2 : [Ljava/io/File;
+.line 185
+	new-instance	v5,java/io/IOException
+; v5 : Ljava/io/IOException;
+	new-instance	v6,java/lang/StringBuilder
+; v6 : Ljava/lang/StringBuilder;
+	invoke-direct	{v6},java/lang/StringBuilder/<init>	; <init>()V
+; v6 : Ljava/lang/StringBuilder;
+	const-string	v7,"not a readable directory: "
+; v7 : Ljava/lang/String;
+	invoke-virtual	{v6,v7},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v6 : Ljava/lang/StringBuilder; , v7 : Ljava/lang/String;
+	move-result-object	v6
+; v6 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v6,v8},java/lang/StringBuilder/append	; append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+; v6 : Ljava/lang/StringBuilder; , v8 : Ljava/io/File;
+	move-result-object	v6
+; v6 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v6},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v6 : Ljava/lang/StringBuilder;
+	move-result-object	v6
+; v6 : Ljava/lang/String;
+	invoke-direct	{v5,v6},java/io/IOException/<init>	; <init>(Ljava/lang/String;)V
+; v5 : Ljava/io/IOException; , v6 : Ljava/lang/String;
+	throw	v5
+; v5 : Ljava/io/IOException;
+lb8d1e:
+.line 187
+	move-object	v0,v2
+; v0 : [Ljava/io/File; , v2 : [Ljava/io/File;
+	array-length	v4,v0
+; v4 : single-length , v0 : [Ljava/io/File;
+	const/4	v3,0
+; v3 : single-length
+lb8d24:
+	if-ge	v3,v4,lb8d82
+; v3 : single-length , v4 : single-length
+	aget-object	v1,v0,v3
+; v1 : Ljava/io/File; , v0 : [Ljava/io/File; , v3 : single-length
+.line 188
+	invoke-virtual	{v1},java/io/File/isDirectory	; isDirectory()Z
+; v1 : Ljava/io/File;
+	move-result	v5
+; v5 : single-length
+	if-eqz	v5,lb8d3e
+; v5 : single-length
+.line 189
+	invoke-static	{v1},com/squareup/okhttp/internal/Util/deleteContents	; deleteContents(Ljava/io/File;)V
+; v1 : Ljava/io/File;
+lb8d3e:
+.line 191
+	invoke-virtual	{v1},java/io/File/delete	; delete()Z
+; v1 : Ljava/io/File;
+	move-result	v5
+; v5 : single-length
+	if-nez	v5,lb8d7c
+; v5 : single-length
+.line 192
+	new-instance	v5,java/io/IOException
+; v5 : Ljava/io/IOException;
+	new-instance	v6,java/lang/StringBuilder
+; v6 : Ljava/lang/StringBuilder;
+	invoke-direct	{v6},java/lang/StringBuilder/<init>	; <init>()V
+; v6 : Ljava/lang/StringBuilder;
+	const-string	v7,"failed to delete file: "
+; v7 : Ljava/lang/String;
+	invoke-virtual	{v6,v7},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v6 : Ljava/lang/StringBuilder; , v7 : Ljava/lang/String;
+	move-result-object	v6
+; v6 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v6,v1},java/lang/StringBuilder/append	; append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+; v6 : Ljava/lang/StringBuilder; , v1 : Ljava/io/File;
+	move-result-object	v6
+; v6 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v6},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v6 : Ljava/lang/StringBuilder;
+	move-result-object	v6
+; v6 : Ljava/lang/String;
+	invoke-direct	{v5,v6},java/io/IOException/<init>	; <init>(Ljava/lang/String;)V
+; v5 : Ljava/io/IOException; , v6 : Ljava/lang/String;
+	throw	v5
+; v5 : Ljava/io/IOException;
+lb8d7c:
+.line 187
+	add-int/lit8	v3,v3,1
+; v3 : single-length , v3 : single-length
+	goto	lb8d24
+lb8d82:
+.line 195
+	return-void	
+.end method
+
+.method public static equal(Ljava/lang/Object;Ljava/lang/Object;)Z
+.limit registers 3
+; parameter[0] : v1 (Ljava/lang/Object;)
+; parameter[1] : v2 (Ljava/lang/Object;)
+.line 107
+	if-eq	v1,v2,lb8da8
+; v1 : Ljava/lang/Object; , v2 : Ljava/lang/Object;
+	if-eqz	v1,lb8dac
+; v1 : Ljava/lang/Object;
+	invoke-virtual	{v1,v2},java/lang/Object/equals	; equals(Ljava/lang/Object;)Z
+; v1 : Ljava/lang/Object; , v2 : Ljava/lang/Object;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,lb8dac
+; v0 : single-length
+lb8da8:
+	const/4	v0,1
+; v0 : single-length
+lb8daa:
+	return	v0
+; v0 : single-length
+lb8dac:
+	const/4	v0,0
+; v0 : single-length
+	goto	lb8daa
+.end method
+
+.method public static getDefaultPort(Ljava/lang/String;)I
+.limit registers 2
+; parameter[0] : v1 (Ljava/lang/String;)
+.line 76
+	const-string	v0,"http"
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/String/equalsIgnoreCase	; equalsIgnoreCase(Ljava/lang/String;)Z
+; v0 : Ljava/lang/String; , v1 : Ljava/lang/String;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,lb8dd6
+; v0 : single-length
+.line 77
+	const/16	v0,80
+; v0 : single-length
+lb8dd4:
+.line 81
+	return	v0
+; v0 : single-length
+lb8dd6:
+.line 78
+	const-string	v0,"https"
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/String/equalsIgnoreCase	; equalsIgnoreCase(Ljava/lang/String;)Z
+; v0 : Ljava/lang/String; , v1 : Ljava/lang/String;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,lb8dec
+; v0 : single-length
+.line 79
+	const/16	v0,443
+; v0 : single-length
+	goto	lb8dd4
+lb8dec:
+.line 81
+	const/4	v0,15
+; v0 : single-length
+	goto	lb8dd4
+.end method
+
+.method private static getEffectivePort(Ljava/lang/String;I)I
+.limit registers 3
+; parameter[0] : v1 (Ljava/lang/String;)
+; parameter[1] : v2 (I)
+.line 72
+	const/4	v0,15
+; v0 : single-length
+	if-eq	v2,v0,lb8e08
+; v2 : single-length , v0 : single-length
+lb8e06:
+	return	v2
+; v2 : single-length
+lb8e08:
+	invoke-static	{v1},com/squareup/okhttp/internal/Util/getDefaultPort	; getDefaultPort(Ljava/lang/String;)I
+; v1 : Ljava/lang/String;
+	move-result	v2
+; v2 : single-length
+	goto	lb8e06
+.end method
+
+.method public static getEffectivePort(Ljava/net/URI;)I
+.limit registers 3
+; parameter[0] : v2 (Ljava/net/URI;)
+.line 64
+	invoke-virtual	{v2},java/net/URI/getScheme	; getScheme()Ljava/lang/String;
+; v2 : Ljava/net/URI;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v2},java/net/URI/getPort	; getPort()I
+; v2 : Ljava/net/URI;
+	move-result	v1
+; v1 : single-length
+	invoke-static	{v0,v1},com/squareup/okhttp/internal/Util/getEffectivePort	; getEffectivePort(Ljava/lang/String;I)I
+; v0 : Ljava/lang/String; , v1 : single-length
+	move-result	v0
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public static getEffectivePort(Ljava/net/URL;)I
+.limit registers 3
+; parameter[0] : v2 (Ljava/net/URL;)
+.line 68
+	invoke-virtual	{v2},java/net/URL/getProtocol	; getProtocol()Ljava/lang/String;
+; v2 : Ljava/net/URL;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v2},java/net/URL/getPort	; getPort()I
+; v2 : Ljava/net/URL;
+	move-result	v1
+; v1 : single-length
+	invoke-static	{v0,v1},com/squareup/okhttp/internal/Util/getEffectivePort	; getEffectivePort(Ljava/lang/String;I)I
+; v0 : Ljava/lang/String; , v1 : single-length
+	move-result	v0
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public static hash(Ljava/lang/String;)Ljava/lang/String;
+.limit registers 5
+; parameter[0] : v4 (Ljava/lang/String;)
+.catch java/security/NoSuchAlgorithmException from lb8e7c to lb8ea2 using lb8ea6
+.catch java/io/UnsupportedEncodingException from lb8e7c to lb8ea2 using lb8eb4
+.var 1 is md5bytes [B from lb8e9c to lb8ea6
+.var 2 is messageDigest Ljava/security/MessageDigest; from lb8e88 to lb8ea6
+.var 0 is e Ljava/security/NoSuchAlgorithmException; from lb8ea8 to lb8eb4
+lb8e7c:
+.line 359
+	const-string	v3,"MD5"
+; v3 : Ljava/lang/String;
+	invoke-static	{v3},java/security/MessageDigest/getInstance	; getInstance(Ljava/lang/String;)Ljava/security/MessageDigest;
+; v3 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/security/MessageDigest;
+.line 360
+	const-string	v3,"UTF-8"
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v4,v3},java/lang/String/getBytes	; getBytes(Ljava/lang/String;)[B
+; v4 : Ljava/lang/String; , v3 : Ljava/lang/String;
+	move-result-object	v3
+; v3 : [B
+	invoke-virtual	{v2,v3},java/security/MessageDigest/digest	; digest([B)[B
+; v2 : Ljava/security/MessageDigest; , v3 : [B
+	move-result-object	v1
+; v1 : [B
+.line 361
+	invoke-static	{v1},com/squareup/okhttp/internal/Util/bytesToHexString	; bytesToHexString([B)Ljava/lang/String;
+; v1 : [B
+lb8ea2:
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	return-object	v3
+; v3 : Ljava/lang/String;
+lb8ea6:
+.line 362
+	move-exception	v0
+; v0 : java/security/NoSuchAlgorithmException
+.line 363
+	new-instance	v3,java/lang/AssertionError
+; v3 : Ljava/lang/AssertionError;
+	invoke-direct	{v3,v0},java/lang/AssertionError/<init>	; <init>(Ljava/lang/Object;)V
+; v3 : Ljava/lang/AssertionError; , v0 : java/security/NoSuchAlgorithmException
+	throw	v3
+; v3 : Ljava/lang/AssertionError;
+lb8eb4:
+.line 364
+	move-exception	v0
+; v0 : java/io/UnsupportedEncodingException
+.line 365
+	new-instance	v3,java/lang/AssertionError
+; v3 : Ljava/lang/AssertionError;
+	invoke-direct	{v3,v0},java/lang/AssertionError/<init>	; <init>(Ljava/lang/Object;)V
+; v3 : Ljava/lang/AssertionError; , v0 : java/io/UnsupportedEncodingException
+	throw	v3
+; v3 : Ljava/lang/AssertionError;
+.end method
+
+.method public static immutableList(Ljava/util/List;)Ljava/util/List;
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "<T:" , "Ljava/lang/Object;" , ">(" , "Ljava/util/List" , "<TT;>;)" , "Ljava/util/List" , "<TT;>;" }
+.end annotation
+.limit registers 2
+; parameter[0] : v1 (Ljava/util/List;)
+.line 382
+	new-instance	v0,java/util/ArrayList
+; v0 : Ljava/util/ArrayList;
+	invoke-direct	{v0,v1},java/util/ArrayList/<init>	; <init>(Ljava/util/Collection;)V
+; v0 : Ljava/util/ArrayList; , v1 : Ljava/util/List;
+	invoke-static	{v0},java/util/Collections/unmodifiableList	; unmodifiableList(Ljava/util/List;)Ljava/util/List;
+; v0 : Ljava/util/ArrayList;
+	move-result-object	v0
+; v0 : Ljava/util/List;
+	return-object	v0
+; v0 : Ljava/util/List;
+.end method
+
+.method public static pokeInt([BIILjava/nio/ByteOrder;)V
+.limit registers 6
+; parameter[0] : v2 ([B)
+; parameter[1] : v3 (I)
+; parameter[2] : v4 (I)
+; parameter[3] : v5 (Ljava/nio/ByteOrder;)
+.var 0 is offset I from lb8f14 to lb8f26
+.var 0 is offset I from lb8f38 to lb8f56
+.var 0 is offset I from lb8f5c to lb8f6e
+.var 0 is offset I from lb8f80 to lb8f9e
+.line 92
+	sget-object	v1,java/nio/ByteOrder.BIG_ENDIAN Ljava/nio/ByteOrder;
+; v1 : Ljava/nio/ByteOrder;
+	if-ne	v5,v1,lb8f58
+; v5 : Ljava/nio/ByteOrder; , v1 : Ljava/nio/ByteOrder;
+.line 93
+	add-int/lit8	v0,v3,1
+; v0 : single-length , v3 : single-length
+lb8f14:
+	shr-int/lit8	v1,v4,24
+; v1 : single-length , v4 : single-length
+	and-int/lit16	v1,v1,255
+; v1 : single-length , v1 : single-length
+	int-to-byte	v1,v1
+; v1 : single-length , v1 : single-length
+	aput-byte	v1,v2,v3
+; v1 : single-length , v2 : [B , v3 : single-length
+.line 94
+	add-int/lit8	v3,v0,1
+; v3 : single-length , v0 : single-length
+lb8f26:
+	shr-int/lit8	v1,v4,16
+; v1 : single-length , v4 : single-length
+	and-int/lit16	v1,v1,255
+; v1 : single-length , v1 : single-length
+	int-to-byte	v1,v1
+; v1 : single-length , v1 : single-length
+	aput-byte	v1,v2,v0
+; v1 : single-length , v2 : [B , v0 : single-length
+.line 95
+	add-int/lit8	v0,v3,1
+; v0 : single-length , v3 : single-length
+lb8f38:
+	shr-int/lit8	v1,v4,8
+; v1 : single-length , v4 : single-length
+	and-int/lit16	v1,v1,255
+; v1 : single-length , v1 : single-length
+	int-to-byte	v1,v1
+; v1 : single-length , v1 : single-length
+	aput-byte	v1,v2,v3
+; v1 : single-length , v2 : [B , v3 : single-length
+.line 96
+	shr-int/lit8	v1,v4,0
+; v1 : single-length , v4 : single-length
+	and-int/lit16	v1,v1,255
+; v1 : single-length , v1 : single-length
+	int-to-byte	v1,v1
+; v1 : single-length , v1 : single-length
+	aput-byte	v1,v2,v0
+; v1 : single-length , v2 : [B , v0 : single-length
+	move	v3,v0
+; v3 : single-length , v0 : single-length
+lb8f56:
+.line 103
+	return-void	
+lb8f58:
+.line 98
+	add-int/lit8	v0,v3,1
+; v0 : single-length , v3 : single-length
+lb8f5c:
+	shr-int/lit8	v1,v4,0
+; v1 : single-length , v4 : single-length
+	and-int/lit16	v1,v1,255
+; v1 : single-length , v1 : single-length
+	int-to-byte	v1,v1
+; v1 : single-length , v1 : single-length
+	aput-byte	v1,v2,v3
+; v1 : single-length , v2 : [B , v3 : single-length
+.line 99
+	add-int/lit8	v3,v0,1
+; v3 : single-length , v0 : single-length
+lb8f6e:
+	shr-int/lit8	v1,v4,8
+; v1 : single-length , v4 : single-length
+	and-int/lit16	v1,v1,255
+; v1 : single-length , v1 : single-length
+	int-to-byte	v1,v1
+; v1 : single-length , v1 : single-length
+	aput-byte	v1,v2,v0
+; v1 : single-length , v2 : [B , v0 : single-length
+.line 100
+	add-int/lit8	v0,v3,1
+; v0 : single-length , v3 : single-length
+lb8f80:
+	shr-int/lit8	v1,v4,16
+; v1 : single-length , v4 : single-length
+	and-int/lit16	v1,v1,255
+; v1 : single-length , v1 : single-length
+	int-to-byte	v1,v1
+; v1 : single-length , v1 : single-length
+	aput-byte	v1,v2,v3
+; v1 : single-length , v2 : [B , v3 : single-length
+.line 101
+	shr-int/lit8	v1,v4,24
+; v1 : single-length , v4 : single-length
+	and-int/lit16	v1,v1,255
+; v1 : single-length , v1 : single-length
+	int-to-byte	v1,v1
+; v1 : single-length , v1 : single-length
+	aput-byte	v1,v2,v0
+; v1 : single-length , v2 : [B , v0 : single-length
+	move	v3,v0
+; v3 : single-length , v0 : single-length
+lb8f9e:
+	goto	lb8f56
+.end method
+
+.method public static readAsciiLine(Ljava/io/InputStream;)Ljava/lang/String;
+.throws Ljava/io/IOException;
+.limit registers 6
+; parameter[0] : v5 (Ljava/io/InputStream;)
+.var 1 is length I from lb8fe8 to lb9014
+.line 338
+	new-instance	v2,java/lang/StringBuilder
+; v2 : Ljava/lang/StringBuilder;
+	const/16	v3,80
+; v3 : single-length
+	invoke-direct	{v2,v3},java/lang/StringBuilder/<init>	; <init>(I)V
+; v2 : Ljava/lang/StringBuilder; , v3 : single-length
+lb8fbe:
+.line 340
+	invoke-virtual	{v5},java/io/InputStream/read	; read()I
+; v5 : Ljava/io/InputStream;
+	move-result	v0
+; v0 : single-length
+.line 341
+	const/4	v3,15
+; v3 : single-length
+	if-ne	v0,v3,lb8fd8
+; v0 : single-length , v3 : single-length
+.line 342
+	new-instance	v3,java/io/EOFException
+; v3 : Ljava/io/EOFException;
+	invoke-direct	{v3},java/io/EOFException/<init>	; <init>()V
+; v3 : Ljava/io/EOFException;
+	throw	v3
+; v3 : Ljava/io/EOFException;
+lb8fd8:
+.line 343
+	const/16	v3,10
+; v3 : single-length
+	if-ne	v0,v3,lb9014
+; v0 : single-length , v3 : single-length
+.line 349
+	invoke-virtual	{v2},java/lang/StringBuilder/length	; length()I
+; v2 : Ljava/lang/StringBuilder;
+	move-result	v1
+; v1 : single-length
+.line 350
+	if-lez	v1,lb900a
+; v1 : single-length
+	add-int/lit8	v3,v1,255
+; v3 : single-length , v1 : single-length
+	invoke-virtual	{v2,v3},java/lang/StringBuilder/charAt	; charAt(I)C
+; v2 : Ljava/lang/StringBuilder; , v3 : single-length
+	move-result	v3
+; v3 : single-length
+	const/16	v4,13
+; v4 : single-length
+	if-ne	v3,v4,lb900a
+; v3 : single-length , v4 : single-length
+.line 351
+	add-int/lit8	v3,v1,255
+; v3 : single-length , v1 : single-length
+	invoke-virtual	{v2,v3},java/lang/StringBuilder/setLength	; setLength(I)V
+; v2 : Ljava/lang/StringBuilder; , v3 : single-length
+lb900a:
+.line 353
+	invoke-virtual	{v2},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v2 : Ljava/lang/StringBuilder;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	return-object	v3
+; v3 : Ljava/lang/String;
+lb9014:
+.line 347
+	int-to-char	v3,v0
+; v3 : single-length , v0 : single-length
+	invoke-virtual	{v2,v3},java/lang/StringBuilder/append	; append(C)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v3 : single-length
+	goto	lb8fbe
+.end method
+
+.method public static readFully(Ljava/io/Reader;)Ljava/lang/String;
+.throws Ljava/io/IOException;
+.limit registers 5
+; parameter[0] : v4 (Ljava/io/Reader;)
+.catch java/lang/Exception from lb9064 to lb906a using lb905a
+.catch java/lang/Exception from lb9030 to lb9058 using lb905a
+.var 0 is buffer [C from lb9042 to lb905a
+.var 1 is count I from lb904a to lb905a
+.var 2 is writer Ljava/io/StringWriter; from lb903a to lb905a
+lb9030:
+.line 257
+	new-instance	v2,java/io/StringWriter
+; v2 : Ljava/io/StringWriter;
+	invoke-direct	{v2},java/io/StringWriter/<init>	; <init>()V
+; v2 : Ljava/io/StringWriter;
+.line 258
+	const/16	v3,1024
+; v3 : single-length
+	new-array	v0,v3,[C
+; v0 : [C , v3 : single-length
+lb9042:
+.line 260
+	invoke-virtual	{v4,v0},java/io/Reader/read	; read([C)I
+; v4 : Ljava/io/Reader; , v0 : [C
+	move-result	v1
+; v1 : single-length
+lb904a:
+	const/4	v3,15
+; v3 : single-length
+	if-eq	v1,v3,lb9064
+; v1 : single-length , v3 : single-length
+.line 261
+	const/4	v3,0
+; v3 : single-length
+	invoke-virtual	{v2,v0,v3,v1},java/io/StringWriter/write	; write([CII)V
+; v2 : Ljava/io/StringWriter; , v0 : [C , v3 : single-length , v1 : single-length
+lb9058:
+	goto	lb9042
+lb905a:
+.line 265
+	move-exception	v3
+; v3 : java/lang/Exception
+	invoke-virtual	{v4},java/io/Reader/close	; close()V
+; v4 : Ljava/io/Reader;
+	throw	v3
+; v3 : java/lang/Exception
+lb9064:
+.line 263
+	invoke-virtual	{v2},java/io/StringWriter/toString	; toString()Ljava/lang/String;
+; v2 : Ljava/io/StringWriter;
+lb906a:
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+.line 265
+	invoke-virtual	{v4},java/io/Reader/close	; close()V
+; v4 : Ljava/io/Reader;
+	return-object	v3
+; v3 : Ljava/lang/String;
+.end method
+
+.method public static readFully(Ljava/io/InputStream;[B)V
+.throws Ljava/io/IOException;
+.limit registers 4
+; parameter[0] : v2 (Ljava/io/InputStream;)
+; parameter[1] : v3 ([B)
+.line 223
+	const/4	v0,0
+; v0 : single-length
+	array-length	v1,v3
+; v1 : single-length , v3 : [B
+	invoke-static	{v2,v3,v0,v1},com/squareup/okhttp/internal/Util/readFully	; readFully(Ljava/io/InputStream;[BII)V
+; v2 : Ljava/io/InputStream; , v3 : [B , v0 : single-length , v1 : single-length
+.line 224
+	return-void	
+.end method
+
+.method public static readFully(Ljava/io/InputStream;[BII)V
+.throws Ljava/io/IOException;
+.limit registers 7
+; parameter[0] : v3 (Ljava/io/InputStream;)
+; parameter[1] : v4 ([B)
+; parameter[2] : v5 (I)
+; parameter[3] : v6 (I)
+.line 234
+	if-nez	v6,lb90ba
+; v6 : single-length
+lb90b8:
+.line 252
+	return-void	
+lb90ba:
+.line 237
+	if-nez	v3,lb90ce
+; v3 : Ljava/io/InputStream;
+.line 238
+	new-instance	v1,java/lang/NullPointerException
+; v1 : Ljava/lang/NullPointerException;
+	const-string	v2,"in == null"
+; v2 : Ljava/lang/String;
+	invoke-direct	{v1,v2},java/lang/NullPointerException/<init>	; <init>(Ljava/lang/String;)V
+; v1 : Ljava/lang/NullPointerException; , v2 : Ljava/lang/String;
+	throw	v1
+; v1 : Ljava/lang/NullPointerException;
+lb90ce:
+.line 240
+	if-nez	v4,lb90e2
+; v4 : [B
+.line 241
+	new-instance	v1,java/lang/NullPointerException
+; v1 : Ljava/lang/NullPointerException;
+	const-string	v2,"dst == null"
+; v2 : Ljava/lang/String;
+	invoke-direct	{v1,v2},java/lang/NullPointerException/<init>	; <init>(Ljava/lang/String;)V
+; v1 : Ljava/lang/NullPointerException; , v2 : Ljava/lang/String;
+	throw	v1
+; v1 : Ljava/lang/NullPointerException;
+lb90e2:
+.line 243
+	array-length	v1,v4
+; v1 : single-length , v4 : [B
+	invoke-static	{v1,v5,v6},com/squareup/okhttp/internal/Util/checkOffsetAndCount	; checkOffsetAndCount(III)V
+; v1 : single-length , v5 : single-length , v6 : single-length
+lb90ea:
+.line 244
+	if-lez	v6,lb90b8
+; v6 : single-length
+.line 245
+	invoke-virtual	{v3,v4,v5,v6},java/io/InputStream/read	; read([BII)I
+; v3 : Ljava/io/InputStream; , v4 : [B , v5 : single-length , v6 : single-length
+	move-result	v0
+; v0 : single-length
+.line 246
+	if-gez	v0,lb9106
+; v0 : single-length
+.line 247
+	new-instance	v1,java/io/EOFException
+; v1 : Ljava/io/EOFException;
+	invoke-direct	{v1},java/io/EOFException/<init>	; <init>()V
+; v1 : Ljava/io/EOFException;
+	throw	v1
+; v1 : Ljava/io/EOFException;
+lb9106:
+.line 249
+	add-int/2addr	v5,v0
+; v5 : single-length , v0 : single-length
+.line 250
+	sub-int/2addr	v6,v0
+; v6 : single-length , v0 : single-length
+.line 251
+	goto	lb90ea
+.end method
+
+.method public static readSingleByte(Ljava/io/InputStream;)I
+.throws Ljava/io/IOException;
+.limit registers 6
+; parameter[0] : v5 (Ljava/io/InputStream;)
+	const/4	v4,1
+; v4 : single-length
+	const/4	v3,0
+; v3 : single-length
+	const/4	v2,15
+; v2 : single-length
+.line 203
+	new-array	v0,v4,[B
+; v0 : [B , v4 : single-length
+.line 204
+	invoke-virtual	{v5,v0,v3,v4},java/io/InputStream/read	; read([BII)I
+; v5 : Ljava/io/InputStream; , v0 : [B , v3 : single-length , v4 : single-length
+	move-result	v1
+; v1 : single-length
+.line 205
+	if-eq	v1,v2,lb913a
+; v1 : single-length , v2 : single-length
+	aget-byte	v2,v0,v3
+; v2 : single-length , v0 : [B , v3 : single-length
+	and-int/lit16	v2,v2,255
+; v2 : single-length , v2 : single-length
+lb913a:
+	return	v2
+; v2 : single-length
+.end method
+
+.method public static skipAll(Ljava/io/InputStream;)V
+.throws Ljava/io/IOException;
+.limit registers 3
+; parameter[0] : v2 (Ljava/io/InputStream;)
+lb914c:
+.line 271
+	const-wide	v0,9223372036854775807	; 0x7fffffffffffffff
+; v0 : double-length
+	invoke-virtual	{v2,v0,v1},java/io/InputStream/skip	; skip(J)J
+; v2 : Ljava/io/InputStream; , v0 : double-length
+.line 272
+	invoke-virtual	{v2},java/io/InputStream/read	; read()I
+; v2 : Ljava/io/InputStream;
+	move-result	v0
+; v0 : single-length
+	const/4	v1,15
+; v1 : single-length
+	if-ne	v0,v1,lb914c
+; v0 : single-length , v1 : single-length
+.line 273
+	return-void	
+.end method
+
+.method public static skipByReading(Ljava/io/InputStream;J)J
+.throws Ljava/io/IOException;
+.limit registers 12
+; parameter[0] : v9 (Ljava/io/InputStream;)
+; parameter[1] : v10 (J)
+.var 1 is read I from lb91d0 to lb91d6
+.var 4 is toRead I from lb91c6 to lb91d6
+	const-wide/16	v2,0
+; v2 : double-length
+.line 287
+	cmp-long	v5,v10,v2
+; v5 : single-length , v10 : double-length , v2 : double-length
+	if-nez	v5,lb918a
+; v5 : single-length
+lb9188:
+.line 311
+	return-wide	v2
+; v2 : double-length
+lb918a:
+.line 290
+	sget-object	v5,com/squareup/okhttp/internal/Util.skipBuffer Ljava/util/concurrent/atomic/AtomicReference;
+; v5 : Ljava/util/concurrent/atomic/AtomicReference;
+	const/4	v6,0
+; v6 : single-length
+	invoke-virtual	{v5,v6},java/util/concurrent/atomic/AtomicReference/getAndSet	; getAndSet(Ljava/lang/Object;)Ljava/lang/Object;
+; v5 : Ljava/util/concurrent/atomic/AtomicReference; , v6 : single-length
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,[B
+; v0 : [B
+.line 291
+	if-nez	v0,lb91a8
+; v0 : [B
+.line 292
+	const/16	v5,4096
+; v5 : single-length
+	new-array	v0,v5,[B
+; v0 : [B , v5 : single-length
+lb91a8:
+.line 295
+	const-wide/16	v2,0
+; v2 : double-length
+lb91ac:
+.line 296
+	cmp-long	v5,v2,v10
+; v5 : single-length , v2 : double-length , v10 : double-length
+	if-gez	v5,lb91d6
+; v5 : single-length
+.line 297
+	sub-long	v5,v10,v2
+; v5 : double-length , v10 : double-length , v2 : double-length
+	array-length	v7,v0
+; v7 : single-length , v0 : [B
+	int-to-long	v7,v7
+; v7 : double-length , v7 : double-length
+	invoke-static	{v5,v6,v7,v8},java/lang/Math/min	; min(JJ)J
+; v5 : double-length , v7 : double-length
+	move-result-wide	v5
+; v5 : double-length
+	long-to-int	v4,v5
+; v4 : single-length , v5 : double-length
+.line 298
+	const/4	v5,0
+; v5 : single-length
+	invoke-virtual	{v9,v0,v5,v4},java/io/InputStream/read	; read([BII)I
+; v9 : Ljava/io/InputStream; , v0 : [B , v5 : single-length , v4 : single-length
+	move-result	v1
+; v1 : single-length
+.line 299
+	const/4	v5,15
+; v5 : single-length
+	if-ne	v1,v5,lb91e2
+; v1 : single-length , v5 : single-length
+lb91d6:
+.line 309
+	sget-object	v5,com/squareup/okhttp/internal/Util.skipBuffer Ljava/util/concurrent/atomic/AtomicReference;
+; v5 : Ljava/util/concurrent/atomic/AtomicReference;
+	invoke-virtual	{v5,v0},java/util/concurrent/atomic/AtomicReference/set	; set(Ljava/lang/Object;)V
+; v5 : Ljava/util/concurrent/atomic/AtomicReference; , v0 : [B
+	goto	lb9188
+lb91e2:
+.line 302
+	int-to-long	v5,v1
+; v5 : double-length , v1 : single-length
+	add-long/2addr	v2,v5
+; v2 : double-length , v5 : double-length
+.line 303
+	if-ge	v1,v4,lb91ac
+; v1 : single-length , v4 : single-length
+	goto	lb91d6
+.end method
+
+.method public static writeSingleByte(Ljava/io/OutputStream;I)V
+.throws Ljava/io/IOException;
+.limit registers 5
+; parameter[0] : v3 (Ljava/io/OutputStream;)
+; parameter[1] : v4 (I)
+.line 214
+	const/4	v1,1
+; v1 : single-length
+	new-array	v0,v1,[B
+; v0 : [B , v1 : single-length
+.line 215
+	const/4	v1,0
+; v1 : single-length
+	and-int/lit16	v2,v4,255
+; v2 : single-length , v4 : single-length
+	int-to-byte	v2,v2
+; v2 : single-length , v2 : single-length
+	aput-byte	v2,v0,v1
+; v2 : single-length , v0 : [B , v1 : single-length
+.line 216
+	invoke-virtual	{v3,v0},java/io/OutputStream/write	; write([B)V
+; v3 : Ljava/io/OutputStream; , v0 : [B
+.line 217
+	return-void	
+.end method
+
+

@@ -1,0 +1,196 @@
+.class com/google/tagmanager/DebugResolvedRuleBuilder$DebugResolvedFunctionCallListTranslator
+.super java/lang/Object
+.source DebugResolvedRuleBuilder.java
+.implements com/google/tagmanager/ResolvedFunctionCallTranslatorList
+
+.inner class DebugResolvedFunctionCallListTranslator inner com/google/tagmanager/DebugResolvedRuleBuilder$DebugResolvedFunctionCallListTranslator outer com/google/tagmanager/DebugResolvedRuleBuilder
+.inner class Type inner com/google/tagmanager/DebugResolvedRuleBuilder$DebugResolvedFunctionCallListTranslator$Type outer com/google/tagmanager/DebugResolvedRuleBuilder$DebugResolvedFunctionCallListTranslator
+.field final this$0 Lcom/google/tagmanager/DebugResolvedRuleBuilder;
+.field private final type I
+
+.method <init>(Lcom/google/tagmanager/DebugResolvedRuleBuilder;I)V
+.limit registers 3
+; this: v0 (Lcom/google/tagmanager/DebugResolvedRuleBuilder$DebugResolvedFunctionCallListTranslator;)
+; parameter[0] : v1 (Lcom/google/tagmanager/DebugResolvedRuleBuilder;)
+; parameter[1] : v2 (I)
+.line 109
+	iput-object	v1,v0,com/google/tagmanager/DebugResolvedRuleBuilder$DebugResolvedFunctionCallListTranslator.this$0 Lcom/google/tagmanager/DebugResolvedRuleBuilder;
+; v1 : Lcom/google/tagmanager/DebugResolvedRuleBuilder; , v0 : Lcom/google/tagmanager/DebugResolvedRuleBuilder$DebugResolvedFunctionCallListTranslator;
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Lcom/google/tagmanager/DebugResolvedRuleBuilder$DebugResolvedFunctionCallListTranslator;
+.line 110
+	iput	v2,v0,com/google/tagmanager/DebugResolvedRuleBuilder$DebugResolvedFunctionCallListTranslator.type I
+; v2 : single-length , v0 : Lcom/google/tagmanager/DebugResolvedRuleBuilder$DebugResolvedFunctionCallListTranslator;
+.line 111
+	return-void	
+.end method
+
+.method public translateAndAddAll(Ljava/util/List;Ljava/util/List;)V
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "(" , "Ljava/util/List" , "<" , "Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;" , ">;" , "Ljava/util/List" , "<" , "Ljava/lang/String;" , ">;)V" }
+.end annotation
+.limit registers 8
+; this: v5 (Lcom/google/tagmanager/DebugResolvedRuleBuilder$DebugResolvedFunctionCallListTranslator;)
+; parameter[0] : v6 (Ljava/util/List;)
+; parameter[1] : v7 (Ljava/util/List;)
+.line 116
+	new-instance	v2,java/util/ArrayList
+; v2 : Ljava/util/ArrayList;
+	invoke-interface	{v6},java/util/List/size	; size()I
+; v6 : Ljava/util/List;
+	move-result	v3
+; v3 : single-length
+	invoke-direct	{v2,v3},java/util/ArrayList/<init>	; <init>(I)V
+; v2 : Ljava/util/ArrayList; , v3 : single-length
+.line 118
+	const/4	v0,0
+; v0 : single-length
+le8270:
+	invoke-interface	{v6},java/util/List/size	; size()I
+; v6 : Ljava/util/List;
+	move-result	v3
+; v3 : single-length
+	if-ge	v0,v3,le82da
+; v0 : single-length , v3 : single-length
+.line 119
+	invoke-interface	{v6,v0},java/util/List/get	; get(I)Ljava/lang/Object;
+; v6 : Ljava/util/List; , v0 : single-length
+	move-result-object	v3
+; v3 : Ljava/lang/Object;
+	check-cast	v3,com/google/tagmanager/ResourceUtil$ExpandedFunctionCall
+; v3 : Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;
+	invoke-static	{v3},com/google/tagmanager/DebugResolvedRuleBuilder/translateExpandedFunctionCall	; translateExpandedFunctionCall(Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;)Lcom/google/analytics/containertag/proto/Debug$ResolvedFunctionCall;
+; v3 : Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;
+	move-result-object	v3
+; v3 : Lcom/google/analytics/containertag/proto/Debug$ResolvedFunctionCall;
+	invoke-interface	{v2,v3},java/util/List/add	; add(Ljava/lang/Object;)Z
+; v2 : Ljava/util/ArrayList; , v3 : Lcom/google/analytics/containertag/proto/Debug$ResolvedFunctionCall;
+.line 120
+	invoke-interface	{v7},java/util/List/size	; size()I
+; v7 : Ljava/util/List;
+	move-result	v3
+; v3 : single-length
+	if-ge	v0,v3,le82c4
+; v0 : single-length , v3 : single-length
+.line 121
+	invoke-interface	{v2,v0},java/util/List/get	; get(I)Ljava/lang/Object;
+; v2 : Ljava/util/ArrayList; , v0 : single-length
+	move-result-object	v3
+; v3 : Ljava/lang/Object;
+	check-cast	v3,com/google/analytics/containertag/proto/Debug$ResolvedFunctionCall
+; v3 : Lcom/google/analytics/containertag/proto/Debug$ResolvedFunctionCall;
+	invoke-interface	{v7,v0},java/util/List/get	; get(I)Ljava/lang/Object;
+; v7 : Ljava/util/List; , v0 : single-length
+	move-result-object	v4
+; v4 : Ljava/lang/Object;
+	check-cast	v4,java/lang/String
+; v4 : Ljava/lang/String;
+	iput-object	v4,v3,com/google/analytics/containertag/proto/Debug$ResolvedFunctionCall.associatedRuleName Ljava/lang/String;
+; v4 : Ljava/lang/String; , v3 : Lcom/google/analytics/containertag/proto/Debug$ResolvedFunctionCall;
+le82be:
+.line 118
+	add-int/lit8	v0,v0,1
+; v0 : single-length , v0 : single-length
+	goto	le8270
+le82c4:
+.line 127
+	invoke-interface	{v2,v0},java/util/List/get	; get(I)Ljava/lang/Object;
+; v2 : Ljava/util/ArrayList; , v0 : single-length
+	move-result-object	v3
+; v3 : Ljava/lang/Object;
+	check-cast	v3,com/google/analytics/containertag/proto/Debug$ResolvedFunctionCall
+; v3 : Lcom/google/analytics/containertag/proto/Debug$ResolvedFunctionCall;
+	const-string	v4,"Unknown"
+; v4 : Ljava/lang/String;
+	iput-object	v4,v3,com/google/analytics/containertag/proto/Debug$ResolvedFunctionCall.associatedRuleName Ljava/lang/String;
+; v4 : Ljava/lang/String; , v3 : Lcom/google/analytics/containertag/proto/Debug$ResolvedFunctionCall;
+	goto	le82be
+le82da:
+.line 130
+	const/4	v3,0
+; v3 : single-length
+	new-array	v3,v3,[Lcom/google/analytics/containertag/proto/Debug$ResolvedFunctionCall;
+; v3 : [Lcom/google/analytics/containertag/proto/Debug$ResolvedFunctionCall; , v3 : [Lcom/google/analytics/containertag/proto/Debug$ResolvedFunctionCall;
+	invoke-interface	{v2,v3},java/util/List/toArray	; toArray([Ljava/lang/Object;)[Ljava/lang/Object;
+; v2 : Ljava/util/ArrayList; , v3 : [Lcom/google/analytics/containertag/proto/Debug$ResolvedFunctionCall;
+	move-result-object	v1
+; v1 : [Ljava/lang/Object;
+	check-cast	v1,[Lcom/google/analytics/containertag/proto/Debug$ResolvedFunctionCall
+; v1 : [Lcom/google/analytics/containertag/proto/Debug$ResolvedFunctionCall
+.line 131
+	iget	v3,v5,com/google/tagmanager/DebugResolvedRuleBuilder$DebugResolvedFunctionCallListTranslator.type I
+; v3 : single-length , v5 : Lcom/google/tagmanager/DebugResolvedRuleBuilder$DebugResolvedFunctionCallListTranslator;
+	packed-switch	v3,1
+		pse82f0_e8328	; case 1
+		pse82f0_e8336	; case 2
+		pse82f0_e8344	; case 3
+		pse82f0_e8352	; case 4
+		default: pse82f0_default
+; v3 : single-length
+pse82f0_default:
+.line 145
+	new-instance	v3,java/lang/StringBuilder
+; v3 : Ljava/lang/StringBuilder;
+	invoke-direct	{v3},java/lang/StringBuilder/<init>	; <init>()V
+; v3 : Ljava/lang/StringBuilder;
+	const-string	v4,"unknown type in translateAndAddAll: "
+; v4 : Ljava/lang/String;
+	invoke-virtual	{v3,v4},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v3 : Ljava/lang/StringBuilder; , v4 : Ljava/lang/String;
+	move-result-object	v3
+; v3 : Ljava/lang/StringBuilder;
+	iget	v4,v5,com/google/tagmanager/DebugResolvedRuleBuilder$DebugResolvedFunctionCallListTranslator.type I
+; v4 : single-length , v5 : Lcom/google/tagmanager/DebugResolvedRuleBuilder$DebugResolvedFunctionCallListTranslator;
+	invoke-virtual	{v3,v4},java/lang/StringBuilder/append	; append(I)Ljava/lang/StringBuilder;
+; v3 : Ljava/lang/StringBuilder; , v4 : single-length
+	move-result-object	v3
+; v3 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v3},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v3 : Ljava/lang/StringBuilder;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-static	{v3},com/google/tagmanager/Log/e	; e(Ljava/lang/String;)V
+; v3 : Ljava/lang/String;
+le8326:
+.line 148
+	return-void	
+pse82f0_e8328:
+.line 133
+	iget-object	v3,v5,com/google/tagmanager/DebugResolvedRuleBuilder$DebugResolvedFunctionCallListTranslator.this$0 Lcom/google/tagmanager/DebugResolvedRuleBuilder;
+; v3 : Lcom/google/tagmanager/DebugResolvedRuleBuilder; , v5 : Lcom/google/tagmanager/DebugResolvedRuleBuilder$DebugResolvedFunctionCallListTranslator;
+	iget-object	v3,v3,com/google/tagmanager/DebugResolvedRuleBuilder.resolvedRule Lcom/google/analytics/containertag/proto/Debug$ResolvedRule;
+; v3 : Lcom/google/analytics/containertag/proto/Debug$ResolvedRule; , v3 : Lcom/google/analytics/containertag/proto/Debug$ResolvedRule;
+	iput-object	v1,v3,com/google/analytics/containertag/proto/Debug$ResolvedRule.addMacros [Lcom/google/analytics/containertag/proto/Debug$ResolvedFunctionCall;
+; v1 : [Lcom/google/analytics/containertag/proto/Debug$ResolvedFunctionCall , v3 : Lcom/google/analytics/containertag/proto/Debug$ResolvedRule;
+	goto	le8326
+pse82f0_e8336:
+.line 136
+	iget-object	v3,v5,com/google/tagmanager/DebugResolvedRuleBuilder$DebugResolvedFunctionCallListTranslator.this$0 Lcom/google/tagmanager/DebugResolvedRuleBuilder;
+; v3 : Lcom/google/tagmanager/DebugResolvedRuleBuilder; , v5 : Lcom/google/tagmanager/DebugResolvedRuleBuilder$DebugResolvedFunctionCallListTranslator;
+	iget-object	v3,v3,com/google/tagmanager/DebugResolvedRuleBuilder.resolvedRule Lcom/google/analytics/containertag/proto/Debug$ResolvedRule;
+; v3 : Lcom/google/analytics/containertag/proto/Debug$ResolvedRule; , v3 : Lcom/google/analytics/containertag/proto/Debug$ResolvedRule;
+	iput-object	v1,v3,com/google/analytics/containertag/proto/Debug$ResolvedRule.removeMacros [Lcom/google/analytics/containertag/proto/Debug$ResolvedFunctionCall;
+; v1 : [Lcom/google/analytics/containertag/proto/Debug$ResolvedFunctionCall , v3 : Lcom/google/analytics/containertag/proto/Debug$ResolvedRule;
+	goto	le8326
+pse82f0_e8344:
+.line 139
+	iget-object	v3,v5,com/google/tagmanager/DebugResolvedRuleBuilder$DebugResolvedFunctionCallListTranslator.this$0 Lcom/google/tagmanager/DebugResolvedRuleBuilder;
+; v3 : Lcom/google/tagmanager/DebugResolvedRuleBuilder; , v5 : Lcom/google/tagmanager/DebugResolvedRuleBuilder$DebugResolvedFunctionCallListTranslator;
+	iget-object	v3,v3,com/google/tagmanager/DebugResolvedRuleBuilder.resolvedRule Lcom/google/analytics/containertag/proto/Debug$ResolvedRule;
+; v3 : Lcom/google/analytics/containertag/proto/Debug$ResolvedRule; , v3 : Lcom/google/analytics/containertag/proto/Debug$ResolvedRule;
+	iput-object	v1,v3,com/google/analytics/containertag/proto/Debug$ResolvedRule.addTags [Lcom/google/analytics/containertag/proto/Debug$ResolvedFunctionCall;
+; v1 : [Lcom/google/analytics/containertag/proto/Debug$ResolvedFunctionCall , v3 : Lcom/google/analytics/containertag/proto/Debug$ResolvedRule;
+	goto	le8326
+pse82f0_e8352:
+.line 142
+	iget-object	v3,v5,com/google/tagmanager/DebugResolvedRuleBuilder$DebugResolvedFunctionCallListTranslator.this$0 Lcom/google/tagmanager/DebugResolvedRuleBuilder;
+; v3 : Lcom/google/tagmanager/DebugResolvedRuleBuilder; , v5 : Lcom/google/tagmanager/DebugResolvedRuleBuilder$DebugResolvedFunctionCallListTranslator;
+	iget-object	v3,v3,com/google/tagmanager/DebugResolvedRuleBuilder.resolvedRule Lcom/google/analytics/containertag/proto/Debug$ResolvedRule;
+; v3 : Lcom/google/analytics/containertag/proto/Debug$ResolvedRule; , v3 : Lcom/google/analytics/containertag/proto/Debug$ResolvedRule;
+	iput-object	v1,v3,com/google/analytics/containertag/proto/Debug$ResolvedRule.removeTags [Lcom/google/analytics/containertag/proto/Debug$ResolvedFunctionCall;
+; v1 : [Lcom/google/analytics/containertag/proto/Debug$ResolvedFunctionCall , v3 : Lcom/google/analytics/containertag/proto/Debug$ResolvedRule;
+	goto	le8326
+.line 131
+.end method
+
+

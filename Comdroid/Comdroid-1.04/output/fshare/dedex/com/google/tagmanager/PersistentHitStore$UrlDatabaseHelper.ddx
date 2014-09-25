@@ -1,0 +1,498 @@
+.class com/google/tagmanager/PersistentHitStore$UrlDatabaseHelper
+.super android/database/sqlite/SQLiteOpenHelper
+.source PersistentHitStore.java
+
+.inner class UrlDatabaseHelper inner com/google/tagmanager/PersistentHitStore$UrlDatabaseHelper outer com/google/tagmanager/PersistentHitStore
+.field private mBadDatabase Z
+.field private mLastDatabaseCheckTime J
+.field final this$0 Lcom/google/tagmanager/PersistentHitStore;
+
+.method <init>(Lcom/google/tagmanager/PersistentHitStore;Landroid/content/Context;Ljava/lang/String;)V
+.limit registers 6
+; this: v2 (Lcom/google/tagmanager/PersistentHitStore$UrlDatabaseHelper;)
+; parameter[0] : v3 (Lcom/google/tagmanager/PersistentHitStore;)
+; parameter[1] : v4 (Landroid/content/Context;)
+; parameter[2] : v5 (Ljava/lang/String;)
+.line 558
+	iput-object	v3,v2,com/google/tagmanager/PersistentHitStore$UrlDatabaseHelper.this$0 Lcom/google/tagmanager/PersistentHitStore;
+; v3 : Lcom/google/tagmanager/PersistentHitStore; , v2 : Lcom/google/tagmanager/PersistentHitStore$UrlDatabaseHelper;
+.line 560
+	const/4	v0,0
+; v0 : single-length
+	const/4	v1,1
+; v1 : single-length
+	invoke-direct	{v2,v4,v5,v0,v1},android/database/sqlite/SQLiteOpenHelper/<init>	; <init>(Landroid/content/Context;Ljava/lang/String;Landroid/database/sqlite/SQLiteDatabase$CursorFactory;I)V
+; v2 : Lcom/google/tagmanager/PersistentHitStore$UrlDatabaseHelper; , v4 : Landroid/content/Context; , v5 : Ljava/lang/String; , v0 : single-length , v1 : single-length
+.line 548
+	const-wide/16	v0,0
+; v0 : double-length
+	iput-wide	v0,v2,com/google/tagmanager/PersistentHitStore$UrlDatabaseHelper.mLastDatabaseCheckTime J
+; v0 : double-length , v2 : Lcom/google/tagmanager/PersistentHitStore$UrlDatabaseHelper;
+.line 561
+	return-void	
+.end method
+
+.method private tablePresent(Ljava/lang/String;Landroid/database/sqlite/SQLiteDatabase;)Z
+.limit registers 14
+; this: v11 (Lcom/google/tagmanager/PersistentHitStore$UrlDatabaseHelper;)
+; parameter[0] : v12 (Ljava/lang/String;)
+; parameter[1] : v13 (Landroid/database/sqlite/SQLiteDatabase;)
+.catch java/lang/Exception from la7ed2 to la7efe using la7f0c
+.catch android/database/sqlite/SQLiteException from la7e88 to la7ec2 using la7ed0
+.catch java/lang/Exception from la7e88 to la7ec2 using la7f0c
+.var 9 is e Landroid/database/sqlite/SQLiteException; from la7ed2 to la7f0c
+	const/4	v10,0
+; v10 : single-length
+.line 575
+	const/4	v8,0
+; v8 : single-length
+la7e88:
+.line 577
+	const-string	v1,"SQLITE_MASTER"
+; v1 : Ljava/lang/String;
+	const/4	v0,1
+; v0 : single-length
+	new-array	v2,v0,[Ljava/lang/String;
+; v2 : [Ljava/lang/String; , v0 : single-length
+	const/4	v0,0
+; v0 : single-length
+	const-string	v3,"name"
+; v3 : Ljava/lang/String;
+	aput-object	v3,v2,v0
+; v3 : Ljava/lang/String; , v2 : [Ljava/lang/String; , v0 : single-length
+	const-string	v3,"name=?"
+; v3 : Ljava/lang/String;
+	const/4	v0,1
+; v0 : single-length
+	new-array	v4,v0,[Ljava/lang/String;
+; v4 : [Ljava/lang/String; , v0 : single-length
+	const/4	v0,0
+; v0 : single-length
+	aput-object	v12,v4,v0
+; v12 : Ljava/lang/String; , v4 : [Ljava/lang/String; , v0 : single-length
+	const/4	v5,0
+; v5 : single-length
+	const/4	v6,0
+; v6 : single-length
+	const/4	v7,0
+; v7 : single-length
+	move-object	v0,v13
+; v0 : Landroid/database/sqlite/SQLiteDatabase; , v13 : Landroid/database/sqlite/SQLiteDatabase;
+	invoke-virtual/range	{v0..v7},android/database/sqlite/SQLiteDatabase/query;	query(Ljava/lang/String;[Ljava/lang/String;Ljava/lang/String;[Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Landroid/database/Cursor;
+; v0 : Landroid/database/sqlite/SQLiteDatabase; , v1 : Ljava/lang/String; , v2 : [Ljava/lang/String; , v3 : Ljava/lang/String; , v4 : [Ljava/lang/String; , v5 : single-length , v6 : single-length , v7 : single-length
+	move-result-object	v8
+; v8 : Landroid/database/Cursor;
+.line 584
+	invoke-interface	{v8},android/database/Cursor/moveToFirst	; moveToFirst()Z
+; v8 : Landroid/database/Cursor;
+la7ec2:
+	move-result	v0
+; v0 : single-length
+.line 589
+	if-eqz	v8,la7ece
+; v8 : Landroid/database/Cursor;
+.line 590
+	invoke-interface	{v8},android/database/Cursor/close	; close()V
+; v8 : Landroid/database/Cursor;
+la7ece:
+	return	v0
+; v0 : single-length
+la7ed0:
+.line 585
+	move-exception	v9
+; v9 : android/database/sqlite/SQLiteException
+la7ed2:
+.line 586
+	new-instance	v0,java/lang/StringBuilder
+; v0 : Ljava/lang/StringBuilder;
+	invoke-direct	{v0},java/lang/StringBuilder/<init>	; <init>()V
+; v0 : Ljava/lang/StringBuilder;
+	const-string	v1,"Error querying for table "
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v1 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v0,v12},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v12 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v0},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v0 : Ljava/lang/StringBuilder;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	invoke-static	{v0},com/google/tagmanager/Log/w	; w(Ljava/lang/String;)V
+; v0 : Ljava/lang/String;
+la7efe:
+.line 589
+	if-eqz	v8,la7f08
+; v8 : Landroid/database/Cursor;
+.line 590
+	invoke-interface	{v8},android/database/Cursor/close	; close()V
+; v8 : Landroid/database/Cursor;
+la7f08:
+	move	v0,v10
+; v0 : single-length , v10 : single-length
+	goto	la7ece
+la7f0c:
+.line 589
+	move-exception	v0
+; v0 : java/lang/Exception
+	if-eqz	v8,la7f18
+; v8 : Landroid/database/Cursor;
+.line 590
+	invoke-interface	{v8},android/database/Cursor/close	; close()V
+; v8 : Landroid/database/Cursor;
+la7f18:
+	throw	v0
+; v0 : java/lang/Exception
+.end method
+
+.method private validateColumnsPresent(Landroid/database/sqlite/SQLiteDatabase;)V
+.limit registers 8
+; this: v6 (Lcom/google/tagmanager/PersistentHitStore$UrlDatabaseHelper;)
+; parameter[0] : v7 (Landroid/database/sqlite/SQLiteDatabase;)
+.catch java/lang/Exception from la7f5c to la7f76 using la7fd2
+.var 1 is columnNames [Ljava/lang/String; from la7f64 to la7fd2
+.var 3 is i I from la7f66 to la7fd2
+.line 658
+	const-string	v4,"SELECT * FROM gtm_hits WHERE 0"
+; v4 : Ljava/lang/String;
+	const/4	v5,0
+; v5 : single-length
+	invoke-virtual	{v7,v4,v5},android/database/sqlite/SQLiteDatabase/rawQuery	; rawQuery(Ljava/lang/String;[Ljava/lang/String;)Landroid/database/Cursor;
+; v7 : Landroid/database/sqlite/SQLiteDatabase; , v4 : Ljava/lang/String; , v5 : single-length
+	move-result-object	v0
+; v0 : Landroid/database/Cursor;
+.line 660
+	new-instance	v2,java/util/HashSet
+; v2 : Ljava/util/HashSet;
+	invoke-direct	{v2},java/util/HashSet/<init>	; <init>()V
+; v2 : Ljava/util/HashSet;
+la7f5c:
+.line 662
+	invoke-interface	{v0},android/database/Cursor/getColumnNames	; getColumnNames()[Ljava/lang/String;
+; v0 : Landroid/database/Cursor;
+	move-result-object	v1
+; v1 : [Ljava/lang/String;
+.line 663
+	const/4	v3,0
+; v3 : single-length
+la7f66:
+	array-length	v4,v1
+; v4 : single-length , v1 : [Ljava/lang/String;
+	if-ge	v3,v4,la7f7c
+; v3 : single-length , v4 : single-length
+.line 664
+	aget-object	v4,v1,v3
+; v4 : Ljava/lang/String; , v1 : [Ljava/lang/String; , v3 : single-length
+	invoke-interface	{v2,v4},java/util/Set/add	; add(Ljava/lang/Object;)Z
+; v2 : Ljava/util/HashSet; , v4 : Ljava/lang/String;
+la7f76:
+.line 663
+	add-int/lit8	v3,v3,1
+; v3 : single-length , v3 : single-length
+	goto	la7f66
+la7f7c:
+.line 667
+	invoke-interface	{v0},android/database/Cursor/close	; close()V
+; v0 : Landroid/database/Cursor;
+.line 670
+	const-string	v4,"hit_id"
+; v4 : Ljava/lang/String;
+	invoke-interface	{v2,v4},java/util/Set/remove	; remove(Ljava/lang/Object;)Z
+; v2 : Ljava/util/HashSet; , v4 : Ljava/lang/String;
+	move-result	v4
+; v4 : single-length
+	if-eqz	v4,la7fc2
+; v4 : single-length
+	const-string	v4,"hit_url"
+; v4 : Ljava/lang/String;
+	invoke-interface	{v2,v4},java/util/Set/remove	; remove(Ljava/lang/Object;)Z
+; v2 : Ljava/util/HashSet; , v4 : Ljava/lang/String;
+	move-result	v4
+; v4 : single-length
+	if-eqz	v4,la7fc2
+; v4 : single-length
+	const-string	v4,"hit_time"
+; v4 : Ljava/lang/String;
+	invoke-interface	{v2,v4},java/util/Set/remove	; remove(Ljava/lang/Object;)Z
+; v2 : Ljava/util/HashSet; , v4 : Ljava/lang/String;
+	move-result	v4
+; v4 : single-length
+	if-eqz	v4,la7fc2
+; v4 : single-length
+	const-string	v4,"hit_first_send_time"
+; v4 : Ljava/lang/String;
+	invoke-interface	{v2,v4},java/util/Set/remove	; remove(Ljava/lang/Object;)Z
+; v2 : Ljava/util/HashSet; , v4 : Ljava/lang/String;
+	move-result	v4
+; v4 : single-length
+	if-nez	v4,la7fdc
+; v4 : single-length
+la7fc2:
+.line 674
+	new-instance	v4,android/database/sqlite/SQLiteException
+; v4 : Landroid/database/sqlite/SQLiteException;
+	const-string	v5,"Database column missing"
+; v5 : Ljava/lang/String;
+	invoke-direct	{v4,v5},android/database/sqlite/SQLiteException/<init>	; <init>(Ljava/lang/String;)V
+; v4 : Landroid/database/sqlite/SQLiteException; , v5 : Ljava/lang/String;
+	throw	v4
+; v4 : Landroid/database/sqlite/SQLiteException;
+la7fd2:
+.line 667
+	move-exception	v4
+; v4 : java/lang/Exception
+	invoke-interface	{v0},android/database/Cursor/close	; close()V
+; v0 : Landroid/database/Cursor;
+	throw	v4
+; v4 : java/lang/Exception
+la7fdc:
+.line 677
+	invoke-interface	{v2},java/util/Set/isEmpty	; isEmpty()Z
+; v2 : Ljava/util/HashSet;
+	move-result	v4
+; v4 : single-length
+	if-nez	v4,la7ff8
+; v4 : single-length
+.line 678
+	new-instance	v4,android/database/sqlite/SQLiteException
+; v4 : Landroid/database/sqlite/SQLiteException;
+	const-string	v5,"Database has extra columns"
+; v5 : Ljava/lang/String;
+	invoke-direct	{v4,v5},android/database/sqlite/SQLiteException/<init>	; <init>(Ljava/lang/String;)V
+; v4 : Landroid/database/sqlite/SQLiteException; , v5 : Ljava/lang/String;
+	throw	v4
+; v4 : Landroid/database/sqlite/SQLiteException;
+la7ff8:
+.line 680
+	return-void	
+.end method
+
+.method public getWritableDatabase()Landroid/database/sqlite/SQLiteDatabase;
+.limit registers 7
+; this: v6 (Lcom/google/tagmanager/PersistentHitStore$UrlDatabaseHelper;)
+.catch android/database/sqlite/SQLiteException from la8078 to la807e using la8094
+.line 604
+	iget-boolean	v2,v6,com/google/tagmanager/PersistentHitStore$UrlDatabaseHelper.mBadDatabase Z
+; v2 : single-length , v6 : Lcom/google/tagmanager/PersistentHitStore$UrlDatabaseHelper;
+	if-eqz	v2,la8058
+; v2 : single-length
+.line 608
+	iget-wide	v2,v6,com/google/tagmanager/PersistentHitStore$UrlDatabaseHelper.mLastDatabaseCheckTime J
+; v2 : double-length , v6 : Lcom/google/tagmanager/PersistentHitStore$UrlDatabaseHelper;
+	const-wide/32	v4,3600000	; 0x36ee80
+; v4 : double-length
+	add-long/2addr	v2,v4
+; v2 : double-length , v4 : double-length
+	iget-object	v4,v6,com/google/tagmanager/PersistentHitStore$UrlDatabaseHelper.this$0 Lcom/google/tagmanager/PersistentHitStore;
+; v4 : Lcom/google/tagmanager/PersistentHitStore; , v6 : Lcom/google/tagmanager/PersistentHitStore$UrlDatabaseHelper;
+	invoke-static	{v4},com/google/tagmanager/PersistentHitStore/access$100	; access$100(Lcom/google/tagmanager/PersistentHitStore;)Lcom/google/tagmanager/Clock;
+; v4 : Lcom/google/tagmanager/PersistentHitStore;
+	move-result-object	v4
+; v4 : Lcom/google/tagmanager/Clock;
+	invoke-interface	{v4},com/google/tagmanager/Clock/currentTimeMillis	; currentTimeMillis()J
+; v4 : Lcom/google/tagmanager/Clock;
+	move-result-wide	v4
+; v4 : double-length
+	cmp-long	v2,v2,v4
+; v2 : single-length , v2 : single-length , v4 : double-length
+	if-lez	v2,la8058
+; v2 : single-length
+.line 610
+	new-instance	v2,android/database/sqlite/SQLiteException
+; v2 : Landroid/database/sqlite/SQLiteException;
+	const-string	v3,"Database creation failed"
+; v3 : Ljava/lang/String;
+	invoke-direct	{v2,v3},android/database/sqlite/SQLiteException/<init>	; <init>(Ljava/lang/String;)V
+; v2 : Landroid/database/sqlite/SQLiteException; , v3 : Ljava/lang/String;
+	throw	v2
+; v2 : Landroid/database/sqlite/SQLiteException;
+la8058:
+.line 613
+	const/4	v0,0
+; v0 : single-length
+.line 614
+	const/4	v2,1
+; v2 : single-length
+	iput-boolean	v2,v6,com/google/tagmanager/PersistentHitStore$UrlDatabaseHelper.mBadDatabase Z
+; v2 : single-length , v6 : Lcom/google/tagmanager/PersistentHitStore$UrlDatabaseHelper;
+.line 615
+	iget-object	v2,v6,com/google/tagmanager/PersistentHitStore$UrlDatabaseHelper.this$0 Lcom/google/tagmanager/PersistentHitStore;
+; v2 : Lcom/google/tagmanager/PersistentHitStore; , v6 : Lcom/google/tagmanager/PersistentHitStore$UrlDatabaseHelper;
+	invoke-static	{v2},com/google/tagmanager/PersistentHitStore/access$100	; access$100(Lcom/google/tagmanager/PersistentHitStore;)Lcom/google/tagmanager/Clock;
+; v2 : Lcom/google/tagmanager/PersistentHitStore;
+	move-result-object	v2
+; v2 : Lcom/google/tagmanager/Clock;
+	invoke-interface	{v2},com/google/tagmanager/Clock/currentTimeMillis	; currentTimeMillis()J
+; v2 : Lcom/google/tagmanager/Clock;
+	move-result-wide	v2
+; v2 : double-length
+	iput-wide	v2,v6,com/google/tagmanager/PersistentHitStore$UrlDatabaseHelper.mLastDatabaseCheckTime J
+; v2 : double-length , v6 : Lcom/google/tagmanager/PersistentHitStore$UrlDatabaseHelper;
+la8078:
+.line 617
+	invoke-super	{v6},android/database/sqlite/SQLiteOpenHelper/getWritableDatabase	; getWritableDatabase()Landroid/database/sqlite/SQLiteDatabase;
+; v6 : Lcom/google/tagmanager/PersistentHitStore$UrlDatabaseHelper;
+la807e:
+	move-result-object	v0
+; v0 : Landroid/database/sqlite/SQLiteDatabase;
+la8080:
+.line 622
+	if-nez	v0,la808c
+; v0 : single-length
+.line 623
+	invoke-super	{v6},android/database/sqlite/SQLiteOpenHelper/getWritableDatabase	; getWritableDatabase()Landroid/database/sqlite/SQLiteDatabase;
+; v6 : Lcom/google/tagmanager/PersistentHitStore$UrlDatabaseHelper;
+	move-result-object	v0
+; v0 : Landroid/database/sqlite/SQLiteDatabase;
+la808c:
+.line 625
+	const/4	v2,0
+; v2 : single-length
+	iput-boolean	v2,v6,com/google/tagmanager/PersistentHitStore$UrlDatabaseHelper.mBadDatabase Z
+; v2 : single-length , v6 : Lcom/google/tagmanager/PersistentHitStore$UrlDatabaseHelper;
+.line 626
+	return-object	v0
+; v0 : Landroid/database/sqlite/SQLiteDatabase;
+la8094:
+.line 618
+	move-exception	v1
+; v1 : android/database/sqlite/SQLiteException
+.line 620
+	iget-object	v2,v6,com/google/tagmanager/PersistentHitStore$UrlDatabaseHelper.this$0 Lcom/google/tagmanager/PersistentHitStore;
+; v2 : Lcom/google/tagmanager/PersistentHitStore; , v6 : Lcom/google/tagmanager/PersistentHitStore$UrlDatabaseHelper;
+	invoke-static	{v2},com/google/tagmanager/PersistentHitStore/access$400	; access$400(Lcom/google/tagmanager/PersistentHitStore;)Landroid/content/Context;
+; v2 : Lcom/google/tagmanager/PersistentHitStore;
+	move-result-object	v2
+; v2 : Landroid/content/Context;
+	iget-object	v3,v6,com/google/tagmanager/PersistentHitStore$UrlDatabaseHelper.this$0 Lcom/google/tagmanager/PersistentHitStore;
+; v3 : Lcom/google/tagmanager/PersistentHitStore; , v6 : Lcom/google/tagmanager/PersistentHitStore$UrlDatabaseHelper;
+	invoke-static	{v3},com/google/tagmanager/PersistentHitStore/access$300	; access$300(Lcom/google/tagmanager/PersistentHitStore;)Ljava/lang/String;
+; v3 : Lcom/google/tagmanager/PersistentHitStore;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},android/content/Context/getDatabasePath	; getDatabasePath(Ljava/lang/String;)Ljava/io/File;
+; v2 : Landroid/content/Context; , v3 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/io/File;
+	invoke-virtual	{v2},java/io/File/delete	; delete()Z
+; v2 : Ljava/io/File;
+	goto	la8080
+.end method
+
+.method isBadDatabase()Z
+.limit registers 2
+; this: v1 (Lcom/google/tagmanager/PersistentHitStore$UrlDatabaseHelper;)
+.line 551
+	iget-boolean	v0,v1,com/google/tagmanager/PersistentHitStore$UrlDatabaseHelper.mBadDatabase Z
+; v0 : single-length , v1 : Lcom/google/tagmanager/PersistentHitStore$UrlDatabaseHelper;
+	return	v0
+; v0 : single-length
+.end method
+
+.method public onCreate(Landroid/database/sqlite/SQLiteDatabase;)V
+.limit registers 3
+; this: v1 (Lcom/google/tagmanager/PersistentHitStore$UrlDatabaseHelper;)
+; parameter[0] : v2 (Landroid/database/sqlite/SQLiteDatabase;)
+.line 684
+	invoke-virtual	{v2},android/database/sqlite/SQLiteDatabase/getPath	; getPath()Ljava/lang/String;
+; v2 : Landroid/database/sqlite/SQLiteDatabase;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	invoke-static	{v0},com/google/tagmanager/FutureApis/setOwnerOnlyReadWrite	; setOwnerOnlyReadWrite(Ljava/lang/String;)Z
+; v0 : Ljava/lang/String;
+.line 685
+	return-void	
+.end method
+
+.method public onOpen(Landroid/database/sqlite/SQLiteDatabase;)V
+.limit registers 5
+; this: v3 (Lcom/google/tagmanager/PersistentHitStore$UrlDatabaseHelper;)
+; parameter[0] : v4 (Landroid/database/sqlite/SQLiteDatabase;)
+.catch java/lang/Exception from la812e to la8134 using la815a
+.var 0 is cursor Landroid/database/Cursor; from la812e to la813a
+.var 0 is cursor Landroid/database/Cursor; from la815a to la8164
+.line 633
+	sget	v1,android/os/Build$VERSION.SDK_INT I
+; v1 : single-length
+	const/16	v2,15
+; v2 : single-length
+	if-ge	v1,v2,la813a
+; v1 : single-length , v2 : single-length
+.line 634
+	const-string	v1,"PRAGMA journal_mode=memory"
+; v1 : Ljava/lang/String;
+	const/4	v2,0
+; v2 : single-length
+	invoke-virtual	{v4,v1,v2},android/database/sqlite/SQLiteDatabase/rawQuery	; rawQuery(Ljava/lang/String;[Ljava/lang/String;)Landroid/database/Cursor;
+; v4 : Landroid/database/sqlite/SQLiteDatabase; , v1 : Ljava/lang/String; , v2 : single-length
+	move-result-object	v0
+; v0 : Landroid/database/Cursor;
+la812e:
+.line 637
+	invoke-interface	{v0},android/database/Cursor/moveToFirst	; moveToFirst()Z
+; v0 : Landroid/database/Cursor;
+la8134:
+.line 639
+	invoke-interface	{v0},android/database/Cursor/close	; close()V
+; v0 : Landroid/database/Cursor;
+la813a:
+.line 642
+	const-string	v1,"gtm_hits"
+; v1 : Ljava/lang/String;
+	invoke-direct	{v3,v1,v4},com/google/tagmanager/PersistentHitStore$UrlDatabaseHelper/tablePresent	; tablePresent(Ljava/lang/String;Landroid/database/sqlite/SQLiteDatabase;)Z
+; v3 : Lcom/google/tagmanager/PersistentHitStore$UrlDatabaseHelper; , v1 : Ljava/lang/String; , v4 : Landroid/database/sqlite/SQLiteDatabase;
+	move-result	v1
+; v1 : single-length
+	if-nez	v1,la8164
+; v1 : single-length
+.line 643
+	invoke-static	{},com/google/tagmanager/PersistentHitStore/access$500	; access$500()Ljava/lang/String;
+; 
+	nop	
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v4,v1},android/database/sqlite/SQLiteDatabase/execSQL	; execSQL(Ljava/lang/String;)V
+; v4 : Landroid/database/sqlite/SQLiteDatabase; , v1 : Ljava/lang/String;
+la8158:
+.line 647
+	return-void	
+la815a:
+.line 639
+	move-exception	v1
+; v1 : java/lang/Exception
+	invoke-interface	{v0},android/database/Cursor/close	; close()V
+; v0 : Landroid/database/Cursor;
+	throw	v1
+; v1 : java/lang/Exception
+la8164:
+.line 645
+	invoke-direct	{v3,v4},com/google/tagmanager/PersistentHitStore$UrlDatabaseHelper/validateColumnsPresent	; validateColumnsPresent(Landroid/database/sqlite/SQLiteDatabase;)V
+; v3 : Lcom/google/tagmanager/PersistentHitStore$UrlDatabaseHelper; , v4 : Landroid/database/sqlite/SQLiteDatabase;
+	goto	la8158
+.end method
+
+.method public onUpgrade(Landroid/database/sqlite/SQLiteDatabase;II)V
+.limit registers 4
+; this: v0 (Lcom/google/tagmanager/PersistentHitStore$UrlDatabaseHelper;)
+; parameter[0] : v1 (Landroid/database/sqlite/SQLiteDatabase;)
+; parameter[1] : v2 (I)
+; parameter[2] : v3 (I)
+.line 693
+	return-void	
+.end method
+
+.method setBadDatabase(Z)V
+.limit registers 2
+; this: v0 (Lcom/google/tagmanager/PersistentHitStore$UrlDatabaseHelper;)
+; parameter[0] : v1 (Z)
+.line 555
+	iput-boolean	v1,v0,com/google/tagmanager/PersistentHitStore$UrlDatabaseHelper.mBadDatabase Z
+; v1 : single-length , v0 : Lcom/google/tagmanager/PersistentHitStore$UrlDatabaseHelper;
+.line 556
+	return-void	
+.end method
+
+

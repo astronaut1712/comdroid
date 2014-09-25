@@ -1,0 +1,37 @@
+.class com/google/analytics/tracking/android/GAThread$4
+.super java/lang/Object
+.source GAThread.java
+.implements java/lang/Runnable
+
+.enclosing method com/setForceLocalDispatch()V
+.field final this$0 Lcom/google/analytics/tracking/android/GAThread;
+
+.method <init>(Lcom/google/analytics/tracking/android/GAThread;)V
+.limit registers 2
+; this: v0 (Lcom/google/analytics/tracking/android/GAThread$4;)
+; parameter[0] : v1 (Lcom/google/analytics/tracking/android/GAThread;)
+.line 269
+	iput-object	v1,v0,com/google/analytics/tracking/android/GAThread$4.this$0 Lcom/google/analytics/tracking/android/GAThread;
+; v1 : Lcom/google/analytics/tracking/android/GAThread; , v0 : Lcom/google/analytics/tracking/android/GAThread$4;
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Lcom/google/analytics/tracking/android/GAThread$4;
+	return-void	
+.end method
+
+.method public run()V
+.limit registers 2
+; this: v1 (Lcom/google/analytics/tracking/android/GAThread$4;)
+.line 272
+	iget-object	v0,v1,com/google/analytics/tracking/android/GAThread$4.this$0 Lcom/google/analytics/tracking/android/GAThread;
+; v0 : Lcom/google/analytics/tracking/android/GAThread; , v1 : Lcom/google/analytics/tracking/android/GAThread$4;
+	invoke-static	{v0},com/google/analytics/tracking/android/GAThread/access$700	; access$700(Lcom/google/analytics/tracking/android/GAThread;)Lcom/google/analytics/tracking/android/ServiceProxy;
+; v0 : Lcom/google/analytics/tracking/android/GAThread;
+	move-result-object	v0
+; v0 : Lcom/google/analytics/tracking/android/ServiceProxy;
+	invoke-interface	{v0},com/google/analytics/tracking/android/ServiceProxy/setForceLocalDispatch	; setForceLocalDispatch()V
+; v0 : Lcom/google/analytics/tracking/android/ServiceProxy;
+.line 273
+	return-void	
+.end method
+
+

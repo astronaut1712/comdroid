@@ -1,0 +1,59 @@
+.class final com/squareup/okhttp/internal/http/HttpEngine$1
+.super java/net/CacheResponse
+.source HttpEngine.java
+
+.inner class 1 inner com/squareup/okhttp/internal/http/HttpEngine$1 outer com/squareup/okhttp/internal/http/HttpEngine
+
+.method <init>()V
+.limit registers 1
+; this: v0 (Lcom/squareup/okhttp/internal/http/HttpEngine$1;)
+.line 79
+	invoke-direct	{v0},java/net/CacheResponse/<init>	; <init>()V
+; v0 : Lcom/squareup/okhttp/internal/http/HttpEngine$1;
+	return-void	
+.end method
+
+.method public getBody()Ljava/io/InputStream;
+.throws Ljava/io/IOException;
+.limit registers 3
+; this: v2 (Lcom/squareup/okhttp/internal/http/HttpEngine$1;)
+.line 86
+	new-instance	v0,java/io/ByteArrayInputStream
+; v0 : Ljava/io/ByteArrayInputStream;
+	sget-object	v1,com/squareup/okhttp/internal/Util.EMPTY_BYTE_ARRAY [B
+; v1 : [B
+	invoke-direct	{v0,v1},java/io/ByteArrayInputStream/<init>	; <init>([B)V
+; v0 : Ljava/io/ByteArrayInputStream; , v1 : [B
+	return-object	v0
+; v0 : Ljava/io/ByteArrayInputStream;
+.end method
+
+.method public getHeaders()Ljava/util/Map;
+.throws Ljava/io/IOException;
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "()" , "Ljava/util/Map" , "<" , "Ljava/lang/String;" , "Ljava/util/List" , "<" , "Ljava/lang/String;" , ">;>;" }
+.end annotation
+.limit registers 4
+; this: v3 (Lcom/squareup/okhttp/internal/http/HttpEngine$1;)
+.line 81
+	new-instance	v0,java/util/HashMap
+; v0 : Ljava/util/HashMap;
+	invoke-direct	{v0},java/util/HashMap/<init>	; <init>()V
+; v0 : Ljava/util/HashMap;
+.line 82
+	const/4	v1,0
+; v1 : single-length
+	const-string	v2,"HTTP/1.1 504 Gateway Timeout"
+; v2 : Ljava/lang/String;
+	invoke-static	{v2},java/util/Collections/singletonList	; singletonList(Ljava/lang/Object;)Ljava/util/List;
+; v2 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/util/List;
+	invoke-interface	{v0,v1,v2},java/util/Map/put	; put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+; v0 : Ljava/util/HashMap; , v1 : single-length , v2 : Ljava/util/List;
+.line 83
+	return-object	v0
+; v0 : Ljava/util/HashMap;
+.end method
+
+

@@ -1,0 +1,77 @@
+.class com/fsharemobile/ExplorerSearchResultsActivity$1$1
+.super java/lang/Object
+.source ExplorerSearchResultsActivity.java
+.implements com/fsharemobile/client/FileProxy$OnGetLinkCompleted
+
+.inner class 1 inner com/fsharemobile/ExplorerSearchResultsActivity$1$1 outer com/fsharemobile/ExplorerSearchResultsActivity$1
+.field final this$1 Lcom/fsharemobile/ExplorerSearchResultsActivity$1;
+
+.method <init>(Lcom/fsharemobile/ExplorerSearchResultsActivity$1;)V
+.limit registers 2
+; this: v0 (Lcom/fsharemobile/ExplorerSearchResultsActivity$1$1;)
+; parameter[0] : v1 (Lcom/fsharemobile/ExplorerSearchResultsActivity$1;)
+.line 1
+	iput-object	v1,v0,com/fsharemobile/ExplorerSearchResultsActivity$1$1.this$1 Lcom/fsharemobile/ExplorerSearchResultsActivity$1;
+; v1 : Lcom/fsharemobile/ExplorerSearchResultsActivity$1; , v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity$1$1;
+.line 240
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity$1$1;
+	return-void	
+.end method
+
+.method public onGetLinkCompleted(ILjava/util/List;)V
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "(I" , "Ljava/util/List" , "<" , "Ljava/lang/String;" , ">;)V" }
+.end annotation
+.limit registers 5
+; this: v2 (Lcom/fsharemobile/ExplorerSearchResultsActivity$1$1;)
+; parameter[0] : v3 (I)
+; parameter[1] : v4 (Ljava/util/List;)
+.line 245
+	if-nez	v3,ld6b3c
+; v3 : single-length
+	if-eqz	v4,ld6b3c
+; v4 : Ljava/util/List;
+.line 246
+	iget-object	v0,v2,com/fsharemobile/ExplorerSearchResultsActivity$1$1.this$1 Lcom/fsharemobile/ExplorerSearchResultsActivity$1;
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity$1; , v2 : Lcom/fsharemobile/ExplorerSearchResultsActivity$1$1;
+	invoke-static	{v0},com/fsharemobile/ExplorerSearchResultsActivity$1/access$0	; access$0(Lcom/fsharemobile/ExplorerSearchResultsActivity$1;)Lcom/fsharemobile/ExplorerSearchResultsActivity;
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity$1;
+	move-result-object	v0
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity;
+	iput-object	v4,v0,com/fsharemobile/ExplorerSearchResultsActivity.linksShare Ljava/util/List;
+; v4 : Ljava/util/List; , v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity;
+ld6b3c:
+.line 248
+	iget-object	v0,v2,com/fsharemobile/ExplorerSearchResultsActivity$1$1.this$1 Lcom/fsharemobile/ExplorerSearchResultsActivity$1;
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity$1; , v2 : Lcom/fsharemobile/ExplorerSearchResultsActivity$1$1;
+	invoke-static	{v0},com/fsharemobile/ExplorerSearchResultsActivity$1/access$0	; access$0(Lcom/fsharemobile/ExplorerSearchResultsActivity$1;)Lcom/fsharemobile/ExplorerSearchResultsActivity;
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity$1;
+	move-result-object	v0
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity;
+	iget-object	v0,v0,com/fsharemobile/ExplorerSearchResultsActivity.dialogGetLinks Landroid/app/ProgressDialog;
+; v0 : Landroid/app/ProgressDialog; , v0 : Landroid/app/ProgressDialog;
+	invoke-virtual	{v0},android/app/ProgressDialog/dismiss	; dismiss()V
+; v0 : Landroid/app/ProgressDialog;
+.line 249
+	iget-object	v0,v2,com/fsharemobile/ExplorerSearchResultsActivity$1$1.this$1 Lcom/fsharemobile/ExplorerSearchResultsActivity$1;
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity$1; , v2 : Lcom/fsharemobile/ExplorerSearchResultsActivity$1$1;
+	invoke-static	{v0},com/fsharemobile/ExplorerSearchResultsActivity$1/access$0	; access$0(Lcom/fsharemobile/ExplorerSearchResultsActivity$1;)Lcom/fsharemobile/ExplorerSearchResultsActivity;
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity$1;
+	move-result-object	v0
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity;
+	iget-object	v1,v2,com/fsharemobile/ExplorerSearchResultsActivity$1$1.this$1 Lcom/fsharemobile/ExplorerSearchResultsActivity$1;
+; v1 : Lcom/fsharemobile/ExplorerSearchResultsActivity$1; , v2 : Lcom/fsharemobile/ExplorerSearchResultsActivity$1$1;
+	invoke-static	{v1},com/fsharemobile/ExplorerSearchResultsActivity$1/access$0	; access$0(Lcom/fsharemobile/ExplorerSearchResultsActivity$1;)Lcom/fsharemobile/ExplorerSearchResultsActivity;
+; v1 : Lcom/fsharemobile/ExplorerSearchResultsActivity$1;
+	move-result-object	v1
+; v1 : Lcom/fsharemobile/ExplorerSearchResultsActivity;
+	iget-object	v1,v1,com/fsharemobile/ExplorerSearchResultsActivity.linksShare Ljava/util/List;
+; v1 : Ljava/util/List; , v1 : Ljava/util/List;
+	invoke-static	{v0,v1},com/fsharemobile/ExplorerSearchResultsActivity/access$0	; access$0(Lcom/fsharemobile/ExplorerSearchResultsActivity;Ljava/util/List;)V
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity; , v1 : Ljava/util/List;
+.line 250
+	return-void	
+.end method
+
+

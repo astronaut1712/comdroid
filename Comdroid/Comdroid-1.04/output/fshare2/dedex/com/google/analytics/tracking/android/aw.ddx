@@ -1,0 +1,1978 @@
+.class com/google/analytics/tracking/android/aw
+.super java/lang/Object
+.source MyApplication
+.implements com/google/analytics/tracking/android/f
+
+.field private static final a Ljava/lang/String;
+.field private final b Lcom/google/analytics/tracking/android/ay;
+.field private volatile c Lcom/google/analytics/tracking/android/o;
+.field private final d Lcom/google/analytics/tracking/android/g;
+.field private final e Landroid/content/Context;
+.field private final f Ljava/lang/String;
+.field private g J
+.field private h Lcom/google/analytics/tracking/android/l;
+
+.method static <clinit>()V
+.limit registers 4
+.line 60
+	const-string	v0,"CREATE TABLE IF NOT EXISTS %s ( '%s' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, '%s' INTEGER NOT NULL, '%s' TEXT NOT NULL, '%s' TEXT NOT NULL, '%s' INTEGER)"
+; v0 : Ljava/lang/String;
+	const/4	v1,6
+; v1 : single-length
+	new-array	v1,v1,[Ljava/lang/Object;
+; v1 : [Ljava/lang/Object; , v1 : [Ljava/lang/Object;
+	const/4	v2,0
+; v2 : single-length
+	const-string	v3,"hits2"
+; v3 : Ljava/lang/String;
+	aput-object	v3,v1,v2
+; v3 : Ljava/lang/String; , v1 : [Ljava/lang/Object; , v2 : single-length
+	const/4	v2,1
+; v2 : single-length
+	const-string	v3,"hit_id"
+; v3 : Ljava/lang/String;
+	aput-object	v3,v1,v2
+; v3 : Ljava/lang/String; , v1 : [Ljava/lang/Object; , v2 : single-length
+	const/4	v2,2
+; v2 : single-length
+	const-string	v3,"hit_time"
+; v3 : Ljava/lang/String;
+	aput-object	v3,v1,v2
+; v3 : Ljava/lang/String; , v1 : [Ljava/lang/Object; , v2 : single-length
+	const/4	v2,3
+; v2 : single-length
+	const-string	v3,"hit_url"
+; v3 : Ljava/lang/String;
+	aput-object	v3,v1,v2
+; v3 : Ljava/lang/String; , v1 : [Ljava/lang/Object; , v2 : single-length
+	const/4	v2,4
+; v2 : single-length
+	const-string	v3,"hit_string"
+; v3 : Ljava/lang/String;
+	aput-object	v3,v1,v2
+; v3 : Ljava/lang/String; , v1 : [Ljava/lang/Object; , v2 : single-length
+	const/4	v2,5
+; v2 : single-length
+	const-string	v3,"hit_app_id"
+; v3 : Ljava/lang/String;
+	aput-object	v3,v1,v2
+; v3 : Ljava/lang/String; , v1 : [Ljava/lang/Object; , v2 : single-length
+	invoke-static	{v0,v1},java/lang/String/format	; format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+; v0 : Ljava/lang/String; , v1 : [Ljava/lang/Object;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	sput-object	v0,com/google/analytics/tracking/android/aw.a Ljava/lang/String;
+; v0 : Ljava/lang/String;
+	return-void	
+.end method
+
+.method <init>(Lcom/google/analytics/tracking/android/g;Landroid/content/Context;)V
+.limit registers 4
+; this: v1 (Lcom/google/analytics/tracking/android/aw;)
+; parameter[0] : v2 (Lcom/google/analytics/tracking/android/g;)
+; parameter[1] : v3 (Landroid/content/Context;)
+.line 96
+	const-string	v0,"google_analytics_v2.db"
+; v0 : Ljava/lang/String;
+	invoke-direct	{v1,v2,v3,v0},com/google/analytics/tracking/android/aw/<init>	; <init>(Lcom/google/analytics/tracking/android/g;Landroid/content/Context;Ljava/lang/String;)V
+; v1 : Lcom/google/analytics/tracking/android/aw; , v2 : Lcom/google/analytics/tracking/android/g; , v3 : Landroid/content/Context; , v0 : Ljava/lang/String;
+.line 97
+	return-void	
+.end method
+
+.method <init>(Lcom/google/analytics/tracking/android/g;Landroid/content/Context;Ljava/lang/String;)V
+.limit registers 7
+; this: v3 (Lcom/google/analytics/tracking/android/aw;)
+; parameter[0] : v4 (Lcom/google/analytics/tracking/android/g;)
+; parameter[1] : v5 (Landroid/content/Context;)
+; parameter[2] : v6 (Ljava/lang/String;)
+.line 108
+	invoke-direct	{v3},java/lang/Object/<init>	; <init>()V
+; v3 : Lcom/google/analytics/tracking/android/aw;
+.line 109
+	invoke-virtual	{v5},android/content/Context/getApplicationContext	; getApplicationContext()Landroid/content/Context;
+; v5 : Landroid/content/Context;
+	move-result-object	v0
+; v0 : Landroid/content/Context;
+	iput-object	v0,v3,com/google/analytics/tracking/android/aw.e Landroid/content/Context;
+; v0 : Landroid/content/Context; , v3 : Lcom/google/analytics/tracking/android/aw;
+.line 110
+	iput-object	v6,v3,com/google/analytics/tracking/android/aw.f Ljava/lang/String;
+; v6 : Ljava/lang/String; , v3 : Lcom/google/analytics/tracking/android/aw;
+.line 111
+	iput-object	v4,v3,com/google/analytics/tracking/android/aw.d Lcom/google/analytics/tracking/android/g;
+; v4 : Lcom/google/analytics/tracking/android/g; , v3 : Lcom/google/analytics/tracking/android/aw;
+.line 112
+	new-instance	v0,com/google/analytics/tracking/android/ax
+; v0 : Lcom/google/analytics/tracking/android/ax;
+	invoke-direct	{v0,v3},com/google/analytics/tracking/android/ax/<init>	; <init>(Lcom/google/analytics/tracking/android/aw;)V
+; v0 : Lcom/google/analytics/tracking/android/ax; , v3 : Lcom/google/analytics/tracking/android/aw;
+	iput-object	v0,v3,com/google/analytics/tracking/android/aw.h Lcom/google/analytics/tracking/android/l;
+; v0 : Lcom/google/analytics/tracking/android/ax; , v3 : Lcom/google/analytics/tracking/android/aw;
+.line 118
+	new-instance	v0,com/google/analytics/tracking/android/ay
+; v0 : Lcom/google/analytics/tracking/android/ay;
+	iget-object	v1,v3,com/google/analytics/tracking/android/aw.e Landroid/content/Context;
+; v1 : Landroid/content/Context; , v3 : Lcom/google/analytics/tracking/android/aw;
+	iget-object	v2,v3,com/google/analytics/tracking/android/aw.f Ljava/lang/String;
+; v2 : Ljava/lang/String; , v3 : Lcom/google/analytics/tracking/android/aw;
+	invoke-direct	{v0,v3,v1,v2},com/google/analytics/tracking/android/ay/<init>	; <init>(Lcom/google/analytics/tracking/android/aw;Landroid/content/Context;Ljava/lang/String;)V
+; v0 : Lcom/google/analytics/tracking/android/ay; , v3 : Lcom/google/analytics/tracking/android/aw; , v1 : Landroid/content/Context; , v2 : Ljava/lang/String;
+	iput-object	v0,v3,com/google/analytics/tracking/android/aw.b Lcom/google/analytics/tracking/android/ay;
+; v0 : Lcom/google/analytics/tracking/android/ay; , v3 : Lcom/google/analytics/tracking/android/aw;
+.line 119
+	new-instance	v0,com/google/analytics/tracking/android/be
+; v0 : Lcom/google/analytics/tracking/android/be;
+	new-instance	v1,org/apache/http/impl/client/DefaultHttpClient
+; v1 : Lorg/apache/http/impl/client/DefaultHttpClient;
+	invoke-direct	{v1},org/apache/http/impl/client/DefaultHttpClient/<init>	; <init>()V
+; v1 : Lorg/apache/http/impl/client/DefaultHttpClient;
+	iget-object	v2,v3,com/google/analytics/tracking/android/aw.e Landroid/content/Context;
+; v2 : Landroid/content/Context; , v3 : Lcom/google/analytics/tracking/android/aw;
+	invoke-direct	{v0,v1,v2},com/google/analytics/tracking/android/be/<init>	; <init>(Lorg/apache/http/client/HttpClient;Landroid/content/Context;)V
+; v0 : Lcom/google/analytics/tracking/android/be; , v1 : Lorg/apache/http/impl/client/DefaultHttpClient; , v2 : Landroid/content/Context;
+	iput-object	v0,v3,com/google/analytics/tracking/android/aw.c Lcom/google/analytics/tracking/android/o;
+; v0 : Lcom/google/analytics/tracking/android/be; , v3 : Lcom/google/analytics/tracking/android/aw;
+.line 122
+	const-wide/16	v0,0
+; v0 : double-length
+	iput-wide	v0,v3,com/google/analytics/tracking/android/aw.g J
+; v0 : double-length , v3 : Lcom/google/analytics/tracking/android/aw;
+.line 123
+	return-void	
+.end method
+
+.method private a(Ljava/lang/String;)Landroid/database/sqlite/SQLiteDatabase;
+.annotation runtimeVisibility Ljava/lang/Deprecated;
+.end annotation
+.limit registers 3
+; this: v1 (Lcom/google/analytics/tracking/android/aw;)
+; parameter[0] : v2 (Ljava/lang/String;)
+.catch android/database/sqlite/SQLiteException from l9b164 to l9b16e using l9b172
+l9b164:
+.line 563
+.line 565
+	iget-object	v0,v1,com/google/analytics/tracking/android/aw.b Lcom/google/analytics/tracking/android/ay;
+; v0 : Lcom/google/analytics/tracking/android/ay; , v1 : Lcom/google/analytics/tracking/android/aw;
+	invoke-virtual	{v0},com/google/analytics/tracking/android/ay/getWritableDatabase	; getWritableDatabase()Landroid/database/sqlite/SQLiteDatabase;
+; v0 : Lcom/google/analytics/tracking/android/ay;
+l9b16e:
+	move-result-object	v0
+; v0 : Landroid/database/sqlite/SQLiteDatabase;
+l9b170:
+.line 570
+	return-object	v0
+; v0 : single-length
+l9b172:
+.line 566
+	move-exception	v0
+; v0 : android/database/sqlite/SQLiteException
+.line 567
+	invoke-static	{v2},com/google/analytics/tracking/android/aq/d	; d(Ljava/lang/String;)V
+; v2 : Ljava/lang/String;
+.line 568
+	const/4	v0,0
+; v0 : single-length
+	goto	l9b170
+.end method
+
+.method static a(Lcom/google/analytics/tracking/android/aw;)Lcom/google/analytics/tracking/android/l;
+.annotation runtimeVisibility Ljava/lang/Deprecated;
+.end annotation
+.limit registers 2
+; parameter[0] : v1 (Lcom/google/analytics/tracking/android/aw;)
+.line 41
+	iget-object	v0,v1,com/google/analytics/tracking/android/aw.h Lcom/google/analytics/tracking/android/l;
+; v0 : Lcom/google/analytics/tracking/android/l; , v1 : Lcom/google/analytics/tracking/android/aw;
+	return-object	v0
+; v0 : Lcom/google/analytics/tracking/android/l;
+.end method
+
+.method static a(Ljava/util/Map;)Ljava/lang/String;
+.annotation runtimeVisibility Ljava/lang/Deprecated;
+.end annotation
+.limit registers 6
+; parameter[0] : v5 (Ljava/util/Map;)
+.line 254
+	new-instance	v2,java/util/ArrayList
+; v2 : Ljava/util/ArrayList;
+	invoke-interface	{v5},java/util/Map/size	; size()I
+; v5 : Ljava/util/Map;
+	move-result	v0
+; v0 : single-length
+	invoke-direct	{v2,v0},java/util/ArrayList/<init>	; <init>(I)V
+; v2 : Ljava/util/ArrayList; , v0 : single-length
+.line 255
+	invoke-interface	{v5},java/util/Map/entrySet	; entrySet()Ljava/util/Set;
+; v5 : Ljava/util/Map;
+	move-result-object	v0
+; v0 : Ljava/util/Set;
+	invoke-interface	{v0},java/util/Set/iterator	; iterator()Ljava/util/Iterator;
+; v0 : Ljava/util/Set;
+	move-result-object	v3
+; v3 : Ljava/util/Iterator;
+l9b1d6:
+	invoke-interface	{v3},java/util/Iterator/hasNext	; hasNext()Z
+; v3 : Ljava/util/Iterator;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,l9b24c
+; v0 : single-length
+	invoke-interface	{v3},java/util/Iterator/next	; next()Ljava/lang/Object;
+; v3 : Ljava/util/Iterator;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,java/util/Map$Entry
+; v0 : Ljava/util/Map$Entry;
+.line 258
+	new-instance	v4,java/lang/StringBuilder
+; v4 : Ljava/lang/StringBuilder;
+	invoke-direct	{v4},java/lang/StringBuilder/<init>	; <init>()V
+; v4 : Ljava/lang/StringBuilder;
+	invoke-interface	{v0},java/util/Map$Entry/getKey	; getKey()Ljava/lang/Object;
+; v0 : Ljava/util/Map$Entry;
+	move-result-object	v1
+; v1 : Ljava/lang/Object;
+	check-cast	v1,java/lang/String
+; v1 : Ljava/lang/String;
+	invoke-static	{v1},com/google/analytics/tracking/android/ap/a	; a(Ljava/lang/String;)Ljava/lang/String;
+; v1 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v4,v1},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v4 : Ljava/lang/StringBuilder; , v1 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	const-string	v4,"="
+; v4 : Ljava/lang/String;
+	invoke-virtual	{v1,v4},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v4 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	invoke-interface	{v0},java/util/Map$Entry/getValue	; getValue()Ljava/lang/Object;
+; v0 : Ljava/util/Map$Entry;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,java/lang/String
+; v0 : Ljava/lang/String;
+	invoke-static	{v0},com/google/analytics/tracking/android/ap/a	; a(Ljava/lang/String;)Ljava/lang/String;
+; v0 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v1,v0},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v0 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v0},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v0 : Ljava/lang/StringBuilder;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	invoke-interface	{v2,v0},java/util/List/add	; add(Ljava/lang/Object;)Z
+; v2 : Ljava/util/ArrayList; , v0 : Ljava/lang/String;
+	goto	l9b1d6
+l9b24c:
+.line 261
+	const-string	v0,"&"
+; v0 : Ljava/lang/String;
+	invoke-static	{v0,v2},android/text/TextUtils/join	; join(Ljava/lang/CharSequence;Ljava/lang/Iterable;)Ljava/lang/String;
+; v0 : Ljava/lang/String; , v2 : Ljava/util/ArrayList;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	return-object	v0
+; v0 : Ljava/lang/String;
+.end method
+
+.method private a(Ljava/util/Map;JLjava/lang/String;)V
+.annotation runtimeVisibility Ljava/lang/Deprecated;
+.end annotation
+.limit registers 10
+; this: v5 (Lcom/google/analytics/tracking/android/aw;)
+; parameter[0] : v6 (Ljava/util/Map;)
+; parameter[1] : v7 (J)
+; parameter[2] : v9 (Ljava/lang/String;)
+.catch android/database/sqlite/SQLiteException from l9b31a to l9b332 using l9b334
+.catch java/lang/NumberFormatException from l9b2c0 to l9b2d6 using l9b30a
+.line 214
+	const-string	v0,"Error opening database for putHit"
+; v0 : Ljava/lang/String;
+	invoke-direct	{v5,v0},com/google/analytics/tracking/android/aw/a	; a(Ljava/lang/String;)Landroid/database/sqlite/SQLiteDatabase;
+; v5 : Lcom/google/analytics/tracking/android/aw; , v0 : Ljava/lang/String;
+	move-result-object	v3
+; v3 : Landroid/database/sqlite/SQLiteDatabase;
+.line 215
+	if-nez	v3,l9b27e
+; v3 : Landroid/database/sqlite/SQLiteDatabase;
+l9b27c:
+.line 251
+	return-void	
+l9b27e:
+.line 219
+	new-instance	v4,android/content/ContentValues
+; v4 : Landroid/content/ContentValues;
+	invoke-direct	{v4},android/content/ContentValues/<init>	; <init>()V
+; v4 : Landroid/content/ContentValues;
+.line 221
+	const-string	v0,"hit_string"
+; v0 : Ljava/lang/String;
+	invoke-static	{v6},com/google/analytics/tracking/android/aw/a	; a(Ljava/util/Map;)Ljava/lang/String;
+; v6 : Ljava/util/Map;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v4,v0,v1},android/content/ContentValues/put	; put(Ljava/lang/String;Ljava/lang/String;)V
+; v4 : Landroid/content/ContentValues; , v0 : Ljava/lang/String; , v1 : Ljava/lang/String;
+.line 222
+	const-string	v0,"hit_time"
+; v0 : Ljava/lang/String;
+	invoke-static	{v7,v8},java/lang/Long/valueOf	; valueOf(J)Ljava/lang/Long;
+; v7 : double-length
+	move-result-object	v1
+; v1 : Ljava/lang/Long;
+	invoke-virtual	{v4,v0,v1},android/content/ContentValues/put	; put(Ljava/lang/String;Ljava/lang/Long;)V
+; v4 : Landroid/content/ContentValues; , v0 : Ljava/lang/String; , v1 : Ljava/lang/Long;
+.line 223
+	const-wide/16	v1,0
+; v1 : double-length
+.line 224
+	const-string	v0,"AppUID"
+; v0 : Ljava/lang/String;
+	invoke-interface	{v6,v0},java/util/Map/containsKey	; containsKey(Ljava/lang/Object;)Z
+; v6 : Ljava/util/Map; , v0 : Ljava/lang/String;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,l9b342
+; v0 : single-length
+l9b2c0:
+.line 226
+	const-string	v0,"AppUID"
+; v0 : Ljava/lang/String;
+	invoke-interface	{v6,v0},java/util/Map/get	; get(Ljava/lang/Object;)Ljava/lang/Object;
+; v6 : Ljava/util/Map; , v0 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,java/lang/String
+; v0 : Ljava/lang/String;
+	invoke-static	{v0},java/lang/Long/parseLong	; parseLong(Ljava/lang/String;)J
+; v0 : Ljava/lang/String;
+l9b2d6:
+	move-result-wide	v0
+; v0 : double-length
+l9b2d8:
+.line 231
+	const-string	v2,"hit_app_id"
+; v2 : Ljava/lang/String;
+	invoke-static	{v0,v1},java/lang/Long/valueOf	; valueOf(J)Ljava/lang/Long;
+; v0 : double-length
+	move-result-object	v0
+; v0 : Ljava/lang/Long;
+	invoke-virtual	{v4,v2,v0},android/content/ContentValues/put	; put(Ljava/lang/String;Ljava/lang/Long;)V
+; v4 : Landroid/content/ContentValues; , v2 : Ljava/lang/String; , v0 : Ljava/lang/Long;
+.line 232
+	if-nez	v9,l9b2f2
+; v9 : Ljava/lang/String;
+.line 233
+	const-string	v9,"http://www.google-analytics.com/collect"
+; v9 : Ljava/lang/String;
+l9b2f2:
+.line 236
+	invoke-virtual	{v9},java/lang/String/length	; length()I
+; v9 : Ljava/lang/String;
+	move-result	v0
+; v0 : single-length
+	if-nez	v0,l9b310
+; v0 : single-length
+.line 239
+	const-string	v0,"Empty path: not sending hit"
+; v0 : Ljava/lang/String;
+	invoke-static	{v0},com/google/analytics/tracking/android/aq/d	; d(Ljava/lang/String;)V
+; v0 : Ljava/lang/String;
+	goto	l9b27c
+l9b30a:
+.line 227
+	move-exception	v0
+; v0 : java/lang/NumberFormatException
+	move-wide	v0,v1
+; v0 : double-length , v1 : double-length
+	goto	l9b2d8
+l9b310:
+.line 242
+	const-string	v0,"hit_url"
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v4,v0,v9},android/content/ContentValues/put	; put(Ljava/lang/String;Ljava/lang/String;)V
+; v4 : Landroid/content/ContentValues; , v0 : Ljava/lang/String; , v9 : Ljava/lang/String;
+l9b31a:
+.line 244
+	const-string	v0,"hits2"
+; v0 : Ljava/lang/String;
+	const/4	v1,0
+; v1 : single-length
+	invoke-virtual	{v3,v0,v1,v4},android/database/sqlite/SQLiteDatabase/insert	; insert(Ljava/lang/String;Ljava/lang/String;Landroid/content/ContentValues;)J
+; v3 : Landroid/database/sqlite/SQLiteDatabase; , v0 : Ljava/lang/String; , v1 : single-length , v4 : Landroid/content/ContentValues;
+.line 247
+	iget-object	v0,v5,com/google/analytics/tracking/android/aw.d Lcom/google/analytics/tracking/android/g;
+; v0 : Lcom/google/analytics/tracking/android/g; , v5 : Lcom/google/analytics/tracking/android/aw;
+	const/4	v1,0
+; v1 : single-length
+	invoke-interface	{v0,v1},com/google/analytics/tracking/android/g/a	; a(Z)V
+; v0 : Lcom/google/analytics/tracking/android/g; , v1 : single-length
+l9b332:
+	goto	l9b27c
+l9b334:
+.line 248
+	move-exception	v0
+; v0 : android/database/sqlite/SQLiteException
+.line 249
+	const-string	v0,"Error storing hit"
+; v0 : Ljava/lang/String;
+	invoke-static	{v0},com/google/analytics/tracking/android/aq/d	; d(Ljava/lang/String;)V
+; v0 : Ljava/lang/String;
+	goto	l9b27c
+l9b342:
+	move-wide	v0,v1
+; v0 : double-length , v1 : double-length
+	goto	l9b2d8
+.end method
+
+.method private a(Ljava/util/Map;Ljava/util/Collection;)V
+.annotation runtimeVisibility Ljava/lang/Deprecated;
+.end annotation
+.limit registers 8
+; this: v5 (Lcom/google/analytics/tracking/android/aw;)
+; parameter[0] : v6 (Ljava/util/Map;)
+; parameter[1] : v7 (Ljava/util/Collection;)
+.line 188
+	const-string	v0,"&_v"
+; v0 : Ljava/lang/String;
+	const/4	v1,1
+; v1 : single-length
+	invoke-virtual	{v0,v1},java/lang/String/substring	; substring(I)Ljava/lang/String;
+; v0 : Ljava/lang/String; , v1 : single-length
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+.line 189
+	if-eqz	v7,l9b3c8
+; v7 : Ljava/util/Collection;
+.line 190
+	invoke-interface	{v7},java/util/Collection/iterator	; iterator()Ljava/util/Iterator;
+; v7 : Ljava/util/Collection;
+	move-result-object	v2
+; v2 : Ljava/util/Iterator;
+l9b38a:
+	invoke-interface	{v2},java/util/Iterator/hasNext	; hasNext()Z
+; v2 : Ljava/util/Iterator;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,l9b3c8
+; v0 : single-length
+	invoke-interface	{v2},java/util/Iterator/next	; next()Ljava/lang/Object;
+; v2 : Ljava/util/Iterator;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,com/google/android/gms/analytics/internal/Command
+; v0 : Lcom/google/android/gms/analytics/internal/Command;
+.line 191
+	const-string	v3,"appendVersion"
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v0},com/google/android/gms/analytics/internal/Command/a	; a()Ljava/lang/String;
+; v0 : Lcom/google/android/gms/analytics/internal/Command;
+	move-result-object	v4
+; v4 : Ljava/lang/String;
+	invoke-virtual	{v3,v4},java/lang/String/equals	; equals(Ljava/lang/Object;)Z
+; v3 : Ljava/lang/String; , v4 : Ljava/lang/String;
+	move-result	v3
+; v3 : single-length
+	if-eqz	v3,l9b38a
+; v3 : single-length
+.line 192
+	invoke-virtual	{v0},com/google/android/gms/analytics/internal/Command/b	; b()Ljava/lang/String;
+; v0 : Lcom/google/android/gms/analytics/internal/Command;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	invoke-interface	{v6,v1,v0},java/util/Map/put	; put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+; v6 : Ljava/util/Map; , v1 : Ljava/lang/String; , v0 : Ljava/lang/String;
+l9b3c8:
+.line 197
+	return-void	
+.end method
+
+.method static b(Lcom/google/analytics/tracking/android/aw;)Ljava/lang/String;
+.limit registers 2
+; parameter[0] : v1 (Lcom/google/analytics/tracking/android/aw;)
+.line 41
+	iget-object	v0,v1,com/google/analytics/tracking/android/aw.f Ljava/lang/String;
+; v0 : Ljava/lang/String; , v1 : Lcom/google/analytics/tracking/android/aw;
+	return-object	v0
+; v0 : Ljava/lang/String;
+.end method
+
+.method static c(Lcom/google/analytics/tracking/android/aw;)Landroid/content/Context;
+.limit registers 2
+; parameter[0] : v1 (Lcom/google/analytics/tracking/android/aw;)
+.line 41
+	iget-object	v0,v1,com/google/analytics/tracking/android/aw.e Landroid/content/Context;
+; v0 : Landroid/content/Context; , v1 : Lcom/google/analytics/tracking/android/aw;
+	return-object	v0
+; v0 : Landroid/content/Context;
+.end method
+
+.method static e()Ljava/lang/String;
+.limit registers 1
+.line 41
+	sget-object	v0,com/google/analytics/tracking/android/aw.a Ljava/lang/String;
+; v0 : Ljava/lang/String;
+	return-object	v0
+; v0 : Ljava/lang/String;
+.end method
+
+.method private f()V
+.limit registers 4
+; this: v3 (Lcom/google/analytics/tracking/android/aw;)
+.line 204
+	invoke-virtual	{v3},com/google/analytics/tracking/android/aw/d	; d()I
+; v3 : Lcom/google/analytics/tracking/android/aw;
+	move-result	v0
+; v0 : single-length
+	add-int/lit16	v0,v0,63536
+; v0 : single-length , v0 : single-length
+	add-int/lit8	v0,v0,1
+; v0 : single-length , v0 : single-length
+.line 205
+	if-lez	v0,l9b498
+; v0 : single-length
+.line 206
+	invoke-virtual	{v3,v0},com/google/analytics/tracking/android/aw/a	; a(I)Ljava/util/List;
+; v3 : Lcom/google/analytics/tracking/android/aw; , v0 : single-length
+	move-result-object	v0
+; v0 : Ljava/util/List;
+.line 207
+	new-instance	v1,java/lang/StringBuilder
+; v1 : Ljava/lang/StringBuilder;
+	invoke-direct	{v1},java/lang/StringBuilder/<init>	; <init>()V
+; v1 : Ljava/lang/StringBuilder;
+	const-string	v2,"Store full, deleting "
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	invoke-interface	{v0},java/util/List/size	; size()I
+; v0 : Ljava/util/List;
+	move-result	v2
+; v2 : single-length
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(I)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : single-length
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	const-string	v2," hits to make room."
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v1},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v1 : Ljava/lang/StringBuilder;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-static	{v1},com/google/analytics/tracking/android/aq/c	; c(Ljava/lang/String;)V
+; v1 : Ljava/lang/String;
+.line 208
+	const/4	v1,0
+; v1 : single-length
+	new-array	v1,v1,[Ljava/lang/String;
+; v1 : [Ljava/lang/String; , v1 : [Ljava/lang/String;
+	invoke-interface	{v0,v1},java/util/List/toArray	; toArray([Ljava/lang/Object;)[Ljava/lang/Object;
+; v0 : Ljava/util/List; , v1 : [Ljava/lang/String;
+	move-result-object	v0
+; v0 : [Ljava/lang/Object;
+	check-cast	v0,[Ljava/lang/String
+; v0 : [Ljava/lang/String
+	invoke-virtual	{v3,v0},com/google/analytics/tracking/android/aw/a	; a([Ljava/lang/String;)V
+; v3 : Lcom/google/analytics/tracking/android/aw; , v0 : [Ljava/lang/String
+l9b498:
+.line 210
+	return-void	
+.end method
+
+.method a(I)Ljava/util/List;
+.annotation runtimeVisibility Ljava/lang/Deprecated;
+.end annotation
+.limit registers 15
+; this: v13 (Lcom/google/analytics/tracking/android/aw;)
+; parameter[0] : v14 (I)
+.catch java/lang/Exception from l9b568 to l9b59c using l9b5b8
+.catch android/database/sqlite/SQLiteException from l9b526 to l9b550 using l9b5bc
+.catch java/lang/Exception from l9b526 to l9b550 using l9b5b8
+.catch android/database/sqlite/SQLiteException from l9b4de to l9b524 using l9b564
+.catch java/lang/Exception from l9b4de to l9b524 using l9b5a8
+	const/4	v10,0
+; v10 : single-length
+.line 272
+	new-instance	v9,java/util/ArrayList
+; v9 : Ljava/util/ArrayList;
+	invoke-direct	{v9},java/util/ArrayList/<init>	; <init>()V
+; v9 : Ljava/util/ArrayList;
+.line 273
+	if-gtz	v14,l9b4ca
+; v14 : single-length
+.line 274
+	const-string	v0,"Invalid maxHits specified. Skipping"
+; v0 : Ljava/lang/String;
+	invoke-static	{v0},com/google/analytics/tracking/android/aq/d	; d(Ljava/lang/String;)V
+; v0 : Ljava/lang/String;
+	move-object	v0,v9
+; v0 : Ljava/util/ArrayList; , v9 : Ljava/util/ArrayList;
+l9b4c8:
+.line 304
+	return-object	v0
+; v0 : Ljava/util/ArrayList;
+l9b4ca:
+.line 277
+	const-string	v0,"Error opening database for peekHitIds."
+; v0 : Ljava/lang/String;
+	invoke-direct	{v13,v0},com/google/analytics/tracking/android/aw/a	; a(Ljava/lang/String;)Landroid/database/sqlite/SQLiteDatabase;
+; v13 : Lcom/google/analytics/tracking/android/aw; , v0 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Landroid/database/sqlite/SQLiteDatabase;
+.line 278
+	if-nez	v0,l9b4de
+; v0 : Landroid/database/sqlite/SQLiteDatabase;
+	move-object	v0,v9
+; v0 : Ljava/util/ArrayList; , v9 : Ljava/util/ArrayList;
+.line 279
+	goto	l9b4c8
+l9b4de:
+.line 284
+	const-string	v1,"hits2"
+; v1 : Ljava/lang/String;
+	const/4	v2,1
+; v2 : single-length
+	new-array	v2,v2,[Ljava/lang/String;
+; v2 : [Ljava/lang/String; , v2 : [Ljava/lang/String;
+	const/4	v3,0
+; v3 : single-length
+	const-string	v4,"hit_id"
+; v4 : Ljava/lang/String;
+	aput-object	v4,v2,v3
+; v4 : Ljava/lang/String; , v2 : [Ljava/lang/String; , v3 : single-length
+	const/4	v3,0
+; v3 : single-length
+	const/4	v4,0
+; v4 : single-length
+	const/4	v5,0
+; v5 : single-length
+	const/4	v6,0
+; v6 : single-length
+	const-string	v7,"%s ASC"
+; v7 : Ljava/lang/String;
+	const/4	v8,1
+; v8 : single-length
+	new-array	v8,v8,[Ljava/lang/Object;
+; v8 : [Ljava/lang/Object; , v8 : [Ljava/lang/Object;
+	const/4	v11,0
+; v11 : single-length
+	const-string	v12,"hit_id"
+; v12 : Ljava/lang/String;
+	aput-object	v12,v8,v11
+; v12 : Ljava/lang/String; , v8 : [Ljava/lang/Object; , v11 : single-length
+	invoke-static	{v7,v8},java/lang/String/format	; format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+; v7 : Ljava/lang/String; , v8 : [Ljava/lang/Object;
+	move-result-object	v7
+; v7 : Ljava/lang/String;
+	invoke-static	{v14},java/lang/Integer/toString	; toString(I)Ljava/lang/String;
+; v14 : single-length
+	move-result-object	v8
+; v8 : Ljava/lang/String;
+	invoke-virtual/range	{v0..v8},android/database/sqlite/SQLiteDatabase/query;	query(Ljava/lang/String;[Ljava/lang/String;Ljava/lang/String;[Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Landroid/database/Cursor;
+; v0 : Landroid/database/sqlite/SQLiteDatabase; , v1 : Ljava/lang/String; , v2 : [Ljava/lang/String; , v3 : single-length , v4 : single-length , v5 : single-length , v6 : single-length , v7 : Ljava/lang/String; , v8 : Ljava/lang/String;
+l9b524:
+	move-result-object	v1
+; v1 : Landroid/database/Cursor;
+l9b526:
+.line 292
+	invoke-interface	{v1},android/database/Cursor/moveToFirst	; moveToFirst()Z
+; v1 : Landroid/database/Cursor;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,l9b556
+; v0 : single-length
+l9b532:
+.line 294
+	const/4	v0,0
+; v0 : single-length
+	invoke-interface	{v1,v0},android/database/Cursor/getLong	; getLong(I)J
+; v1 : Landroid/database/Cursor; , v0 : single-length
+	move-result-wide	v2
+; v2 : double-length
+	invoke-static	{v2,v3},java/lang/String/valueOf	; valueOf(J)Ljava/lang/String;
+; v2 : double-length
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	invoke-interface	{v9,v0},java/util/List/add	; add(Ljava/lang/Object;)Z
+; v9 : Ljava/util/ArrayList; , v0 : Ljava/lang/String;
+.line 295
+	invoke-interface	{v1},android/database/Cursor/moveToNext	; moveToNext()Z
+; v1 : Landroid/database/Cursor;
+l9b550:
+	move-result	v0
+; v0 : single-length
+	if-nez	v0,l9b532
+; v0 : single-length
+l9b556:
+.line 300
+	if-eqz	v1,l9b560
+; v1 : Landroid/database/Cursor;
+.line 301
+	invoke-interface	{v1},android/database/Cursor/close	; close()V
+; v1 : Landroid/database/Cursor;
+l9b560:
+	move-object	v0,v9
+; v0 : Ljava/util/ArrayList; , v9 : Ljava/util/ArrayList;
+.line 304
+	goto	l9b4c8
+l9b564:
+.line 297
+	move-exception	v0
+; v0 : android/database/sqlite/SQLiteException
+	move-object	v1,v10
+; v1 : single-length , v10 : single-length
+l9b568:
+.line 298
+	new-instance	v2,java/lang/StringBuilder
+; v2 : Ljava/lang/StringBuilder;
+	invoke-direct	{v2},java/lang/StringBuilder/<init>	; <init>()V
+; v2 : Ljava/lang/StringBuilder;
+	const-string	v3,"Error in peekHits fetching hitIds: "
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v0},android/database/sqlite/SQLiteException/getMessage	; getMessage()Ljava/lang/String;
+; v0 : android/database/sqlite/SQLiteException
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v2,v0},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v0 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v0},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v0 : Ljava/lang/StringBuilder;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	invoke-static	{v0},com/google/analytics/tracking/android/aq/d	; d(Ljava/lang/String;)V
+; v0 : Ljava/lang/String;
+l9b59c:
+.line 300
+	if-eqz	v1,l9b560
+; v1 : Landroid/database/Cursor;
+.line 301
+	invoke-interface	{v1},android/database/Cursor/close	; close()V
+; v1 : Landroid/database/Cursor;
+	goto	l9b560
+l9b5a8:
+.line 300
+	move-exception	v0
+; v0 : java/lang/Exception
+	move-object	v1,v10
+; v1 : single-length , v10 : single-length
+l9b5ac:
+	if-eqz	v1,l9b5b6
+; v1 : Landroid/database/Cursor;
+.line 301
+	invoke-interface	{v1},android/database/Cursor/close	; close()V
+; v1 : Landroid/database/Cursor;
+l9b5b6:
+	throw	v0
+; v0 : java/lang/Exception
+l9b5b8:
+.line 300
+	move-exception	v0
+; v0 : java/lang/Exception
+	goto	l9b5ac
+l9b5bc:
+.line 297
+	move-exception	v0
+; v0 : android/database/sqlite/SQLiteException
+	goto	l9b568
+.end method
+
+.method public a()V
+.annotation runtimeVisibility Ljava/lang/Deprecated;
+.end annotation
+.limit registers 5
+; this: v4 (Lcom/google/analytics/tracking/android/aw;)
+.line 507
+	const-string	v0,"Dispatch running..."
+; v0 : Ljava/lang/String;
+	invoke-static	{v0},com/google/analytics/tracking/android/aq/c	; c(Ljava/lang/String;)V
+; v0 : Ljava/lang/String;
+.line 509
+	iget-object	v0,v4,com/google/analytics/tracking/android/aw.c Lcom/google/analytics/tracking/android/o;
+; v0 : Lcom/google/analytics/tracking/android/o; , v4 : Lcom/google/analytics/tracking/android/aw;
+	invoke-interface	{v0},com/google/analytics/tracking/android/o/a	; a()Z
+; v0 : Lcom/google/analytics/tracking/android/o;
+	move-result	v0
+; v0 : single-length
+	if-nez	v0,l9b614
+; v0 : single-length
+l9b612:
+.line 532
+	return-void	
+l9b614:
+.line 513
+	const/16	v0,40
+; v0 : single-length
+	invoke-virtual	{v4,v0},com/google/analytics/tracking/android/aw/b	; b(I)Ljava/util/List;
+; v4 : Lcom/google/analytics/tracking/android/aw; , v0 : single-length
+	move-result-object	v0
+; v0 : Ljava/util/List;
+.line 514
+	invoke-interface	{v0},java/util/List/isEmpty	; isEmpty()Z
+; v0 : Ljava/util/List;
+	move-result	v1
+; v1 : single-length
+	if-eqz	v1,l9b644
+; v1 : single-length
+.line 515
+	const-string	v0,"...nothing to dispatch"
+; v0 : Ljava/lang/String;
+	invoke-static	{v0},com/google/analytics/tracking/android/aq/c	; c(Ljava/lang/String;)V
+; v0 : Ljava/lang/String;
+.line 516
+	iget-object	v0,v4,com/google/analytics/tracking/android/aw.d Lcom/google/analytics/tracking/android/g;
+; v0 : Lcom/google/analytics/tracking/android/g; , v4 : Lcom/google/analytics/tracking/android/aw;
+	const/4	v1,1
+; v1 : single-length
+	invoke-interface	{v0,v1},com/google/analytics/tracking/android/g/a	; a(Z)V
+; v0 : Lcom/google/analytics/tracking/android/g; , v1 : single-length
+	goto	l9b612
+l9b644:
+.line 519
+	iget-object	v1,v4,com/google/analytics/tracking/android/aw.c Lcom/google/analytics/tracking/android/o;
+; v1 : Lcom/google/analytics/tracking/android/o; , v4 : Lcom/google/analytics/tracking/android/aw;
+	invoke-interface	{v1,v0},com/google/analytics/tracking/android/o/a	; a(Ljava/util/List;)I
+; v1 : Lcom/google/analytics/tracking/android/o; , v0 : Ljava/util/List;
+	move-result	v1
+; v1 : single-length
+.line 520
+	new-instance	v2,java/lang/StringBuilder
+; v2 : Ljava/lang/StringBuilder;
+	invoke-direct	{v2},java/lang/StringBuilder/<init>	; <init>()V
+; v2 : Ljava/lang/StringBuilder;
+	const-string	v3,"sent "
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v2,v1},java/lang/StringBuilder/append	; append(I)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v1 : single-length
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	const-string	v3," of "
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	invoke-interface	{v0},java/util/List/size	; size()I
+; v0 : Ljava/util/List;
+	move-result	v3
+; v3 : single-length
+	invoke-virtual	{v2,v3},java/lang/StringBuilder/append	; append(I)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v3 : single-length
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	const-string	v3," hits"
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v2},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v2 : Ljava/lang/StringBuilder;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-static	{v2},com/google/analytics/tracking/android/aq/c	; c(Ljava/lang/String;)V
+; v2 : Ljava/lang/String;
+.line 525
+	const/4	v2,0
+; v2 : single-length
+	invoke-interface	{v0},java/util/List/size	; size()I
+; v0 : Ljava/util/List;
+	move-result	v3
+; v3 : single-length
+	invoke-static	{v1,v3},java/lang/Math/min	; min(II)I
+; v1 : single-length , v3 : single-length
+	move-result	v3
+; v3 : single-length
+	invoke-interface	{v0,v2,v3},java/util/List/subList	; subList(II)Ljava/util/List;
+; v0 : Ljava/util/List; , v2 : single-length , v3 : single-length
+	move-result-object	v2
+; v2 : Ljava/util/List;
+	invoke-virtual	{v4,v2},com/google/analytics/tracking/android/aw/a	; a(Ljava/util/Collection;)V
+; v4 : Lcom/google/analytics/tracking/android/aw; , v2 : Ljava/util/List;
+.line 529
+	invoke-interface	{v0},java/util/List/size	; size()I
+; v0 : Ljava/util/List;
+	move-result	v0
+; v0 : single-length
+	if-ne	v1,v0,l9b612
+; v1 : single-length , v0 : single-length
+	invoke-virtual	{v4},com/google/analytics/tracking/android/aw/d	; d()I
+; v4 : Lcom/google/analytics/tracking/android/aw;
+	move-result	v0
+; v0 : single-length
+	if-lez	v0,l9b612
+; v0 : single-length
+.line 530
+	invoke-static	{},com/google/analytics/tracking/android/v/a	; a()Lcom/google/analytics/tracking/android/v;
+; 
+	nop	
+	move-result-object	v0
+; v0 : Lcom/google/analytics/tracking/android/v;
+	invoke-virtual	{v0},com/google/analytics/tracking/android/v/c	; c()V
+; v0 : Lcom/google/analytics/tracking/android/v;
+	goto	l9b612
+.end method
+
+.method public a(J)V
+.annotation runtimeVisibility Ljava/lang/Deprecated;
+.end annotation
+.limit registers 9
+; this: v6 (Lcom/google/analytics/tracking/android/aw;)
+; parameter[0] : v7 (J)
+	const/4	v5,0
+; v5 : single-length
+	const/4	v0,1
+; v0 : single-length
+	const/4	v1,0
+; v1 : single-length
+.line 149
+	const-string	v2,"Error opening database for clearHits"
+; v2 : Ljava/lang/String;
+	invoke-direct	{v6,v2},com/google/analytics/tracking/android/aw/a	; a(Ljava/lang/String;)Landroid/database/sqlite/SQLiteDatabase;
+; v6 : Lcom/google/analytics/tracking/android/aw; , v2 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Landroid/database/sqlite/SQLiteDatabase;
+.line 150
+	if-eqz	v2,l9b73e
+; v2 : Landroid/database/sqlite/SQLiteDatabase;
+.line 151
+	const-wide/16	v3,0
+; v3 : double-length
+	cmp-long	v3,v7,v3
+; v3 : single-length , v7 : double-length , v3 : single-length
+	if-nez	v3,l9b740
+; v3 : single-length
+.line 152
+	const-string	v3,"hits2"
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3,v5,v5},android/database/sqlite/SQLiteDatabase/delete	; delete(Ljava/lang/String;Ljava/lang/String;[Ljava/lang/String;)I
+; v2 : Landroid/database/sqlite/SQLiteDatabase; , v3 : Ljava/lang/String; , v5 : single-length , v5 : single-length
+l9b728:
+.line 158
+	iget-object	v2,v6,com/google/analytics/tracking/android/aw.d Lcom/google/analytics/tracking/android/g;
+; v2 : Lcom/google/analytics/tracking/android/g; , v6 : Lcom/google/analytics/tracking/android/aw;
+	invoke-virtual	{v6},com/google/analytics/tracking/android/aw/d	; d()I
+; v6 : Lcom/google/analytics/tracking/android/aw;
+	move-result	v3
+; v3 : single-length
+	if-nez	v3,l9b768
+; v3 : single-length
+l9b738:
+	invoke-interface	{v2,v0},com/google/analytics/tracking/android/g/a	; a(Z)V
+; v2 : Lcom/google/analytics/tracking/android/g; , v0 : single-length
+l9b73e:
+.line 160
+	return-void	
+l9b740:
+.line 154
+	new-array	v3,v0,[Ljava/lang/String;
+; v3 : [Ljava/lang/String; , v0 : single-length
+.line 155
+	invoke-static	{v7,v8},java/lang/Long/valueOf	; valueOf(J)Ljava/lang/Long;
+; v7 : double-length
+	move-result-object	v4
+; v4 : Ljava/lang/Long;
+	invoke-virtual	{v4},java/lang/Long/toString	; toString()Ljava/lang/String;
+; v4 : Ljava/lang/Long;
+	move-result-object	v4
+; v4 : Ljava/lang/String;
+	aput-object	v4,v3,v1
+; v4 : Ljava/lang/String; , v3 : [Ljava/lang/String; , v1 : single-length
+.line 156
+	const-string	v4,"hits2"
+; v4 : Ljava/lang/String;
+	const-string	v5,"hit_app_id = ?"
+; v5 : Ljava/lang/String;
+	invoke-virtual	{v2,v4,v5,v3},android/database/sqlite/SQLiteDatabase/delete	; delete(Ljava/lang/String;Ljava/lang/String;[Ljava/lang/String;)I
+; v2 : Landroid/database/sqlite/SQLiteDatabase; , v4 : Ljava/lang/String; , v5 : Ljava/lang/String; , v3 : [Ljava/lang/String;
+	goto	l9b728
+l9b768:
+	move	v0,v1
+; v0 : single-length , v1 : single-length
+.line 158
+	goto	l9b738
+.end method
+
+.method a(Ljava/util/Collection;)V
+.annotation runtimeVisibility Ljava/lang/Deprecated;
+.end annotation
+.limit registers 9
+; this: v7 (Lcom/google/analytics/tracking/android/aw;)
+; parameter[0] : v8 (Ljava/util/Collection;)
+.line 446
+	if-eqz	v8,l9b78c
+; v8 : Ljava/util/Collection;
+	invoke-interface	{v8},java/util/Collection/isEmpty	; isEmpty()Z
+; v8 : Ljava/util/Collection;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,l9b798
+; v0 : single-length
+l9b78c:
+.line 447
+	const-string	v0,"Empty/Null collection passed to deleteHits."
+; v0 : Ljava/lang/String;
+	invoke-static	{v0},com/google/analytics/tracking/android/aq/d	; d(Ljava/lang/String;)V
+; v0 : Ljava/lang/String;
+l9b796:
+.line 456
+	return-void	
+l9b798:
+.line 450
+	invoke-interface	{v8},java/util/Collection/size	; size()I
+; v8 : Ljava/util/Collection;
+	move-result	v0
+; v0 : single-length
+	new-array	v3,v0,[Ljava/lang/String;
+; v3 : [Ljava/lang/String; , v0 : single-length
+.line 451
+	const/4	v0,0
+; v0 : single-length
+.line 452
+	invoke-interface	{v8},java/util/Collection/iterator	; iterator()Ljava/util/Iterator;
+; v8 : Ljava/util/Collection;
+	move-result-object	v4
+; v4 : Ljava/util/Iterator;
+	move	v1,v0
+; v1 : single-length , v0 : single-length
+l9b7b0:
+	invoke-interface	{v4},java/util/Iterator/hasNext	; hasNext()Z
+; v4 : Ljava/util/Iterator;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,l9b7e4
+; v0 : single-length
+	invoke-interface	{v4},java/util/Iterator/next	; next()Ljava/lang/Object;
+; v4 : Ljava/util/Iterator;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,com/google/analytics/tracking/android/ao
+; v0 : Lcom/google/analytics/tracking/android/ao;
+.line 453
+	add-int/lit8	v2,v1,1
+; v2 : single-length , v1 : single-length
+	invoke-virtual	{v0},com/google/analytics/tracking/android/ao/b	; b()J
+; v0 : Lcom/google/analytics/tracking/android/ao;
+	move-result-wide	v5
+; v5 : double-length
+	invoke-static	{v5,v6},java/lang/String/valueOf	; valueOf(J)Ljava/lang/String;
+; v5 : double-length
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	aput-object	v0,v3,v1
+; v0 : Ljava/lang/String; , v3 : [Ljava/lang/String; , v1 : single-length
+	move	v1,v2
+; v1 : single-length , v2 : single-length
+.line 454
+	goto	l9b7b0
+l9b7e4:
+.line 455
+	invoke-virtual	{v7,v3},com/google/analytics/tracking/android/aw/a	; a([Ljava/lang/String;)V
+; v7 : Lcom/google/analytics/tracking/android/aw; , v3 : [Ljava/lang/String;
+	goto	l9b796
+.end method
+
+.method public a(Ljava/util/Map;JLjava/lang/String;Ljava/util/Collection;)V
+.annotation runtimeVisibility Ljava/lang/Deprecated;
+.end annotation
+.limit registers 6
+; this: v0 (Lcom/google/analytics/tracking/android/aw;)
+; parameter[0] : v1 (Ljava/util/Map;)
+; parameter[1] : v2 (J)
+; parameter[2] : v4 (Ljava/lang/String;)
+; parameter[3] : v5 (Ljava/util/Collection;)
+.line 178
+	invoke-virtual	{v0},com/google/analytics/tracking/android/aw/c	; c()I
+; v0 : Lcom/google/analytics/tracking/android/aw;
+.line 179
+	invoke-direct	{v0},com/google/analytics/tracking/android/aw/f	; f()V
+; v0 : Lcom/google/analytics/tracking/android/aw;
+.line 180
+	invoke-direct	{v0,v1,v5},com/google/analytics/tracking/android/aw/a	; a(Ljava/util/Map;Ljava/util/Collection;)V
+; v0 : Lcom/google/analytics/tracking/android/aw; , v1 : Ljava/util/Map; , v5 : Ljava/util/Collection;
+.line 181
+	invoke-direct	{v0,v1,v2,v3,v4},com/google/analytics/tracking/android/aw/a	; a(Ljava/util/Map;JLjava/lang/String;)V
+; v0 : Lcom/google/analytics/tracking/android/aw; , v1 : Ljava/util/Map; , v2 : double-length , v4 : Ljava/lang/String;
+.line 182
+	return-void	
+.end method
+
+.method a([Ljava/lang/String;)V
+.annotation runtimeVisibility Ljava/lang/Deprecated;
+.end annotation
+.limit registers 10
+; this: v8 (Lcom/google/analytics/tracking/android/aw;)
+; parameter[0] : v9 ([Ljava/lang/String;)
+.catch android/database/sqlite/SQLiteException from l9b880 to l9b8a0 using l9b8a2
+	const/4	v0,1
+; v0 : single-length
+	const/4	v1,0
+; v1 : single-length
+.line 464
+	if-eqz	v9,l9b836
+; v9 : [Ljava/lang/String;
+	array-length	v2,v9
+; v2 : single-length , v9 : [Ljava/lang/String;
+	if-nez	v2,l9b842
+; v2 : single-length
+l9b836:
+.line 465
+	const-string	v0,"Empty hitIds passed to deleteHits."
+; v0 : Ljava/lang/String;
+	invoke-static	{v0},com/google/analytics/tracking/android/aq/d	; d(Ljava/lang/String;)V
+; v0 : Ljava/lang/String;
+l9b840:
+.line 480
+	return-void	
+l9b842:
+.line 468
+	const-string	v2,"Error opening database for deleteHits."
+; v2 : Ljava/lang/String;
+	invoke-direct	{v8,v2},com/google/analytics/tracking/android/aw/a	; a(Ljava/lang/String;)Landroid/database/sqlite/SQLiteDatabase;
+; v8 : Lcom/google/analytics/tracking/android/aw; , v2 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Landroid/database/sqlite/SQLiteDatabase;
+.line 469
+	if-eqz	v2,l9b840
+; v2 : Landroid/database/sqlite/SQLiteDatabase;
+.line 472
+	const-string	v3,"HIT_ID in (%s)"
+; v3 : Ljava/lang/String;
+	new-array	v4,v0,[Ljava/lang/Object;
+; v4 : [Ljava/lang/Object; , v0 : single-length
+	const-string	v5,","
+; v5 : Ljava/lang/String;
+	array-length	v6,v9
+; v6 : single-length , v9 : [Ljava/lang/String;
+	const-string	v7,"?"
+; v7 : Ljava/lang/String;
+	invoke-static	{v6,v7},java/util/Collections/nCopies	; nCopies(ILjava/lang/Object;)Ljava/util/List;
+; v6 : single-length , v7 : Ljava/lang/String;
+	move-result-object	v6
+; v6 : Ljava/util/List;
+	invoke-static	{v5,v6},android/text/TextUtils/join	; join(Ljava/lang/CharSequence;Ljava/lang/Iterable;)Ljava/lang/String;
+; v5 : Ljava/lang/String; , v6 : Ljava/util/List;
+	move-result-object	v5
+; v5 : Ljava/lang/String;
+	aput-object	v5,v4,v1
+; v5 : Ljava/lang/String; , v4 : [Ljava/lang/Object; , v1 : single-length
+	invoke-static	{v3,v4},java/lang/String/format	; format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+; v3 : Ljava/lang/String; , v4 : [Ljava/lang/Object;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+l9b880:
+.line 475
+	const-string	v4,"hits2"
+; v4 : Ljava/lang/String;
+	invoke-virtual	{v2,v4,v3,v9},android/database/sqlite/SQLiteDatabase/delete	; delete(Ljava/lang/String;Ljava/lang/String;[Ljava/lang/String;)I
+; v2 : Landroid/database/sqlite/SQLiteDatabase; , v4 : Ljava/lang/String; , v3 : Ljava/lang/String; , v9 : [Ljava/lang/String;
+.line 476
+	iget-object	v2,v8,com/google/analytics/tracking/android/aw.d Lcom/google/analytics/tracking/android/g;
+; v2 : Lcom/google/analytics/tracking/android/g; , v8 : Lcom/google/analytics/tracking/android/aw;
+	invoke-virtual	{v8},com/google/analytics/tracking/android/aw/d	; d()I
+; v8 : Lcom/google/analytics/tracking/android/aw;
+	move-result	v3
+; v3 : single-length
+	if-nez	v3,l9b8d2
+; v3 : single-length
+l9b89a:
+	invoke-interface	{v2,v0},com/google/analytics/tracking/android/g/a	; a(Z)V
+; v2 : Lcom/google/analytics/tracking/android/g; , v0 : single-length
+l9b8a0:
+	goto	l9b840
+l9b8a2:
+.line 477
+	move-exception	v0
+; v0 : android/database/sqlite/SQLiteException
+.line 478
+	new-instance	v0,java/lang/StringBuilder
+; v0 : Ljava/lang/StringBuilder;
+	invoke-direct	{v0},java/lang/StringBuilder/<init>	; <init>()V
+; v0 : Ljava/lang/StringBuilder;
+	const-string	v1,"Error deleting hits "
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v1 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v0,v9},java/lang/StringBuilder/append	; append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v9 : [Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v0},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v0 : Ljava/lang/StringBuilder;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	invoke-static	{v0},com/google/analytics/tracking/android/aq/d	; d(Ljava/lang/String;)V
+; v0 : Ljava/lang/String;
+	goto	l9b840
+l9b8d2:
+	move	v0,v1
+; v0 : single-length , v1 : single-length
+.line 476
+	goto	l9b89a
+.end method
+
+.method public b()Lcom/google/analytics/tracking/android/o;
+.limit registers 2
+; this: v1 (Lcom/google/analytics/tracking/android/aw;)
+.line 536
+	iget-object	v0,v1,com/google/analytics/tracking/android/aw.c Lcom/google/analytics/tracking/android/o;
+; v0 : Lcom/google/analytics/tracking/android/o; , v1 : Lcom/google/analytics/tracking/android/aw;
+	return-object	v0
+; v0 : Lcom/google/analytics/tracking/android/o;
+.end method
+
+.method public b(I)Ljava/util/List;
+.limit registers 17
+; this: v15 (Lcom/google/analytics/tracking/android/aw;)
+; parameter[0] : v16 (I)
+.catch java/lang/Exception from l9bbd2 to l9bbd8 using l9bbda
+.catch java/lang/Exception from l9bb48 to l9bbb6 using l9bbda
+.catch android/database/sqlite/SQLiteException from l9bb08 to l9bb42 using l9bb44
+.catch java/lang/Exception from l9bb08 to l9bb42 using l9bbe8
+.catch java/lang/Exception from l9bab8 to l9baec using l9bbf8
+.catch android/database/sqlite/SQLiteException from l9ba2e to l9ba9a using l9bb44
+.catch java/lang/Exception from l9ba2e to l9ba9a using l9bbe8
+.catch android/database/sqlite/SQLiteException from l9b9d2 to l9ba2c using l9bbee
+.catch java/lang/Exception from l9b9d2 to l9ba2c using l9bbda
+.catch android/database/sqlite/SQLiteException from l9b988 to l9b9c0 using l9bc0a
+.catch java/lang/Exception from l9b988 to l9b9c0 using l9bbf2
+.catch android/database/sqlite/SQLiteException from l9b97e to l9b988 using l9bbfe
+.catch java/lang/Exception from l9b97e to l9b988 using l9bbf2
+.catch android/database/sqlite/SQLiteException from l9b92c to l9b97c using l9bab0
+.catch java/lang/Exception from l9b92c to l9b97c using l9bafa
+.line 315
+	new-instance	v10,java/util/ArrayList
+; v10 : Ljava/util/ArrayList;
+	invoke-direct	{v10},java/util/ArrayList/<init>	; <init>()V
+; v10 : Ljava/util/ArrayList;
+.line 316
+	const-string	v1,"Error opening database for peekHits"
+; v1 : Ljava/lang/String;
+	invoke-direct	{v15,v1},com/google/analytics/tracking/android/aw/a	; a(Ljava/lang/String;)Landroid/database/sqlite/SQLiteDatabase;
+; v15 : Lcom/google/analytics/tracking/android/aw; , v1 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Landroid/database/sqlite/SQLiteDatabase;
+.line 317
+	if-nez	v1,l9b92a
+; v1 : Landroid/database/sqlite/SQLiteDatabase;
+	move-object	v1,v10
+; v1 : Ljava/util/ArrayList; , v10 : Ljava/util/ArrayList;
+l9b928:
+.line 407
+	return-object	v1
+; v1 : Ljava/util/ArrayList;
+l9b92a:
+.line 321
+	const/4	v11,0
+; v11 : single-length
+l9b92c:
+.line 329
+	const-string	v2,"hits2"
+; v2 : Ljava/lang/String;
+	const/4	v3,2
+; v3 : single-length
+	new-array	v3,v3,[Ljava/lang/String;
+; v3 : [Ljava/lang/String; , v3 : [Ljava/lang/String;
+	const/4	v4,0
+; v4 : single-length
+	const-string	v5,"hit_id"
+; v5 : Ljava/lang/String;
+	aput-object	v5,v3,v4
+; v5 : Ljava/lang/String; , v3 : [Ljava/lang/String; , v4 : single-length
+	const/4	v4,1
+; v4 : single-length
+	const-string	v5,"hit_time"
+; v5 : Ljava/lang/String;
+	aput-object	v5,v3,v4
+; v5 : Ljava/lang/String; , v3 : [Ljava/lang/String; , v4 : single-length
+	const/4	v4,0
+; v4 : single-length
+	const/4	v5,0
+; v5 : single-length
+	const/4	v6,0
+; v6 : single-length
+	const/4	v7,0
+; v7 : single-length
+	const-string	v8,"%s ASC"
+; v8 : Ljava/lang/String;
+	const/4	v9,1
+; v9 : single-length
+	new-array	v9,v9,[Ljava/lang/Object;
+; v9 : [Ljava/lang/Object; , v9 : [Ljava/lang/Object;
+	const/4	v12,0
+; v12 : single-length
+	const-string	v13,"hit_id"
+; v13 : Ljava/lang/String;
+	aput-object	v13,v9,v12
+; v13 : Ljava/lang/String; , v9 : [Ljava/lang/Object; , v12 : single-length
+	invoke-static	{v8,v9},java/lang/String/format	; format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+; v8 : Ljava/lang/String; , v9 : [Ljava/lang/Object;
+	move-result-object	v8
+; v8 : Ljava/lang/String;
+	invoke-static/range	{v16},java/lang/Integer/toString;	toString(I)Ljava/lang/String;
+; v16 : single-length
+	move-result-object	v9
+; v9 : Ljava/lang/String;
+	invoke-virtual/range	{v1..v9},android/database/sqlite/SQLiteDatabase/query;	query(Ljava/lang/String;[Ljava/lang/String;Ljava/lang/String;[Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Landroid/database/Cursor;
+; v1 : Landroid/database/sqlite/SQLiteDatabase; , v2 : Ljava/lang/String; , v3 : [Ljava/lang/String; , v4 : single-length , v5 : single-length , v6 : single-length , v7 : single-length , v8 : Ljava/lang/String; , v9 : Ljava/lang/String;
+l9b97c:
+	move-result-object	v12
+; v12 : Landroid/database/Cursor;
+l9b97e:
+.line 338
+	new-instance	v11,java/util/ArrayList
+; v11 : Ljava/util/ArrayList;
+	invoke-direct	{v11},java/util/ArrayList/<init>	; <init>()V
+; v11 : Ljava/util/ArrayList;
+l9b988:
+.line 339
+	invoke-interface	{v12},android/database/Cursor/moveToFirst	; moveToFirst()Z
+; v12 : Landroid/database/Cursor;
+	move-result	v2
+; v2 : single-length
+	if-eqz	v2,l9b9c6
+; v2 : single-length
+l9b994:
+.line 341
+	new-instance	v2,com/google/analytics/tracking/android/ao
+; v2 : Lcom/google/analytics/tracking/android/ao;
+	const/4	v3,0
+; v3 : single-length
+	const/4	v4,0
+; v4 : single-length
+	invoke-interface	{v12,v4},android/database/Cursor/getLong	; getLong(I)J
+; v12 : Landroid/database/Cursor; , v4 : single-length
+	move-result-wide	v4
+; v4 : double-length
+	const/4	v6,1
+; v6 : single-length
+	invoke-interface	{v12,v6},android/database/Cursor/getLong	; getLong(I)J
+; v12 : Landroid/database/Cursor; , v6 : single-length
+	move-result-wide	v6
+; v6 : double-length
+	invoke-direct/range	{v2..v7},com/google/analytics/tracking/android/ao/<init>;	<init>(Ljava/lang/String;JJ)V
+; v2 : Lcom/google/analytics/tracking/android/ao; , v3 : single-length , v4 : double-length , v6 : double-length
+.line 342
+	invoke-interface	{v11,v2},java/util/List/add	; add(Ljava/lang/Object;)Z
+; v11 : Ljava/util/ArrayList; , v2 : Lcom/google/analytics/tracking/android/ao;
+.line 343
+	invoke-interface	{v12},android/database/Cursor/moveToNext	; moveToNext()Z
+; v12 : Landroid/database/Cursor;
+l9b9c0:
+	move-result	v2
+; v2 : single-length
+	if-nez	v2,l9b994
+; v2 : single-length
+l9b9c6:
+.line 349
+	if-eqz	v12,l9b9d0
+; v12 : Landroid/database/Cursor;
+.line 350
+	invoke-interface	{v12},android/database/Cursor/close	; close()V
+; v12 : Landroid/database/Cursor;
+l9b9d0:
+.line 354
+	const/4	v10,0
+; v10 : single-length
+l9b9d2:
+.line 356
+	const-string	v2,"hits2"
+; v2 : Ljava/lang/String;
+	const/4	v3,3
+; v3 : single-length
+	new-array	v3,v3,[Ljava/lang/String;
+; v3 : [Ljava/lang/String; , v3 : [Ljava/lang/String;
+	const/4	v4,0
+; v4 : single-length
+	const-string	v5,"hit_id"
+; v5 : Ljava/lang/String;
+	aput-object	v5,v3,v4
+; v5 : Ljava/lang/String; , v3 : [Ljava/lang/String; , v4 : single-length
+	const/4	v4,1
+; v4 : single-length
+	const-string	v5,"hit_string"
+; v5 : Ljava/lang/String;
+	aput-object	v5,v3,v4
+; v5 : Ljava/lang/String; , v3 : [Ljava/lang/String; , v4 : single-length
+	const/4	v4,2
+; v4 : single-length
+	const-string	v5,"hit_url"
+; v5 : Ljava/lang/String;
+	aput-object	v5,v3,v4
+; v5 : Ljava/lang/String; , v3 : [Ljava/lang/String; , v4 : single-length
+	const/4	v4,0
+; v4 : single-length
+	const/4	v5,0
+; v5 : single-length
+	const/4	v6,0
+; v6 : single-length
+	const/4	v7,0
+; v7 : single-length
+	const-string	v8,"%s ASC"
+; v8 : Ljava/lang/String;
+	const/4	v9,1
+; v9 : single-length
+	new-array	v9,v9,[Ljava/lang/Object;
+; v9 : [Ljava/lang/Object; , v9 : [Ljava/lang/Object;
+	const/4	v13,0
+; v13 : single-length
+	const-string	v14,"hit_id"
+; v14 : Ljava/lang/String;
+	aput-object	v14,v9,v13
+; v14 : Ljava/lang/String; , v9 : [Ljava/lang/Object; , v13 : single-length
+	invoke-static	{v8,v9},java/lang/String/format	; format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+; v8 : Ljava/lang/String; , v9 : [Ljava/lang/Object;
+	move-result-object	v8
+; v8 : Ljava/lang/String;
+	invoke-static/range	{v16},java/lang/Integer/toString;	toString(I)Ljava/lang/String;
+; v16 : single-length
+	move-result-object	v9
+; v9 : Ljava/lang/String;
+	invoke-virtual/range	{v1..v9},android/database/sqlite/SQLiteDatabase/query;	query(Ljava/lang/String;[Ljava/lang/String;Ljava/lang/String;[Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Landroid/database/Cursor;
+; v1 : Landroid/database/sqlite/SQLiteDatabase; , v2 : Ljava/lang/String; , v3 : [Ljava/lang/String; , v4 : single-length , v5 : single-length , v6 : single-length , v7 : single-length , v8 : Ljava/lang/String; , v9 : Ljava/lang/String;
+l9ba2c:
+	move-result-object	v2
+; v2 : Landroid/database/Cursor;
+l9ba2e:
+.line 365
+	invoke-interface	{v2},android/database/Cursor/moveToFirst	; moveToFirst()Z
+; v2 : Landroid/database/Cursor;
+	move-result	v1
+; v1 : single-length
+	if-eqz	v1,l9baa0
+; v1 : single-length
+	move	v3,v10
+; v3 : single-length , v10 : single-length
+l9ba3c:
+.line 367
+	move-object	v0,v2
+; v0 : Landroid/database/Cursor; , v2 : Landroid/database/Cursor;
+	check-cast	v0,android/database/sqlite/SQLiteCursor
+; v0 : Landroid/database/sqlite/SQLiteCursor;
+	move-object	v1,v0
+; v1 : Landroid/database/sqlite/SQLiteCursor; , v0 : Landroid/database/sqlite/SQLiteCursor;
+	invoke-virtual	{v1},android/database/sqlite/SQLiteCursor/getWindow	; getWindow()Landroid/database/CursorWindow;
+; v1 : Landroid/database/sqlite/SQLiteCursor;
+	move-result-object	v1
+; v1 : Landroid/database/CursorWindow;
+.line 371
+	invoke-virtual	{v1},android/database/CursorWindow/getNumRows	; getNumRows()I
+; v1 : Landroid/database/CursorWindow;
+	move-result	v1
+; v1 : single-length
+	if-lez	v1,l9bb08
+; v1 : single-length
+.line 372
+	invoke-interface	{v11,v3},java/util/List/get	; get(I)Ljava/lang/Object;
+; v11 : Ljava/util/ArrayList; , v3 : single-length
+	move-result-object	v1
+; v1 : Ljava/lang/Object;
+	check-cast	v1,com/google/analytics/tracking/android/ao
+; v1 : Lcom/google/analytics/tracking/android/ao;
+	const/4	v4,1
+; v4 : single-length
+	invoke-interface	{v2,v4},android/database/Cursor/getString	; getString(I)Ljava/lang/String;
+; v2 : Landroid/database/Cursor; , v4 : single-length
+	move-result-object	v4
+; v4 : Ljava/lang/String;
+	invoke-virtual	{v1,v4},com/google/analytics/tracking/android/ao/a	; a(Ljava/lang/String;)V
+; v1 : Lcom/google/analytics/tracking/android/ao; , v4 : Ljava/lang/String;
+.line 373
+	invoke-interface	{v11,v3},java/util/List/get	; get(I)Ljava/lang/Object;
+; v11 : Ljava/util/ArrayList; , v3 : single-length
+	move-result-object	v1
+; v1 : Ljava/lang/Object;
+	check-cast	v1,com/google/analytics/tracking/android/ao
+; v1 : Lcom/google/analytics/tracking/android/ao;
+	const/4	v4,2
+; v4 : single-length
+	invoke-interface	{v2,v4},android/database/Cursor/getString	; getString(I)Ljava/lang/String;
+; v2 : Landroid/database/Cursor; , v4 : single-length
+	move-result-object	v4
+; v4 : Ljava/lang/String;
+	invoke-virtual	{v1,v4},com/google/analytics/tracking/android/ao/b	; b(Ljava/lang/String;)V
+; v1 : Lcom/google/analytics/tracking/android/ao; , v4 : Ljava/lang/String;
+l9ba90:
+.line 378
+	add-int/lit8	v1,v3,1
+; v1 : single-length , v3 : single-length
+.line 379
+	invoke-interface	{v2},android/database/Cursor/moveToNext	; moveToNext()Z
+; v2 : Landroid/database/Cursor;
+l9ba9a:
+	move-result	v3
+; v3 : single-length
+	if-nez	v3,l9bc16
+; v3 : single-length
+l9baa0:
+.line 406
+	if-eqz	v2,l9baaa
+; v2 : Landroid/database/Cursor;
+.line 407
+	invoke-interface	{v2},android/database/Cursor/close	; close()V
+; v2 : Landroid/database/Cursor;
+l9baaa:
+	move-object	v1,v11
+; v1 : Ljava/util/ArrayList; , v11 : Ljava/util/ArrayList;
+	goto/16	l9b928
+l9bab0:
+.line 345
+	move-exception	v1
+; v1 : android/database/sqlite/SQLiteException
+	move-object	v2,v1
+; v2 : android/database/sqlite/SQLiteException , v1 : android/database/sqlite/SQLiteException
+	move-object	v3,v11
+; v3 : single-length , v11 : single-length
+	move-object	v1,v10
+; v1 : Ljava/util/ArrayList; , v10 : Ljava/util/ArrayList;
+l9bab8:
+.line 346
+	new-instance	v4,java/lang/StringBuilder
+; v4 : Ljava/lang/StringBuilder;
+	invoke-direct	{v4},java/lang/StringBuilder/<init>	; <init>()V
+; v4 : Ljava/lang/StringBuilder;
+	const-string	v5,"Error in peekHits fetching hitIds: "
+; v5 : Ljava/lang/String;
+	invoke-virtual	{v4,v5},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v4 : Ljava/lang/StringBuilder; , v5 : Ljava/lang/String;
+	move-result-object	v4
+; v4 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v2},android/database/sqlite/SQLiteException/getMessage	; getMessage()Ljava/lang/String;
+; v2 : android/database/sqlite/SQLiteException
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v4,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v4 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v2},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v2 : Ljava/lang/StringBuilder;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-static	{v2},com/google/analytics/tracking/android/aq/d	; d(Ljava/lang/String;)V
+; v2 : Ljava/lang/String;
+l9baec:
+.line 349
+	if-eqz	v3,l9b928
+; v3 : Landroid/database/Cursor;
+.line 350
+	invoke-interface	{v3},android/database/Cursor/close	; close()V
+; v3 : Landroid/database/Cursor;
+	goto/16	l9b928
+l9bafa:
+.line 349
+	move-exception	v1
+; v1 : java/lang/Exception
+l9bafc:
+	if-eqz	v11,l9bb06
+; v11 : Landroid/database/Cursor;
+.line 350
+	invoke-interface	{v11},android/database/Cursor/close	; close()V
+; v11 : Landroid/database/Cursor;
+l9bb06:
+	throw	v1
+; v1 : java/lang/Exception
+l9bb08:
+.line 375
+	const-string	v4,"HitString for hitId %d too large.  Hit will be deleted."
+; v4 : Ljava/lang/String;
+	const/4	v1,1
+; v1 : single-length
+	new-array	v5,v1,[Ljava/lang/Object;
+; v5 : [Ljava/lang/Object; , v1 : single-length
+	const/4	v6,0
+; v6 : single-length
+	invoke-interface	{v11,v3},java/util/List/get	; get(I)Ljava/lang/Object;
+; v11 : Ljava/util/ArrayList; , v3 : single-length
+	move-result-object	v1
+; v1 : Ljava/lang/Object;
+	check-cast	v1,com/google/analytics/tracking/android/ao
+; v1 : Lcom/google/analytics/tracking/android/ao;
+	invoke-virtual	{v1},com/google/analytics/tracking/android/ao/b	; b()J
+; v1 : Lcom/google/analytics/tracking/android/ao;
+	move-result-wide	v7
+; v7 : double-length
+	invoke-static	{v7,v8},java/lang/Long/valueOf	; valueOf(J)Ljava/lang/Long;
+; v7 : double-length
+	move-result-object	v1
+; v1 : Ljava/lang/Long;
+	aput-object	v1,v5,v6
+; v1 : Ljava/lang/Long; , v5 : [Ljava/lang/Object; , v6 : single-length
+	invoke-static	{v4,v5},java/lang/String/format	; format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+; v4 : Ljava/lang/String; , v5 : [Ljava/lang/Object;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-static	{v1},com/google/analytics/tracking/android/aq/d	; d(Ljava/lang/String;)V
+; v1 : Ljava/lang/String;
+l9bb42:
+	goto	l9ba90
+l9bb44:
+.line 382
+	move-exception	v1
+; v1 : android/database/sqlite/SQLiteException
+	move-object	v12,v2
+; v12 : Landroid/database/Cursor; , v2 : Landroid/database/Cursor;
+l9bb48:
+.line 383
+	new-instance	v2,java/lang/StringBuilder
+; v2 : Ljava/lang/StringBuilder;
+	invoke-direct	{v2},java/lang/StringBuilder/<init>	; <init>()V
+; v2 : Ljava/lang/StringBuilder;
+	const-string	v3,"Error in peekHits fetching hitString: "
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v1},android/database/sqlite/SQLiteException/getMessage	; getMessage()Ljava/lang/String;
+; v1 : android/database/sqlite/SQLiteException
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v2,v1},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v1 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v1},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v1 : Ljava/lang/StringBuilder;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-static	{v1},com/google/analytics/tracking/android/aq/d	; d(Ljava/lang/String;)V
+; v1 : Ljava/lang/String;
+.line 392
+	new-instance	v2,java/util/ArrayList
+; v2 : Ljava/util/ArrayList;
+	invoke-direct	{v2},java/util/ArrayList/<init>	; <init>()V
+; v2 : Ljava/util/ArrayList;
+.line 393
+	const/4	v3,0
+; v3 : single-length
+.line 394
+	invoke-interface	{v11},java/util/List/iterator	; iterator()Ljava/util/Iterator;
+; v11 : Ljava/util/ArrayList;
+	move-result-object	v4
+; v4 : Ljava/util/Iterator;
+l9bb90:
+	invoke-interface	{v4},java/util/Iterator/hasNext	; hasNext()Z
+; v4 : Ljava/util/Iterator;
+	move-result	v1
+; v1 : single-length
+	if-eqz	v1,l9bbc0
+; v1 : single-length
+	invoke-interface	{v4},java/util/Iterator/next	; next()Ljava/lang/Object;
+; v4 : Ljava/util/Iterator;
+	move-result-object	v1
+; v1 : Ljava/lang/Object;
+	check-cast	v1,com/google/analytics/tracking/android/ao
+; v1 : Lcom/google/analytics/tracking/android/ao;
+.line 395
+	invoke-virtual	{v1},com/google/analytics/tracking/android/ao/a	; a()Ljava/lang/String;
+; v1 : Lcom/google/analytics/tracking/android/ao;
+	move-result-object	v5
+; v5 : Ljava/lang/String;
+	invoke-static	{v5},android/text/TextUtils/isEmpty	; isEmpty(Ljava/lang/CharSequence;)Z
+; v5 : Ljava/lang/String;
+l9bbb6:
+	move-result	v5
+; v5 : single-length
+	if-eqz	v5,l9bbd2
+; v5 : single-length
+.line 396
+	if-eqz	v3,l9bbd0
+; v3 : single-length
+l9bbc0:
+.line 406
+	if-eqz	v12,l9bbca
+; v12 : Landroid/database/Cursor;
+.line 407
+	invoke-interface	{v12},android/database/Cursor/close	; close()V
+; v12 : Landroid/database/Cursor;
+l9bbca:
+	move-object	v1,v2
+; v1 : Ljava/util/ArrayList; , v2 : Ljava/util/ArrayList;
+	goto/16	l9b928
+l9bbd0:
+.line 399
+	const/4	v3,1
+; v3 : single-length
+l9bbd2:
+.line 402
+	invoke-interface	{v2,v1},java/util/List/add	; add(Ljava/lang/Object;)Z
+; v2 : Ljava/util/ArrayList; , v1 : Lcom/google/analytics/tracking/android/ao;
+l9bbd8:
+	goto	l9bb90
+l9bbda:
+.line 406
+	move-exception	v1
+; v1 : java/lang/Exception
+l9bbdc:
+	if-eqz	v12,l9bbe6
+; v12 : Landroid/database/Cursor;
+.line 407
+	invoke-interface	{v12},android/database/Cursor/close	; close()V
+; v12 : Landroid/database/Cursor;
+l9bbe6:
+	throw	v1
+; v1 : java/lang/Exception
+l9bbe8:
+.line 406
+	move-exception	v1
+; v1 : java/lang/Exception
+	move-object	v12,v2
+; v12 : Landroid/database/Cursor; , v2 : Landroid/database/Cursor;
+	goto	l9bbdc
+l9bbee:
+.line 382
+	move-exception	v1
+; v1 : android/database/sqlite/SQLiteException
+	goto	l9bb48
+l9bbf2:
+.line 349
+	move-exception	v1
+; v1 : java/lang/Exception
+	move-object	v11,v12
+; v11 : Landroid/database/Cursor; , v12 : Landroid/database/Cursor;
+	goto	l9bafc
+l9bbf8:
+	move-exception	v1
+; v1 : java/lang/Exception
+	move-object	v11,v3
+; v11 : Landroid/database/Cursor; , v3 : Landroid/database/Cursor;
+	goto	l9bafc
+l9bbfe:
+.line 345
+	move-exception	v1
+; v1 : android/database/sqlite/SQLiteException
+	move-object	v2,v1
+; v2 : android/database/sqlite/SQLiteException , v1 : android/database/sqlite/SQLiteException
+	move-object	v3,v12
+; v3 : Landroid/database/Cursor; , v12 : Landroid/database/Cursor;
+	move-object	v1,v10
+; v1 : Ljava/util/ArrayList; , v10 : Ljava/util/ArrayList;
+	goto/16	l9bab8
+l9bc0a:
+	move-exception	v1
+; v1 : android/database/sqlite/SQLiteException
+	move-object	v2,v1
+; v2 : android/database/sqlite/SQLiteException , v1 : android/database/sqlite/SQLiteException
+	move-object	v3,v12
+; v3 : Landroid/database/Cursor; , v12 : Landroid/database/Cursor;
+	move-object	v1,v11
+; v1 : Ljava/util/ArrayList; , v11 : Ljava/util/ArrayList;
+	goto/16	l9bab8
+l9bc16:
+	move	v3,v1
+; v3 : single-length , v1 : single-length
+	goto/16	l9ba3c
+.end method
+
+.method c()I
+.limit registers 9
+; this: v8 (Lcom/google/analytics/tracking/android/aw;)
+	const/4	v0,1
+; v0 : single-length
+	const/4	v1,0
+; v1 : single-length
+.line 422
+	iget-object	v2,v8,com/google/analytics/tracking/android/aw.h Lcom/google/analytics/tracking/android/l;
+; v2 : Lcom/google/analytics/tracking/android/l; , v8 : Lcom/google/analytics/tracking/android/aw;
+	invoke-interface	{v2},com/google/analytics/tracking/android/l/a	; a()J
+; v2 : Lcom/google/analytics/tracking/android/l;
+	move-result-wide	v2
+; v2 : double-length
+.line 425
+	iget-wide	v4,v8,com/google/analytics/tracking/android/aw.g J
+; v4 : double-length , v8 : Lcom/google/analytics/tracking/android/aw;
+	const-wide/32	v6,86400000	; 0x5265c00
+; v6 : double-length
+	add-long/2addr	v4,v6
+; v4 : double-length , v6 : double-length
+	cmp-long	v4,v2,v4
+; v4 : single-length , v2 : double-length , v4 : single-length
+	if-gtz	v4,l9bcc2
+; v4 : single-length
+l9bcc0:
+.line 436
+	return	v1
+; v1 : single-length
+l9bcc2:
+.line 428
+	iput-wide	v2,v8,com/google/analytics/tracking/android/aw.g J
+; v2 : double-length , v8 : Lcom/google/analytics/tracking/android/aw;
+.line 429
+	const-string	v2,"Error opening database for deleteStaleHits."
+; v2 : Ljava/lang/String;
+	invoke-direct	{v8,v2},com/google/analytics/tracking/android/aw/a	; a(Ljava/lang/String;)Landroid/database/sqlite/SQLiteDatabase;
+; v8 : Lcom/google/analytics/tracking/android/aw; , v2 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Landroid/database/sqlite/SQLiteDatabase;
+.line 430
+	if-eqz	v2,l9bcc0
+; v2 : Landroid/database/sqlite/SQLiteDatabase;
+.line 433
+	iget-object	v3,v8,com/google/analytics/tracking/android/aw.h Lcom/google/analytics/tracking/android/l;
+; v3 : Lcom/google/analytics/tracking/android/l; , v8 : Lcom/google/analytics/tracking/android/aw;
+	invoke-interface	{v3},com/google/analytics/tracking/android/l/a	; a()J
+; v3 : Lcom/google/analytics/tracking/android/l;
+	move-result-wide	v3
+; v3 : double-length
+	const-wide	v5,2592000000	; 0x9a7ec800
+; v5 : double-length
+	sub-long/2addr	v3,v5
+; v3 : double-length , v5 : double-length
+.line 434
+	const-string	v5,"hits2"
+; v5 : Ljava/lang/String;
+	const-string	v6,"HIT_TIME < ?"
+; v6 : Ljava/lang/String;
+	new-array	v7,v0,[Ljava/lang/String;
+; v7 : [Ljava/lang/String; , v0 : single-length
+	invoke-static	{v3,v4},java/lang/Long/toString	; toString(J)Ljava/lang/String;
+; v3 : double-length
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	aput-object	v3,v7,v1
+; v3 : Ljava/lang/String; , v7 : [Ljava/lang/String; , v1 : single-length
+	invoke-virtual	{v2,v5,v6,v7},android/database/sqlite/SQLiteDatabase/delete	; delete(Ljava/lang/String;Ljava/lang/String;[Ljava/lang/String;)I
+; v2 : Landroid/database/sqlite/SQLiteDatabase; , v5 : Ljava/lang/String; , v6 : Ljava/lang/String; , v7 : [Ljava/lang/String;
+	move-result	v2
+; v2 : single-length
+.line 435
+	iget-object	v3,v8,com/google/analytics/tracking/android/aw.d Lcom/google/analytics/tracking/android/g;
+; v3 : Lcom/google/analytics/tracking/android/g; , v8 : Lcom/google/analytics/tracking/android/aw;
+	invoke-virtual	{v8},com/google/analytics/tracking/android/aw/d	; d()I
+; v8 : Lcom/google/analytics/tracking/android/aw;
+	move-result	v4
+; v4 : single-length
+	if-nez	v4,l9bd28
+; v4 : single-length
+l9bd1e:
+	invoke-interface	{v3,v0},com/google/analytics/tracking/android/g/a	; a(Z)V
+; v3 : Lcom/google/analytics/tracking/android/g; , v0 : single-length
+	move	v1,v2
+; v1 : single-length , v2 : single-length
+.line 436
+	goto	l9bcc0
+l9bd28:
+	move	v0,v1
+; v0 : single-length , v1 : single-length
+.line 435
+	goto	l9bd1e
+.end method
+
+.method d()I
+.limit registers 6
+; this: v5 (Lcom/google/analytics/tracking/android/aw;)
+.catch java/lang/Exception from l9bd86 to l9bd90 using l9bd9c
+.catch android/database/sqlite/SQLiteException from l9bd52 to l9bd74 using l9bd84
+.catch java/lang/Exception from l9bd52 to l9bd74 using l9bd9c
+	const/4	v1,0
+; v1 : single-length
+	const/4	v0,0
+; v0 : single-length
+.line 483
+.line 484
+	const-string	v2,"Error opening database for getNumStoredHits."
+; v2 : Ljava/lang/String;
+	invoke-direct	{v5,v2},com/google/analytics/tracking/android/aw/a	; a(Ljava/lang/String;)Landroid/database/sqlite/SQLiteDatabase;
+; v5 : Lcom/google/analytics/tracking/android/aw; , v2 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Landroid/database/sqlite/SQLiteDatabase;
+.line 485
+	if-nez	v2,l9bd52
+; v2 : Landroid/database/sqlite/SQLiteDatabase;
+l9bd50:
+.line 501
+	return	v0
+; v0 : single-length
+l9bd52:
+.line 490
+	const-string	v3,"SELECT COUNT(*) from hits2"
+; v3 : Ljava/lang/String;
+	const/4	v4,0
+; v4 : single-length
+	invoke-virtual	{v2,v3,v4},android/database/sqlite/SQLiteDatabase/rawQuery	; rawQuery(Ljava/lang/String;[Ljava/lang/String;)Landroid/database/Cursor;
+; v2 : Landroid/database/sqlite/SQLiteDatabase; , v3 : Ljava/lang/String; , v4 : single-length
+	move-result-object	v1
+; v1 : Landroid/database/Cursor;
+.line 491
+	invoke-interface	{v1},android/database/Cursor/moveToFirst	; moveToFirst()Z
+; v1 : Landroid/database/Cursor;
+	move-result	v2
+; v2 : single-length
+	if-eqz	v2,l9bd78
+; v2 : single-length
+.line 492
+	const/4	v2,0
+; v2 : single-length
+	invoke-interface	{v1,v2},android/database/Cursor/getLong	; getLong(I)J
+; v1 : Landroid/database/Cursor; , v2 : single-length
+l9bd74:
+	move-result-wide	v2
+; v2 : double-length
+	long-to-int	v0,v2
+; v0 : single-length , v2 : double-length
+l9bd78:
+.line 497
+	if-eqz	v1,l9bd50
+; v1 : Landroid/database/Cursor;
+.line 498
+	invoke-interface	{v1},android/database/Cursor/close	; close()V
+; v1 : Landroid/database/Cursor;
+	goto	l9bd50
+l9bd84:
+.line 494
+	move-exception	v2
+; v2 : android/database/sqlite/SQLiteException
+l9bd86:
+.line 495
+	const-string	v2,"Error getting numStoredHits"
+; v2 : Ljava/lang/String;
+	invoke-static	{v2},com/google/analytics/tracking/android/aq/d	; d(Ljava/lang/String;)V
+; v2 : Ljava/lang/String;
+l9bd90:
+.line 497
+	if-eqz	v1,l9bd50
+; v1 : Landroid/database/Cursor;
+.line 498
+	invoke-interface	{v1},android/database/Cursor/close	; close()V
+; v1 : Landroid/database/Cursor;
+	goto	l9bd50
+l9bd9c:
+.line 497
+	move-exception	v0
+; v0 : java/lang/Exception
+	if-eqz	v1,l9bda8
+; v1 : Landroid/database/Cursor;
+.line 498
+	invoke-interface	{v1},android/database/Cursor/close	; close()V
+; v1 : Landroid/database/Cursor;
+l9bda8:
+	throw	v0
+; v0 : java/lang/Exception
+.end method
+
+

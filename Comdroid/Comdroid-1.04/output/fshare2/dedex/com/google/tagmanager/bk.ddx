@@ -1,0 +1,358 @@
+.class com/google/tagmanager/bk
+.super java/lang/Number
+.source MyApplication
+.implements java/lang/Comparable
+
+.field private a D
+.field private b J
+.field private c Z
+
+.method private <init>(J)V
+.limit registers 4
+; this: v1 (Lcom/google/tagmanager/bk;)
+; parameter[0] : v2 (J)
+.line 16
+	invoke-direct	{v1},java/lang/Number/<init>	; <init>()V
+; v1 : Lcom/google/tagmanager/bk;
+.line 17
+	iput-wide	v2,v1,com/google/tagmanager/bk.b J
+; v2 : double-length , v1 : Lcom/google/tagmanager/bk;
+.line 18
+	const/4	v0,1
+; v0 : single-length
+	iput-boolean	v0,v1,com/google/tagmanager/bk.c Z
+; v0 : single-length , v1 : Lcom/google/tagmanager/bk;
+.line 19
+	return-void	
+.end method
+
+.method public static a(J)Lcom/google/tagmanager/bk;
+.limit registers 3
+; parameter[0] : v1 (J)
+.line 32
+	new-instance	v0,com/google/tagmanager/bk
+; v0 : Lcom/google/tagmanager/bk;
+	invoke-direct	{v0,v1,v2},com/google/tagmanager/bk/<init>	; <init>(J)V
+; v0 : Lcom/google/tagmanager/bk; , v1 : double-length
+	return-object	v0
+; v0 : Lcom/google/tagmanager/bk;
+.end method
+
+.method public a(Lcom/google/tagmanager/bk;)I
+.limit registers 6
+; this: v4 (Lcom/google/tagmanager/bk;)
+; parameter[0] : v5 (Lcom/google/tagmanager/bk;)
+.line 77
+	invoke-virtual	{v4},com/google/tagmanager/bk/b	; b()Z
+; v4 : Lcom/google/tagmanager/bk;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,la2520
+; v0 : single-length
+	invoke-virtual	{v5},com/google/tagmanager/bk/b	; b()Z
+; v5 : Lcom/google/tagmanager/bk;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,la2520
+; v0 : single-length
+	new-instance	v0,java/lang/Long
+; v0 : Ljava/lang/Long;
+	iget-wide	v1,v4,com/google/tagmanager/bk.b J
+; v1 : double-length , v4 : Lcom/google/tagmanager/bk;
+	invoke-direct	{v0,v1,v2},java/lang/Long/<init>	; <init>(J)V
+; v0 : Ljava/lang/Long; , v1 : double-length
+	iget-wide	v1,v5,com/google/tagmanager/bk.b J
+; v1 : double-length , v5 : Lcom/google/tagmanager/bk;
+	invoke-static	{v1,v2},java/lang/Long/valueOf	; valueOf(J)Ljava/lang/Long;
+; v1 : double-length
+	move-result-object	v1
+; v1 : Ljava/lang/Long;
+	invoke-virtual	{v0,v1},java/lang/Long/compareTo	; compareTo(Ljava/lang/Long;)I
+; v0 : Ljava/lang/Long; , v1 : Ljava/lang/Long;
+	move-result	v0
+; v0 : single-length
+la251e:
+	return	v0
+; v0 : single-length
+la2520:
+	invoke-virtual	{v4},com/google/tagmanager/bk/doubleValue	; doubleValue()D
+; v4 : Lcom/google/tagmanager/bk;
+	move-result-wide	v0
+; v0 : double-length
+	invoke-virtual	{v5},com/google/tagmanager/bk/doubleValue	; doubleValue()D
+; v5 : Lcom/google/tagmanager/bk;
+	move-result-wide	v2
+; v2 : double-length
+	invoke-static	{v0,v1,v2,v3},java/lang/Double/compare	; compare(DD)I
+; v0 : double-length , v2 : double-length
+	move-result	v0
+; v0 : single-length
+	goto	la251e
+.end method
+
+.method public a()Z
+.limit registers 2
+; this: v1 (Lcom/google/tagmanager/bk;)
+.line 83
+	invoke-virtual	{v1},com/google/tagmanager/bk/b	; b()Z
+; v1 : Lcom/google/tagmanager/bk;
+	move-result	v0
+; v0 : single-length
+	if-nez	v0,la255c
+; v0 : single-length
+	const/4	v0,1
+; v0 : single-length
+la255a:
+	return	v0
+; v0 : single-length
+la255c:
+	const/4	v0,0
+; v0 : single-length
+	goto	la255a
+.end method
+
+.method public b()Z
+.limit registers 2
+; this: v1 (Lcom/google/tagmanager/bk;)
+.line 87
+	iget-boolean	v0,v1,com/google/tagmanager/bk.c Z
+; v0 : single-length , v1 : Lcom/google/tagmanager/bk;
+	return	v0
+; v0 : single-length
+.end method
+
+.method public byteValue()B
+.limit registers 3
+; this: v2 (Lcom/google/tagmanager/bk;)
+.line 129
+	invoke-virtual	{v2},com/google/tagmanager/bk/longValue	; longValue()J
+; v2 : Lcom/google/tagmanager/bk;
+	move-result-wide	v0
+; v0 : double-length
+	long-to-int	v0,v0
+; v0 : single-length , v0 : single-length
+	int-to-byte	v0,v0
+; v0 : single-length , v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public c()J
+.limit registers 3
+; this: v2 (Lcom/google/tagmanager/bk;)
+.line 106
+	invoke-virtual	{v2},com/google/tagmanager/bk/b	; b()Z
+; v2 : Lcom/google/tagmanager/bk;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,la25ba
+; v0 : single-length
+	iget-wide	v0,v2,com/google/tagmanager/bk.b J
+; v0 : double-length , v2 : Lcom/google/tagmanager/bk;
+la25b8:
+	return-wide	v0
+; v0 : double-length
+la25ba:
+	iget-wide	v0,v2,com/google/tagmanager/bk.a D
+; v0 : double-length , v2 : Lcom/google/tagmanager/bk;
+	double-to-long	v0,v0
+; v0 : double-length , v0 : double-length
+	goto	la25b8
+.end method
+
+.method public compareTo(Ljava/lang/Object;)I
+.limit registers 3
+; this: v1 (Lcom/google/tagmanager/bk;)
+; parameter[0] : v2 (Ljava/lang/Object;)
+.line 6
+	check-cast	v2,com/google/tagmanager/bk
+; v2 : Lcom/google/tagmanager/bk;
+	invoke-virtual	{v1,v2},com/google/tagmanager/bk/a	; a(Lcom/google/tagmanager/bk;)I
+; v1 : Lcom/google/tagmanager/bk; , v2 : Lcom/google/tagmanager/bk;
+	move-result	v0
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public d()I
+.limit registers 3
+; this: v2 (Lcom/google/tagmanager/bk;)
+.line 115
+	invoke-virtual	{v2},com/google/tagmanager/bk/longValue	; longValue()J
+; v2 : Lcom/google/tagmanager/bk;
+	move-result-wide	v0
+; v0 : double-length
+	long-to-int	v0,v0
+; v0 : single-length , v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public doubleValue()D
+.limit registers 3
+; this: v2 (Lcom/google/tagmanager/bk;)
+.line 92
+	invoke-virtual	{v2},com/google/tagmanager/bk/b	; b()Z
+; v2 : Lcom/google/tagmanager/bk;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,la2624
+; v0 : single-length
+	iget-wide	v0,v2,com/google/tagmanager/bk.b J
+; v0 : double-length , v2 : Lcom/google/tagmanager/bk;
+	long-to-double	v0,v0
+; v0 : double-length , v0 : double-length
+la2622:
+	return-wide	v0
+; v0 : double-length
+la2624:
+	iget-wide	v0,v2,com/google/tagmanager/bk.a D
+; v0 : double-length , v2 : Lcom/google/tagmanager/bk;
+	goto	la2622
+.end method
+
+.method public e()S
+.limit registers 3
+; this: v2 (Lcom/google/tagmanager/bk;)
+.line 124
+	invoke-virtual	{v2},com/google/tagmanager/bk/longValue	; longValue()J
+; v2 : Lcom/google/tagmanager/bk;
+	move-result-wide	v0
+; v0 : double-length
+	long-to-int	v0,v0
+; v0 : single-length , v0 : single-length
+	int-to-short	v0,v0
+; v0 : single-length , v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public equals(Ljava/lang/Object;)Z
+.limit registers 3
+; this: v1 (Lcom/google/tagmanager/bk;)
+; parameter[0] : v2 (Ljava/lang/Object;)
+.line 67
+	instance-of	v0,v2,com/google/tagmanager/bk
+; v0 : single-length , v2 : Ljava/lang/Object;
+	if-eqz	v0,la2678
+; v0 : single-length
+	check-cast	v2,com/google/tagmanager/bk
+; v2 : Lcom/google/tagmanager/bk;
+	invoke-virtual	{v1,v2},com/google/tagmanager/bk/a	; a(Lcom/google/tagmanager/bk;)I
+; v1 : Lcom/google/tagmanager/bk; , v2 : Lcom/google/tagmanager/bk;
+	move-result	v0
+; v0 : single-length
+	if-nez	v0,la2678
+; v0 : single-length
+	const/4	v0,1
+; v0 : single-length
+la2676:
+	return	v0
+; v0 : single-length
+la2678:
+	const/4	v0,0
+; v0 : single-length
+	goto	la2676
+.end method
+
+.method public floatValue()F
+.limit registers 3
+; this: v2 (Lcom/google/tagmanager/bk;)
+.line 97
+	invoke-virtual	{v2},com/google/tagmanager/bk/doubleValue	; doubleValue()D
+; v2 : Lcom/google/tagmanager/bk;
+	move-result-wide	v0
+; v0 : double-length
+	double-to-float	v0,v0
+; v0 : single-length , v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public hashCode()I
+.limit registers 4
+; this: v3 (Lcom/google/tagmanager/bk;)
+.line 72
+	new-instance	v0,java/lang/Long
+; v0 : Ljava/lang/Long;
+	invoke-virtual	{v3},com/google/tagmanager/bk/longValue	; longValue()J
+; v3 : Lcom/google/tagmanager/bk;
+	move-result-wide	v1
+; v1 : double-length
+	invoke-direct	{v0,v1,v2},java/lang/Long/<init>	; <init>(J)V
+; v0 : Ljava/lang/Long; , v1 : double-length
+	invoke-virtual	{v0},java/lang/Long/hashCode	; hashCode()I
+; v0 : Ljava/lang/Long;
+	move-result	v0
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public intValue()I
+.limit registers 2
+; this: v1 (Lcom/google/tagmanager/bk;)
+.line 111
+	invoke-virtual	{v1},com/google/tagmanager/bk/d	; d()I
+; v1 : Lcom/google/tagmanager/bk;
+	move-result	v0
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public longValue()J
+.limit registers 3
+; this: v2 (Lcom/google/tagmanager/bk;)
+.line 102
+	invoke-virtual	{v2},com/google/tagmanager/bk/c	; c()J
+; v2 : Lcom/google/tagmanager/bk;
+	move-result-wide	v0
+; v0 : double-length
+	return-wide	v0
+; v0 : double-length
+.end method
+
+.method public shortValue()S
+.limit registers 2
+; this: v1 (Lcom/google/tagmanager/bk;)
+.line 120
+	invoke-virtual	{v1},com/google/tagmanager/bk/e	; e()S
+; v1 : Lcom/google/tagmanager/bk;
+	move-result	v0
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public toString()Ljava/lang/String;
+.limit registers 3
+; this: v2 (Lcom/google/tagmanager/bk;)
+.line 62
+	invoke-virtual	{v2},com/google/tagmanager/bk/b	; b()Z
+; v2 : Lcom/google/tagmanager/bk;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,la2742
+; v0 : single-length
+	iget-wide	v0,v2,com/google/tagmanager/bk.b J
+; v0 : double-length , v2 : Lcom/google/tagmanager/bk;
+	invoke-static	{v0,v1},java/lang/Long/toString	; toString(J)Ljava/lang/String;
+; v0 : double-length
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+la2740:
+	return-object	v0
+; v0 : Ljava/lang/String;
+la2742:
+	iget-wide	v0,v2,com/google/tagmanager/bk.a D
+; v0 : double-length , v2 : Lcom/google/tagmanager/bk;
+	invoke-static	{v0,v1},java/lang/Double/toString	; toString(D)Ljava/lang/String;
+; v0 : double-length
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	goto	la2740
+.end method
+
+

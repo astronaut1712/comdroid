@@ -1,0 +1,53 @@
+.class com/ipaulpro/afilechooser/utils/FileUtils$2
+.super java/lang/Object
+.source FileUtils.java
+.implements java/io/FileFilter
+
+.inner class 2 inner com/ipaulpro/afilechooser/utils/FileUtils$2 outer com/ipaulpro/afilechooser/utils/FileUtils
+
+.method <init>()V
+.limit registers 1
+; this: v0 (Lcom/ipaulpro/afilechooser/utils/FileUtils$2;)
+.line 503
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Lcom/ipaulpro/afilechooser/utils/FileUtils$2;
+.line 1
+	return-void	
+.end method
+
+.method public accept(Ljava/io/File;)Z
+.limit registers 4
+; this: v2 (Lcom/ipaulpro/afilechooser/utils/FileUtils$2;)
+; parameter[0] : v3 (Ljava/io/File;)
+.line 506
+	invoke-virtual	{v3},java/io/File/getName	; getName()Ljava/lang/String;
+; v3 : Ljava/io/File;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+.line 508
+	invoke-virtual	{v3},java/io/File/isFile	; isFile()Z
+; v3 : Ljava/io/File;
+	move-result	v1
+; v1 : single-length
+	if-eqz	v1,lb0a30
+; v1 : single-length
+	const-string	v1,"."
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/String/startsWith	; startsWith(Ljava/lang/String;)Z
+; v0 : Ljava/lang/String; , v1 : Ljava/lang/String;
+	move-result	v1
+; v1 : single-length
+	if-nez	v1,lb0a30
+; v1 : single-length
+	const/4	v1,1
+; v1 : single-length
+lb0a2e:
+	return	v1
+; v1 : single-length
+lb0a30:
+	const/4	v1,0
+; v1 : single-length
+	goto	lb0a2e
+.end method
+
+

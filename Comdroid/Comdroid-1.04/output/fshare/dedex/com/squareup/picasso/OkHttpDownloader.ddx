@@ -1,0 +1,258 @@
+.class public com/squareup/picasso/OkHttpDownloader
+.super java/lang/Object
+.source OkHttpDownloader.java
+.implements com/squareup/picasso/Downloader
+
+.field static final RESPONSE_SOURCE_ANDROID Ljava/lang/String; = "X-Android-Response-Source"
+.field static final RESPONSE_SOURCE_OKHTTP Ljava/lang/String; = "OkHttp-Response-Source"
+.field private final client Lcom/squareup/okhttp/OkHttpClient;
+
+.method public <init>(Landroid/content/Context;)V
+.limit registers 3
+; this: v1 (Lcom/squareup/picasso/OkHttpDownloader;)
+; parameter[0] : v2 (Landroid/content/Context;)
+.line 41
+	invoke-static	{v2},com/squareup/picasso/Utils/createDefaultCacheDir	; createDefaultCacheDir(Landroid/content/Context;)Ljava/io/File;
+; v2 : Landroid/content/Context;
+	move-result-object	v0
+; v0 : Ljava/io/File;
+	invoke-direct	{v1,v0},com/squareup/picasso/OkHttpDownloader/<init>	; <init>(Ljava/io/File;)V
+; v1 : Lcom/squareup/picasso/OkHttpDownloader; , v0 : Ljava/io/File;
+.line 42
+	return-void	
+.end method
+
+.method public <init>(Landroid/content/Context;J)V
+.limit registers 5
+; this: v1 (Lcom/squareup/picasso/OkHttpDownloader;)
+; parameter[0] : v2 (Landroid/content/Context;)
+; parameter[1] : v3 (J)
+.line 61
+	invoke-static	{v2},com/squareup/picasso/Utils/createDefaultCacheDir	; createDefaultCacheDir(Landroid/content/Context;)Ljava/io/File;
+; v2 : Landroid/content/Context;
+	move-result-object	v0
+; v0 : Ljava/io/File;
+	invoke-direct	{v1,v0,v3,v4},com/squareup/picasso/OkHttpDownloader/<init>	; <init>(Ljava/io/File;J)V
+; v1 : Lcom/squareup/picasso/OkHttpDownloader; , v0 : Ljava/io/File; , v3 : double-length
+.line 62
+	return-void	
+.end method
+
+.method public <init>(Lcom/squareup/okhttp/OkHttpClient;)V
+.limit registers 2
+; this: v0 (Lcom/squareup/picasso/OkHttpDownloader;)
+; parameter[0] : v1 (Lcom/squareup/okhttp/OkHttpClient;)
+.line 83
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Lcom/squareup/picasso/OkHttpDownloader;
+.line 84
+	iput-object	v1,v0,com/squareup/picasso/OkHttpDownloader.client Lcom/squareup/okhttp/OkHttpClient;
+; v1 : Lcom/squareup/okhttp/OkHttpClient; , v0 : Lcom/squareup/picasso/OkHttpDownloader;
+.line 85
+	return-void	
+.end method
+
+.method public <init>(Ljava/io/File;)V
+.limit registers 4
+; this: v2 (Lcom/squareup/picasso/OkHttpDownloader;)
+; parameter[0] : v3 (Ljava/io/File;)
+.line 51
+	invoke-static	{v3},com/squareup/picasso/Utils/calculateDiskCacheSize	; calculateDiskCacheSize(Ljava/io/File;)J
+; v3 : Ljava/io/File;
+	move-result-wide	v0
+; v0 : double-length
+	invoke-direct	{v2,v3,v0,v1},com/squareup/picasso/OkHttpDownloader/<init>	; <init>(Ljava/io/File;J)V
+; v2 : Lcom/squareup/picasso/OkHttpDownloader; , v3 : Ljava/io/File; , v0 : double-length
+.line 52
+	return-void	
+.end method
+
+.method public <init>(Ljava/io/File;J)V
+.limit registers 6
+; this: v2 (Lcom/squareup/picasso/OkHttpDownloader;)
+; parameter[0] : v3 (Ljava/io/File;)
+; parameter[1] : v4 (J)
+.catch java/io/IOException from lf45f0 to lf4604 using lf4606
+.line 72
+	new-instance	v0,com/squareup/okhttp/OkHttpClient
+; v0 : Lcom/squareup/okhttp/OkHttpClient;
+	invoke-direct	{v0},com/squareup/okhttp/OkHttpClient/<init>	; <init>()V
+; v0 : Lcom/squareup/okhttp/OkHttpClient;
+	invoke-direct	{v2,v0},com/squareup/picasso/OkHttpDownloader/<init>	; <init>(Lcom/squareup/okhttp/OkHttpClient;)V
+; v2 : Lcom/squareup/picasso/OkHttpDownloader; , v0 : Lcom/squareup/okhttp/OkHttpClient;
+lf45f0:
+.line 74
+	iget-object	v0,v2,com/squareup/picasso/OkHttpDownloader.client Lcom/squareup/okhttp/OkHttpClient;
+; v0 : Lcom/squareup/okhttp/OkHttpClient; , v2 : Lcom/squareup/picasso/OkHttpDownloader;
+	new-instance	v1,com/squareup/okhttp/HttpResponseCache
+; v1 : Lcom/squareup/okhttp/HttpResponseCache;
+	invoke-direct	{v1,v3,v4,v5},com/squareup/okhttp/HttpResponseCache/<init>	; <init>(Ljava/io/File;J)V
+; v1 : Lcom/squareup/okhttp/HttpResponseCache; , v3 : Ljava/io/File; , v4 : double-length
+	invoke-virtual	{v0,v1},com/squareup/okhttp/OkHttpClient/setResponseCache	; setResponseCache(Ljava/net/ResponseCache;)Lcom/squareup/okhttp/OkHttpClient;
+; v0 : Lcom/squareup/okhttp/OkHttpClient; , v1 : Lcom/squareup/okhttp/HttpResponseCache;
+lf4604:
+.line 77
+	return-void	
+lf4606:
+.line 75
+	move-exception	v0
+; v0 : java/io/IOException
+	goto	lf4604
+.end method
+
+.method protected getClient()Lcom/squareup/okhttp/OkHttpClient;
+.limit registers 2
+; this: v1 (Lcom/squareup/picasso/OkHttpDownloader;)
+.line 95
+	iget-object	v0,v1,com/squareup/picasso/OkHttpDownloader.client Lcom/squareup/okhttp/OkHttpClient;
+; v0 : Lcom/squareup/okhttp/OkHttpClient; , v1 : Lcom/squareup/picasso/OkHttpDownloader;
+	return-object	v0
+; v0 : Lcom/squareup/okhttp/OkHttpClient;
+.end method
+
+.method public load(Landroid/net/Uri;Z)Lcom/squareup/picasso/Downloader$Response;
+.throws Ljava/io/IOException;
+.limit registers 10
+; this: v7 (Lcom/squareup/picasso/OkHttpDownloader;)
+; parameter[0] : v8 (Landroid/net/Uri;)
+; parameter[1] : v9 (Z)
+.line 99
+	invoke-virtual	{v7,v8},com/squareup/picasso/OkHttpDownloader/openConnection	; openConnection(Landroid/net/Uri;)Ljava/net/HttpURLConnection;
+; v7 : Lcom/squareup/picasso/OkHttpDownloader; , v8 : Landroid/net/Uri;
+	move-result-object	v0
+; v0 : Ljava/net/HttpURLConnection;
+.line 100
+	const/4	v4,1
+; v4 : single-length
+	invoke-virtual	{v0,v4},java/net/HttpURLConnection/setUseCaches	; setUseCaches(Z)V
+; v0 : Ljava/net/HttpURLConnection; , v4 : single-length
+.line 101
+	if-eqz	v9,lf4666
+; v9 : single-length
+.line 102
+	const-string	v4,"Cache-Control"
+; v4 : Ljava/lang/String;
+	const-string	v5,"only-if-cached,max-age=2147483647"
+; v5 : Ljava/lang/String;
+	invoke-virtual	{v0,v4,v5},java/net/HttpURLConnection/setRequestProperty	; setRequestProperty(Ljava/lang/String;Ljava/lang/String;)V
+; v0 : Ljava/net/HttpURLConnection; , v4 : Ljava/lang/String; , v5 : Ljava/lang/String;
+lf4666:
+.line 105
+	invoke-virtual	{v0},java/net/HttpURLConnection/getResponseCode	; getResponseCode()I
+; v0 : Ljava/net/HttpURLConnection;
+	move-result	v2
+; v2 : single-length
+.line 106
+	const/16	v4,300
+; v4 : single-length
+	if-lt	v2,v4,lf46be
+; v2 : single-length , v4 : single-length
+.line 107
+	invoke-virtual	{v0},java/net/HttpURLConnection/disconnect	; disconnect()V
+; v0 : Ljava/net/HttpURLConnection;
+.line 108
+	new-instance	v4,com/squareup/picasso/Downloader$ResponseException
+; v4 : Lcom/squareup/picasso/Downloader$ResponseException;
+	new-instance	v5,java/lang/StringBuilder
+; v5 : Ljava/lang/StringBuilder;
+	invoke-direct	{v5},java/lang/StringBuilder/<init>	; <init>()V
+; v5 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v5,v2},java/lang/StringBuilder/append	; append(I)Ljava/lang/StringBuilder;
+; v5 : Ljava/lang/StringBuilder; , v2 : single-length
+	move-result-object	v5
+; v5 : Ljava/lang/StringBuilder;
+	const-string	v6," "
+; v6 : Ljava/lang/String;
+	invoke-virtual	{v5,v6},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v5 : Ljava/lang/StringBuilder; , v6 : Ljava/lang/String;
+	move-result-object	v5
+; v5 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v0},java/net/HttpURLConnection/getResponseMessage	; getResponseMessage()Ljava/lang/String;
+; v0 : Ljava/net/HttpURLConnection;
+	move-result-object	v6
+; v6 : Ljava/lang/String;
+	invoke-virtual	{v5,v6},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v5 : Ljava/lang/StringBuilder; , v6 : Ljava/lang/String;
+	move-result-object	v5
+; v5 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v5},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v5 : Ljava/lang/StringBuilder;
+	move-result-object	v5
+; v5 : Ljava/lang/String;
+	invoke-direct	{v4,v5},com/squareup/picasso/Downloader$ResponseException/<init>	; <init>(Ljava/lang/String;)V
+; v4 : Lcom/squareup/picasso/Downloader$ResponseException; , v5 : Ljava/lang/String;
+	throw	v4
+; v4 : Lcom/squareup/picasso/Downloader$ResponseException;
+lf46be:
+.line 111
+	const-string	v4,"OkHttp-Response-Source"
+; v4 : Ljava/lang/String;
+	invoke-virtual	{v0,v4},java/net/HttpURLConnection/getHeaderField	; getHeaderField(Ljava/lang/String;)Ljava/lang/String;
+; v0 : Ljava/net/HttpURLConnection; , v4 : Ljava/lang/String;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+.line 112
+	if-nez	v3,lf46da
+; v3 : Ljava/lang/String;
+.line 113
+	const-string	v4,"X-Android-Response-Source"
+; v4 : Ljava/lang/String;
+	invoke-virtual	{v0,v4},java/net/HttpURLConnection/getHeaderField	; getHeaderField(Ljava/lang/String;)Ljava/lang/String;
+; v0 : Ljava/net/HttpURLConnection; , v4 : Ljava/lang/String;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+lf46da:
+.line 115
+	invoke-static	{v3},com/squareup/picasso/Utils/parseResponseSourceHeader	; parseResponseSourceHeader(Ljava/lang/String;)Z
+; v3 : Ljava/lang/String;
+	move-result	v1
+; v1 : single-length
+.line 117
+	new-instance	v4,com/squareup/picasso/Downloader$Response
+; v4 : Lcom/squareup/picasso/Downloader$Response;
+	invoke-virtual	{v0},java/net/HttpURLConnection/getInputStream	; getInputStream()Ljava/io/InputStream;
+; v0 : Ljava/net/HttpURLConnection;
+	move-result-object	v5
+; v5 : Ljava/io/InputStream;
+	invoke-direct	{v4,v5,v1},com/squareup/picasso/Downloader$Response/<init>	; <init>(Ljava/io/InputStream;Z)V
+; v4 : Lcom/squareup/picasso/Downloader$Response; , v5 : Ljava/io/InputStream; , v1 : single-length
+	return-object	v4
+; v4 : Lcom/squareup/picasso/Downloader$Response;
+.end method
+
+.method protected openConnection(Landroid/net/Uri;)Ljava/net/HttpURLConnection;
+.throws Ljava/io/IOException;
+.limit registers 6
+; this: v4 (Lcom/squareup/picasso/OkHttpDownloader;)
+; parameter[0] : v5 (Landroid/net/Uri;)
+.line 88
+	iget-object	v1,v4,com/squareup/picasso/OkHttpDownloader.client Lcom/squareup/okhttp/OkHttpClient;
+; v1 : Lcom/squareup/okhttp/OkHttpClient; , v4 : Lcom/squareup/picasso/OkHttpDownloader;
+	new-instance	v2,java/net/URL
+; v2 : Ljava/net/URL;
+	invoke-virtual	{v5},android/net/Uri/toString	; toString()Ljava/lang/String;
+; v5 : Landroid/net/Uri;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-direct	{v2,v3},java/net/URL/<init>	; <init>(Ljava/lang/String;)V
+; v2 : Ljava/net/URL; , v3 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},com/squareup/okhttp/OkHttpClient/open	; open(Ljava/net/URL;)Ljava/net/HttpURLConnection;
+; v1 : Lcom/squareup/okhttp/OkHttpClient; , v2 : Ljava/net/URL;
+	move-result-object	v0
+; v0 : Ljava/net/HttpURLConnection;
+.line 89
+	const/16	v1,15000
+; v1 : single-length
+	invoke-virtual	{v0,v1},java/net/HttpURLConnection/setConnectTimeout	; setConnectTimeout(I)V
+; v0 : Ljava/net/HttpURLConnection; , v1 : single-length
+.line 90
+	const/16	v1,20000
+; v1 : single-length
+	invoke-virtual	{v0,v1},java/net/HttpURLConnection/setReadTimeout	; setReadTimeout(I)V
+; v0 : Ljava/net/HttpURLConnection; , v1 : single-length
+.line 91
+	return-object	v0
+; v0 : Ljava/net/HttpURLConnection;
+.end method
+
+

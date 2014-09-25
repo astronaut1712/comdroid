@@ -1,0 +1,56 @@
+.class public com/fsharemobile/service/MyScheduleReceiver
+.super android/content/BroadcastReceiver
+.source MyApplication
+
+.field private static a I
+
+.method static <clinit>()V
+.limit registers 1
+.line 15
+	const/4	v0,0
+; v0 : single-length
+	sput	v0,com/fsharemobile/service/MyScheduleReceiver.a I
+; v0 : I
+	return-void	
+.end method
+
+.method public <init>()V
+.limit registers 1
+; this: v0 (Lcom/fsharemobile/service/MyScheduleReceiver;)
+.line 12
+	invoke-direct	{v0},android/content/BroadcastReceiver/<init>	; <init>()V
+; v0 : Lcom/fsharemobile/service/MyScheduleReceiver;
+	return-void	
+.end method
+
+.method public onReceive(Landroid/content/Context;Landroid/content/Intent;)V
+.limit registers 6
+; this: v3 (Lcom/fsharemobile/service/MyScheduleReceiver;)
+; parameter[0] : v4 (Landroid/content/Context;)
+; parameter[1] : v5 (Landroid/content/Intent;)
+.line 35
+	const-string	v0,"MyScheduleReceiver_Broadcast"
+; v0 : Ljava/lang/String;
+	new-instance	v1,java/lang/StringBuilder
+; v1 : Ljava/lang/StringBuilder;
+	const-string	v2,"i = "
+; v2 : Ljava/lang/String;
+	invoke-direct	{v1,v2},java/lang/StringBuilder/<init>	; <init>(Ljava/lang/String;)V
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	sget	v2,com/fsharemobile/service/MyScheduleReceiver.a I
+; v2 : single-length
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(I)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : single-length
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v1},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v1 : Ljava/lang/StringBuilder;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-static	{v0,v1},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v0 : Ljava/lang/String; , v1 : Ljava/lang/String;
+.line 39
+	return-void	
+.end method
+
+

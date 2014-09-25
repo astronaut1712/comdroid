@@ -1,0 +1,114 @@
+.class public final com/a/a/a/i
+.super java/lang/Object
+.source MyApplication
+.implements java/io/Closeable
+
+.field final a Lcom/a/a/a/c;
+.field private final b Ljava/lang/String;
+.field private final c J
+.field private final d [Ljava/io/InputStream;
+.field private final e [J
+
+.method private <init>(Lcom/a/a/a/c;Ljava/lang/String;J[Ljava/io/InputStream;[J)V
+.limit registers 7
+; this: v0 (Lcom/a/a/a/i;)
+; parameter[0] : v1 (Lcom/a/a/a/c;)
+; parameter[1] : v2 (Ljava/lang/String;)
+; parameter[2] : v3 (J)
+; parameter[3] : v5 ([Ljava/io/InputStream;)
+; parameter[4] : v6 ([J)
+.line 671
+	iput-object	v1,v0,com/a/a/a/i.a Lcom/a/a/a/c;
+; v1 : Lcom/a/a/a/c; , v0 : Lcom/a/a/a/i;
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Lcom/a/a/a/i;
+.line 672
+	iput-object	v2,v0,com/a/a/a/i.b Ljava/lang/String;
+; v2 : Ljava/lang/String; , v0 : Lcom/a/a/a/i;
+.line 673
+	iput-wide	v3,v0,com/a/a/a/i.c J
+; v3 : double-length , v0 : Lcom/a/a/a/i;
+.line 674
+	iput-object	v5,v0,com/a/a/a/i.d [Ljava/io/InputStream;
+; v5 : [Ljava/io/InputStream; , v0 : Lcom/a/a/a/i;
+.line 675
+	iput-object	v6,v0,com/a/a/a/i.e [J
+; v6 : [J , v0 : Lcom/a/a/a/i;
+.line 676
+	return-void	
+.end method
+
+.method <init>(Lcom/a/a/a/c;Ljava/lang/String;J[Ljava/io/InputStream;[JLcom/a/a/a/d;)V
+.limit registers 8
+; this: v0 (Lcom/a/a/a/i;)
+; parameter[0] : v1 (Lcom/a/a/a/c;)
+; parameter[1] : v2 (Ljava/lang/String;)
+; parameter[2] : v3 (J)
+; parameter[3] : v5 ([Ljava/io/InputStream;)
+; parameter[4] : v6 ([J)
+; parameter[5] : v7 (Lcom/a/a/a/d;)
+.line 665
+	invoke-direct/range	{v0..v6},com/a/a/a/i/<init>;	<init>(Lcom/a/a/a/c;Ljava/lang/String;J[Ljava/io/InputStream;[J)V
+; v0 : Lcom/a/a/a/i; , v1 : Lcom/a/a/a/c; , v2 : Ljava/lang/String; , v3 : double-length , v5 : [Ljava/io/InputStream; , v6 : [J
+	return-void	
+.end method
+
+.method public a()Lcom/a/a/a/f;
+.limit registers 5
+; this: v4 (Lcom/a/a/a/i;)
+.line 684
+	iget-object	v0,v4,com/a/a/a/i.a Lcom/a/a/a/c;
+; v0 : Lcom/a/a/a/c; , v4 : Lcom/a/a/a/i;
+	iget-object	v1,v4,com/a/a/a/i.b Ljava/lang/String;
+; v1 : Ljava/lang/String; , v4 : Lcom/a/a/a/i;
+	iget-wide	v2,v4,com/a/a/a/i.c J
+; v2 : double-length , v4 : Lcom/a/a/a/i;
+	invoke-static	{v0,v1,v2,v3},com/a/a/a/c/a	; a(Lcom/a/a/a/c;Ljava/lang/String;J)Lcom/a/a/a/f;
+; v0 : Lcom/a/a/a/c; , v1 : Ljava/lang/String; , v2 : double-length
+	move-result-object	v0
+; v0 : Lcom/a/a/a/f;
+	return-object	v0
+; v0 : Lcom/a/a/a/f;
+.end method
+
+.method public a(I)Ljava/io/InputStream;
+.limit registers 3
+; this: v1 (Lcom/a/a/a/i;)
+; parameter[0] : v2 (I)
+.line 689
+	iget-object	v0,v1,com/a/a/a/i.d [Ljava/io/InputStream;
+; v0 : [Ljava/io/InputStream; , v1 : Lcom/a/a/a/i;
+	aget-object	v0,v0,v2
+; v0 : Ljava/io/InputStream; , v0 : Ljava/io/InputStream; , v2 : single-length
+	return-object	v0
+; v0 : Ljava/io/InputStream;
+.end method
+
+.method public close()V
+.limit registers 5
+; this: v4 (Lcom/a/a/a/i;)
+.line 703
+	iget-object	v1,v4,com/a/a/a/i.d [Ljava/io/InputStream;
+; v1 : [Ljava/io/InputStream; , v4 : Lcom/a/a/a/i;
+	array-length	v2,v1
+; v2 : single-length , v1 : [Ljava/io/InputStream;
+	const/4	v0,0
+; v0 : single-length
+l73834:
+	if-ge	v0,v2,l73848
+; v0 : single-length , v2 : single-length
+	aget-object	v3,v1,v0
+; v3 : Ljava/io/InputStream; , v1 : [Ljava/io/InputStream; , v0 : single-length
+.line 704
+	invoke-static	{v3},com/a/a/a/u/a	; a(Ljava/io/Closeable;)V
+; v3 : Ljava/io/InputStream;
+.line 703
+	add-int/lit8	v0,v0,1
+; v0 : single-length , v0 : single-length
+	goto	l73834
+l73848:
+.line 706
+	return-void	
+.end method
+
+

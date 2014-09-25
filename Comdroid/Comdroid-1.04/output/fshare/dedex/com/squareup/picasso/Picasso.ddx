@@ -1,0 +1,774 @@
+.class public com/squareup/picasso/Picasso
+.super java/lang/Object
+.source Picasso.java
+
+.inner class LoadedFrom inner com/squareup/picasso/Picasso$LoadedFrom outer com/squareup/picasso/Picasso
+.inner class Builder inner com/squareup/picasso/Picasso$Builder outer com/squareup/picasso/Picasso
+.inner class CleanupThread inner com/squareup/picasso/Picasso$CleanupThread outer com/squareup/picasso/Picasso
+.inner class RequestTransformer inner com/squareup/picasso/Picasso$RequestTransformer outer com/squareup/picasso/Picasso
+.inner class Listener inner com/squareup/picasso/Picasso$Listener outer com/squareup/picasso/Picasso
+.field static final HANDLER Landroid/os/Handler;
+.field static singleton Lcom/squareup/picasso/Picasso;
+.field final cache Lcom/squareup/picasso/Cache;
+.field private final cleanupThread Lcom/squareup/picasso/Picasso$CleanupThread;
+.field final context Landroid/content/Context;
+.field debugging Z
+.field final dispatcher Lcom/squareup/picasso/Dispatcher;
+.field private final listener Lcom/squareup/picasso/Picasso$Listener;
+.field final referenceQueue Ljava/lang/ref/ReferenceQueue;
+  .annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "Ljava/lang/ref/ReferenceQueue" , "<" , "Ljava/lang/Object;" , ">;" }
+  .end annotation
+.end field
+.field private final requestTransformer Lcom/squareup/picasso/Picasso$RequestTransformer;
+.field shutdown Z
+.field final stats Lcom/squareup/picasso/Stats;
+.field final targetToAction Ljava/util/Map;
+  .annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "Ljava/util/Map" , "<" , "Ljava/lang/Object;" , "Lcom/squareup/picasso/Action;" , ">;" }
+  .end annotation
+.end field
+.field final targetToDeferredRequestCreator Ljava/util/Map;
+  .annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "Ljava/util/Map" , "<" , "Landroid/widget/ImageView;" , "Lcom/squareup/picasso/DeferredRequestCreator;" , ">;" }
+  .end annotation
+.end field
+
+.method static <clinit>()V
+.limit registers 2
+.line 83
+	new-instance	v0,com/squareup/picasso/Picasso$1
+; v0 : Lcom/squareup/picasso/Picasso$1;
+	invoke-static	{},android/os/Looper/getMainLooper	; getMainLooper()Landroid/os/Looper;
+; 
+	nop	
+	move-result-object	v1
+; v1 : Landroid/os/Looper;
+	invoke-direct	{v0,v1},com/squareup/picasso/Picasso$1/<init>	; <init>(Landroid/os/Looper;)V
+; v0 : Lcom/squareup/picasso/Picasso$1; , v1 : Landroid/os/Looper;
+	sput-object	v0,com/squareup/picasso/Picasso.HANDLER Landroid/os/Handler;
+; v0 : Landroid/os/Handler;
+.line 104
+	const/4	v0,0
+; v0 : single-length
+	sput-object	v0,com/squareup/picasso/Picasso.singleton Lcom/squareup/picasso/Picasso;
+; v0 : Lcom/squareup/picasso/Picasso;
+	return-void	
+.end method
+
+.method <init>(Landroid/content/Context;Lcom/squareup/picasso/Dispatcher;Lcom/squareup/picasso/Cache;Lcom/squareup/picasso/Picasso$Listener;Lcom/squareup/picasso/Picasso$RequestTransformer;Lcom/squareup/picasso/Stats;Z)V
+.limit registers 11
+; this: v3 (Lcom/squareup/picasso/Picasso;)
+; parameter[0] : v4 (Landroid/content/Context;)
+; parameter[1] : v5 (Lcom/squareup/picasso/Dispatcher;)
+; parameter[2] : v6 (Lcom/squareup/picasso/Cache;)
+; parameter[3] : v7 (Lcom/squareup/picasso/Picasso$Listener;)
+; parameter[4] : v8 (Lcom/squareup/picasso/Picasso$RequestTransformer;)
+; parameter[5] : v9 (Lcom/squareup/picasso/Stats;)
+; parameter[6] : v10 (Z)
+.line 122
+	invoke-direct	{v3},java/lang/Object/<init>	; <init>()V
+; v3 : Lcom/squareup/picasso/Picasso;
+.line 123
+	iput-object	v4,v3,com/squareup/picasso/Picasso.context Landroid/content/Context;
+; v4 : Landroid/content/Context; , v3 : Lcom/squareup/picasso/Picasso;
+.line 124
+	iput-object	v5,v3,com/squareup/picasso/Picasso.dispatcher Lcom/squareup/picasso/Dispatcher;
+; v5 : Lcom/squareup/picasso/Dispatcher; , v3 : Lcom/squareup/picasso/Picasso;
+.line 125
+	iput-object	v6,v3,com/squareup/picasso/Picasso.cache Lcom/squareup/picasso/Cache;
+; v6 : Lcom/squareup/picasso/Cache; , v3 : Lcom/squareup/picasso/Picasso;
+.line 126
+	iput-object	v7,v3,com/squareup/picasso/Picasso.listener Lcom/squareup/picasso/Picasso$Listener;
+; v7 : Lcom/squareup/picasso/Picasso$Listener; , v3 : Lcom/squareup/picasso/Picasso;
+.line 127
+	iput-object	v8,v3,com/squareup/picasso/Picasso.requestTransformer Lcom/squareup/picasso/Picasso$RequestTransformer;
+; v8 : Lcom/squareup/picasso/Picasso$RequestTransformer; , v3 : Lcom/squareup/picasso/Picasso;
+.line 128
+	iput-object	v9,v3,com/squareup/picasso/Picasso.stats Lcom/squareup/picasso/Stats;
+; v9 : Lcom/squareup/picasso/Stats; , v3 : Lcom/squareup/picasso/Picasso;
+.line 129
+	new-instance	v0,java/util/WeakHashMap
+; v0 : Ljava/util/WeakHashMap;
+	invoke-direct	{v0},java/util/WeakHashMap/<init>	; <init>()V
+; v0 : Ljava/util/WeakHashMap;
+	iput-object	v0,v3,com/squareup/picasso/Picasso.targetToAction Ljava/util/Map;
+; v0 : Ljava/util/WeakHashMap; , v3 : Lcom/squareup/picasso/Picasso;
+.line 130
+	new-instance	v0,java/util/WeakHashMap
+; v0 : Ljava/util/WeakHashMap;
+	invoke-direct	{v0},java/util/WeakHashMap/<init>	; <init>()V
+; v0 : Ljava/util/WeakHashMap;
+	iput-object	v0,v3,com/squareup/picasso/Picasso.targetToDeferredRequestCreator Ljava/util/Map;
+; v0 : Ljava/util/WeakHashMap; , v3 : Lcom/squareup/picasso/Picasso;
+.line 131
+	iput-boolean	v10,v3,com/squareup/picasso/Picasso.debugging Z
+; v10 : single-length , v3 : Lcom/squareup/picasso/Picasso;
+.line 132
+	new-instance	v0,java/lang/ref/ReferenceQueue
+; v0 : Ljava/lang/ref/ReferenceQueue;
+	invoke-direct	{v0},java/lang/ref/ReferenceQueue/<init>	; <init>()V
+; v0 : Ljava/lang/ref/ReferenceQueue;
+	iput-object	v0,v3,com/squareup/picasso/Picasso.referenceQueue Ljava/lang/ref/ReferenceQueue;
+; v0 : Ljava/lang/ref/ReferenceQueue; , v3 : Lcom/squareup/picasso/Picasso;
+.line 133
+	new-instance	v0,com/squareup/picasso/Picasso$CleanupThread
+; v0 : Lcom/squareup/picasso/Picasso$CleanupThread;
+	iget-object	v1,v3,com/squareup/picasso/Picasso.referenceQueue Ljava/lang/ref/ReferenceQueue;
+; v1 : Ljava/lang/ref/ReferenceQueue; , v3 : Lcom/squareup/picasso/Picasso;
+	sget-object	v2,com/squareup/picasso/Picasso.HANDLER Landroid/os/Handler;
+; v2 : Landroid/os/Handler;
+	invoke-direct	{v0,v1,v2},com/squareup/picasso/Picasso$CleanupThread/<init>	; <init>(Ljava/lang/ref/ReferenceQueue;Landroid/os/Handler;)V
+; v0 : Lcom/squareup/picasso/Picasso$CleanupThread; , v1 : Ljava/lang/ref/ReferenceQueue; , v2 : Landroid/os/Handler;
+	iput-object	v0,v3,com/squareup/picasso/Picasso.cleanupThread Lcom/squareup/picasso/Picasso$CleanupThread;
+; v0 : Lcom/squareup/picasso/Picasso$CleanupThread; , v3 : Lcom/squareup/picasso/Picasso;
+.line 134
+	iget-object	v0,v3,com/squareup/picasso/Picasso.cleanupThread Lcom/squareup/picasso/Picasso$CleanupThread;
+; v0 : Lcom/squareup/picasso/Picasso$CleanupThread; , v3 : Lcom/squareup/picasso/Picasso;
+	invoke-virtual	{v0},com/squareup/picasso/Picasso$CleanupThread/start	; start()V
+; v0 : Lcom/squareup/picasso/Picasso$CleanupThread;
+.line 135
+	return-void	
+.end method
+
+.method static access$000(Lcom/squareup/picasso/Picasso;Ljava/lang/Object;)V
+.limit registers 2
+; parameter[0] : v0 (Lcom/squareup/picasso/Picasso;)
+; parameter[1] : v1 (Ljava/lang/Object;)
+.line 46
+	invoke-direct	{v0,v1},com/squareup/picasso/Picasso/cancelExistingRequest	; cancelExistingRequest(Ljava/lang/Object;)V
+; v0 : Lcom/squareup/picasso/Picasso; , v1 : Ljava/lang/Object;
+	return-void	
+.end method
+
+.method private cancelExistingRequest(Ljava/lang/Object;)V
+.limit registers 6
+; this: v4 (Lcom/squareup/picasso/Picasso;)
+; parameter[0] : v5 (Ljava/lang/Object;)
+.var 1 is deferredRequestCreator Lcom/squareup/picasso/DeferredRequestCreator; from lc45a6 to lc45b0
+.var 2 is targetImageView Landroid/widget/ImageView; from lc4596 to lc45b0
+.line 322
+	iget-object	v3,v4,com/squareup/picasso/Picasso.targetToAction Ljava/util/Map;
+; v3 : Ljava/util/Map; , v4 : Lcom/squareup/picasso/Picasso;
+	invoke-interface	{v3,v5},java/util/Map/remove	; remove(Ljava/lang/Object;)Ljava/lang/Object;
+; v3 : Ljava/util/Map; , v5 : Ljava/lang/Object;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,com/squareup/picasso/Action
+; v0 : Lcom/squareup/picasso/Action;
+.line 323
+	if-eqz	v0,lc4588
+; v0 : Lcom/squareup/picasso/Action;
+.line 324
+	invoke-virtual	{v0},com/squareup/picasso/Action/cancel	; cancel()V
+; v0 : Lcom/squareup/picasso/Action;
+.line 325
+	iget-object	v3,v4,com/squareup/picasso/Picasso.dispatcher Lcom/squareup/picasso/Dispatcher;
+; v3 : Lcom/squareup/picasso/Dispatcher; , v4 : Lcom/squareup/picasso/Picasso;
+	invoke-virtual	{v3,v0},com/squareup/picasso/Dispatcher/dispatchCancel	; dispatchCancel(Lcom/squareup/picasso/Action;)V
+; v3 : Lcom/squareup/picasso/Dispatcher; , v0 : Lcom/squareup/picasso/Action;
+lc4588:
+.line 327
+	instance-of	v3,v5,android/widget/ImageView
+; v3 : single-length , v5 : Ljava/lang/Object;
+	if-eqz	v3,lc45b0
+; v3 : single-length
+	move-object	v2,v5
+; v2 : Ljava/lang/Object; , v5 : Ljava/lang/Object;
+.line 328
+	check-cast	v2,android/widget/ImageView
+; v2 : Landroid/widget/ImageView;
+.line 329
+	iget-object	v3,v4,com/squareup/picasso/Picasso.targetToDeferredRequestCreator Ljava/util/Map;
+; v3 : Ljava/util/Map; , v4 : Lcom/squareup/picasso/Picasso;
+	invoke-interface	{v3,v2},java/util/Map/remove	; remove(Ljava/lang/Object;)Ljava/lang/Object;
+; v3 : Ljava/util/Map; , v2 : Landroid/widget/ImageView;
+	move-result-object	v1
+; v1 : Ljava/lang/Object;
+	check-cast	v1,com/squareup/picasso/DeferredRequestCreator
+; v1 : Lcom/squareup/picasso/DeferredRequestCreator;
+.line 331
+	if-eqz	v1,lc45b0
+; v1 : Lcom/squareup/picasso/DeferredRequestCreator;
+.line 332
+	invoke-virtual	{v1},com/squareup/picasso/DeferredRequestCreator/cancel	; cancel()V
+; v1 : Lcom/squareup/picasso/DeferredRequestCreator;
+lc45b0:
+.line 335
+	return-void	
+.end method
+
+.method public static with(Landroid/content/Context;)Lcom/squareup/picasso/Picasso;
+.limit registers 2
+; parameter[0] : v1 (Landroid/content/Context;)
+.line 389
+	sget-object	v0,com/squareup/picasso/Picasso.singleton Lcom/squareup/picasso/Picasso;
+; v0 : Lcom/squareup/picasso/Picasso;
+	if-nez	v0,lc45e2
+; v0 : Lcom/squareup/picasso/Picasso;
+.line 390
+	new-instance	v0,com/squareup/picasso/Picasso$Builder
+; v0 : Lcom/squareup/picasso/Picasso$Builder;
+	invoke-direct	{v0,v1},com/squareup/picasso/Picasso$Builder/<init>	; <init>(Landroid/content/Context;)V
+; v0 : Lcom/squareup/picasso/Picasso$Builder; , v1 : Landroid/content/Context;
+	invoke-virtual	{v0},com/squareup/picasso/Picasso$Builder/build	; build()Lcom/squareup/picasso/Picasso;
+; v0 : Lcom/squareup/picasso/Picasso$Builder;
+	move-result-object	v0
+; v0 : Lcom/squareup/picasso/Picasso;
+	sput-object	v0,com/squareup/picasso/Picasso.singleton Lcom/squareup/picasso/Picasso;
+; v0 : Lcom/squareup/picasso/Picasso;
+lc45e2:
+.line 392
+	sget-object	v0,com/squareup/picasso/Picasso.singleton Lcom/squareup/picasso/Picasso;
+; v0 : Lcom/squareup/picasso/Picasso;
+	return-object	v0
+; v0 : Lcom/squareup/picasso/Picasso;
+.end method
+
+.method public cancelRequest(Landroid/widget/ImageView;)V
+.limit registers 2
+; this: v0 (Lcom/squareup/picasso/Picasso;)
+; parameter[0] : v1 (Landroid/widget/ImageView;)
+.line 139
+	invoke-direct	{v0,v1},com/squareup/picasso/Picasso/cancelExistingRequest	; cancelExistingRequest(Ljava/lang/Object;)V
+; v0 : Lcom/squareup/picasso/Picasso; , v1 : Landroid/widget/ImageView;
+.line 140
+	return-void	
+.end method
+
+.method public cancelRequest(Lcom/squareup/picasso/Target;)V
+.limit registers 2
+; this: v0 (Lcom/squareup/picasso/Picasso;)
+; parameter[0] : v1 (Lcom/squareup/picasso/Target;)
+.line 144
+	invoke-direct	{v0,v1},com/squareup/picasso/Picasso/cancelExistingRequest	; cancelExistingRequest(Ljava/lang/Object;)V
+; v0 : Lcom/squareup/picasso/Picasso; , v1 : Lcom/squareup/picasso/Target;
+.line 145
+	return-void	
+.end method
+
+.method complete(Lcom/squareup/picasso/BitmapHunter;)V
+.limit registers 11
+; this: v9 (Lcom/squareup/picasso/Picasso;)
+; parameter[0] : v10 (Lcom/squareup/picasso/BitmapHunter;)
+.var 3 is join Lcom/squareup/picasso/Action; from lc4682 to lc46c8
+.line 291
+	invoke-virtual	{v10},com/squareup/picasso/BitmapHunter/getActions	; getActions()Ljava/util/List;
+; v10 : Lcom/squareup/picasso/BitmapHunter;
+	move-result-object	v4
+; v4 : Ljava/util/List;
+.line 292
+	invoke-interface	{v4},java/util/List/isEmpty	; isEmpty()Z
+; v4 : Ljava/util/List;
+	move-result	v7
+; v7 : single-length
+	if-eqz	v7,lc463e
+; v7 : single-length
+lc463c:
+.line 319
+	return-void	
+lc463e:
+.line 296
+	invoke-virtual	{v10},com/squareup/picasso/BitmapHunter/getData	; getData()Lcom/squareup/picasso/Request;
+; v10 : Lcom/squareup/picasso/BitmapHunter;
+	move-result-object	v7
+; v7 : Lcom/squareup/picasso/Request;
+	iget-object	v6,v7,com/squareup/picasso/Request.uri Landroid/net/Uri;
+; v6 : Landroid/net/Uri; , v7 : Lcom/squareup/picasso/Request;
+.line 297
+	invoke-virtual	{v10},com/squareup/picasso/BitmapHunter/getException	; getException()Ljava/lang/Exception;
+; v10 : Lcom/squareup/picasso/BitmapHunter;
+	move-result-object	v0
+; v0 : Ljava/lang/Exception;
+.line 298
+	invoke-virtual	{v10},com/squareup/picasso/BitmapHunter/getResult	; getResult()Landroid/graphics/Bitmap;
+; v10 : Lcom/squareup/picasso/BitmapHunter;
+	move-result-object	v5
+; v5 : Landroid/graphics/Bitmap;
+.line 299
+	invoke-virtual	{v10},com/squareup/picasso/BitmapHunter/getLoadedFrom	; getLoadedFrom()Lcom/squareup/picasso/Picasso$LoadedFrom;
+; v10 : Lcom/squareup/picasso/BitmapHunter;
+	move-result-object	v1
+; v1 : Lcom/squareup/picasso/Picasso$LoadedFrom;
+.line 301
+	invoke-interface	{v4},java/util/List/iterator	; iterator()Ljava/util/Iterator;
+; v4 : Ljava/util/List;
+	move-result-object	v2
+; v2 : Ljava/util/Iterator;
+lc466a:
+	invoke-interface	{v2},java/util/Iterator/hasNext	; hasNext()Z
+; v2 : Ljava/util/Iterator;
+	move-result	v7
+; v7 : single-length
+	if-eqz	v7,lc46c8
+; v7 : single-length
+	invoke-interface	{v2},java/util/Iterator/next	; next()Ljava/lang/Object;
+; v2 : Ljava/util/Iterator;
+	move-result-object	v3
+; v3 : Ljava/lang/Object;
+	check-cast	v3,com/squareup/picasso/Action
+; v3 : Lcom/squareup/picasso/Action;
+.line 302
+	invoke-virtual	{v3},com/squareup/picasso/Action/isCancelled	; isCancelled()Z
+; v3 : Lcom/squareup/picasso/Action;
+	move-result	v7
+; v7 : single-length
+	if-nez	v7,lc466a
+; v7 : single-length
+.line 305
+	iget-object	v7,v9,com/squareup/picasso/Picasso.targetToAction Ljava/util/Map;
+; v7 : Ljava/util/Map; , v9 : Lcom/squareup/picasso/Picasso;
+	invoke-virtual	{v3},com/squareup/picasso/Action/getTarget	; getTarget()Ljava/lang/Object;
+; v3 : Lcom/squareup/picasso/Action;
+	move-result-object	v8
+; v8 : Ljava/lang/Object;
+	invoke-interface	{v7,v8},java/util/Map/remove	; remove(Ljava/lang/Object;)Ljava/lang/Object;
+; v7 : Ljava/util/Map; , v8 : Ljava/lang/Object;
+.line 306
+	if-eqz	v5,lc46c0
+; v5 : Landroid/graphics/Bitmap;
+.line 307
+	if-nez	v1,lc46b8
+; v1 : Lcom/squareup/picasso/Picasso$LoadedFrom;
+.line 308
+	new-instance	v7,java/lang/AssertionError
+; v7 : Ljava/lang/AssertionError;
+	const-string	v8,"LoadedFrom cannot be null."
+; v8 : Ljava/lang/String;
+	invoke-direct	{v7,v8},java/lang/AssertionError/<init>	; <init>(Ljava/lang/Object;)V
+; v7 : Ljava/lang/AssertionError; , v8 : Ljava/lang/String;
+	throw	v7
+; v7 : Ljava/lang/AssertionError;
+lc46b8:
+.line 310
+	invoke-virtual	{v3,v5,v1},com/squareup/picasso/Action/complete	; complete(Landroid/graphics/Bitmap;Lcom/squareup/picasso/Picasso$LoadedFrom;)V
+; v3 : Lcom/squareup/picasso/Action; , v5 : Landroid/graphics/Bitmap; , v1 : Lcom/squareup/picasso/Picasso$LoadedFrom;
+	goto	lc466a
+lc46c0:
+.line 312
+	invoke-virtual	{v3},com/squareup/picasso/Action/error	; error()V
+; v3 : Lcom/squareup/picasso/Action;
+	goto	lc466a
+lc46c8:
+.line 316
+	iget-object	v7,v9,com/squareup/picasso/Picasso.listener Lcom/squareup/picasso/Picasso$Listener;
+; v7 : Lcom/squareup/picasso/Picasso$Listener; , v9 : Lcom/squareup/picasso/Picasso;
+	if-eqz	v7,lc463c
+; v7 : Lcom/squareup/picasso/Picasso$Listener;
+	if-eqz	v0,lc463c
+; v0 : Ljava/lang/Exception;
+.line 317
+	iget-object	v7,v9,com/squareup/picasso/Picasso.listener Lcom/squareup/picasso/Picasso$Listener;
+; v7 : Lcom/squareup/picasso/Picasso$Listener; , v9 : Lcom/squareup/picasso/Picasso;
+	invoke-interface	{v7,v9,v6,v0},com/squareup/picasso/Picasso$Listener/onImageLoadFailed	; onImageLoadFailed(Lcom/squareup/picasso/Picasso;Landroid/net/Uri;Ljava/lang/Exception;)V
+; v7 : Lcom/squareup/picasso/Picasso$Listener; , v9 : Lcom/squareup/picasso/Picasso; , v6 : Landroid/net/Uri; , v0 : Ljava/lang/Exception;
+	goto	lc463c
+.end method
+
+.method defer(Landroid/widget/ImageView;Lcom/squareup/picasso/DeferredRequestCreator;)V
+.limit registers 4
+; this: v1 (Lcom/squareup/picasso/Picasso;)
+; parameter[0] : v2 (Landroid/widget/ImageView;)
+; parameter[1] : v3 (Lcom/squareup/picasso/DeferredRequestCreator;)
+.line 264
+	iget-object	v0,v1,com/squareup/picasso/Picasso.targetToDeferredRequestCreator Ljava/util/Map;
+; v0 : Ljava/util/Map; , v1 : Lcom/squareup/picasso/Picasso;
+	invoke-interface	{v0,v2,v3},java/util/Map/put	; put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+; v0 : Ljava/util/Map; , v2 : Landroid/widget/ImageView; , v3 : Lcom/squareup/picasso/DeferredRequestCreator;
+.line 265
+	return-void	
+.end method
+
+.method enqueueAndSubmit(Lcom/squareup/picasso/Action;)V
+.limit registers 4
+; this: v2 (Lcom/squareup/picasso/Picasso;)
+; parameter[0] : v3 (Lcom/squareup/picasso/Action;)
+.line 268
+	invoke-virtual	{v3},com/squareup/picasso/Action/getTarget	; getTarget()Ljava/lang/Object;
+; v3 : Lcom/squareup/picasso/Action;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+.line 269
+	if-eqz	v0,lc4728
+; v0 : Ljava/lang/Object;
+.line 270
+	invoke-direct	{v2,v0},com/squareup/picasso/Picasso/cancelExistingRequest	; cancelExistingRequest(Ljava/lang/Object;)V
+; v2 : Lcom/squareup/picasso/Picasso; , v0 : Ljava/lang/Object;
+.line 271
+	iget-object	v1,v2,com/squareup/picasso/Picasso.targetToAction Ljava/util/Map;
+; v1 : Ljava/util/Map; , v2 : Lcom/squareup/picasso/Picasso;
+	invoke-interface	{v1,v0,v3},java/util/Map/put	; put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+; v1 : Ljava/util/Map; , v0 : Ljava/lang/Object; , v3 : Lcom/squareup/picasso/Action;
+lc4728:
+.line 273
+	invoke-virtual	{v2,v3},com/squareup/picasso/Picasso/submit	; submit(Lcom/squareup/picasso/Action;)V
+; v2 : Lcom/squareup/picasso/Picasso; , v3 : Lcom/squareup/picasso/Action;
+.line 274
+	return-void	
+.end method
+
+.method public getSnapshot()Lcom/squareup/picasso/StatsSnapshot;
+.limit registers 2
+; this: v1 (Lcom/squareup/picasso/Picasso;)
+.line 230
+	iget-object	v0,v1,com/squareup/picasso/Picasso.stats Lcom/squareup/picasso/Stats;
+; v0 : Lcom/squareup/picasso/Stats; , v1 : Lcom/squareup/picasso/Picasso;
+	invoke-virtual	{v0},com/squareup/picasso/Stats/createSnapshot	; createSnapshot()Lcom/squareup/picasso/StatsSnapshot;
+; v0 : Lcom/squareup/picasso/Stats;
+	move-result-object	v0
+; v0 : Lcom/squareup/picasso/StatsSnapshot;
+	return-object	v0
+; v0 : Lcom/squareup/picasso/StatsSnapshot;
+.end method
+
+.method public isDebugging()Z
+.limit registers 2
+; this: v1 (Lcom/squareup/picasso/Picasso;)
+.line 220
+	iget-boolean	v0,v1,com/squareup/picasso/Picasso.debugging Z
+; v0 : single-length , v1 : Lcom/squareup/picasso/Picasso;
+	return	v0
+; v0 : single-length
+.end method
+
+.method public load(I)Lcom/squareup/picasso/RequestCreator;
+.limit registers 4
+; this: v2 (Lcom/squareup/picasso/Picasso;)
+; parameter[0] : v3 (I)
+.line 212
+	if-nez	v3,lc478c
+; v3 : single-length
+.line 213
+	new-instance	v0,java/lang/IllegalArgumentException
+; v0 : Ljava/lang/IllegalArgumentException;
+	const-string	v1,"Resource ID must not be zero."
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/IllegalArgumentException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/IllegalArgumentException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/IllegalArgumentException;
+lc478c:
+.line 215
+	new-instance	v0,com/squareup/picasso/RequestCreator
+; v0 : Lcom/squareup/picasso/RequestCreator;
+	const/4	v1,0
+; v1 : single-length
+	invoke-direct	{v0,v2,v1,v3},com/squareup/picasso/RequestCreator/<init>	; <init>(Lcom/squareup/picasso/Picasso;Landroid/net/Uri;I)V
+; v0 : Lcom/squareup/picasso/RequestCreator; , v2 : Lcom/squareup/picasso/Picasso; , v1 : single-length , v3 : single-length
+	return-object	v0
+; v0 : Lcom/squareup/picasso/RequestCreator;
+.end method
+
+.method public load(Landroid/net/Uri;)Lcom/squareup/picasso/RequestCreator;
+.limit registers 4
+; this: v2 (Lcom/squareup/picasso/Picasso;)
+; parameter[0] : v3 (Landroid/net/Uri;)
+.line 158
+	new-instance	v0,com/squareup/picasso/RequestCreator
+; v0 : Lcom/squareup/picasso/RequestCreator;
+	const/4	v1,0
+; v1 : single-length
+	invoke-direct	{v0,v2,v3,v1},com/squareup/picasso/RequestCreator/<init>	; <init>(Lcom/squareup/picasso/Picasso;Landroid/net/Uri;I)V
+; v0 : Lcom/squareup/picasso/RequestCreator; , v2 : Lcom/squareup/picasso/Picasso; , v3 : Landroid/net/Uri; , v1 : single-length
+	return-object	v0
+; v0 : Lcom/squareup/picasso/RequestCreator;
+.end method
+
+.method public load(Ljava/io/File;)Lcom/squareup/picasso/RequestCreator;
+.limit registers 5
+; this: v3 (Lcom/squareup/picasso/Picasso;)
+; parameter[0] : v4 (Ljava/io/File;)
+.line 198
+	if-nez	v4,lc47e0
+; v4 : Ljava/io/File;
+.line 199
+	new-instance	v0,com/squareup/picasso/RequestCreator
+; v0 : Lcom/squareup/picasso/RequestCreator;
+	const/4	v1,0
+; v1 : single-length
+	const/4	v2,0
+; v2 : single-length
+	invoke-direct	{v0,v3,v1,v2},com/squareup/picasso/RequestCreator/<init>	; <init>(Lcom/squareup/picasso/Picasso;Landroid/net/Uri;I)V
+; v0 : Lcom/squareup/picasso/RequestCreator; , v3 : Lcom/squareup/picasso/Picasso; , v1 : single-length , v2 : single-length
+lc47de:
+.line 201
+	return-object	v0
+; v0 : Lcom/squareup/picasso/RequestCreator;
+lc47e0:
+	invoke-static	{v4},android/net/Uri/fromFile	; fromFile(Ljava/io/File;)Landroid/net/Uri;
+; v4 : Ljava/io/File;
+	move-result-object	v0
+; v0 : Landroid/net/Uri;
+	invoke-virtual	{v3,v0},com/squareup/picasso/Picasso/load	; load(Landroid/net/Uri;)Lcom/squareup/picasso/RequestCreator;
+; v3 : Lcom/squareup/picasso/Picasso; , v0 : Landroid/net/Uri;
+	move-result-object	v0
+; v0 : Lcom/squareup/picasso/RequestCreator;
+	goto	lc47de
+.end method
+
+.method public load(Ljava/lang/String;)Lcom/squareup/picasso/RequestCreator;
+.limit registers 5
+; this: v3 (Lcom/squareup/picasso/Picasso;)
+; parameter[0] : v4 (Ljava/lang/String;)
+.line 177
+	if-nez	v4,lc4818
+; v4 : Ljava/lang/String;
+.line 178
+	new-instance	v0,com/squareup/picasso/RequestCreator
+; v0 : Lcom/squareup/picasso/RequestCreator;
+	const/4	v1,0
+; v1 : single-length
+	const/4	v2,0
+; v2 : single-length
+	invoke-direct	{v0,v3,v1,v2},com/squareup/picasso/RequestCreator/<init>	; <init>(Lcom/squareup/picasso/Picasso;Landroid/net/Uri;I)V
+; v0 : Lcom/squareup/picasso/RequestCreator; , v3 : Lcom/squareup/picasso/Picasso; , v1 : single-length , v2 : single-length
+lc4816:
+.line 183
+	return-object	v0
+; v0 : Lcom/squareup/picasso/RequestCreator;
+lc4818:
+.line 180
+	invoke-virtual	{v4},java/lang/String/trim	; trim()Ljava/lang/String;
+; v4 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v0},java/lang/String/length	; length()I
+; v0 : Ljava/lang/String;
+	move-result	v0
+; v0 : single-length
+	if-nez	v0,lc483c
+; v0 : single-length
+.line 181
+	new-instance	v0,java/lang/IllegalArgumentException
+; v0 : Ljava/lang/IllegalArgumentException;
+	const-string	v1,"Path must not be empty."
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/IllegalArgumentException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/IllegalArgumentException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/IllegalArgumentException;
+lc483c:
+.line 183
+	invoke-static	{v4},android/net/Uri/parse	; parse(Ljava/lang/String;)Landroid/net/Uri;
+; v4 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Landroid/net/Uri;
+	invoke-virtual	{v3,v0},com/squareup/picasso/Picasso/load	; load(Landroid/net/Uri;)Lcom/squareup/picasso/RequestCreator;
+; v3 : Lcom/squareup/picasso/Picasso; , v0 : Landroid/net/Uri;
+	move-result-object	v0
+; v0 : Lcom/squareup/picasso/RequestCreator;
+	goto	lc4816
+.end method
+
+.method quickMemoryCacheCheck(Ljava/lang/String;)Landroid/graphics/Bitmap;
+.limit registers 4
+; this: v2 (Lcom/squareup/picasso/Picasso;)
+; parameter[0] : v3 (Ljava/lang/String;)
+.line 281
+	iget-object	v1,v2,com/squareup/picasso/Picasso.cache Lcom/squareup/picasso/Cache;
+; v1 : Lcom/squareup/picasso/Cache; , v2 : Lcom/squareup/picasso/Picasso;
+	invoke-interface	{v1,v3},com/squareup/picasso/Cache/get	; get(Ljava/lang/String;)Landroid/graphics/Bitmap;
+; v1 : Lcom/squareup/picasso/Cache; , v3 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Landroid/graphics/Bitmap;
+.line 282
+	if-eqz	v0,lc487c
+; v0 : Landroid/graphics/Bitmap;
+.line 283
+	iget-object	v1,v2,com/squareup/picasso/Picasso.stats Lcom/squareup/picasso/Stats;
+; v1 : Lcom/squareup/picasso/Stats; , v2 : Lcom/squareup/picasso/Picasso;
+	invoke-virtual	{v1},com/squareup/picasso/Stats/dispatchCacheHit	; dispatchCacheHit()V
+; v1 : Lcom/squareup/picasso/Stats;
+lc487a:
+.line 287
+	return-object	v0
+; v0 : Landroid/graphics/Bitmap;
+lc487c:
+.line 285
+	iget-object	v1,v2,com/squareup/picasso/Picasso.stats Lcom/squareup/picasso/Stats;
+; v1 : Lcom/squareup/picasso/Stats; , v2 : Lcom/squareup/picasso/Picasso;
+	invoke-virtual	{v1},com/squareup/picasso/Stats/dispatchCacheMiss	; dispatchCacheMiss()V
+; v1 : Lcom/squareup/picasso/Stats;
+	goto	lc487a
+.end method
+
+.method public setDebugging(Z)V
+.limit registers 2
+; this: v0 (Lcom/squareup/picasso/Picasso;)
+; parameter[0] : v1 (Z)
+.line 225
+	iput-boolean	v1,v0,com/squareup/picasso/Picasso.debugging Z
+; v1 : single-length , v0 : Lcom/squareup/picasso/Picasso;
+.line 226
+	return-void	
+.end method
+
+.method public shutdown()V
+.limit registers 5
+; this: v4 (Lcom/squareup/picasso/Picasso;)
+.var 0 is deferredRequestCreator Lcom/squareup/picasso/DeferredRequestCreator; from lc4926 to lc492e
+.line 235
+	sget-object	v2,com/squareup/picasso/Picasso.singleton Lcom/squareup/picasso/Picasso;
+; v2 : Lcom/squareup/picasso/Picasso;
+	if-ne	v4,v2,lc48c8
+; v4 : Lcom/squareup/picasso/Picasso; , v2 : Lcom/squareup/picasso/Picasso;
+.line 236
+	new-instance	v2,java/lang/UnsupportedOperationException
+; v2 : Ljava/lang/UnsupportedOperationException;
+	const-string	v3,"Default singleton instance cannot be shutdown."
+; v3 : Ljava/lang/String;
+	invoke-direct	{v2,v3},java/lang/UnsupportedOperationException/<init>	; <init>(Ljava/lang/String;)V
+; v2 : Ljava/lang/UnsupportedOperationException; , v3 : Ljava/lang/String;
+	throw	v2
+; v2 : Ljava/lang/UnsupportedOperationException;
+lc48c8:
+.line 238
+	iget-boolean	v2,v4,com/squareup/picasso/Picasso.shutdown Z
+; v2 : single-length , v4 : Lcom/squareup/picasso/Picasso;
+	if-eqz	v2,lc48d2
+; v2 : single-length
+lc48d0:
+.line 250
+	return-void	
+lc48d2:
+.line 241
+	iget-object	v2,v4,com/squareup/picasso/Picasso.cache Lcom/squareup/picasso/Cache;
+; v2 : Lcom/squareup/picasso/Cache; , v4 : Lcom/squareup/picasso/Picasso;
+	invoke-interface	{v2},com/squareup/picasso/Cache/clear	; clear()V
+; v2 : Lcom/squareup/picasso/Cache;
+.line 242
+	iget-object	v2,v4,com/squareup/picasso/Picasso.cleanupThread Lcom/squareup/picasso/Picasso$CleanupThread;
+; v2 : Lcom/squareup/picasso/Picasso$CleanupThread; , v4 : Lcom/squareup/picasso/Picasso;
+	invoke-virtual	{v2},com/squareup/picasso/Picasso$CleanupThread/shutdown	; shutdown()V
+; v2 : Lcom/squareup/picasso/Picasso$CleanupThread;
+.line 243
+	iget-object	v2,v4,com/squareup/picasso/Picasso.stats Lcom/squareup/picasso/Stats;
+; v2 : Lcom/squareup/picasso/Stats; , v4 : Lcom/squareup/picasso/Picasso;
+	invoke-virtual	{v2},com/squareup/picasso/Stats/shutdown	; shutdown()V
+; v2 : Lcom/squareup/picasso/Stats;
+.line 244
+	iget-object	v2,v4,com/squareup/picasso/Picasso.dispatcher Lcom/squareup/picasso/Dispatcher;
+; v2 : Lcom/squareup/picasso/Dispatcher; , v4 : Lcom/squareup/picasso/Picasso;
+	invoke-virtual	{v2},com/squareup/picasso/Dispatcher/shutdown	; shutdown()V
+; v2 : Lcom/squareup/picasso/Dispatcher;
+.line 245
+	iget-object	v2,v4,com/squareup/picasso/Picasso.targetToDeferredRequestCreator Ljava/util/Map;
+; v2 : Ljava/util/Map; , v4 : Lcom/squareup/picasso/Picasso;
+	invoke-interface	{v2},java/util/Map/values	; values()Ljava/util/Collection;
+; v2 : Ljava/util/Map;
+	move-result-object	v2
+; v2 : Ljava/util/Collection;
+	invoke-interface	{v2},java/util/Collection/iterator	; iterator()Ljava/util/Iterator;
+; v2 : Ljava/util/Collection;
+	move-result-object	v1
+; v1 : Ljava/util/Iterator;
+lc490e:
+	invoke-interface	{v1},java/util/Iterator/hasNext	; hasNext()Z
+; v1 : Ljava/util/Iterator;
+	move-result	v2
+; v2 : single-length
+	if-eqz	v2,lc492e
+; v2 : single-length
+	invoke-interface	{v1},java/util/Iterator/next	; next()Ljava/lang/Object;
+; v1 : Ljava/util/Iterator;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,com/squareup/picasso/DeferredRequestCreator
+; v0 : Lcom/squareup/picasso/DeferredRequestCreator;
+.line 246
+	invoke-virtual	{v0},com/squareup/picasso/DeferredRequestCreator/cancel	; cancel()V
+; v0 : Lcom/squareup/picasso/DeferredRequestCreator;
+	goto	lc490e
+lc492e:
+.line 248
+	iget-object	v2,v4,com/squareup/picasso/Picasso.targetToDeferredRequestCreator Ljava/util/Map;
+; v2 : Ljava/util/Map; , v4 : Lcom/squareup/picasso/Picasso;
+	invoke-interface	{v2},java/util/Map/clear	; clear()V
+; v2 : Ljava/util/Map;
+.line 249
+	const/4	v2,1
+; v2 : single-length
+	iput-boolean	v2,v4,com/squareup/picasso/Picasso.shutdown Z
+; v2 : single-length , v4 : Lcom/squareup/picasso/Picasso;
+	goto	lc48d0
+.end method
+
+.method submit(Lcom/squareup/picasso/Action;)V
+.limit registers 3
+; this: v1 (Lcom/squareup/picasso/Picasso;)
+; parameter[0] : v2 (Lcom/squareup/picasso/Action;)
+.line 277
+	iget-object	v0,v1,com/squareup/picasso/Picasso.dispatcher Lcom/squareup/picasso/Dispatcher;
+; v0 : Lcom/squareup/picasso/Dispatcher; , v1 : Lcom/squareup/picasso/Picasso;
+	invoke-virtual	{v0,v2},com/squareup/picasso/Dispatcher/dispatchSubmit	; dispatchSubmit(Lcom/squareup/picasso/Action;)V
+; v0 : Lcom/squareup/picasso/Dispatcher; , v2 : Lcom/squareup/picasso/Action;
+.line 278
+	return-void	
+.end method
+
+.method transformRequest(Lcom/squareup/picasso/Request;)Lcom/squareup/picasso/Request;
+.limit registers 6
+; this: v4 (Lcom/squareup/picasso/Picasso;)
+; parameter[0] : v5 (Lcom/squareup/picasso/Request;)
+.line 253
+	iget-object	v1,v4,com/squareup/picasso/Picasso.requestTransformer Lcom/squareup/picasso/Picasso$RequestTransformer;
+; v1 : Lcom/squareup/picasso/Picasso$RequestTransformer; , v4 : Lcom/squareup/picasso/Picasso;
+	invoke-interface	{v1,v5},com/squareup/picasso/Picasso$RequestTransformer/transformRequest	; transformRequest(Lcom/squareup/picasso/Request;)Lcom/squareup/picasso/Request;
+; v1 : Lcom/squareup/picasso/Picasso$RequestTransformer; , v5 : Lcom/squareup/picasso/Request;
+	move-result-object	v0
+; v0 : Lcom/squareup/picasso/Request;
+.line 254
+	if-nez	v0,lc49d6
+; v0 : Lcom/squareup/picasso/Request;
+.line 255
+	new-instance	v1,java/lang/IllegalStateException
+; v1 : Ljava/lang/IllegalStateException;
+	new-instance	v2,java/lang/StringBuilder
+; v2 : Ljava/lang/StringBuilder;
+	invoke-direct	{v2},java/lang/StringBuilder/<init>	; <init>()V
+; v2 : Ljava/lang/StringBuilder;
+	const-string	v3,"Request transformer "
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	iget-object	v3,v4,com/squareup/picasso/Picasso.requestTransformer Lcom/squareup/picasso/Picasso$RequestTransformer;
+; v3 : Lcom/squareup/picasso/Picasso$RequestTransformer; , v4 : Lcom/squareup/picasso/Picasso;
+	invoke-virtual	{v3},java/lang/Object/getClass	; getClass()Ljava/lang/Class;
+; v3 : Lcom/squareup/picasso/Picasso$RequestTransformer;
+	move-result-object	v3
+; v3 : Ljava/lang/Class;
+	invoke-virtual	{v3},java/lang/Class/getCanonicalName	; getCanonicalName()Ljava/lang/String;
+; v3 : Ljava/lang/Class;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	const-string	v3," returned null for "
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v2,v5},java/lang/StringBuilder/append	; append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v5 : Lcom/squareup/picasso/Request;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v2},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v2 : Ljava/lang/StringBuilder;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-direct	{v1,v2},java/lang/IllegalStateException/<init>	; <init>(Ljava/lang/String;)V
+; v1 : Ljava/lang/IllegalStateException; , v2 : Ljava/lang/String;
+	throw	v1
+; v1 : Ljava/lang/IllegalStateException;
+lc49d6:
+.line 260
+	return-object	v0
+; v0 : Lcom/squareup/picasso/Request;
+.end method
+
+

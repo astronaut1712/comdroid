@@ -1,0 +1,167 @@
+.class abstract com/squareup/okhttp/internal/http/AbstractHttpInputStream
+.super java/io/InputStream
+.source AbstractHttpInputStream.java
+
+.field private final cacheBody Ljava/io/OutputStream;
+.field private final cacheRequest Ljava/net/CacheRequest;
+.field protected closed Z
+.field protected final httpEngine Lcom/squareup/okhttp/internal/http/HttpEngine;
+.field protected final in Ljava/io/InputStream;
+
+.method <init>(Ljava/io/InputStream;Lcom/squareup/okhttp/internal/http/HttpEngine;Ljava/net/CacheRequest;)V
+.throws Ljava/io/IOException;
+.limit registers 5
+; this: v1 (Lcom/squareup/okhttp/internal/http/AbstractHttpInputStream;)
+; parameter[0] : v2 (Ljava/io/InputStream;)
+; parameter[1] : v3 (Lcom/squareup/okhttp/internal/http/HttpEngine;)
+; parameter[2] : v4 (Ljava/net/CacheRequest;)
+.var 0 is cacheBody Ljava/io/OutputStream; from lb9242 to lb9252
+.line 43
+	invoke-direct	{v1},java/io/InputStream/<init>	; <init>()V
+; v1 : Lcom/squareup/okhttp/internal/http/AbstractHttpInputStream;
+.line 44
+	iput-object	v2,v1,com/squareup/okhttp/internal/http/AbstractHttpInputStream.in Ljava/io/InputStream;
+; v2 : Ljava/io/InputStream; , v1 : Lcom/squareup/okhttp/internal/http/AbstractHttpInputStream;
+.line 45
+	iput-object	v3,v1,com/squareup/okhttp/internal/http/AbstractHttpInputStream.httpEngine Lcom/squareup/okhttp/internal/http/HttpEngine;
+; v3 : Lcom/squareup/okhttp/internal/http/HttpEngine; , v1 : Lcom/squareup/okhttp/internal/http/AbstractHttpInputStream;
+.line 47
+	if-eqz	v4,lb9252
+; v4 : Ljava/net/CacheRequest;
+	invoke-virtual	{v4},java/net/CacheRequest/getBody	; getBody()Ljava/io/OutputStream;
+; v4 : Ljava/net/CacheRequest;
+	move-result-object	v0
+; v0 : Ljava/io/OutputStream;
+lb9242:
+.line 50
+	if-nez	v0,lb9248
+; v0 : single-length
+.line 51
+	const/4	v4,0
+; v4 : single-length
+lb9248:
+.line 54
+	iput-object	v0,v1,com/squareup/okhttp/internal/http/AbstractHttpInputStream.cacheBody Ljava/io/OutputStream;
+; v0 : Ljava/io/OutputStream; , v1 : Lcom/squareup/okhttp/internal/http/AbstractHttpInputStream;
+.line 55
+	iput-object	v4,v1,com/squareup/okhttp/internal/http/AbstractHttpInputStream.cacheRequest Ljava/net/CacheRequest;
+; v4 : Ljava/net/CacheRequest; , v1 : Lcom/squareup/okhttp/internal/http/AbstractHttpInputStream;
+.line 56
+	return-void	
+lb9252:
+.line 47
+	const/4	v0,0
+; v0 : single-length
+	goto	lb9242
+.end method
+
+.method protected final cacheWrite([BII)V
+.throws Ljava/io/IOException;
+.limit registers 5
+; this: v1 (Lcom/squareup/okhttp/internal/http/AbstractHttpInputStream;)
+; parameter[0] : v2 ([B)
+; parameter[1] : v3 (I)
+; parameter[2] : v4 (I)
+.line 73
+	iget-object	v0,v1,com/squareup/okhttp/internal/http/AbstractHttpInputStream.cacheBody Ljava/io/OutputStream;
+; v0 : Ljava/io/OutputStream; , v1 : Lcom/squareup/okhttp/internal/http/AbstractHttpInputStream;
+	if-eqz	v0,lb927a
+; v0 : Ljava/io/OutputStream;
+.line 74
+	iget-object	v0,v1,com/squareup/okhttp/internal/http/AbstractHttpInputStream.cacheBody Ljava/io/OutputStream;
+; v0 : Ljava/io/OutputStream; , v1 : Lcom/squareup/okhttp/internal/http/AbstractHttpInputStream;
+	invoke-virtual	{v0,v2,v3,v4},java/io/OutputStream/write	; write([BII)V
+; v0 : Ljava/io/OutputStream; , v2 : [B , v3 : single-length , v4 : single-length
+lb927a:
+.line 76
+	return-void	
+.end method
+
+.method protected final checkNotClosed()V
+.throws Ljava/io/IOException;
+.limit registers 3
+; this: v2 (Lcom/squareup/okhttp/internal/http/AbstractHttpInputStream;)
+.line 67
+	iget-boolean	v0,v2,com/squareup/okhttp/internal/http/AbstractHttpInputStream.closed Z
+; v0 : single-length , v2 : Lcom/squareup/okhttp/internal/http/AbstractHttpInputStream;
+	if-eqz	v0,lb92a4
+; v0 : single-length
+.line 68
+	new-instance	v0,java/io/IOException
+; v0 : Ljava/io/IOException;
+	const-string	v1,"stream closed"
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/io/IOException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/io/IOException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/io/IOException;
+lb92a4:
+.line 70
+	return-void	
+.end method
+
+.method protected final endOfInput()V
+.throws Ljava/io/IOException;
+.limit registers 3
+; this: v2 (Lcom/squareup/okhttp/internal/http/AbstractHttpInputStream;)
+.line 83
+	iget-object	v0,v2,com/squareup/okhttp/internal/http/AbstractHttpInputStream.cacheRequest Ljava/net/CacheRequest;
+; v0 : Ljava/net/CacheRequest; , v2 : Lcom/squareup/okhttp/internal/http/AbstractHttpInputStream;
+	if-eqz	v0,lb92ca
+; v0 : Ljava/net/CacheRequest;
+.line 84
+	iget-object	v0,v2,com/squareup/okhttp/internal/http/AbstractHttpInputStream.cacheBody Ljava/io/OutputStream;
+; v0 : Ljava/io/OutputStream; , v2 : Lcom/squareup/okhttp/internal/http/AbstractHttpInputStream;
+	invoke-virtual	{v0},java/io/OutputStream/close	; close()V
+; v0 : Ljava/io/OutputStream;
+lb92ca:
+.line 86
+	iget-object	v0,v2,com/squareup/okhttp/internal/http/AbstractHttpInputStream.httpEngine Lcom/squareup/okhttp/internal/http/HttpEngine;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpEngine; , v2 : Lcom/squareup/okhttp/internal/http/AbstractHttpInputStream;
+	const/4	v1,0
+; v1 : single-length
+	invoke-virtual	{v0,v1},com/squareup/okhttp/internal/http/HttpEngine/release	; release(Z)V
+; v0 : Lcom/squareup/okhttp/internal/http/HttpEngine; , v1 : single-length
+.line 87
+	return-void	
+.end method
+
+.method public final read()I
+.throws Ljava/io/IOException;
+.limit registers 2
+; this: v1 (Lcom/squareup/okhttp/internal/http/AbstractHttpInputStream;)
+.line 63
+	invoke-static	{v1},com/squareup/okhttp/internal/Util/readSingleByte	; readSingleByte(Ljava/io/InputStream;)I
+; v1 : Lcom/squareup/okhttp/internal/http/AbstractHttpInputStream;
+	move-result	v0
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method protected final unexpectedEndOfInput()V
+.limit registers 3
+; this: v2 (Lcom/squareup/okhttp/internal/http/AbstractHttpInputStream;)
+.line 102
+	iget-object	v0,v2,com/squareup/okhttp/internal/http/AbstractHttpInputStream.cacheRequest Ljava/net/CacheRequest;
+; v0 : Ljava/net/CacheRequest; , v2 : Lcom/squareup/okhttp/internal/http/AbstractHttpInputStream;
+	if-eqz	v0,lb9316
+; v0 : Ljava/net/CacheRequest;
+.line 103
+	iget-object	v0,v2,com/squareup/okhttp/internal/http/AbstractHttpInputStream.cacheRequest Ljava/net/CacheRequest;
+; v0 : Ljava/net/CacheRequest; , v2 : Lcom/squareup/okhttp/internal/http/AbstractHttpInputStream;
+	invoke-virtual	{v0},java/net/CacheRequest/abort	; abort()V
+; v0 : Ljava/net/CacheRequest;
+lb9316:
+.line 105
+	iget-object	v0,v2,com/squareup/okhttp/internal/http/AbstractHttpInputStream.httpEngine Lcom/squareup/okhttp/internal/http/HttpEngine;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpEngine; , v2 : Lcom/squareup/okhttp/internal/http/AbstractHttpInputStream;
+	const/4	v1,1
+; v1 : single-length
+	invoke-virtual	{v0,v1},com/squareup/okhttp/internal/http/HttpEngine/release	; release(Z)V
+; v0 : Lcom/squareup/okhttp/internal/http/HttpEngine; , v1 : single-length
+.line 106
+	return-void	
+.end method
+
+

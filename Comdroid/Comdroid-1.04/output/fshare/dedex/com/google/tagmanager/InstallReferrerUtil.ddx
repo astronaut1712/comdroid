@@ -1,0 +1,313 @@
+.class com/google/tagmanager/InstallReferrerUtil
+.super java/lang/Object
+.source InstallReferrerUtil.java
+
+.field static final INTENT_EXTRA_REFERRER Ljava/lang/String; = "referrer"
+.field static final PREF_KEY_REFERRER Ljava/lang/String; = "referrer"
+.field static final PREF_NAME_CLICK_REFERRERS Ljava/lang/String; = "gtm_click_referrers"
+.field static final PREF_NAME_INSTALL_REFERRER Ljava/lang/String; = "gtm_install_referrer"
+.field static clickReferrers Ljava/util/Map;
+  .annotation buildVisibility Lcom/google/android/gms/common/util/VisibleForTesting;
+  .end annotation
+  .annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "Ljava/util/Map" , "<" , "Ljava/lang/String;" , "Ljava/lang/String;" , ">;" }
+  .end annotation
+.end field
+.field private static installReferrer Ljava/lang/String;
+
+.method static <clinit>()V
+.limit registers 1
+.line 24
+	new-instance	v0,java/util/HashMap
+; v0 : Ljava/util/HashMap;
+	invoke-direct	{v0},java/util/HashMap/<init>	; <init>()V
+; v0 : Ljava/util/HashMap;
+	sput-object	v0,com/google/tagmanager/InstallReferrerUtil.clickReferrers Ljava/util/Map;
+; v0 : Ljava/util/Map;
+	return-void	
+.end method
+
+.method <init>()V
+.limit registers 1
+; this: v0 (Lcom/google/tagmanager/InstallReferrerUtil;)
+.line 15
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Lcom/google/tagmanager/InstallReferrerUtil;
+	return-void	
+.end method
+
+.method static addClickReferrer(Landroid/content/Context;Ljava/lang/String;)V
+.limit registers 4
+; parameter[0] : v2 (Landroid/content/Context;)
+; parameter[1] : v3 (Ljava/lang/String;)
+.line 72
+	const-string	v1,"conv"
+; v1 : Ljava/lang/String;
+	invoke-static	{v3,v1},com/google/tagmanager/InstallReferrerUtil/extractComponent	; extractComponent(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+; v3 : Ljava/lang/String; , v1 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+.line 74
+	if-eqz	v0,la738c
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v0},java/lang/String/length	; length()I
+; v0 : Ljava/lang/String;
+	move-result	v1
+; v1 : single-length
+	if-lez	v1,la738c
+; v1 : single-length
+.line 75
+	sget-object	v1,com/google/tagmanager/InstallReferrerUtil.clickReferrers Ljava/util/Map;
+; v1 : Ljava/util/Map;
+	invoke-interface	{v1,v0,v3},java/util/Map/put	; put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+; v1 : Ljava/util/Map; , v0 : Ljava/lang/String; , v3 : Ljava/lang/String;
+.line 76
+	const-string	v1,"gtm_click_referrers"
+; v1 : Ljava/lang/String;
+	invoke-static	{v2,v1,v0,v3},com/google/tagmanager/SharedPreferencesUtil/saveAsync	; saveAsync(Landroid/content/Context;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+; v2 : Landroid/content/Context; , v1 : Ljava/lang/String; , v0 : Ljava/lang/String; , v3 : Ljava/lang/String;
+la738c:
+.line 78
+	return-void	
+.end method
+
+.method static cacheInstallReferrer(Ljava/lang/String;)V
+.limit registers 3
+; parameter[0] : v2 (Ljava/lang/String;)
+.catch java/lang/Exception from la73a6 to la73b2 using la73ae
+.line 32
+	const-class	v1,com/google/tagmanager/InstallReferrerUtil
+; v1 : Ljava/lang/Class;
+	monitor-enter	v1
+; v1 : Ljava/lang/Class;
+la73a6:
+.line 33
+	sput-object	v2,com/google/tagmanager/InstallReferrerUtil.installReferrer Ljava/lang/String;
+; v2 : Ljava/lang/String;
+.line 34
+	monitor-exit	v1
+; v1 : Ljava/lang/Class;
+.line 35
+	return-void	
+la73ae:
+.line 34
+	move-exception	v0
+; v0 : java/lang/Exception
+	monitor-exit	v1
+; v1 : Ljava/lang/Class;
+la73b2:
+	throw	v0
+; v0 : java/lang/Exception
+.end method
+
+.method static extractComponent(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+.limit registers 5
+; parameter[0] : v3 (Ljava/lang/String;)
+; parameter[1] : v4 (Ljava/lang/String;)
+.line 84
+	if-nez	v4,la73e6
+; v4 : Ljava/lang/String;
+.line 85
+	invoke-virtual	{v3},java/lang/String/length	; length()I
+; v3 : Ljava/lang/String;
+	move-result	v1
+; v1 : single-length
+	if-lez	v1,la73e2
+; v1 : single-length
+la73e0:
+.line 88
+	return-object	v3
+; v3 : Ljava/lang/String;
+la73e2:
+.line 85
+	const/4	v3,0
+; v3 : single-length
+	goto	la73e0
+la73e6:
+.line 87
+	new-instance	v1,java/lang/StringBuilder
+; v1 : Ljava/lang/StringBuilder;
+	invoke-direct	{v1},java/lang/StringBuilder/<init>	; <init>()V
+; v1 : Ljava/lang/StringBuilder;
+	const-string	v2,"http://hostname/?"
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v1,v3},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v1},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v1 : Ljava/lang/StringBuilder;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-static	{v1},android/net/Uri/parse	; parse(Ljava/lang/String;)Landroid/net/Uri;
+; v1 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Landroid/net/Uri;
+.line 88
+	invoke-virtual	{v0,v4},android/net/Uri/getQueryParameter	; getQueryParameter(Ljava/lang/String;)Ljava/lang/String;
+; v0 : Landroid/net/Uri; , v4 : Ljava/lang/String;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	goto	la73e0
+.end method
+
+.method static getClickReferrer(Landroid/content/Context;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+.limit registers 7
+; parameter[0] : v4 (Landroid/content/Context;)
+; parameter[1] : v5 (Ljava/lang/String;)
+; parameter[2] : v6 (Ljava/lang/String;)
+.var 1 is settings Landroid/content/SharedPreferences; from la7452 to la746c
+.line 101
+	sget-object	v2,com/google/tagmanager/InstallReferrerUtil.clickReferrers Ljava/util/Map;
+; v2 : Ljava/util/Map;
+	invoke-interface	{v2,v5},java/util/Map/get	; get(Ljava/lang/Object;)Ljava/lang/Object;
+; v2 : Ljava/util/Map; , v5 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,java/lang/String
+; v0 : Ljava/lang/String;
+.line 102
+	if-nez	v0,la746c
+; v0 : Ljava/lang/String;
+.line 103
+	const-string	v2,"gtm_click_referrers"
+; v2 : Ljava/lang/String;
+	const/4	v3,0
+; v3 : single-length
+	invoke-virtual	{v4,v2,v3},android/content/Context/getSharedPreferences	; getSharedPreferences(Ljava/lang/String;I)Landroid/content/SharedPreferences;
+; v4 : Landroid/content/Context; , v2 : Ljava/lang/String; , v3 : single-length
+	move-result-object	v1
+; v1 : Landroid/content/SharedPreferences;
+.line 104
+	if-eqz	v1,la7476
+; v1 : Landroid/content/SharedPreferences;
+.line 105
+	const-string	v2,""
+; v2 : Ljava/lang/String;
+	invoke-interface	{v1,v5,v2},android/content/SharedPreferences/getString	; getString(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+; v1 : Landroid/content/SharedPreferences; , v5 : Ljava/lang/String; , v2 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+la7462:
+.line 109
+	sget-object	v2,com/google/tagmanager/InstallReferrerUtil.clickReferrers Ljava/util/Map;
+; v2 : Ljava/util/Map;
+	invoke-interface	{v2,v5,v0},java/util/Map/put	; put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+; v2 : Ljava/util/Map; , v5 : Ljava/lang/String; , v0 : Ljava/lang/String;
+la746c:
+.line 111
+	invoke-static	{v0,v6},com/google/tagmanager/InstallReferrerUtil/extractComponent	; extractComponent(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+; v0 : Ljava/lang/String; , v6 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	return-object	v2
+; v2 : Ljava/lang/String;
+la7476:
+.line 107
+	const-string	v0,""
+; v0 : Ljava/lang/String;
+	goto	la7462
+.end method
+
+.method static getInstallReferrer(Landroid/content/Context;Ljava/lang/String;)Ljava/lang/String;
+.limit registers 6
+; parameter[0] : v4 (Landroid/content/Context;)
+; parameter[1] : v5 (Ljava/lang/String;)
+.catch java/lang/Exception from la74d8 to la74e6 using la74e2
+.catch java/lang/Exception from la749a to la74ca using la74e2
+.var 0 is settings Landroid/content/SharedPreferences; from la74b0 to la74c8
+.var 0 is settings Landroid/content/SharedPreferences; from la74d8 to la74e2
+.line 53
+	sget-object	v1,com/google/tagmanager/InstallReferrerUtil.installReferrer Ljava/lang/String;
+; v1 : Ljava/lang/String;
+	if-nez	v1,la74ca
+; v1 : Ljava/lang/String;
+.line 54
+	const-class	v2,com/google/tagmanager/InstallReferrerUtil
+; v2 : Ljava/lang/Class;
+	monitor-enter	v2
+; v2 : Ljava/lang/Class;
+la749a:
+.line 55
+	sget-object	v1,com/google/tagmanager/InstallReferrerUtil.installReferrer Ljava/lang/String;
+; v1 : Ljava/lang/String;
+	if-nez	v1,la74c8
+; v1 : Ljava/lang/String;
+.line 56
+	const-string	v1,"gtm_install_referrer"
+; v1 : Ljava/lang/String;
+	const/4	v3,0
+; v3 : single-length
+	invoke-virtual	{v4,v1,v3},android/content/Context/getSharedPreferences	; getSharedPreferences(Ljava/lang/String;I)Landroid/content/SharedPreferences;
+; v4 : Landroid/content/Context; , v1 : Ljava/lang/String; , v3 : single-length
+	move-result-object	v0
+; v0 : Landroid/content/SharedPreferences;
+.line 57
+	if-eqz	v0,la74d8
+; v0 : Landroid/content/SharedPreferences;
+.line 58
+	const-string	v1,"referrer"
+; v1 : Ljava/lang/String;
+	const-string	v3,""
+; v3 : Ljava/lang/String;
+	invoke-interface	{v0,v1,v3},android/content/SharedPreferences/getString	; getString(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+; v0 : Landroid/content/SharedPreferences; , v1 : Ljava/lang/String; , v3 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	sput-object	v1,com/google/tagmanager/InstallReferrerUtil.installReferrer Ljava/lang/String;
+; v1 : Ljava/lang/String;
+la74c8:
+.line 63
+	monitor-exit	v2
+; v2 : Ljava/lang/Class;
+la74ca:
+.line 65
+	sget-object	v1,com/google/tagmanager/InstallReferrerUtil.installReferrer Ljava/lang/String;
+; v1 : Ljava/lang/String;
+	invoke-static	{v1,v5},com/google/tagmanager/InstallReferrerUtil/extractComponent	; extractComponent(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+; v1 : Ljava/lang/String; , v5 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	return-object	v1
+; v1 : Ljava/lang/String;
+la74d8:
+.line 60
+	const-string	v1,""
+; v1 : Ljava/lang/String;
+	sput-object	v1,com/google/tagmanager/InstallReferrerUtil.installReferrer Ljava/lang/String;
+; v1 : Ljava/lang/String;
+	goto	la74c8
+la74e2:
+.line 63
+	move-exception	v1
+; v1 : java/lang/Exception
+	monitor-exit	v2
+; v2 : Ljava/lang/Class;
+la74e6:
+	throw	v1
+; v1 : java/lang/Exception
+.end method
+
+.method static saveInstallReferrer(Landroid/content/Context;Ljava/lang/String;)V
+.limit registers 4
+; parameter[0] : v2 (Landroid/content/Context;)
+; parameter[1] : v3 (Ljava/lang/String;)
+.line 41
+	const-string	v0,"gtm_install_referrer"
+; v0 : Ljava/lang/String;
+	const-string	v1,"referrer"
+; v1 : Ljava/lang/String;
+	invoke-static	{v2,v0,v1,v3},com/google/tagmanager/SharedPreferencesUtil/saveAsync	; saveAsync(Landroid/content/Context;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+; v2 : Landroid/content/Context; , v0 : Ljava/lang/String; , v1 : Ljava/lang/String; , v3 : Ljava/lang/String;
+.line 43
+	invoke-static	{v2,v3},com/google/tagmanager/InstallReferrerUtil/addClickReferrer	; addClickReferrer(Landroid/content/Context;Ljava/lang/String;)V
+; v2 : Landroid/content/Context; , v3 : Ljava/lang/String;
+.line 44
+	return-void	
+.end method
+
+

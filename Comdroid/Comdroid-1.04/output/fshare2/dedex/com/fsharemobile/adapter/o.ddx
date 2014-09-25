@@ -1,0 +1,90 @@
+.class com/fsharemobile/adapter/o
+.super java/lang/Object
+.source MyApplication
+.implements com/fsharemobile/a/w
+
+.field final a Lcom/fsharemobile/adapter/a;
+
+.method <init>(Lcom/fsharemobile/adapter/a;)V
+.limit registers 2
+; this: v0 (Lcom/fsharemobile/adapter/o;)
+; parameter[0] : v1 (Lcom/fsharemobile/adapter/a;)
+.line 1
+	iput-object	v1,v0,com/fsharemobile/adapter/o.a Lcom/fsharemobile/adapter/a;
+; v1 : Lcom/fsharemobile/adapter/a; , v0 : Lcom/fsharemobile/adapter/o;
+.line 368
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Lcom/fsharemobile/adapter/o;
+	return-void	
+.end method
+
+.method public a(I)V
+.limit registers 5
+; this: v3 (Lcom/fsharemobile/adapter/o;)
+; parameter[0] : v4 (I)
+.line 373
+	if-eqz	v4,l86a62
+; v4 : single-length
+.line 375
+	iget-object	v0,v3,com/fsharemobile/adapter/o.a Lcom/fsharemobile/adapter/a;
+; v0 : Lcom/fsharemobile/adapter/a; , v3 : Lcom/fsharemobile/adapter/o;
+	iget-object	v0,v0,com/fsharemobile/adapter/a.a Lcom/fsharemobile/adapter/t;
+; v0 : Lcom/fsharemobile/adapter/t; , v0 : Lcom/fsharemobile/adapter/t;
+.line 377
+	iget-object	v1,v3,com/fsharemobile/adapter/o.a Lcom/fsharemobile/adapter/a;
+; v1 : Lcom/fsharemobile/adapter/a; , v3 : Lcom/fsharemobile/adapter/o;
+	invoke-static	{v1},com/fsharemobile/adapter/a/e	; e(Lcom/fsharemobile/adapter/a;)Landroid/content/Context;
+; v1 : Lcom/fsharemobile/adapter/a;
+	move-result-object	v1
+; v1 : Landroid/content/Context;
+	invoke-virtual	{v1},android/content/Context/getResources	; getResources()Landroid/content/res/Resources;
+; v1 : Landroid/content/Context;
+	move-result-object	v1
+; v1 : Landroid/content/res/Resources;
+.line 378
+	const	v2,2131230822	; 0x7f080066
+; v2 : single-length
+.line 377
+	invoke-virtual	{v1,v2},android/content/res/Resources/getString	; getString(I)Ljava/lang/String;
+; v1 : Landroid/content/res/Resources; , v2 : single-length
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+.line 375
+	invoke-interface	{v0,v4,v1},com/fsharemobile/adapter/t/a	; a(ILjava/lang/String;)V
+; v0 : Lcom/fsharemobile/adapter/t; , v4 : single-length , v1 : Ljava/lang/String;
+l86a60:
+.line 384
+	return-void	
+l86a62:
+.line 380
+	iget-object	v0,v3,com/fsharemobile/adapter/o.a Lcom/fsharemobile/adapter/a;
+; v0 : Lcom/fsharemobile/adapter/a; , v3 : Lcom/fsharemobile/adapter/o;
+	iget-object	v0,v0,com/fsharemobile/adapter/a.a Lcom/fsharemobile/adapter/t;
+; v0 : Lcom/fsharemobile/adapter/t; , v0 : Lcom/fsharemobile/adapter/t;
+	iget-object	v1,v3,com/fsharemobile/adapter/o.a Lcom/fsharemobile/adapter/a;
+; v1 : Lcom/fsharemobile/adapter/a; , v3 : Lcom/fsharemobile/adapter/o;
+	invoke-static	{v1},com/fsharemobile/adapter/a/e	; e(Lcom/fsharemobile/adapter/a;)Landroid/content/Context;
+; v1 : Lcom/fsharemobile/adapter/a;
+	move-result-object	v1
+; v1 : Landroid/content/Context;
+	invoke-virtual	{v1},android/content/Context/getResources	; getResources()Landroid/content/res/Resources;
+; v1 : Landroid/content/Context;
+	move-result-object	v1
+; v1 : Landroid/content/res/Resources;
+.line 381
+	const	v2,2131230823	; 0x7f080067
+; v2 : single-length
+	invoke-virtual	{v1,v2},android/content/res/Resources/getString	; getString(I)Ljava/lang/String;
+; v1 : Landroid/content/res/Resources; , v2 : single-length
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+.line 382
+	const/4	v2,0
+; v2 : single-length
+.line 380
+	invoke-interface	{v0,v1,v2},com/fsharemobile/adapter/t/a	; a(Ljava/lang/String;Z)V
+; v0 : Lcom/fsharemobile/adapter/t; , v1 : Ljava/lang/String; , v2 : single-length
+	goto	l86a60
+.end method
+
+

@@ -1,0 +1,237 @@
+.class com/google/tagmanager/DebugValueBuilder
+.super java/lang/Object
+.source DebugValueBuilder.java
+.implements com/google/tagmanager/ValueBuilder
+
+.inner class TypeMismatchException inner com/google/tagmanager/DebugValueBuilder$TypeMismatchException outer com/google/tagmanager/DebugValueBuilder
+.field private value Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+
+.method public <init>(Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;)V
+.limit registers 2
+; this: v0 (Lcom/google/tagmanager/DebugValueBuilder;)
+; parameter[0] : v1 (Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;)
+.line 19
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Lcom/google/tagmanager/DebugValueBuilder;
+.line 20
+	iput-object	v1,v0,com/google/tagmanager/DebugValueBuilder.value Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+; v1 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v0 : Lcom/google/tagmanager/DebugValueBuilder;
+.line 21
+	return-void	
+.end method
+
+.method public static copyImmutableValue(Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;)Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+.limit registers 4
+; parameter[0] : v3 (Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;)
+.catch com/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException from le864e to le865c using le865e
+.line 30
+	new-instance	v1,com/google/analytics/midtier/proto/containertag/TypeSystem$Value
+; v1 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	invoke-direct	{v1},com/google/analytics/midtier/proto/containertag/TypeSystem$Value/<init>	; <init>()V
+; v1 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+le864e:
+.line 32
+	invoke-static	{v3},com/google/tagmanager/protobuf/nano/MessageNano/toByteArray	; toByteArray(Lcom/google/tagmanager/protobuf/nano/MessageNano;)[B
+; v3 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	move-result-object	v2
+; v2 : [B
+	invoke-static	{v1,v2},com/google/tagmanager/protobuf/nano/MessageNano/mergeFrom	; mergeFrom(Lcom/google/tagmanager/protobuf/nano/MessageNano;[B)Lcom/google/tagmanager/protobuf/nano/MessageNano;
+; v1 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v2 : [B
+le865c:
+.line 36
+	return-object	v1
+; v1 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+le865e:
+.line 33
+	move-exception	v0
+; v0 : com/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException
+.line 34
+	const-string	v2,"Failed to copy runtime value into debug value"
+; v2 : Ljava/lang/String;
+	invoke-static	{v2},com/google/tagmanager/Log/e	; e(Ljava/lang/String;)V
+; v2 : Ljava/lang/String;
+	goto	le865c
+.end method
+
+.method private validateType(IILjava/lang/String;)V
+.limit registers 5
+; this: v1 (Lcom/google/tagmanager/DebugValueBuilder;)
+; parameter[0] : v2 (I)
+; parameter[1] : v3 (I)
+; parameter[2] : v4 (Ljava/lang/String;)
+.line 24
+	if-eq	v2,v3,le869c
+; v2 : single-length , v3 : single-length
+.line 25
+	new-instance	v0,com/google/tagmanager/DebugValueBuilder$TypeMismatchException
+; v0 : Lcom/google/tagmanager/DebugValueBuilder$TypeMismatchException;
+	invoke-direct	{v0,v4,v3},com/google/tagmanager/DebugValueBuilder$TypeMismatchException/<init>	; <init>(Ljava/lang/String;I)V
+; v0 : Lcom/google/tagmanager/DebugValueBuilder$TypeMismatchException; , v4 : Ljava/lang/String; , v3 : single-length
+	throw	v0
+; v0 : Lcom/google/tagmanager/DebugValueBuilder$TypeMismatchException;
+le869c:
+.line 27
+	return-void	
+.end method
+
+.method public createValueMacroEvaluationInfoExtension()Lcom/google/tagmanager/MacroEvaluationInfoBuilder;
+.limit registers 6
+; this: v5 (Lcom/google/tagmanager/DebugValueBuilder;)
+.line 73
+	const/4	v2,4
+; v2 : single-length
+	iget-object	v3,v5,com/google/tagmanager/DebugValueBuilder.value Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+; v3 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v5 : Lcom/google/tagmanager/DebugValueBuilder;
+	iget	v3,v3,com/google/analytics/midtier/proto/containertag/TypeSystem$Value.type I
+; v3 : single-length , v3 : single-length
+	const-string	v4,"set macro evaluation extension"
+; v4 : Ljava/lang/String;
+	invoke-direct	{v5,v2,v3,v4},com/google/tagmanager/DebugValueBuilder/validateType	; validateType(IILjava/lang/String;)V
+; v5 : Lcom/google/tagmanager/DebugValueBuilder; , v2 : single-length , v3 : single-length , v4 : Ljava/lang/String;
+.line 74
+	new-instance	v0,com/google/analytics/containertag/proto/Debug$MacroEvaluationInfo
+; v0 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+	invoke-direct	{v0},com/google/analytics/containertag/proto/Debug$MacroEvaluationInfo/<init>	; <init>()V
+; v0 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+.line 75
+	iget-object	v2,v5,com/google/tagmanager/DebugValueBuilder.value Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+; v2 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v5 : Lcom/google/tagmanager/DebugValueBuilder;
+	sget-object	v3,com/google/analytics/containertag/proto/Debug$MacroEvaluationInfo.macro Lcom/google/tagmanager/protobuf/nano/Extension;
+; v3 : Lcom/google/tagmanager/protobuf/nano/Extension;
+	invoke-virtual	{v2,v3,v0},com/google/analytics/midtier/proto/containertag/TypeSystem$Value/setExtension	; setExtension(Lcom/google/tagmanager/protobuf/nano/Extension;Ljava/lang/Object;)V
+; v2 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v3 : Lcom/google/tagmanager/protobuf/nano/Extension; , v0 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+.line 76
+	new-instance	v1,com/google/tagmanager/DebugMacroEvaluationInfoBuilder
+; v1 : Lcom/google/tagmanager/DebugMacroEvaluationInfoBuilder;
+	invoke-direct	{v1,v0},com/google/tagmanager/DebugMacroEvaluationInfoBuilder/<init>	; <init>(Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;)V
+; v1 : Lcom/google/tagmanager/DebugMacroEvaluationInfoBuilder; , v0 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+.line 78
+	return-object	v1
+; v1 : Lcom/google/tagmanager/DebugMacroEvaluationInfoBuilder;
+.end method
+
+.method public getListItem(I)Lcom/google/tagmanager/ValueBuilder;
+.limit registers 6
+; this: v4 (Lcom/google/tagmanager/DebugValueBuilder;)
+; parameter[0] : v5 (I)
+.line 41
+	const/4	v1,2
+; v1 : single-length
+	iget-object	v2,v4,com/google/tagmanager/DebugValueBuilder.value Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+; v2 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v4 : Lcom/google/tagmanager/DebugValueBuilder;
+	iget	v2,v2,com/google/analytics/midtier/proto/containertag/TypeSystem$Value.type I
+; v2 : single-length , v2 : single-length
+	const-string	v3,"add new list item"
+; v3 : Ljava/lang/String;
+	invoke-direct	{v4,v1,v2,v3},com/google/tagmanager/DebugValueBuilder/validateType	; validateType(IILjava/lang/String;)V
+; v4 : Lcom/google/tagmanager/DebugValueBuilder; , v1 : single-length , v2 : single-length , v3 : Ljava/lang/String;
+.line 43
+	new-instance	v0,com/google/tagmanager/DebugValueBuilder
+; v0 : Lcom/google/tagmanager/DebugValueBuilder;
+	iget-object	v1,v4,com/google/tagmanager/DebugValueBuilder.value Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+; v1 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v4 : Lcom/google/tagmanager/DebugValueBuilder;
+	iget-object	v1,v1,com/google/analytics/midtier/proto/containertag/TypeSystem$Value.listItem [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+; v1 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v1 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	aget-object	v1,v1,v5
+; v1 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v1 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v5 : single-length
+	invoke-direct	{v0,v1},com/google/tagmanager/DebugValueBuilder/<init>	; <init>(Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;)V
+; v0 : Lcom/google/tagmanager/DebugValueBuilder; , v1 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+.line 44
+	return-object	v0
+; v0 : Lcom/google/tagmanager/DebugValueBuilder;
+.end method
+
+.method public getMapKey(I)Lcom/google/tagmanager/ValueBuilder;
+.limit registers 6
+; this: v4 (Lcom/google/tagmanager/DebugValueBuilder;)
+; parameter[0] : v5 (I)
+.line 49
+	const/4	v1,3
+; v1 : single-length
+	iget-object	v2,v4,com/google/tagmanager/DebugValueBuilder.value Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+; v2 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v4 : Lcom/google/tagmanager/DebugValueBuilder;
+	iget	v2,v2,com/google/analytics/midtier/proto/containertag/TypeSystem$Value.type I
+; v2 : single-length , v2 : single-length
+	const-string	v3,"add new map key"
+; v3 : Ljava/lang/String;
+	invoke-direct	{v4,v1,v2,v3},com/google/tagmanager/DebugValueBuilder/validateType	; validateType(IILjava/lang/String;)V
+; v4 : Lcom/google/tagmanager/DebugValueBuilder; , v1 : single-length , v2 : single-length , v3 : Ljava/lang/String;
+.line 51
+	new-instance	v0,com/google/tagmanager/DebugValueBuilder
+; v0 : Lcom/google/tagmanager/DebugValueBuilder;
+	iget-object	v1,v4,com/google/tagmanager/DebugValueBuilder.value Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+; v1 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v4 : Lcom/google/tagmanager/DebugValueBuilder;
+	iget-object	v1,v1,com/google/analytics/midtier/proto/containertag/TypeSystem$Value.mapKey [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+; v1 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v1 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	aget-object	v1,v1,v5
+; v1 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v1 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v5 : single-length
+	invoke-direct	{v0,v1},com/google/tagmanager/DebugValueBuilder/<init>	; <init>(Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;)V
+; v0 : Lcom/google/tagmanager/DebugValueBuilder; , v1 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+.line 52
+	return-object	v0
+; v0 : Lcom/google/tagmanager/DebugValueBuilder;
+.end method
+
+.method public getMapValue(I)Lcom/google/tagmanager/ValueBuilder;
+.limit registers 6
+; this: v4 (Lcom/google/tagmanager/DebugValueBuilder;)
+; parameter[0] : v5 (I)
+.line 57
+	const/4	v1,3
+; v1 : single-length
+	iget-object	v2,v4,com/google/tagmanager/DebugValueBuilder.value Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+; v2 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v4 : Lcom/google/tagmanager/DebugValueBuilder;
+	iget	v2,v2,com/google/analytics/midtier/proto/containertag/TypeSystem$Value.type I
+; v2 : single-length , v2 : single-length
+	const-string	v3,"add new map value"
+; v3 : Ljava/lang/String;
+	invoke-direct	{v4,v1,v2,v3},com/google/tagmanager/DebugValueBuilder/validateType	; validateType(IILjava/lang/String;)V
+; v4 : Lcom/google/tagmanager/DebugValueBuilder; , v1 : single-length , v2 : single-length , v3 : Ljava/lang/String;
+.line 59
+	new-instance	v0,com/google/tagmanager/DebugValueBuilder
+; v0 : Lcom/google/tagmanager/DebugValueBuilder;
+	iget-object	v1,v4,com/google/tagmanager/DebugValueBuilder.value Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+; v1 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v4 : Lcom/google/tagmanager/DebugValueBuilder;
+	iget-object	v1,v1,com/google/analytics/midtier/proto/containertag/TypeSystem$Value.mapValue [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+; v1 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v1 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	aget-object	v1,v1,v5
+; v1 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v1 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v5 : single-length
+	invoke-direct	{v0,v1},com/google/tagmanager/DebugValueBuilder/<init>	; <init>(Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;)V
+; v0 : Lcom/google/tagmanager/DebugValueBuilder; , v1 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+.line 60
+	return-object	v0
+; v0 : Lcom/google/tagmanager/DebugValueBuilder;
+.end method
+
+.method public getTemplateToken(I)Lcom/google/tagmanager/ValueBuilder;
+.limit registers 6
+; this: v4 (Lcom/google/tagmanager/DebugValueBuilder;)
+; parameter[0] : v5 (I)
+.line 65
+	const/4	v1,7
+; v1 : single-length
+	iget-object	v2,v4,com/google/tagmanager/DebugValueBuilder.value Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+; v2 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v4 : Lcom/google/tagmanager/DebugValueBuilder;
+	iget	v2,v2,com/google/analytics/midtier/proto/containertag/TypeSystem$Value.type I
+; v2 : single-length , v2 : single-length
+	const-string	v3,"add template token"
+; v3 : Ljava/lang/String;
+	invoke-direct	{v4,v1,v2,v3},com/google/tagmanager/DebugValueBuilder/validateType	; validateType(IILjava/lang/String;)V
+; v4 : Lcom/google/tagmanager/DebugValueBuilder; , v1 : single-length , v2 : single-length , v3 : Ljava/lang/String;
+.line 67
+	new-instance	v0,com/google/tagmanager/DebugValueBuilder
+; v0 : Lcom/google/tagmanager/DebugValueBuilder;
+	iget-object	v1,v4,com/google/tagmanager/DebugValueBuilder.value Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+; v1 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v4 : Lcom/google/tagmanager/DebugValueBuilder;
+	iget-object	v1,v1,com/google/analytics/midtier/proto/containertag/TypeSystem$Value.templateToken [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+; v1 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v1 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	aget-object	v1,v1,v5
+; v1 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v1 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v5 : single-length
+	invoke-direct	{v0,v1},com/google/tagmanager/DebugValueBuilder/<init>	; <init>(Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;)V
+; v0 : Lcom/google/tagmanager/DebugValueBuilder; , v1 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+.line 68
+	return-object	v0
+; v0 : Lcom/google/tagmanager/DebugValueBuilder;
+.end method
+
+

@@ -1,0 +1,72 @@
+.class public com/fsharemobile/model/Share
+.super java/lang/Object
+.source Share.java
+
+.field private static instance Lcom/fsharemobile/model/Share;
+.field private fclient Lcom/fsharemobile/client/FClient;
+
+.method static <clinit>()V
+.limit registers 1
+.line 14
+	const/4	v0,0
+; v0 : single-length
+	sput-object	v0,com/fsharemobile/model/Share.instance Lcom/fsharemobile/model/Share;
+; v0 : Lcom/fsharemobile/model/Share;
+	return-void	
+.end method
+
+.method protected <init>()V
+.limit registers 2
+; this: v1 (Lcom/fsharemobile/model/Share;)
+.line 25
+	invoke-direct	{v1},java/lang/Object/<init>	; <init>()V
+; v1 : Lcom/fsharemobile/model/Share;
+.line 16
+	const/4	v0,0
+; v0 : single-length
+	iput-object	v0,v1,com/fsharemobile/model/Share.fclient Lcom/fsharemobile/client/FClient;
+; v0 : single-length , v1 : Lcom/fsharemobile/model/Share;
+.line 27
+	new-instance	v0,com/fsharemobile/client/FClient
+; v0 : Lcom/fsharemobile/client/FClient;
+	invoke-direct	{v0},com/fsharemobile/client/FClient/<init>	; <init>()V
+; v0 : Lcom/fsharemobile/client/FClient;
+	iput-object	v0,v1,com/fsharemobile/model/Share.fclient Lcom/fsharemobile/client/FClient;
+; v0 : Lcom/fsharemobile/client/FClient; , v1 : Lcom/fsharemobile/model/Share;
+.line 28
+	return-void	
+.end method
+
+.method public static getInstance()Lcom/fsharemobile/model/Share;
+.limit registers 1
+.line 31
+	sget-object	v0,com/fsharemobile/model/Share.instance Lcom/fsharemobile/model/Share;
+; v0 : Lcom/fsharemobile/model/Share;
+	if-nez	v0,l9b6b2
+; v0 : Lcom/fsharemobile/model/Share;
+.line 32
+	new-instance	v0,com/fsharemobile/model/Share
+; v0 : Lcom/fsharemobile/model/Share;
+	invoke-direct	{v0},com/fsharemobile/model/Share/<init>	; <init>()V
+; v0 : Lcom/fsharemobile/model/Share;
+	sput-object	v0,com/fsharemobile/model/Share.instance Lcom/fsharemobile/model/Share;
+; v0 : Lcom/fsharemobile/model/Share;
+l9b6b2:
+.line 34
+	sget-object	v0,com/fsharemobile/model/Share.instance Lcom/fsharemobile/model/Share;
+; v0 : Lcom/fsharemobile/model/Share;
+	return-object	v0
+; v0 : Lcom/fsharemobile/model/Share;
+.end method
+
+.method public getFclient()Lcom/fsharemobile/client/FClient;
+.limit registers 2
+; this: v1 (Lcom/fsharemobile/model/Share;)
+.line 22
+	iget-object	v0,v1,com/fsharemobile/model/Share.fclient Lcom/fsharemobile/client/FClient;
+; v0 : Lcom/fsharemobile/client/FClient; , v1 : Lcom/fsharemobile/model/Share;
+	return-object	v0
+; v0 : Lcom/fsharemobile/client/FClient;
+.end method
+
+

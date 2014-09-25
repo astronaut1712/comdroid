@@ -1,0 +1,1890 @@
+.class public final com/squareup/okhttp/internal/http/RawHeaders
+.super java/lang/Object
+.source RawHeaders.java
+
+.field private static final FIELD_NAME_COMPARATOR Ljava/util/Comparator;
+  .annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "Ljava/util/Comparator" , "<" , "Ljava/lang/String;" , ">;" }
+  .end annotation
+.end field
+.field private httpMinorVersion I
+.field private final namesAndValues Ljava/util/List;
+  .annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "Ljava/util/List" , "<" , "Ljava/lang/String;" , ">;" }
+  .end annotation
+.end field
+.field private requestLine Ljava/lang/String;
+.field private responseCode I
+.field private responseMessage Ljava/lang/String;
+.field private statusLine Ljava/lang/String;
+
+.method static <clinit>()V
+.limit registers 1
+.line 54
+	new-instance	v0,com/squareup/okhttp/internal/http/RawHeaders$1
+; v0 : Lcom/squareup/okhttp/internal/http/RawHeaders$1;
+	invoke-direct	{v0},com/squareup/okhttp/internal/http/RawHeaders$1/<init>	; <init>()V
+; v0 : Lcom/squareup/okhttp/internal/http/RawHeaders$1;
+	sput-object	v0,com/squareup/okhttp/internal/http/RawHeaders.FIELD_NAME_COMPARATOR Ljava/util/Comparator;
+; v0 : Ljava/util/Comparator;
+	return-void	
+.end method
+
+.method public <init>()V
+.limit registers 3
+; this: v2 (Lcom/squareup/okhttp/internal/http/RawHeaders;)
+.line 76
+	invoke-direct	{v2},java/lang/Object/<init>	; <init>()V
+; v2 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+.line 69
+	new-instance	v0,java/util/ArrayList
+; v0 : Ljava/util/ArrayList;
+	const/16	v1,20
+; v1 : single-length
+	invoke-direct	{v0,v1},java/util/ArrayList/<init>	; <init>(I)V
+; v0 : Ljava/util/ArrayList; , v1 : single-length
+	iput-object	v0,v2,com/squareup/okhttp/internal/http/RawHeaders.namesAndValues Ljava/util/List;
+; v0 : Ljava/util/ArrayList; , v2 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+.line 72
+	const/4	v0,1
+; v0 : single-length
+	iput	v0,v2,com/squareup/okhttp/internal/http/RawHeaders.httpMinorVersion I
+; v0 : single-length , v2 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+.line 73
+	const/4	v0,15
+; v0 : single-length
+	iput	v0,v2,com/squareup/okhttp/internal/http/RawHeaders.responseCode I
+; v0 : single-length , v2 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+.line 77
+	return-void	
+.end method
+
+.method public <init>(Lcom/squareup/okhttp/internal/http/RawHeaders;)V
+.limit registers 4
+; this: v2 (Lcom/squareup/okhttp/internal/http/RawHeaders;)
+; parameter[0] : v3 (Lcom/squareup/okhttp/internal/http/RawHeaders;)
+.line 79
+	invoke-direct	{v2},java/lang/Object/<init>	; <init>()V
+; v2 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+.line 69
+	new-instance	v0,java/util/ArrayList
+; v0 : Ljava/util/ArrayList;
+	const/16	v1,20
+; v1 : single-length
+	invoke-direct	{v0,v1},java/util/ArrayList/<init>	; <init>(I)V
+; v0 : Ljava/util/ArrayList; , v1 : single-length
+	iput-object	v0,v2,com/squareup/okhttp/internal/http/RawHeaders.namesAndValues Ljava/util/List;
+; v0 : Ljava/util/ArrayList; , v2 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+.line 72
+	const/4	v0,1
+; v0 : single-length
+	iput	v0,v2,com/squareup/okhttp/internal/http/RawHeaders.httpMinorVersion I
+; v0 : single-length , v2 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+.line 73
+	const/4	v0,15
+; v0 : single-length
+	iput	v0,v2,com/squareup/okhttp/internal/http/RawHeaders.responseCode I
+; v0 : single-length , v2 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+.line 80
+	iget-object	v0,v2,com/squareup/okhttp/internal/http/RawHeaders.namesAndValues Ljava/util/List;
+; v0 : Ljava/util/List; , v2 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+	iget-object	v1,v3,com/squareup/okhttp/internal/http/RawHeaders.namesAndValues Ljava/util/List;
+; v1 : Ljava/util/List; , v3 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+	invoke-interface	{v0,v1},java/util/List/addAll	; addAll(Ljava/util/Collection;)Z
+; v0 : Ljava/util/List; , v1 : Ljava/util/List;
+.line 81
+	iget-object	v0,v3,com/squareup/okhttp/internal/http/RawHeaders.requestLine Ljava/lang/String;
+; v0 : Ljava/lang/String; , v3 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+	iput-object	v0,v2,com/squareup/okhttp/internal/http/RawHeaders.requestLine Ljava/lang/String;
+; v0 : Ljava/lang/String; , v2 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+.line 82
+	iget-object	v0,v3,com/squareup/okhttp/internal/http/RawHeaders.statusLine Ljava/lang/String;
+; v0 : Ljava/lang/String; , v3 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+	iput-object	v0,v2,com/squareup/okhttp/internal/http/RawHeaders.statusLine Ljava/lang/String;
+; v0 : Ljava/lang/String; , v2 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+.line 83
+	iget	v0,v3,com/squareup/okhttp/internal/http/RawHeaders.httpMinorVersion I
+; v0 : single-length , v3 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+	iput	v0,v2,com/squareup/okhttp/internal/http/RawHeaders.httpMinorVersion I
+; v0 : single-length , v2 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+.line 84
+	iget	v0,v3,com/squareup/okhttp/internal/http/RawHeaders.responseCode I
+; v0 : single-length , v3 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+	iput	v0,v2,com/squareup/okhttp/internal/http/RawHeaders.responseCode I
+; v0 : single-length , v2 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+.line 85
+	iget-object	v0,v3,com/squareup/okhttp/internal/http/RawHeaders.responseMessage Ljava/lang/String;
+; v0 : Ljava/lang/String; , v3 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+	iput-object	v0,v2,com/squareup/okhttp/internal/http/RawHeaders.responseMessage Ljava/lang/String;
+; v0 : Ljava/lang/String; , v2 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+.line 86
+	return-void	
+.end method
+
+.method private addLenient(Ljava/lang/String;Ljava/lang/String;)V
+.limit registers 5
+; this: v2 (Lcom/squareup/okhttp/internal/http/RawHeaders;)
+; parameter[0] : v3 (Ljava/lang/String;)
+; parameter[1] : v4 (Ljava/lang/String;)
+.line 196
+	iget-object	v0,v2,com/squareup/okhttp/internal/http/RawHeaders.namesAndValues Ljava/util/List;
+; v0 : Ljava/util/List; , v2 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+	invoke-interface	{v0,v3},java/util/List/add	; add(Ljava/lang/Object;)Z
+; v0 : Ljava/util/List; , v3 : Ljava/lang/String;
+.line 197
+	iget-object	v0,v2,com/squareup/okhttp/internal/http/RawHeaders.namesAndValues Ljava/util/List;
+; v0 : Ljava/util/List; , v2 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+	invoke-virtual	{v4},java/lang/String/trim	; trim()Ljava/lang/String;
+; v4 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-interface	{v0,v1},java/util/List/add	; add(Ljava/lang/Object;)Z
+; v0 : Ljava/util/List; , v1 : Ljava/lang/String;
+.line 198
+	return-void	
+.end method
+
+.method public static fromBytes(Ljava/io/InputStream;)Lcom/squareup/okhttp/internal/http/RawHeaders;
+.throws Ljava/io/IOException;
+.limit registers 4
+; parameter[0] : v3 (Ljava/io/InputStream;)
+lbb458:
+.line 310
+	new-instance	v0,com/squareup/okhttp/internal/http/RawHeaders
+; v0 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+	invoke-direct	{v0},com/squareup/okhttp/internal/http/RawHeaders/<init>	; <init>()V
+; v0 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+.line 311
+	invoke-static	{v3},com/squareup/okhttp/internal/Util/readAsciiLine	; readAsciiLine(Ljava/io/InputStream;)Ljava/lang/String;
+; v3 : Ljava/io/InputStream;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},com/squareup/okhttp/internal/http/RawHeaders/setStatusLine	; setStatusLine(Ljava/lang/String;)V
+; v0 : Lcom/squareup/okhttp/internal/http/RawHeaders; , v1 : Ljava/lang/String;
+.line 312
+	invoke-static	{v3,v0},com/squareup/okhttp/internal/http/RawHeaders/readHeaders	; readHeaders(Ljava/io/InputStream;Lcom/squareup/okhttp/internal/http/RawHeaders;)V
+; v3 : Ljava/io/InputStream; , v0 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+.line 313
+	invoke-virtual	{v0},com/squareup/okhttp/internal/http/RawHeaders/getResponseCode	; getResponseCode()I
+; v0 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+	move-result	v1
+; v1 : single-length
+	const/16	v2,100
+; v2 : single-length
+	if-eq	v1,v2,lbb458
+; v1 : single-length , v2 : single-length
+.line 314
+	return-object	v0
+; v0 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+.end method
+
+.method public static fromMultimap(Ljava/util/Map;Z)Lcom/squareup/okhttp/internal/http/RawHeaders;
+.throws Ljava/io/IOException;
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "(" , "Ljava/util/Map" , "<" , "Ljava/lang/String;" , "Ljava/util/List" , "<" , "Ljava/lang/String;" , ">;>;Z)" , "Lcom/squareup/okhttp/internal/http/RawHeaders;" }
+.end annotation
+.limit registers 10
+; parameter[0] : v8 (Ljava/util/Map;)
+; parameter[1] : v9 (Z)
+.var 3 is i$ Ljava/util/Iterator; from lbb4fe to lbb51e
+.var 5 is value Ljava/lang/String; from lbb516 to lbb51e
+.var 0 is entry Ljava/util/Map$Entry; from lbb4da to lbb54a
+.var 1 is fieldName Ljava/lang/String; from lbb4e6 to lbb54a
+.var 6 is values Ljava/util/List; from lbb4f2 to lbb54a
+.line 359
+	if-nez	v9,lbb4a8
+; v9 : single-length
+	new-instance	v7,java/lang/UnsupportedOperationException
+; v7 : Ljava/lang/UnsupportedOperationException;
+	invoke-direct	{v7},java/lang/UnsupportedOperationException/<init>	; <init>()V
+; v7 : Ljava/lang/UnsupportedOperationException;
+	throw	v7
+; v7 : Ljava/lang/UnsupportedOperationException;
+lbb4a8:
+.line 360
+	new-instance	v4,com/squareup/okhttp/internal/http/RawHeaders
+; v4 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+	invoke-direct	{v4},com/squareup/okhttp/internal/http/RawHeaders/<init>	; <init>()V
+; v4 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+.line 361
+	invoke-interface	{v8},java/util/Map/entrySet	; entrySet()Ljava/util/Set;
+; v8 : Ljava/util/Map;
+	move-result-object	v7
+; v7 : Ljava/util/Set;
+	invoke-interface	{v7},java/util/Set/iterator	; iterator()Ljava/util/Iterator;
+; v7 : Ljava/util/Set;
+	move-result-object	v2
+; v2 : Ljava/util/Iterator;
+lbb4c2:
+	invoke-interface	{v2},java/util/Iterator/hasNext	; hasNext()Z
+; v2 : Ljava/util/Iterator;
+	move-result	v7
+; v7 : single-length
+	if-eqz	v7,lbb54a
+; v7 : single-length
+	invoke-interface	{v2},java/util/Iterator/next	; next()Ljava/lang/Object;
+; v2 : Ljava/util/Iterator;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,java/util/Map$Entry
+; v0 : Ljava/util/Map$Entry;
+.line 362
+	invoke-interface	{v0},java/util/Map$Entry/getKey	; getKey()Ljava/lang/Object;
+; v0 : Ljava/util/Map$Entry;
+	move-result-object	v1
+; v1 : Ljava/lang/Object;
+	check-cast	v1,java/lang/String
+; v1 : Ljava/lang/String;
+.line 363
+	invoke-interface	{v0},java/util/Map$Entry/getValue	; getValue()Ljava/lang/Object;
+; v0 : Ljava/util/Map$Entry;
+	move-result-object	v6
+; v6 : Ljava/lang/Object;
+	check-cast	v6,java/util/List
+; v6 : Ljava/util/List;
+.line 364
+	if-eqz	v1,lbb51e
+; v1 : Ljava/lang/String;
+.line 365
+	invoke-interface	{v6},java/util/List/iterator	; iterator()Ljava/util/Iterator;
+; v6 : Ljava/util/List;
+	move-result-object	v3
+; v3 : Ljava/util/Iterator;
+lbb4fe:
+	invoke-interface	{v3},java/util/Iterator/hasNext	; hasNext()Z
+; v3 : Ljava/util/Iterator;
+	move-result	v7
+; v7 : single-length
+	if-eqz	v7,lbb4c2
+; v7 : single-length
+	invoke-interface	{v3},java/util/Iterator/next	; next()Ljava/lang/Object;
+; v3 : Ljava/util/Iterator;
+	move-result-object	v5
+; v5 : Ljava/lang/Object;
+	check-cast	v5,java/lang/String
+; v5 : Ljava/lang/String;
+.line 366
+	invoke-direct	{v4,v1,v5},com/squareup/okhttp/internal/http/RawHeaders/addLenient	; addLenient(Ljava/lang/String;Ljava/lang/String;)V
+; v4 : Lcom/squareup/okhttp/internal/http/RawHeaders; , v1 : Ljava/lang/String; , v5 : Ljava/lang/String;
+	goto	lbb4fe
+lbb51e:
+.line 368
+	invoke-interface	{v6},java/util/List/isEmpty	; isEmpty()Z
+; v6 : Ljava/util/List;
+	move-result	v7
+; v7 : single-length
+	if-nez	v7,lbb4c2
+; v7 : single-length
+.line 369
+	invoke-interface	{v6},java/util/List/size	; size()I
+; v6 : Ljava/util/List;
+	move-result	v7
+; v7 : single-length
+	add-int/lit8	v7,v7,255
+; v7 : single-length , v7 : single-length
+	invoke-interface	{v6,v7},java/util/List/get	; get(I)Ljava/lang/Object;
+; v6 : Ljava/util/List; , v7 : single-length
+	move-result-object	v7
+; v7 : Ljava/lang/Object;
+	check-cast	v7,java/lang/String
+; v7 : Ljava/lang/String;
+	invoke-virtual	{v4,v7},com/squareup/okhttp/internal/http/RawHeaders/setStatusLine	; setStatusLine(Ljava/lang/String;)V
+; v4 : Lcom/squareup/okhttp/internal/http/RawHeaders; , v7 : Ljava/lang/String;
+	goto	lbb4c2
+lbb54a:
+.line 372
+	return-object	v4
+; v4 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+.end method
+
+.method public static fromNameValueBlock(Ljava/util/List;)Lcom/squareup/okhttp/internal/http/RawHeaders;
+.throws Ljava/io/IOException;
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "(" , "Ljava/util/List" , "<" , "Ljava/lang/String;" , ">;)" , "Lcom/squareup/okhttp/internal/http/RawHeaders;" }
+.end annotation
+.limit registers 13
+; parameter[0] : v12 (Ljava/util/List;)
+.var 0 is end I from lbb5ee to lbb646
+.var 6 is value Ljava/lang/String; from lbb604 to lbb646
+.var 2 is name Ljava/lang/String; from lbb5c6 to lbb64c
+.var 4 is start I from lbb5d8 to lbb64c
+.var 7 is values Ljava/lang/String; from lbb5d6 to lbb64c
+.line 416
+	invoke-interface	{v12},java/util/List/size	; size()I
+; v12 : Ljava/util/List;
+	move-result	v9
+; v9 : single-length
+	rem-int/lit8	v9,v9,2
+; v9 : single-length , v9 : single-length
+	if-eqz	v9,lbb59e
+; v9 : single-length
+.line 417
+	new-instance	v9,java/lang/IllegalArgumentException
+; v9 : Ljava/lang/IllegalArgumentException;
+	new-instance	v10,java/lang/StringBuilder
+; v10 : Ljava/lang/StringBuilder;
+	invoke-direct	{v10},java/lang/StringBuilder/<init>	; <init>()V
+; v10 : Ljava/lang/StringBuilder;
+	const-string	v11,"Unexpected name value block: "
+; v11 : Ljava/lang/String;
+	invoke-virtual	{v10,v11},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v10 : Ljava/lang/StringBuilder; , v11 : Ljava/lang/String;
+	move-result-object	v10
+; v10 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v10,v12},java/lang/StringBuilder/append	; append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+; v10 : Ljava/lang/StringBuilder; , v12 : Ljava/util/List;
+	move-result-object	v10
+; v10 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v10},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v10 : Ljava/lang/StringBuilder;
+	move-result-object	v10
+; v10 : Ljava/lang/String;
+	invoke-direct	{v9,v10},java/lang/IllegalArgumentException/<init>	; <init>(Ljava/lang/String;)V
+; v9 : Ljava/lang/IllegalArgumentException; , v10 : Ljava/lang/String;
+	throw	v9
+; v9 : Ljava/lang/IllegalArgumentException;
+lbb59e:
+.line 419
+	const/4	v5,0
+; v5 : single-length
+.line 420
+	const/4	v8,0
+; v8 : single-length
+.line 421
+	new-instance	v3,com/squareup/okhttp/internal/http/RawHeaders
+; v3 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+	invoke-direct	{v3},com/squareup/okhttp/internal/http/RawHeaders/<init>	; <init>()V
+; v3 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+.line 422
+	const/4	v1,0
+; v1 : single-length
+lbb5ae:
+	invoke-interface	{v12},java/util/List/size	; size()I
+; v12 : Ljava/util/List;
+	move-result	v9
+; v9 : single-length
+	if-ge	v1,v9,lbb64c
+; v1 : single-length , v9 : single-length
+.line 423
+	invoke-interface	{v12,v1},java/util/List/get	; get(I)Ljava/lang/Object;
+; v12 : Ljava/util/List; , v1 : single-length
+	move-result-object	v2
+; v2 : Ljava/lang/Object;
+	check-cast	v2,java/lang/String
+; v2 : Ljava/lang/String;
+.line 424
+	add-int/lit8	v9,v1,1
+; v9 : single-length , v1 : single-length
+	invoke-interface	{v12,v9},java/util/List/get	; get(I)Ljava/lang/Object;
+; v12 : Ljava/util/List; , v9 : single-length
+	move-result-object	v7
+; v7 : Ljava/lang/Object;
+	check-cast	v7,java/lang/String
+; v7 : Ljava/lang/String;
+.line 425
+	const/4	v4,0
+; v4 : single-length
+lbb5d8:
+	invoke-virtual	{v7},java/lang/String/length	; length()I
+; v7 : Ljava/lang/String;
+	move-result	v9
+; v9 : single-length
+	if-ge	v4,v9,lbb646
+; v4 : single-length , v9 : single-length
+.line 426
+	const/4	v9,0
+; v9 : single-length
+	invoke-virtual	{v7,v9,v4},java/lang/String/indexOf	; indexOf(II)I
+; v7 : Ljava/lang/String; , v9 : single-length , v4 : single-length
+	move-result	v0
+; v0 : single-length
+.line 427
+	const/4	v9,15
+; v9 : single-length
+	if-ne	v0,v9,lbb5fc
+; v0 : single-length , v9 : single-length
+.line 428
+	invoke-virtual	{v7},java/lang/String/length	; length()I
+; v7 : Ljava/lang/String;
+	move-result	v0
+; v0 : single-length
+lbb5fc:
+.line 430
+	invoke-virtual	{v7,v4,v0},java/lang/String/substring	; substring(II)Ljava/lang/String;
+; v7 : Ljava/lang/String; , v4 : single-length , v0 : single-length
+	move-result-object	v6
+; v6 : Ljava/lang/String;
+.line 431
+	const-string	v9,":status"
+; v9 : Ljava/lang/String;
+	invoke-virtual	{v9,v2},java/lang/String/equals	; equals(Ljava/lang/Object;)Z
+; v9 : Ljava/lang/String; , v2 : Ljava/lang/String;
+	move-result	v9
+; v9 : single-length
+	if-eqz	v9,lbb61c
+; v9 : single-length
+.line 432
+	move-object	v5,v6
+; v5 : Ljava/lang/String; , v6 : Ljava/lang/String;
+lbb616:
+.line 439
+	add-int/lit8	v4,v0,1
+; v4 : single-length , v0 : single-length
+.line 440
+	goto	lbb5d8
+lbb61c:
+.line 433
+	const-string	v9,":version"
+; v9 : Ljava/lang/String;
+	invoke-virtual	{v9,v2},java/lang/String/equals	; equals(Ljava/lang/Object;)Z
+; v9 : Ljava/lang/String; , v2 : Ljava/lang/String;
+	move-result	v9
+; v9 : single-length
+	if-eqz	v9,lbb630
+; v9 : single-length
+.line 434
+	move-object	v8,v6
+; v8 : Ljava/lang/String; , v6 : Ljava/lang/String;
+	goto	lbb616
+lbb630:
+.line 436
+	iget-object	v9,v3,com/squareup/okhttp/internal/http/RawHeaders.namesAndValues Ljava/util/List;
+; v9 : Ljava/util/List; , v3 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+	invoke-interface	{v9,v2},java/util/List/add	; add(Ljava/lang/Object;)Z
+; v9 : Ljava/util/List; , v2 : Ljava/lang/String;
+.line 437
+	iget-object	v9,v3,com/squareup/okhttp/internal/http/RawHeaders.namesAndValues Ljava/util/List;
+; v9 : Ljava/util/List; , v3 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+	invoke-interface	{v9,v6},java/util/List/add	; add(Ljava/lang/Object;)Z
+; v9 : Ljava/util/List; , v6 : Ljava/lang/String;
+	goto	lbb616
+lbb646:
+.line 422
+	add-int/lit8	v1,v1,2
+; v1 : single-length , v1 : single-length
+	goto	lbb5ae
+lbb64c:
+.line 442
+	if-nez	v5,lbb660
+; v5 : single-length
+	new-instance	v9,java/net/ProtocolException
+; v9 : Ljava/net/ProtocolException;
+	const-string	v10,"Expected ':status' header not present"
+; v10 : Ljava/lang/String;
+	invoke-direct	{v9,v10},java/net/ProtocolException/<init>	; <init>(Ljava/lang/String;)V
+; v9 : Ljava/net/ProtocolException; , v10 : Ljava/lang/String;
+	throw	v9
+; v9 : Ljava/net/ProtocolException;
+lbb660:
+.line 443
+	if-nez	v8,lbb674
+; v8 : single-length
+	new-instance	v9,java/net/ProtocolException
+; v9 : Ljava/net/ProtocolException;
+	const-string	v10,"Expected ':version' header not present"
+; v10 : Ljava/lang/String;
+	invoke-direct	{v9,v10},java/net/ProtocolException/<init>	; <init>(Ljava/lang/String;)V
+; v9 : Ljava/net/ProtocolException; , v10 : Ljava/lang/String;
+	throw	v9
+; v9 : Ljava/net/ProtocolException;
+lbb674:
+.line 444
+	new-instance	v9,java/lang/StringBuilder
+; v9 : Ljava/lang/StringBuilder;
+	invoke-direct	{v9},java/lang/StringBuilder/<init>	; <init>()V
+; v9 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v9,v8},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v9 : Ljava/lang/StringBuilder; , v8 : single-length
+	move-result-object	v9
+; v9 : Ljava/lang/StringBuilder;
+	const-string	v10," "
+; v10 : Ljava/lang/String;
+	invoke-virtual	{v9,v10},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v9 : Ljava/lang/StringBuilder; , v10 : Ljava/lang/String;
+	move-result-object	v9
+; v9 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v9,v5},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v9 : Ljava/lang/StringBuilder; , v5 : single-length
+	move-result-object	v9
+; v9 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v9},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v9 : Ljava/lang/StringBuilder;
+	move-result-object	v9
+; v9 : Ljava/lang/String;
+	invoke-virtual	{v3,v9},com/squareup/okhttp/internal/http/RawHeaders/setStatusLine	; setStatusLine(Ljava/lang/String;)V
+; v3 : Lcom/squareup/okhttp/internal/http/RawHeaders; , v9 : Ljava/lang/String;
+.line 445
+	return-object	v3
+; v3 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+.end method
+
+.method public static readHeaders(Ljava/io/InputStream;Lcom/squareup/okhttp/internal/http/RawHeaders;)V
+.throws Ljava/io/IOException;
+.limit registers 4
+; parameter[0] : v2 (Ljava/io/InputStream;)
+; parameter[1] : v3 (Lcom/squareup/okhttp/internal/http/RawHeaders;)
+lbb6bc:
+.line 321
+	invoke-static	{v2},com/squareup/okhttp/internal/Util/readAsciiLine	; readAsciiLine(Ljava/io/InputStream;)Ljava/lang/String;
+; v2 : Ljava/io/InputStream;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v0},java/lang/String/length	; length()I
+; v0 : Ljava/lang/String;
+	move-result	v1
+; v1 : single-length
+	if-eqz	v1,lbb6d8
+; v1 : single-length
+.line 322
+	invoke-virtual	{v3,v0},com/squareup/okhttp/internal/http/RawHeaders/addLine	; addLine(Ljava/lang/String;)V
+; v3 : Lcom/squareup/okhttp/internal/http/RawHeaders; , v0 : Ljava/lang/String;
+	goto	lbb6bc
+lbb6d8:
+.line 324
+	return-void	
+.end method
+
+.method public add(Ljava/lang/String;Ljava/lang/String;)V
+.limit registers 6
+; this: v3 (Lcom/squareup/okhttp/internal/http/RawHeaders;)
+; parameter[0] : v4 (Ljava/lang/String;)
+; parameter[1] : v5 (Ljava/lang/String;)
+	const/4	v2,0
+; v2 : single-length
+	const/4	v1,15
+; v1 : single-length
+.line 183
+	if-nez	v4,lbb704
+; v4 : Ljava/lang/String;
+	new-instance	v0,java/lang/IllegalArgumentException
+; v0 : Ljava/lang/IllegalArgumentException;
+	const-string	v1,"fieldname == null"
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/IllegalArgumentException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/IllegalArgumentException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/IllegalArgumentException;
+lbb704:
+.line 184
+	if-nez	v5,lbb718
+; v5 : Ljava/lang/String;
+	new-instance	v0,java/lang/IllegalArgumentException
+; v0 : Ljava/lang/IllegalArgumentException;
+	const-string	v1,"value == null"
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/IllegalArgumentException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/IllegalArgumentException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/IllegalArgumentException;
+lbb718:
+.line 185
+	invoke-virtual	{v4},java/lang/String/length	; length()I
+; v4 : Ljava/lang/String;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,lbb73c
+; v0 : single-length
+	invoke-virtual	{v4,v2},java/lang/String/indexOf	; indexOf(I)I
+; v4 : Ljava/lang/String; , v2 : single-length
+	move-result	v0
+; v0 : single-length
+	if-ne	v0,v1,lbb73c
+; v0 : single-length , v1 : single-length
+	invoke-virtual	{v5,v2},java/lang/String/indexOf	; indexOf(I)I
+; v5 : Ljava/lang/String; , v2 : single-length
+	move-result	v0
+; v0 : single-length
+	if-eq	v0,v1,lbb782
+; v0 : single-length , v1 : single-length
+lbb73c:
+.line 186
+	new-instance	v0,java/lang/IllegalArgumentException
+; v0 : Ljava/lang/IllegalArgumentException;
+	new-instance	v1,java/lang/StringBuilder
+; v1 : Ljava/lang/StringBuilder;
+	invoke-direct	{v1},java/lang/StringBuilder/<init>	; <init>()V
+; v1 : Ljava/lang/StringBuilder;
+	const-string	v2,"Unexpected header: "
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v1,v4},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v4 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	const-string	v2,": "
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v1,v5},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v5 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v1},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v1 : Ljava/lang/StringBuilder;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/IllegalArgumentException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/IllegalArgumentException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/IllegalArgumentException;
+lbb782:
+.line 188
+	invoke-direct	{v3,v4,v5},com/squareup/okhttp/internal/http/RawHeaders/addLenient	; addLenient(Ljava/lang/String;Ljava/lang/String;)V
+; v3 : Lcom/squareup/okhttp/internal/http/RawHeaders; , v4 : Ljava/lang/String; , v5 : Ljava/lang/String;
+.line 189
+	return-void	
+.end method
+
+.method public addAll(Ljava/lang/String;Ljava/util/List;)V
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "(" , "Ljava/lang/String;" , "Ljava/util/List" , "<" , "Ljava/lang/String;" , ">;)V" }
+.end annotation
+.limit registers 6
+; this: v3 (Lcom/squareup/okhttp/internal/http/RawHeaders;)
+; parameter[0] : v4 (Ljava/lang/String;)
+; parameter[1] : v5 (Ljava/util/List;)
+.var 1 is value Ljava/lang/String; from lbb7bc to lbb7c4
+.line 210
+	invoke-interface	{v5},java/util/List/iterator	; iterator()Ljava/util/Iterator;
+; v5 : Ljava/util/List;
+	move-result-object	v0
+; v0 : Ljava/util/Iterator;
+lbb7a4:
+	invoke-interface	{v0},java/util/Iterator/hasNext	; hasNext()Z
+; v0 : Ljava/util/Iterator;
+	move-result	v2
+; v2 : single-length
+	if-eqz	v2,lbb7c4
+; v2 : single-length
+	invoke-interface	{v0},java/util/Iterator/next	; next()Ljava/lang/Object;
+; v0 : Ljava/util/Iterator;
+	move-result-object	v1
+; v1 : Ljava/lang/Object;
+	check-cast	v1,java/lang/String
+; v1 : Ljava/lang/String;
+.line 211
+	invoke-virtual	{v3,v4,v1},com/squareup/okhttp/internal/http/RawHeaders/add	; add(Ljava/lang/String;Ljava/lang/String;)V
+; v3 : Lcom/squareup/okhttp/internal/http/RawHeaders; , v4 : Ljava/lang/String; , v1 : Ljava/lang/String;
+	goto	lbb7a4
+lbb7c4:
+.line 213
+	return-void	
+.end method
+
+.method public addLine(Ljava/lang/String;)V
+.limit registers 5
+; this: v3 (Lcom/squareup/okhttp/internal/http/RawHeaders;)
+; parameter[0] : v4 (Ljava/lang/String;)
+	const/4	v2,1
+; v2 : single-length
+.line 171
+	const-string	v1,":"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v4,v1,v2},java/lang/String/indexOf	; indexOf(Ljava/lang/String;I)I
+; v4 : Ljava/lang/String; , v1 : Ljava/lang/String; , v2 : single-length
+	move-result	v0
+; v0 : single-length
+.line 172
+	const/4	v1,15
+; v1 : single-length
+	if-eq	v0,v1,lbb80a
+; v0 : single-length , v1 : single-length
+.line 173
+	const/4	v1,0
+; v1 : single-length
+	invoke-virtual	{v4,v1,v0},java/lang/String/substring	; substring(II)Ljava/lang/String;
+; v4 : Ljava/lang/String; , v1 : single-length , v0 : single-length
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	add-int/lit8	v2,v0,1
+; v2 : single-length , v0 : single-length
+	invoke-virtual	{v4,v2},java/lang/String/substring	; substring(I)Ljava/lang/String;
+; v4 : Ljava/lang/String; , v2 : single-length
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-direct	{v3,v1,v2},com/squareup/okhttp/internal/http/RawHeaders/addLenient	; addLenient(Ljava/lang/String;Ljava/lang/String;)V
+; v3 : Lcom/squareup/okhttp/internal/http/RawHeaders; , v1 : Ljava/lang/String; , v2 : Ljava/lang/String;
+lbb808:
+.line 179
+	return-void	
+lbb80a:
+.line 174
+	const-string	v1,":"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v4,v1},java/lang/String/startsWith	; startsWith(Ljava/lang/String;)Z
+; v4 : Ljava/lang/String; , v1 : Ljava/lang/String;
+	move-result	v1
+; v1 : single-length
+	if-eqz	v1,lbb82e
+; v1 : single-length
+.line 175
+	const-string	v1,""
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v4,v2},java/lang/String/substring	; substring(I)Ljava/lang/String;
+; v4 : Ljava/lang/String; , v2 : single-length
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-direct	{v3,v1,v2},com/squareup/okhttp/internal/http/RawHeaders/addLenient	; addLenient(Ljava/lang/String;Ljava/lang/String;)V
+; v3 : Lcom/squareup/okhttp/internal/http/RawHeaders; , v1 : Ljava/lang/String; , v2 : Ljava/lang/String;
+	goto	lbb808
+lbb82e:
+.line 177
+	const-string	v1,""
+; v1 : Ljava/lang/String;
+	invoke-direct	{v3,v1,v4},com/squareup/okhttp/internal/http/RawHeaders/addLenient	; addLenient(Ljava/lang/String;Ljava/lang/String;)V
+; v3 : Lcom/squareup/okhttp/internal/http/RawHeaders; , v1 : Ljava/lang/String; , v4 : Ljava/lang/String;
+	goto	lbb808
+.end method
+
+.method public addSpdyRequestHeaders(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+.limit registers 7
+; this: v1 (Lcom/squareup/okhttp/internal/http/RawHeaders;)
+; parameter[0] : v2 (Ljava/lang/String;)
+; parameter[1] : v3 (Ljava/lang/String;)
+; parameter[2] : v4 (Ljava/lang/String;)
+; parameter[3] : v5 (Ljava/lang/String;)
+; parameter[4] : v6 (Ljava/lang/String;)
+.line 136
+	const-string	v0,":method"
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v1,v0,v2},com/squareup/okhttp/internal/http/RawHeaders/add	; add(Ljava/lang/String;Ljava/lang/String;)V
+; v1 : Lcom/squareup/okhttp/internal/http/RawHeaders; , v0 : Ljava/lang/String; , v2 : Ljava/lang/String;
+.line 137
+	const-string	v0,":scheme"
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v1,v0,v6},com/squareup/okhttp/internal/http/RawHeaders/add	; add(Ljava/lang/String;Ljava/lang/String;)V
+; v1 : Lcom/squareup/okhttp/internal/http/RawHeaders; , v0 : Ljava/lang/String; , v6 : Ljava/lang/String;
+.line 138
+	const-string	v0,":path"
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v1,v0,v3},com/squareup/okhttp/internal/http/RawHeaders/add	; add(Ljava/lang/String;Ljava/lang/String;)V
+; v1 : Lcom/squareup/okhttp/internal/http/RawHeaders; , v0 : Ljava/lang/String; , v3 : Ljava/lang/String;
+.line 139
+	const-string	v0,":version"
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v1,v0,v4},com/squareup/okhttp/internal/http/RawHeaders/add	; add(Ljava/lang/String;Ljava/lang/String;)V
+; v1 : Lcom/squareup/okhttp/internal/http/RawHeaders; , v0 : Ljava/lang/String; , v4 : Ljava/lang/String;
+.line 140
+	const-string	v0,":host"
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v1,v0,v5},com/squareup/okhttp/internal/http/RawHeaders/add	; add(Ljava/lang/String;Ljava/lang/String;)V
+; v1 : Lcom/squareup/okhttp/internal/http/RawHeaders; , v0 : Ljava/lang/String; , v5 : Ljava/lang/String;
+.line 141
+	return-void	
+.end method
+
+.method public get(Ljava/lang/String;)Ljava/lang/String;
+.limit registers 5
+; this: v3 (Lcom/squareup/okhttp/internal/http/RawHeaders;)
+; parameter[0] : v4 (Ljava/lang/String;)
+.line 258
+	iget-object	v1,v3,com/squareup/okhttp/internal/http/RawHeaders.namesAndValues Ljava/util/List;
+; v1 : Ljava/util/List; , v3 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+	invoke-interface	{v1},java/util/List/size	; size()I
+; v1 : Ljava/util/List;
+	move-result	v1
+; v1 : single-length
+	add-int/lit8	v0,v1,254
+; v0 : single-length , v1 : single-length
+lbb8a0:
+	if-ltz	v0,lbb8dc
+; v0 : single-length
+.line 259
+	iget-object	v1,v3,com/squareup/okhttp/internal/http/RawHeaders.namesAndValues Ljava/util/List;
+; v1 : Ljava/util/List; , v3 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+	invoke-interface	{v1,v0},java/util/List/get	; get(I)Ljava/lang/Object;
+; v1 : Ljava/util/List; , v0 : single-length
+	move-result-object	v1
+; v1 : Ljava/lang/Object;
+	check-cast	v1,java/lang/String
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v4,v1},java/lang/String/equalsIgnoreCase	; equalsIgnoreCase(Ljava/lang/String;)Z
+; v4 : Ljava/lang/String; , v1 : Ljava/lang/String;
+	move-result	v1
+; v1 : single-length
+	if-eqz	v1,lbb8d6
+; v1 : single-length
+.line 260
+	iget-object	v1,v3,com/squareup/okhttp/internal/http/RawHeaders.namesAndValues Ljava/util/List;
+; v1 : Ljava/util/List; , v3 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+	add-int/lit8	v2,v0,1
+; v2 : single-length , v0 : single-length
+	invoke-interface	{v1,v2},java/util/List/get	; get(I)Ljava/lang/Object;
+; v1 : Ljava/util/List; , v2 : single-length
+	move-result-object	v1
+; v1 : Ljava/lang/Object;
+	check-cast	v1,java/lang/String
+; v1 : Ljava/lang/String;
+lbb8d4:
+.line 263
+	return-object	v1
+; v1 : single-length
+lbb8d6:
+.line 258
+	add-int/lit8	v0,v0,254
+; v0 : single-length , v0 : single-length
+	goto	lbb8a0
+lbb8dc:
+.line 263
+	const/4	v1,0
+; v1 : single-length
+	goto	lbb8d4
+.end method
+
+.method public getAll(Ljava/util/Set;)Lcom/squareup/okhttp/internal/http/RawHeaders;
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "(" , "Ljava/util/Set" , "<" , "Ljava/lang/String;" , ">;)" , "Lcom/squareup/okhttp/internal/http/RawHeaders;" }
+.end annotation
+.limit registers 7
+; this: v5 (Lcom/squareup/okhttp/internal/http/RawHeaders;)
+; parameter[0] : v6 (Ljava/util/Set;)
+.var 0 is fieldName Ljava/lang/String; from lbb91c to lbb948
+.line 282
+	new-instance	v2,com/squareup/okhttp/internal/http/RawHeaders
+; v2 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+	invoke-direct	{v2},com/squareup/okhttp/internal/http/RawHeaders/<init>	; <init>()V
+; v2 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+.line 283
+	const/4	v1,0
+; v1 : single-length
+lbb8fc:
+	iget-object	v3,v5,com/squareup/okhttp/internal/http/RawHeaders.namesAndValues Ljava/util/List;
+; v3 : Ljava/util/List; , v5 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+	invoke-interface	{v3},java/util/List/size	; size()I
+; v3 : Ljava/util/List;
+	move-result	v3
+; v3 : single-length
+	if-ge	v1,v3,lbb948
+; v1 : single-length , v3 : single-length
+.line 284
+	iget-object	v3,v5,com/squareup/okhttp/internal/http/RawHeaders.namesAndValues Ljava/util/List;
+; v3 : Ljava/util/List; , v5 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+	invoke-interface	{v3,v1},java/util/List/get	; get(I)Ljava/lang/Object;
+; v3 : Ljava/util/List; , v1 : single-length
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,java/lang/String
+; v0 : Ljava/lang/String;
+.line 285
+	invoke-interface	{v6,v0},java/util/Set/contains	; contains(Ljava/lang/Object;)Z
+; v6 : Ljava/util/Set; , v0 : Ljava/lang/String;
+	move-result	v3
+; v3 : single-length
+	if-eqz	v3,lbb942
+; v3 : single-length
+.line 286
+	iget-object	v3,v5,com/squareup/okhttp/internal/http/RawHeaders.namesAndValues Ljava/util/List;
+; v3 : Ljava/util/List; , v5 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+	add-int/lit8	v4,v1,1
+; v4 : single-length , v1 : single-length
+	invoke-interface	{v3,v4},java/util/List/get	; get(I)Ljava/lang/Object;
+; v3 : Ljava/util/List; , v4 : single-length
+	move-result-object	v3
+; v3 : Ljava/lang/Object;
+	check-cast	v3,java/lang/String
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v0,v3},com/squareup/okhttp/internal/http/RawHeaders/add	; add(Ljava/lang/String;Ljava/lang/String;)V
+; v2 : Lcom/squareup/okhttp/internal/http/RawHeaders; , v0 : Ljava/lang/String; , v3 : Ljava/lang/String;
+lbb942:
+.line 283
+	add-int/lit8	v1,v1,2
+; v1 : single-length , v1 : single-length
+	goto	lbb8fc
+lbb948:
+.line 289
+	return-object	v2
+; v2 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+.end method
+
+.method public getFieldName(I)Ljava/lang/String;
+.limit registers 4
+; this: v2 (Lcom/squareup/okhttp/internal/http/RawHeaders;)
+; parameter[0] : v3 (I)
+.line 231
+	mul-int/lit-8	v0,v3,2
+; v0 : single-length , v3 : single-length
+.line 232
+	if-ltz	v0,lbb974
+; v0 : single-length
+	iget-object	v1,v2,com/squareup/okhttp/internal/http/RawHeaders.namesAndValues Ljava/util/List;
+; v1 : Ljava/util/List; , v2 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+	invoke-interface	{v1},java/util/List/size	; size()I
+; v1 : Ljava/util/List;
+	move-result	v1
+; v1 : single-length
+	if-lt	v0,v1,lbb978
+; v0 : single-length , v1 : single-length
+lbb974:
+.line 233
+	const/4	v1,0
+; v1 : single-length
+lbb976:
+.line 235
+	return-object	v1
+; v1 : Ljava/lang/String;
+lbb978:
+	iget-object	v1,v2,com/squareup/okhttp/internal/http/RawHeaders.namesAndValues Ljava/util/List;
+; v1 : Ljava/util/List; , v2 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+	invoke-interface	{v1,v0},java/util/List/get	; get(I)Ljava/lang/Object;
+; v1 : Ljava/util/List; , v0 : single-length
+	move-result-object	v1
+; v1 : Ljava/lang/Object;
+	check-cast	v1,java/lang/String
+; v1 : Ljava/lang/String;
+	goto	lbb976
+.end method
+
+.method public getHttpMinorVersion()I
+.limit registers 3
+; this: v2 (Lcom/squareup/okhttp/internal/http/RawHeaders;)
+.line 152
+	iget	v0,v2,com/squareup/okhttp/internal/http/RawHeaders.httpMinorVersion I
+; v0 : single-length , v2 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+	const/4	v1,15
+; v1 : single-length
+	if-eq	v0,v1,lbb9ac
+; v0 : single-length , v1 : single-length
+	iget	v0,v2,com/squareup/okhttp/internal/http/RawHeaders.httpMinorVersion I
+; v0 : single-length , v2 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+lbb9aa:
+	return	v0
+; v0 : single-length
+lbb9ac:
+	const/4	v0,1
+; v0 : single-length
+	goto	lbb9aa
+.end method
+
+.method public getResponseCode()I
+.limit registers 2
+; this: v1 (Lcom/squareup/okhttp/internal/http/RawHeaders;)
+.line 157
+	iget	v0,v1,com/squareup/okhttp/internal/http/RawHeaders.responseCode I
+; v0 : single-length , v1 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+	return	v0
+; v0 : single-length
+.end method
+
+.method public getResponseMessage()Ljava/lang/String;
+.limit registers 2
+; this: v1 (Lcom/squareup/okhttp/internal/http/RawHeaders;)
+.line 162
+	iget-object	v0,v1,com/squareup/okhttp/internal/http/RawHeaders.responseMessage Ljava/lang/String;
+; v0 : Ljava/lang/String; , v1 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+	return-object	v0
+; v0 : Ljava/lang/String;
+.end method
+
+.method public getStatusLine()Ljava/lang/String;
+.limit registers 2
+; this: v1 (Lcom/squareup/okhttp/internal/http/RawHeaders;)
+.line 144
+	iget-object	v0,v1,com/squareup/okhttp/internal/http/RawHeaders.statusLine Ljava/lang/String;
+; v0 : Ljava/lang/String; , v1 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+	return-object	v0
+; v0 : Ljava/lang/String;
+.end method
+
+.method public getValue(I)Ljava/lang/String;
+.limit registers 4
+; this: v2 (Lcom/squareup/okhttp/internal/http/RawHeaders;)
+; parameter[0] : v3 (I)
+.line 249
+	mul-int/lit-8	v1,v3,2
+; v1 : single-length , v3 : single-length
+	add-int/lit8	v0,v1,1
+; v0 : single-length , v1 : single-length
+.line 250
+	if-ltz	v0,lbba24
+; v0 : single-length
+	iget-object	v1,v2,com/squareup/okhttp/internal/http/RawHeaders.namesAndValues Ljava/util/List;
+; v1 : Ljava/util/List; , v2 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+	invoke-interface	{v1},java/util/List/size	; size()I
+; v1 : Ljava/util/List;
+	move-result	v1
+; v1 : single-length
+	if-lt	v0,v1,lbba28
+; v0 : single-length , v1 : single-length
+lbba24:
+.line 251
+	const/4	v1,0
+; v1 : single-length
+lbba26:
+.line 253
+	return-object	v1
+; v1 : Ljava/lang/String;
+lbba28:
+	iget-object	v1,v2,com/squareup/okhttp/internal/http/RawHeaders.namesAndValues Ljava/util/List;
+; v1 : Ljava/util/List; , v2 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+	invoke-interface	{v1,v0},java/util/List/get	; get(I)Ljava/lang/Object;
+; v1 : Ljava/util/List; , v0 : single-length
+	move-result-object	v1
+; v1 : Ljava/lang/Object;
+	check-cast	v1,java/lang/String
+; v1 : Ljava/lang/String;
+	goto	lbba26
+.end method
+
+.method public length()I
+.limit registers 2
+; this: v1 (Lcom/squareup/okhttp/internal/http/RawHeaders;)
+.line 226
+	iget-object	v0,v1,com/squareup/okhttp/internal/http/RawHeaders.namesAndValues Ljava/util/List;
+; v0 : Ljava/util/List; , v1 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+	invoke-interface	{v0},java/util/List/size	; size()I
+; v0 : Ljava/util/List;
+	move-result	v0
+; v0 : single-length
+	div-int/lit8	v0,v0,2
+; v0 : single-length , v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public names()Ljava/util/Set;
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "()" , "Ljava/util/Set" , "<" , "Ljava/lang/String;" , ">;" }
+.end annotation
+.limit registers 4
+; this: v3 (Lcom/squareup/okhttp/internal/http/RawHeaders;)
+.line 240
+	new-instance	v1,java/util/TreeSet
+; v1 : Ljava/util/TreeSet;
+	sget-object	v2,java/lang/String.CASE_INSENSITIVE_ORDER Ljava/util/Comparator;
+; v2 : Ljava/util/Comparator;
+	invoke-direct	{v1,v2},java/util/TreeSet/<init>	; <init>(Ljava/util/Comparator;)V
+; v1 : Ljava/util/TreeSet; , v2 : Ljava/util/Comparator;
+.line 241
+	const/4	v0,0
+; v0 : single-length
+lbba80:
+	invoke-virtual	{v3},com/squareup/okhttp/internal/http/RawHeaders/length	; length()I
+; v3 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+	move-result	v2
+; v2 : single-length
+	if-ge	v0,v2,lbbaa0
+; v0 : single-length , v2 : single-length
+.line 242
+	invoke-virtual	{v3,v0},com/squareup/okhttp/internal/http/RawHeaders/getFieldName	; getFieldName(I)Ljava/lang/String;
+; v3 : Lcom/squareup/okhttp/internal/http/RawHeaders; , v0 : single-length
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/util/TreeSet/add	; add(Ljava/lang/Object;)Z
+; v1 : Ljava/util/TreeSet; , v2 : Ljava/lang/String;
+.line 241
+	add-int/lit8	v0,v0,1
+; v0 : single-length , v0 : single-length
+	goto	lbba80
+lbbaa0:
+.line 244
+	invoke-static	{v1},java/util/Collections/unmodifiableSet	; unmodifiableSet(Ljava/util/Set;)Ljava/util/Set;
+; v1 : Ljava/util/TreeSet;
+	move-result-object	v2
+; v2 : Ljava/util/Set;
+	return-object	v2
+; v2 : Ljava/util/Set;
+.end method
+
+.method public removeAll(Ljava/lang/String;)V
+.limit registers 4
+; this: v2 (Lcom/squareup/okhttp/internal/http/RawHeaders;)
+; parameter[0] : v3 (Ljava/lang/String;)
+.line 201
+	const/4	v0,0
+; v0 : single-length
+lbbabe:
+	iget-object	v1,v2,com/squareup/okhttp/internal/http/RawHeaders.namesAndValues Ljava/util/List;
+; v1 : Ljava/util/List; , v2 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+	invoke-interface	{v1},java/util/List/size	; size()I
+; v1 : Ljava/util/List;
+	move-result	v1
+; v1 : single-length
+	if-ge	v0,v1,lbbb04
+; v0 : single-length , v1 : single-length
+.line 202
+	iget-object	v1,v2,com/squareup/okhttp/internal/http/RawHeaders.namesAndValues Ljava/util/List;
+; v1 : Ljava/util/List; , v2 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+	invoke-interface	{v1,v0},java/util/List/get	; get(I)Ljava/lang/Object;
+; v1 : Ljava/util/List; , v0 : single-length
+	move-result-object	v1
+; v1 : Ljava/lang/Object;
+	check-cast	v1,java/lang/String
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v3,v1},java/lang/String/equalsIgnoreCase	; equalsIgnoreCase(Ljava/lang/String;)Z
+; v3 : Ljava/lang/String; , v1 : Ljava/lang/String;
+	move-result	v1
+; v1 : single-length
+	if-eqz	v1,lbbafe
+; v1 : single-length
+.line 203
+	iget-object	v1,v2,com/squareup/okhttp/internal/http/RawHeaders.namesAndValues Ljava/util/List;
+; v1 : Ljava/util/List; , v2 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+	invoke-interface	{v1,v0},java/util/List/remove	; remove(I)Ljava/lang/Object;
+; v1 : Ljava/util/List; , v0 : single-length
+.line 204
+	iget-object	v1,v2,com/squareup/okhttp/internal/http/RawHeaders.namesAndValues Ljava/util/List;
+; v1 : Ljava/util/List; , v2 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+	invoke-interface	{v1,v0},java/util/List/remove	; remove(I)Ljava/lang/Object;
+; v1 : Ljava/util/List; , v0 : single-length
+lbbafe:
+.line 201
+	add-int/lit8	v0,v0,2
+; v0 : single-length , v0 : single-length
+	goto	lbbabe
+lbbb04:
+.line 207
+	return-void	
+.end method
+
+.method public set(Ljava/lang/String;Ljava/lang/String;)V
+.limit registers 3
+; this: v0 (Lcom/squareup/okhttp/internal/http/RawHeaders;)
+; parameter[0] : v1 (Ljava/lang/String;)
+; parameter[1] : v2 (Ljava/lang/String;)
+.line 220
+	invoke-virtual	{v0,v1},com/squareup/okhttp/internal/http/RawHeaders/removeAll	; removeAll(Ljava/lang/String;)V
+; v0 : Lcom/squareup/okhttp/internal/http/RawHeaders; , v1 : Ljava/lang/String;
+.line 221
+	invoke-virtual	{v0,v1,v2},com/squareup/okhttp/internal/http/RawHeaders/add	; add(Ljava/lang/String;Ljava/lang/String;)V
+; v0 : Lcom/squareup/okhttp/internal/http/RawHeaders; , v1 : Ljava/lang/String; , v2 : Ljava/lang/String;
+.line 222
+	return-void	
+.end method
+
+.method public setRequestLine(Ljava/lang/String;)V
+.limit registers 2
+; this: v0 (Lcom/squareup/okhttp/internal/http/RawHeaders;)
+; parameter[0] : v1 (Ljava/lang/String;)
+.line 90
+	invoke-virtual	{v1},java/lang/String/trim	; trim()Ljava/lang/String;
+; v1 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+.line 91
+	iput-object	v1,v0,com/squareup/okhttp/internal/http/RawHeaders.requestLine Ljava/lang/String;
+; v1 : Ljava/lang/String; , v0 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+.line 92
+	return-void	
+.end method
+
+.method public setStatusLine(Ljava/lang/String;)V
+.throws Ljava/io/IOException;
+.limit registers 11
+; this: v9 (Lcom/squareup/okhttp/internal/http/RawHeaders;)
+; parameter[0] : v10 (Ljava/lang/String;)
+.catch java/lang/NumberFormatException from lbbc50 to lbbc5e using lbbc7e
+.var 1 is hasMessage Z from lbbb8e to lbbbfc
+.var 3 is responseCode I from lbbc60 to lbbc7e
+.var 0 is e Ljava/lang/NumberFormatException; from lbbc80 to lbbcb2
+	const/16	v8,32
+; v8 : single-length
+	const/16	v7,13
+; v7 : single-length
+	const/16	v6,9
+; v6 : single-length
+	const/16	v5,12
+; v5 : single-length
+.line 98
+	iget-object	v4,v9,com/squareup/okhttp/internal/http/RawHeaders.responseMessage Ljava/lang/String;
+; v4 : Ljava/lang/String; , v9 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+	if-eqz	v4,lbbb80
+; v4 : Ljava/lang/String;
+.line 99
+	new-instance	v4,java/lang/IllegalStateException
+; v4 : Ljava/lang/IllegalStateException;
+	const-string	v5,"statusLine is already set"
+; v5 : Ljava/lang/String;
+	invoke-direct	{v4,v5},java/lang/IllegalStateException/<init>	; <init>(Ljava/lang/String;)V
+; v4 : Ljava/lang/IllegalStateException; , v5 : Ljava/lang/String;
+	throw	v4
+; v4 : Ljava/lang/IllegalStateException;
+lbbb80:
+.line 103
+	invoke-virtual	{v10},java/lang/String/length	; length()I
+; v10 : Ljava/lang/String;
+	move-result	v4
+; v4 : single-length
+	if-le	v4,v7,lbbbfc
+; v4 : single-length , v7 : single-length
+	const/4	v1,1
+; v1 : single-length
+lbbb8e:
+.line 104
+	const-string	v4,"HTTP/1."
+; v4 : Ljava/lang/String;
+	invoke-virtual	{v10,v4},java/lang/String/startsWith	; startsWith(Ljava/lang/String;)Z
+; v10 : Ljava/lang/String; , v4 : Ljava/lang/String;
+	move-result	v4
+; v4 : single-length
+	if-eqz	v4,lbbbca
+; v4 : single-length
+	invoke-virtual	{v10},java/lang/String/length	; length()I
+; v10 : Ljava/lang/String;
+	move-result	v4
+; v4 : single-length
+	if-lt	v4,v5,lbbbca
+; v4 : single-length , v5 : single-length
+	const/16	v4,8
+; v4 : single-length
+	invoke-virtual	{v10,v4},java/lang/String/charAt	; charAt(I)C
+; v10 : Ljava/lang/String; , v4 : single-length
+	move-result	v4
+; v4 : single-length
+	if-ne	v4,v8,lbbbca
+; v4 : single-length , v8 : single-length
+	if-eqz	v1,lbbc00
+; v1 : single-length
+	invoke-virtual	{v10,v5},java/lang/String/charAt	; charAt(I)C
+; v10 : Ljava/lang/String; , v5 : single-length
+	move-result	v4
+; v4 : single-length
+	if-eq	v4,v8,lbbc00
+; v4 : single-length , v8 : single-length
+lbbbca:
+.line 108
+	new-instance	v4,java/net/ProtocolException
+; v4 : Ljava/net/ProtocolException;
+	new-instance	v5,java/lang/StringBuilder
+; v5 : Ljava/lang/StringBuilder;
+	invoke-direct	{v5},java/lang/StringBuilder/<init>	; <init>()V
+; v5 : Ljava/lang/StringBuilder;
+	const-string	v6,"Unexpected status line: "
+; v6 : Ljava/lang/String;
+	invoke-virtual	{v5,v6},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v5 : Ljava/lang/StringBuilder; , v6 : Ljava/lang/String;
+	move-result-object	v5
+; v5 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v5,v10},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v5 : Ljava/lang/StringBuilder; , v10 : Ljava/lang/String;
+	move-result-object	v5
+; v5 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v5},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v5 : Ljava/lang/StringBuilder;
+	move-result-object	v5
+; v5 : Ljava/lang/String;
+	invoke-direct	{v4,v5},java/net/ProtocolException/<init>	; <init>(Ljava/lang/String;)V
+; v4 : Ljava/net/ProtocolException; , v5 : Ljava/lang/String;
+	throw	v4
+; v4 : Ljava/net/ProtocolException;
+lbbbfc:
+.line 103
+	const/4	v1,0
+; v1 : single-length
+	goto	lbbb8e
+lbbc00:
+.line 110
+	const/4	v4,7
+; v4 : single-length
+	invoke-virtual	{v10,v4},java/lang/String/charAt	; charAt(I)C
+; v10 : Ljava/lang/String; , v4 : single-length
+	move-result	v4
+; v4 : single-length
+	add-int/lit8	v2,v4,208
+; v2 : single-length , v4 : single-length
+.line 111
+	if-ltz	v2,lbbc16
+; v2 : single-length
+	if-le	v2,v6,lbbc48
+; v2 : single-length , v6 : single-length
+lbbc16:
+.line 112
+	new-instance	v4,java/net/ProtocolException
+; v4 : Ljava/net/ProtocolException;
+	new-instance	v5,java/lang/StringBuilder
+; v5 : Ljava/lang/StringBuilder;
+	invoke-direct	{v5},java/lang/StringBuilder/<init>	; <init>()V
+; v5 : Ljava/lang/StringBuilder;
+	const-string	v6,"Unexpected status line: "
+; v6 : Ljava/lang/String;
+	invoke-virtual	{v5,v6},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v5 : Ljava/lang/StringBuilder; , v6 : Ljava/lang/String;
+	move-result-object	v5
+; v5 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v5,v10},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v5 : Ljava/lang/StringBuilder; , v10 : Ljava/lang/String;
+	move-result-object	v5
+; v5 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v5},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v5 : Ljava/lang/StringBuilder;
+	move-result-object	v5
+; v5 : Ljava/lang/String;
+	invoke-direct	{v4,v5},java/net/ProtocolException/<init>	; <init>(Ljava/lang/String;)V
+; v4 : Ljava/net/ProtocolException; , v5 : Ljava/lang/String;
+	throw	v4
+; v4 : Ljava/net/ProtocolException;
+lbbc48:
+.line 116
+	const/16	v4,9
+; v4 : single-length
+	const/16	v5,12
+; v5 : single-length
+lbbc50:
+	invoke-virtual	{v10,v4,v5},java/lang/String/substring	; substring(II)Ljava/lang/String;
+; v10 : Ljava/lang/String; , v4 : single-length , v5 : single-length
+	move-result-object	v4
+; v4 : Ljava/lang/String;
+	invoke-static	{v4},java/lang/Integer/parseInt	; parseInt(Ljava/lang/String;)I
+; v4 : Ljava/lang/String;
+lbbc5e:
+	move-result	v3
+; v3 : single-length
+.line 120
+	if-eqz	v1,lbbcb2
+; v1 : single-length
+	invoke-virtual	{v10,v7},java/lang/String/substring	; substring(I)Ljava/lang/String;
+; v10 : Ljava/lang/String; , v7 : single-length
+	move-result-object	v4
+; v4 : Ljava/lang/String;
+lbbc6c:
+	iput-object	v4,v9,com/squareup/okhttp/internal/http/RawHeaders.responseMessage Ljava/lang/String;
+; v4 : Ljava/lang/String; , v9 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+.line 121
+	iput	v3,v9,com/squareup/okhttp/internal/http/RawHeaders.responseCode I
+; v3 : single-length , v9 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+.line 122
+	iput-object	v10,v9,com/squareup/okhttp/internal/http/RawHeaders.statusLine Ljava/lang/String;
+; v10 : Ljava/lang/String; , v9 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+.line 123
+	iput	v2,v9,com/squareup/okhttp/internal/http/RawHeaders.httpMinorVersion I
+; v2 : single-length , v9 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+.line 124
+	return-void	
+lbbc7e:
+.line 117
+	move-exception	v0
+; v0 : java/lang/NumberFormatException
+.line 118
+	new-instance	v4,java/net/ProtocolException
+; v4 : Ljava/net/ProtocolException;
+	new-instance	v5,java/lang/StringBuilder
+; v5 : Ljava/lang/StringBuilder;
+	invoke-direct	{v5},java/lang/StringBuilder/<init>	; <init>()V
+; v5 : Ljava/lang/StringBuilder;
+	const-string	v6,"Unexpected status line: "
+; v6 : Ljava/lang/String;
+	invoke-virtual	{v5,v6},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v5 : Ljava/lang/StringBuilder; , v6 : Ljava/lang/String;
+	move-result-object	v5
+; v5 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v5,v10},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v5 : Ljava/lang/StringBuilder; , v10 : Ljava/lang/String;
+	move-result-object	v5
+; v5 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v5},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v5 : Ljava/lang/StringBuilder;
+	move-result-object	v5
+; v5 : Ljava/lang/String;
+	invoke-direct	{v4,v5},java/net/ProtocolException/<init>	; <init>(Ljava/lang/String;)V
+; v4 : Ljava/net/ProtocolException; , v5 : Ljava/lang/String;
+	throw	v4
+; v4 : Ljava/net/ProtocolException;
+lbbcb2:
+.line 120
+	const-string	v4,""
+; v4 : Ljava/lang/String;
+	goto	lbbc6c
+.end method
+
+.method public toBytes()[B
+.throws Ljava/io/UnsupportedEncodingException;
+.limit registers 6
+; this: v5 (Lcom/squareup/okhttp/internal/http/RawHeaders;)
+.line 294
+	new-instance	v1,java/lang/StringBuilder
+; v1 : Ljava/lang/StringBuilder;
+	const/16	v2,256
+; v2 : single-length
+	invoke-direct	{v1,v2},java/lang/StringBuilder/<init>	; <init>(I)V
+; v1 : Ljava/lang/StringBuilder; , v2 : single-length
+.line 295
+	iget-object	v2,v5,com/squareup/okhttp/internal/http/RawHeaders.requestLine Ljava/lang/String;
+; v2 : Ljava/lang/String; , v5 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	const-string	v3,"
+"
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+.line 296
+	const/4	v0,0
+; v0 : single-length
+lbbcfe:
+	iget-object	v2,v5,com/squareup/okhttp/internal/http/RawHeaders.namesAndValues Ljava/util/List;
+; v2 : Ljava/util/List; , v5 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+	invoke-interface	{v2},java/util/List/size	; size()I
+; v2 : Ljava/util/List;
+	move-result	v2
+; v2 : single-length
+	if-ge	v0,v2,lbbd5e
+; v0 : single-length , v2 : single-length
+.line 297
+	iget-object	v2,v5,com/squareup/okhttp/internal/http/RawHeaders.namesAndValues Ljava/util/List;
+; v2 : Ljava/util/List; , v5 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+	invoke-interface	{v2,v0},java/util/List/get	; get(I)Ljava/lang/Object;
+; v2 : Ljava/util/List; , v0 : single-length
+	move-result-object	v2
+; v2 : Ljava/lang/Object;
+	check-cast	v2,java/lang/String
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	const-string	v3,": "
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	move-result-object	v3
+; v3 : Ljava/lang/StringBuilder;
+	iget-object	v2,v5,com/squareup/okhttp/internal/http/RawHeaders.namesAndValues Ljava/util/List;
+; v2 : Ljava/util/List; , v5 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+	add-int/lit8	v4,v0,1
+; v4 : single-length , v0 : single-length
+	invoke-interface	{v2,v4},java/util/List/get	; get(I)Ljava/lang/Object;
+; v2 : Ljava/util/List; , v4 : single-length
+	move-result-object	v2
+; v2 : Ljava/lang/Object;
+	check-cast	v2,java/lang/String
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v3,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v3 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	const-string	v3,"
+"
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+.line 296
+	add-int/lit8	v0,v0,2
+; v0 : single-length , v0 : single-length
+	goto	lbbcfe
+lbbd5e:
+.line 302
+	const-string	v2,"
+"
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+.line 303
+	invoke-virtual	{v1},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v1 : Ljava/lang/StringBuilder;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	const-string	v3,"ISO-8859-1"
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/lang/String/getBytes	; getBytes(Ljava/lang/String;)[B
+; v2 : Ljava/lang/String; , v3 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : [B
+	return-object	v2
+; v2 : [B
+.end method
+
+.method public toMultimap(Z)Ljava/util/Map;
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "(Z)" , "Ljava/util/Map" , "<" , "Ljava/lang/String;" , "Ljava/util/List" , "<" , "Ljava/lang/String;" , ">;>;" }
+.end annotation
+.limit registers 11
+; this: v9 (Lcom/squareup/okhttp/internal/http/RawHeaders;)
+; parameter[0] : v10 (Z)
+.var 0 is allValues Ljava/util/List; from lbbde0 to lbbe10
+.var 1 is fieldName Ljava/lang/String; from lbbdc2 to lbbe10
+.var 3 is otherValues Ljava/util/List; from lbbdec to lbbe10
+.var 5 is value Ljava/lang/String; from lbbdd6 to lbbe10
+	const/4	v8,0
+; v8 : single-length
+.line 331
+	new-instance	v4,java/util/TreeMap
+; v4 : Ljava/util/TreeMap;
+	sget-object	v6,com/squareup/okhttp/internal/http/RawHeaders.FIELD_NAME_COMPARATOR Ljava/util/Comparator;
+; v6 : Ljava/util/Comparator;
+	invoke-direct	{v4,v6},java/util/TreeMap/<init>	; <init>(Ljava/util/Comparator;)V
+; v4 : Ljava/util/TreeMap; , v6 : Ljava/util/Comparator;
+.line 332
+	const/4	v2,0
+; v2 : single-length
+lbbda2:
+	iget-object	v6,v9,com/squareup/okhttp/internal/http/RawHeaders.namesAndValues Ljava/util/List;
+; v6 : Ljava/util/List; , v9 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+	invoke-interface	{v6},java/util/List/size	; size()I
+; v6 : Ljava/util/List;
+	move-result	v6
+; v6 : single-length
+	if-ge	v2,v6,lbbe10
+; v2 : single-length , v6 : single-length
+.line 333
+	iget-object	v6,v9,com/squareup/okhttp/internal/http/RawHeaders.namesAndValues Ljava/util/List;
+; v6 : Ljava/util/List; , v9 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+	invoke-interface	{v6,v2},java/util/List/get	; get(I)Ljava/lang/Object;
+; v6 : Ljava/util/List; , v2 : single-length
+	move-result-object	v1
+; v1 : Ljava/lang/Object;
+	check-cast	v1,java/lang/String
+; v1 : Ljava/lang/String;
+.line 334
+	iget-object	v6,v9,com/squareup/okhttp/internal/http/RawHeaders.namesAndValues Ljava/util/List;
+; v6 : Ljava/util/List; , v9 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+	add-int/lit8	v7,v2,1
+; v7 : single-length , v2 : single-length
+	invoke-interface	{v6,v7},java/util/List/get	; get(I)Ljava/lang/Object;
+; v6 : Ljava/util/List; , v7 : single-length
+	move-result-object	v5
+; v5 : Ljava/lang/Object;
+	check-cast	v5,java/lang/String
+; v5 : Ljava/lang/String;
+.line 336
+	new-instance	v0,java/util/ArrayList
+; v0 : Ljava/util/ArrayList;
+	invoke-direct	{v0},java/util/ArrayList/<init>	; <init>()V
+; v0 : Ljava/util/ArrayList;
+.line 337
+	invoke-interface	{v4,v1},java/util/Map/get	; get(Ljava/lang/Object;)Ljava/lang/Object;
+; v4 : Ljava/util/TreeMap; , v1 : Ljava/lang/String;
+	move-result-object	v3
+; v3 : Ljava/lang/Object;
+	check-cast	v3,java/util/List
+; v3 : Ljava/util/List;
+.line 338
+	if-eqz	v3,lbbdf6
+; v3 : Ljava/util/List;
+.line 339
+	invoke-interface	{v0,v3},java/util/List/addAll	; addAll(Ljava/util/Collection;)Z
+; v0 : Ljava/util/ArrayList; , v3 : Ljava/util/List;
+lbbdf6:
+.line 341
+	invoke-interface	{v0,v5},java/util/List/add	; add(Ljava/lang/Object;)Z
+; v0 : Ljava/util/ArrayList; , v5 : Ljava/lang/String;
+.line 342
+	invoke-static	{v0},java/util/Collections/unmodifiableList	; unmodifiableList(Ljava/util/List;)Ljava/util/List;
+; v0 : Ljava/util/ArrayList;
+	move-result-object	v6
+; v6 : Ljava/util/List;
+	invoke-interface	{v4,v1,v6},java/util/Map/put	; put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+; v4 : Ljava/util/TreeMap; , v1 : Ljava/lang/String; , v6 : Ljava/util/List;
+.line 332
+	add-int/lit8	v2,v2,2
+; v2 : single-length , v2 : single-length
+	goto	lbbda2
+lbbe10:
+.line 344
+	if-eqz	v10,lbbe40
+; v10 : single-length
+	iget-object	v6,v9,com/squareup/okhttp/internal/http/RawHeaders.statusLine Ljava/lang/String;
+; v6 : Ljava/lang/String; , v9 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+	if-eqz	v6,lbbe40
+; v6 : Ljava/lang/String;
+.line 345
+	iget-object	v6,v9,com/squareup/okhttp/internal/http/RawHeaders.statusLine Ljava/lang/String;
+; v6 : Ljava/lang/String; , v9 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+	invoke-static	{v6},java/util/Collections/singletonList	; singletonList(Ljava/lang/Object;)Ljava/util/List;
+; v6 : Ljava/lang/String;
+	move-result-object	v6
+; v6 : Ljava/util/List;
+	invoke-static	{v6},java/util/Collections/unmodifiableList	; unmodifiableList(Ljava/util/List;)Ljava/util/List;
+; v6 : Ljava/util/List;
+	move-result-object	v6
+; v6 : Ljava/util/List;
+	invoke-interface	{v4,v8,v6},java/util/Map/put	; put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+; v4 : Ljava/util/TreeMap; , v8 : single-length , v6 : Ljava/util/List;
+lbbe36:
+.line 349
+	invoke-static	{v4},java/util/Collections/unmodifiableMap	; unmodifiableMap(Ljava/util/Map;)Ljava/util/Map;
+; v4 : Ljava/util/TreeMap;
+	move-result-object	v6
+; v6 : Ljava/util/Map;
+	return-object	v6
+; v6 : Ljava/util/Map;
+lbbe40:
+.line 346
+	iget-object	v6,v9,com/squareup/okhttp/internal/http/RawHeaders.requestLine Ljava/lang/String;
+; v6 : Ljava/lang/String; , v9 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+	if-eqz	v6,lbbe36
+; v6 : Ljava/lang/String;
+.line 347
+	iget-object	v6,v9,com/squareup/okhttp/internal/http/RawHeaders.requestLine Ljava/lang/String;
+; v6 : Ljava/lang/String; , v9 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+	invoke-static	{v6},java/util/Collections/singletonList	; singletonList(Ljava/lang/Object;)Ljava/util/List;
+; v6 : Ljava/lang/String;
+	move-result-object	v6
+; v6 : Ljava/util/List;
+	invoke-static	{v6},java/util/Collections/unmodifiableList	; unmodifiableList(Ljava/util/List;)Ljava/util/List;
+; v6 : Ljava/util/List;
+	move-result-object	v6
+; v6 : Ljava/util/List;
+	invoke-interface	{v4,v8,v6},java/util/Map/put	; put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+; v4 : Ljava/util/TreeMap; , v8 : single-length , v6 : Ljava/util/List;
+	goto	lbbe36
+.end method
+
+.method public toNameValueBlock()Ljava/util/List;
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "()" , "Ljava/util/List" , "<" , "Ljava/lang/String;" , ">;" }
+.end annotation
+.limit registers 10
+; this: v9 (Lcom/squareup/okhttp/internal/http/RawHeaders;)
+.var 1 is j I from lbbf3c to lbbfac
+.var 2 is name Ljava/lang/String; from lbbeb6 to lbbfac
+.var 5 is value Ljava/lang/String; from lbbeca to lbbfac
+.line 381
+	new-instance	v3,java/util/HashSet
+; v3 : Ljava/util/HashSet;
+	invoke-direct	{v3},java/util/HashSet/<init>	; <init>()V
+; v3 : Ljava/util/HashSet;
+.line 382
+	new-instance	v4,java/util/ArrayList
+; v4 : Ljava/util/ArrayList;
+	invoke-direct	{v4},java/util/ArrayList/<init>	; <init>()V
+; v4 : Ljava/util/ArrayList;
+.line 383
+	const/4	v0,0
+; v0 : single-length
+lbbe8a:
+	iget-object	v6,v9,com/squareup/okhttp/internal/http/RawHeaders.namesAndValues Ljava/util/List;
+; v6 : Ljava/util/List; , v9 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+	invoke-interface	{v6},java/util/List/size	; size()I
+; v6 : Ljava/util/List;
+	move-result	v6
+; v6 : single-length
+	if-ge	v0,v6,lbbfac
+; v0 : single-length , v6 : single-length
+.line 384
+	iget-object	v6,v9,com/squareup/okhttp/internal/http/RawHeaders.namesAndValues Ljava/util/List;
+; v6 : Ljava/util/List; , v9 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+	invoke-interface	{v6,v0},java/util/List/get	; get(I)Ljava/lang/Object;
+; v6 : Ljava/util/List; , v0 : single-length
+	move-result-object	v6
+; v6 : Ljava/lang/Object;
+	check-cast	v6,java/lang/String
+; v6 : Ljava/lang/String;
+	sget-object	v7,java/util/Locale.US Ljava/util/Locale;
+; v7 : Ljava/util/Locale;
+	invoke-virtual	{v6,v7},java/lang/String/toLowerCase	; toLowerCase(Ljava/util/Locale;)Ljava/lang/String;
+; v6 : Ljava/lang/String; , v7 : Ljava/util/Locale;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+.line 385
+	iget-object	v6,v9,com/squareup/okhttp/internal/http/RawHeaders.namesAndValues Ljava/util/List;
+; v6 : Ljava/util/List; , v9 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+	add-int/lit8	v7,v0,1
+; v7 : single-length , v0 : single-length
+	invoke-interface	{v6,v7},java/util/List/get	; get(I)Ljava/lang/Object;
+; v6 : Ljava/util/List; , v7 : single-length
+	move-result-object	v5
+; v5 : Ljava/lang/Object;
+	check-cast	v5,java/lang/String
+; v5 : Ljava/lang/String;
+.line 388
+	const-string	v6,"connection"
+; v6 : Ljava/lang/String;
+	invoke-virtual	{v2,v6},java/lang/String/equals	; equals(Ljava/lang/Object;)Z
+; v2 : Ljava/lang/String; , v6 : Ljava/lang/String;
+	move-result	v6
+; v6 : single-length
+	if-nez	v6,lbbf1a
+; v6 : single-length
+	const-string	v6,"host"
+; v6 : Ljava/lang/String;
+	invoke-virtual	{v2,v6},java/lang/String/equals	; equals(Ljava/lang/Object;)Z
+; v2 : Ljava/lang/String; , v6 : Ljava/lang/String;
+	move-result	v6
+; v6 : single-length
+	if-nez	v6,lbbf1a
+; v6 : single-length
+	const-string	v6,"keep-alive"
+; v6 : Ljava/lang/String;
+	invoke-virtual	{v2,v6},java/lang/String/equals	; equals(Ljava/lang/Object;)Z
+; v2 : Ljava/lang/String; , v6 : Ljava/lang/String;
+	move-result	v6
+; v6 : single-length
+	if-nez	v6,lbbf1a
+; v6 : single-length
+	const-string	v6,"proxy-connection"
+; v6 : Ljava/lang/String;
+	invoke-virtual	{v2,v6},java/lang/String/equals	; equals(Ljava/lang/Object;)Z
+; v2 : Ljava/lang/String; , v6 : Ljava/lang/String;
+	move-result	v6
+; v6 : single-length
+	if-nez	v6,lbbf1a
+; v6 : single-length
+	const-string	v6,"transfer-encoding"
+; v6 : Ljava/lang/String;
+	invoke-virtual	{v2,v6},java/lang/String/equals	; equals(Ljava/lang/Object;)Z
+; v2 : Ljava/lang/String; , v6 : Ljava/lang/String;
+	move-result	v6
+; v6 : single-length
+	if-eqz	v6,lbbf20
+; v6 : single-length
+lbbf1a:
+.line 383
+	add-int/lit8	v0,v0,2
+; v0 : single-length , v0 : single-length
+	goto	lbbe8a
+lbbf20:
+.line 397
+	invoke-interface	{v3,v2},java/util/Set/add	; add(Ljava/lang/Object;)Z
+; v3 : Ljava/util/HashSet; , v2 : Ljava/lang/String;
+	move-result	v6
+; v6 : single-length
+	if-eqz	v6,lbbf3a
+; v6 : single-length
+.line 398
+	invoke-interface	{v4,v2},java/util/List/add	; add(Ljava/lang/Object;)Z
+; v4 : Ljava/util/ArrayList; , v2 : Ljava/lang/String;
+.line 399
+	invoke-interface	{v4,v5},java/util/List/add	; add(Ljava/lang/Object;)Z
+; v4 : Ljava/util/ArrayList; , v5 : Ljava/lang/String;
+	goto	lbbf1a
+lbbf3a:
+.line 404
+	const/4	v1,0
+; v1 : single-length
+lbbf3c:
+	invoke-interface	{v4},java/util/List/size	; size()I
+; v4 : Ljava/util/ArrayList;
+	move-result	v6
+; v6 : single-length
+	if-ge	v1,v6,lbbf1a
+; v1 : single-length , v6 : single-length
+.line 405
+	invoke-interface	{v4,v1},java/util/List/get	; get(I)Ljava/lang/Object;
+; v4 : Ljava/util/ArrayList; , v1 : single-length
+	move-result-object	v6
+; v6 : Ljava/lang/Object;
+	invoke-virtual	{v2,v6},java/lang/String/equals	; equals(Ljava/lang/Object;)Z
+; v2 : Ljava/lang/String; , v6 : Ljava/lang/Object;
+	move-result	v6
+; v6 : single-length
+	if-eqz	v6,lbbfa6
+; v6 : single-length
+.line 406
+	add-int/lit8	v7,v1,1
+; v7 : single-length , v1 : single-length
+	new-instance	v8,java/lang/StringBuilder
+; v8 : Ljava/lang/StringBuilder;
+	invoke-direct	{v8},java/lang/StringBuilder/<init>	; <init>()V
+; v8 : Ljava/lang/StringBuilder;
+	add-int/lit8	v6,v1,1
+; v6 : single-length , v1 : single-length
+	invoke-interface	{v4,v6},java/util/List/get	; get(I)Ljava/lang/Object;
+; v4 : Ljava/util/ArrayList; , v6 : single-length
+	move-result-object	v6
+; v6 : Ljava/lang/Object;
+	check-cast	v6,java/lang/String
+; v6 : Ljava/lang/String;
+	invoke-virtual	{v8,v6},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v8 : Ljava/lang/StringBuilder; , v6 : Ljava/lang/String;
+	move-result-object	v6
+; v6 : Ljava/lang/StringBuilder;
+	const-string	v8,"À"
+; v8 : Ljava/lang/String;
+	invoke-virtual	{v6,v8},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v6 : Ljava/lang/StringBuilder; , v8 : Ljava/lang/String;
+	move-result-object	v6
+; v6 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v6,v5},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v6 : Ljava/lang/StringBuilder; , v5 : Ljava/lang/String;
+	move-result-object	v6
+; v6 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v6},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v6 : Ljava/lang/StringBuilder;
+	move-result-object	v6
+; v6 : Ljava/lang/String;
+	invoke-interface	{v4,v7,v6},java/util/List/set	; set(ILjava/lang/Object;)Ljava/lang/Object;
+; v4 : Ljava/util/ArrayList; , v7 : single-length , v6 : Ljava/lang/String;
+	goto	lbbf1a
+lbbfa6:
+.line 404
+	add-int/lit8	v1,v1,2
+; v1 : single-length , v1 : single-length
+	goto	lbbf3c
+lbbfac:
+.line 411
+	return-object	v4
+; v4 : Ljava/util/ArrayList;
+.end method
+
+.method public values(Ljava/lang/String;)Ljava/util/List;
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "(" , "Ljava/lang/String;" , ")" , "Ljava/util/List" , "<" , "Ljava/lang/String;" , ">;" }
+.end annotation
+.limit registers 5
+; this: v3 (Lcom/squareup/okhttp/internal/http/RawHeaders;)
+; parameter[0] : v4 (Ljava/lang/String;)
+.var 1 is result Ljava/util/List; from lbbfc2 to lbbfec
+.line 268
+	const/4	v1,0
+; v1 : single-length
+.line 269
+	const/4	v0,0
+; v0 : single-length
+lbbfc4:
+	invoke-virtual	{v3},com/squareup/okhttp/internal/http/RawHeaders/length	; length()I
+; v3 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+	move-result	v2
+; v2 : single-length
+	if-ge	v0,v2,lbc008
+; v0 : single-length , v2 : single-length
+.line 270
+	invoke-virtual	{v3,v0},com/squareup/okhttp/internal/http/RawHeaders/getFieldName	; getFieldName(I)Ljava/lang/String;
+; v3 : Lcom/squareup/okhttp/internal/http/RawHeaders; , v0 : single-length
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v4,v2},java/lang/String/equalsIgnoreCase	; equalsIgnoreCase(Ljava/lang/String;)Z
+; v4 : Ljava/lang/String; , v2 : Ljava/lang/String;
+	move-result	v2
+; v2 : single-length
+	if-eqz	v2,lbc002
+; v2 : single-length
+.line 271
+	if-nez	v1,lbbff4
+; v1 : Ljava/util/ArrayList;
+	new-instance	v1,java/util/ArrayList
+; v1 : Ljava/util/ArrayList;
+lbbfec:
+	const/4	v2,2
+; v2 : single-length
+	invoke-direct	{v1,v2},java/util/ArrayList/<init>	; <init>(I)V
+; v1 : Ljava/util/ArrayList; , v2 : single-length
+lbbff4:
+.line 272
+	invoke-virtual	{v3,v0},com/squareup/okhttp/internal/http/RawHeaders/getValue	; getValue(I)Ljava/lang/String;
+; v3 : Lcom/squareup/okhttp/internal/http/RawHeaders; , v0 : single-length
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-interface	{v1,v2},java/util/List/add	; add(Ljava/lang/Object;)Z
+; v1 : Ljava/util/ArrayList; , v2 : Ljava/lang/String;
+lbc002:
+.line 269
+	add-int/lit8	v0,v0,1
+; v0 : single-length , v0 : single-length
+	goto	lbbfc4
+lbc008:
+.line 275
+	if-eqz	v1,lbc016
+; v1 : single-length
+	invoke-static	{v1},java/util/Collections/unmodifiableList	; unmodifiableList(Ljava/util/List;)Ljava/util/List;
+; v1 : single-length
+	move-result-object	v2
+; v2 : Ljava/util/List;
+lbc014:
+	return-object	v2
+; v2 : Ljava/util/List;
+lbc016:
+	invoke-static	{},java/util/Collections/emptyList	; emptyList()Ljava/util/List;
+; 
+	nop	
+	move-result-object	v2
+; v2 : Ljava/util/List;
+	goto	lbc014
+.end method
+
+

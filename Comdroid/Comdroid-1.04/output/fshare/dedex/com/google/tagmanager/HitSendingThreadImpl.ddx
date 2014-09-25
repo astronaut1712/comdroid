@@ -1,0 +1,415 @@
+.class com/google/tagmanager/HitSendingThreadImpl
+.super java/lang/Thread
+.source HitSendingThreadImpl.java
+.implements com/google/tagmanager/HitSendingThread
+
+.field private static sInstance Lcom/google/tagmanager/HitSendingThreadImpl;
+.field private volatile mClosed Z
+.field private final mContext Landroid/content/Context;
+.field private volatile mDisabled Z
+.field private volatile mUrlStore Lcom/google/tagmanager/HitStore;
+.field private final queue Ljava/util/concurrent/LinkedBlockingQueue;
+  .annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "Ljava/util/concurrent/LinkedBlockingQueue" , "<" , "Ljava/lang/Runnable;" , ">;" }
+  .end annotation
+.end field
+
+.method private <init>(Landroid/content/Context;)V
+.annotation buildVisibility Lcom/google/android/gms/common/util/VisibleForTesting;
+.end annotation
+.limit registers 4
+; this: v2 (Lcom/google/tagmanager/HitSendingThreadImpl;)
+; parameter[0] : v3 (Landroid/content/Context;)
+	const/4	v1,0
+; v1 : single-length
+.line 37
+	const-string	v0,"GAThread"
+; v0 : Ljava/lang/String;
+	invoke-direct	{v2,v0},java/lang/Thread/<init>	; <init>(Ljava/lang/String;)V
+; v2 : Lcom/google/tagmanager/HitSendingThreadImpl; , v0 : Ljava/lang/String;
+.line 18
+	new-instance	v0,java/util/concurrent/LinkedBlockingQueue
+; v0 : Ljava/util/concurrent/LinkedBlockingQueue;
+	invoke-direct	{v0},java/util/concurrent/LinkedBlockingQueue/<init>	; <init>()V
+; v0 : Ljava/util/concurrent/LinkedBlockingQueue;
+	iput-object	v0,v2,com/google/tagmanager/HitSendingThreadImpl.queue Ljava/util/concurrent/LinkedBlockingQueue;
+; v0 : Ljava/util/concurrent/LinkedBlockingQueue; , v2 : Lcom/google/tagmanager/HitSendingThreadImpl;
+.line 21
+	iput-boolean	v1,v2,com/google/tagmanager/HitSendingThreadImpl.mDisabled Z
+; v1 : single-length , v2 : Lcom/google/tagmanager/HitSendingThreadImpl;
+.line 22
+	iput-boolean	v1,v2,com/google/tagmanager/HitSendingThreadImpl.mClosed Z
+; v1 : single-length , v2 : Lcom/google/tagmanager/HitSendingThreadImpl;
+.line 38
+	if-eqz	v3,le9462
+; v3 : Landroid/content/Context;
+.line 39
+	invoke-virtual	{v3},android/content/Context/getApplicationContext	; getApplicationContext()Landroid/content/Context;
+; v3 : Landroid/content/Context;
+	move-result-object	v0
+; v0 : Landroid/content/Context;
+	iput-object	v0,v2,com/google/tagmanager/HitSendingThreadImpl.mContext Landroid/content/Context;
+; v0 : Landroid/content/Context; , v2 : Lcom/google/tagmanager/HitSendingThreadImpl;
+le945a:
+.line 43
+	invoke-virtual	{v2},com/google/tagmanager/HitSendingThreadImpl/start	; start()V
+; v2 : Lcom/google/tagmanager/HitSendingThreadImpl;
+.line 44
+	return-void	
+le9462:
+.line 41
+	iput-object	v3,v2,com/google/tagmanager/HitSendingThreadImpl.mContext Landroid/content/Context;
+; v3 : Landroid/content/Context; , v2 : Lcom/google/tagmanager/HitSendingThreadImpl;
+	goto	le945a
+.end method
+
+.method <init>(Landroid/content/Context;Lcom/google/tagmanager/HitStore;)V
+.annotation buildVisibility Lcom/google/android/gms/common/util/VisibleForTesting;
+.end annotation
+.limit registers 5
+; this: v2 (Lcom/google/tagmanager/HitSendingThreadImpl;)
+; parameter[0] : v3 (Landroid/content/Context;)
+; parameter[1] : v4 (Lcom/google/tagmanager/HitStore;)
+	const/4	v1,0
+; v1 : single-length
+.line 48
+	const-string	v0,"GAThread"
+; v0 : Ljava/lang/String;
+	invoke-direct	{v2,v0},java/lang/Thread/<init>	; <init>(Ljava/lang/String;)V
+; v2 : Lcom/google/tagmanager/HitSendingThreadImpl; , v0 : Ljava/lang/String;
+.line 18
+	new-instance	v0,java/util/concurrent/LinkedBlockingQueue
+; v0 : Ljava/util/concurrent/LinkedBlockingQueue;
+	invoke-direct	{v0},java/util/concurrent/LinkedBlockingQueue/<init>	; <init>()V
+; v0 : Ljava/util/concurrent/LinkedBlockingQueue;
+	iput-object	v0,v2,com/google/tagmanager/HitSendingThreadImpl.queue Ljava/util/concurrent/LinkedBlockingQueue;
+; v0 : Ljava/util/concurrent/LinkedBlockingQueue; , v2 : Lcom/google/tagmanager/HitSendingThreadImpl;
+.line 21
+	iput-boolean	v1,v2,com/google/tagmanager/HitSendingThreadImpl.mDisabled Z
+; v1 : single-length , v2 : Lcom/google/tagmanager/HitSendingThreadImpl;
+.line 22
+	iput-boolean	v1,v2,com/google/tagmanager/HitSendingThreadImpl.mClosed Z
+; v1 : single-length , v2 : Lcom/google/tagmanager/HitSendingThreadImpl;
+.line 49
+	if-eqz	v3,le94b6
+; v3 : Landroid/content/Context;
+.line 50
+	invoke-virtual	{v3},android/content/Context/getApplicationContext	; getApplicationContext()Landroid/content/Context;
+; v3 : Landroid/content/Context;
+	move-result-object	v0
+; v0 : Landroid/content/Context;
+	iput-object	v0,v2,com/google/tagmanager/HitSendingThreadImpl.mContext Landroid/content/Context;
+; v0 : Landroid/content/Context; , v2 : Lcom/google/tagmanager/HitSendingThreadImpl;
+le94aa:
+.line 54
+	iput-object	v4,v2,com/google/tagmanager/HitSendingThreadImpl.mUrlStore Lcom/google/tagmanager/HitStore;
+; v4 : Lcom/google/tagmanager/HitStore; , v2 : Lcom/google/tagmanager/HitSendingThreadImpl;
+.line 55
+	invoke-virtual	{v2},com/google/tagmanager/HitSendingThreadImpl/start	; start()V
+; v2 : Lcom/google/tagmanager/HitSendingThreadImpl;
+.line 56
+	return-void	
+le94b6:
+.line 52
+	iput-object	v3,v2,com/google/tagmanager/HitSendingThreadImpl.mContext Landroid/content/Context;
+; v3 : Landroid/content/Context; , v2 : Lcom/google/tagmanager/HitSendingThreadImpl;
+	goto	le94aa
+.end method
+
+.method static access$000(Lcom/google/tagmanager/HitSendingThreadImpl;)Lcom/google/tagmanager/HitStore;
+.limit registers 2
+; parameter[0] : v1 (Lcom/google/tagmanager/HitSendingThreadImpl;)
+.line 17
+	iget-object	v0,v1,com/google/tagmanager/HitSendingThreadImpl.mUrlStore Lcom/google/tagmanager/HitStore;
+; v0 : Lcom/google/tagmanager/HitStore; , v1 : Lcom/google/tagmanager/HitSendingThreadImpl;
+	return-object	v0
+; v0 : Lcom/google/tagmanager/HitStore;
+.end method
+
+.method static access$002(Lcom/google/tagmanager/HitSendingThreadImpl;Lcom/google/tagmanager/HitStore;)Lcom/google/tagmanager/HitStore;
+.limit registers 2
+; parameter[0] : v0 (Lcom/google/tagmanager/HitSendingThreadImpl;)
+; parameter[1] : v1 (Lcom/google/tagmanager/HitStore;)
+.line 17
+	iput-object	v1,v0,com/google/tagmanager/HitSendingThreadImpl.mUrlStore Lcom/google/tagmanager/HitStore;
+; v1 : Lcom/google/tagmanager/HitStore; , v0 : Lcom/google/tagmanager/HitSendingThreadImpl;
+	return-object	v1
+; v1 : Lcom/google/tagmanager/HitStore;
+.end method
+
+.method static access$100(Lcom/google/tagmanager/HitSendingThreadImpl;)Landroid/content/Context;
+.limit registers 2
+; parameter[0] : v1 (Lcom/google/tagmanager/HitSendingThreadImpl;)
+.line 17
+	iget-object	v0,v1,com/google/tagmanager/HitSendingThreadImpl.mContext Landroid/content/Context;
+; v0 : Landroid/content/Context; , v1 : Lcom/google/tagmanager/HitSendingThreadImpl;
+	return-object	v0
+; v0 : Landroid/content/Context;
+.end method
+
+.method static getInstance(Landroid/content/Context;)Lcom/google/tagmanager/HitSendingThreadImpl;
+.limit registers 2
+; parameter[0] : v1 (Landroid/content/Context;)
+.line 29
+	sget-object	v0,com/google/tagmanager/HitSendingThreadImpl.sInstance Lcom/google/tagmanager/HitSendingThreadImpl;
+; v0 : Lcom/google/tagmanager/HitSendingThreadImpl;
+	if-nez	v0,le952a
+; v0 : Lcom/google/tagmanager/HitSendingThreadImpl;
+.line 30
+	new-instance	v0,com/google/tagmanager/HitSendingThreadImpl
+; v0 : Lcom/google/tagmanager/HitSendingThreadImpl;
+	invoke-direct	{v0,v1},com/google/tagmanager/HitSendingThreadImpl/<init>	; <init>(Landroid/content/Context;)V
+; v0 : Lcom/google/tagmanager/HitSendingThreadImpl; , v1 : Landroid/content/Context;
+	sput-object	v0,com/google/tagmanager/HitSendingThreadImpl.sInstance Lcom/google/tagmanager/HitSendingThreadImpl;
+; v0 : Lcom/google/tagmanager/HitSendingThreadImpl;
+le952a:
+.line 32
+	sget-object	v0,com/google/tagmanager/HitSendingThreadImpl.sInstance Lcom/google/tagmanager/HitSendingThreadImpl;
+; v0 : Lcom/google/tagmanager/HitSendingThreadImpl;
+	return-object	v0
+; v0 : Lcom/google/tagmanager/HitSendingThreadImpl;
+.end method
+
+.method private printStackTrace(Ljava/lang/Throwable;)Ljava/lang/String;
+.limit registers 6
+; this: v4 (Lcom/google/tagmanager/HitSendingThreadImpl;)
+; parameter[0] : v5 (Ljava/lang/Throwable;)
+.line 96
+	new-instance	v0,java/io/ByteArrayOutputStream
+; v0 : Ljava/io/ByteArrayOutputStream;
+	invoke-direct	{v0},java/io/ByteArrayOutputStream/<init>	; <init>()V
+; v0 : Ljava/io/ByteArrayOutputStream;
+.line 97
+	new-instance	v1,java/io/PrintStream
+; v1 : Ljava/io/PrintStream;
+	invoke-direct	{v1,v0},java/io/PrintStream/<init>	; <init>(Ljava/io/OutputStream;)V
+; v1 : Ljava/io/PrintStream; , v0 : Ljava/io/ByteArrayOutputStream;
+.line 98
+	invoke-virtual	{v5,v1},java/lang/Throwable/printStackTrace	; printStackTrace(Ljava/io/PrintStream;)V
+; v5 : Ljava/lang/Throwable; , v1 : Ljava/io/PrintStream;
+.line 99
+	invoke-virtual	{v1},java/io/PrintStream/flush	; flush()V
+; v1 : Ljava/io/PrintStream;
+.line 100
+	new-instance	v2,java/lang/String
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v0},java/io/ByteArrayOutputStream/toByteArray	; toByteArray()[B
+; v0 : Ljava/io/ByteArrayOutputStream;
+	move-result-object	v3
+; v3 : [B
+	invoke-direct	{v2,v3},java/lang/String/<init>	; <init>([B)V
+; v2 : Ljava/lang/String; , v3 : [B
+	return-object	v2
+; v2 : Ljava/lang/String;
+.end method
+
+.method close()V
+.annotation buildVisibility Lcom/google/android/gms/common/util/VisibleForTesting;
+.end annotation
+.limit registers 2
+; this: v1 (Lcom/google/tagmanager/HitSendingThreadImpl;)
+.line 130
+	const/4	v0,1
+; v0 : single-length
+	iput-boolean	v0,v1,com/google/tagmanager/HitSendingThreadImpl.mClosed Z
+; v0 : single-length , v1 : Lcom/google/tagmanager/HitSendingThreadImpl;
+.line 131
+	invoke-virtual	{v1},com/google/tagmanager/HitSendingThreadImpl/interrupt	; interrupt()V
+; v1 : Lcom/google/tagmanager/HitSendingThreadImpl;
+.line 132
+	return-void	
+.end method
+
+.method getQueueSize()I
+.annotation buildVisibility Lcom/google/android/gms/common/util/VisibleForTesting;
+.end annotation
+.limit registers 2
+; this: v1 (Lcom/google/tagmanager/HitSendingThreadImpl;)
+.line 92
+	iget-object	v0,v1,com/google/tagmanager/HitSendingThreadImpl.queue Ljava/util/concurrent/LinkedBlockingQueue;
+; v0 : Ljava/util/concurrent/LinkedBlockingQueue; , v1 : Lcom/google/tagmanager/HitSendingThreadImpl;
+	invoke-virtual	{v0},java/util/concurrent/LinkedBlockingQueue/size	; size()I
+; v0 : Ljava/util/concurrent/LinkedBlockingQueue;
+	move-result	v0
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method getStore()Lcom/google/tagmanager/HitStore;
+.annotation buildVisibility Lcom/google/android/gms/common/util/VisibleForTesting;
+.end annotation
+.limit registers 2
+; this: v1 (Lcom/google/tagmanager/HitSendingThreadImpl;)
+.line 60
+	iget-object	v0,v1,com/google/tagmanager/HitSendingThreadImpl.mUrlStore Lcom/google/tagmanager/HitStore;
+; v0 : Lcom/google/tagmanager/HitStore; , v1 : Lcom/google/tagmanager/HitSendingThreadImpl;
+	return-object	v0
+; v0 : Lcom/google/tagmanager/HitStore;
+.end method
+
+.method isDisabled()Z
+.annotation buildVisibility Lcom/google/android/gms/common/util/VisibleForTesting;
+.end annotation
+.limit registers 2
+; this: v1 (Lcom/google/tagmanager/HitSendingThreadImpl;)
+.line 136
+	iget-boolean	v0,v1,com/google/tagmanager/HitSendingThreadImpl.mDisabled Z
+; v0 : single-length , v1 : Lcom/google/tagmanager/HitSendingThreadImpl;
+	return	v0
+; v0 : single-length
+.end method
+
+.method public queueToThread(Ljava/lang/Runnable;)V
+.limit registers 3
+; this: v1 (Lcom/google/tagmanager/HitSendingThreadImpl;)
+; parameter[0] : v2 (Ljava/lang/Runnable;)
+.line 87
+	iget-object	v0,v1,com/google/tagmanager/HitSendingThreadImpl.queue Ljava/util/concurrent/LinkedBlockingQueue;
+; v0 : Ljava/util/concurrent/LinkedBlockingQueue; , v1 : Lcom/google/tagmanager/HitSendingThreadImpl;
+	invoke-virtual	{v0,v2},java/util/concurrent/LinkedBlockingQueue/add	; add(Ljava/lang/Object;)Z
+; v0 : Ljava/util/concurrent/LinkedBlockingQueue; , v2 : Ljava/lang/Runnable;
+.line 88
+	return-void	
+.end method
+
+.method public run()V
+.limit registers 6
+; this: v5 (Lcom/google/tagmanager/HitSendingThreadImpl;)
+.catch java/lang/Throwable from le963a to le9648 using le964a
+.catch java/lang/InterruptedException from le9618 to le9636 using le9638
+.catch java/lang/Throwable from le9618 to le9636 using le964a
+.var 1 is r Ljava/lang/Runnable; from le9628 to le9638
+.var 0 is e Ljava/lang/InterruptedException; from le963a to le964a
+.var 2 is t Ljava/lang/Throwable; from le964c to le9692
+le9610:
+.line 105
+	iget-boolean	v3,v5,com/google/tagmanager/HitSendingThreadImpl.mClosed Z
+; v3 : single-length , v5 : Lcom/google/tagmanager/HitSendingThreadImpl;
+	if-nez	v3,le9692
+; v3 : single-length
+le9618:
+.line 111
+	iget-object	v3,v5,com/google/tagmanager/HitSendingThreadImpl.queue Ljava/util/concurrent/LinkedBlockingQueue;
+; v3 : Ljava/util/concurrent/LinkedBlockingQueue; , v5 : Lcom/google/tagmanager/HitSendingThreadImpl;
+	invoke-virtual	{v3},java/util/concurrent/LinkedBlockingQueue/take	; take()Ljava/lang/Object;
+; v3 : Ljava/util/concurrent/LinkedBlockingQueue;
+	move-result-object	v1
+; v1 : Ljava/lang/Object;
+	check-cast	v1,java/lang/Runnable
+; v1 : Ljava/lang/Runnable;
+.line 112
+	iget-boolean	v3,v5,com/google/tagmanager/HitSendingThreadImpl.mDisabled Z
+; v3 : single-length , v5 : Lcom/google/tagmanager/HitSendingThreadImpl;
+	if-nez	v3,le9610
+; v3 : single-length
+.line 113
+	invoke-interface	{v1},java/lang/Runnable/run	; run()V
+; v1 : Ljava/lang/Runnable;
+le9636:
+	goto	le9610
+le9638:
+.line 115
+	move-exception	v0
+; v0 : java/lang/InterruptedException
+le963a:
+.line 116
+	invoke-virtual	{v0},java/lang/InterruptedException/toString	; toString()Ljava/lang/String;
+; v0 : java/lang/InterruptedException
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-static	{v3},com/google/tagmanager/Log/i	; i(Ljava/lang/String;)V
+; v3 : Ljava/lang/String;
+le9648:
+	goto	le9610
+le964a:
+.line 118
+	move-exception	v2
+; v2 : java/lang/Throwable
+.line 119
+	new-instance	v3,java/lang/StringBuilder
+; v3 : Ljava/lang/StringBuilder;
+	invoke-direct	{v3},java/lang/StringBuilder/<init>	; <init>()V
+; v3 : Ljava/lang/StringBuilder;
+	const-string	v4,"Error on GAThread: "
+; v4 : Ljava/lang/String;
+	invoke-virtual	{v3,v4},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v3 : Ljava/lang/StringBuilder; , v4 : Ljava/lang/String;
+	move-result-object	v3
+; v3 : Ljava/lang/StringBuilder;
+	invoke-direct	{v5,v2},com/google/tagmanager/HitSendingThreadImpl/printStackTrace	; printStackTrace(Ljava/lang/Throwable;)Ljava/lang/String;
+; v5 : Lcom/google/tagmanager/HitSendingThreadImpl; , v2 : java/lang/Throwable
+	move-result-object	v4
+; v4 : Ljava/lang/String;
+	invoke-virtual	{v3,v4},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v3 : Ljava/lang/StringBuilder; , v4 : Ljava/lang/String;
+	move-result-object	v3
+; v3 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v3},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v3 : Ljava/lang/StringBuilder;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-static	{v3},com/google/tagmanager/Log/e	; e(Ljava/lang/String;)V
+; v3 : Ljava/lang/String;
+.line 122
+	const-string	v3,"Google Analytics is shutting down."
+; v3 : Ljava/lang/String;
+	invoke-static	{v3},com/google/tagmanager/Log/e	; e(Ljava/lang/String;)V
+; v3 : Ljava/lang/String;
+.line 123
+	const/4	v3,1
+; v3 : single-length
+	iput-boolean	v3,v5,com/google/tagmanager/HitSendingThreadImpl.mDisabled Z
+; v3 : single-length , v5 : Lcom/google/tagmanager/HitSendingThreadImpl;
+	goto	le9610
+le9692:
+.line 126
+	return-void	
+.end method
+
+.method public sendHit(Ljava/lang/String;)V
+.annotation buildVisibility Lcom/google/android/gms/common/util/VisibleForTesting;
+.end annotation
+.limit registers 4
+; this: v2 (Lcom/google/tagmanager/HitSendingThreadImpl;)
+; parameter[0] : v3 (Ljava/lang/String;)
+.line 65
+	invoke-static	{},java/lang/System/currentTimeMillis	; currentTimeMillis()J
+; 
+	nop	
+	move-result-wide	v0
+; v0 : double-length
+	invoke-virtual	{v2,v3,v0,v1},com/google/tagmanager/HitSendingThreadImpl/sendHit	; sendHit(Ljava/lang/String;J)V
+; v2 : Lcom/google/tagmanager/HitSendingThreadImpl; , v3 : Ljava/lang/String; , v0 : double-length
+.line 66
+	return-void	
+.end method
+
+.method sendHit(Ljava/lang/String;J)V
+.annotation buildVisibility Lcom/google/android/gms/common/util/VisibleForTesting;
+.end annotation
+.limit registers 10
+; this: v6 (Lcom/google/tagmanager/HitSendingThreadImpl;)
+; parameter[0] : v7 (Ljava/lang/String;)
+; parameter[1] : v8 (J)
+.line 70
+	move-object	v2,v6
+; v2 : Lcom/google/tagmanager/HitSendingThreadImpl; , v6 : Lcom/google/tagmanager/HitSendingThreadImpl;
+.line 71
+	new-instance	v0,com/google/tagmanager/HitSendingThreadImpl$1
+; v0 : Lcom/google/tagmanager/HitSendingThreadImpl$1;
+	move-object	v1,v6
+; v1 : Lcom/google/tagmanager/HitSendingThreadImpl; , v6 : Lcom/google/tagmanager/HitSendingThreadImpl;
+	move-wide	v3,v8
+; v3 : double-length , v8 : double-length
+	move-object	v5,v7
+; v5 : Ljava/lang/String; , v7 : Ljava/lang/String;
+	invoke-direct/range	{v0..v5},com/google/tagmanager/HitSendingThreadImpl$1/<init>;	<init>(Lcom/google/tagmanager/HitSendingThreadImpl;Lcom/google/tagmanager/HitSendingThread;JLjava/lang/String;)V
+; v0 : Lcom/google/tagmanager/HitSendingThreadImpl$1; , v1 : Lcom/google/tagmanager/HitSendingThreadImpl; , v2 : Lcom/google/tagmanager/HitSendingThreadImpl; , v3 : double-length , v5 : Ljava/lang/String;
+	invoke-virtual	{v6,v0},com/google/tagmanager/HitSendingThreadImpl/queueToThread	; queueToThread(Ljava/lang/Runnable;)V
+; v6 : Lcom/google/tagmanager/HitSendingThreadImpl; , v0 : Lcom/google/tagmanager/HitSendingThreadImpl$1;
+.line 83
+	return-void	
+.end method
+
+

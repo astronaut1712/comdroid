@@ -1,0 +1,86 @@
+.class public abstract com/google/tagmanager/protobuf/nano/ExtendableMessageNano
+.super com/google/tagmanager/protobuf/nano/MessageNano
+.source ExtendableMessageNano.java
+
+.field protected unknownFieldData Ljava/util/List;
+  .annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "Ljava/util/List" , "<" , "Lcom/google/tagmanager/protobuf/nano/UnknownFieldData;" , ">;" }
+  .end annotation
+.end field
+
+.method public <init>()V
+.limit registers 1
+; this: v0 (Lcom/google/tagmanager/protobuf/nano/ExtendableMessageNano;)
+.line 40
+	invoke-direct	{v0},com/google/tagmanager/protobuf/nano/MessageNano/<init>	; <init>()V
+; v0 : Lcom/google/tagmanager/protobuf/nano/ExtendableMessageNano;
+	return-void	
+.end method
+
+.method public getExtension(Lcom/google/tagmanager/protobuf/nano/Extension;)Ljava/lang/Object;
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "<T:" , "Ljava/lang/Object;" , ">(" , "Lcom/google/tagmanager/protobuf/nano/Extension" , "<TT;>;)TT;" }
+.end annotation
+.limit registers 3
+; this: v1 (Lcom/google/tagmanager/protobuf/nano/ExtendableMessageNano;)
+; parameter[0] : v2 (Lcom/google/tagmanager/protobuf/nano/Extension;)
+.line 59
+	iget-object	v0,v1,com/google/tagmanager/protobuf/nano/ExtendableMessageNano.unknownFieldData Ljava/util/List;
+; v0 : Ljava/util/List; , v1 : Lcom/google/tagmanager/protobuf/nano/ExtendableMessageNano;
+	invoke-static	{v2,v0},com/google/tagmanager/protobuf/nano/WireFormatNano/getExtension	; getExtension(Lcom/google/tagmanager/protobuf/nano/Extension;Ljava/util/List;)Ljava/lang/Object;
+; v2 : Lcom/google/tagmanager/protobuf/nano/Extension; , v0 : Ljava/util/List;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	return-object	v0
+; v0 : Ljava/lang/Object;
+.end method
+
+.method public getSerializedSize()I
+.limit registers 3
+; this: v2 (Lcom/google/tagmanager/protobuf/nano/ExtendableMessageNano;)
+.line 50
+	iget-object	v1,v2,com/google/tagmanager/protobuf/nano/ExtendableMessageNano.unknownFieldData Ljava/util/List;
+; v1 : Ljava/util/List; , v2 : Lcom/google/tagmanager/protobuf/nano/ExtendableMessageNano;
+	invoke-static	{v1},com/google/tagmanager/protobuf/nano/WireFormatNano/computeWireSize	; computeWireSize(Ljava/util/List;)I
+; v1 : Ljava/util/List;
+	move-result	v0
+; v0 : single-length
+.line 51
+	iput	v0,v2,com/google/tagmanager/protobuf/nano/ExtendableMessageNano.cachedSize I
+; v0 : single-length , v2 : Lcom/google/tagmanager/protobuf/nano/ExtendableMessageNano;
+.line 52
+	return	v0
+; v0 : single-length
+.end method
+
+.method public setExtension(Lcom/google/tagmanager/protobuf/nano/Extension;Ljava/lang/Object;)V
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "<T:" , "Ljava/lang/Object;" , ">(" , "Lcom/google/tagmanager/protobuf/nano/Extension" , "<TT;>;TT;)V" }
+.end annotation
+.limit registers 4
+; this: v1 (Lcom/google/tagmanager/protobuf/nano/ExtendableMessageNano;)
+; parameter[0] : v2 (Lcom/google/tagmanager/protobuf/nano/Extension;)
+; parameter[1] : v3 (Ljava/lang/Object;)
+.line 66
+	iget-object	v0,v1,com/google/tagmanager/protobuf/nano/ExtendableMessageNano.unknownFieldData Ljava/util/List;
+; v0 : Ljava/util/List; , v1 : Lcom/google/tagmanager/protobuf/nano/ExtendableMessageNano;
+	if-nez	v0,leda5e
+; v0 : Ljava/util/List;
+.line 67
+	new-instance	v0,java/util/ArrayList
+; v0 : Ljava/util/ArrayList;
+	invoke-direct	{v0},java/util/ArrayList/<init>	; <init>()V
+; v0 : Ljava/util/ArrayList;
+	iput-object	v0,v1,com/google/tagmanager/protobuf/nano/ExtendableMessageNano.unknownFieldData Ljava/util/List;
+; v0 : Ljava/util/ArrayList; , v1 : Lcom/google/tagmanager/protobuf/nano/ExtendableMessageNano;
+leda5e:
+.line 69
+	iget-object	v0,v1,com/google/tagmanager/protobuf/nano/ExtendableMessageNano.unknownFieldData Ljava/util/List;
+; v0 : Ljava/util/List; , v1 : Lcom/google/tagmanager/protobuf/nano/ExtendableMessageNano;
+	invoke-static	{v2,v3,v0},com/google/tagmanager/protobuf/nano/WireFormatNano/setExtension	; setExtension(Lcom/google/tagmanager/protobuf/nano/Extension;Ljava/lang/Object;Ljava/util/List;)V
+; v2 : Lcom/google/tagmanager/protobuf/nano/Extension; , v3 : Ljava/lang/Object; , v0 : Ljava/util/List;
+.line 70
+	return-void	
+.end method
+
+

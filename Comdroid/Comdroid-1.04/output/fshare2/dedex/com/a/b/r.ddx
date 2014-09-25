@@ -1,0 +1,20 @@
+.class com/a/b/r
+.super android/os/HandlerThread
+.source MyApplication
+
+
+.method <init>()V
+.limit registers 3
+; this: v2 (Lcom/a/b/r;)
+.line 271
+	const-string	v0,"Picasso-Dispatcher"
+; v0 : Ljava/lang/String;
+	const/16	v1,10
+; v1 : single-length
+	invoke-direct	{v2,v0,v1},android/os/HandlerThread/<init>	; <init>(Ljava/lang/String;I)V
+; v2 : Lcom/a/b/r; , v0 : Ljava/lang/String; , v1 : single-length
+.line 272
+	return-void	
+.end method
+
+

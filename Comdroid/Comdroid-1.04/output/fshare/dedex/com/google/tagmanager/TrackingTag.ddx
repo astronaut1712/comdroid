@@ -1,0 +1,54 @@
+.class abstract com/google/tagmanager/TrackingTag
+.super com/google/tagmanager/FunctionCallImplementation
+.source TrackingTag.java
+
+
+.method public <init>(Ljava/lang/String;[Ljava/lang/String;)V
+.limit registers 3
+; this: v0 (Lcom/google/tagmanager/TrackingTag;)
+; parameter[0] : v1 (Ljava/lang/String;)
+; parameter[1] : v2 ([Ljava/lang/String;)
+.line 20
+	invoke-direct	{v0,v1,v2},com/google/tagmanager/FunctionCallImplementation/<init>	; <init>(Ljava/lang/String;[Ljava/lang/String;)V
+; v0 : Lcom/google/tagmanager/TrackingTag; , v1 : Ljava/lang/String; , v2 : [Ljava/lang/String;
+.line 21
+	return-void	
+.end method
+
+.method public evaluate(Ljava/util/Map;)Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "(" , "Ljava/util/Map" , "<" , "Ljava/lang/String;" , "Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;" , ">;)" , "Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;" }
+.end annotation
+.limit registers 3
+; this: v1 (Lcom/google/tagmanager/TrackingTag;)
+; parameter[0] : v2 (Ljava/util/Map;)
+.line 34
+	invoke-virtual	{v1,v2},com/google/tagmanager/TrackingTag/evaluateTrackingTag	; evaluateTrackingTag(Ljava/util/Map;)V
+; v1 : Lcom/google/tagmanager/TrackingTag; , v2 : Ljava/util/Map;
+.line 35
+	invoke-static	{},com/google/tagmanager/Types/getDefaultValue	; getDefaultValue()Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+; 
+	nop	
+	move-result-object	v0
+; v0 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	return-object	v0
+; v0 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+.end method
+
+.method public abstract evaluateTrackingTag(Ljava/util/Map;)V
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "(" , "Ljava/util/Map" , "<" , "Ljava/lang/String;" , "Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;" , ">;)V" }
+.end annotation
+.end method
+
+.method public isCacheable()Z
+.limit registers 2
+; this: v1 (Lcom/google/tagmanager/TrackingTag;)
+.line 27
+	const/4	v0,0
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+

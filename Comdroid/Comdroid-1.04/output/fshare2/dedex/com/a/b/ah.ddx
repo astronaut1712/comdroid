@@ -1,0 +1,96 @@
+.class com/a/b/ah
+.super java/lang/Thread
+.source MyApplication
+
+.field private final a Ljava/lang/ref/ReferenceQueue;
+.field private final b Landroid/os/Handler;
+
+.method <init>(Ljava/lang/ref/ReferenceQueue;Landroid/os/Handler;)V
+.limit registers 4
+; this: v1 (Lcom/a/b/ah;)
+; parameter[0] : v2 (Ljava/lang/ref/ReferenceQueue;)
+; parameter[1] : v3 (Landroid/os/Handler;)
+.line 341
+	invoke-direct	{v1},java/lang/Thread/<init>	; <init>()V
+; v1 : Lcom/a/b/ah;
+.line 342
+	iput-object	v2,v1,com/a/b/ah.a Ljava/lang/ref/ReferenceQueue;
+; v2 : Ljava/lang/ref/ReferenceQueue; , v1 : Lcom/a/b/ah;
+.line 343
+	iput-object	v3,v1,com/a/b/ah.b Landroid/os/Handler;
+; v3 : Landroid/os/Handler; , v1 : Lcom/a/b/ah;
+.line 344
+	const/4	v0,1
+; v0 : single-length
+	invoke-virtual	{v1,v0},com/a/b/ah/setDaemon	; setDaemon(Z)V
+; v1 : Lcom/a/b/ah; , v0 : single-length
+.line 345
+	const-string	v0,"Picasso-refQueue"
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v1,v0},com/a/b/ah/setName	; setName(Ljava/lang/String;)V
+; v1 : Lcom/a/b/ah; , v0 : Ljava/lang/String;
+.line 346
+	return-void	
+.end method
+
+.method public run()V
+.limit registers 5
+; this: v4 (Lcom/a/b/ah;)
+.catch java/lang/InterruptedException from l7947a to l794a6 using l794a8
+.catch java/lang/Exception from l7947a to l794a6 using l794ac
+.line 349
+	const/16	v0,10
+; v0 : single-length
+	invoke-static	{v0},android/os/Process/setThreadPriority	; setThreadPriority(I)V
+; v0 : single-length
+l7947a:
+.line 352
+	iget-object	v0,v4,com/a/b/ah.a Ljava/lang/ref/ReferenceQueue;
+; v0 : Ljava/lang/ref/ReferenceQueue; , v4 : Lcom/a/b/ah;
+	invoke-virtual	{v0},java/lang/ref/ReferenceQueue/remove	; remove()Ljava/lang/ref/Reference;
+; v0 : Ljava/lang/ref/ReferenceQueue;
+	move-result-object	v0
+; v0 : Ljava/lang/ref/Reference;
+	check-cast	v0,com/a/b/b
+; v0 : Lcom/a/b/b;
+.line 353
+	iget-object	v1,v4,com/a/b/ah.b Landroid/os/Handler;
+; v1 : Landroid/os/Handler; , v4 : Lcom/a/b/ah;
+	iget-object	v2,v4,com/a/b/ah.b Landroid/os/Handler;
+; v2 : Landroid/os/Handler; , v4 : Lcom/a/b/ah;
+	const/4	v3,3
+; v3 : single-length
+	iget-object	v0,v0,com/a/b/b.a Lcom/a/b/a;
+; v0 : Lcom/a/b/a; , v0 : Lcom/a/b/a;
+	invoke-virtual	{v2,v3,v0},android/os/Handler/obtainMessage	; obtainMessage(ILjava/lang/Object;)Landroid/os/Message;
+; v2 : Landroid/os/Handler; , v3 : single-length , v0 : Lcom/a/b/a;
+	move-result-object	v0
+; v0 : Landroid/os/Message;
+	invoke-virtual	{v1,v0},android/os/Handler/sendMessage	; sendMessage(Landroid/os/Message;)Z
+; v1 : Landroid/os/Handler; , v0 : Landroid/os/Message;
+l794a6:
+	goto	l7947a
+l794a8:
+.line 354
+	move-exception	v0
+; v0 : java/lang/InterruptedException
+l794aa:
+.line 365
+	return-void	
+l794ac:
+.line 356
+	move-exception	v0
+; v0 : java/lang/Exception
+.line 357
+	iget-object	v1,v4,com/a/b/ah.b Landroid/os/Handler;
+; v1 : Landroid/os/Handler; , v4 : Lcom/a/b/ah;
+	new-instance	v2,com/a/b/ai
+; v2 : Lcom/a/b/ai;
+	invoke-direct	{v2,v4,v0},com/a/b/ai/<init>	; <init>(Lcom/a/b/ah;Ljava/lang/Exception;)V
+; v2 : Lcom/a/b/ai; , v4 : Lcom/a/b/ah; , v0 : java/lang/Exception
+	invoke-virtual	{v1,v2},android/os/Handler/post	; post(Ljava/lang/Runnable;)Z
+; v1 : Landroid/os/Handler; , v2 : Lcom/a/b/ai;
+	goto	l794aa
+.end method
+
+

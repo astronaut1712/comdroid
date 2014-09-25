@@ -1,0 +1,69 @@
+.class public abstract com/a/a/a/a
+.super java/io/OutputStream
+.source MyApplication
+
+.field protected a Z
+
+.method public <init>()V
+.limit registers 1
+; this: v0 (Lcom/a/a/a/a;)
+.line 28
+	invoke-direct	{v0},java/io/OutputStream/<init>	; <init>()V
+; v0 : Lcom/a/a/a/a;
+	return-void	
+.end method
+
+.method protected final a()V
+.limit registers 3
+; this: v2 (Lcom/a/a/a/a;)
+.line 36
+	iget-boolean	v0,v2,com/a/a/a/a.a Z
+; v0 : single-length , v2 : Lcom/a/a/a/a;
+	if-eqz	v0,l65ab4
+; v0 : single-length
+.line 37
+	new-instance	v0,java/io/IOException
+; v0 : Ljava/io/IOException;
+	const-string	v1,"stream closed"
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/io/IOException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/io/IOException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/io/IOException;
+l65ab4:
+.line 39
+	return-void	
+.end method
+
+.method public b()Z
+.limit registers 2
+; this: v1 (Lcom/a/a/a/a;)
+.line 43
+	iget-boolean	v0,v1,com/a/a/a/a.a Z
+; v0 : single-length , v1 : Lcom/a/a/a/a;
+	return	v0
+; v0 : single-length
+.end method
+
+.method public final write(I)V
+.limit registers 5
+; this: v3 (Lcom/a/a/a/a;)
+; parameter[0] : v4 (I)
+.line 32
+	const/4	v0,1
+; v0 : single-length
+	new-array	v0,v0,[B
+; v0 : [B , v0 : [B
+	const/4	v1,0
+; v1 : single-length
+	int-to-byte	v2,v4
+; v2 : single-length , v4 : single-length
+	aput-byte	v2,v0,v1
+; v2 : single-length , v0 : [B , v1 : single-length
+	invoke-virtual	{v3,v0},com/a/a/a/a/write	; write([B)V
+; v3 : Lcom/a/a/a/a; , v0 : [B
+.line 33
+	return-void	
+.end method
+
+

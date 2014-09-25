@@ -1,0 +1,60 @@
+.class com/google/tagmanager/Container$FunctionCallTagHandlerAdapter
+.super java/lang/Object
+.source Container.java
+.implements com/google/tagmanager/CustomFunctionCall$CustomEvaluator
+
+.inner class FunctionCallTagHandlerAdapter inner com/google/tagmanager/Container$FunctionCallTagHandlerAdapter outer com/google/tagmanager/Container
+.field final this$0 Lcom/google/tagmanager/Container;
+
+.method private <init>(Lcom/google/tagmanager/Container;)V
+.limit registers 2
+; this: v0 (Lcom/google/tagmanager/Container$FunctionCallTagHandlerAdapter;)
+; parameter[0] : v1 (Lcom/google/tagmanager/Container;)
+.line 118
+	iput-object	v1,v0,com/google/tagmanager/Container$FunctionCallTagHandlerAdapter.this$0 Lcom/google/tagmanager/Container;
+; v1 : Lcom/google/tagmanager/Container; , v0 : Lcom/google/tagmanager/Container$FunctionCallTagHandlerAdapter;
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Lcom/google/tagmanager/Container$FunctionCallTagHandlerAdapter;
+	return-void	
+.end method
+
+.method <init>(Lcom/google/tagmanager/Container;Lcom/google/tagmanager/Container$1;)V
+.limit registers 3
+; this: v0 (Lcom/google/tagmanager/Container$FunctionCallTagHandlerAdapter;)
+; parameter[0] : v1 (Lcom/google/tagmanager/Container;)
+; parameter[1] : v2 (Lcom/google/tagmanager/Container$1;)
+.line 118
+	invoke-direct	{v0,v1},com/google/tagmanager/Container$FunctionCallTagHandlerAdapter/<init>	; <init>(Lcom/google/tagmanager/Container;)V
+; v0 : Lcom/google/tagmanager/Container$FunctionCallTagHandlerAdapter; , v1 : Lcom/google/tagmanager/Container;
+	return-void	
+.end method
+
+.method public evaluate(Ljava/lang/String;Ljava/util/Map;)Ljava/lang/Object;
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "(" , "Ljava/lang/String;" , "Ljava/util/Map" , "<" , "Ljava/lang/String;" , "Ljava/lang/Object;" , ">;)" , "Ljava/lang/Object;" }
+.end annotation
+.limit registers 5
+; this: v2 (Lcom/google/tagmanager/Container$FunctionCallTagHandlerAdapter;)
+; parameter[0] : v3 (Ljava/lang/String;)
+; parameter[1] : v4 (Ljava/util/Map;)
+.line 121
+	iget-object	v1,v2,com/google/tagmanager/Container$FunctionCallTagHandlerAdapter.this$0 Lcom/google/tagmanager/Container;
+; v1 : Lcom/google/tagmanager/Container; , v2 : Lcom/google/tagmanager/Container$FunctionCallTagHandlerAdapter;
+	invoke-virtual	{v1,v3},com/google/tagmanager/Container/getFunctionCallTagHandler	; getFunctionCallTagHandler(Ljava/lang/String;)Lcom/google/tagmanager/Container$FunctionCallTagHandler;
+; v1 : Lcom/google/tagmanager/Container; , v3 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Lcom/google/tagmanager/Container$FunctionCallTagHandler;
+.line 122
+	invoke-interface	{v0,v3,v4},com/google/tagmanager/Container$FunctionCallTagHandler/execute	; execute(Ljava/lang/String;Ljava/util/Map;)V
+; v0 : Lcom/google/tagmanager/Container$FunctionCallTagHandler; , v3 : Ljava/lang/String; , v4 : Ljava/util/Map;
+.line 123
+	invoke-static	{},com/google/tagmanager/Types/getDefaultString	; getDefaultString()Ljava/lang/String;
+; 
+	nop	
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	return-object	v1
+; v1 : Ljava/lang/String;
+.end method
+
+

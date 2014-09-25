@@ -1,0 +1,122 @@
+.class com/google/tagmanager/Hit
+.super java/lang/Object
+.source Hit.java
+
+.field private final mHitFirstDispatchTime J
+.field private final mHitId J
+.field private final mHitTime J
+.field private mHitUrl Ljava/lang/String;
+
+.method <init>(JJ)V
+.limit registers 7
+; this: v2 (Lcom/google/tagmanager/Hit;)
+; parameter[0] : v3 (J)
+; parameter[1] : v5 (J)
+.line 35
+	invoke-direct	{v2},java/lang/Object/<init>	; <init>()V
+; v2 : Lcom/google/tagmanager/Hit;
+.line 36
+	iput-wide	v3,v2,com/google/tagmanager/Hit.mHitId J
+; v3 : double-length , v2 : Lcom/google/tagmanager/Hit;
+.line 37
+	iput-wide	v5,v2,com/google/tagmanager/Hit.mHitTime J
+; v5 : double-length , v2 : Lcom/google/tagmanager/Hit;
+.line 38
+	const-wide/16	v0,0
+; v0 : double-length
+	iput-wide	v0,v2,com/google/tagmanager/Hit.mHitFirstDispatchTime J
+; v0 : double-length , v2 : Lcom/google/tagmanager/Hit;
+.line 39
+	return-void	
+.end method
+
+.method <init>(JJJ)V
+.limit registers 7
+; this: v0 (Lcom/google/tagmanager/Hit;)
+; parameter[0] : v1 (J)
+; parameter[1] : v3 (J)
+; parameter[2] : v5 (J)
+.line 29
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Lcom/google/tagmanager/Hit;
+.line 30
+	iput-wide	v1,v0,com/google/tagmanager/Hit.mHitId J
+; v1 : double-length , v0 : Lcom/google/tagmanager/Hit;
+.line 31
+	iput-wide	v3,v0,com/google/tagmanager/Hit.mHitTime J
+; v3 : double-length , v0 : Lcom/google/tagmanager/Hit;
+.line 32
+	iput-wide	v5,v0,com/google/tagmanager/Hit.mHitFirstDispatchTime J
+; v5 : double-length , v0 : Lcom/google/tagmanager/Hit;
+.line 33
+	return-void	
+.end method
+
+.method getHitFirstDispatchTime()J
+.limit registers 3
+; this: v2 (Lcom/google/tagmanager/Hit;)
+.line 26
+	iget-wide	v0,v2,com/google/tagmanager/Hit.mHitFirstDispatchTime J
+; v0 : double-length , v2 : Lcom/google/tagmanager/Hit;
+	return-wide	v0
+; v0 : double-length
+.end method
+
+.method getHitId()J
+.limit registers 3
+; this: v2 (Lcom/google/tagmanager/Hit;)
+.line 18
+	iget-wide	v0,v2,com/google/tagmanager/Hit.mHitId J
+; v0 : double-length , v2 : Lcom/google/tagmanager/Hit;
+	return-wide	v0
+; v0 : double-length
+.end method
+
+.method getHitTime()J
+.limit registers 3
+; this: v2 (Lcom/google/tagmanager/Hit;)
+.line 22
+	iget-wide	v0,v2,com/google/tagmanager/Hit.mHitTime J
+; v0 : double-length , v2 : Lcom/google/tagmanager/Hit;
+	return-wide	v0
+; v0 : double-length
+.end method
+
+.method getHitUrl()Ljava/lang/String;
+.limit registers 2
+; this: v1 (Lcom/google/tagmanager/Hit;)
+.line 45
+	iget-object	v0,v1,com/google/tagmanager/Hit.mHitUrl Ljava/lang/String;
+; v0 : Ljava/lang/String; , v1 : Lcom/google/tagmanager/Hit;
+	return-object	v0
+; v0 : Ljava/lang/String;
+.end method
+
+.method setHitUrl(Ljava/lang/String;)V
+.limit registers 3
+; this: v1 (Lcom/google/tagmanager/Hit;)
+; parameter[0] : v2 (Ljava/lang/String;)
+.line 52
+	if-eqz	v2,la7140
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v2},java/lang/String/trim	; trim()Ljava/lang/String;
+; v2 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	invoke-static	{v0},android/text/TextUtils/isEmpty	; isEmpty(Ljava/lang/CharSequence;)Z
+; v0 : Ljava/lang/String;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,la7142
+; v0 : single-length
+la7140:
+.line 56
+	return-void	
+la7142:
+.line 55
+	iput-object	v2,v1,com/google/tagmanager/Hit.mHitUrl Ljava/lang/String;
+; v2 : Ljava/lang/String; , v1 : Lcom/google/tagmanager/Hit;
+	goto	la7140
+.end method
+
+

@@ -1,0 +1,161 @@
+.class com/squareup/picasso/ContentStreamBitmapHunter
+.super com/squareup/picasso/BitmapHunter
+.source ContentStreamBitmapHunter.java
+
+.field final context Landroid/content/Context;
+
+.method <init>(Landroid/content/Context;Lcom/squareup/picasso/Picasso;Lcom/squareup/picasso/Dispatcher;Lcom/squareup/picasso/Cache;Lcom/squareup/picasso/Stats;Lcom/squareup/picasso/Action;)V
+.limit registers 13
+; this: v6 (Lcom/squareup/picasso/ContentStreamBitmapHunter;)
+; parameter[0] : v7 (Landroid/content/Context;)
+; parameter[1] : v8 (Lcom/squareup/picasso/Picasso;)
+; parameter[2] : v9 (Lcom/squareup/picasso/Dispatcher;)
+; parameter[3] : v10 (Lcom/squareup/picasso/Cache;)
+; parameter[4] : v11 (Lcom/squareup/picasso/Stats;)
+; parameter[5] : v12 (Lcom/squareup/picasso/Action;)
+.line 32
+	move-object	v0,v6
+; v0 : Lcom/squareup/picasso/ContentStreamBitmapHunter; , v6 : Lcom/squareup/picasso/ContentStreamBitmapHunter;
+	move-object	v1,v8
+; v1 : Lcom/squareup/picasso/Picasso; , v8 : Lcom/squareup/picasso/Picasso;
+	move-object	v2,v9
+; v2 : Lcom/squareup/picasso/Dispatcher; , v9 : Lcom/squareup/picasso/Dispatcher;
+	move-object	v3,v10
+; v3 : Lcom/squareup/picasso/Cache; , v10 : Lcom/squareup/picasso/Cache;
+	move-object	v4,v11
+; v4 : Lcom/squareup/picasso/Stats; , v11 : Lcom/squareup/picasso/Stats;
+	move-object	v5,v12
+; v5 : Lcom/squareup/picasso/Action; , v12 : Lcom/squareup/picasso/Action;
+	invoke-direct/range	{v0..v5},com/squareup/picasso/BitmapHunter/<init>;	<init>(Lcom/squareup/picasso/Picasso;Lcom/squareup/picasso/Dispatcher;Lcom/squareup/picasso/Cache;Lcom/squareup/picasso/Stats;Lcom/squareup/picasso/Action;)V
+; v0 : Lcom/squareup/picasso/ContentStreamBitmapHunter; , v1 : Lcom/squareup/picasso/Picasso; , v2 : Lcom/squareup/picasso/Dispatcher; , v3 : Lcom/squareup/picasso/Cache; , v4 : Lcom/squareup/picasso/Stats; , v5 : Lcom/squareup/picasso/Action;
+.line 33
+	iput-object	v7,v6,com/squareup/picasso/ContentStreamBitmapHunter.context Landroid/content/Context;
+; v7 : Landroid/content/Context; , v6 : Lcom/squareup/picasso/ContentStreamBitmapHunter;
+.line 34
+	return-void	
+.end method
+
+.method decode(Lcom/squareup/picasso/Request;)Landroid/graphics/Bitmap;
+.throws Ljava/io/IOException;
+.limit registers 3
+; this: v1 (Lcom/squareup/picasso/ContentStreamBitmapHunter;)
+; parameter[0] : v2 (Lcom/squareup/picasso/Request;)
+.line 38
+	invoke-virtual	{v1,v2},com/squareup/picasso/ContentStreamBitmapHunter/decodeContentStream	; decodeContentStream(Lcom/squareup/picasso/Request;)Landroid/graphics/Bitmap;
+; v1 : Lcom/squareup/picasso/ContentStreamBitmapHunter; , v2 : Lcom/squareup/picasso/Request;
+	move-result-object	v0
+; v0 : Landroid/graphics/Bitmap;
+	return-object	v0
+; v0 : Landroid/graphics/Bitmap;
+.end method
+
+.method protected decodeContentStream(Lcom/squareup/picasso/Request;)Landroid/graphics/Bitmap;
+.throws Ljava/io/IOException;
+.limit registers 7
+; this: v5 (Lcom/squareup/picasso/ContentStreamBitmapHunter;)
+; parameter[0] : v6 (Lcom/squareup/picasso/Request;)
+.catch java/lang/Exception from lf3da6 to lf3dac using lf3dc0
+.catch java/lang/Exception from lf3d70 to lf3d84 using lf3db6
+.var 1 is is Ljava/io/InputStream; from lf3d70 to lf3d98
+.line 46
+	iget-object	v3,v5,com/squareup/picasso/ContentStreamBitmapHunter.context Landroid/content/Context;
+; v3 : Landroid/content/Context; , v5 : Lcom/squareup/picasso/ContentStreamBitmapHunter;
+	invoke-virtual	{v3},android/content/Context/getContentResolver	; getContentResolver()Landroid/content/ContentResolver;
+; v3 : Landroid/content/Context;
+	move-result-object	v0
+; v0 : Landroid/content/ContentResolver;
+.line 47
+	invoke-static	{v6},com/squareup/picasso/ContentStreamBitmapHunter/createBitmapOptions	; createBitmapOptions(Lcom/squareup/picasso/Request;)Landroid/graphics/BitmapFactory$Options;
+; v6 : Lcom/squareup/picasso/Request;
+	move-result-object	v2
+; v2 : Landroid/graphics/BitmapFactory$Options;
+.line 48
+	invoke-virtual	{v6},com/squareup/picasso/Request/hasSize	; hasSize()Z
+; v6 : Lcom/squareup/picasso/Request;
+	move-result	v3
+; v3 : single-length
+	if-eqz	v3,lf3d98
+; v3 : single-length
+.line 49
+	const/4	v3,1
+; v3 : single-length
+	iput-boolean	v3,v2,android/graphics/BitmapFactory$Options.inJustDecodeBounds Z
+; v3 : single-length , v2 : Landroid/graphics/BitmapFactory$Options;
+.line 50
+	const/4	v1,0
+; v1 : single-length
+lf3d70:
+.line 52
+	iget-object	v3,v6,com/squareup/picasso/Request.uri Landroid/net/Uri;
+; v3 : Landroid/net/Uri; , v6 : Lcom/squareup/picasso/Request;
+	invoke-virtual	{v0,v3},android/content/ContentResolver/openInputStream	; openInputStream(Landroid/net/Uri;)Ljava/io/InputStream;
+; v0 : Landroid/content/ContentResolver; , v3 : Landroid/net/Uri;
+	move-result-object	v1
+; v1 : Ljava/io/InputStream;
+.line 53
+	const/4	v3,0
+; v3 : single-length
+	invoke-static	{v1,v3,v2},android/graphics/BitmapFactory/decodeStream	; decodeStream(Ljava/io/InputStream;Landroid/graphics/Rect;Landroid/graphics/BitmapFactory$Options;)Landroid/graphics/Bitmap;
+; v1 : Ljava/io/InputStream; , v3 : single-length , v2 : Landroid/graphics/BitmapFactory$Options;
+lf3d84:
+.line 55
+	invoke-static	{v1},com/squareup/picasso/Utils/closeQuietly	; closeQuietly(Ljava/io/InputStream;)V
+; v1 : Ljava/io/InputStream;
+.line 57
+	iget	v3,v6,com/squareup/picasso/Request.targetWidth I
+; v3 : single-length , v6 : Lcom/squareup/picasso/Request;
+	iget	v4,v6,com/squareup/picasso/Request.targetHeight I
+; v4 : single-length , v6 : Lcom/squareup/picasso/Request;
+	invoke-static	{v3,v4,v2},com/squareup/picasso/ContentStreamBitmapHunter/calculateInSampleSize	; calculateInSampleSize(IILandroid/graphics/BitmapFactory$Options;)V
+; v3 : single-length , v4 : single-length , v2 : Landroid/graphics/BitmapFactory$Options;
+lf3d98:
+.line 59
+	iget-object	v3,v6,com/squareup/picasso/Request.uri Landroid/net/Uri;
+; v3 : Landroid/net/Uri; , v6 : Lcom/squareup/picasso/Request;
+	invoke-virtual	{v0,v3},android/content/ContentResolver/openInputStream	; openInputStream(Landroid/net/Uri;)Ljava/io/InputStream;
+; v0 : Landroid/content/ContentResolver; , v3 : Landroid/net/Uri;
+	move-result-object	v1
+; v1 : Ljava/io/InputStream;
+.line 61
+	const/4	v3,0
+; v3 : single-length
+lf3da6:
+	invoke-static	{v1,v3,v2},android/graphics/BitmapFactory/decodeStream	; decodeStream(Ljava/io/InputStream;Landroid/graphics/Rect;Landroid/graphics/BitmapFactory$Options;)Landroid/graphics/Bitmap;
+; v1 : Ljava/io/InputStream; , v3 : single-length , v2 : Landroid/graphics/BitmapFactory$Options;
+lf3dac:
+	move-result-object	v3
+; v3 : Landroid/graphics/Bitmap;
+.line 63
+	invoke-static	{v1},com/squareup/picasso/Utils/closeQuietly	; closeQuietly(Ljava/io/InputStream;)V
+; v1 : Ljava/io/InputStream;
+	return-object	v3
+; v3 : Landroid/graphics/Bitmap;
+lf3db6:
+.line 55
+	move-exception	v3
+; v3 : java/lang/Exception
+	invoke-static	{v1},com/squareup/picasso/Utils/closeQuietly	; closeQuietly(Ljava/io/InputStream;)V
+; v1 : Ljava/io/InputStream;
+	throw	v3
+; v3 : java/lang/Exception
+lf3dc0:
+.line 63
+	move-exception	v3
+; v3 : java/lang/Exception
+	invoke-static	{v1},com/squareup/picasso/Utils/closeQuietly	; closeQuietly(Ljava/io/InputStream;)V
+; v1 : Ljava/io/InputStream;
+	throw	v3
+; v3 : java/lang/Exception
+.end method
+
+.method getLoadedFrom()Lcom/squareup/picasso/Picasso$LoadedFrom;
+.limit registers 2
+; this: v1 (Lcom/squareup/picasso/ContentStreamBitmapHunter;)
+.line 42
+	sget-object	v0,com/squareup/picasso/Picasso$LoadedFrom.DISK Lcom/squareup/picasso/Picasso$LoadedFrom;
+; v0 : Lcom/squareup/picasso/Picasso$LoadedFrom;
+	return-object	v0
+; v0 : Lcom/squareup/picasso/Picasso$LoadedFrom;
+.end method
+
+

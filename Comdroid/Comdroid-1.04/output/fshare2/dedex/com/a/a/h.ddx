@@ -1,0 +1,35 @@
+.class final com/a/a/h
+.super java/io/FilterInputStream
+.source MyApplication
+
+.field final a Lcom/a/a/a/i;
+
+.method <init>(Ljava/io/InputStream;Lcom/a/a/a/i;)V
+.limit registers 3
+; this: v0 (Lcom/a/a/h;)
+; parameter[0] : v1 (Ljava/io/InputStream;)
+; parameter[1] : v2 (Lcom/a/a/a/i;)
+.line 642
+	iput-object	v2,v0,com/a/a/h.a Lcom/a/a/a/i;
+; v2 : Lcom/a/a/a/i; , v0 : Lcom/a/a/h;
+	invoke-direct	{v0,v1},java/io/FilterInputStream/<init>	; <init>(Ljava/io/InputStream;)V
+; v0 : Lcom/a/a/h; , v1 : Ljava/io/InputStream;
+	return-void	
+.end method
+
+.method public close()V
+.limit registers 2
+; this: v1 (Lcom/a/a/h;)
+.line 644
+	iget-object	v0,v1,com/a/a/h.a Lcom/a/a/a/i;
+; v0 : Lcom/a/a/a/i; , v1 : Lcom/a/a/h;
+	invoke-virtual	{v0},com/a/a/a/i/close	; close()V
+; v0 : Lcom/a/a/a/i;
+.line 645
+	invoke-super	{v1},java/io/FilterInputStream/close	; close()V
+; v1 : Lcom/a/a/h;
+.line 646
+	return-void	
+.end method
+
+

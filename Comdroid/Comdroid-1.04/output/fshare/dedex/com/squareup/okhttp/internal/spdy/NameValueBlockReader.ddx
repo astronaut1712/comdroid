@@ -1,0 +1,335 @@
+.class com/squareup/okhttp/internal/spdy/NameValueBlockReader
+.super java/lang/Object
+.source NameValueBlockReader.java
+.implements java/io/Closeable
+
+.inner class FillableInflaterInputStream inner com/squareup/okhttp/internal/spdy/NameValueBlockReader$FillableInflaterInputStream outer com/squareup/okhttp/internal/spdy/NameValueBlockReader
+.field private compressedLimit I
+.field private final fillableInflaterInputStream Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader$FillableInflaterInputStream;
+.field private final nameValueBlockIn Ljava/io/DataInputStream;
+
+.method <init>(Ljava/io/InputStream;)V
+.limit registers 6
+; this: v4 (Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader;)
+; parameter[0] : v5 (Ljava/io/InputStream;)
+.line 25
+	invoke-direct	{v4},java/lang/Object/<init>	; <init>()V
+; v4 : Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader;
+.line 29
+	new-instance	v1,com/squareup/okhttp/internal/spdy/NameValueBlockReader$1
+; v1 : Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader$1;
+	invoke-direct	{v1,v4,v5},com/squareup/okhttp/internal/spdy/NameValueBlockReader$1/<init>	; <init>(Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader;Ljava/io/InputStream;)V
+; v1 : Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader$1; , v4 : Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader; , v5 : Ljava/io/InputStream;
+.line 47
+	new-instance	v0,com/squareup/okhttp/internal/spdy/NameValueBlockReader$2
+; v0 : Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader$2;
+	invoke-direct	{v0,v4},com/squareup/okhttp/internal/spdy/NameValueBlockReader$2/<init>	; <init>(Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader;)V
+; v0 : Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader$2; , v4 : Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader;
+.line 59
+	new-instance	v2,com/squareup/okhttp/internal/spdy/NameValueBlockReader$FillableInflaterInputStream
+; v2 : Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader$FillableInflaterInputStream;
+	invoke-direct	{v2,v1,v0},com/squareup/okhttp/internal/spdy/NameValueBlockReader$FillableInflaterInputStream/<init>	; <init>(Ljava/io/InputStream;Ljava/util/zip/Inflater;)V
+; v2 : Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader$FillableInflaterInputStream; , v1 : Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader$1; , v0 : Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader$2;
+	iput-object	v2,v4,com/squareup/okhttp/internal/spdy/NameValueBlockReader.fillableInflaterInputStream Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader$FillableInflaterInputStream;
+; v2 : Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader$FillableInflaterInputStream; , v4 : Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader;
+.line 60
+	new-instance	v2,java/io/DataInputStream
+; v2 : Ljava/io/DataInputStream;
+	iget-object	v3,v4,com/squareup/okhttp/internal/spdy/NameValueBlockReader.fillableInflaterInputStream Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader$FillableInflaterInputStream;
+; v3 : Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader$FillableInflaterInputStream; , v4 : Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader;
+	invoke-direct	{v2,v3},java/io/DataInputStream/<init>	; <init>(Ljava/io/InputStream;)V
+; v2 : Ljava/io/DataInputStream; , v3 : Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader$FillableInflaterInputStream;
+	iput-object	v2,v4,com/squareup/okhttp/internal/spdy/NameValueBlockReader.nameValueBlockIn Ljava/io/DataInputStream;
+; v2 : Ljava/io/DataInputStream; , v4 : Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader;
+.line 61
+	return-void	
+.end method
+
+.method static access$000(Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader;)I
+.limit registers 2
+; parameter[0] : v1 (Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader;)
+.line 20
+	iget	v0,v1,com/squareup/okhttp/internal/spdy/NameValueBlockReader.compressedLimit I
+; v0 : single-length , v1 : Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader;
+	return	v0
+; v0 : single-length
+.end method
+
+.method static access$020(Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader;I)I
+.limit registers 3
+; parameter[0] : v1 (Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader;)
+; parameter[1] : v2 (I)
+.line 20
+	iget	v0,v1,com/squareup/okhttp/internal/spdy/NameValueBlockReader.compressedLimit I
+; v0 : single-length , v1 : Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader;
+	sub-int/2addr	v0,v2
+; v0 : single-length , v2 : single-length
+	iput	v0,v1,com/squareup/okhttp/internal/spdy/NameValueBlockReader.compressedLimit I
+; v0 : single-length , v1 : Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader;
+	return	v0
+; v0 : single-length
+.end method
+
+.method private doneReading()V
+.throws Ljava/io/IOException;
+.limit registers 4
+; this: v3 (Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader;)
+.line 102
+	iget	v0,v3,com/squareup/okhttp/internal/spdy/NameValueBlockReader.compressedLimit I
+; v0 : single-length , v3 : Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader;
+	if-nez	v0,lbee5a
+; v0 : single-length
+lbee58:
+.line 111
+	return-void	
+lbee5a:
+.line 106
+	iget-object	v0,v3,com/squareup/okhttp/internal/spdy/NameValueBlockReader.fillableInflaterInputStream Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader$FillableInflaterInputStream;
+; v0 : Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader$FillableInflaterInputStream; , v3 : Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader;
+	invoke-virtual	{v0},com/squareup/okhttp/internal/spdy/NameValueBlockReader$FillableInflaterInputStream/fill	; fill()V
+; v0 : Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader$FillableInflaterInputStream;
+.line 108
+	iget	v0,v3,com/squareup/okhttp/internal/spdy/NameValueBlockReader.compressedLimit I
+; v0 : single-length , v3 : Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader;
+	if-eqz	v0,lbee58
+; v0 : single-length
+.line 109
+	new-instance	v0,java/io/IOException
+; v0 : Ljava/io/IOException;
+	new-instance	v1,java/lang/StringBuilder
+; v1 : Ljava/lang/StringBuilder;
+	invoke-direct	{v1},java/lang/StringBuilder/<init>	; <init>()V
+; v1 : Ljava/lang/StringBuilder;
+	const-string	v2,"compressedLimit > 0: "
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	iget	v2,v3,com/squareup/okhttp/internal/spdy/NameValueBlockReader.compressedLimit I
+; v2 : single-length , v3 : Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(I)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : single-length
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v1},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v1 : Ljava/lang/StringBuilder;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/io/IOException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/io/IOException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/io/IOException;
+.end method
+
+.method private readString()Ljava/lang/String;
+.throws Ljava/util/zip/DataFormatException;
+.throws Ljava/io/IOException;
+.limit registers 6
+; this: v5 (Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader;)
+.line 114
+	iget-object	v2,v5,com/squareup/okhttp/internal/spdy/NameValueBlockReader.nameValueBlockIn Ljava/io/DataInputStream;
+; v2 : Ljava/io/DataInputStream; , v5 : Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader;
+	invoke-virtual	{v2},java/io/DataInputStream/readInt	; readInt()I
+; v2 : Ljava/io/DataInputStream;
+	move-result	v1
+; v1 : single-length
+.line 115
+	new-array	v0,v1,[B
+; v0 : [B , v1 : single-length
+.line 116
+	iget-object	v2,v5,com/squareup/okhttp/internal/spdy/NameValueBlockReader.nameValueBlockIn Ljava/io/DataInputStream;
+; v2 : Ljava/io/DataInputStream; , v5 : Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader;
+	invoke-static	{v2,v0},com/squareup/okhttp/internal/Util/readFully	; readFully(Ljava/io/InputStream;[B)V
+; v2 : Ljava/io/DataInputStream; , v0 : [B
+.line 117
+	new-instance	v2,java/lang/String
+; v2 : Ljava/lang/String;
+	const/4	v3,0
+; v3 : single-length
+	const-string	v4,"UTF-8"
+; v4 : Ljava/lang/String;
+	invoke-direct	{v2,v0,v3,v1,v4},java/lang/String/<init>	; <init>([BIILjava/lang/String;)V
+; v2 : Ljava/lang/String; , v0 : [B , v3 : single-length , v1 : single-length , v4 : Ljava/lang/String;
+	return-object	v2
+; v2 : Ljava/lang/String;
+.end method
+
+.method public close()V
+.throws Ljava/io/IOException;
+.limit registers 2
+; this: v1 (Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader;)
+.line 121
+	iget-object	v0,v1,com/squareup/okhttp/internal/spdy/NameValueBlockReader.nameValueBlockIn Ljava/io/DataInputStream;
+; v0 : Ljava/io/DataInputStream; , v1 : Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader;
+	invoke-virtual	{v0},java/io/DataInputStream/close	; close()V
+; v0 : Ljava/io/DataInputStream;
+.line 122
+	return-void	
+.end method
+
+.method public readNameValueBlock(I)Ljava/util/List;
+.throws Ljava/io/IOException;
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "(I)" , "Ljava/util/List" , "<" , "Ljava/lang/String;" , ">;" }
+.end annotation
+.limit registers 11
+; this: v9 (Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader;)
+; parameter[0] : v10 (I)
+.catch java/util/zip/DataFormatException from lbef76 to lbf000 using lbef58
+.catch java/util/zip/DataFormatException from lbef16 to lbef58 using lbef58
+.var 4 is numberOfPairs I from lbef22 to lbef58
+.var 0 is e Ljava/util/zip/DataFormatException; from lbef5a to lbef6e
+.var 3 is name Ljava/lang/String; from lbefc4 to lbeffa
+.var 5 is values Ljava/lang/String; from lbefcc to lbeffa
+.line 75
+	iget	v6,v9,com/squareup/okhttp/internal/spdy/NameValueBlockReader.compressedLimit I
+; v6 : single-length , v9 : Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader;
+	add-int/2addr	v6,v10
+; v6 : single-length , v10 : single-length
+	iput	v6,v9,com/squareup/okhttp/internal/spdy/NameValueBlockReader.compressedLimit I
+; v6 : single-length , v9 : Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader;
+lbef16:
+.line 77
+	iget-object	v6,v9,com/squareup/okhttp/internal/spdy/NameValueBlockReader.nameValueBlockIn Ljava/io/DataInputStream;
+; v6 : Ljava/io/DataInputStream; , v9 : Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader;
+	invoke-virtual	{v6},java/io/DataInputStream/readInt	; readInt()I
+; v6 : Ljava/io/DataInputStream;
+	move-result	v4
+; v4 : single-length
+.line 78
+	if-gez	v4,lbef6e
+; v4 : single-length
+.line 79
+	new-instance	v6,java/io/IOException
+; v6 : Ljava/io/IOException;
+	new-instance	v7,java/lang/StringBuilder
+; v7 : Ljava/lang/StringBuilder;
+	invoke-direct	{v7},java/lang/StringBuilder/<init>	; <init>()V
+; v7 : Ljava/lang/StringBuilder;
+	const-string	v8,"numberOfPairs < 0: "
+; v8 : Ljava/lang/String;
+	invoke-virtual	{v7,v8},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v7 : Ljava/lang/StringBuilder; , v8 : Ljava/lang/String;
+	move-result-object	v7
+; v7 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v7,v4},java/lang/StringBuilder/append	; append(I)Ljava/lang/StringBuilder;
+; v7 : Ljava/lang/StringBuilder; , v4 : single-length
+	move-result-object	v7
+; v7 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v7},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v7 : Ljava/lang/StringBuilder;
+	move-result-object	v7
+; v7 : Ljava/lang/String;
+	invoke-direct	{v6,v7},java/io/IOException/<init>	; <init>(Ljava/lang/String;)V
+; v6 : Ljava/io/IOException; , v7 : Ljava/lang/String;
+	throw	v6
+; v6 : Ljava/io/IOException;
+lbef58:
+.line 96
+	move-exception	v0
+; v0 : java/util/zip/DataFormatException
+.line 97
+	new-instance	v6,java/io/IOException
+; v6 : Ljava/io/IOException;
+	invoke-virtual	{v0},java/util/zip/DataFormatException/getMessage	; getMessage()Ljava/lang/String;
+; v0 : java/util/zip/DataFormatException
+	move-result-object	v7
+; v7 : Ljava/lang/String;
+	invoke-direct	{v6,v7},java/io/IOException/<init>	; <init>(Ljava/lang/String;)V
+; v6 : Ljava/io/IOException; , v7 : Ljava/lang/String;
+	throw	v6
+; v6 : Ljava/io/IOException;
+lbef6e:
+.line 81
+	const/16	v6,1024
+; v6 : single-length
+	if-le	v4,v6,lbefa8
+; v4 : single-length , v6 : single-length
+lbef76:
+.line 82
+	new-instance	v6,java/io/IOException
+; v6 : Ljava/io/IOException;
+	new-instance	v7,java/lang/StringBuilder
+; v7 : Ljava/lang/StringBuilder;
+	invoke-direct	{v7},java/lang/StringBuilder/<init>	; <init>()V
+; v7 : Ljava/lang/StringBuilder;
+	const-string	v8,"numberOfPairs > 1024: "
+; v8 : Ljava/lang/String;
+	invoke-virtual	{v7,v8},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v7 : Ljava/lang/StringBuilder; , v8 : Ljava/lang/String;
+	move-result-object	v7
+; v7 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v7,v4},java/lang/StringBuilder/append	; append(I)Ljava/lang/StringBuilder;
+; v7 : Ljava/lang/StringBuilder; , v4 : single-length
+	move-result-object	v7
+; v7 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v7},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v7 : Ljava/lang/StringBuilder;
+	move-result-object	v7
+; v7 : Ljava/lang/String;
+	invoke-direct	{v6,v7},java/io/IOException/<init>	; <init>(Ljava/lang/String;)V
+; v6 : Ljava/io/IOException; , v7 : Ljava/lang/String;
+	throw	v6
+; v6 : Ljava/io/IOException;
+lbefa8:
+.line 84
+	new-instance	v1,java/util/ArrayList
+; v1 : Ljava/util/ArrayList;
+	mul-int/lit-8	v6,v4,2
+; v6 : single-length , v4 : single-length
+	invoke-direct	{v1,v6},java/util/ArrayList/<init>	; <init>(I)V
+; v1 : Ljava/util/ArrayList; , v6 : single-length
+.line 85
+	const/4	v2,0
+; v2 : single-length
+lbefb8:
+	if-ge	v2,v4,lbeffa
+; v2 : single-length , v4 : single-length
+.line 86
+	invoke-direct	{v9},com/squareup/okhttp/internal/spdy/NameValueBlockReader/readString	; readString()Ljava/lang/String;
+; v9 : Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+.line 87
+	invoke-direct	{v9},com/squareup/okhttp/internal/spdy/NameValueBlockReader/readString	; readString()Ljava/lang/String;
+; v9 : Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader;
+	move-result-object	v5
+; v5 : Ljava/lang/String;
+.line 88
+	invoke-virtual	{v3},java/lang/String/length	; length()I
+; v3 : Ljava/lang/String;
+	move-result	v6
+; v6 : single-length
+	if-nez	v6,lbefe8
+; v6 : single-length
+	new-instance	v6,java/io/IOException
+; v6 : Ljava/io/IOException;
+	const-string	v7,"name.length == 0"
+; v7 : Ljava/lang/String;
+	invoke-direct	{v6,v7},java/io/IOException/<init>	; <init>(Ljava/lang/String;)V
+; v6 : Ljava/io/IOException; , v7 : Ljava/lang/String;
+	throw	v6
+; v6 : Ljava/io/IOException;
+lbefe8:
+.line 89
+	invoke-interface	{v1,v3},java/util/List/add	; add(Ljava/lang/Object;)Z
+; v1 : Ljava/util/ArrayList; , v3 : Ljava/lang/String;
+.line 90
+	invoke-interface	{v1,v5},java/util/List/add	; add(Ljava/lang/Object;)Z
+; v1 : Ljava/util/ArrayList; , v5 : Ljava/lang/String;
+.line 85
+	add-int/lit8	v2,v2,1
+; v2 : single-length , v2 : single-length
+	goto	lbefb8
+lbeffa:
+.line 93
+	invoke-direct	{v9},com/squareup/okhttp/internal/spdy/NameValueBlockReader/doneReading	; doneReading()V
+; v9 : Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader;
+lbf000:
+.line 95
+	return-object	v1
+; v1 : Ljava/util/ArrayList;
+.end method
+
+

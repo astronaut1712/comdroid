@@ -1,0 +1,131 @@
+.class final com/squareup/picasso/TargetAction
+.super com/squareup/picasso/Action
+.source TargetAction.java
+
+.annotation systemVisibility Ldalvik/annotation/Signature;
+  value [Ljava/lang/String; = { "Lcom/squareup/picasso/Action" , "<" , "Lcom/squareup/picasso/Target;" , ">;" }
+.end annotation
+
+
+.method <init>(Lcom/squareup/picasso/Picasso;Lcom/squareup/picasso/Target;Lcom/squareup/picasso/Request;ZLjava/lang/String;)V
+.limit registers 15
+; this: v9 (Lcom/squareup/picasso/TargetAction;)
+; parameter[0] : v10 (Lcom/squareup/picasso/Picasso;)
+; parameter[1] : v11 (Lcom/squareup/picasso/Target;)
+; parameter[2] : v12 (Lcom/squareup/picasso/Request;)
+; parameter[3] : v13 (Z)
+; parameter[4] : v14 (Ljava/lang/String;)
+	const/4	v5,0
+; v5 : single-length
+.line 23
+	const/4	v7,0
+; v7 : single-length
+	move-object	v0,v9
+; v0 : Lcom/squareup/picasso/TargetAction; , v9 : Lcom/squareup/picasso/TargetAction;
+	move-object	v1,v10
+; v1 : Lcom/squareup/picasso/Picasso; , v10 : Lcom/squareup/picasso/Picasso;
+	move-object	v2,v11
+; v2 : Lcom/squareup/picasso/Target; , v11 : Lcom/squareup/picasso/Target;
+	move-object	v3,v12
+; v3 : Lcom/squareup/picasso/Request; , v12 : Lcom/squareup/picasso/Request;
+	move	v4,v13
+; v4 : single-length , v13 : single-length
+	move	v6,v5
+; v6 : single-length , v5 : single-length
+	move-object	v8,v14
+; v8 : Ljava/lang/String; , v14 : Ljava/lang/String;
+	invoke-direct/range	{v0..v8},com/squareup/picasso/Action/<init>;	<init>(Lcom/squareup/picasso/Picasso;Ljava/lang/Object;Lcom/squareup/picasso/Request;ZZILandroid/graphics/drawable/Drawable;Ljava/lang/String;)V
+; v0 : Lcom/squareup/picasso/TargetAction; , v1 : Lcom/squareup/picasso/Picasso; , v2 : Lcom/squareup/picasso/Target; , v3 : Lcom/squareup/picasso/Request; , v4 : single-length , v5 : single-length , v6 : single-length , v7 : single-length , v8 : Ljava/lang/String;
+.line 24
+	return-void	
+.end method
+
+.method complete(Landroid/graphics/Bitmap;Lcom/squareup/picasso/Picasso$LoadedFrom;)V
+.limit registers 8
+; this: v5 (Lcom/squareup/picasso/TargetAction;)
+; parameter[0] : v6 (Landroid/graphics/Bitmap;)
+; parameter[1] : v7 (Lcom/squareup/picasso/Picasso$LoadedFrom;)
+.line 27
+	if-nez	v6,lf4884
+; v6 : Landroid/graphics/Bitmap;
+.line 28
+	new-instance	v1,java/lang/AssertionError
+; v1 : Ljava/lang/AssertionError;
+	const-string	v2,"Attempted to complete action with no result!
+%s"
+; v2 : Ljava/lang/String;
+	const/4	v3,1
+; v3 : single-length
+	new-array	v3,v3,[Ljava/lang/Object;
+; v3 : [Ljava/lang/Object; , v3 : [Ljava/lang/Object;
+	const/4	v4,0
+; v4 : single-length
+	aput-object	v5,v3,v4
+; v5 : Lcom/squareup/picasso/TargetAction; , v3 : [Ljava/lang/Object; , v4 : single-length
+	invoke-static	{v2,v3},java/lang/String/format	; format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+; v2 : Ljava/lang/String; , v3 : [Ljava/lang/Object;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-direct	{v1,v2},java/lang/AssertionError/<init>	; <init>(Ljava/lang/Object;)V
+; v1 : Ljava/lang/AssertionError; , v2 : Ljava/lang/String;
+	throw	v1
+; v1 : Ljava/lang/AssertionError;
+lf4884:
+.line 31
+	invoke-virtual	{v5},com/squareup/picasso/TargetAction/getTarget	; getTarget()Ljava/lang/Object;
+; v5 : Lcom/squareup/picasso/TargetAction;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,com/squareup/picasso/Target
+; v0 : Lcom/squareup/picasso/Target;
+.line 32
+	if-eqz	v0,lf48b6
+; v0 : Lcom/squareup/picasso/Target;
+.line 33
+	invoke-interface	{v0,v6,v7},com/squareup/picasso/Target/onBitmapLoaded	; onBitmapLoaded(Landroid/graphics/Bitmap;Lcom/squareup/picasso/Picasso$LoadedFrom;)V
+; v0 : Lcom/squareup/picasso/Target; , v6 : Landroid/graphics/Bitmap; , v7 : Lcom/squareup/picasso/Picasso$LoadedFrom;
+.line 34
+	invoke-virtual	{v6},android/graphics/Bitmap/isRecycled	; isRecycled()Z
+; v6 : Landroid/graphics/Bitmap;
+	move-result	v1
+; v1 : single-length
+	if-eqz	v1,lf48b6
+; v1 : single-length
+.line 35
+	new-instance	v1,java/lang/IllegalStateException
+; v1 : Ljava/lang/IllegalStateException;
+	const-string	v2,"Target callback must not recycle bitmap!"
+; v2 : Ljava/lang/String;
+	invoke-direct	{v1,v2},java/lang/IllegalStateException/<init>	; <init>(Ljava/lang/String;)V
+; v1 : Ljava/lang/IllegalStateException; , v2 : Ljava/lang/String;
+	throw	v1
+; v1 : Ljava/lang/IllegalStateException;
+lf48b6:
+.line 38
+	return-void	
+.end method
+
+.method error()V
+.limit registers 3
+; this: v2 (Lcom/squareup/picasso/TargetAction;)
+.line 41
+	invoke-virtual	{v2},com/squareup/picasso/TargetAction/getTarget	; getTarget()Ljava/lang/Object;
+; v2 : Lcom/squareup/picasso/TargetAction;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,com/squareup/picasso/Target
+; v0 : Lcom/squareup/picasso/Target;
+.line 42
+	if-eqz	v0,lf48e2
+; v0 : Lcom/squareup/picasso/Target;
+.line 43
+	iget-object	v1,v2,com/squareup/picasso/TargetAction.errorDrawable Landroid/graphics/drawable/Drawable;
+; v1 : Landroid/graphics/drawable/Drawable; , v2 : Lcom/squareup/picasso/TargetAction;
+	invoke-interface	{v0,v1},com/squareup/picasso/Target/onBitmapFailed	; onBitmapFailed(Landroid/graphics/drawable/Drawable;)V
+; v0 : Lcom/squareup/picasso/Target; , v1 : Landroid/graphics/drawable/Drawable;
+lf48e2:
+.line 45
+	return-void	
+.end method
+
+

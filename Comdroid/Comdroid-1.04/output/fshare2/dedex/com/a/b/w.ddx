@@ -1,0 +1,100 @@
+.class com/a/b/w
+.super com/a/b/m
+.source MyApplication
+
+
+.method <init>(Landroid/content/Context;Lcom/a/b/ae;Lcom/a/b/o;Lcom/a/b/h;Lcom/a/b/au;Lcom/a/b/a;)V
+.limit registers 7
+; this: v0 (Lcom/a/b/w;)
+; parameter[0] : v1 (Landroid/content/Context;)
+; parameter[1] : v2 (Lcom/a/b/ae;)
+; parameter[2] : v3 (Lcom/a/b/o;)
+; parameter[3] : v4 (Lcom/a/b/h;)
+; parameter[4] : v5 (Lcom/a/b/au;)
+; parameter[5] : v6 (Lcom/a/b/a;)
+.line 34
+	invoke-direct/range	{v0..v6},com/a/b/m/<init>;	<init>(Landroid/content/Context;Lcom/a/b/ae;Lcom/a/b/o;Lcom/a/b/h;Lcom/a/b/au;Lcom/a/b/a;)V
+; v0 : Lcom/a/b/w; , v1 : Landroid/content/Context; , v2 : Lcom/a/b/ae; , v3 : Lcom/a/b/o; , v4 : Lcom/a/b/h; , v5 : Lcom/a/b/au; , v6 : Lcom/a/b/a;
+.line 35
+	return-void	
+.end method
+
+.method static a(Landroid/net/Uri;)I
+.limit registers 4
+; parameter[0] : v3 (Landroid/net/Uri;)
+.line 44
+	new-instance	v0,android/media/ExifInterface
+; v0 : Landroid/media/ExifInterface;
+	invoke-virtual	{v3},android/net/Uri/getPath	; getPath()Ljava/lang/String;
+; v3 : Landroid/net/Uri;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},android/media/ExifInterface/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Landroid/media/ExifInterface; , v1 : Ljava/lang/String;
+.line 45
+	const-string	v1,"Orientation"
+; v1 : Ljava/lang/String;
+	const/4	v2,1
+; v2 : single-length
+	invoke-virtual	{v0,v1,v2},android/media/ExifInterface/getAttributeInt	; getAttributeInt(Ljava/lang/String;I)I
+; v0 : Landroid/media/ExifInterface; , v1 : Ljava/lang/String; , v2 : single-length
+	move-result	v0
+; v0 : single-length
+.line 46
+	packed-switch	v0,3
+		ps7c05c_7c06c	; case 3
+		ps7c05c_7c062	; case 4
+		ps7c05c_7c062	; case 5
+		ps7c05c_7c066	; case 6
+		ps7c05c_7c062	; case 7
+		ps7c05c_7c072	; case 8
+		default: ps7c05c_default
+; v0 : single-length
+ps7c05c_default:
+.line 54
+	const/4	v0,0
+; v0 : single-length
+l7c064:
+	return	v0
+; v0 : single-length
+ps7c05c_7c066:
+.line 48
+	const/16	v0,90
+; v0 : single-length
+	goto	l7c064
+ps7c05c_7c06c:
+.line 50
+	const/16	v0,180
+; v0 : single-length
+	goto	l7c064
+ps7c05c_7c072:
+.line 52
+	const/16	v0,270
+; v0 : single-length
+	goto	l7c064
+.line 46
+.end method
+
+.method a(Lcom/a/b/ap;)Landroid/graphics/Bitmap;
+.limit registers 3
+; this: v1 (Lcom/a/b/w;)
+; parameter[0] : v2 (Lcom/a/b/ap;)
+.line 39
+	iget-object	v0,v2,com/a/b/ap.a Landroid/net/Uri;
+; v0 : Landroid/net/Uri; , v2 : Lcom/a/b/ap;
+	invoke-static	{v0},com/a/b/w/a	; a(Landroid/net/Uri;)I
+; v0 : Landroid/net/Uri;
+	move-result	v0
+; v0 : single-length
+	invoke-virtual	{v1,v0},com/a/b/w/a	; a(I)V
+; v1 : Lcom/a/b/w; , v0 : single-length
+.line 40
+	invoke-super	{v1,v2},com/a/b/m/a	; a(Lcom/a/b/ap;)Landroid/graphics/Bitmap;
+; v1 : Lcom/a/b/w; , v2 : Lcom/a/b/ap;
+	move-result-object	v0
+; v0 : Landroid/graphics/Bitmap;
+	return-object	v0
+; v0 : Landroid/graphics/Bitmap;
+.end method
+
+

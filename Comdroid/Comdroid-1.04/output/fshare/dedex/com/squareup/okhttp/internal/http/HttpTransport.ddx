@@ -1,0 +1,608 @@
+.class public final com/squareup/okhttp/internal/http/HttpTransport
+.super java/lang/Object
+.source HttpTransport.java
+.implements com/squareup/okhttp/internal/http/Transport
+
+.inner class 1 inner com/squareup/okhttp/internal/http/HttpTransport$1 outer com/squareup/okhttp/internal/http/HttpTransport
+.inner class ChunkedInputStream inner com/squareup/okhttp/internal/http/HttpTransport$ChunkedInputStream outer com/squareup/okhttp/internal/http/HttpTransport
+.inner class FixedLengthInputStream inner com/squareup/okhttp/internal/http/HttpTransport$FixedLengthInputStream outer com/squareup/okhttp/internal/http/HttpTransport
+.inner class ChunkedOutputStream inner com/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream outer com/squareup/okhttp/internal/http/HttpTransport
+.inner class FixedLengthOutputStream inner com/squareup/okhttp/internal/http/HttpTransport$FixedLengthOutputStream outer com/squareup/okhttp/internal/http/HttpTransport
+.field public static final DEFAULT_CHUNK_LENGTH I = 1024	; 0x400
+.field private static final DISCARD_STREAM_TIMEOUT_MILLIS I = 100	; 0x64
+.field private final httpEngine Lcom/squareup/okhttp/internal/http/HttpEngine;
+.field private requestOut Ljava/io/OutputStream;
+.field private final socketIn Ljava/io/InputStream;
+.field private final socketOut Ljava/io/OutputStream;
+
+.method public <init>(Lcom/squareup/okhttp/internal/http/HttpEngine;Ljava/io/OutputStream;Ljava/io/InputStream;)V
+.limit registers 4
+; this: v0 (Lcom/squareup/okhttp/internal/http/HttpTransport;)
+; parameter[0] : v1 (Lcom/squareup/okhttp/internal/http/HttpEngine;)
+; parameter[1] : v2 (Ljava/io/OutputStream;)
+; parameter[2] : v3 (Ljava/io/InputStream;)
+.line 54
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Lcom/squareup/okhttp/internal/http/HttpTransport;
+.line 55
+	iput-object	v1,v0,com/squareup/okhttp/internal/http/HttpTransport.httpEngine Lcom/squareup/okhttp/internal/http/HttpEngine;
+; v1 : Lcom/squareup/okhttp/internal/http/HttpEngine; , v0 : Lcom/squareup/okhttp/internal/http/HttpTransport;
+.line 56
+	iput-object	v2,v0,com/squareup/okhttp/internal/http/HttpTransport.socketOut Ljava/io/OutputStream;
+; v2 : Ljava/io/OutputStream; , v0 : Lcom/squareup/okhttp/internal/http/HttpTransport;
+.line 57
+	iput-object	v2,v0,com/squareup/okhttp/internal/http/HttpTransport.requestOut Ljava/io/OutputStream;
+; v2 : Ljava/io/OutputStream; , v0 : Lcom/squareup/okhttp/internal/http/HttpTransport;
+.line 58
+	iput-object	v3,v0,com/squareup/okhttp/internal/http/HttpTransport.socketIn Ljava/io/InputStream;
+; v3 : Ljava/io/InputStream; , v0 : Lcom/squareup/okhttp/internal/http/HttpTransport;
+.line 59
+	return-void	
+.end method
+
+.method static access$200(Lcom/squareup/okhttp/internal/http/HttpEngine;Ljava/io/InputStream;)Z
+.limit registers 3
+; parameter[0] : v1 (Lcom/squareup/okhttp/internal/http/HttpEngine;)
+; parameter[1] : v2 (Ljava/io/InputStream;)
+.line 32
+	invoke-static	{v1,v2},com/squareup/okhttp/internal/http/HttpTransport/discardStream	; discardStream(Lcom/squareup/okhttp/internal/http/HttpEngine;Ljava/io/InputStream;)Z
+; v1 : Lcom/squareup/okhttp/internal/http/HttpEngine; , v2 : Ljava/io/InputStream;
+	move-result	v0
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method static access$300(Lcom/squareup/okhttp/internal/http/HttpTransport;)Lcom/squareup/okhttp/internal/http/HttpEngine;
+.limit registers 2
+; parameter[0] : v1 (Lcom/squareup/okhttp/internal/http/HttpTransport;)
+.line 32
+	iget-object	v0,v1,com/squareup/okhttp/internal/http/HttpTransport.httpEngine Lcom/squareup/okhttp/internal/http/HttpEngine;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpEngine; , v1 : Lcom/squareup/okhttp/internal/http/HttpTransport;
+	return-object	v0
+; v0 : Lcom/squareup/okhttp/internal/http/HttpEngine;
+.end method
+
+.method static access$400(Lcom/squareup/okhttp/internal/http/HttpTransport;)Ljava/io/InputStream;
+.limit registers 2
+; parameter[0] : v1 (Lcom/squareup/okhttp/internal/http/HttpTransport;)
+.line 32
+	iget-object	v0,v1,com/squareup/okhttp/internal/http/HttpTransport.socketIn Ljava/io/InputStream;
+; v0 : Ljava/io/InputStream; , v1 : Lcom/squareup/okhttp/internal/http/HttpTransport;
+	return-object	v0
+; v0 : Ljava/io/InputStream;
+.end method
+
+.method private static discardStream(Lcom/squareup/okhttp/internal/http/HttpEngine;Ljava/io/InputStream;)Z
+.limit registers 8
+; parameter[0] : v6 (Lcom/squareup/okhttp/internal/http/HttpEngine;)
+; parameter[1] : v7 (Ljava/io/InputStream;)
+.catch java/io/IOException from lefdde to lefdf2 using lefdf2
+.catch java/lang/Exception from lefdd6 to lefddc using lefde8
+.catch java/io/IOException from lefdc4 to lefdd6 using lefdf2
+.var 3 is socketTimeout I from lefdcc to lefdf2
+	const/4	v4,0
+; v4 : single-length
+.line 186
+	iget-object	v0,v6,com/squareup/okhttp/internal/http/HttpEngine.connection Lcom/squareup/okhttp/Connection;
+; v0 : Lcom/squareup/okhttp/Connection; , v6 : Lcom/squareup/okhttp/internal/http/HttpEngine;
+.line 187
+	if-nez	v0,lefdb8
+; v0 : Lcom/squareup/okhttp/Connection;
+lefdb6:
+.line 200
+	return	v4
+; v4 : single-length
+lefdb8:
+.line 188
+	invoke-virtual	{v0},com/squareup/okhttp/Connection/getSocket	; getSocket()Ljava/net/Socket;
+; v0 : Lcom/squareup/okhttp/Connection;
+	move-result-object	v2
+; v2 : Ljava/net/Socket;
+.line 189
+	if-eqz	v2,lefdb6
+; v2 : Ljava/net/Socket;
+lefdc4:
+.line 191
+	invoke-virtual	{v2},java/net/Socket/getSoTimeout	; getSoTimeout()I
+; v2 : Ljava/net/Socket;
+	move-result	v3
+; v3 : single-length
+.line 192
+	const/16	v5,100
+; v5 : single-length
+	invoke-virtual	{v2,v5},java/net/Socket/setSoTimeout	; setSoTimeout(I)V
+; v2 : Ljava/net/Socket; , v5 : single-length
+lefdd6:
+.line 194
+	invoke-static	{v7},com/squareup/okhttp/internal/Util/skipAll	; skipAll(Ljava/io/InputStream;)V
+; v7 : Ljava/io/InputStream;
+lefddc:
+.line 195
+	const/4	v5,1
+; v5 : single-length
+lefdde:
+.line 197
+	invoke-virtual	{v2,v3},java/net/Socket/setSoTimeout	; setSoTimeout(I)V
+; v2 : Ljava/net/Socket; , v3 : single-length
+	move	v4,v5
+; v4 : single-length , v5 : single-length
+	goto	lefdb6
+lefde8:
+	move-exception	v5
+; v5 : java/lang/Exception
+	invoke-virtual	{v2,v3},java/net/Socket/setSoTimeout	; setSoTimeout(I)V
+; v2 : Ljava/net/Socket; , v3 : single-length
+	throw	v5
+; v5 : java/lang/Exception
+lefdf2:
+.line 199
+	move-exception	v1
+; v1 : java/io/IOException
+.line 200
+	goto	lefdb6
+.end method
+
+.method public createRequestBody()Ljava/io/OutputStream;
+.throws Ljava/io/IOException;
+.limit registers 12
+; this: v11 (Lcom/squareup/okhttp/internal/http/HttpTransport;)
+.var 0 is chunkLength I from lefe8e to lefeac
+	const-wide/16	v9,65535
+; v9 : double-length
+	const/4	v8,0
+; v8 : single-length
+.line 62
+	iget-object	v6,v11,com/squareup/okhttp/internal/http/HttpTransport.httpEngine Lcom/squareup/okhttp/internal/http/HttpEngine;
+; v6 : Lcom/squareup/okhttp/internal/http/HttpEngine; , v11 : Lcom/squareup/okhttp/internal/http/HttpTransport;
+	iget-object	v6,v6,com/squareup/okhttp/internal/http/HttpEngine.requestHeaders Lcom/squareup/okhttp/internal/http/RequestHeaders;
+; v6 : Lcom/squareup/okhttp/internal/http/RequestHeaders; , v6 : Lcom/squareup/okhttp/internal/http/RequestHeaders;
+	invoke-virtual	{v6},com/squareup/okhttp/internal/http/RequestHeaders/isChunked	; isChunked()Z
+; v6 : Lcom/squareup/okhttp/internal/http/RequestHeaders;
+	move-result	v1
+; v1 : single-length
+.line 63
+	if-nez	v1,lefe7a
+; v1 : single-length
+	iget-object	v6,v11,com/squareup/okhttp/internal/http/HttpTransport.httpEngine Lcom/squareup/okhttp/internal/http/HttpEngine;
+; v6 : Lcom/squareup/okhttp/internal/http/HttpEngine; , v11 : Lcom/squareup/okhttp/internal/http/HttpTransport;
+	iget-object	v6,v6,com/squareup/okhttp/internal/http/HttpEngine.policy Lcom/squareup/okhttp/internal/http/Policy;
+; v6 : Lcom/squareup/okhttp/internal/http/Policy; , v6 : Lcom/squareup/okhttp/internal/http/Policy;
+	invoke-interface	{v6},com/squareup/okhttp/internal/http/Policy/getChunkLength	; getChunkLength()I
+; v6 : Lcom/squareup/okhttp/internal/http/Policy;
+	move-result	v6
+; v6 : single-length
+	if-lez	v6,lefe7a
+; v6 : single-length
+	iget-object	v6,v11,com/squareup/okhttp/internal/http/HttpTransport.httpEngine Lcom/squareup/okhttp/internal/http/HttpEngine;
+; v6 : Lcom/squareup/okhttp/internal/http/HttpEngine; , v11 : Lcom/squareup/okhttp/internal/http/HttpTransport;
+	iget-object	v6,v6,com/squareup/okhttp/internal/http/HttpEngine.connection Lcom/squareup/okhttp/Connection;
+; v6 : Lcom/squareup/okhttp/Connection; , v6 : Lcom/squareup/okhttp/Connection;
+	invoke-virtual	{v6},com/squareup/okhttp/Connection/getHttpMinorVersion	; getHttpMinorVersion()I
+; v6 : Lcom/squareup/okhttp/Connection;
+	move-result	v6
+; v6 : single-length
+	if-eqz	v6,lefe7a
+; v6 : single-length
+.line 66
+	iget-object	v6,v11,com/squareup/okhttp/internal/http/HttpTransport.httpEngine Lcom/squareup/okhttp/internal/http/HttpEngine;
+; v6 : Lcom/squareup/okhttp/internal/http/HttpEngine; , v11 : Lcom/squareup/okhttp/internal/http/HttpTransport;
+	iget-object	v6,v6,com/squareup/okhttp/internal/http/HttpEngine.requestHeaders Lcom/squareup/okhttp/internal/http/RequestHeaders;
+; v6 : Lcom/squareup/okhttp/internal/http/RequestHeaders; , v6 : Lcom/squareup/okhttp/internal/http/RequestHeaders;
+	invoke-virtual	{v6},com/squareup/okhttp/internal/http/RequestHeaders/setChunked	; setChunked()V
+; v6 : Lcom/squareup/okhttp/internal/http/RequestHeaders;
+.line 67
+	const/4	v1,1
+; v1 : single-length
+lefe7a:
+.line 71
+	if-eqz	v1,lefeae
+; v1 : single-length
+.line 72
+	iget-object	v6,v11,com/squareup/okhttp/internal/http/HttpTransport.httpEngine Lcom/squareup/okhttp/internal/http/HttpEngine;
+; v6 : Lcom/squareup/okhttp/internal/http/HttpEngine; , v11 : Lcom/squareup/okhttp/internal/http/HttpTransport;
+	iget-object	v6,v6,com/squareup/okhttp/internal/http/HttpEngine.policy Lcom/squareup/okhttp/internal/http/Policy;
+; v6 : Lcom/squareup/okhttp/internal/http/Policy; , v6 : Lcom/squareup/okhttp/internal/http/Policy;
+	invoke-interface	{v6},com/squareup/okhttp/internal/http/Policy/getChunkLength	; getChunkLength()I
+; v6 : Lcom/squareup/okhttp/internal/http/Policy;
+	move-result	v0
+; v0 : single-length
+.line 73
+	const/4	v6,15
+; v6 : single-length
+	if-ne	v0,v6,lefe98
+; v0 : single-length , v6 : single-length
+.line 74
+	const/16	v0,1024
+; v0 : single-length
+lefe98:
+.line 76
+	invoke-virtual	{v11},com/squareup/okhttp/internal/http/HttpTransport/writeRequestHeaders	; writeRequestHeaders()V
+; v11 : Lcom/squareup/okhttp/internal/http/HttpTransport;
+.line 77
+	new-instance	v6,com/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream
+; v6 : Lcom/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream;
+	iget-object	v7,v11,com/squareup/okhttp/internal/http/HttpTransport.requestOut Ljava/io/OutputStream;
+; v7 : Ljava/io/OutputStream; , v11 : Lcom/squareup/okhttp/internal/http/HttpTransport;
+	invoke-direct	{v6,v7,v0,v8},com/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream/<init>	; <init>(Ljava/io/OutputStream;ILcom/squareup/okhttp/internal/http/HttpTransport$1;)V
+; v6 : Lcom/squareup/okhttp/internal/http/HttpTransport$ChunkedOutputStream; , v7 : Ljava/io/OutputStream; , v0 : single-length , v8 : single-length
+lefeac:
+.line 103
+	return-object	v6
+; v6 : Ljava/lang/Object;
+lefeae:
+.line 81
+	iget-object	v6,v11,com/squareup/okhttp/internal/http/HttpTransport.httpEngine Lcom/squareup/okhttp/internal/http/HttpEngine;
+; v6 : Lcom/squareup/okhttp/internal/http/HttpEngine; , v11 : Lcom/squareup/okhttp/internal/http/HttpTransport;
+	iget-object	v6,v6,com/squareup/okhttp/internal/http/HttpEngine.policy Lcom/squareup/okhttp/internal/http/Policy;
+; v6 : Lcom/squareup/okhttp/internal/http/Policy; , v6 : Lcom/squareup/okhttp/internal/http/Policy;
+	invoke-interface	{v6},com/squareup/okhttp/internal/http/Policy/getFixedContentLength	; getFixedContentLength()J
+; v6 : Lcom/squareup/okhttp/internal/http/Policy;
+	move-result-wide	v4
+; v4 : double-length
+.line 82
+	cmp-long	v6,v4,v9
+; v6 : single-length , v4 : double-length , v9 : double-length
+	if-eqz	v6,lefeea
+; v6 : single-length
+.line 83
+	iget-object	v6,v11,com/squareup/okhttp/internal/http/HttpTransport.httpEngine Lcom/squareup/okhttp/internal/http/HttpEngine;
+; v6 : Lcom/squareup/okhttp/internal/http/HttpEngine; , v11 : Lcom/squareup/okhttp/internal/http/HttpTransport;
+	iget-object	v6,v6,com/squareup/okhttp/internal/http/HttpEngine.requestHeaders Lcom/squareup/okhttp/internal/http/RequestHeaders;
+; v6 : Lcom/squareup/okhttp/internal/http/RequestHeaders; , v6 : Lcom/squareup/okhttp/internal/http/RequestHeaders;
+	invoke-virtual	{v6,v4,v5},com/squareup/okhttp/internal/http/RequestHeaders/setContentLength	; setContentLength(J)V
+; v6 : Lcom/squareup/okhttp/internal/http/RequestHeaders; , v4 : double-length
+.line 84
+	invoke-virtual	{v11},com/squareup/okhttp/internal/http/HttpTransport/writeRequestHeaders	; writeRequestHeaders()V
+; v11 : Lcom/squareup/okhttp/internal/http/HttpTransport;
+.line 85
+	new-instance	v6,com/squareup/okhttp/internal/http/HttpTransport$FixedLengthOutputStream
+; v6 : Lcom/squareup/okhttp/internal/http/HttpTransport$FixedLengthOutputStream;
+	iget-object	v7,v11,com/squareup/okhttp/internal/http/HttpTransport.requestOut Ljava/io/OutputStream;
+; v7 : Ljava/io/OutputStream; , v11 : Lcom/squareup/okhttp/internal/http/HttpTransport;
+	invoke-direct	{v6,v7,v4,v5,v8},com/squareup/okhttp/internal/http/HttpTransport$FixedLengthOutputStream/<init>	; <init>(Ljava/io/OutputStream;JLcom/squareup/okhttp/internal/http/HttpTransport$1;)V
+; v6 : Lcom/squareup/okhttp/internal/http/HttpTransport$FixedLengthOutputStream; , v7 : Ljava/io/OutputStream; , v4 : double-length , v8 : single-length
+	goto	lefeac
+lefeea:
+.line 88
+	iget-object	v6,v11,com/squareup/okhttp/internal/http/HttpTransport.httpEngine Lcom/squareup/okhttp/internal/http/HttpEngine;
+; v6 : Lcom/squareup/okhttp/internal/http/HttpEngine; , v11 : Lcom/squareup/okhttp/internal/http/HttpTransport;
+	iget-object	v6,v6,com/squareup/okhttp/internal/http/HttpEngine.requestHeaders Lcom/squareup/okhttp/internal/http/RequestHeaders;
+; v6 : Lcom/squareup/okhttp/internal/http/RequestHeaders; , v6 : Lcom/squareup/okhttp/internal/http/RequestHeaders;
+	invoke-virtual	{v6},com/squareup/okhttp/internal/http/RequestHeaders/getContentLength	; getContentLength()J
+; v6 : Lcom/squareup/okhttp/internal/http/RequestHeaders;
+	move-result-wide	v2
+; v2 : double-length
+.line 89
+	const-wide/32	v6,2147483647	; 0x7fffffff
+; v6 : double-length
+	cmp-long	v6,v2,v6
+; v6 : single-length , v2 : double-length , v6 : single-length
+	if-lez	v6,leff18
+; v6 : single-length
+.line 90
+	new-instance	v6,java/lang/IllegalArgumentException
+; v6 : Ljava/lang/IllegalArgumentException;
+	const-string	v7,"Use setFixedLengthStreamingMode() or setChunkedStreamingMode() for requests larger than 2 GiB."
+; v7 : Ljava/lang/String;
+	invoke-direct	{v6,v7},java/lang/IllegalArgumentException/<init>	; <init>(Ljava/lang/String;)V
+; v6 : Ljava/lang/IllegalArgumentException; , v7 : Ljava/lang/String;
+	throw	v6
+; v6 : Ljava/lang/IllegalArgumentException;
+leff18:
+.line 95
+	cmp-long	v6,v2,v9
+; v6 : single-length , v2 : double-length , v9 : double-length
+	if-eqz	v6,leff34
+; v6 : single-length
+.line 96
+	invoke-virtual	{v11},com/squareup/okhttp/internal/http/HttpTransport/writeRequestHeaders	; writeRequestHeaders()V
+; v11 : Lcom/squareup/okhttp/internal/http/HttpTransport;
+.line 97
+	new-instance	v6,com/squareup/okhttp/internal/http/RetryableOutputStream
+; v6 : Lcom/squareup/okhttp/internal/http/RetryableOutputStream;
+	long-to-int	v7,v2
+; v7 : single-length , v2 : double-length
+	invoke-direct	{v6,v7},com/squareup/okhttp/internal/http/RetryableOutputStream/<init>	; <init>(I)V
+; v6 : Lcom/squareup/okhttp/internal/http/RetryableOutputStream; , v7 : single-length
+	goto	lefeac
+leff34:
+.line 103
+	new-instance	v6,com/squareup/okhttp/internal/http/RetryableOutputStream
+; v6 : Lcom/squareup/okhttp/internal/http/RetryableOutputStream;
+	invoke-direct	{v6},com/squareup/okhttp/internal/http/RetryableOutputStream/<init>	; <init>()V
+; v6 : Lcom/squareup/okhttp/internal/http/RetryableOutputStream;
+	goto	lefeac
+.end method
+
+.method public flushRequest()V
+.throws Ljava/io/IOException;
+.limit registers 2
+; this: v1 (Lcom/squareup/okhttp/internal/http/HttpTransport;)
+.line 107
+	iget-object	v0,v1,com/squareup/okhttp/internal/http/HttpTransport.requestOut Ljava/io/OutputStream;
+; v0 : Ljava/io/OutputStream; , v1 : Lcom/squareup/okhttp/internal/http/HttpTransport;
+	invoke-virtual	{v0},java/io/OutputStream/flush	; flush()V
+; v0 : Ljava/io/OutputStream;
+.line 108
+	iget-object	v0,v1,com/squareup/okhttp/internal/http/HttpTransport.socketOut Ljava/io/OutputStream;
+; v0 : Ljava/io/OutputStream; , v1 : Lcom/squareup/okhttp/internal/http/HttpTransport;
+	iput-object	v0,v1,com/squareup/okhttp/internal/http/HttpTransport.requestOut Ljava/io/OutputStream;
+; v0 : Ljava/io/OutputStream; , v1 : Lcom/squareup/okhttp/internal/http/HttpTransport;
+.line 109
+	return-void	
+.end method
+
+.method public getTransferStream(Ljava/net/CacheRequest;)Ljava/io/InputStream;
+.throws Ljava/io/IOException;
+.limit registers 8
+; this: v6 (Lcom/squareup/okhttp/internal/http/HttpTransport;)
+; parameter[0] : v7 (Ljava/net/CacheRequest;)
+.line 205
+	iget-object	v0,v6,com/squareup/okhttp/internal/http/HttpTransport.httpEngine Lcom/squareup/okhttp/internal/http/HttpEngine;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpEngine; , v6 : Lcom/squareup/okhttp/internal/http/HttpTransport;
+	invoke-virtual	{v0},com/squareup/okhttp/internal/http/HttpEngine/hasResponseBody	; hasResponseBody()Z
+; v0 : Lcom/squareup/okhttp/internal/http/HttpEngine;
+	move-result	v0
+; v0 : single-length
+	if-nez	v0,leff9e
+; v0 : single-length
+.line 206
+	new-instance	v0,com/squareup/okhttp/internal/http/HttpTransport$FixedLengthInputStream
+; v0 : Lcom/squareup/okhttp/internal/http/HttpTransport$FixedLengthInputStream;
+	iget-object	v1,v6,com/squareup/okhttp/internal/http/HttpTransport.socketIn Ljava/io/InputStream;
+; v1 : Ljava/io/InputStream; , v6 : Lcom/squareup/okhttp/internal/http/HttpTransport;
+	iget-object	v3,v6,com/squareup/okhttp/internal/http/HttpTransport.httpEngine Lcom/squareup/okhttp/internal/http/HttpEngine;
+; v3 : Lcom/squareup/okhttp/internal/http/HttpEngine; , v6 : Lcom/squareup/okhttp/internal/http/HttpTransport;
+	const-wide/16	v4,0
+; v4 : double-length
+	move-object	v2,v7
+; v2 : Ljava/net/CacheRequest; , v7 : Ljava/net/CacheRequest;
+	invoke-direct/range	{v0..v5},com/squareup/okhttp/internal/http/HttpTransport$FixedLengthInputStream/<init>;	<init>(Ljava/io/InputStream;Ljava/net/CacheRequest;Lcom/squareup/okhttp/internal/http/HttpEngine;J)V
+; v0 : Lcom/squareup/okhttp/internal/http/HttpTransport$FixedLengthInputStream; , v1 : Ljava/io/InputStream; , v2 : Ljava/net/CacheRequest; , v3 : Lcom/squareup/okhttp/internal/http/HttpEngine; , v4 : double-length
+leff9c:
+.line 221
+	return-object	v0
+; v0 : Lcom/squareup/okhttp/internal/http/UnknownLengthHttpInputStream;
+leff9e:
+.line 209
+	iget-object	v0,v6,com/squareup/okhttp/internal/http/HttpTransport.httpEngine Lcom/squareup/okhttp/internal/http/HttpEngine;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpEngine; , v6 : Lcom/squareup/okhttp/internal/http/HttpTransport;
+	iget-object	v0,v0,com/squareup/okhttp/internal/http/HttpEngine.responseHeaders Lcom/squareup/okhttp/internal/http/ResponseHeaders;
+; v0 : Lcom/squareup/okhttp/internal/http/ResponseHeaders; , v0 : Lcom/squareup/okhttp/internal/http/ResponseHeaders;
+	invoke-virtual	{v0},com/squareup/okhttp/internal/http/ResponseHeaders/isChunked	; isChunked()Z
+; v0 : Lcom/squareup/okhttp/internal/http/ResponseHeaders;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,leffc2
+; v0 : single-length
+.line 210
+	new-instance	v0,com/squareup/okhttp/internal/http/HttpTransport$ChunkedInputStream
+; v0 : Lcom/squareup/okhttp/internal/http/HttpTransport$ChunkedInputStream;
+	iget-object	v1,v6,com/squareup/okhttp/internal/http/HttpTransport.socketIn Ljava/io/InputStream;
+; v1 : Ljava/io/InputStream; , v6 : Lcom/squareup/okhttp/internal/http/HttpTransport;
+	invoke-direct	{v0,v1,v7,v6},com/squareup/okhttp/internal/http/HttpTransport$ChunkedInputStream/<init>	; <init>(Ljava/io/InputStream;Ljava/net/CacheRequest;Lcom/squareup/okhttp/internal/http/HttpTransport;)V
+; v0 : Lcom/squareup/okhttp/internal/http/HttpTransport$ChunkedInputStream; , v1 : Ljava/io/InputStream; , v7 : Ljava/net/CacheRequest; , v6 : Lcom/squareup/okhttp/internal/http/HttpTransport;
+	goto	leff9c
+leffc2:
+.line 213
+	iget-object	v0,v6,com/squareup/okhttp/internal/http/HttpTransport.httpEngine Lcom/squareup/okhttp/internal/http/HttpEngine;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpEngine; , v6 : Lcom/squareup/okhttp/internal/http/HttpTransport;
+	iget-object	v0,v0,com/squareup/okhttp/internal/http/HttpEngine.responseHeaders Lcom/squareup/okhttp/internal/http/ResponseHeaders;
+; v0 : Lcom/squareup/okhttp/internal/http/ResponseHeaders; , v0 : Lcom/squareup/okhttp/internal/http/ResponseHeaders;
+	invoke-virtual	{v0},com/squareup/okhttp/internal/http/ResponseHeaders/getContentLength	; getContentLength()J
+; v0 : Lcom/squareup/okhttp/internal/http/ResponseHeaders;
+	move-result-wide	v0
+; v0 : double-length
+	const-wide/16	v2,65535
+; v2 : double-length
+	cmp-long	v0,v0,v2
+; v0 : single-length , v0 : single-length , v2 : double-length
+	if-eqz	v0,lf0004
+; v0 : single-length
+.line 214
+	new-instance	v0,com/squareup/okhttp/internal/http/HttpTransport$FixedLengthInputStream
+; v0 : Lcom/squareup/okhttp/internal/http/HttpTransport$FixedLengthInputStream;
+	iget-object	v1,v6,com/squareup/okhttp/internal/http/HttpTransport.socketIn Ljava/io/InputStream;
+; v1 : Ljava/io/InputStream; , v6 : Lcom/squareup/okhttp/internal/http/HttpTransport;
+	iget-object	v3,v6,com/squareup/okhttp/internal/http/HttpTransport.httpEngine Lcom/squareup/okhttp/internal/http/HttpEngine;
+; v3 : Lcom/squareup/okhttp/internal/http/HttpEngine; , v6 : Lcom/squareup/okhttp/internal/http/HttpTransport;
+	iget-object	v2,v6,com/squareup/okhttp/internal/http/HttpTransport.httpEngine Lcom/squareup/okhttp/internal/http/HttpEngine;
+; v2 : Lcom/squareup/okhttp/internal/http/HttpEngine; , v6 : Lcom/squareup/okhttp/internal/http/HttpTransport;
+	iget-object	v2,v2,com/squareup/okhttp/internal/http/HttpEngine.responseHeaders Lcom/squareup/okhttp/internal/http/ResponseHeaders;
+; v2 : Lcom/squareup/okhttp/internal/http/ResponseHeaders; , v2 : Lcom/squareup/okhttp/internal/http/ResponseHeaders;
+	invoke-virtual	{v2},com/squareup/okhttp/internal/http/ResponseHeaders/getContentLength	; getContentLength()J
+; v2 : Lcom/squareup/okhttp/internal/http/ResponseHeaders;
+	move-result-wide	v4
+; v4 : double-length
+	move-object	v2,v7
+; v2 : Ljava/net/CacheRequest; , v7 : Ljava/net/CacheRequest;
+	invoke-direct/range	{v0..v5},com/squareup/okhttp/internal/http/HttpTransport$FixedLengthInputStream/<init>;	<init>(Ljava/io/InputStream;Ljava/net/CacheRequest;Lcom/squareup/okhttp/internal/http/HttpEngine;J)V
+; v0 : Lcom/squareup/okhttp/internal/http/HttpTransport$FixedLengthInputStream; , v1 : Ljava/io/InputStream; , v2 : Ljava/net/CacheRequest; , v3 : Lcom/squareup/okhttp/internal/http/HttpEngine; , v4 : double-length
+	goto	leff9c
+lf0004:
+.line 221
+	new-instance	v0,com/squareup/okhttp/internal/http/UnknownLengthHttpInputStream
+; v0 : Lcom/squareup/okhttp/internal/http/UnknownLengthHttpInputStream;
+	iget-object	v1,v6,com/squareup/okhttp/internal/http/HttpTransport.socketIn Ljava/io/InputStream;
+; v1 : Ljava/io/InputStream; , v6 : Lcom/squareup/okhttp/internal/http/HttpTransport;
+	iget-object	v2,v6,com/squareup/okhttp/internal/http/HttpTransport.httpEngine Lcom/squareup/okhttp/internal/http/HttpEngine;
+; v2 : Lcom/squareup/okhttp/internal/http/HttpEngine; , v6 : Lcom/squareup/okhttp/internal/http/HttpTransport;
+	invoke-direct	{v0,v1,v7,v2},com/squareup/okhttp/internal/http/UnknownLengthHttpInputStream/<init>	; <init>(Ljava/io/InputStream;Ljava/net/CacheRequest;Lcom/squareup/okhttp/internal/http/HttpEngine;)V
+; v0 : Lcom/squareup/okhttp/internal/http/UnknownLengthHttpInputStream; , v1 : Ljava/io/InputStream; , v7 : Ljava/net/CacheRequest; , v2 : Lcom/squareup/okhttp/internal/http/HttpEngine;
+	goto	leff9c
+.end method
+
+.method public makeReusable(ZLjava/io/OutputStream;Ljava/io/InputStream;)Z
+.limit registers 6
+; this: v2 (Lcom/squareup/okhttp/internal/http/HttpTransport;)
+; parameter[0] : v3 (Z)
+; parameter[1] : v4 (Ljava/io/OutputStream;)
+; parameter[2] : v5 (Ljava/io/InputStream;)
+	const/4	v0,0
+; v0 : single-length
+.line 146
+	if-eqz	v3,lf0030
+; v3 : single-length
+lf002e:
+.line 173
+	return	v0
+; v0 : single-length
+lf0030:
+.line 151
+	if-eqz	v4,lf0044
+; v4 : Ljava/io/OutputStream;
+	check-cast	v4,com/squareup/okhttp/internal/AbstractOutputStream
+; v4 : Lcom/squareup/okhttp/internal/AbstractOutputStream;
+	invoke-virtual	{v4},com/squareup/okhttp/internal/AbstractOutputStream/isClosed	; isClosed()Z
+; v4 : Lcom/squareup/okhttp/internal/AbstractOutputStream;
+	move-result	v1
+; v1 : single-length
+	if-eqz	v1,lf002e
+; v1 : single-length
+lf0044:
+.line 156
+	iget-object	v1,v2,com/squareup/okhttp/internal/http/HttpTransport.httpEngine Lcom/squareup/okhttp/internal/http/HttpEngine;
+; v1 : Lcom/squareup/okhttp/internal/http/HttpEngine; , v2 : Lcom/squareup/okhttp/internal/http/HttpTransport;
+	iget-object	v1,v1,com/squareup/okhttp/internal/http/HttpEngine.requestHeaders Lcom/squareup/okhttp/internal/http/RequestHeaders;
+; v1 : Lcom/squareup/okhttp/internal/http/RequestHeaders; , v1 : Lcom/squareup/okhttp/internal/http/RequestHeaders;
+	invoke-virtual	{v1},com/squareup/okhttp/internal/http/RequestHeaders/hasConnectionClose	; hasConnectionClose()Z
+; v1 : Lcom/squareup/okhttp/internal/http/RequestHeaders;
+	move-result	v1
+; v1 : single-length
+	if-nez	v1,lf002e
+; v1 : single-length
+.line 161
+	iget-object	v1,v2,com/squareup/okhttp/internal/http/HttpTransport.httpEngine Lcom/squareup/okhttp/internal/http/HttpEngine;
+; v1 : Lcom/squareup/okhttp/internal/http/HttpEngine; , v2 : Lcom/squareup/okhttp/internal/http/HttpTransport;
+	iget-object	v1,v1,com/squareup/okhttp/internal/http/HttpEngine.responseHeaders Lcom/squareup/okhttp/internal/http/ResponseHeaders;
+; v1 : Lcom/squareup/okhttp/internal/http/ResponseHeaders; , v1 : Lcom/squareup/okhttp/internal/http/ResponseHeaders;
+	if-eqz	v1,lf0078
+; v1 : Lcom/squareup/okhttp/internal/http/ResponseHeaders;
+	iget-object	v1,v2,com/squareup/okhttp/internal/http/HttpTransport.httpEngine Lcom/squareup/okhttp/internal/http/HttpEngine;
+; v1 : Lcom/squareup/okhttp/internal/http/HttpEngine; , v2 : Lcom/squareup/okhttp/internal/http/HttpTransport;
+	iget-object	v1,v1,com/squareup/okhttp/internal/http/HttpEngine.responseHeaders Lcom/squareup/okhttp/internal/http/ResponseHeaders;
+; v1 : Lcom/squareup/okhttp/internal/http/ResponseHeaders; , v1 : Lcom/squareup/okhttp/internal/http/ResponseHeaders;
+	invoke-virtual	{v1},com/squareup/okhttp/internal/http/ResponseHeaders/hasConnectionClose	; hasConnectionClose()Z
+; v1 : Lcom/squareup/okhttp/internal/http/ResponseHeaders;
+	move-result	v1
+; v1 : single-length
+	if-nez	v1,lf002e
+; v1 : single-length
+lf0078:
+.line 165
+	instance-of	v1,v5,com/squareup/okhttp/internal/http/UnknownLengthHttpInputStream
+; v1 : single-length , v5 : Ljava/io/InputStream;
+	if-nez	v1,lf002e
+; v1 : single-length
+.line 169
+	if-eqz	v5,lf0092
+; v5 : Ljava/io/InputStream;
+.line 170
+	iget-object	v0,v2,com/squareup/okhttp/internal/http/HttpTransport.httpEngine Lcom/squareup/okhttp/internal/http/HttpEngine;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpEngine; , v2 : Lcom/squareup/okhttp/internal/http/HttpTransport;
+	invoke-static	{v0,v5},com/squareup/okhttp/internal/http/HttpTransport/discardStream	; discardStream(Lcom/squareup/okhttp/internal/http/HttpEngine;Ljava/io/InputStream;)Z
+; v0 : Lcom/squareup/okhttp/internal/http/HttpEngine; , v5 : Ljava/io/InputStream;
+	move-result	v0
+; v0 : single-length
+	goto	lf002e
+lf0092:
+.line 173
+	const/4	v0,1
+; v0 : single-length
+	goto	lf002e
+.end method
+
+.method public readResponseHeaders()Lcom/squareup/okhttp/internal/http/ResponseHeaders;
+.throws Ljava/io/IOException;
+.limit registers 5
+; this: v4 (Lcom/squareup/okhttp/internal/http/HttpTransport;)
+.line 135
+	iget-object	v2,v4,com/squareup/okhttp/internal/http/HttpTransport.socketIn Ljava/io/InputStream;
+; v2 : Ljava/io/InputStream; , v4 : Lcom/squareup/okhttp/internal/http/HttpTransport;
+	invoke-static	{v2},com/squareup/okhttp/internal/http/RawHeaders/fromBytes	; fromBytes(Ljava/io/InputStream;)Lcom/squareup/okhttp/internal/http/RawHeaders;
+; v2 : Ljava/io/InputStream;
+	move-result-object	v1
+; v1 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+.line 136
+	iget-object	v2,v4,com/squareup/okhttp/internal/http/HttpTransport.httpEngine Lcom/squareup/okhttp/internal/http/HttpEngine;
+; v2 : Lcom/squareup/okhttp/internal/http/HttpEngine; , v4 : Lcom/squareup/okhttp/internal/http/HttpTransport;
+	iget-object	v2,v2,com/squareup/okhttp/internal/http/HttpEngine.connection Lcom/squareup/okhttp/Connection;
+; v2 : Lcom/squareup/okhttp/Connection; , v2 : Lcom/squareup/okhttp/Connection;
+	invoke-virtual	{v1},com/squareup/okhttp/internal/http/RawHeaders/getHttpMinorVersion	; getHttpMinorVersion()I
+; v1 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+	move-result	v3
+; v3 : single-length
+	invoke-virtual	{v2,v3},com/squareup/okhttp/Connection/setHttpMinorVersion	; setHttpMinorVersion(I)V
+; v2 : Lcom/squareup/okhttp/Connection; , v3 : single-length
+.line 137
+	iget-object	v2,v4,com/squareup/okhttp/internal/http/HttpTransport.httpEngine Lcom/squareup/okhttp/internal/http/HttpEngine;
+; v2 : Lcom/squareup/okhttp/internal/http/HttpEngine; , v4 : Lcom/squareup/okhttp/internal/http/HttpTransport;
+	invoke-virtual	{v2,v1},com/squareup/okhttp/internal/http/HttpEngine/receiveHeaders	; receiveHeaders(Lcom/squareup/okhttp/internal/http/RawHeaders;)V
+; v2 : Lcom/squareup/okhttp/internal/http/HttpEngine; , v1 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+.line 139
+	new-instance	v0,com/squareup/okhttp/internal/http/ResponseHeaders
+; v0 : Lcom/squareup/okhttp/internal/http/ResponseHeaders;
+	iget-object	v2,v4,com/squareup/okhttp/internal/http/HttpTransport.httpEngine Lcom/squareup/okhttp/internal/http/HttpEngine;
+; v2 : Lcom/squareup/okhttp/internal/http/HttpEngine; , v4 : Lcom/squareup/okhttp/internal/http/HttpTransport;
+	iget-object	v2,v2,com/squareup/okhttp/internal/http/HttpEngine.uri Ljava/net/URI;
+; v2 : Ljava/net/URI; , v2 : Ljava/net/URI;
+	invoke-direct	{v0,v2,v1},com/squareup/okhttp/internal/http/ResponseHeaders/<init>	; <init>(Ljava/net/URI;Lcom/squareup/okhttp/internal/http/RawHeaders;)V
+; v0 : Lcom/squareup/okhttp/internal/http/ResponseHeaders; , v2 : Ljava/net/URI; , v1 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+.line 140
+	const-string	v2,"http/1.1"
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v0,v2},com/squareup/okhttp/internal/http/ResponseHeaders/setTransport	; setTransport(Ljava/lang/String;)V
+; v0 : Lcom/squareup/okhttp/internal/http/ResponseHeaders; , v2 : Ljava/lang/String;
+.line 141
+	return-object	v0
+; v0 : Lcom/squareup/okhttp/internal/http/ResponseHeaders;
+.end method
+
+.method public writeRequestBody(Lcom/squareup/okhttp/internal/http/RetryableOutputStream;)V
+.throws Ljava/io/IOException;
+.limit registers 3
+; this: v1 (Lcom/squareup/okhttp/internal/http/HttpTransport;)
+; parameter[0] : v2 (Lcom/squareup/okhttp/internal/http/RetryableOutputStream;)
+.line 112
+	iget-object	v0,v1,com/squareup/okhttp/internal/http/HttpTransport.requestOut Ljava/io/OutputStream;
+; v0 : Ljava/io/OutputStream; , v1 : Lcom/squareup/okhttp/internal/http/HttpTransport;
+	invoke-virtual	{v2,v0},com/squareup/okhttp/internal/http/RetryableOutputStream/writeToSocket	; writeToSocket(Ljava/io/OutputStream;)V
+; v2 : Lcom/squareup/okhttp/internal/http/RetryableOutputStream; , v0 : Ljava/io/OutputStream;
+.line 113
+	return-void	
+.end method
+
+.method public writeRequestHeaders()V
+.throws Ljava/io/IOException;
+.limit registers 4
+; this: v3 (Lcom/squareup/okhttp/internal/http/HttpTransport;)
+.line 128
+	iget-object	v2,v3,com/squareup/okhttp/internal/http/HttpTransport.httpEngine Lcom/squareup/okhttp/internal/http/HttpEngine;
+; v2 : Lcom/squareup/okhttp/internal/http/HttpEngine; , v3 : Lcom/squareup/okhttp/internal/http/HttpTransport;
+	invoke-virtual	{v2},com/squareup/okhttp/internal/http/HttpEngine/writingRequestHeaders	; writingRequestHeaders()V
+; v2 : Lcom/squareup/okhttp/internal/http/HttpEngine;
+.line 129
+	iget-object	v2,v3,com/squareup/okhttp/internal/http/HttpTransport.httpEngine Lcom/squareup/okhttp/internal/http/HttpEngine;
+; v2 : Lcom/squareup/okhttp/internal/http/HttpEngine; , v3 : Lcom/squareup/okhttp/internal/http/HttpTransport;
+	iget-object	v2,v2,com/squareup/okhttp/internal/http/HttpEngine.requestHeaders Lcom/squareup/okhttp/internal/http/RequestHeaders;
+; v2 : Lcom/squareup/okhttp/internal/http/RequestHeaders; , v2 : Lcom/squareup/okhttp/internal/http/RequestHeaders;
+	invoke-virtual	{v2},com/squareup/okhttp/internal/http/RequestHeaders/getHeaders	; getHeaders()Lcom/squareup/okhttp/internal/http/RawHeaders;
+; v2 : Lcom/squareup/okhttp/internal/http/RequestHeaders;
+	move-result-object	v1
+; v1 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+.line 130
+	invoke-virtual	{v1},com/squareup/okhttp/internal/http/RawHeaders/toBytes	; toBytes()[B
+; v1 : Lcom/squareup/okhttp/internal/http/RawHeaders;
+	move-result-object	v0
+; v0 : [B
+.line 131
+	iget-object	v2,v3,com/squareup/okhttp/internal/http/HttpTransport.requestOut Ljava/io/OutputStream;
+; v2 : Ljava/io/OutputStream; , v3 : Lcom/squareup/okhttp/internal/http/HttpTransport;
+	invoke-virtual	{v2,v0},java/io/OutputStream/write	; write([B)V
+; v2 : Ljava/io/OutputStream; , v0 : [B
+.line 132
+	return-void	
+.end method
+
+

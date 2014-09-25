@@ -1,0 +1,2389 @@
+.class public final com/google/analytics/containertag/proto/Serving$Rule
+.super com/google/tagmanager/protobuf/nano/ExtendableMessageNano
+.source Serving.java
+
+.inner class Rule inner com/google/analytics/containertag/proto/Serving$Rule outer com/google/analytics/containertag/proto/Serving
+.field public static final EMPTY_ARRAY [Lcom/google/analytics/containertag/proto/Serving$Rule;
+.field public addMacro [I
+.field public addMacroRuleName [I
+.field public addTag [I
+.field public addTagRuleName [I
+.field public negativePredicate [I
+.field public positivePredicate [I
+.field public removeMacro [I
+.field public removeMacroRuleName [I
+.field public removeTag [I
+.field public removeTagRuleName [I
+
+.method static <clinit>()V
+.limit registers 1
+.line 739
+	const/4	v0,0
+; v0 : single-length
+	new-array	v0,v0,[Lcom/google/analytics/containertag/proto/Serving$Rule;
+; v0 : [Lcom/google/analytics/containertag/proto/Serving$Rule; , v0 : [Lcom/google/analytics/containertag/proto/Serving$Rule;
+	sput-object	v0,com/google/analytics/containertag/proto/Serving$Rule.EMPTY_ARRAY [Lcom/google/analytics/containertag/proto/Serving$Rule;
+; v0 : [Lcom/google/analytics/containertag/proto/Serving$Rule;
+	return-void	
+.end method
+
+.method public <init>()V
+.limit registers 2
+; this: v1 (Lcom/google/analytics/containertag/proto/Serving$Rule;)
+.line 740
+	invoke-direct	{v1},com/google/tagmanager/protobuf/nano/ExtendableMessageNano/<init>	; <init>()V
+; v1 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+.line 743
+	sget-object	v0,com/google/tagmanager/protobuf/nano/WireFormatNano.EMPTY_INT_ARRAY [I
+; v0 : [I
+	iput-object	v0,v1,com/google/analytics/containertag/proto/Serving$Rule.positivePredicate [I
+; v0 : [I , v1 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+.line 746
+	sget-object	v0,com/google/tagmanager/protobuf/nano/WireFormatNano.EMPTY_INT_ARRAY [I
+; v0 : [I
+	iput-object	v0,v1,com/google/analytics/containertag/proto/Serving$Rule.negativePredicate [I
+; v0 : [I , v1 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+.line 749
+	sget-object	v0,com/google/tagmanager/protobuf/nano/WireFormatNano.EMPTY_INT_ARRAY [I
+; v0 : [I
+	iput-object	v0,v1,com/google/analytics/containertag/proto/Serving$Rule.addTag [I
+; v0 : [I , v1 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+.line 752
+	sget-object	v0,com/google/tagmanager/protobuf/nano/WireFormatNano.EMPTY_INT_ARRAY [I
+; v0 : [I
+	iput-object	v0,v1,com/google/analytics/containertag/proto/Serving$Rule.removeTag [I
+; v0 : [I , v1 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+.line 755
+	sget-object	v0,com/google/tagmanager/protobuf/nano/WireFormatNano.EMPTY_INT_ARRAY [I
+; v0 : [I
+	iput-object	v0,v1,com/google/analytics/containertag/proto/Serving$Rule.addTagRuleName [I
+; v0 : [I , v1 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+.line 758
+	sget-object	v0,com/google/tagmanager/protobuf/nano/WireFormatNano.EMPTY_INT_ARRAY [I
+; v0 : [I
+	iput-object	v0,v1,com/google/analytics/containertag/proto/Serving$Rule.removeTagRuleName [I
+; v0 : [I , v1 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+.line 761
+	sget-object	v0,com/google/tagmanager/protobuf/nano/WireFormatNano.EMPTY_INT_ARRAY [I
+; v0 : [I
+	iput-object	v0,v1,com/google/analytics/containertag/proto/Serving$Rule.addMacro [I
+; v0 : [I , v1 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+.line 764
+	sget-object	v0,com/google/tagmanager/protobuf/nano/WireFormatNano.EMPTY_INT_ARRAY [I
+; v0 : [I
+	iput-object	v0,v1,com/google/analytics/containertag/proto/Serving$Rule.removeMacro [I
+; v0 : [I , v1 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+.line 767
+	sget-object	v0,com/google/tagmanager/protobuf/nano/WireFormatNano.EMPTY_INT_ARRAY [I
+; v0 : [I
+	iput-object	v0,v1,com/google/analytics/containertag/proto/Serving$Rule.addMacroRuleName [I
+; v0 : [I , v1 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+.line 770
+	sget-object	v0,com/google/tagmanager/protobuf/nano/WireFormatNano.EMPTY_INT_ARRAY [I
+; v0 : [I
+	iput-object	v0,v1,com/google/analytics/containertag/proto/Serving$Rule.removeMacroRuleName [I
+; v0 : [I , v1 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+.line 740
+	return-void	
+.end method
+
+.method public static parseFrom(Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)Lcom/google/analytics/containertag/proto/Serving$Rule;
+.throws Lcom/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException;
+.limit registers 2
+; parameter[0] : v1 (Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)
+.line 1198
+	new-instance	v0,com/google/analytics/containertag/proto/Serving$Rule
+; v0 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	invoke-direct	{v0},com/google/analytics/containertag/proto/Serving$Rule/<init>	; <init>()V
+; v0 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	invoke-virtual	{v0,v1},com/google/analytics/containertag/proto/Serving$Rule/mergeFrom	; mergeFrom(Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)Lcom/google/analytics/containertag/proto/Serving$Rule;
+; v0 : Lcom/google/analytics/containertag/proto/Serving$Rule; , v1 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result-object	v0
+; v0 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	return-object	v0
+; v0 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+.end method
+
+.method public static parseFrom([B)Lcom/google/analytics/containertag/proto/Serving$Rule;
+.throws Lcom/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException;
+.limit registers 2
+; parameter[0] : v1 ([B)
+.line 1192
+	new-instance	v0,com/google/analytics/containertag/proto/Serving$Rule
+; v0 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	invoke-direct	{v0},com/google/analytics/containertag/proto/Serving$Rule/<init>	; <init>()V
+; v0 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	invoke-static	{v0,v1},com/google/tagmanager/protobuf/nano/MessageNano/mergeFrom	; mergeFrom(Lcom/google/tagmanager/protobuf/nano/MessageNano;[B)Lcom/google/tagmanager/protobuf/nano/MessageNano;
+; v0 : Lcom/google/analytics/containertag/proto/Serving$Rule; , v1 : [B
+	move-result-object	v0
+; v0 : Lcom/google/tagmanager/protobuf/nano/MessageNano;
+	check-cast	v0,com/google/analytics/containertag/proto/Serving$Rule
+; v0 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	return-object	v0
+; v0 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+.end method
+
+.method public final clear()Lcom/google/analytics/containertag/proto/Serving$Rule;
+.limit registers 2
+; this: v1 (Lcom/google/analytics/containertag/proto/Serving$Rule;)
+.line 773
+	sget-object	v0,com/google/tagmanager/protobuf/nano/WireFormatNano.EMPTY_INT_ARRAY [I
+; v0 : [I
+	iput-object	v0,v1,com/google/analytics/containertag/proto/Serving$Rule.positivePredicate [I
+; v0 : [I , v1 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+.line 774
+	sget-object	v0,com/google/tagmanager/protobuf/nano/WireFormatNano.EMPTY_INT_ARRAY [I
+; v0 : [I
+	iput-object	v0,v1,com/google/analytics/containertag/proto/Serving$Rule.negativePredicate [I
+; v0 : [I , v1 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+.line 775
+	sget-object	v0,com/google/tagmanager/protobuf/nano/WireFormatNano.EMPTY_INT_ARRAY [I
+; v0 : [I
+	iput-object	v0,v1,com/google/analytics/containertag/proto/Serving$Rule.addTag [I
+; v0 : [I , v1 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+.line 776
+	sget-object	v0,com/google/tagmanager/protobuf/nano/WireFormatNano.EMPTY_INT_ARRAY [I
+; v0 : [I
+	iput-object	v0,v1,com/google/analytics/containertag/proto/Serving$Rule.removeTag [I
+; v0 : [I , v1 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+.line 777
+	sget-object	v0,com/google/tagmanager/protobuf/nano/WireFormatNano.EMPTY_INT_ARRAY [I
+; v0 : [I
+	iput-object	v0,v1,com/google/analytics/containertag/proto/Serving$Rule.addTagRuleName [I
+; v0 : [I , v1 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+.line 778
+	sget-object	v0,com/google/tagmanager/protobuf/nano/WireFormatNano.EMPTY_INT_ARRAY [I
+; v0 : [I
+	iput-object	v0,v1,com/google/analytics/containertag/proto/Serving$Rule.removeTagRuleName [I
+; v0 : [I , v1 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+.line 779
+	sget-object	v0,com/google/tagmanager/protobuf/nano/WireFormatNano.EMPTY_INT_ARRAY [I
+; v0 : [I
+	iput-object	v0,v1,com/google/analytics/containertag/proto/Serving$Rule.addMacro [I
+; v0 : [I , v1 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+.line 780
+	sget-object	v0,com/google/tagmanager/protobuf/nano/WireFormatNano.EMPTY_INT_ARRAY [I
+; v0 : [I
+	iput-object	v0,v1,com/google/analytics/containertag/proto/Serving$Rule.removeMacro [I
+; v0 : [I , v1 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+.line 781
+	sget-object	v0,com/google/tagmanager/protobuf/nano/WireFormatNano.EMPTY_INT_ARRAY [I
+; v0 : [I
+	iput-object	v0,v1,com/google/analytics/containertag/proto/Serving$Rule.addMacroRuleName [I
+; v0 : [I , v1 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+.line 782
+	sget-object	v0,com/google/tagmanager/protobuf/nano/WireFormatNano.EMPTY_INT_ARRAY [I
+; v0 : [I
+	iput-object	v0,v1,com/google/analytics/containertag/proto/Serving$Rule.removeMacroRuleName [I
+; v0 : [I , v1 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+.line 783
+	const/4	v0,0
+; v0 : single-length
+	iput-object	v0,v1,com/google/analytics/containertag/proto/Serving$Rule.unknownFieldData Ljava/util/List;
+; v0 : single-length , v1 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+.line 784
+	const/4	v0,15
+; v0 : single-length
+	iput	v0,v1,com/google/analytics/containertag/proto/Serving$Rule.cachedSize I
+; v0 : single-length , v1 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+.line 785
+	return-object	v1
+; v1 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+.end method
+
+.method public final equals(Ljava/lang/Object;)Z
+.limit registers 7
+; this: v5 (Lcom/google/analytics/containertag/proto/Serving$Rule;)
+; parameter[0] : v6 (Ljava/lang/Object;)
+	const/4	v1,1
+; v1 : single-length
+	const/4	v2,0
+; v2 : single-length
+.line 790
+	if-ne	v6,v5,lfcbbe
+; v6 : Ljava/lang/Object; , v5 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+lfcbbc:
+.line 793
+	return	v1
+; v1 : single-length
+lfcbbe:
+.line 791
+	instance-of	v3,v6,com/google/analytics/containertag/proto/Serving$Rule
+; v3 : single-length , v6 : Ljava/lang/Object;
+	if-nez	v3,lfcbca
+; v3 : single-length
+	move	v1,v2
+; v1 : single-length , v2 : single-length
+	goto	lfcbbc
+lfcbca:
+	move-object	v0,v6
+; v0 : Ljava/lang/Object; , v6 : Ljava/lang/Object;
+.line 792
+	check-cast	v0,com/google/analytics/containertag/proto/Serving$Rule
+; v0 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+.line 793
+	iget-object	v3,v5,com/google/analytics/containertag/proto/Serving$Rule.positivePredicate [I
+; v3 : [I , v5 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	iget-object	v4,v0,com/google/analytics/containertag/proto/Serving$Rule.positivePredicate [I
+; v4 : [I , v0 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	invoke-static	{v3,v4},java/util/Arrays/equals	; equals([I[I)Z
+; v3 : [I , v4 : [I
+	move-result	v3
+; v3 : single-length
+	if-eqz	v3,lfcca8
+; v3 : single-length
+	iget-object	v3,v5,com/google/analytics/containertag/proto/Serving$Rule.negativePredicate [I
+; v3 : [I , v5 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	iget-object	v4,v0,com/google/analytics/containertag/proto/Serving$Rule.negativePredicate [I
+; v4 : [I , v0 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	invoke-static	{v3,v4},java/util/Arrays/equals	; equals([I[I)Z
+; v3 : [I , v4 : [I
+	move-result	v3
+; v3 : single-length
+	if-eqz	v3,lfcca8
+; v3 : single-length
+	iget-object	v3,v5,com/google/analytics/containertag/proto/Serving$Rule.addTag [I
+; v3 : [I , v5 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	iget-object	v4,v0,com/google/analytics/containertag/proto/Serving$Rule.addTag [I
+; v4 : [I , v0 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	invoke-static	{v3,v4},java/util/Arrays/equals	; equals([I[I)Z
+; v3 : [I , v4 : [I
+	move-result	v3
+; v3 : single-length
+	if-eqz	v3,lfcca8
+; v3 : single-length
+	iget-object	v3,v5,com/google/analytics/containertag/proto/Serving$Rule.removeTag [I
+; v3 : [I , v5 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	iget-object	v4,v0,com/google/analytics/containertag/proto/Serving$Rule.removeTag [I
+; v4 : [I , v0 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	invoke-static	{v3,v4},java/util/Arrays/equals	; equals([I[I)Z
+; v3 : [I , v4 : [I
+	move-result	v3
+; v3 : single-length
+	if-eqz	v3,lfcca8
+; v3 : single-length
+	iget-object	v3,v5,com/google/analytics/containertag/proto/Serving$Rule.addTagRuleName [I
+; v3 : [I , v5 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	iget-object	v4,v0,com/google/analytics/containertag/proto/Serving$Rule.addTagRuleName [I
+; v4 : [I , v0 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	invoke-static	{v3,v4},java/util/Arrays/equals	; equals([I[I)Z
+; v3 : [I , v4 : [I
+	move-result	v3
+; v3 : single-length
+	if-eqz	v3,lfcca8
+; v3 : single-length
+	iget-object	v3,v5,com/google/analytics/containertag/proto/Serving$Rule.removeTagRuleName [I
+; v3 : [I , v5 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	iget-object	v4,v0,com/google/analytics/containertag/proto/Serving$Rule.removeTagRuleName [I
+; v4 : [I , v0 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	invoke-static	{v3,v4},java/util/Arrays/equals	; equals([I[I)Z
+; v3 : [I , v4 : [I
+	move-result	v3
+; v3 : single-length
+	if-eqz	v3,lfcca8
+; v3 : single-length
+	iget-object	v3,v5,com/google/analytics/containertag/proto/Serving$Rule.addMacro [I
+; v3 : [I , v5 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	iget-object	v4,v0,com/google/analytics/containertag/proto/Serving$Rule.addMacro [I
+; v4 : [I , v0 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	invoke-static	{v3,v4},java/util/Arrays/equals	; equals([I[I)Z
+; v3 : [I , v4 : [I
+	move-result	v3
+; v3 : single-length
+	if-eqz	v3,lfcca8
+; v3 : single-length
+	iget-object	v3,v5,com/google/analytics/containertag/proto/Serving$Rule.removeMacro [I
+; v3 : [I , v5 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	iget-object	v4,v0,com/google/analytics/containertag/proto/Serving$Rule.removeMacro [I
+; v4 : [I , v0 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	invoke-static	{v3,v4},java/util/Arrays/equals	; equals([I[I)Z
+; v3 : [I , v4 : [I
+	move-result	v3
+; v3 : single-length
+	if-eqz	v3,lfcca8
+; v3 : single-length
+	iget-object	v3,v5,com/google/analytics/containertag/proto/Serving$Rule.addMacroRuleName [I
+; v3 : [I , v5 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	iget-object	v4,v0,com/google/analytics/containertag/proto/Serving$Rule.addMacroRuleName [I
+; v4 : [I , v0 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	invoke-static	{v3,v4},java/util/Arrays/equals	; equals([I[I)Z
+; v3 : [I , v4 : [I
+	move-result	v3
+; v3 : single-length
+	if-eqz	v3,lfcca8
+; v3 : single-length
+	iget-object	v3,v5,com/google/analytics/containertag/proto/Serving$Rule.removeMacroRuleName [I
+; v3 : [I , v5 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	iget-object	v4,v0,com/google/analytics/containertag/proto/Serving$Rule.removeMacroRuleName [I
+; v4 : [I , v0 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	invoke-static	{v3,v4},java/util/Arrays/equals	; equals([I[I)Z
+; v3 : [I , v4 : [I
+	move-result	v3
+; v3 : single-length
+	if-eqz	v3,lfcca8
+; v3 : single-length
+	iget-object	v3,v5,com/google/analytics/containertag/proto/Serving$Rule.unknownFieldData Ljava/util/List;
+; v3 : Ljava/util/List; , v5 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	if-nez	v3,lfccac
+; v3 : Ljava/util/List;
+	iget-object	v3,v0,com/google/analytics/containertag/proto/Serving$Rule.unknownFieldData Ljava/util/List;
+; v3 : Ljava/util/List; , v0 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	if-eqz	v3,lfcbbc
+; v3 : Ljava/util/List;
+lfcca8:
+	move	v1,v2
+; v1 : single-length , v2 : single-length
+	goto	lfcbbc
+lfccac:
+	iget-object	v3,v5,com/google/analytics/containertag/proto/Serving$Rule.unknownFieldData Ljava/util/List;
+; v3 : Ljava/util/List; , v5 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	iget-object	v4,v0,com/google/analytics/containertag/proto/Serving$Rule.unknownFieldData Ljava/util/List;
+; v4 : Ljava/util/List; , v0 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	invoke-interface	{v3,v4},java/util/List/equals	; equals(Ljava/lang/Object;)Z
+; v3 : Ljava/util/List; , v4 : Ljava/util/List;
+	move-result	v3
+; v3 : single-length
+	if-eqz	v3,lfcca8
+; v3 : single-length
+	goto/16	lfcbbc
+.end method
+
+.method public getSerializedSize()I
+.limit registers 8
+; this: v7 (Lcom/google/analytics/containertag/proto/Serving$Rule;)
+.var 2 is element I from lfccfa to lfcd0a
+.var 0 is arr$ [I from lfccee to lfcd18
+.var 1 is dataSize I from lfccea to lfcd18
+.var 3 is i$ I from lfccf2 to lfcd18
+.var 4 is len$ I from lfccf0 to lfcd18
+.var 2 is element I from lfcd3c to lfcd4c
+.var 0 is arr$ [I from lfcd30 to lfcd5a
+.var 1 is dataSize I from lfcd2c to lfcd5a
+.var 3 is i$ I from lfcd34 to lfcd5a
+.var 4 is len$ I from lfcd32 to lfcd5a
+.var 2 is element I from lfcd7e to lfcd8e
+.var 0 is arr$ [I from lfcd72 to lfcd9c
+.var 1 is dataSize I from lfcd6e to lfcd9c
+.var 3 is i$ I from lfcd76 to lfcd9c
+.var 4 is len$ I from lfcd74 to lfcd9c
+.var 2 is element I from lfcdc0 to lfcdd0
+.var 0 is arr$ [I from lfcdb4 to lfcdde
+.var 1 is dataSize I from lfcdb0 to lfcdde
+.var 3 is i$ I from lfcdb8 to lfcdde
+.var 4 is len$ I from lfcdb6 to lfcdde
+.var 2 is element I from lfce02 to lfce12
+.var 0 is arr$ [I from lfcdf6 to lfce20
+.var 1 is dataSize I from lfcdf2 to lfce20
+.var 3 is i$ I from lfcdfa to lfce20
+.var 4 is len$ I from lfcdf8 to lfce20
+.var 2 is element I from lfce44 to lfce54
+.var 0 is arr$ [I from lfce38 to lfce62
+.var 1 is dataSize I from lfce34 to lfce62
+.var 3 is i$ I from lfce3c to lfce62
+.var 4 is len$ I from lfce3a to lfce62
+.var 2 is element I from lfce86 to lfce96
+.var 0 is arr$ [I from lfce7a to lfcea4
+.var 1 is dataSize I from lfce76 to lfcea4
+.var 3 is i$ I from lfce7e to lfcea4
+.var 4 is len$ I from lfce7c to lfcea4
+.var 2 is element I from lfcec8 to lfced8
+.var 0 is arr$ [I from lfcebc to lfcee6
+.var 1 is dataSize I from lfceb8 to lfcee6
+.var 3 is i$ I from lfcec0 to lfcee6
+.var 4 is len$ I from lfcebe to lfcee6
+.var 2 is element I from lfcf0a to lfcf1a
+.var 0 is arr$ [I from lfcefe to lfcf28
+.var 1 is dataSize I from lfcefa to lfcf28
+.var 3 is i$ I from lfcf02 to lfcf28
+.var 4 is len$ I from lfcf00 to lfcf28
+.var 2 is element I from lfcf4c to lfcf5c
+.var 0 is arr$ [I from lfcf40 to lfcf6a
+.var 1 is dataSize I from lfcf3c to lfcf6a
+.var 3 is i$ I from lfcf44 to lfcf6a
+.var 4 is len$ I from lfcf42 to lfcf6a
+.line 930
+	const/4	v5,0
+; v5 : single-length
+.line 931
+	iget-object	v6,v7,com/google/analytics/containertag/proto/Serving$Rule.positivePredicate [I
+; v6 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	if-eqz	v6,lfcd18
+; v6 : [I
+	iget-object	v6,v7,com/google/analytics/containertag/proto/Serving$Rule.positivePredicate [I
+; v6 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	array-length	v6,v6
+; v6 : single-length , v6 : single-length
+	if-lez	v6,lfcd18
+; v6 : single-length
+.line 932
+	const/4	v1,0
+; v1 : single-length
+.line 933
+	iget-object	v0,v7,com/google/analytics/containertag/proto/Serving$Rule.positivePredicate [I
+; v0 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+lfccee:
+	array-length	v4,v0
+; v4 : single-length , v0 : [I
+lfccf0:
+	const/4	v3,0
+; v3 : single-length
+lfccf2:
+	if-ge	v3,v4,lfcd0a
+; v3 : single-length , v4 : single-length
+	aget	v2,v0,v3
+; v2 : single-length , v0 : [I , v3 : single-length
+.line 934
+	invoke-static	{v2},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/computeInt32SizeNoTag	; computeInt32SizeNoTag(I)I
+; v2 : single-length
+	move-result	v6
+; v6 : single-length
+	add-int/2addr	v1,v6
+; v1 : single-length , v6 : single-length
+.line 933
+	add-int/lit8	v3,v3,1
+; v3 : single-length , v3 : single-length
+	goto	lfccf2
+lfcd0a:
+.line 937
+	add-int/2addr	v5,v1
+; v5 : single-length , v1 : single-length
+.line 938
+	iget-object	v6,v7,com/google/analytics/containertag/proto/Serving$Rule.positivePredicate [I
+; v6 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	array-length	v6,v6
+; v6 : single-length , v6 : single-length
+	mul-int/lit-8	v6,v6,1
+; v6 : single-length , v6 : single-length
+	add-int/2addr	v5,v6
+; v5 : single-length , v6 : single-length
+lfcd18:
+.line 940
+	iget-object	v6,v7,com/google/analytics/containertag/proto/Serving$Rule.negativePredicate [I
+; v6 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	if-eqz	v6,lfcd5a
+; v6 : [I
+	iget-object	v6,v7,com/google/analytics/containertag/proto/Serving$Rule.negativePredicate [I
+; v6 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	array-length	v6,v6
+; v6 : single-length , v6 : single-length
+	if-lez	v6,lfcd5a
+; v6 : single-length
+.line 941
+	const/4	v1,0
+; v1 : single-length
+.line 942
+	iget-object	v0,v7,com/google/analytics/containertag/proto/Serving$Rule.negativePredicate [I
+; v0 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+lfcd30:
+	array-length	v4,v0
+; v4 : single-length , v0 : [I
+lfcd32:
+	const/4	v3,0
+; v3 : single-length
+lfcd34:
+	if-ge	v3,v4,lfcd4c
+; v3 : single-length , v4 : single-length
+	aget	v2,v0,v3
+; v2 : single-length , v0 : [I , v3 : single-length
+.line 943
+	invoke-static	{v2},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/computeInt32SizeNoTag	; computeInt32SizeNoTag(I)I
+; v2 : single-length
+	move-result	v6
+; v6 : single-length
+	add-int/2addr	v1,v6
+; v1 : single-length , v6 : single-length
+.line 942
+	add-int/lit8	v3,v3,1
+; v3 : single-length , v3 : single-length
+	goto	lfcd34
+lfcd4c:
+.line 946
+	add-int/2addr	v5,v1
+; v5 : single-length , v1 : single-length
+.line 947
+	iget-object	v6,v7,com/google/analytics/containertag/proto/Serving$Rule.negativePredicate [I
+; v6 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	array-length	v6,v6
+; v6 : single-length , v6 : single-length
+	mul-int/lit-8	v6,v6,1
+; v6 : single-length , v6 : single-length
+	add-int/2addr	v5,v6
+; v5 : single-length , v6 : single-length
+lfcd5a:
+.line 949
+	iget-object	v6,v7,com/google/analytics/containertag/proto/Serving$Rule.addTag [I
+; v6 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	if-eqz	v6,lfcd9c
+; v6 : [I
+	iget-object	v6,v7,com/google/analytics/containertag/proto/Serving$Rule.addTag [I
+; v6 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	array-length	v6,v6
+; v6 : single-length , v6 : single-length
+	if-lez	v6,lfcd9c
+; v6 : single-length
+.line 950
+	const/4	v1,0
+; v1 : single-length
+.line 951
+	iget-object	v0,v7,com/google/analytics/containertag/proto/Serving$Rule.addTag [I
+; v0 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+lfcd72:
+	array-length	v4,v0
+; v4 : single-length , v0 : [I
+lfcd74:
+	const/4	v3,0
+; v3 : single-length
+lfcd76:
+	if-ge	v3,v4,lfcd8e
+; v3 : single-length , v4 : single-length
+	aget	v2,v0,v3
+; v2 : single-length , v0 : [I , v3 : single-length
+.line 952
+	invoke-static	{v2},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/computeInt32SizeNoTag	; computeInt32SizeNoTag(I)I
+; v2 : single-length
+	move-result	v6
+; v6 : single-length
+	add-int/2addr	v1,v6
+; v1 : single-length , v6 : single-length
+.line 951
+	add-int/lit8	v3,v3,1
+; v3 : single-length , v3 : single-length
+	goto	lfcd76
+lfcd8e:
+.line 955
+	add-int/2addr	v5,v1
+; v5 : single-length , v1 : single-length
+.line 956
+	iget-object	v6,v7,com/google/analytics/containertag/proto/Serving$Rule.addTag [I
+; v6 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	array-length	v6,v6
+; v6 : single-length , v6 : single-length
+	mul-int/lit-8	v6,v6,1
+; v6 : single-length , v6 : single-length
+	add-int/2addr	v5,v6
+; v5 : single-length , v6 : single-length
+lfcd9c:
+.line 958
+	iget-object	v6,v7,com/google/analytics/containertag/proto/Serving$Rule.removeTag [I
+; v6 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	if-eqz	v6,lfcdde
+; v6 : [I
+	iget-object	v6,v7,com/google/analytics/containertag/proto/Serving$Rule.removeTag [I
+; v6 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	array-length	v6,v6
+; v6 : single-length , v6 : single-length
+	if-lez	v6,lfcdde
+; v6 : single-length
+.line 959
+	const/4	v1,0
+; v1 : single-length
+.line 960
+	iget-object	v0,v7,com/google/analytics/containertag/proto/Serving$Rule.removeTag [I
+; v0 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+lfcdb4:
+	array-length	v4,v0
+; v4 : single-length , v0 : [I
+lfcdb6:
+	const/4	v3,0
+; v3 : single-length
+lfcdb8:
+	if-ge	v3,v4,lfcdd0
+; v3 : single-length , v4 : single-length
+	aget	v2,v0,v3
+; v2 : single-length , v0 : [I , v3 : single-length
+.line 961
+	invoke-static	{v2},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/computeInt32SizeNoTag	; computeInt32SizeNoTag(I)I
+; v2 : single-length
+	move-result	v6
+; v6 : single-length
+	add-int/2addr	v1,v6
+; v1 : single-length , v6 : single-length
+.line 960
+	add-int/lit8	v3,v3,1
+; v3 : single-length , v3 : single-length
+	goto	lfcdb8
+lfcdd0:
+.line 964
+	add-int/2addr	v5,v1
+; v5 : single-length , v1 : single-length
+.line 965
+	iget-object	v6,v7,com/google/analytics/containertag/proto/Serving$Rule.removeTag [I
+; v6 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	array-length	v6,v6
+; v6 : single-length , v6 : single-length
+	mul-int/lit-8	v6,v6,1
+; v6 : single-length , v6 : single-length
+	add-int/2addr	v5,v6
+; v5 : single-length , v6 : single-length
+lfcdde:
+.line 967
+	iget-object	v6,v7,com/google/analytics/containertag/proto/Serving$Rule.addTagRuleName [I
+; v6 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	if-eqz	v6,lfce20
+; v6 : [I
+	iget-object	v6,v7,com/google/analytics/containertag/proto/Serving$Rule.addTagRuleName [I
+; v6 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	array-length	v6,v6
+; v6 : single-length , v6 : single-length
+	if-lez	v6,lfce20
+; v6 : single-length
+.line 968
+	const/4	v1,0
+; v1 : single-length
+.line 969
+	iget-object	v0,v7,com/google/analytics/containertag/proto/Serving$Rule.addTagRuleName [I
+; v0 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+lfcdf6:
+	array-length	v4,v0
+; v4 : single-length , v0 : [I
+lfcdf8:
+	const/4	v3,0
+; v3 : single-length
+lfcdfa:
+	if-ge	v3,v4,lfce12
+; v3 : single-length , v4 : single-length
+	aget	v2,v0,v3
+; v2 : single-length , v0 : [I , v3 : single-length
+.line 970
+	invoke-static	{v2},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/computeInt32SizeNoTag	; computeInt32SizeNoTag(I)I
+; v2 : single-length
+	move-result	v6
+; v6 : single-length
+	add-int/2addr	v1,v6
+; v1 : single-length , v6 : single-length
+.line 969
+	add-int/lit8	v3,v3,1
+; v3 : single-length , v3 : single-length
+	goto	lfcdfa
+lfce12:
+.line 973
+	add-int/2addr	v5,v1
+; v5 : single-length , v1 : single-length
+.line 974
+	iget-object	v6,v7,com/google/analytics/containertag/proto/Serving$Rule.addTagRuleName [I
+; v6 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	array-length	v6,v6
+; v6 : single-length , v6 : single-length
+	mul-int/lit-8	v6,v6,1
+; v6 : single-length , v6 : single-length
+	add-int/2addr	v5,v6
+; v5 : single-length , v6 : single-length
+lfce20:
+.line 976
+	iget-object	v6,v7,com/google/analytics/containertag/proto/Serving$Rule.removeTagRuleName [I
+; v6 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	if-eqz	v6,lfce62
+; v6 : [I
+	iget-object	v6,v7,com/google/analytics/containertag/proto/Serving$Rule.removeTagRuleName [I
+; v6 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	array-length	v6,v6
+; v6 : single-length , v6 : single-length
+	if-lez	v6,lfce62
+; v6 : single-length
+.line 977
+	const/4	v1,0
+; v1 : single-length
+.line 978
+	iget-object	v0,v7,com/google/analytics/containertag/proto/Serving$Rule.removeTagRuleName [I
+; v0 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+lfce38:
+	array-length	v4,v0
+; v4 : single-length , v0 : [I
+lfce3a:
+	const/4	v3,0
+; v3 : single-length
+lfce3c:
+	if-ge	v3,v4,lfce54
+; v3 : single-length , v4 : single-length
+	aget	v2,v0,v3
+; v2 : single-length , v0 : [I , v3 : single-length
+.line 979
+	invoke-static	{v2},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/computeInt32SizeNoTag	; computeInt32SizeNoTag(I)I
+; v2 : single-length
+	move-result	v6
+; v6 : single-length
+	add-int/2addr	v1,v6
+; v1 : single-length , v6 : single-length
+.line 978
+	add-int/lit8	v3,v3,1
+; v3 : single-length , v3 : single-length
+	goto	lfce3c
+lfce54:
+.line 982
+	add-int/2addr	v5,v1
+; v5 : single-length , v1 : single-length
+.line 983
+	iget-object	v6,v7,com/google/analytics/containertag/proto/Serving$Rule.removeTagRuleName [I
+; v6 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	array-length	v6,v6
+; v6 : single-length , v6 : single-length
+	mul-int/lit-8	v6,v6,1
+; v6 : single-length , v6 : single-length
+	add-int/2addr	v5,v6
+; v5 : single-length , v6 : single-length
+lfce62:
+.line 985
+	iget-object	v6,v7,com/google/analytics/containertag/proto/Serving$Rule.addMacro [I
+; v6 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	if-eqz	v6,lfcea4
+; v6 : [I
+	iget-object	v6,v7,com/google/analytics/containertag/proto/Serving$Rule.addMacro [I
+; v6 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	array-length	v6,v6
+; v6 : single-length , v6 : single-length
+	if-lez	v6,lfcea4
+; v6 : single-length
+.line 986
+	const/4	v1,0
+; v1 : single-length
+.line 987
+	iget-object	v0,v7,com/google/analytics/containertag/proto/Serving$Rule.addMacro [I
+; v0 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+lfce7a:
+	array-length	v4,v0
+; v4 : single-length , v0 : [I
+lfce7c:
+	const/4	v3,0
+; v3 : single-length
+lfce7e:
+	if-ge	v3,v4,lfce96
+; v3 : single-length , v4 : single-length
+	aget	v2,v0,v3
+; v2 : single-length , v0 : [I , v3 : single-length
+.line 988
+	invoke-static	{v2},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/computeInt32SizeNoTag	; computeInt32SizeNoTag(I)I
+; v2 : single-length
+	move-result	v6
+; v6 : single-length
+	add-int/2addr	v1,v6
+; v1 : single-length , v6 : single-length
+.line 987
+	add-int/lit8	v3,v3,1
+; v3 : single-length , v3 : single-length
+	goto	lfce7e
+lfce96:
+.line 991
+	add-int/2addr	v5,v1
+; v5 : single-length , v1 : single-length
+.line 992
+	iget-object	v6,v7,com/google/analytics/containertag/proto/Serving$Rule.addMacro [I
+; v6 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	array-length	v6,v6
+; v6 : single-length , v6 : single-length
+	mul-int/lit-8	v6,v6,1
+; v6 : single-length , v6 : single-length
+	add-int/2addr	v5,v6
+; v5 : single-length , v6 : single-length
+lfcea4:
+.line 994
+	iget-object	v6,v7,com/google/analytics/containertag/proto/Serving$Rule.removeMacro [I
+; v6 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	if-eqz	v6,lfcee6
+; v6 : [I
+	iget-object	v6,v7,com/google/analytics/containertag/proto/Serving$Rule.removeMacro [I
+; v6 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	array-length	v6,v6
+; v6 : single-length , v6 : single-length
+	if-lez	v6,lfcee6
+; v6 : single-length
+.line 995
+	const/4	v1,0
+; v1 : single-length
+.line 996
+	iget-object	v0,v7,com/google/analytics/containertag/proto/Serving$Rule.removeMacro [I
+; v0 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+lfcebc:
+	array-length	v4,v0
+; v4 : single-length , v0 : [I
+lfcebe:
+	const/4	v3,0
+; v3 : single-length
+lfcec0:
+	if-ge	v3,v4,lfced8
+; v3 : single-length , v4 : single-length
+	aget	v2,v0,v3
+; v2 : single-length , v0 : [I , v3 : single-length
+.line 997
+	invoke-static	{v2},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/computeInt32SizeNoTag	; computeInt32SizeNoTag(I)I
+; v2 : single-length
+	move-result	v6
+; v6 : single-length
+	add-int/2addr	v1,v6
+; v1 : single-length , v6 : single-length
+.line 996
+	add-int/lit8	v3,v3,1
+; v3 : single-length , v3 : single-length
+	goto	lfcec0
+lfced8:
+.line 1000
+	add-int/2addr	v5,v1
+; v5 : single-length , v1 : single-length
+.line 1001
+	iget-object	v6,v7,com/google/analytics/containertag/proto/Serving$Rule.removeMacro [I
+; v6 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	array-length	v6,v6
+; v6 : single-length , v6 : single-length
+	mul-int/lit-8	v6,v6,1
+; v6 : single-length , v6 : single-length
+	add-int/2addr	v5,v6
+; v5 : single-length , v6 : single-length
+lfcee6:
+.line 1003
+	iget-object	v6,v7,com/google/analytics/containertag/proto/Serving$Rule.addMacroRuleName [I
+; v6 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	if-eqz	v6,lfcf28
+; v6 : [I
+	iget-object	v6,v7,com/google/analytics/containertag/proto/Serving$Rule.addMacroRuleName [I
+; v6 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	array-length	v6,v6
+; v6 : single-length , v6 : single-length
+	if-lez	v6,lfcf28
+; v6 : single-length
+.line 1004
+	const/4	v1,0
+; v1 : single-length
+.line 1005
+	iget-object	v0,v7,com/google/analytics/containertag/proto/Serving$Rule.addMacroRuleName [I
+; v0 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+lfcefe:
+	array-length	v4,v0
+; v4 : single-length , v0 : [I
+lfcf00:
+	const/4	v3,0
+; v3 : single-length
+lfcf02:
+	if-ge	v3,v4,lfcf1a
+; v3 : single-length , v4 : single-length
+	aget	v2,v0,v3
+; v2 : single-length , v0 : [I , v3 : single-length
+.line 1006
+	invoke-static	{v2},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/computeInt32SizeNoTag	; computeInt32SizeNoTag(I)I
+; v2 : single-length
+	move-result	v6
+; v6 : single-length
+	add-int/2addr	v1,v6
+; v1 : single-length , v6 : single-length
+.line 1005
+	add-int/lit8	v3,v3,1
+; v3 : single-length , v3 : single-length
+	goto	lfcf02
+lfcf1a:
+.line 1009
+	add-int/2addr	v5,v1
+; v5 : single-length , v1 : single-length
+.line 1010
+	iget-object	v6,v7,com/google/analytics/containertag/proto/Serving$Rule.addMacroRuleName [I
+; v6 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	array-length	v6,v6
+; v6 : single-length , v6 : single-length
+	mul-int/lit-8	v6,v6,1
+; v6 : single-length , v6 : single-length
+	add-int/2addr	v5,v6
+; v5 : single-length , v6 : single-length
+lfcf28:
+.line 1012
+	iget-object	v6,v7,com/google/analytics/containertag/proto/Serving$Rule.removeMacroRuleName [I
+; v6 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	if-eqz	v6,lfcf6a
+; v6 : [I
+	iget-object	v6,v7,com/google/analytics/containertag/proto/Serving$Rule.removeMacroRuleName [I
+; v6 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	array-length	v6,v6
+; v6 : single-length , v6 : single-length
+	if-lez	v6,lfcf6a
+; v6 : single-length
+.line 1013
+	const/4	v1,0
+; v1 : single-length
+.line 1014
+	iget-object	v0,v7,com/google/analytics/containertag/proto/Serving$Rule.removeMacroRuleName [I
+; v0 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+lfcf40:
+	array-length	v4,v0
+; v4 : single-length , v0 : [I
+lfcf42:
+	const/4	v3,0
+; v3 : single-length
+lfcf44:
+	if-ge	v3,v4,lfcf5c
+; v3 : single-length , v4 : single-length
+	aget	v2,v0,v3
+; v2 : single-length , v0 : [I , v3 : single-length
+.line 1015
+	invoke-static	{v2},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/computeInt32SizeNoTag	; computeInt32SizeNoTag(I)I
+; v2 : single-length
+	move-result	v6
+; v6 : single-length
+	add-int/2addr	v1,v6
+; v1 : single-length , v6 : single-length
+.line 1014
+	add-int/lit8	v3,v3,1
+; v3 : single-length , v3 : single-length
+	goto	lfcf44
+lfcf5c:
+.line 1018
+	add-int/2addr	v5,v1
+; v5 : single-length , v1 : single-length
+.line 1019
+	iget-object	v6,v7,com/google/analytics/containertag/proto/Serving$Rule.removeMacroRuleName [I
+; v6 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	array-length	v6,v6
+; v6 : single-length , v6 : single-length
+	mul-int/lit-8	v6,v6,1
+; v6 : single-length , v6 : single-length
+	add-int/2addr	v5,v6
+; v5 : single-length , v6 : single-length
+lfcf6a:
+.line 1021
+	iget-object	v6,v7,com/google/analytics/containertag/proto/Serving$Rule.unknownFieldData Ljava/util/List;
+; v6 : Ljava/util/List; , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	invoke-static	{v6},com/google/tagmanager/protobuf/nano/WireFormatNano/computeWireSize	; computeWireSize(Ljava/util/List;)I
+; v6 : Ljava/util/List;
+	move-result	v6
+; v6 : single-length
+	add-int/2addr	v5,v6
+; v5 : single-length , v6 : single-length
+.line 1022
+	iput	v5,v7,com/google/analytics/containertag/proto/Serving$Rule.cachedSize I
+; v5 : single-length , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+.line 1023
+	return	v5
+; v5 : single-length
+.end method
+
+.method public hashCode()I
+.limit registers 5
+; this: v4 (Lcom/google/analytics/containertag/proto/Serving$Rule;)
+.var 0 is i I from lfd022 to lfd042
+.var 0 is i I from lfd044 to lfd064
+.var 0 is i I from lfd066 to lfd086
+.var 0 is i I from lfd088 to lfd0a8
+.var 0 is i I from lfd0aa to lfd0ca
+.var 0 is i I from lfd0cc to lfd0ec
+.var 0 is i I from lfd0ee to lfd10e
+.var 0 is i I from lfd110 to lfd130
+.var 0 is i I from lfd132 to lfd152
+.var 0 is i I from lfd154 to lfd174
+.line 807
+	const/16	v1,17
+; v1 : single-length
+.line 808
+	iget-object	v2,v4,com/google/analytics/containertag/proto/Serving$Rule.positivePredicate [I
+; v2 : [I , v4 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	if-nez	v2,lfd020
+; v2 : [I
+	mul-int/lit-8	v1,v1,31
+; v1 : single-length , v1 : single-length
+lfcfa0:
+.line 814
+	iget-object	v2,v4,com/google/analytics/containertag/proto/Serving$Rule.negativePredicate [I
+; v2 : [I , v4 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	if-nez	v2,lfd042
+; v2 : [I
+	mul-int/lit-8	v1,v1,31
+; v1 : single-length , v1 : single-length
+lfcfac:
+.line 820
+	iget-object	v2,v4,com/google/analytics/containertag/proto/Serving$Rule.addTag [I
+; v2 : [I , v4 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	if-nez	v2,lfd064
+; v2 : [I
+	mul-int/lit-8	v1,v1,31
+; v1 : single-length , v1 : single-length
+lfcfb8:
+.line 826
+	iget-object	v2,v4,com/google/analytics/containertag/proto/Serving$Rule.removeTag [I
+; v2 : [I , v4 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	if-nez	v2,lfd086
+; v2 : [I
+	mul-int/lit-8	v1,v1,31
+; v1 : single-length , v1 : single-length
+lfcfc4:
+.line 832
+	iget-object	v2,v4,com/google/analytics/containertag/proto/Serving$Rule.addTagRuleName [I
+; v2 : [I , v4 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	if-nez	v2,lfd0a8
+; v2 : [I
+	mul-int/lit-8	v1,v1,31
+; v1 : single-length , v1 : single-length
+lfcfd0:
+.line 838
+	iget-object	v2,v4,com/google/analytics/containertag/proto/Serving$Rule.removeTagRuleName [I
+; v2 : [I , v4 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	if-nez	v2,lfd0ca
+; v2 : [I
+	mul-int/lit-8	v1,v1,31
+; v1 : single-length , v1 : single-length
+lfcfdc:
+.line 844
+	iget-object	v2,v4,com/google/analytics/containertag/proto/Serving$Rule.addMacro [I
+; v2 : [I , v4 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	if-nez	v2,lfd0ec
+; v2 : [I
+	mul-int/lit-8	v1,v1,31
+; v1 : single-length , v1 : single-length
+lfcfe8:
+.line 850
+	iget-object	v2,v4,com/google/analytics/containertag/proto/Serving$Rule.removeMacro [I
+; v2 : [I , v4 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	if-nez	v2,lfd10e
+; v2 : [I
+	mul-int/lit-8	v1,v1,31
+; v1 : single-length , v1 : single-length
+lfcff4:
+.line 856
+	iget-object	v2,v4,com/google/analytics/containertag/proto/Serving$Rule.addMacroRuleName [I
+; v2 : [I , v4 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	if-nez	v2,lfd130
+; v2 : [I
+	mul-int/lit-8	v1,v1,31
+; v1 : single-length , v1 : single-length
+lfd000:
+.line 862
+	iget-object	v2,v4,com/google/analytics/containertag/proto/Serving$Rule.removeMacroRuleName [I
+; v2 : [I , v4 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	if-nez	v2,lfd152
+; v2 : [I
+	mul-int/lit-8	v1,v1,31
+; v1 : single-length , v1 : single-length
+lfd00c:
+.line 868
+	mul-int/lit-8	v3,v1,31
+; v3 : single-length , v1 : single-length
+	iget-object	v2,v4,com/google/analytics/containertag/proto/Serving$Rule.unknownFieldData Ljava/util/List;
+; v2 : Ljava/util/List; , v4 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	if-nez	v2,lfd174
+; v2 : Ljava/util/List;
+	const/4	v2,0
+; v2 : single-length
+lfd01a:
+	add-int	v1,v3,v2
+; v1 : single-length , v3 : single-length , v2 : single-length
+.line 869
+	return	v1
+; v1 : single-length
+lfd020:
+.line 810
+	const/4	v0,0
+; v0 : single-length
+lfd022:
+	iget-object	v2,v4,com/google/analytics/containertag/proto/Serving$Rule.positivePredicate [I
+; v2 : [I , v4 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	array-length	v2,v2
+; v2 : single-length , v2 : single-length
+	if-ge	v0,v2,lfcfa0
+; v0 : single-length , v2 : single-length
+.line 811
+	mul-int/lit-8	v2,v1,31
+; v2 : single-length , v1 : single-length
+	iget-object	v3,v4,com/google/analytics/containertag/proto/Serving$Rule.positivePredicate [I
+; v3 : [I , v4 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	aget	v3,v3,v0
+; v3 : single-length , v3 : single-length , v0 : single-length
+	add-int	v1,v2,v3
+; v1 : single-length , v2 : single-length , v3 : single-length
+.line 810
+	add-int/lit8	v0,v0,1
+; v0 : single-length , v0 : single-length
+	goto	lfd022
+lfd042:
+.line 816
+	const/4	v0,0
+; v0 : single-length
+lfd044:
+	iget-object	v2,v4,com/google/analytics/containertag/proto/Serving$Rule.negativePredicate [I
+; v2 : [I , v4 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	array-length	v2,v2
+; v2 : single-length , v2 : single-length
+	if-ge	v0,v2,lfcfac
+; v0 : single-length , v2 : single-length
+.line 817
+	mul-int/lit-8	v2,v1,31
+; v2 : single-length , v1 : single-length
+	iget-object	v3,v4,com/google/analytics/containertag/proto/Serving$Rule.negativePredicate [I
+; v3 : [I , v4 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	aget	v3,v3,v0
+; v3 : single-length , v3 : single-length , v0 : single-length
+	add-int	v1,v2,v3
+; v1 : single-length , v2 : single-length , v3 : single-length
+.line 816
+	add-int/lit8	v0,v0,1
+; v0 : single-length , v0 : single-length
+	goto	lfd044
+lfd064:
+.line 822
+	const/4	v0,0
+; v0 : single-length
+lfd066:
+	iget-object	v2,v4,com/google/analytics/containertag/proto/Serving$Rule.addTag [I
+; v2 : [I , v4 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	array-length	v2,v2
+; v2 : single-length , v2 : single-length
+	if-ge	v0,v2,lfcfb8
+; v0 : single-length , v2 : single-length
+.line 823
+	mul-int/lit-8	v2,v1,31
+; v2 : single-length , v1 : single-length
+	iget-object	v3,v4,com/google/analytics/containertag/proto/Serving$Rule.addTag [I
+; v3 : [I , v4 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	aget	v3,v3,v0
+; v3 : single-length , v3 : single-length , v0 : single-length
+	add-int	v1,v2,v3
+; v1 : single-length , v2 : single-length , v3 : single-length
+.line 822
+	add-int/lit8	v0,v0,1
+; v0 : single-length , v0 : single-length
+	goto	lfd066
+lfd086:
+.line 828
+	const/4	v0,0
+; v0 : single-length
+lfd088:
+	iget-object	v2,v4,com/google/analytics/containertag/proto/Serving$Rule.removeTag [I
+; v2 : [I , v4 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	array-length	v2,v2
+; v2 : single-length , v2 : single-length
+	if-ge	v0,v2,lfcfc4
+; v0 : single-length , v2 : single-length
+.line 829
+	mul-int/lit-8	v2,v1,31
+; v2 : single-length , v1 : single-length
+	iget-object	v3,v4,com/google/analytics/containertag/proto/Serving$Rule.removeTag [I
+; v3 : [I , v4 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	aget	v3,v3,v0
+; v3 : single-length , v3 : single-length , v0 : single-length
+	add-int	v1,v2,v3
+; v1 : single-length , v2 : single-length , v3 : single-length
+.line 828
+	add-int/lit8	v0,v0,1
+; v0 : single-length , v0 : single-length
+	goto	lfd088
+lfd0a8:
+.line 834
+	const/4	v0,0
+; v0 : single-length
+lfd0aa:
+	iget-object	v2,v4,com/google/analytics/containertag/proto/Serving$Rule.addTagRuleName [I
+; v2 : [I , v4 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	array-length	v2,v2
+; v2 : single-length , v2 : single-length
+	if-ge	v0,v2,lfcfd0
+; v0 : single-length , v2 : single-length
+.line 835
+	mul-int/lit-8	v2,v1,31
+; v2 : single-length , v1 : single-length
+	iget-object	v3,v4,com/google/analytics/containertag/proto/Serving$Rule.addTagRuleName [I
+; v3 : [I , v4 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	aget	v3,v3,v0
+; v3 : single-length , v3 : single-length , v0 : single-length
+	add-int	v1,v2,v3
+; v1 : single-length , v2 : single-length , v3 : single-length
+.line 834
+	add-int/lit8	v0,v0,1
+; v0 : single-length , v0 : single-length
+	goto	lfd0aa
+lfd0ca:
+.line 840
+	const/4	v0,0
+; v0 : single-length
+lfd0cc:
+	iget-object	v2,v4,com/google/analytics/containertag/proto/Serving$Rule.removeTagRuleName [I
+; v2 : [I , v4 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	array-length	v2,v2
+; v2 : single-length , v2 : single-length
+	if-ge	v0,v2,lfcfdc
+; v0 : single-length , v2 : single-length
+.line 841
+	mul-int/lit-8	v2,v1,31
+; v2 : single-length , v1 : single-length
+	iget-object	v3,v4,com/google/analytics/containertag/proto/Serving$Rule.removeTagRuleName [I
+; v3 : [I , v4 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	aget	v3,v3,v0
+; v3 : single-length , v3 : single-length , v0 : single-length
+	add-int	v1,v2,v3
+; v1 : single-length , v2 : single-length , v3 : single-length
+.line 840
+	add-int/lit8	v0,v0,1
+; v0 : single-length , v0 : single-length
+	goto	lfd0cc
+lfd0ec:
+.line 846
+	const/4	v0,0
+; v0 : single-length
+lfd0ee:
+	iget-object	v2,v4,com/google/analytics/containertag/proto/Serving$Rule.addMacro [I
+; v2 : [I , v4 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	array-length	v2,v2
+; v2 : single-length , v2 : single-length
+	if-ge	v0,v2,lfcfe8
+; v0 : single-length , v2 : single-length
+.line 847
+	mul-int/lit-8	v2,v1,31
+; v2 : single-length , v1 : single-length
+	iget-object	v3,v4,com/google/analytics/containertag/proto/Serving$Rule.addMacro [I
+; v3 : [I , v4 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	aget	v3,v3,v0
+; v3 : single-length , v3 : single-length , v0 : single-length
+	add-int	v1,v2,v3
+; v1 : single-length , v2 : single-length , v3 : single-length
+.line 846
+	add-int/lit8	v0,v0,1
+; v0 : single-length , v0 : single-length
+	goto	lfd0ee
+lfd10e:
+.line 852
+	const/4	v0,0
+; v0 : single-length
+lfd110:
+	iget-object	v2,v4,com/google/analytics/containertag/proto/Serving$Rule.removeMacro [I
+; v2 : [I , v4 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	array-length	v2,v2
+; v2 : single-length , v2 : single-length
+	if-ge	v0,v2,lfcff4
+; v0 : single-length , v2 : single-length
+.line 853
+	mul-int/lit-8	v2,v1,31
+; v2 : single-length , v1 : single-length
+	iget-object	v3,v4,com/google/analytics/containertag/proto/Serving$Rule.removeMacro [I
+; v3 : [I , v4 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	aget	v3,v3,v0
+; v3 : single-length , v3 : single-length , v0 : single-length
+	add-int	v1,v2,v3
+; v1 : single-length , v2 : single-length , v3 : single-length
+.line 852
+	add-int/lit8	v0,v0,1
+; v0 : single-length , v0 : single-length
+	goto	lfd110
+lfd130:
+.line 858
+	const/4	v0,0
+; v0 : single-length
+lfd132:
+	iget-object	v2,v4,com/google/analytics/containertag/proto/Serving$Rule.addMacroRuleName [I
+; v2 : [I , v4 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	array-length	v2,v2
+; v2 : single-length , v2 : single-length
+	if-ge	v0,v2,lfd000
+; v0 : single-length , v2 : single-length
+.line 859
+	mul-int/lit-8	v2,v1,31
+; v2 : single-length , v1 : single-length
+	iget-object	v3,v4,com/google/analytics/containertag/proto/Serving$Rule.addMacroRuleName [I
+; v3 : [I , v4 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	aget	v3,v3,v0
+; v3 : single-length , v3 : single-length , v0 : single-length
+	add-int	v1,v2,v3
+; v1 : single-length , v2 : single-length , v3 : single-length
+.line 858
+	add-int/lit8	v0,v0,1
+; v0 : single-length , v0 : single-length
+	goto	lfd132
+lfd152:
+.line 864
+	const/4	v0,0
+; v0 : single-length
+lfd154:
+	iget-object	v2,v4,com/google/analytics/containertag/proto/Serving$Rule.removeMacroRuleName [I
+; v2 : [I , v4 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	array-length	v2,v2
+; v2 : single-length , v2 : single-length
+	if-ge	v0,v2,lfd00c
+; v0 : single-length , v2 : single-length
+.line 865
+	mul-int/lit-8	v2,v1,31
+; v2 : single-length , v1 : single-length
+	iget-object	v3,v4,com/google/analytics/containertag/proto/Serving$Rule.removeMacroRuleName [I
+; v3 : [I , v4 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	aget	v3,v3,v0
+; v3 : single-length , v3 : single-length , v0 : single-length
+	add-int	v1,v2,v3
+; v1 : single-length , v2 : single-length , v3 : single-length
+.line 864
+	add-int/lit8	v0,v0,1
+; v0 : single-length , v0 : single-length
+	goto	lfd154
+lfd174:
+.line 868
+	iget-object	v2,v4,com/google/analytics/containertag/proto/Serving$Rule.unknownFieldData Ljava/util/List;
+; v2 : Ljava/util/List; , v4 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	invoke-interface	{v2},java/util/List/hashCode	; hashCode()I
+; v2 : Ljava/util/List;
+	move-result	v2
+; v2 : single-length
+	goto/16	lfd01a
+.end method
+
+.method public mergeFrom(Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)Lcom/google/analytics/containertag/proto/Serving$Rule;
+.throws Ljava/io/IOException;
+.limit registers 9
+; this: v7 (Lcom/google/analytics/containertag/proto/Serving$Rule;)
+; parameter[0] : v8 (Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)
+.var 0 is arrayLength I from lfd1d8 to lfd230
+.var 1 is i I from lfd1de to lfd230
+.var 2 is newArray [I from lfd1e6 to lfd230
+.var 0 is arrayLength I from lfd23c to lfd294
+.var 1 is i I from lfd242 to lfd294
+.var 2 is newArray [I from lfd24a to lfd294
+.var 0 is arrayLength I from lfd2a0 to lfd2fa
+.var 1 is i I from lfd2a6 to lfd2fa
+.var 2 is newArray [I from lfd2ae to lfd2fa
+.var 0 is arrayLength I from lfd306 to lfd360
+.var 1 is i I from lfd30c to lfd360
+.var 2 is newArray [I from lfd314 to lfd360
+.var 0 is arrayLength I from lfd36c to lfd3c6
+.var 1 is i I from lfd372 to lfd3c6
+.var 2 is newArray [I from lfd37a to lfd3c6
+.var 0 is arrayLength I from lfd3d2 to lfd42c
+.var 1 is i I from lfd3d8 to lfd42c
+.var 2 is newArray [I from lfd3e0 to lfd42c
+.var 0 is arrayLength I from lfd438 to lfd492
+.var 1 is i I from lfd43e to lfd492
+.var 2 is newArray [I from lfd446 to lfd492
+.var 0 is arrayLength I from lfd49e to lfd4f8
+.var 1 is i I from lfd4a4 to lfd4f8
+.var 2 is newArray [I from lfd4ac to lfd4f8
+.var 0 is arrayLength I from lfd504 to lfd55e
+.var 1 is i I from lfd50a to lfd55e
+.var 2 is newArray [I from lfd512 to lfd55e
+	const/4	v6,0
+; v6 : single-length
+lfd196:
+.line 1031
+	invoke-virtual	{v8},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readTag	; readTag()I
+; v8 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result	v3
+; v3 : single-length
+.line 1032
+	sparse-switch	v3
+		0 : spfd19e_fd1ca
+		8 : spfd19e_fd1cc
+		16 : spfd19e_fd230
+		24 : spfd19e_fd294
+		32 : spfd19e_fd2fa
+		40 : spfd19e_fd360
+		48 : spfd19e_fd3c6
+		56 : spfd19e_fd42c
+		64 : spfd19e_fd492
+		72 : spfd19e_fd4f8
+		80 : spfd19e_fd55e
+		default: spfd19e_default
+; v3 : single-length
+spfd19e_default:
+.line 1036
+	iget-object	v4,v7,com/google/analytics/containertag/proto/Serving$Rule.unknownFieldData Ljava/util/List;
+; v4 : Ljava/util/List; , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	if-nez	v4,lfd1ba
+; v4 : Ljava/util/List;
+.line 1037
+	new-instance	v4,java/util/ArrayList
+; v4 : Ljava/util/ArrayList;
+	invoke-direct	{v4},java/util/ArrayList/<init>	; <init>()V
+; v4 : Ljava/util/ArrayList;
+	iput-object	v4,v7,com/google/analytics/containertag/proto/Serving$Rule.unknownFieldData Ljava/util/List;
+; v4 : Ljava/util/ArrayList; , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+lfd1ba:
+.line 1040
+	iget-object	v4,v7,com/google/analytics/containertag/proto/Serving$Rule.unknownFieldData Ljava/util/List;
+; v4 : Ljava/util/List; , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	invoke-static	{v4,v8,v3},com/google/tagmanager/protobuf/nano/WireFormatNano/storeUnknownField	; storeUnknownField(Ljava/util/List;Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;I)Z
+; v4 : Ljava/util/List; , v8 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano; , v3 : single-length
+	move-result	v4
+; v4 : single-length
+	if-nez	v4,lfd196
+; v4 : single-length
+spfd19e_fd1ca:
+.line 1042
+	return-object	v7
+; v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+spfd19e_fd1cc:
+.line 1047
+	const/16	v4,8
+; v4 : single-length
+	invoke-static	{v8,v4},com/google/tagmanager/protobuf/nano/WireFormatNano/getRepeatedFieldArrayLength	; getRepeatedFieldArrayLength(Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;I)I
+; v8 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano; , v4 : single-length
+	move-result	v0
+; v0 : single-length
+.line 1048
+	iget-object	v4,v7,com/google/analytics/containertag/proto/Serving$Rule.positivePredicate [I
+; v4 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	array-length	v1,v4
+; v1 : single-length , v4 : [I
+.line 1049
+	add-int	v4,v1,v0
+; v4 : single-length , v1 : single-length , v0 : single-length
+	new-array	v2,v4,[I
+; v2 : [I , v4 : single-length
+.line 1050
+	iget-object	v4,v7,com/google/analytics/containertag/proto/Serving$Rule.positivePredicate [I
+; v4 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	invoke-static	{v4,v6,v2,v6,v1},java/lang/System/arraycopy	; arraycopy(Ljava/lang/Object;ILjava/lang/Object;II)V
+; v4 : [I , v6 : single-length , v2 : [I , v6 : single-length , v1 : single-length
+.line 1051
+	iput-object	v2,v7,com/google/analytics/containertag/proto/Serving$Rule.positivePredicate [I
+; v2 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+lfd1f4:
+.line 1052
+	iget-object	v4,v7,com/google/analytics/containertag/proto/Serving$Rule.positivePredicate [I
+; v4 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	array-length	v4,v4
+; v4 : single-length , v4 : single-length
+	add-int/lit8	v4,v4,255
+; v4 : single-length , v4 : single-length
+	if-ge	v1,v4,lfd21e
+; v1 : single-length , v4 : single-length
+.line 1053
+	iget-object	v4,v7,com/google/analytics/containertag/proto/Serving$Rule.positivePredicate [I
+; v4 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	invoke-virtual	{v8},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readInt32	; readInt32()I
+; v8 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result	v5
+; v5 : single-length
+	aput	v5,v4,v1
+; v5 : single-length , v4 : [I , v1 : single-length
+.line 1054
+	invoke-virtual	{v8},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readTag	; readTag()I
+; v8 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+.line 1052
+	add-int/lit8	v1,v1,1
+; v1 : single-length , v1 : single-length
+	goto	lfd1f4
+lfd21e:
+.line 1057
+	iget-object	v4,v7,com/google/analytics/containertag/proto/Serving$Rule.positivePredicate [I
+; v4 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	invoke-virtual	{v8},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readInt32	; readInt32()I
+; v8 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result	v5
+; v5 : single-length
+	aput	v5,v4,v1
+; v5 : single-length , v4 : [I , v1 : single-length
+	goto	lfd196
+spfd19e_fd230:
+.line 1061
+	const/16	v4,16
+; v4 : single-length
+	invoke-static	{v8,v4},com/google/tagmanager/protobuf/nano/WireFormatNano/getRepeatedFieldArrayLength	; getRepeatedFieldArrayLength(Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;I)I
+; v8 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano; , v4 : single-length
+	move-result	v0
+; v0 : single-length
+.line 1062
+	iget-object	v4,v7,com/google/analytics/containertag/proto/Serving$Rule.negativePredicate [I
+; v4 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	array-length	v1,v4
+; v1 : single-length , v4 : [I
+.line 1063
+	add-int	v4,v1,v0
+; v4 : single-length , v1 : single-length , v0 : single-length
+	new-array	v2,v4,[I
+; v2 : [I , v4 : single-length
+.line 1064
+	iget-object	v4,v7,com/google/analytics/containertag/proto/Serving$Rule.negativePredicate [I
+; v4 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	invoke-static	{v4,v6,v2,v6,v1},java/lang/System/arraycopy	; arraycopy(Ljava/lang/Object;ILjava/lang/Object;II)V
+; v4 : [I , v6 : single-length , v2 : [I , v6 : single-length , v1 : single-length
+.line 1065
+	iput-object	v2,v7,com/google/analytics/containertag/proto/Serving$Rule.negativePredicate [I
+; v2 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+lfd258:
+.line 1066
+	iget-object	v4,v7,com/google/analytics/containertag/proto/Serving$Rule.negativePredicate [I
+; v4 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	array-length	v4,v4
+; v4 : single-length , v4 : single-length
+	add-int/lit8	v4,v4,255
+; v4 : single-length , v4 : single-length
+	if-ge	v1,v4,lfd282
+; v1 : single-length , v4 : single-length
+.line 1067
+	iget-object	v4,v7,com/google/analytics/containertag/proto/Serving$Rule.negativePredicate [I
+; v4 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	invoke-virtual	{v8},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readInt32	; readInt32()I
+; v8 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result	v5
+; v5 : single-length
+	aput	v5,v4,v1
+; v5 : single-length , v4 : [I , v1 : single-length
+.line 1068
+	invoke-virtual	{v8},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readTag	; readTag()I
+; v8 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+.line 1066
+	add-int/lit8	v1,v1,1
+; v1 : single-length , v1 : single-length
+	goto	lfd258
+lfd282:
+.line 1071
+	iget-object	v4,v7,com/google/analytics/containertag/proto/Serving$Rule.negativePredicate [I
+; v4 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	invoke-virtual	{v8},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readInt32	; readInt32()I
+; v8 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result	v5
+; v5 : single-length
+	aput	v5,v4,v1
+; v5 : single-length , v4 : [I , v1 : single-length
+	goto	lfd196
+spfd19e_fd294:
+.line 1075
+	const/16	v4,24
+; v4 : single-length
+	invoke-static	{v8,v4},com/google/tagmanager/protobuf/nano/WireFormatNano/getRepeatedFieldArrayLength	; getRepeatedFieldArrayLength(Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;I)I
+; v8 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano; , v4 : single-length
+	move-result	v0
+; v0 : single-length
+.line 1076
+	iget-object	v4,v7,com/google/analytics/containertag/proto/Serving$Rule.addTag [I
+; v4 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	array-length	v1,v4
+; v1 : single-length , v4 : [I
+.line 1077
+	add-int	v4,v1,v0
+; v4 : single-length , v1 : single-length , v0 : single-length
+	new-array	v2,v4,[I
+; v2 : [I , v4 : single-length
+.line 1078
+	iget-object	v4,v7,com/google/analytics/containertag/proto/Serving$Rule.addTag [I
+; v4 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	invoke-static	{v4,v6,v2,v6,v1},java/lang/System/arraycopy	; arraycopy(Ljava/lang/Object;ILjava/lang/Object;II)V
+; v4 : [I , v6 : single-length , v2 : [I , v6 : single-length , v1 : single-length
+.line 1079
+	iput-object	v2,v7,com/google/analytics/containertag/proto/Serving$Rule.addTag [I
+; v2 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+lfd2bc:
+.line 1080
+	iget-object	v4,v7,com/google/analytics/containertag/proto/Serving$Rule.addTag [I
+; v4 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	array-length	v4,v4
+; v4 : single-length , v4 : single-length
+	add-int/lit8	v4,v4,255
+; v4 : single-length , v4 : single-length
+	if-ge	v1,v4,lfd2e6
+; v1 : single-length , v4 : single-length
+.line 1081
+	iget-object	v4,v7,com/google/analytics/containertag/proto/Serving$Rule.addTag [I
+; v4 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	invoke-virtual	{v8},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readInt32	; readInt32()I
+; v8 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result	v5
+; v5 : single-length
+	aput	v5,v4,v1
+; v5 : single-length , v4 : [I , v1 : single-length
+.line 1082
+	invoke-virtual	{v8},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readTag	; readTag()I
+; v8 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+.line 1080
+	add-int/lit8	v1,v1,1
+; v1 : single-length , v1 : single-length
+	goto	lfd2bc
+lfd2e6:
+.line 1085
+	iget-object	v4,v7,com/google/analytics/containertag/proto/Serving$Rule.addTag [I
+; v4 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	invoke-virtual	{v8},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readInt32	; readInt32()I
+; v8 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result	v5
+; v5 : single-length
+	aput	v5,v4,v1
+; v5 : single-length , v4 : [I , v1 : single-length
+	goto/16	lfd196
+spfd19e_fd2fa:
+.line 1089
+	const/16	v4,32
+; v4 : single-length
+	invoke-static	{v8,v4},com/google/tagmanager/protobuf/nano/WireFormatNano/getRepeatedFieldArrayLength	; getRepeatedFieldArrayLength(Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;I)I
+; v8 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano; , v4 : single-length
+	move-result	v0
+; v0 : single-length
+.line 1090
+	iget-object	v4,v7,com/google/analytics/containertag/proto/Serving$Rule.removeTag [I
+; v4 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	array-length	v1,v4
+; v1 : single-length , v4 : [I
+.line 1091
+	add-int	v4,v1,v0
+; v4 : single-length , v1 : single-length , v0 : single-length
+	new-array	v2,v4,[I
+; v2 : [I , v4 : single-length
+.line 1092
+	iget-object	v4,v7,com/google/analytics/containertag/proto/Serving$Rule.removeTag [I
+; v4 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	invoke-static	{v4,v6,v2,v6,v1},java/lang/System/arraycopy	; arraycopy(Ljava/lang/Object;ILjava/lang/Object;II)V
+; v4 : [I , v6 : single-length , v2 : [I , v6 : single-length , v1 : single-length
+.line 1093
+	iput-object	v2,v7,com/google/analytics/containertag/proto/Serving$Rule.removeTag [I
+; v2 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+lfd322:
+.line 1094
+	iget-object	v4,v7,com/google/analytics/containertag/proto/Serving$Rule.removeTag [I
+; v4 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	array-length	v4,v4
+; v4 : single-length , v4 : single-length
+	add-int/lit8	v4,v4,255
+; v4 : single-length , v4 : single-length
+	if-ge	v1,v4,lfd34c
+; v1 : single-length , v4 : single-length
+.line 1095
+	iget-object	v4,v7,com/google/analytics/containertag/proto/Serving$Rule.removeTag [I
+; v4 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	invoke-virtual	{v8},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readInt32	; readInt32()I
+; v8 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result	v5
+; v5 : single-length
+	aput	v5,v4,v1
+; v5 : single-length , v4 : [I , v1 : single-length
+.line 1096
+	invoke-virtual	{v8},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readTag	; readTag()I
+; v8 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+.line 1094
+	add-int/lit8	v1,v1,1
+; v1 : single-length , v1 : single-length
+	goto	lfd322
+lfd34c:
+.line 1099
+	iget-object	v4,v7,com/google/analytics/containertag/proto/Serving$Rule.removeTag [I
+; v4 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	invoke-virtual	{v8},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readInt32	; readInt32()I
+; v8 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result	v5
+; v5 : single-length
+	aput	v5,v4,v1
+; v5 : single-length , v4 : [I , v1 : single-length
+	goto/16	lfd196
+spfd19e_fd360:
+.line 1103
+	const/16	v4,40
+; v4 : single-length
+	invoke-static	{v8,v4},com/google/tagmanager/protobuf/nano/WireFormatNano/getRepeatedFieldArrayLength	; getRepeatedFieldArrayLength(Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;I)I
+; v8 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano; , v4 : single-length
+	move-result	v0
+; v0 : single-length
+.line 1104
+	iget-object	v4,v7,com/google/analytics/containertag/proto/Serving$Rule.addTagRuleName [I
+; v4 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	array-length	v1,v4
+; v1 : single-length , v4 : [I
+.line 1105
+	add-int	v4,v1,v0
+; v4 : single-length , v1 : single-length , v0 : single-length
+	new-array	v2,v4,[I
+; v2 : [I , v4 : single-length
+.line 1106
+	iget-object	v4,v7,com/google/analytics/containertag/proto/Serving$Rule.addTagRuleName [I
+; v4 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	invoke-static	{v4,v6,v2,v6,v1},java/lang/System/arraycopy	; arraycopy(Ljava/lang/Object;ILjava/lang/Object;II)V
+; v4 : [I , v6 : single-length , v2 : [I , v6 : single-length , v1 : single-length
+.line 1107
+	iput-object	v2,v7,com/google/analytics/containertag/proto/Serving$Rule.addTagRuleName [I
+; v2 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+lfd388:
+.line 1108
+	iget-object	v4,v7,com/google/analytics/containertag/proto/Serving$Rule.addTagRuleName [I
+; v4 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	array-length	v4,v4
+; v4 : single-length , v4 : single-length
+	add-int/lit8	v4,v4,255
+; v4 : single-length , v4 : single-length
+	if-ge	v1,v4,lfd3b2
+; v1 : single-length , v4 : single-length
+.line 1109
+	iget-object	v4,v7,com/google/analytics/containertag/proto/Serving$Rule.addTagRuleName [I
+; v4 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	invoke-virtual	{v8},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readInt32	; readInt32()I
+; v8 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result	v5
+; v5 : single-length
+	aput	v5,v4,v1
+; v5 : single-length , v4 : [I , v1 : single-length
+.line 1110
+	invoke-virtual	{v8},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readTag	; readTag()I
+; v8 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+.line 1108
+	add-int/lit8	v1,v1,1
+; v1 : single-length , v1 : single-length
+	goto	lfd388
+lfd3b2:
+.line 1113
+	iget-object	v4,v7,com/google/analytics/containertag/proto/Serving$Rule.addTagRuleName [I
+; v4 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	invoke-virtual	{v8},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readInt32	; readInt32()I
+; v8 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result	v5
+; v5 : single-length
+	aput	v5,v4,v1
+; v5 : single-length , v4 : [I , v1 : single-length
+	goto/16	lfd196
+spfd19e_fd3c6:
+.line 1117
+	const/16	v4,48
+; v4 : single-length
+	invoke-static	{v8,v4},com/google/tagmanager/protobuf/nano/WireFormatNano/getRepeatedFieldArrayLength	; getRepeatedFieldArrayLength(Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;I)I
+; v8 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano; , v4 : single-length
+	move-result	v0
+; v0 : single-length
+.line 1118
+	iget-object	v4,v7,com/google/analytics/containertag/proto/Serving$Rule.removeTagRuleName [I
+; v4 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	array-length	v1,v4
+; v1 : single-length , v4 : [I
+.line 1119
+	add-int	v4,v1,v0
+; v4 : single-length , v1 : single-length , v0 : single-length
+	new-array	v2,v4,[I
+; v2 : [I , v4 : single-length
+.line 1120
+	iget-object	v4,v7,com/google/analytics/containertag/proto/Serving$Rule.removeTagRuleName [I
+; v4 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	invoke-static	{v4,v6,v2,v6,v1},java/lang/System/arraycopy	; arraycopy(Ljava/lang/Object;ILjava/lang/Object;II)V
+; v4 : [I , v6 : single-length , v2 : [I , v6 : single-length , v1 : single-length
+.line 1121
+	iput-object	v2,v7,com/google/analytics/containertag/proto/Serving$Rule.removeTagRuleName [I
+; v2 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+lfd3ee:
+.line 1122
+	iget-object	v4,v7,com/google/analytics/containertag/proto/Serving$Rule.removeTagRuleName [I
+; v4 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	array-length	v4,v4
+; v4 : single-length , v4 : single-length
+	add-int/lit8	v4,v4,255
+; v4 : single-length , v4 : single-length
+	if-ge	v1,v4,lfd418
+; v1 : single-length , v4 : single-length
+.line 1123
+	iget-object	v4,v7,com/google/analytics/containertag/proto/Serving$Rule.removeTagRuleName [I
+; v4 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	invoke-virtual	{v8},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readInt32	; readInt32()I
+; v8 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result	v5
+; v5 : single-length
+	aput	v5,v4,v1
+; v5 : single-length , v4 : [I , v1 : single-length
+.line 1124
+	invoke-virtual	{v8},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readTag	; readTag()I
+; v8 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+.line 1122
+	add-int/lit8	v1,v1,1
+; v1 : single-length , v1 : single-length
+	goto	lfd3ee
+lfd418:
+.line 1127
+	iget-object	v4,v7,com/google/analytics/containertag/proto/Serving$Rule.removeTagRuleName [I
+; v4 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	invoke-virtual	{v8},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readInt32	; readInt32()I
+; v8 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result	v5
+; v5 : single-length
+	aput	v5,v4,v1
+; v5 : single-length , v4 : [I , v1 : single-length
+	goto/16	lfd196
+spfd19e_fd42c:
+.line 1131
+	const/16	v4,56
+; v4 : single-length
+	invoke-static	{v8,v4},com/google/tagmanager/protobuf/nano/WireFormatNano/getRepeatedFieldArrayLength	; getRepeatedFieldArrayLength(Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;I)I
+; v8 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano; , v4 : single-length
+	move-result	v0
+; v0 : single-length
+.line 1132
+	iget-object	v4,v7,com/google/analytics/containertag/proto/Serving$Rule.addMacro [I
+; v4 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	array-length	v1,v4
+; v1 : single-length , v4 : [I
+.line 1133
+	add-int	v4,v1,v0
+; v4 : single-length , v1 : single-length , v0 : single-length
+	new-array	v2,v4,[I
+; v2 : [I , v4 : single-length
+.line 1134
+	iget-object	v4,v7,com/google/analytics/containertag/proto/Serving$Rule.addMacro [I
+; v4 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	invoke-static	{v4,v6,v2,v6,v1},java/lang/System/arraycopy	; arraycopy(Ljava/lang/Object;ILjava/lang/Object;II)V
+; v4 : [I , v6 : single-length , v2 : [I , v6 : single-length , v1 : single-length
+.line 1135
+	iput-object	v2,v7,com/google/analytics/containertag/proto/Serving$Rule.addMacro [I
+; v2 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+lfd454:
+.line 1136
+	iget-object	v4,v7,com/google/analytics/containertag/proto/Serving$Rule.addMacro [I
+; v4 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	array-length	v4,v4
+; v4 : single-length , v4 : single-length
+	add-int/lit8	v4,v4,255
+; v4 : single-length , v4 : single-length
+	if-ge	v1,v4,lfd47e
+; v1 : single-length , v4 : single-length
+.line 1137
+	iget-object	v4,v7,com/google/analytics/containertag/proto/Serving$Rule.addMacro [I
+; v4 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	invoke-virtual	{v8},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readInt32	; readInt32()I
+; v8 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result	v5
+; v5 : single-length
+	aput	v5,v4,v1
+; v5 : single-length , v4 : [I , v1 : single-length
+.line 1138
+	invoke-virtual	{v8},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readTag	; readTag()I
+; v8 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+.line 1136
+	add-int/lit8	v1,v1,1
+; v1 : single-length , v1 : single-length
+	goto	lfd454
+lfd47e:
+.line 1141
+	iget-object	v4,v7,com/google/analytics/containertag/proto/Serving$Rule.addMacro [I
+; v4 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	invoke-virtual	{v8},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readInt32	; readInt32()I
+; v8 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result	v5
+; v5 : single-length
+	aput	v5,v4,v1
+; v5 : single-length , v4 : [I , v1 : single-length
+	goto/16	lfd196
+spfd19e_fd492:
+.line 1145
+	const/16	v4,64
+; v4 : single-length
+	invoke-static	{v8,v4},com/google/tagmanager/protobuf/nano/WireFormatNano/getRepeatedFieldArrayLength	; getRepeatedFieldArrayLength(Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;I)I
+; v8 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano; , v4 : single-length
+	move-result	v0
+; v0 : single-length
+.line 1146
+	iget-object	v4,v7,com/google/analytics/containertag/proto/Serving$Rule.removeMacro [I
+; v4 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	array-length	v1,v4
+; v1 : single-length , v4 : [I
+.line 1147
+	add-int	v4,v1,v0
+; v4 : single-length , v1 : single-length , v0 : single-length
+	new-array	v2,v4,[I
+; v2 : [I , v4 : single-length
+.line 1148
+	iget-object	v4,v7,com/google/analytics/containertag/proto/Serving$Rule.removeMacro [I
+; v4 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	invoke-static	{v4,v6,v2,v6,v1},java/lang/System/arraycopy	; arraycopy(Ljava/lang/Object;ILjava/lang/Object;II)V
+; v4 : [I , v6 : single-length , v2 : [I , v6 : single-length , v1 : single-length
+.line 1149
+	iput-object	v2,v7,com/google/analytics/containertag/proto/Serving$Rule.removeMacro [I
+; v2 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+lfd4ba:
+.line 1150
+	iget-object	v4,v7,com/google/analytics/containertag/proto/Serving$Rule.removeMacro [I
+; v4 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	array-length	v4,v4
+; v4 : single-length , v4 : single-length
+	add-int/lit8	v4,v4,255
+; v4 : single-length , v4 : single-length
+	if-ge	v1,v4,lfd4e4
+; v1 : single-length , v4 : single-length
+.line 1151
+	iget-object	v4,v7,com/google/analytics/containertag/proto/Serving$Rule.removeMacro [I
+; v4 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	invoke-virtual	{v8},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readInt32	; readInt32()I
+; v8 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result	v5
+; v5 : single-length
+	aput	v5,v4,v1
+; v5 : single-length , v4 : [I , v1 : single-length
+.line 1152
+	invoke-virtual	{v8},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readTag	; readTag()I
+; v8 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+.line 1150
+	add-int/lit8	v1,v1,1
+; v1 : single-length , v1 : single-length
+	goto	lfd4ba
+lfd4e4:
+.line 1155
+	iget-object	v4,v7,com/google/analytics/containertag/proto/Serving$Rule.removeMacro [I
+; v4 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	invoke-virtual	{v8},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readInt32	; readInt32()I
+; v8 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result	v5
+; v5 : single-length
+	aput	v5,v4,v1
+; v5 : single-length , v4 : [I , v1 : single-length
+	goto/16	lfd196
+spfd19e_fd4f8:
+.line 1159
+	const/16	v4,72
+; v4 : single-length
+	invoke-static	{v8,v4},com/google/tagmanager/protobuf/nano/WireFormatNano/getRepeatedFieldArrayLength	; getRepeatedFieldArrayLength(Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;I)I
+; v8 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano; , v4 : single-length
+	move-result	v0
+; v0 : single-length
+.line 1160
+	iget-object	v4,v7,com/google/analytics/containertag/proto/Serving$Rule.addMacroRuleName [I
+; v4 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	array-length	v1,v4
+; v1 : single-length , v4 : [I
+.line 1161
+	add-int	v4,v1,v0
+; v4 : single-length , v1 : single-length , v0 : single-length
+	new-array	v2,v4,[I
+; v2 : [I , v4 : single-length
+.line 1162
+	iget-object	v4,v7,com/google/analytics/containertag/proto/Serving$Rule.addMacroRuleName [I
+; v4 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	invoke-static	{v4,v6,v2,v6,v1},java/lang/System/arraycopy	; arraycopy(Ljava/lang/Object;ILjava/lang/Object;II)V
+; v4 : [I , v6 : single-length , v2 : [I , v6 : single-length , v1 : single-length
+.line 1163
+	iput-object	v2,v7,com/google/analytics/containertag/proto/Serving$Rule.addMacroRuleName [I
+; v2 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+lfd520:
+.line 1164
+	iget-object	v4,v7,com/google/analytics/containertag/proto/Serving$Rule.addMacroRuleName [I
+; v4 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	array-length	v4,v4
+; v4 : single-length , v4 : single-length
+	add-int/lit8	v4,v4,255
+; v4 : single-length , v4 : single-length
+	if-ge	v1,v4,lfd54a
+; v1 : single-length , v4 : single-length
+.line 1165
+	iget-object	v4,v7,com/google/analytics/containertag/proto/Serving$Rule.addMacroRuleName [I
+; v4 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	invoke-virtual	{v8},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readInt32	; readInt32()I
+; v8 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result	v5
+; v5 : single-length
+	aput	v5,v4,v1
+; v5 : single-length , v4 : [I , v1 : single-length
+.line 1166
+	invoke-virtual	{v8},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readTag	; readTag()I
+; v8 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+.line 1164
+	add-int/lit8	v1,v1,1
+; v1 : single-length , v1 : single-length
+	goto	lfd520
+lfd54a:
+.line 1169
+	iget-object	v4,v7,com/google/analytics/containertag/proto/Serving$Rule.addMacroRuleName [I
+; v4 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	invoke-virtual	{v8},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readInt32	; readInt32()I
+; v8 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result	v5
+; v5 : single-length
+	aput	v5,v4,v1
+; v5 : single-length , v4 : [I , v1 : single-length
+	goto/16	lfd196
+spfd19e_fd55e:
+.line 1173
+	const/16	v4,80
+; v4 : single-length
+	invoke-static	{v8,v4},com/google/tagmanager/protobuf/nano/WireFormatNano/getRepeatedFieldArrayLength	; getRepeatedFieldArrayLength(Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;I)I
+; v8 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano; , v4 : single-length
+	move-result	v0
+; v0 : single-length
+.line 1174
+	iget-object	v4,v7,com/google/analytics/containertag/proto/Serving$Rule.removeMacroRuleName [I
+; v4 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	array-length	v1,v4
+; v1 : single-length , v4 : [I
+.line 1175
+	add-int	v4,v1,v0
+; v4 : single-length , v1 : single-length , v0 : single-length
+	new-array	v2,v4,[I
+; v2 : [I , v4 : single-length
+.line 1176
+	iget-object	v4,v7,com/google/analytics/containertag/proto/Serving$Rule.removeMacroRuleName [I
+; v4 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	invoke-static	{v4,v6,v2,v6,v1},java/lang/System/arraycopy	; arraycopy(Ljava/lang/Object;ILjava/lang/Object;II)V
+; v4 : [I , v6 : single-length , v2 : [I , v6 : single-length , v1 : single-length
+.line 1177
+	iput-object	v2,v7,com/google/analytics/containertag/proto/Serving$Rule.removeMacroRuleName [I
+; v2 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+lfd586:
+.line 1178
+	iget-object	v4,v7,com/google/analytics/containertag/proto/Serving$Rule.removeMacroRuleName [I
+; v4 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	array-length	v4,v4
+; v4 : single-length , v4 : single-length
+	add-int/lit8	v4,v4,255
+; v4 : single-length , v4 : single-length
+	if-ge	v1,v4,lfd5b0
+; v1 : single-length , v4 : single-length
+.line 1179
+	iget-object	v4,v7,com/google/analytics/containertag/proto/Serving$Rule.removeMacroRuleName [I
+; v4 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	invoke-virtual	{v8},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readInt32	; readInt32()I
+; v8 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result	v5
+; v5 : single-length
+	aput	v5,v4,v1
+; v5 : single-length , v4 : [I , v1 : single-length
+.line 1180
+	invoke-virtual	{v8},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readTag	; readTag()I
+; v8 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+.line 1178
+	add-int/lit8	v1,v1,1
+; v1 : single-length , v1 : single-length
+	goto	lfd586
+lfd5b0:
+.line 1183
+	iget-object	v4,v7,com/google/analytics/containertag/proto/Serving$Rule.removeMacroRuleName [I
+; v4 : [I , v7 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	invoke-virtual	{v8},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readInt32	; readInt32()I
+; v8 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result	v5
+; v5 : single-length
+	aput	v5,v4,v1
+; v5 : single-length , v4 : [I , v1 : single-length
+	goto/16	lfd196
+.line 1032
+.end method
+
+.method public mergeFrom(Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)Lcom/google/tagmanager/protobuf/nano/MessageNano;
+.throws Ljava/io/IOException;
+.limit registers 3
+; this: v1 (Lcom/google/analytics/containertag/proto/Serving$Rule;)
+; parameter[0] : v2 (Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)
+.line 736
+	invoke-virtual	{v1,v2},com/google/analytics/containertag/proto/Serving$Rule/mergeFrom	; mergeFrom(Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)Lcom/google/analytics/containertag/proto/Serving$Rule;
+; v1 : Lcom/google/analytics/containertag/proto/Serving$Rule; , v2 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result-object	v0
+; v0 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	return-object	v0
+; v0 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+.end method
+
+.method public writeTo(Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;)V
+.throws Ljava/io/IOException;
+.limit registers 7
+; this: v5 (Lcom/google/analytics/containertag/proto/Serving$Rule;)
+; parameter[0] : v6 (Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;)
+.var 0 is arr$ [I from lfd658 to lfd672
+.var 1 is element I from lfd664 to lfd672
+.var 2 is i$ I from lfd65c to lfd672
+.var 3 is len$ I from lfd65a to lfd672
+.var 0 is arr$ [I from lfd67e to lfd698
+.var 1 is element I from lfd68a to lfd698
+.var 2 is i$ I from lfd682 to lfd698
+.var 3 is len$ I from lfd680 to lfd698
+.var 0 is arr$ [I from lfd6a4 to lfd6be
+.var 1 is element I from lfd6b0 to lfd6be
+.var 2 is i$ I from lfd6a8 to lfd6be
+.var 3 is len$ I from lfd6a6 to lfd6be
+.var 0 is arr$ [I from lfd6ca to lfd6e4
+.var 1 is element I from lfd6d6 to lfd6e4
+.var 2 is i$ I from lfd6ce to lfd6e4
+.var 3 is len$ I from lfd6cc to lfd6e4
+.var 0 is arr$ [I from lfd6f0 to lfd70a
+.var 1 is element I from lfd6fc to lfd70a
+.var 2 is i$ I from lfd6f4 to lfd70a
+.var 3 is len$ I from lfd6f2 to lfd70a
+.var 0 is arr$ [I from lfd716 to lfd730
+.var 1 is element I from lfd722 to lfd730
+.var 2 is i$ I from lfd71a to lfd730
+.var 3 is len$ I from lfd718 to lfd730
+.var 0 is arr$ [I from lfd73c to lfd756
+.var 1 is element I from lfd748 to lfd756
+.var 2 is i$ I from lfd740 to lfd756
+.var 3 is len$ I from lfd73e to lfd756
+.var 0 is arr$ [I from lfd762 to lfd77e
+.var 1 is element I from lfd76e to lfd77e
+.var 2 is i$ I from lfd766 to lfd77e
+.var 3 is len$ I from lfd764 to lfd77e
+.var 0 is arr$ [I from lfd78a to lfd7a6
+.var 1 is element I from lfd796 to lfd7a6
+.var 2 is i$ I from lfd78e to lfd7a6
+.var 3 is len$ I from lfd78c to lfd7a6
+.var 0 is arr$ [I from lfd7b2 to lfd7ce
+.var 1 is element I from lfd7be to lfd7ce
+.var 2 is i$ I from lfd7b6 to lfd7ce
+.var 3 is len$ I from lfd7b4 to lfd7ce
+.line 874
+	iget-object	v4,v5,com/google/analytics/containertag/proto/Serving$Rule.positivePredicate [I
+; v4 : [I , v5 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	if-eqz	v4,lfd672
+; v4 : [I
+.line 875
+	iget-object	v0,v5,com/google/analytics/containertag/proto/Serving$Rule.positivePredicate [I
+; v0 : [I , v5 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+lfd658:
+	array-length	v3,v0
+; v3 : single-length , v0 : [I
+lfd65a:
+	const/4	v2,0
+; v2 : single-length
+lfd65c:
+	if-ge	v2,v3,lfd672
+; v2 : single-length , v3 : single-length
+	aget	v1,v0,v2
+; v1 : single-length , v0 : [I , v2 : single-length
+.line 876
+	const/4	v4,1
+; v4 : single-length
+	invoke-virtual	{v6,v4,v1},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeInt32	; writeInt32(II)V
+; v6 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v4 : single-length , v1 : single-length
+.line 875
+	add-int/lit8	v2,v2,1
+; v2 : single-length , v2 : single-length
+	goto	lfd65c
+lfd672:
+.line 879
+	iget-object	v4,v5,com/google/analytics/containertag/proto/Serving$Rule.negativePredicate [I
+; v4 : [I , v5 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	if-eqz	v4,lfd698
+; v4 : [I
+.line 880
+	iget-object	v0,v5,com/google/analytics/containertag/proto/Serving$Rule.negativePredicate [I
+; v0 : [I , v5 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+lfd67e:
+	array-length	v3,v0
+; v3 : single-length , v0 : [I
+lfd680:
+	const/4	v2,0
+; v2 : single-length
+lfd682:
+	if-ge	v2,v3,lfd698
+; v2 : single-length , v3 : single-length
+	aget	v1,v0,v2
+; v1 : single-length , v0 : [I , v2 : single-length
+.line 881
+	const/4	v4,2
+; v4 : single-length
+	invoke-virtual	{v6,v4,v1},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeInt32	; writeInt32(II)V
+; v6 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v4 : single-length , v1 : single-length
+.line 880
+	add-int/lit8	v2,v2,1
+; v2 : single-length , v2 : single-length
+	goto	lfd682
+lfd698:
+.line 884
+	iget-object	v4,v5,com/google/analytics/containertag/proto/Serving$Rule.addTag [I
+; v4 : [I , v5 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	if-eqz	v4,lfd6be
+; v4 : [I
+.line 885
+	iget-object	v0,v5,com/google/analytics/containertag/proto/Serving$Rule.addTag [I
+; v0 : [I , v5 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+lfd6a4:
+	array-length	v3,v0
+; v3 : single-length , v0 : [I
+lfd6a6:
+	const/4	v2,0
+; v2 : single-length
+lfd6a8:
+	if-ge	v2,v3,lfd6be
+; v2 : single-length , v3 : single-length
+	aget	v1,v0,v2
+; v1 : single-length , v0 : [I , v2 : single-length
+.line 886
+	const/4	v4,3
+; v4 : single-length
+	invoke-virtual	{v6,v4,v1},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeInt32	; writeInt32(II)V
+; v6 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v4 : single-length , v1 : single-length
+.line 885
+	add-int/lit8	v2,v2,1
+; v2 : single-length , v2 : single-length
+	goto	lfd6a8
+lfd6be:
+.line 889
+	iget-object	v4,v5,com/google/analytics/containertag/proto/Serving$Rule.removeTag [I
+; v4 : [I , v5 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	if-eqz	v4,lfd6e4
+; v4 : [I
+.line 890
+	iget-object	v0,v5,com/google/analytics/containertag/proto/Serving$Rule.removeTag [I
+; v0 : [I , v5 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+lfd6ca:
+	array-length	v3,v0
+; v3 : single-length , v0 : [I
+lfd6cc:
+	const/4	v2,0
+; v2 : single-length
+lfd6ce:
+	if-ge	v2,v3,lfd6e4
+; v2 : single-length , v3 : single-length
+	aget	v1,v0,v2
+; v1 : single-length , v0 : [I , v2 : single-length
+.line 891
+	const/4	v4,4
+; v4 : single-length
+	invoke-virtual	{v6,v4,v1},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeInt32	; writeInt32(II)V
+; v6 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v4 : single-length , v1 : single-length
+.line 890
+	add-int/lit8	v2,v2,1
+; v2 : single-length , v2 : single-length
+	goto	lfd6ce
+lfd6e4:
+.line 894
+	iget-object	v4,v5,com/google/analytics/containertag/proto/Serving$Rule.addTagRuleName [I
+; v4 : [I , v5 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	if-eqz	v4,lfd70a
+; v4 : [I
+.line 895
+	iget-object	v0,v5,com/google/analytics/containertag/proto/Serving$Rule.addTagRuleName [I
+; v0 : [I , v5 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+lfd6f0:
+	array-length	v3,v0
+; v3 : single-length , v0 : [I
+lfd6f2:
+	const/4	v2,0
+; v2 : single-length
+lfd6f4:
+	if-ge	v2,v3,lfd70a
+; v2 : single-length , v3 : single-length
+	aget	v1,v0,v2
+; v1 : single-length , v0 : [I , v2 : single-length
+.line 896
+	const/4	v4,5
+; v4 : single-length
+	invoke-virtual	{v6,v4,v1},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeInt32	; writeInt32(II)V
+; v6 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v4 : single-length , v1 : single-length
+.line 895
+	add-int/lit8	v2,v2,1
+; v2 : single-length , v2 : single-length
+	goto	lfd6f4
+lfd70a:
+.line 899
+	iget-object	v4,v5,com/google/analytics/containertag/proto/Serving$Rule.removeTagRuleName [I
+; v4 : [I , v5 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	if-eqz	v4,lfd730
+; v4 : [I
+.line 900
+	iget-object	v0,v5,com/google/analytics/containertag/proto/Serving$Rule.removeTagRuleName [I
+; v0 : [I , v5 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+lfd716:
+	array-length	v3,v0
+; v3 : single-length , v0 : [I
+lfd718:
+	const/4	v2,0
+; v2 : single-length
+lfd71a:
+	if-ge	v2,v3,lfd730
+; v2 : single-length , v3 : single-length
+	aget	v1,v0,v2
+; v1 : single-length , v0 : [I , v2 : single-length
+.line 901
+	const/4	v4,6
+; v4 : single-length
+	invoke-virtual	{v6,v4,v1},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeInt32	; writeInt32(II)V
+; v6 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v4 : single-length , v1 : single-length
+.line 900
+	add-int/lit8	v2,v2,1
+; v2 : single-length , v2 : single-length
+	goto	lfd71a
+lfd730:
+.line 904
+	iget-object	v4,v5,com/google/analytics/containertag/proto/Serving$Rule.addMacro [I
+; v4 : [I , v5 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	if-eqz	v4,lfd756
+; v4 : [I
+.line 905
+	iget-object	v0,v5,com/google/analytics/containertag/proto/Serving$Rule.addMacro [I
+; v0 : [I , v5 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+lfd73c:
+	array-length	v3,v0
+; v3 : single-length , v0 : [I
+lfd73e:
+	const/4	v2,0
+; v2 : single-length
+lfd740:
+	if-ge	v2,v3,lfd756
+; v2 : single-length , v3 : single-length
+	aget	v1,v0,v2
+; v1 : single-length , v0 : [I , v2 : single-length
+.line 906
+	const/4	v4,7
+; v4 : single-length
+	invoke-virtual	{v6,v4,v1},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeInt32	; writeInt32(II)V
+; v6 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v4 : single-length , v1 : single-length
+.line 905
+	add-int/lit8	v2,v2,1
+; v2 : single-length , v2 : single-length
+	goto	lfd740
+lfd756:
+.line 909
+	iget-object	v4,v5,com/google/analytics/containertag/proto/Serving$Rule.removeMacro [I
+; v4 : [I , v5 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	if-eqz	v4,lfd77e
+; v4 : [I
+.line 910
+	iget-object	v0,v5,com/google/analytics/containertag/proto/Serving$Rule.removeMacro [I
+; v0 : [I , v5 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+lfd762:
+	array-length	v3,v0
+; v3 : single-length , v0 : [I
+lfd764:
+	const/4	v2,0
+; v2 : single-length
+lfd766:
+	if-ge	v2,v3,lfd77e
+; v2 : single-length , v3 : single-length
+	aget	v1,v0,v2
+; v1 : single-length , v0 : [I , v2 : single-length
+.line 911
+	const/16	v4,8
+; v4 : single-length
+	invoke-virtual	{v6,v4,v1},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeInt32	; writeInt32(II)V
+; v6 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v4 : single-length , v1 : single-length
+.line 910
+	add-int/lit8	v2,v2,1
+; v2 : single-length , v2 : single-length
+	goto	lfd766
+lfd77e:
+.line 914
+	iget-object	v4,v5,com/google/analytics/containertag/proto/Serving$Rule.addMacroRuleName [I
+; v4 : [I , v5 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	if-eqz	v4,lfd7a6
+; v4 : [I
+.line 915
+	iget-object	v0,v5,com/google/analytics/containertag/proto/Serving$Rule.addMacroRuleName [I
+; v0 : [I , v5 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+lfd78a:
+	array-length	v3,v0
+; v3 : single-length , v0 : [I
+lfd78c:
+	const/4	v2,0
+; v2 : single-length
+lfd78e:
+	if-ge	v2,v3,lfd7a6
+; v2 : single-length , v3 : single-length
+	aget	v1,v0,v2
+; v1 : single-length , v0 : [I , v2 : single-length
+.line 916
+	const/16	v4,9
+; v4 : single-length
+	invoke-virtual	{v6,v4,v1},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeInt32	; writeInt32(II)V
+; v6 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v4 : single-length , v1 : single-length
+.line 915
+	add-int/lit8	v2,v2,1
+; v2 : single-length , v2 : single-length
+	goto	lfd78e
+lfd7a6:
+.line 919
+	iget-object	v4,v5,com/google/analytics/containertag/proto/Serving$Rule.removeMacroRuleName [I
+; v4 : [I , v5 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	if-eqz	v4,lfd7ce
+; v4 : [I
+.line 920
+	iget-object	v0,v5,com/google/analytics/containertag/proto/Serving$Rule.removeMacroRuleName [I
+; v0 : [I , v5 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+lfd7b2:
+	array-length	v3,v0
+; v3 : single-length , v0 : [I
+lfd7b4:
+	const/4	v2,0
+; v2 : single-length
+lfd7b6:
+	if-ge	v2,v3,lfd7ce
+; v2 : single-length , v3 : single-length
+	aget	v1,v0,v2
+; v1 : single-length , v0 : [I , v2 : single-length
+.line 921
+	const/16	v4,10
+; v4 : single-length
+	invoke-virtual	{v6,v4,v1},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeInt32	; writeInt32(II)V
+; v6 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v4 : single-length , v1 : single-length
+.line 920
+	add-int/lit8	v2,v2,1
+; v2 : single-length , v2 : single-length
+	goto	lfd7b6
+lfd7ce:
+.line 924
+	iget-object	v4,v5,com/google/analytics/containertag/proto/Serving$Rule.unknownFieldData Ljava/util/List;
+; v4 : Ljava/util/List; , v5 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	invoke-static	{v4,v6},com/google/tagmanager/protobuf/nano/WireFormatNano/writeUnknownFields	; writeUnknownFields(Ljava/util/List;Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;)V
+; v4 : Ljava/util/List; , v6 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;
+.line 926
+	return-void	
+.end method
+
+

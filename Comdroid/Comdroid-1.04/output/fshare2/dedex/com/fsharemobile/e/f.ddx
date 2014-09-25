@@ -1,0 +1,45 @@
+.class com/fsharemobile/e/f
+.super java/lang/Object
+.source MyApplication
+.implements android/view/animation/Interpolator
+
+.field final a Lcom/fsharemobile/e/e;
+
+.method <init>(Lcom/fsharemobile/e/e;)V
+.limit registers 2
+; this: v0 (Lcom/fsharemobile/e/f;)
+; parameter[0] : v1 (Lcom/fsharemobile/e/e;)
+.line 1
+	iput-object	v1,v0,com/fsharemobile/e/f.a Lcom/fsharemobile/e/e;
+; v1 : Lcom/fsharemobile/e/e; , v0 : Lcom/fsharemobile/e/f;
+.line 53
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Lcom/fsharemobile/e/f;
+	return-void	
+.end method
+
+.method public getInterpolation(F)F
+.limit registers 4
+; this: v2 (Lcom/fsharemobile/e/f;)
+; parameter[0] : v3 (F)
+.line 55
+	const	v0,1069966950	; 0x3fc66666
+; v0 : single-length
+	mul-float/2addr	v0,v3
+; v0 : single-length , v3 : single-length
+	const	v1,1066192077	; 0x3f8ccccd
+; v1 : single-length
+	sub-float/2addr	v0,v1
+; v0 : single-length , v1 : single-length
+.line 57
+	const	v1,1067030938	; 0x3f99999a
+; v1 : single-length
+	mul-float/2addr	v0,v0
+; v0 : single-length , v0 : single-length
+	sub-float	v0,v1,v0
+; v0 : single-length , v1 : single-length , v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+

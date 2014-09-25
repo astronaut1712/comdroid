@@ -1,0 +1,191 @@
+.class public abstract com/google/android/gms/analytics/internal/IAnalyticsService$Stub
+.super android/os/Binder
+.source IAnalyticsService.java
+.implements com/google/android/gms/analytics/internal/IAnalyticsService
+
+.inner class Stub inner com/google/android/gms/analytics/internal/IAnalyticsService$Stub outer com/google/android/gms/analytics/internal/IAnalyticsService
+.inner class Proxy inner com/google/android/gms/analytics/internal/IAnalyticsService$Stub$Proxy outer com/google/android/gms/analytics/internal/IAnalyticsService$Stub
+.field private static final DESCRIPTOR Ljava/lang/String; = "com.google.android.gms.analytics.internal.IAnalyticsService"
+.field static final TRANSACTION_clearHits I = 2	; 0x2
+.field static final TRANSACTION_sendHit I = 1	; 0x1
+
+.method public <init>()V
+.limit registers 2
+; this: v1 (Lcom/google/android/gms/analytics/internal/IAnalyticsService$Stub;)
+.line 17
+	invoke-direct	{v1},android/os/Binder/<init>	; <init>()V
+; v1 : Lcom/google/android/gms/analytics/internal/IAnalyticsService$Stub;
+.line 18
+	const-string	v0,"com.google.android.gms.analytics.internal.IAnalyticsService"
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v1,v1,v0},com/google/android/gms/analytics/internal/IAnalyticsService$Stub/attachInterface	; attachInterface(Landroid/os/IInterface;Ljava/lang/String;)V
+; v1 : Lcom/google/android/gms/analytics/internal/IAnalyticsService$Stub; , v1 : Lcom/google/android/gms/analytics/internal/IAnalyticsService$Stub; , v0 : Ljava/lang/String;
+.line 19
+	return-void	
+.end method
+
+.method public static asInterface(Landroid/os/IBinder;)Lcom/google/android/gms/analytics/internal/IAnalyticsService;
+.limit registers 3
+; parameter[0] : v2 (Landroid/os/IBinder;)
+.var 0 is iin Landroid/os/IInterface; from le5cf8 to le5d0e
+.line 26
+	if-nez	v2,le5cec
+; v2 : Landroid/os/IBinder;
+.line 27
+	const/4	v0,0
+; v0 : single-length
+le5cea:
+.line 33
+	return-object	v0
+; v0 : Lcom/google/android/gms/analytics/internal/IAnalyticsService$Stub$Proxy;
+le5cec:
+.line 29
+	const-string	v1,"com.google.android.gms.analytics.internal.IAnalyticsService"
+; v1 : Ljava/lang/String;
+	invoke-interface	{v2,v1},android/os/IBinder/queryLocalInterface	; queryLocalInterface(Ljava/lang/String;)Landroid/os/IInterface;
+; v2 : Landroid/os/IBinder; , v1 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Landroid/os/IInterface;
+.line 30
+	if-eqz	v0,le5d0a
+; v0 : Landroid/os/IInterface;
+	instance-of	v1,v0,com/google/android/gms/analytics/internal/IAnalyticsService
+; v1 : single-length , v0 : Landroid/os/IInterface;
+	if-eqz	v1,le5d0a
+; v1 : single-length
+.line 31
+	check-cast	v0,com/google/android/gms/analytics/internal/IAnalyticsService
+; v0 : Lcom/google/android/gms/analytics/internal/IAnalyticsService;
+	goto	le5cea
+le5d0a:
+.line 33
+	new-instance	v0,com/google/android/gms/analytics/internal/IAnalyticsService$Stub$Proxy
+; v0 : Lcom/google/android/gms/analytics/internal/IAnalyticsService$Stub$Proxy;
+le5d0e:
+	invoke-direct	{v0,v2},com/google/android/gms/analytics/internal/IAnalyticsService$Stub$Proxy/<init>	; <init>(Landroid/os/IBinder;)V
+; v0 : Lcom/google/android/gms/analytics/internal/IAnalyticsService$Stub$Proxy; , v2 : Landroid/os/IBinder;
+	goto	le5cea
+.end method
+
+.method public asBinder()Landroid/os/IBinder;
+.limit registers 1
+; this: v0 (Lcom/google/android/gms/analytics/internal/IAnalyticsService$Stub;)
+.line 37
+	return-object	v0
+; v0 : Lcom/google/android/gms/analytics/internal/IAnalyticsService$Stub;
+.end method
+
+.method public onTransact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
+.throws Landroid/os/RemoteException;
+.limit registers 13
+; this: v8 (Lcom/google/android/gms/analytics/internal/IAnalyticsService$Stub;)
+; parameter[0] : v9 (I)
+; parameter[1] : v10 (Landroid/os/Parcel;)
+; parameter[2] : v11 (Landroid/os/Parcel;)
+; parameter[3] : v12 (I)
+.var 1 is _arg0 Ljava/util/Map; from le5d7e to le5dac
+.var 2 is _arg1 J from le5d86 to le5dac
+.var 4 is _arg2 Ljava/lang/String; from le5d8e to le5dac
+.var 5 is _arg3 Ljava/util/List; from le5d9a to le5dac
+.var 6 is cl Ljava/lang/ClassLoader; from le5d76 to le5dac
+	const/4	v7,1
+; v7 : single-length
+.line 41
+	sparse-switch	v9
+		1 : spe5d3e_e5d5c
+		2 : spe5d3e_e5dac
+		1598968902 : spe5d3e_e5d4e
+		default: spe5d3e_default
+; v9 : single-length
+spe5d3e_default:
+.line 72
+	invoke-super	{v8,v9,v10,v11,v12},android/os/Binder/onTransact	; onTransact(ILandroid/os/Parcel;Landroid/os/Parcel;I)Z
+; v8 : Lcom/google/android/gms/analytics/internal/IAnalyticsService$Stub; , v9 : single-length , v10 : Landroid/os/Parcel; , v11 : Landroid/os/Parcel; , v12 : single-length
+	move-result	v0
+; v0 : single-length
+le5d4c:
+	return	v0
+; v0 : single-length
+spe5d3e_e5d4e:
+.line 45
+	const-string	v0,"com.google.android.gms.analytics.internal.IAnalyticsService"
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v11,v0},android/os/Parcel/writeString	; writeString(Ljava/lang/String;)V
+; v11 : Landroid/os/Parcel; , v0 : Ljava/lang/String;
+	move	v0,v7
+; v0 : single-length , v7 : single-length
+.line 46
+	goto	le5d4c
+spe5d3e_e5d5c:
+.line 50
+	const-string	v0,"com.google.android.gms.analytics.internal.IAnalyticsService"
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v10,v0},android/os/Parcel/enforceInterface	; enforceInterface(Ljava/lang/String;)V
+; v10 : Landroid/os/Parcel; , v0 : Ljava/lang/String;
+.line 52
+	invoke-virtual	{v8},java/lang/Object/getClass	; getClass()Ljava/lang/Class;
+; v8 : Lcom/google/android/gms/analytics/internal/IAnalyticsService$Stub;
+	move-result-object	v0
+; v0 : Ljava/lang/Class;
+	invoke-virtual	{v0},java/lang/Class/getClassLoader	; getClassLoader()Ljava/lang/ClassLoader;
+; v0 : Ljava/lang/Class;
+	move-result-object	v6
+; v6 : Ljava/lang/ClassLoader;
+.line 53
+	invoke-virtual	{v10,v6},android/os/Parcel/readHashMap	; readHashMap(Ljava/lang/ClassLoader;)Ljava/util/HashMap;
+; v10 : Landroid/os/Parcel; , v6 : Ljava/lang/ClassLoader;
+	move-result-object	v1
+; v1 : Ljava/util/HashMap;
+.line 55
+	invoke-virtual	{v10},android/os/Parcel/readLong	; readLong()J
+; v10 : Landroid/os/Parcel;
+	move-result-wide	v2
+; v2 : double-length
+.line 57
+	invoke-virtual	{v10},android/os/Parcel/readString	; readString()Ljava/lang/String;
+; v10 : Landroid/os/Parcel;
+	move-result-object	v4
+; v4 : Ljava/lang/String;
+.line 59
+	sget-object	v0,com/google/android/gms/analytics/internal/Command.CREATOR Landroid/os/Parcelable$Creator;
+; v0 : Landroid/os/Parcelable$Creator;
+	invoke-virtual	{v10,v0},android/os/Parcel/createTypedArrayList	; createTypedArrayList(Landroid/os/Parcelable$Creator;)Ljava/util/ArrayList;
+; v10 : Landroid/os/Parcel; , v0 : Landroid/os/Parcelable$Creator;
+	move-result-object	v5
+; v5 : Ljava/util/ArrayList;
+le5d9a:
+	move-object	v0,v8
+; v0 : Lcom/google/android/gms/analytics/internal/IAnalyticsService$Stub; , v8 : Lcom/google/android/gms/analytics/internal/IAnalyticsService$Stub;
+.line 60
+	invoke-virtual/range	{v0..v5},com/google/android/gms/analytics/internal/IAnalyticsService$Stub/sendHit;	sendHit(Ljava/util/Map;JLjava/lang/String;Ljava/util/List;)V
+; v0 : Lcom/google/android/gms/analytics/internal/IAnalyticsService$Stub; , v1 : Ljava/util/HashMap; , v2 : double-length , v4 : Ljava/lang/String; , v5 : Ljava/util/ArrayList;
+.line 61
+	invoke-virtual	{v11},android/os/Parcel/writeNoException	; writeNoException()V
+; v11 : Landroid/os/Parcel;
+	move	v0,v7
+; v0 : single-length , v7 : single-length
+.line 62
+	goto	le5d4c
+spe5d3e_e5dac:
+.line 66
+	const-string	v0,"com.google.android.gms.analytics.internal.IAnalyticsService"
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v10,v0},android/os/Parcel/enforceInterface	; enforceInterface(Ljava/lang/String;)V
+; v10 : Landroid/os/Parcel; , v0 : Ljava/lang/String;
+.line 67
+	invoke-virtual	{v8},com/google/android/gms/analytics/internal/IAnalyticsService$Stub/clearHits	; clearHits()V
+; v8 : Lcom/google/android/gms/analytics/internal/IAnalyticsService$Stub;
+.line 68
+	invoke-virtual	{v11},android/os/Parcel/writeNoException	; writeNoException()V
+; v11 : Landroid/os/Parcel;
+	move	v0,v7
+; v0 : single-length , v7 : single-length
+.line 69
+	goto	le5d4c
+.line 41
+le5dc6:	data-array
+		0x00, 0x00
+	end data-array
+.end method
+
+

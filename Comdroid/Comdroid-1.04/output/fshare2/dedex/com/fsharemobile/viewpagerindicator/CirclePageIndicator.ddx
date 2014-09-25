@@ -1,0 +1,1646 @@
+.class public com/fsharemobile/viewpagerindicator/CirclePageIndicator
+.super android/view/View
+.source MyApplication
+.implements com/fsharemobile/viewpagerindicator/b
+
+.field private a F
+.field private final b Landroid/graphics/Paint;
+.field private final c Landroid/graphics/Paint;
+.field private final d Landroid/graphics/Paint;
+.field private e Landroid/support/v4/view/ViewPager;
+.field private f Landroid/support/v4/view/ViewPager$OnPageChangeListener;
+.field private g I
+.field private h I
+.field private i F
+.field private j I
+.field private k I
+.field private l Z
+.field private m Z
+.field private n I
+.field private o F
+.field private p I
+.field private q Z
+
+.method public <init>(Landroid/content/Context;)V
+.limit registers 3
+; this: v1 (Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;)
+; parameter[0] : v2 (Landroid/content/Context;)
+.line 68
+	const/4	v0,0
+; v0 : single-length
+	invoke-direct	{v1,v2,v0},com/fsharemobile/viewpagerindicator/CirclePageIndicator/<init>	; <init>(Landroid/content/Context;Landroid/util/AttributeSet;)V
+; v1 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator; , v2 : Landroid/content/Context; , v0 : single-length
+.line 69
+	return-void	
+.end method
+
+.method public <init>(Landroid/content/Context;Landroid/util/AttributeSet;)V
+.limit registers 4
+; this: v1 (Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;)
+; parameter[0] : v2 (Landroid/content/Context;)
+; parameter[1] : v3 (Landroid/util/AttributeSet;)
+.line 72
+	const/high16	v0,32513
+; v0 : single-length
+	invoke-direct	{v1,v2,v3,v0},com/fsharemobile/viewpagerindicator/CirclePageIndicator/<init>	; <init>(Landroid/content/Context;Landroid/util/AttributeSet;I)V
+; v1 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator; , v2 : Landroid/content/Context; , v3 : Landroid/util/AttributeSet; , v0 : single-length
+.line 73
+	return-void	
+.end method
+
+.method public <init>(Landroid/content/Context;Landroid/util/AttributeSet;I)V
+.limit registers 16
+; this: v12 (Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;)
+; parameter[0] : v13 (Landroid/content/Context;)
+; parameter[1] : v14 (Landroid/util/AttributeSet;)
+; parameter[2] : v15 (I)
+	const/4	v11,0
+; v11 : single-length
+	const/4	v10,1
+; v10 : single-length
+.line 77
+	invoke-direct	{v12,v13,v14,v15},android/view/View/<init>	; <init>(Landroid/content/Context;Landroid/util/AttributeSet;I)V
+; v12 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator; , v13 : Landroid/content/Context; , v14 : Landroid/util/AttributeSet; , v15 : single-length
+.line 49
+	new-instance	v0,android/graphics/Paint
+; v0 : Landroid/graphics/Paint;
+	invoke-direct	{v0,v10},android/graphics/Paint/<init>	; <init>(I)V
+; v0 : Landroid/graphics/Paint; , v10 : single-length
+	iput-object	v0,v12,com/fsharemobile/viewpagerindicator/CirclePageIndicator.b Landroid/graphics/Paint;
+; v0 : Landroid/graphics/Paint; , v12 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+.line 50
+	new-instance	v0,android/graphics/Paint
+; v0 : Landroid/graphics/Paint;
+	invoke-direct	{v0,v10},android/graphics/Paint/<init>	; <init>(I)V
+; v0 : Landroid/graphics/Paint; , v10 : single-length
+	iput-object	v0,v12,com/fsharemobile/viewpagerindicator/CirclePageIndicator.c Landroid/graphics/Paint;
+; v0 : Landroid/graphics/Paint; , v12 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+.line 51
+	new-instance	v0,android/graphics/Paint
+; v0 : Landroid/graphics/Paint;
+	invoke-direct	{v0,v10},android/graphics/Paint/<init>	; <init>(I)V
+; v0 : Landroid/graphics/Paint; , v10 : single-length
+	iput-object	v0,v12,com/fsharemobile/viewpagerindicator/CirclePageIndicator.d Landroid/graphics/Paint;
+; v0 : Landroid/graphics/Paint; , v12 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+.line 63
+	const/high16	v0,49024
+; v0 : single-length
+	iput	v0,v12,com/fsharemobile/viewpagerindicator/CirclePageIndicator.o F
+; v0 : single-length , v12 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+.line 64
+	const/4	v0,15
+; v0 : single-length
+	iput	v0,v12,com/fsharemobile/viewpagerindicator/CirclePageIndicator.p I
+; v0 : single-length , v12 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+.line 78
+	invoke-virtual	{v12},com/fsharemobile/viewpagerindicator/CirclePageIndicator/isInEditMode	; isInEditMode()Z
+; v12 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,l94708
+; v0 : single-length
+l94706:
+.line 137
+	return-void	
+l94708:
+.line 82
+	invoke-virtual	{v12},com/fsharemobile/viewpagerindicator/CirclePageIndicator/getResources	; getResources()Landroid/content/res/Resources;
+; v12 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	move-result-object	v0
+; v0 : Landroid/content/res/Resources;
+.line 84
+	const	v1,2131361818	; 0x7f0a001a
+; v1 : single-length
+	invoke-virtual	{v0,v1},android/content/res/Resources/getColor	; getColor(I)I
+; v0 : Landroid/content/res/Resources; , v1 : single-length
+	move-result	v1
+; v1 : single-length
+.line 86
+	const	v2,2131361817	; 0x7f0a0019
+; v2 : single-length
+	invoke-virtual	{v0,v2},android/content/res/Resources/getColor	; getColor(I)I
+; v0 : Landroid/content/res/Resources; , v2 : single-length
+	move-result	v2
+; v2 : single-length
+.line 88
+	const/high16	v3,32524
+; v3 : single-length
+	invoke-virtual	{v0,v3},android/content/res/Resources/getInteger	; getInteger(I)I
+; v0 : Landroid/content/res/Resources; , v3 : single-length
+	move-result	v3
+; v3 : single-length
+.line 90
+	const	v4,2131361819	; 0x7f0a001b
+; v4 : single-length
+	invoke-virtual	{v0,v4},android/content/res/Resources/getColor	; getColor(I)I
+; v0 : Landroid/content/res/Resources; , v4 : single-length
+	move-result	v4
+; v4 : single-length
+.line 92
+	const	v5,2131165203	; 0x7f070013
+; v5 : single-length
+	invoke-virtual	{v0,v5},android/content/res/Resources/getDimension	; getDimension(I)F
+; v0 : Landroid/content/res/Resources; , v5 : single-length
+	move-result	v5
+; v5 : single-length
+.line 94
+	const	v6,2131165202	; 0x7f070012
+; v6 : single-length
+	invoke-virtual	{v0,v6},android/content/res/Resources/getDimension	; getDimension(I)F
+; v0 : Landroid/content/res/Resources; , v6 : single-length
+	move-result	v6
+; v6 : single-length
+.line 96
+	const	v7,2131099652	; 0x7f060004
+; v7 : single-length
+	invoke-virtual	{v0,v7},android/content/res/Resources/getBoolean	; getBoolean(I)Z
+; v0 : Landroid/content/res/Resources; , v7 : single-length
+	move-result	v7
+; v7 : single-length
+.line 98
+	const	v8,2131099653	; 0x7f060005
+; v8 : single-length
+	invoke-virtual	{v0,v8},android/content/res/Resources/getBoolean	; getBoolean(I)Z
+; v0 : Landroid/content/res/Resources; , v8 : single-length
+	move-result	v0
+; v0 : single-length
+.line 102
+	sget-object	v8,com/fsharemobile/at.CirclePageIndicator [I
+; v8 : [I
+.line 101
+	invoke-virtual	{v13,v14,v8,v15,v11},android/content/Context/obtainStyledAttributes	; obtainStyledAttributes(Landroid/util/AttributeSet;[III)Landroid/content/res/TypedArray;
+; v13 : Landroid/content/Context; , v14 : Landroid/util/AttributeSet; , v8 : [I , v15 : single-length , v11 : single-length
+	move-result-object	v8
+; v8 : Landroid/content/res/TypedArray;
+.line 104
+	const/4	v9,2
+; v9 : single-length
+	invoke-virtual	{v8,v9,v7},android/content/res/TypedArray/getBoolean	; getBoolean(IZ)Z
+; v8 : Landroid/content/res/TypedArray; , v9 : single-length , v7 : single-length
+	move-result	v7
+; v7 : single-length
+	iput-boolean	v7,v12,com/fsharemobile/viewpagerindicator/CirclePageIndicator.l Z
+; v7 : single-length , v12 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+.line 106
+	invoke-virtual	{v8,v11,v3},android/content/res/TypedArray/getInt	; getInt(II)I
+; v8 : Landroid/content/res/TypedArray; , v11 : single-length , v3 : single-length
+	move-result	v3
+; v3 : single-length
+	iput	v3,v12,com/fsharemobile/viewpagerindicator/CirclePageIndicator.k I
+; v3 : single-length , v12 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+.line 109
+	iget-object	v3,v12,com/fsharemobile/viewpagerindicator/CirclePageIndicator.b Landroid/graphics/Paint;
+; v3 : Landroid/graphics/Paint; , v12 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	sget-object	v7,android/graphics/Paint$Style.FILL Landroid/graphics/Paint$Style;
+; v7 : Landroid/graphics/Paint$Style;
+	invoke-virtual	{v3,v7},android/graphics/Paint/setStyle	; setStyle(Landroid/graphics/Paint$Style;)V
+; v3 : Landroid/graphics/Paint; , v7 : Landroid/graphics/Paint$Style;
+.line 110
+	iget-object	v3,v12,com/fsharemobile/viewpagerindicator/CirclePageIndicator.b Landroid/graphics/Paint;
+; v3 : Landroid/graphics/Paint; , v12 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+.line 111
+	const/4	v7,5
+; v7 : single-length
+.line 110
+	invoke-virtual	{v8,v7,v1},android/content/res/TypedArray/getColor	; getColor(II)I
+; v8 : Landroid/content/res/TypedArray; , v7 : single-length , v1 : single-length
+	move-result	v1
+; v1 : single-length
+	invoke-virtual	{v3,v1},android/graphics/Paint/setColor	; setColor(I)V
+; v3 : Landroid/graphics/Paint; , v1 : single-length
+.line 112
+	iget-object	v1,v12,com/fsharemobile/viewpagerindicator/CirclePageIndicator.c Landroid/graphics/Paint;
+; v1 : Landroid/graphics/Paint; , v12 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	sget-object	v3,android/graphics/Paint$Style.STROKE Landroid/graphics/Paint$Style;
+; v3 : Landroid/graphics/Paint$Style;
+	invoke-virtual	{v1,v3},android/graphics/Paint/setStyle	; setStyle(Landroid/graphics/Paint$Style;)V
+; v1 : Landroid/graphics/Paint; , v3 : Landroid/graphics/Paint$Style;
+.line 113
+	iget-object	v1,v12,com/fsharemobile/viewpagerindicator/CirclePageIndicator.c Landroid/graphics/Paint;
+; v1 : Landroid/graphics/Paint; , v12 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+.line 114
+	const/16	v3,8
+; v3 : single-length
+	invoke-virtual	{v8,v3,v4},android/content/res/TypedArray/getColor	; getColor(II)I
+; v8 : Landroid/content/res/TypedArray; , v3 : single-length , v4 : single-length
+	move-result	v3
+; v3 : single-length
+.line 113
+	invoke-virtual	{v1,v3},android/graphics/Paint/setColor	; setColor(I)V
+; v1 : Landroid/graphics/Paint; , v3 : single-length
+.line 116
+	iget-object	v1,v12,com/fsharemobile/viewpagerindicator/CirclePageIndicator.c Landroid/graphics/Paint;
+; v1 : Landroid/graphics/Paint; , v12 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+.line 117
+	const/4	v3,3
+; v3 : single-length
+	invoke-virtual	{v8,v3,v5},android/content/res/TypedArray/getDimension	; getDimension(IF)F
+; v8 : Landroid/content/res/TypedArray; , v3 : single-length , v5 : single-length
+	move-result	v3
+; v3 : single-length
+.line 116
+	invoke-virtual	{v1,v3},android/graphics/Paint/setStrokeWidth	; setStrokeWidth(F)V
+; v1 : Landroid/graphics/Paint; , v3 : single-length
+.line 119
+	iget-object	v1,v12,com/fsharemobile/viewpagerindicator/CirclePageIndicator.d Landroid/graphics/Paint;
+; v1 : Landroid/graphics/Paint; , v12 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	sget-object	v3,android/graphics/Paint$Style.FILL Landroid/graphics/Paint$Style;
+; v3 : Landroid/graphics/Paint$Style;
+	invoke-virtual	{v1,v3},android/graphics/Paint/setStyle	; setStyle(Landroid/graphics/Paint$Style;)V
+; v1 : Landroid/graphics/Paint; , v3 : Landroid/graphics/Paint$Style;
+.line 120
+	iget-object	v1,v12,com/fsharemobile/viewpagerindicator/CirclePageIndicator.d Landroid/graphics/Paint;
+; v1 : Landroid/graphics/Paint; , v12 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+.line 121
+	const/4	v3,4
+; v3 : single-length
+.line 120
+	invoke-virtual	{v8,v3,v2},android/content/res/TypedArray/getColor	; getColor(II)I
+; v8 : Landroid/content/res/TypedArray; , v3 : single-length , v2 : single-length
+	move-result	v2
+; v2 : single-length
+	invoke-virtual	{v1,v2},android/graphics/Paint/setColor	; setColor(I)V
+; v1 : Landroid/graphics/Paint; , v2 : single-length
+.line 122
+	const/4	v1,6
+; v1 : single-length
+	invoke-virtual	{v8,v1,v6},android/content/res/TypedArray/getDimension	; getDimension(IF)F
+; v8 : Landroid/content/res/TypedArray; , v1 : single-length , v6 : single-length
+	move-result	v1
+; v1 : single-length
+	iput	v1,v12,com/fsharemobile/viewpagerindicator/CirclePageIndicator.a F
+; v1 : single-length , v12 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+.line 124
+	const/4	v1,7
+; v1 : single-length
+	invoke-virtual	{v8,v1,v0},android/content/res/TypedArray/getBoolean	; getBoolean(IZ)Z
+; v8 : Landroid/content/res/TypedArray; , v1 : single-length , v0 : single-length
+	move-result	v0
+; v0 : single-length
+	iput-boolean	v0,v12,com/fsharemobile/viewpagerindicator/CirclePageIndicator.m Z
+; v0 : single-length , v12 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+.line 127
+	invoke-virtual	{v8,v10},android/content/res/TypedArray/getDrawable	; getDrawable(I)Landroid/graphics/drawable/Drawable;
+; v8 : Landroid/content/res/TypedArray; , v10 : single-length
+	move-result-object	v0
+; v0 : Landroid/graphics/drawable/Drawable;
+.line 128
+	if-eqz	v0,l9484e
+; v0 : Landroid/graphics/drawable/Drawable;
+.line 129
+	invoke-virtual	{v12,v0},com/fsharemobile/viewpagerindicator/CirclePageIndicator/setBackgroundDrawable	; setBackgroundDrawable(Landroid/graphics/drawable/Drawable;)V
+; v12 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator; , v0 : Landroid/graphics/drawable/Drawable;
+l9484e:
+.line 132
+	invoke-virtual	{v8},android/content/res/TypedArray/recycle	; recycle()V
+; v8 : Landroid/content/res/TypedArray;
+.line 134
+	invoke-static	{v13},android/view/ViewConfiguration/get	; get(Landroid/content/Context;)Landroid/view/ViewConfiguration;
+; v13 : Landroid/content/Context;
+	move-result-object	v0
+; v0 : Landroid/view/ViewConfiguration;
+.line 136
+	invoke-static	{v0},android/support/v4/view/ViewConfigurationCompat/getScaledPagingTouchSlop	; getScaledPagingTouchSlop(Landroid/view/ViewConfiguration;)I
+; v0 : Landroid/view/ViewConfiguration;
+	move-result	v0
+; v0 : single-length
+.line 135
+	iput	v0,v12,com/fsharemobile/viewpagerindicator/CirclePageIndicator.n I
+; v0 : single-length , v12 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	goto/16	l94706
+.end method
+
+.method private a(I)I
+.limit registers 8
+; this: v6 (Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;)
+; parameter[0] : v7 (I)
+.line 498
+	invoke-static	{v7},android/view/View$MeasureSpec/getMode	; getMode(I)I
+; v7 : single-length
+	move-result	v2
+; v2 : single-length
+.line 499
+	invoke-static	{v7},android/view/View$MeasureSpec/getSize	; getSize(I)I
+; v7 : single-length
+	move-result	v1
+; v1 : single-length
+.line 501
+	const/high16	v0,16384
+; v0 : single-length
+	if-eq	v2,v0,l9489c
+; v2 : single-length , v0 : single-length
+	iget-object	v0,v6,com/fsharemobile/viewpagerindicator/CirclePageIndicator.e Landroid/support/v4/view/ViewPager;
+; v0 : Landroid/support/v4/view/ViewPager; , v6 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	if-nez	v0,l948a0
+; v0 : Landroid/support/v4/view/ViewPager;
+l9489c:
+	move	v0,v1
+; v0 : single-length , v1 : single-length
+l9489e:
+.line 515
+	return	v0
+; v0 : single-length
+l948a0:
+.line 506
+	iget-object	v0,v6,com/fsharemobile/viewpagerindicator/CirclePageIndicator.e Landroid/support/v4/view/ViewPager;
+; v0 : Landroid/support/v4/view/ViewPager; , v6 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	invoke-virtual	{v0},android/support/v4/view/ViewPager/getAdapter	; getAdapter()Landroid/support/v4/view/PagerAdapter;
+; v0 : Landroid/support/v4/view/ViewPager;
+	move-result-object	v0
+; v0 : Landroid/support/v4/view/PagerAdapter;
+	invoke-virtual	{v0},android/support/v4/view/PagerAdapter/getCount	; getCount()I
+; v0 : Landroid/support/v4/view/PagerAdapter;
+	move-result	v0
+; v0 : single-length
+.line 507
+	invoke-virtual	{v6},com/fsharemobile/viewpagerindicator/CirclePageIndicator/getPaddingLeft	; getPaddingLeft()I
+; v6 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	move-result	v3
+; v3 : single-length
+	invoke-virtual	{v6},com/fsharemobile/viewpagerindicator/CirclePageIndicator/getPaddingRight	; getPaddingRight()I
+; v6 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	move-result	v4
+; v4 : single-length
+	add-int/2addr	v3,v4
+; v3 : single-length , v4 : single-length
+	int-to-float	v3,v3
+; v3 : single-length , v3 : single-length
+.line 508
+	mul-int/lit-8	v4,v0,2
+; v4 : single-length , v0 : single-length
+	int-to-float	v4,v4
+; v4 : single-length , v4 : single-length
+	iget	v5,v6,com/fsharemobile/viewpagerindicator/CirclePageIndicator.a F
+; v5 : single-length , v6 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	mul-float/2addr	v4,v5
+; v4 : single-length , v5 : single-length
+.line 507
+	add-float/2addr	v3,v4
+; v3 : single-length , v4 : single-length
+.line 508
+	add-int/lit8	v0,v0,255
+; v0 : single-length , v0 : single-length
+	int-to-float	v0,v0
+; v0 : single-length , v0 : single-length
+	iget	v4,v6,com/fsharemobile/viewpagerindicator/CirclePageIndicator.a F
+; v4 : single-length , v6 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	mul-float/2addr	v0,v4
+; v0 : single-length , v4 : single-length
+.line 507
+	add-float/2addr	v0,v3
+; v0 : single-length , v3 : single-length
+.line 508
+	const/high16	v3,16256
+; v3 : single-length
+.line 507
+	add-float/2addr	v0,v3
+; v0 : single-length , v3 : single-length
+	float-to-int	v0,v0
+; v0 : single-length , v0 : single-length
+.line 511
+	const/high16	v3,32768
+; v3 : single-length
+	if-ne	v2,v3,l9489e
+; v2 : single-length , v3 : single-length
+.line 512
+	invoke-static	{v0,v1},java/lang/Math/min	; min(II)I
+; v0 : single-length , v1 : single-length
+	move-result	v0
+; v0 : single-length
+	goto	l9489e
+.end method
+
+.method private b(I)I
+.limit registers 6
+; this: v4 (Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;)
+; parameter[0] : v5 (I)
+.line 527
+	invoke-static	{v5},android/view/View$MeasureSpec/getMode	; getMode(I)I
+; v5 : single-length
+	move-result	v2
+; v2 : single-length
+.line 528
+	invoke-static	{v5},android/view/View$MeasureSpec/getSize	; getSize(I)I
+; v5 : single-length
+	move-result	v0
+; v0 : single-length
+.line 530
+	const/high16	v1,16384
+; v1 : single-length
+	if-ne	v2,v1,l9492a
+; v2 : single-length , v1 : single-length
+l94928:
+.line 542
+	return	v0
+; v0 : single-length
+l9492a:
+.line 535
+	const/high16	v1,16384
+; v1 : single-length
+	iget	v3,v4,com/fsharemobile/viewpagerindicator/CirclePageIndicator.a F
+; v3 : single-length , v4 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	mul-float/2addr	v1,v3
+; v1 : single-length , v3 : single-length
+	invoke-virtual	{v4},com/fsharemobile/viewpagerindicator/CirclePageIndicator/getPaddingTop	; getPaddingTop()I
+; v4 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	move-result	v3
+; v3 : single-length
+	int-to-float	v3,v3
+; v3 : single-length , v3 : single-length
+	add-float/2addr	v1,v3
+; v1 : single-length , v3 : single-length
+	invoke-virtual	{v4},com/fsharemobile/viewpagerindicator/CirclePageIndicator/getPaddingBottom	; getPaddingBottom()I
+; v4 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	move-result	v3
+; v3 : single-length
+	int-to-float	v3,v3
+; v3 : single-length , v3 : single-length
+	add-float/2addr	v1,v3
+; v1 : single-length , v3 : single-length
+	const/high16	v3,16256
+; v3 : single-length
+	add-float/2addr	v1,v3
+; v1 : single-length , v3 : single-length
+	float-to-int	v1,v1
+; v1 : single-length , v1 : single-length
+.line 538
+	const/high16	v3,32768
+; v3 : single-length
+	if-ne	v2,v3,l94966
+; v2 : single-length , v3 : single-length
+.line 539
+	invoke-static	{v1,v0},java/lang/Math/min	; min(II)I
+; v1 : single-length , v0 : single-length
+	move-result	v0
+; v0 : single-length
+	goto	l94928
+l94966:
+	move	v0,v1
+; v0 : single-length , v1 : single-length
+	goto	l94928
+.end method
+
+.method public getFillColor()I
+.limit registers 2
+; this: v1 (Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;)
+.line 163
+	iget-object	v0,v1,com/fsharemobile/viewpagerindicator/CirclePageIndicator.d Landroid/graphics/Paint;
+; v0 : Landroid/graphics/Paint; , v1 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	invoke-virtual	{v0},android/graphics/Paint/getColor	; getColor()I
+; v0 : Landroid/graphics/Paint;
+	move-result	v0
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public getOrientation()I
+.limit registers 2
+; this: v1 (Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;)
+.line 181
+	iget	v0,v1,com/fsharemobile/viewpagerindicator/CirclePageIndicator.k I
+; v0 : single-length , v1 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	return	v0
+; v0 : single-length
+.end method
+
+.method public getPageColor()I
+.limit registers 2
+; this: v1 (Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;)
+.line 154
+	iget-object	v0,v1,com/fsharemobile/viewpagerindicator/CirclePageIndicator.b Landroid/graphics/Paint;
+; v0 : Landroid/graphics/Paint; , v1 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	invoke-virtual	{v0},android/graphics/Paint/getColor	; getColor()I
+; v0 : Landroid/graphics/Paint;
+	move-result	v0
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public getRadius()F
+.limit registers 2
+; this: v1 (Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;)
+.line 208
+	iget	v0,v1,com/fsharemobile/viewpagerindicator/CirclePageIndicator.a F
+; v0 : single-length , v1 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	return	v0
+; v0 : single-length
+.end method
+
+.method public getStrokeColor()I
+.limit registers 2
+; this: v1 (Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;)
+.line 190
+	iget-object	v0,v1,com/fsharemobile/viewpagerindicator/CirclePageIndicator.c Landroid/graphics/Paint;
+; v0 : Landroid/graphics/Paint; , v1 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	invoke-virtual	{v0},android/graphics/Paint/getColor	; getColor()I
+; v0 : Landroid/graphics/Paint;
+	move-result	v0
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public getStrokeWidth()F
+.limit registers 2
+; this: v1 (Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;)
+.line 199
+	iget-object	v0,v1,com/fsharemobile/viewpagerindicator/CirclePageIndicator.c Landroid/graphics/Paint;
+; v0 : Landroid/graphics/Paint; , v1 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	invoke-virtual	{v0},android/graphics/Paint/getStrokeWidth	; getStrokeWidth()F
+; v0 : Landroid/graphics/Paint;
+	move-result	v0
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method protected onDraw(Landroid/graphics/Canvas;)V
+.limit registers 13
+; this: v11 (Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;)
+; parameter[0] : v12 (Landroid/graphics/Canvas;)
+	const/high16	v8,16384
+; v8 : single-length
+.line 222
+	invoke-super	{v11,v12},android/view/View/onDraw	; onDraw(Landroid/graphics/Canvas;)V
+; v11 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator; , v12 : Landroid/graphics/Canvas;
+.line 224
+	iget-object	v0,v11,com/fsharemobile/viewpagerindicator/CirclePageIndicator.e Landroid/support/v4/view/ViewPager;
+; v0 : Landroid/support/v4/view/ViewPager; , v11 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	if-nez	v0,l94a40
+; v0 : Landroid/support/v4/view/ViewPager;
+l94a3e:
+.line 304
+	return-void	
+l94a40:
+.line 227
+	iget-object	v0,v11,com/fsharemobile/viewpagerindicator/CirclePageIndicator.e Landroid/support/v4/view/ViewPager;
+; v0 : Landroid/support/v4/view/ViewPager; , v11 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	invoke-virtual	{v0},android/support/v4/view/ViewPager/getAdapter	; getAdapter()Landroid/support/v4/view/PagerAdapter;
+; v0 : Landroid/support/v4/view/ViewPager;
+	move-result-object	v0
+; v0 : Landroid/support/v4/view/PagerAdapter;
+	invoke-virtual	{v0},android/support/v4/view/PagerAdapter/getCount	; getCount()I
+; v0 : Landroid/support/v4/view/PagerAdapter;
+	move-result	v6
+; v6 : single-length
+.line 228
+	if-eqz	v6,l94a3e
+; v6 : single-length
+.line 232
+	iget	v0,v11,com/fsharemobile/viewpagerindicator/CirclePageIndicator.g I
+; v0 : single-length , v11 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	if-lt	v0,v6,l94a6c
+; v0 : single-length , v6 : single-length
+.line 233
+	add-int/lit8	v0,v6,255
+; v0 : single-length , v6 : single-length
+	invoke-virtual	{v11,v0},com/fsharemobile/viewpagerindicator/CirclePageIndicator/setCurrentItem	; setCurrentItem(I)V
+; v11 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator; , v0 : single-length
+	goto	l94a3e
+l94a6c:
+.line 241
+	iget	v0,v11,com/fsharemobile/viewpagerindicator/CirclePageIndicator.k I
+; v0 : single-length , v11 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	if-nez	v0,l94b3a
+; v0 : single-length
+.line 242
+	invoke-virtual	{v11},com/fsharemobile/viewpagerindicator/CirclePageIndicator/getWidth	; getWidth()I
+; v11 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	move-result	v3
+; v3 : single-length
+.line 243
+	invoke-virtual	{v11},com/fsharemobile/viewpagerindicator/CirclePageIndicator/getPaddingLeft	; getPaddingLeft()I
+; v11 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	move-result	v2
+; v2 : single-length
+.line 244
+	invoke-virtual	{v11},com/fsharemobile/viewpagerindicator/CirclePageIndicator/getPaddingRight	; getPaddingRight()I
+; v11 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	move-result	v1
+; v1 : single-length
+.line 245
+	invoke-virtual	{v11},com/fsharemobile/viewpagerindicator/CirclePageIndicator/getPaddingTop	; getPaddingTop()I
+; v11 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	move-result	v0
+; v0 : single-length
+l94a94:
+.line 254
+	iget	v4,v11,com/fsharemobile/viewpagerindicator/CirclePageIndicator.a F
+; v4 : single-length , v11 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	const/high16	v5,16672
+; v5 : single-length
+	mul-float	v7,v4,v5
+; v7 : single-length , v4 : single-length , v5 : single-length
+.line 255
+	int-to-float	v0,v0
+; v0 : single-length , v0 : single-length
+	iget	v4,v11,com/fsharemobile/viewpagerindicator/CirclePageIndicator.a F
+; v4 : single-length , v11 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	add-float/2addr	v4,v0
+; v4 : single-length , v0 : single-length
+.line 256
+	int-to-float	v0,v2
+; v0 : single-length , v2 : single-length
+	iget	v5,v11,com/fsharemobile/viewpagerindicator/CirclePageIndicator.a F
+; v5 : single-length , v11 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	add-float/2addr	v0,v5
+; v0 : single-length , v5 : single-length
+.line 257
+	iget-boolean	v5,v11,com/fsharemobile/viewpagerindicator/CirclePageIndicator.l Z
+; v5 : single-length , v11 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	if-eqz	v5,l94ace
+; v5 : single-length
+.line 258
+	sub-int	v2,v3,v2
+; v2 : single-length , v3 : single-length , v2 : single-length
+	sub-int	v1,v2,v1
+; v1 : single-length , v2 : single-length , v1 : single-length
+	int-to-float	v1,v1
+; v1 : single-length , v1 : single-length
+	div-float/2addr	v1,v8
+; v1 : single-length , v8 : single-length
+.line 259
+	int-to-float	v2,v6
+; v2 : single-length , v6 : single-length
+	mul-float/2addr	v2,v7
+; v2 : single-length , v7 : single-length
+	div-float/2addr	v2,v8
+; v2 : single-length , v8 : single-length
+	sub-float/2addr	v1,v2
+; v1 : single-length , v2 : single-length
+	add-float/2addr	v0,v1
+; v0 : single-length , v1 : single-length
+l94ace:
+.line 265
+	iget	v1,v11,com/fsharemobile/viewpagerindicator/CirclePageIndicator.a F
+; v1 : single-length , v11 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+.line 266
+	iget-object	v2,v11,com/fsharemobile/viewpagerindicator/CirclePageIndicator.c Landroid/graphics/Paint;
+; v2 : Landroid/graphics/Paint; , v11 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	invoke-virtual	{v2},android/graphics/Paint/getStrokeWidth	; getStrokeWidth()F
+; v2 : Landroid/graphics/Paint;
+	move-result	v2
+; v2 : single-length
+	const/4	v3,0
+; v3 : single-length
+	cmpl-float	v2,v2,v3
+; v2 : single-length , v2 : single-length , v3 : single-length
+	if-lez	v2,l94af8
+; v2 : single-length
+.line 267
+	iget-object	v2,v11,com/fsharemobile/viewpagerindicator/CirclePageIndicator.c Landroid/graphics/Paint;
+; v2 : Landroid/graphics/Paint; , v11 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	invoke-virtual	{v2},android/graphics/Paint/getStrokeWidth	; getStrokeWidth()F
+; v2 : Landroid/graphics/Paint;
+	move-result	v2
+; v2 : single-length
+	div-float/2addr	v2,v8
+; v2 : single-length , v8 : single-length
+	sub-float/2addr	v1,v2
+; v1 : single-length , v2 : single-length
+l94af8:
+.line 271
+	const/4	v2,0
+; v2 : single-length
+	move	v5,v2
+; v5 : single-length , v2 : single-length
+l94afc:
+	if-lt	v5,v6,l94b5c
+; v5 : single-length , v6 : single-length
+.line 292
+	iget-boolean	v1,v11,com/fsharemobile/viewpagerindicator/CirclePageIndicator.m Z
+; v1 : single-length , v11 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	if-eqz	v1,l94bae
+; v1 : single-length
+	iget	v1,v11,com/fsharemobile/viewpagerindicator/CirclePageIndicator.h I
+; v1 : single-length , v11 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+l94b0c:
+	int-to-float	v1,v1
+; v1 : single-length , v1 : single-length
+	mul-float/2addr	v1,v7
+; v1 : single-length , v7 : single-length
+.line 293
+	iget-boolean	v2,v11,com/fsharemobile/viewpagerindicator/CirclePageIndicator.m Z
+; v2 : single-length , v11 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	if-nez	v2,l94b20
+; v2 : single-length
+.line 294
+	iget	v2,v11,com/fsharemobile/viewpagerindicator/CirclePageIndicator.i F
+; v2 : single-length , v11 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	mul-float/2addr	v2,v7
+; v2 : single-length , v7 : single-length
+	add-float/2addr	v1,v2
+; v1 : single-length , v2 : single-length
+l94b20:
+.line 296
+	iget	v2,v11,com/fsharemobile/viewpagerindicator/CirclePageIndicator.k I
+; v2 : single-length , v11 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	if-nez	v2,l94bb4
+; v2 : single-length
+.line 297
+	add-float/2addr	v0,v1
+; v0 : single-length , v1 : single-length
+l94b2a:
+.line 303
+	iget	v1,v11,com/fsharemobile/viewpagerindicator/CirclePageIndicator.a F
+; v1 : single-length , v11 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	iget-object	v2,v11,com/fsharemobile/viewpagerindicator/CirclePageIndicator.d Landroid/graphics/Paint;
+; v2 : Landroid/graphics/Paint; , v11 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	invoke-virtual	{v12,v0,v4,v1,v2},android/graphics/Canvas/drawCircle	; drawCircle(FFFLandroid/graphics/Paint;)V
+; v12 : Landroid/graphics/Canvas; , v0 : single-length , v4 : single-length , v1 : single-length , v2 : Landroid/graphics/Paint;
+	goto	l94a3e
+l94b3a:
+.line 247
+	invoke-virtual	{v11},com/fsharemobile/viewpagerindicator/CirclePageIndicator/getHeight	; getHeight()I
+; v11 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	move-result	v3
+; v3 : single-length
+.line 248
+	invoke-virtual	{v11},com/fsharemobile/viewpagerindicator/CirclePageIndicator/getPaddingTop	; getPaddingTop()I
+; v11 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	move-result	v2
+; v2 : single-length
+.line 249
+	invoke-virtual	{v11},com/fsharemobile/viewpagerindicator/CirclePageIndicator/getPaddingBottom	; getPaddingBottom()I
+; v11 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	move-result	v1
+; v1 : single-length
+.line 250
+	invoke-virtual	{v11},com/fsharemobile/viewpagerindicator/CirclePageIndicator/getPaddingLeft	; getPaddingLeft()I
+; v11 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	move-result	v0
+; v0 : single-length
+	goto	l94a94
+l94b5c:
+.line 272
+	int-to-float	v2,v5
+; v2 : single-length , v5 : single-length
+	mul-float/2addr	v2,v7
+; v2 : single-length , v7 : single-length
+	add-float/2addr	v2,v0
+; v2 : single-length , v0 : single-length
+.line 273
+	iget	v3,v11,com/fsharemobile/viewpagerindicator/CirclePageIndicator.k I
+; v3 : single-length , v11 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	if-nez	v3,l94baa
+; v3 : single-length
+	move	v3,v2
+; v3 : single-length , v2 : single-length
+	move	v2,v4
+; v2 : single-length , v4 : single-length
+l94b6e:
+.line 281
+	iget-object	v8,v11,com/fsharemobile/viewpagerindicator/CirclePageIndicator.b Landroid/graphics/Paint;
+; v8 : Landroid/graphics/Paint; , v11 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	invoke-virtual	{v8},android/graphics/Paint/getAlpha	; getAlpha()I
+; v8 : Landroid/graphics/Paint;
+	move-result	v8
+; v8 : single-length
+	if-lez	v8,l94b88
+; v8 : single-length
+.line 282
+	iget-object	v8,v11,com/fsharemobile/viewpagerindicator/CirclePageIndicator.b Landroid/graphics/Paint;
+; v8 : Landroid/graphics/Paint; , v11 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	invoke-virtual	{v12,v3,v2,v1,v8},android/graphics/Canvas/drawCircle	; drawCircle(FFFLandroid/graphics/Paint;)V
+; v12 : Landroid/graphics/Canvas; , v3 : single-length , v2 : single-length , v1 : single-length , v8 : Landroid/graphics/Paint;
+l94b88:
+.line 286
+	iget	v8,v11,com/fsharemobile/viewpagerindicator/CirclePageIndicator.a F
+; v8 : single-length , v11 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	cmpl-float	v8,v1,v8
+; v8 : single-length , v1 : single-length , v8 : single-length
+	if-eqz	v8,l94ba2
+; v8 : single-length
+.line 287
+	iget	v8,v11,com/fsharemobile/viewpagerindicator/CirclePageIndicator.a F
+; v8 : single-length , v11 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	iget-object	v9,v11,com/fsharemobile/viewpagerindicator/CirclePageIndicator.c Landroid/graphics/Paint;
+; v9 : Landroid/graphics/Paint; , v11 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	invoke-virtual	{v12,v3,v2,v8,v9},android/graphics/Canvas/drawCircle	; drawCircle(FFFLandroid/graphics/Paint;)V
+; v12 : Landroid/graphics/Canvas; , v3 : single-length , v2 : single-length , v8 : single-length , v9 : Landroid/graphics/Paint;
+l94ba2:
+.line 271
+	add-int/lit8	v2,v5,1
+; v2 : single-length , v5 : single-length
+	move	v5,v2
+; v5 : single-length , v2 : single-length
+	goto	l94afc
+l94baa:
+	move	v3,v4
+; v3 : single-length , v4 : single-length
+.line 278
+	goto	l94b6e
+l94bae:
+.line 292
+	iget	v1,v11,com/fsharemobile/viewpagerindicator/CirclePageIndicator.g I
+; v1 : single-length , v11 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	goto	l94b0c
+l94bb4:
+.line 301
+	add-float/2addr	v0,v1
+; v0 : single-length , v1 : single-length
+	move	v10,v0
+; v10 : single-length , v0 : single-length
+	move	v0,v4
+; v0 : single-length , v4 : single-length
+	move	v4,v10
+; v4 : single-length , v10 : single-length
+	goto	l94b2a
+.end method
+
+.method protected onMeasure(II)V
+.limit registers 5
+; this: v2 (Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;)
+; parameter[0] : v3 (I)
+; parameter[1] : v4 (I)
+.line 480
+	iget	v0,v2,com/fsharemobile/viewpagerindicator/CirclePageIndicator.k I
+; v0 : single-length , v2 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	if-nez	v0,l94bf0
+; v0 : single-length
+.line 481
+	invoke-direct	{v2,v3},com/fsharemobile/viewpagerindicator/CirclePageIndicator/a	; a(I)I
+; v2 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator; , v3 : single-length
+	move-result	v0
+; v0 : single-length
+.line 482
+	invoke-direct	{v2,v4},com/fsharemobile/viewpagerindicator/CirclePageIndicator/b	; b(I)I
+; v2 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator; , v4 : single-length
+	move-result	v1
+; v1 : single-length
+.line 481
+	invoke-virtual	{v2,v0,v1},com/fsharemobile/viewpagerindicator/CirclePageIndicator/setMeasuredDimension	; setMeasuredDimension(II)V
+; v2 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator; , v0 : single-length , v1 : single-length
+l94bee:
+.line 487
+	return-void	
+l94bf0:
+.line 484
+	invoke-direct	{v2,v3},com/fsharemobile/viewpagerindicator/CirclePageIndicator/b	; b(I)I
+; v2 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator; , v3 : single-length
+	move-result	v0
+; v0 : single-length
+.line 485
+	invoke-direct	{v2,v4},com/fsharemobile/viewpagerindicator/CirclePageIndicator/a	; a(I)I
+; v2 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator; , v4 : single-length
+	move-result	v1
+; v1 : single-length
+.line 484
+	invoke-virtual	{v2,v0,v1},com/fsharemobile/viewpagerindicator/CirclePageIndicator/setMeasuredDimension	; setMeasuredDimension(II)V
+; v2 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator; , v0 : single-length , v1 : single-length
+	goto	l94bee
+.end method
+
+.method public onPageScrollStateChanged(I)V
+.limit registers 3
+; this: v1 (Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;)
+; parameter[0] : v2 (I)
+.line 435
+	iput	v2,v1,com/fsharemobile/viewpagerindicator/CirclePageIndicator.j I
+; v2 : single-length , v1 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+.line 437
+	iget-object	v0,v1,com/fsharemobile/viewpagerindicator/CirclePageIndicator.f Landroid/support/v4/view/ViewPager$OnPageChangeListener;
+; v0 : Landroid/support/v4/view/ViewPager$OnPageChangeListener; , v1 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	if-eqz	v0,l94c2e
+; v0 : Landroid/support/v4/view/ViewPager$OnPageChangeListener;
+.line 438
+	iget-object	v0,v1,com/fsharemobile/viewpagerindicator/CirclePageIndicator.f Landroid/support/v4/view/ViewPager$OnPageChangeListener;
+; v0 : Landroid/support/v4/view/ViewPager$OnPageChangeListener; , v1 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	invoke-interface	{v0,v2},android/support/v4/view/ViewPager$OnPageChangeListener/onPageScrollStateChanged	; onPageScrollStateChanged(I)V
+; v0 : Landroid/support/v4/view/ViewPager$OnPageChangeListener; , v2 : single-length
+l94c2e:
+.line 440
+	return-void	
+.end method
+
+.method public onPageScrolled(IFI)V
+.limit registers 5
+; this: v1 (Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;)
+; parameter[0] : v2 (I)
+; parameter[1] : v3 (F)
+; parameter[2] : v4 (I)
+.line 445
+	iput	v2,v1,com/fsharemobile/viewpagerindicator/CirclePageIndicator.g I
+; v2 : single-length , v1 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+.line 446
+	iput	v3,v1,com/fsharemobile/viewpagerindicator/CirclePageIndicator.i F
+; v3 : single-length , v1 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+.line 447
+	invoke-virtual	{v1},com/fsharemobile/viewpagerindicator/CirclePageIndicator/invalidate	; invalidate()V
+; v1 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+.line 449
+	iget-object	v0,v1,com/fsharemobile/viewpagerindicator/CirclePageIndicator.f Landroid/support/v4/view/ViewPager$OnPageChangeListener;
+; v0 : Landroid/support/v4/view/ViewPager$OnPageChangeListener; , v1 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	if-eqz	v0,l94c60
+; v0 : Landroid/support/v4/view/ViewPager$OnPageChangeListener;
+.line 450
+	iget-object	v0,v1,com/fsharemobile/viewpagerindicator/CirclePageIndicator.f Landroid/support/v4/view/ViewPager$OnPageChangeListener;
+; v0 : Landroid/support/v4/view/ViewPager$OnPageChangeListener; , v1 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	invoke-interface	{v0,v2,v3,v4},android/support/v4/view/ViewPager$OnPageChangeListener/onPageScrolled	; onPageScrolled(IFI)V
+; v0 : Landroid/support/v4/view/ViewPager$OnPageChangeListener; , v2 : single-length , v3 : single-length , v4 : single-length
+l94c60:
+.line 453
+	return-void	
+.end method
+
+.method public onPageSelected(I)V
+.limit registers 3
+; this: v1 (Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;)
+; parameter[0] : v2 (I)
+.line 457
+	iget-boolean	v0,v1,com/fsharemobile/viewpagerindicator/CirclePageIndicator.m Z
+; v0 : single-length , v1 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	if-nez	v0,l94c84
+; v0 : single-length
+	iget	v0,v1,com/fsharemobile/viewpagerindicator/CirclePageIndicator.j I
+; v0 : single-length , v1 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	if-nez	v0,l94c92
+; v0 : single-length
+l94c84:
+.line 458
+	iput	v2,v1,com/fsharemobile/viewpagerindicator/CirclePageIndicator.g I
+; v2 : single-length , v1 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+.line 459
+	iput	v2,v1,com/fsharemobile/viewpagerindicator/CirclePageIndicator.h I
+; v2 : single-length , v1 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+.line 460
+	invoke-virtual	{v1},com/fsharemobile/viewpagerindicator/CirclePageIndicator/invalidate	; invalidate()V
+; v1 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+l94c92:
+.line 463
+	iget-object	v0,v1,com/fsharemobile/viewpagerindicator/CirclePageIndicator.f Landroid/support/v4/view/ViewPager$OnPageChangeListener;
+; v0 : Landroid/support/v4/view/ViewPager$OnPageChangeListener; , v1 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	if-eqz	v0,l94ca4
+; v0 : Landroid/support/v4/view/ViewPager$OnPageChangeListener;
+.line 464
+	iget-object	v0,v1,com/fsharemobile/viewpagerindicator/CirclePageIndicator.f Landroid/support/v4/view/ViewPager$OnPageChangeListener;
+; v0 : Landroid/support/v4/view/ViewPager$OnPageChangeListener; , v1 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	invoke-interface	{v0,v2},android/support/v4/view/ViewPager$OnPageChangeListener/onPageSelected	; onPageSelected(I)V
+; v0 : Landroid/support/v4/view/ViewPager$OnPageChangeListener; , v2 : single-length
+l94ca4:
+.line 466
+	return-void	
+.end method
+
+.method public onRestoreInstanceState(Landroid/os/Parcelable;)V
+.limit registers 3
+; this: v1 (Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;)
+; parameter[0] : v2 (Landroid/os/Parcelable;)
+.line 547
+	check-cast	v2,com/fsharemobile/viewpagerindicator/CirclePageIndicator$SavedState
+; v2 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator$SavedState;
+.line 548
+	invoke-virtual	{v2},com/fsharemobile/viewpagerindicator/CirclePageIndicator$SavedState/getSuperState	; getSuperState()Landroid/os/Parcelable;
+; v2 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator$SavedState;
+	move-result-object	v0
+; v0 : Landroid/os/Parcelable;
+	invoke-super	{v1,v0},android/view/View/onRestoreInstanceState	; onRestoreInstanceState(Landroid/os/Parcelable;)V
+; v1 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator; , v0 : Landroid/os/Parcelable;
+.line 549
+	iget	v0,v2,com/fsharemobile/viewpagerindicator/CirclePageIndicator$SavedState.a I
+; v0 : single-length , v2 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator$SavedState;
+	iput	v0,v1,com/fsharemobile/viewpagerindicator/CirclePageIndicator.g I
+; v0 : single-length , v1 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+.line 550
+	iget	v0,v2,com/fsharemobile/viewpagerindicator/CirclePageIndicator$SavedState.a I
+; v0 : single-length , v2 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator$SavedState;
+	iput	v0,v1,com/fsharemobile/viewpagerindicator/CirclePageIndicator.h I
+; v0 : single-length , v1 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+.line 551
+	invoke-virtual	{v1},com/fsharemobile/viewpagerindicator/CirclePageIndicator/requestLayout	; requestLayout()V
+; v1 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+.line 552
+	return-void	
+.end method
+
+.method public onSaveInstanceState()Landroid/os/Parcelable;
+.limit registers 3
+; this: v2 (Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;)
+.line 556
+	invoke-super	{v2},android/view/View/onSaveInstanceState	; onSaveInstanceState()Landroid/os/Parcelable;
+; v2 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	move-result-object	v0
+; v0 : Landroid/os/Parcelable;
+.line 557
+	new-instance	v1,com/fsharemobile/viewpagerindicator/CirclePageIndicator$SavedState
+; v1 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator$SavedState;
+	invoke-direct	{v1,v0},com/fsharemobile/viewpagerindicator/CirclePageIndicator$SavedState/<init>	; <init>(Landroid/os/Parcelable;)V
+; v1 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator$SavedState; , v0 : Landroid/os/Parcelable;
+.line 558
+	iget	v0,v2,com/fsharemobile/viewpagerindicator/CirclePageIndicator.g I
+; v0 : single-length , v2 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	iput	v0,v1,com/fsharemobile/viewpagerindicator/CirclePageIndicator$SavedState.a I
+; v0 : single-length , v1 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator$SavedState;
+.line 559
+	return-object	v1
+; v1 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator$SavedState;
+.end method
+
+.method public onTouchEvent(Landroid/view/MotionEvent;)Z
+.limit registers 11
+; this: v9 (Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;)
+; parameter[0] : v10 (Landroid/view/MotionEvent;)
+	const/4	v8,3
+; v8 : single-length
+	const/4	v0,0
+; v0 : single-length
+	const/4	v1,1
+; v1 : single-length
+.line 307
+	invoke-super	{v9,v10},android/view/View/onTouchEvent	; onTouchEvent(Landroid/view/MotionEvent;)Z
+; v9 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator; , v10 : Landroid/view/MotionEvent;
+	move-result	v2
+; v2 : single-length
+	if-eqz	v2,l94d34
+; v2 : single-length
+l94d32:
+.line 392
+	return	v1
+; v1 : single-length
+l94d34:
+.line 310
+	iget-object	v2,v9,com/fsharemobile/viewpagerindicator/CirclePageIndicator.e Landroid/support/v4/view/ViewPager;
+; v2 : Landroid/support/v4/view/ViewPager; , v9 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	if-eqz	v2,l94d54
+; v2 : Landroid/support/v4/view/ViewPager;
+	iget-object	v2,v9,com/fsharemobile/viewpagerindicator/CirclePageIndicator.e Landroid/support/v4/view/ViewPager;
+; v2 : Landroid/support/v4/view/ViewPager; , v9 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	invoke-virtual	{v2},android/support/v4/view/ViewPager/getAdapter	; getAdapter()Landroid/support/v4/view/PagerAdapter;
+; v2 : Landroid/support/v4/view/ViewPager;
+	move-result-object	v2
+; v2 : Landroid/support/v4/view/PagerAdapter;
+	invoke-virtual	{v2},android/support/v4/view/PagerAdapter/getCount	; getCount()I
+; v2 : Landroid/support/v4/view/PagerAdapter;
+	move-result	v2
+; v2 : single-length
+	if-nez	v2,l94d58
+; v2 : single-length
+l94d54:
+	move	v1,v0
+; v1 : single-length , v0 : single-length
+.line 311
+	goto	l94d32
+l94d58:
+.line 314
+	invoke-virtual	{v10},android/view/MotionEvent/getAction	; getAction()I
+; v10 : Landroid/view/MotionEvent;
+	move-result	v2
+; v2 : single-length
+	and-int/lit16	v2,v2,255
+; v2 : single-length , v2 : single-length
+.line 315
+	packed-switch	v2,0
+		ps94d64_94d6c	; case 0
+		ps94d64_94dfc	; case 1
+		ps94d64_94d86	; case 2
+		ps94d64_94dfc	; case 3
+		ps94d64_94d6a	; case 4
+		ps94d64_94ec6	; case 5
+		ps94d64_94eea	; case 6
+		default: ps94d64_default
+; v2 : single-length
+ps94d64_default:
+	goto	l94d32
+ps94d64_94d6c:
+.line 317
+	invoke-static	{v10,v0},android/support/v4/view/MotionEventCompat/getPointerId	; getPointerId(Landroid/view/MotionEvent;I)I
+; v10 : Landroid/view/MotionEvent; , v0 : single-length
+	move-result	v0
+; v0 : single-length
+	iput	v0,v9,com/fsharemobile/viewpagerindicator/CirclePageIndicator.p I
+; v0 : single-length , v9 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+.line 318
+	invoke-virtual	{v10},android/view/MotionEvent/getX	; getX()F
+; v10 : Landroid/view/MotionEvent;
+	move-result	v0
+; v0 : single-length
+	iput	v0,v9,com/fsharemobile/viewpagerindicator/CirclePageIndicator.o F
+; v0 : single-length , v9 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	goto	l94d32
+ps94d64_94d86:
+.line 323
+	iget	v0,v9,com/fsharemobile/viewpagerindicator/CirclePageIndicator.p I
+; v0 : single-length , v9 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+.line 322
+	invoke-static	{v10,v0},android/support/v4/view/MotionEventCompat/findPointerIndex	; findPointerIndex(Landroid/view/MotionEvent;I)I
+; v10 : Landroid/view/MotionEvent; , v0 : single-length
+	move-result	v0
+; v0 : single-length
+.line 324
+	invoke-static	{v10,v0},android/support/v4/view/MotionEventCompat/getX	; getX(Landroid/view/MotionEvent;I)F
+; v10 : Landroid/view/MotionEvent; , v0 : single-length
+	move-result	v0
+; v0 : single-length
+.line 325
+	iget	v2,v9,com/fsharemobile/viewpagerindicator/CirclePageIndicator.o F
+; v2 : single-length , v9 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	sub-float	v2,v0,v2
+; v2 : single-length , v0 : single-length , v2 : single-length
+.line 327
+	iget-boolean	v3,v9,com/fsharemobile/viewpagerindicator/CirclePageIndicator.q Z
+; v3 : single-length , v9 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	if-nez	v3,l94dc4
+; v3 : single-length
+.line 328
+	invoke-static	{v2},java/lang/Math/abs	; abs(F)F
+; v2 : single-length
+	move-result	v3
+; v3 : single-length
+	iget	v4,v9,com/fsharemobile/viewpagerindicator/CirclePageIndicator.n I
+; v4 : single-length , v9 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	int-to-float	v4,v4
+; v4 : single-length , v4 : single-length
+	cmpl-float	v3,v3,v4
+; v3 : single-length , v3 : single-length , v4 : single-length
+	if-lez	v3,l94dc4
+; v3 : single-length
+.line 329
+	iput-boolean	v1,v9,com/fsharemobile/viewpagerindicator/CirclePageIndicator.q Z
+; v1 : single-length , v9 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+l94dc4:
+.line 333
+	iget-boolean	v3,v9,com/fsharemobile/viewpagerindicator/CirclePageIndicator.q Z
+; v3 : single-length , v9 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	if-eqz	v3,l94d32
+; v3 : single-length
+.line 334
+	iput	v0,v9,com/fsharemobile/viewpagerindicator/CirclePageIndicator.o F
+; v0 : single-length , v9 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+.line 335
+	iget-object	v0,v9,com/fsharemobile/viewpagerindicator/CirclePageIndicator.e Landroid/support/v4/view/ViewPager;
+; v0 : Landroid/support/v4/view/ViewPager; , v9 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	invoke-virtual	{v0},android/support/v4/view/ViewPager/isFakeDragging	; isFakeDragging()Z
+; v0 : Landroid/support/v4/view/ViewPager;
+	move-result	v0
+; v0 : single-length
+	if-nez	v0,l94df0
+; v0 : single-length
+	iget-object	v0,v9,com/fsharemobile/viewpagerindicator/CirclePageIndicator.e Landroid/support/v4/view/ViewPager;
+; v0 : Landroid/support/v4/view/ViewPager; , v9 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	invoke-virtual	{v0},android/support/v4/view/ViewPager/beginFakeDrag	; beginFakeDrag()Z
+; v0 : Landroid/support/v4/view/ViewPager;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,l94d32
+; v0 : single-length
+l94df0:
+.line 336
+	iget-object	v0,v9,com/fsharemobile/viewpagerindicator/CirclePageIndicator.e Landroid/support/v4/view/ViewPager;
+; v0 : Landroid/support/v4/view/ViewPager; , v9 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	invoke-virtual	{v0,v2},android/support/v4/view/ViewPager/fakeDragBy	; fakeDragBy(F)V
+; v0 : Landroid/support/v4/view/ViewPager; , v2 : single-length
+	goto	l94d32
+ps94d64_94dfc:
+.line 345
+	iget-boolean	v3,v9,com/fsharemobile/viewpagerindicator/CirclePageIndicator.q Z
+; v3 : single-length , v9 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	if-nez	v3,l94e9e
+; v3 : single-length
+.line 346
+	iget-object	v3,v9,com/fsharemobile/viewpagerindicator/CirclePageIndicator.e Landroid/support/v4/view/ViewPager;
+; v3 : Landroid/support/v4/view/ViewPager; , v9 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	invoke-virtual	{v3},android/support/v4/view/ViewPager/getAdapter	; getAdapter()Landroid/support/v4/view/PagerAdapter;
+; v3 : Landroid/support/v4/view/ViewPager;
+	move-result-object	v3
+; v3 : Landroid/support/v4/view/PagerAdapter;
+	invoke-virtual	{v3},android/support/v4/view/PagerAdapter/getCount	; getCount()I
+; v3 : Landroid/support/v4/view/PagerAdapter;
+	move-result	v3
+; v3 : single-length
+.line 347
+	invoke-virtual	{v9},com/fsharemobile/viewpagerindicator/CirclePageIndicator/getWidth	; getWidth()I
+; v9 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	move-result	v4
+; v4 : single-length
+.line 348
+	int-to-float	v5,v4
+; v5 : single-length , v4 : single-length
+	const/high16	v6,16384
+; v6 : single-length
+	div-float/2addr	v5,v6
+; v5 : single-length , v6 : single-length
+.line 349
+	int-to-float	v4,v4
+; v4 : single-length , v4 : single-length
+	const/high16	v6,16576
+; v6 : single-length
+	div-float/2addr	v4,v6
+; v4 : single-length , v6 : single-length
+.line 351
+	iget	v6,v9,com/fsharemobile/viewpagerindicator/CirclePageIndicator.g I
+; v6 : single-length , v9 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	if-lez	v6,l94e66
+; v6 : single-length
+	invoke-virtual	{v10},android/view/MotionEvent/getX	; getX()F
+; v10 : Landroid/view/MotionEvent;
+	move-result	v6
+; v6 : single-length
+	sub-float	v7,v5,v4
+; v7 : single-length , v5 : single-length , v4 : single-length
+	cmpg-float	v6,v6,v7
+; v6 : single-length , v6 : single-length , v7 : single-length
+	if-gez	v6,l94e66
+; v6 : single-length
+.line 352
+	if-eq	v2,v8,l94d32
+; v2 : single-length , v8 : single-length
+.line 353
+	iget-object	v0,v9,com/fsharemobile/viewpagerindicator/CirclePageIndicator.e Landroid/support/v4/view/ViewPager;
+; v0 : Landroid/support/v4/view/ViewPager; , v9 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	iget	v2,v9,com/fsharemobile/viewpagerindicator/CirclePageIndicator.g I
+; v2 : single-length , v9 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	add-int/lit8	v2,v2,255
+; v2 : single-length , v2 : single-length
+	invoke-virtual	{v0,v2},android/support/v4/view/ViewPager/setCurrentItem	; setCurrentItem(I)V
+; v0 : Landroid/support/v4/view/ViewPager; , v2 : single-length
+	goto/16	l94d32
+l94e66:
+.line 356
+	iget	v6,v9,com/fsharemobile/viewpagerindicator/CirclePageIndicator.g I
+; v6 : single-length , v9 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	add-int/lit8	v3,v3,255
+; v3 : single-length , v3 : single-length
+	if-ge	v6,v3,l94e9e
+; v6 : single-length , v3 : single-length
+.line 357
+	invoke-virtual	{v10},android/view/MotionEvent/getX	; getX()F
+; v10 : Landroid/view/MotionEvent;
+	move-result	v3
+; v3 : single-length
+	add-float/2addr	v4,v5
+; v4 : single-length , v5 : single-length
+	cmpl-float	v3,v3,v4
+; v3 : single-length , v3 : single-length , v4 : single-length
+	if-lez	v3,l94e9e
+; v3 : single-length
+.line 358
+	if-eq	v2,v8,l94d32
+; v2 : single-length , v8 : single-length
+.line 359
+	iget-object	v0,v9,com/fsharemobile/viewpagerindicator/CirclePageIndicator.e Landroid/support/v4/view/ViewPager;
+; v0 : Landroid/support/v4/view/ViewPager; , v9 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	iget	v2,v9,com/fsharemobile/viewpagerindicator/CirclePageIndicator.g I
+; v2 : single-length , v9 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	add-int/lit8	v2,v2,1
+; v2 : single-length , v2 : single-length
+	invoke-virtual	{v0,v2},android/support/v4/view/ViewPager/setCurrentItem	; setCurrentItem(I)V
+; v0 : Landroid/support/v4/view/ViewPager; , v2 : single-length
+	goto/16	l94d32
+l94e9e:
+.line 365
+	iput-boolean	v0,v9,com/fsharemobile/viewpagerindicator/CirclePageIndicator.q Z
+; v0 : single-length , v9 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+.line 366
+	const/4	v0,15
+; v0 : single-length
+	iput	v0,v9,com/fsharemobile/viewpagerindicator/CirclePageIndicator.p I
+; v0 : single-length , v9 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+.line 367
+	iget-object	v0,v9,com/fsharemobile/viewpagerindicator/CirclePageIndicator.e Landroid/support/v4/view/ViewPager;
+; v0 : Landroid/support/v4/view/ViewPager; , v9 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	invoke-virtual	{v0},android/support/v4/view/ViewPager/isFakeDragging	; isFakeDragging()Z
+; v0 : Landroid/support/v4/view/ViewPager;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,l94d32
+; v0 : single-length
+.line 368
+	iget-object	v0,v9,com/fsharemobile/viewpagerindicator/CirclePageIndicator.e Landroid/support/v4/view/ViewPager;
+; v0 : Landroid/support/v4/view/ViewPager; , v9 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	invoke-virtual	{v0},android/support/v4/view/ViewPager/endFakeDrag	; endFakeDrag()V
+; v0 : Landroid/support/v4/view/ViewPager;
+	goto/16	l94d32
+ps94d64_94ec6:
+.line 372
+	invoke-static	{v10},android/support/v4/view/MotionEventCompat/getActionIndex	; getActionIndex(Landroid/view/MotionEvent;)I
+; v10 : Landroid/view/MotionEvent;
+	move-result	v0
+; v0 : single-length
+.line 373
+	invoke-static	{v10,v0},android/support/v4/view/MotionEventCompat/getX	; getX(Landroid/view/MotionEvent;I)F
+; v10 : Landroid/view/MotionEvent; , v0 : single-length
+	move-result	v2
+; v2 : single-length
+	iput	v2,v9,com/fsharemobile/viewpagerindicator/CirclePageIndicator.o F
+; v2 : single-length , v9 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+.line 374
+	invoke-static	{v10,v0},android/support/v4/view/MotionEventCompat/getPointerId	; getPointerId(Landroid/view/MotionEvent;I)I
+; v10 : Landroid/view/MotionEvent; , v0 : single-length
+	move-result	v0
+; v0 : single-length
+	iput	v0,v9,com/fsharemobile/viewpagerindicator/CirclePageIndicator.p I
+; v0 : single-length , v9 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	goto/16	l94d32
+ps94d64_94eea:
+.line 379
+	invoke-static	{v10},android/support/v4/view/MotionEventCompat/getActionIndex	; getActionIndex(Landroid/view/MotionEvent;)I
+; v10 : Landroid/view/MotionEvent;
+	move-result	v2
+; v2 : single-length
+.line 380
+	invoke-static	{v10,v2},android/support/v4/view/MotionEventCompat/getPointerId	; getPointerId(Landroid/view/MotionEvent;I)I
+; v10 : Landroid/view/MotionEvent; , v2 : single-length
+	move-result	v3
+; v3 : single-length
+.line 382
+	iget	v4,v9,com/fsharemobile/viewpagerindicator/CirclePageIndicator.p I
+; v4 : single-length , v9 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	if-ne	v3,v4,l94f14
+; v3 : single-length , v4 : single-length
+.line 383
+	if-nez	v2,l94f08
+; v2 : single-length
+	move	v0,v1
+; v0 : single-length , v1 : single-length
+l94f08:
+.line 384
+	invoke-static	{v10,v0},android/support/v4/view/MotionEventCompat/getPointerId	; getPointerId(Landroid/view/MotionEvent;I)I
+; v10 : Landroid/view/MotionEvent; , v0 : single-length
+	move-result	v0
+; v0 : single-length
+	iput	v0,v9,com/fsharemobile/viewpagerindicator/CirclePageIndicator.p I
+; v0 : single-length , v9 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+l94f14:
+.line 388
+	iget	v0,v9,com/fsharemobile/viewpagerindicator/CirclePageIndicator.p I
+; v0 : single-length , v9 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	invoke-static	{v10,v0},android/support/v4/view/MotionEventCompat/findPointerIndex	; findPointerIndex(Landroid/view/MotionEvent;I)I
+; v10 : Landroid/view/MotionEvent; , v0 : single-length
+	move-result	v0
+; v0 : single-length
+.line 387
+	invoke-static	{v10,v0},android/support/v4/view/MotionEventCompat/getX	; getX(Landroid/view/MotionEvent;I)F
+; v10 : Landroid/view/MotionEvent; , v0 : single-length
+	move-result	v0
+; v0 : single-length
+	iput	v0,v9,com/fsharemobile/viewpagerindicator/CirclePageIndicator.o F
+; v0 : single-length , v9 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	goto/16	l94d32
+.line 315
+.end method
+
+.method public setCentered(Z)V
+.limit registers 2
+; this: v0 (Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;)
+; parameter[0] : v1 (Z)
+.line 140
+	iput-boolean	v1,v0,com/fsharemobile/viewpagerindicator/CirclePageIndicator.l Z
+; v1 : single-length , v0 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+.line 141
+	invoke-virtual	{v0},com/fsharemobile/viewpagerindicator/CirclePageIndicator/invalidate	; invalidate()V
+; v0 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+.line 142
+	return-void	
+.end method
+
+.method public setCurrentItem(I)V
+.limit registers 4
+; this: v2 (Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;)
+; parameter[0] : v3 (I)
+.line 420
+	iget-object	v0,v2,com/fsharemobile/viewpagerindicator/CirclePageIndicator.e Landroid/support/v4/view/ViewPager;
+; v0 : Landroid/support/v4/view/ViewPager; , v2 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	if-nez	v0,l94f98
+; v0 : Landroid/support/v4/view/ViewPager;
+.line 421
+	new-instance	v0,java/lang/IllegalStateException
+; v0 : Ljava/lang/IllegalStateException;
+	const-string	v1,"ViewPager has not been bound."
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/IllegalStateException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/IllegalStateException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/IllegalStateException;
+l94f98:
+.line 423
+	iget-object	v0,v2,com/fsharemobile/viewpagerindicator/CirclePageIndicator.e Landroid/support/v4/view/ViewPager;
+; v0 : Landroid/support/v4/view/ViewPager; , v2 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	invoke-virtual	{v0,v3},android/support/v4/view/ViewPager/setCurrentItem	; setCurrentItem(I)V
+; v0 : Landroid/support/v4/view/ViewPager; , v3 : single-length
+.line 424
+	iput	v3,v2,com/fsharemobile/viewpagerindicator/CirclePageIndicator.g I
+; v3 : single-length , v2 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+.line 425
+	invoke-virtual	{v2},com/fsharemobile/viewpagerindicator/CirclePageIndicator/invalidate	; invalidate()V
+; v2 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+.line 426
+	return-void	
+.end method
+
+.method public setFillColor(I)V
+.limit registers 3
+; this: v1 (Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;)
+; parameter[0] : v2 (I)
+.line 158
+	iget-object	v0,v1,com/fsharemobile/viewpagerindicator/CirclePageIndicator.d Landroid/graphics/Paint;
+; v0 : Landroid/graphics/Paint; , v1 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	invoke-virtual	{v0,v2},android/graphics/Paint/setColor	; setColor(I)V
+; v0 : Landroid/graphics/Paint; , v2 : single-length
+.line 159
+	invoke-virtual	{v1},com/fsharemobile/viewpagerindicator/CirclePageIndicator/invalidate	; invalidate()V
+; v1 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+.line 160
+	return-void	
+.end method
+
+.method public setOnPageChangeListener(Landroid/support/v4/view/ViewPager$OnPageChangeListener;)V
+.limit registers 2
+; this: v0 (Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;)
+; parameter[0] : v1 (Landroid/support/v4/view/ViewPager$OnPageChangeListener;)
+.line 470
+	iput-object	v1,v0,com/fsharemobile/viewpagerindicator/CirclePageIndicator.f Landroid/support/v4/view/ViewPager$OnPageChangeListener;
+; v1 : Landroid/support/v4/view/ViewPager$OnPageChangeListener; , v0 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+.line 471
+	return-void	
+.end method
+
+.method public setOrientation(I)V
+.limit registers 4
+; this: v2 (Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;)
+; parameter[0] : v3 (I)
+.line 167
+	packed-switch	v3,0
+		ps94ffc_95012	; case 0
+		ps94ffc_95012	; case 1
+		default: ps94ffc_default
+; v3 : single-length
+ps94ffc_default:
+.line 175
+	new-instance	v0,java/lang/IllegalArgumentException
+; v0 : Ljava/lang/IllegalArgumentException;
+.line 176
+	const-string	v1,"Orientation must be either HORIZONTAL or VERTICAL."
+; v1 : Ljava/lang/String;
+.line 175
+	invoke-direct	{v0,v1},java/lang/IllegalArgumentException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/IllegalArgumentException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/IllegalArgumentException;
+ps94ffc_95012:
+.line 170
+	iput	v3,v2,com/fsharemobile/viewpagerindicator/CirclePageIndicator.k I
+; v3 : single-length , v2 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+.line 171
+	invoke-virtual	{v2},com/fsharemobile/viewpagerindicator/CirclePageIndicator/requestLayout	; requestLayout()V
+; v2 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+.line 178
+	return-void	
+.line 167
+l9501e:	data-array
+		0x00, 0x00
+	end data-array
+.end method
+
+.method public setPageColor(I)V
+.limit registers 3
+; this: v1 (Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;)
+; parameter[0] : v2 (I)
+.line 149
+	iget-object	v0,v1,com/fsharemobile/viewpagerindicator/CirclePageIndicator.b Landroid/graphics/Paint;
+; v0 : Landroid/graphics/Paint; , v1 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	invoke-virtual	{v0,v2},android/graphics/Paint/setColor	; setColor(I)V
+; v0 : Landroid/graphics/Paint; , v2 : single-length
+.line 150
+	invoke-virtual	{v1},com/fsharemobile/viewpagerindicator/CirclePageIndicator/invalidate	; invalidate()V
+; v1 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+.line 151
+	return-void	
+.end method
+
+.method public setRadius(F)V
+.limit registers 2
+; this: v0 (Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;)
+; parameter[0] : v1 (F)
+.line 203
+	iput	v1,v0,com/fsharemobile/viewpagerindicator/CirclePageIndicator.a F
+; v1 : single-length , v0 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+.line 204
+	invoke-virtual	{v0},com/fsharemobile/viewpagerindicator/CirclePageIndicator/invalidate	; invalidate()V
+; v0 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+.line 205
+	return-void	
+.end method
+
+.method public setSnap(Z)V
+.limit registers 2
+; this: v0 (Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;)
+; parameter[0] : v1 (Z)
+.line 212
+	iput-boolean	v1,v0,com/fsharemobile/viewpagerindicator/CirclePageIndicator.m Z
+; v1 : single-length , v0 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+.line 213
+	invoke-virtual	{v0},com/fsharemobile/viewpagerindicator/CirclePageIndicator/invalidate	; invalidate()V
+; v0 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+.line 214
+	return-void	
+.end method
+
+.method public setStrokeColor(I)V
+.limit registers 3
+; this: v1 (Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;)
+; parameter[0] : v2 (I)
+.line 185
+	iget-object	v0,v1,com/fsharemobile/viewpagerindicator/CirclePageIndicator.c Landroid/graphics/Paint;
+; v0 : Landroid/graphics/Paint; , v1 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	invoke-virtual	{v0,v2},android/graphics/Paint/setColor	; setColor(I)V
+; v0 : Landroid/graphics/Paint; , v2 : single-length
+.line 186
+	invoke-virtual	{v1},com/fsharemobile/viewpagerindicator/CirclePageIndicator/invalidate	; invalidate()V
+; v1 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+.line 187
+	return-void	
+.end method
+
+.method public setStrokeWidth(F)V
+.limit registers 3
+; this: v1 (Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;)
+; parameter[0] : v2 (F)
+.line 194
+	iget-object	v0,v1,com/fsharemobile/viewpagerindicator/CirclePageIndicator.c Landroid/graphics/Paint;
+; v0 : Landroid/graphics/Paint; , v1 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	invoke-virtual	{v0,v2},android/graphics/Paint/setStrokeWidth	; setStrokeWidth(F)V
+; v0 : Landroid/graphics/Paint; , v2 : single-length
+.line 195
+	invoke-virtual	{v1},com/fsharemobile/viewpagerindicator/CirclePageIndicator/invalidate	; invalidate()V
+; v1 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+.line 196
+	return-void	
+.end method
+
+.method public setViewPager(Landroid/support/v4/view/ViewPager;)V
+.limit registers 4
+; this: v2 (Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;)
+; parameter[0] : v3 (Landroid/support/v4/view/ViewPager;)
+.line 397
+	iget-object	v0,v2,com/fsharemobile/viewpagerindicator/CirclePageIndicator.e Landroid/support/v4/view/ViewPager;
+; v0 : Landroid/support/v4/view/ViewPager; , v2 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	if-ne	v0,v3,l950ee
+; v0 : Landroid/support/v4/view/ViewPager; , v3 : Landroid/support/v4/view/ViewPager;
+l950ec:
+.line 410
+	return-void	
+l950ee:
+.line 400
+	iget-object	v0,v2,com/fsharemobile/viewpagerindicator/CirclePageIndicator.e Landroid/support/v4/view/ViewPager;
+; v0 : Landroid/support/v4/view/ViewPager; , v2 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	if-eqz	v0,l95102
+; v0 : Landroid/support/v4/view/ViewPager;
+.line 401
+	iget-object	v0,v2,com/fsharemobile/viewpagerindicator/CirclePageIndicator.e Landroid/support/v4/view/ViewPager;
+; v0 : Landroid/support/v4/view/ViewPager; , v2 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	const/4	v1,0
+; v1 : single-length
+	invoke-virtual	{v0,v1},android/support/v4/view/ViewPager/setOnPageChangeListener	; setOnPageChangeListener(Landroid/support/v4/view/ViewPager$OnPageChangeListener;)V
+; v0 : Landroid/support/v4/view/ViewPager; , v1 : single-length
+l95102:
+.line 403
+	invoke-virtual	{v3},android/support/v4/view/ViewPager/getAdapter	; getAdapter()Landroid/support/v4/view/PagerAdapter;
+; v3 : Landroid/support/v4/view/ViewPager;
+	move-result-object	v0
+; v0 : Landroid/support/v4/view/PagerAdapter;
+	if-nez	v0,l9511e
+; v0 : Landroid/support/v4/view/PagerAdapter;
+.line 404
+	new-instance	v0,java/lang/IllegalStateException
+; v0 : Ljava/lang/IllegalStateException;
+.line 405
+	const-string	v1,"ViewPager does not have adapter instance."
+; v1 : Ljava/lang/String;
+.line 404
+	invoke-direct	{v0,v1},java/lang/IllegalStateException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/IllegalStateException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/IllegalStateException;
+l9511e:
+.line 407
+	iput-object	v3,v2,com/fsharemobile/viewpagerindicator/CirclePageIndicator.e Landroid/support/v4/view/ViewPager;
+; v3 : Landroid/support/v4/view/ViewPager; , v2 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+.line 408
+	iget-object	v0,v2,com/fsharemobile/viewpagerindicator/CirclePageIndicator.e Landroid/support/v4/view/ViewPager;
+; v0 : Landroid/support/v4/view/ViewPager; , v2 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	invoke-virtual	{v0,v2},android/support/v4/view/ViewPager/setOnPageChangeListener	; setOnPageChangeListener(Landroid/support/v4/view/ViewPager$OnPageChangeListener;)V
+; v0 : Landroid/support/v4/view/ViewPager; , v2 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+.line 409
+	invoke-virtual	{v2},com/fsharemobile/viewpagerindicator/CirclePageIndicator/invalidate	; invalidate()V
+; v2 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;
+	goto	l950ec
+.end method
+
+.method public setViewPager(Landroid/support/v4/view/ViewPager;I)V
+.limit registers 3
+; this: v0 (Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator;)
+; parameter[0] : v1 (Landroid/support/v4/view/ViewPager;)
+; parameter[1] : v2 (I)
+.line 414
+	invoke-virtual	{v0,v1},com/fsharemobile/viewpagerindicator/CirclePageIndicator/setViewPager	; setViewPager(Landroid/support/v4/view/ViewPager;)V
+; v0 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator; , v1 : Landroid/support/v4/view/ViewPager;
+.line 415
+	invoke-virtual	{v0,v2},com/fsharemobile/viewpagerindicator/CirclePageIndicator/setCurrentItem	; setCurrentItem(I)V
+; v0 : Lcom/fsharemobile/viewpagerindicator/CirclePageIndicator; , v2 : single-length
+.line 416
+	return-void	
+.end method
+
+

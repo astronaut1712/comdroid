@@ -1,0 +1,44 @@
+.class final com/a/a/e
+.super java/lang/Object
+.source MyApplication
+
+.field private final a Ljava/util/concurrent/ThreadPoolExecutor;
+.field private final b Ljava/util/Map;
+
+.method <init>()V
+.limit registers 8
+; this: v7 (Lcom/a/a/e;)
+	const/16	v1,8
+; v1 : single-length
+.line 29
+	invoke-direct	{v7},java/lang/Object/<init>	; <init>()V
+; v7 : Lcom/a/a/e;
+.line 31
+	new-instance	v0,java/util/concurrent/ThreadPoolExecutor
+; v0 : Ljava/util/concurrent/ThreadPoolExecutor;
+	const-wide/16	v3,60
+; v3 : double-length
+	sget-object	v5,java/util/concurrent/TimeUnit.SECONDS Ljava/util/concurrent/TimeUnit;
+; v5 : Ljava/util/concurrent/TimeUnit;
+	new-instance	v6,java/util/concurrent/LinkedBlockingQueue
+; v6 : Ljava/util/concurrent/LinkedBlockingQueue;
+	invoke-direct	{v6},java/util/concurrent/LinkedBlockingQueue/<init>	; <init>()V
+; v6 : Ljava/util/concurrent/LinkedBlockingQueue;
+	move	v2,v1
+; v2 : single-length , v1 : single-length
+	invoke-direct/range	{v0..v6},java/util/concurrent/ThreadPoolExecutor/<init>;	<init>(IIJLjava/util/concurrent/TimeUnit;Ljava/util/concurrent/BlockingQueue;)V
+; v0 : Ljava/util/concurrent/ThreadPoolExecutor; , v1 : single-length , v2 : single-length , v3 : double-length , v5 : Ljava/util/concurrent/TimeUnit; , v6 : Ljava/util/concurrent/LinkedBlockingQueue;
+	iput-object	v0,v7,com/a/a/e.a Ljava/util/concurrent/ThreadPoolExecutor;
+; v0 : Ljava/util/concurrent/ThreadPoolExecutor; , v7 : Lcom/a/a/e;
+.line 33
+	new-instance	v0,java/util/LinkedHashMap
+; v0 : Ljava/util/LinkedHashMap;
+	invoke-direct	{v0},java/util/LinkedHashMap/<init>	; <init>()V
+; v0 : Ljava/util/LinkedHashMap;
+	iput-object	v0,v7,com/a/a/e.b Ljava/util/Map;
+; v0 : Ljava/util/LinkedHashMap; , v7 : Lcom/a/a/e;
+.line 60
+	return-void	
+.end method
+
+

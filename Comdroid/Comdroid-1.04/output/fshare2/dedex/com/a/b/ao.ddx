@@ -1,0 +1,146 @@
+.class com/a/b/ao
+.super java/util/concurrent/ThreadPoolExecutor
+.source MyApplication
+
+
+.method <init>()V
+.limit registers 9
+; this: v8 (Lcom/a/b/ao;)
+	const/4	v1,3
+; v1 : single-length
+.line 35
+	const-wide/16	v3,0
+; v3 : double-length
+	sget-object	v5,java/util/concurrent/TimeUnit.MILLISECONDS Ljava/util/concurrent/TimeUnit;
+; v5 : Ljava/util/concurrent/TimeUnit;
+	new-instance	v6,java/util/concurrent/LinkedBlockingQueue
+; v6 : Ljava/util/concurrent/LinkedBlockingQueue;
+	invoke-direct	{v6},java/util/concurrent/LinkedBlockingQueue/<init>	; <init>()V
+; v6 : Ljava/util/concurrent/LinkedBlockingQueue;
+	new-instance	v7,com/a/b/bg
+; v7 : Lcom/a/b/bg;
+	invoke-direct	{v7},com/a/b/bg/<init>	; <init>()V
+; v7 : Lcom/a/b/bg;
+	move-object	v0,v8
+; v0 : Lcom/a/b/ao; , v8 : Lcom/a/b/ao;
+	move	v2,v1
+; v2 : single-length , v1 : single-length
+	invoke-direct/range	{v0..v7},java/util/concurrent/ThreadPoolExecutor/<init>;	<init>(IIJLjava/util/concurrent/TimeUnit;Ljava/util/concurrent/BlockingQueue;Ljava/util/concurrent/ThreadFactory;)V
+; v0 : Lcom/a/b/ao; , v1 : single-length , v2 : single-length , v3 : double-length , v5 : Ljava/util/concurrent/TimeUnit; , v6 : Ljava/util/concurrent/LinkedBlockingQueue; , v7 : Lcom/a/b/bg;
+.line 37
+	return-void	
+.end method
+
+.method private a(I)V
+.limit registers 2
+; this: v0 (Lcom/a/b/ao;)
+; parameter[0] : v1 (I)
+.line 78
+	invoke-virtual	{v0,v1},com/a/b/ao/setCorePoolSize	; setCorePoolSize(I)V
+; v0 : Lcom/a/b/ao; , v1 : single-length
+.line 79
+	invoke-virtual	{v0,v1},com/a/b/ao/setMaximumPoolSize	; setMaximumPoolSize(I)V
+; v0 : Lcom/a/b/ao; , v1 : single-length
+.line 80
+	return-void	
+.end method
+
+.method a(Landroid/net/NetworkInfo;)V
+.limit registers 4
+; this: v2 (Lcom/a/b/ao;)
+; parameter[0] : v3 (Landroid/net/NetworkInfo;)
+	const/4	v1,3
+; v1 : single-length
+.line 40
+	if-eqz	v3,l79a9a
+; v3 : Landroid/net/NetworkInfo;
+	invoke-virtual	{v3},android/net/NetworkInfo/isConnectedOrConnecting	; isConnectedOrConnecting()Z
+; v3 : Landroid/net/NetworkInfo;
+	move-result	v0
+; v0 : single-length
+	if-nez	v0,l79aa2
+; v0 : single-length
+l79a9a:
+.line 41
+	invoke-direct	{v2,v1},com/a/b/ao/a	; a(I)V
+; v2 : Lcom/a/b/ao; , v1 : single-length
+l79aa0:
+.line 75
+	return-void	
+l79aa2:
+.line 44
+	invoke-virtual	{v3},android/net/NetworkInfo/getType	; getType()I
+; v3 : Landroid/net/NetworkInfo;
+	move-result	v0
+; v0 : single-length
+	sparse-switch	v0
+		0 : sp79aaa_79ac2
+		1 : sp79aaa_79ab8
+		6 : sp79aaa_79ab8
+		9 : sp79aaa_79ab8
+		default: sp79aaa_default
+; v0 : single-length
+sp79aaa_default:
+.line 73
+	invoke-direct	{v2,v1},com/a/b/ao/a	; a(I)V
+; v2 : Lcom/a/b/ao; , v1 : single-length
+	goto	l79aa0
+sp79aaa_79ab8:
+.line 48
+	const/4	v0,4
+; v0 : single-length
+	invoke-direct	{v2,v0},com/a/b/ao/a	; a(I)V
+; v2 : Lcom/a/b/ao; , v0 : single-length
+	goto	l79aa0
+sp79aaa_79ac2:
+.line 51
+	invoke-virtual	{v3},android/net/NetworkInfo/getSubtype	; getSubtype()I
+; v3 : Landroid/net/NetworkInfo;
+	move-result	v0
+; v0 : single-length
+	packed-switch	v0,1
+		ps79aca_79aea	; case 1
+		ps79aca_79aea	; case 2
+		ps79aca_79ae0	; case 3
+		ps79aca_79ae0	; case 4
+		ps79aca_79ae0	; case 5
+		ps79aca_79ae0	; case 6
+		ps79aca_79ad0	; case 7
+		ps79aca_79ad0	; case 8
+		ps79aca_79ad0	; case 9
+		ps79aca_79ad0	; case 10
+		ps79aca_79ad0	; case 11
+		ps79aca_79ae0	; case 12
+		ps79aca_79ad8	; case 13
+		ps79aca_79ad8	; case 14
+		ps79aca_79ad8	; case 15
+		default: ps79aca_default
+; v0 : single-length
+ps79aca_default:
+.line 69
+	invoke-direct	{v2,v1},com/a/b/ao/a	; a(I)V
+; v2 : Lcom/a/b/ao; , v1 : single-length
+	goto	l79aa0
+ps79aca_79ad8:
+.line 55
+	invoke-direct	{v2,v1},com/a/b/ao/a	; a(I)V
+; v2 : Lcom/a/b/ao; , v1 : single-length
+	goto	l79aa0
+ps79aca_79ae0:
+.line 62
+	const/4	v0,2
+; v0 : single-length
+	invoke-direct	{v2,v0},com/a/b/ao/a	; a(I)V
+; v2 : Lcom/a/b/ao; , v0 : single-length
+	goto	l79aa0
+ps79aca_79aea:
+.line 66
+	const/4	v0,1
+; v0 : single-length
+	invoke-direct	{v2,v0},com/a/b/ao/a	; a(I)V
+; v2 : Lcom/a/b/ao; , v0 : single-length
+	goto	l79aa0
+.line 44
+.end method
+
+

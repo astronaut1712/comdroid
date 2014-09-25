@@ -1,0 +1,2108 @@
+.class public com/google/tagmanager/Container
+.super java/lang/Object
+.source Container.java
+
+.inner class 4 inner com/google/tagmanager/Container$4 outer com/google/tagmanager/Container
+.inner class ResourceLoaderScheduler inner com/google/tagmanager/Container$ResourceLoaderScheduler outer com/google/tagmanager/Container
+.inner class ResourceStorage inner com/google/tagmanager/Container$ResourceStorage outer com/google/tagmanager/Container
+.inner class FunctionCallTagHandlerAdapter inner com/google/tagmanager/Container$FunctionCallTagHandlerAdapter outer com/google/tagmanager/Container
+.inner class FunctionCallMacroHandlerAdapter inner com/google/tagmanager/Container$FunctionCallMacroHandlerAdapter outer com/google/tagmanager/Container
+.inner class FunctionCallTagHandler inner com/google/tagmanager/Container$FunctionCallTagHandler outer com/google/tagmanager/Container
+.inner class FunctionCallMacroHandler inner com/google/tagmanager/Container$FunctionCallMacroHandler outer com/google/tagmanager/Container
+.inner class Callback inner com/google/tagmanager/Container$Callback outer com/google/tagmanager/Container
+.inner class RefreshFailure inner com/google/tagmanager/Container$RefreshFailure outer com/google/tagmanager/Container
+.inner class RefreshType inner com/google/tagmanager/Container$RefreshType outer com/google/tagmanager/Container
+.field static final ENABLE_CONTAINER_DEBUG_MODE Z = false
+.field static final MAX_NUMBER_OF_TOKENS I = 30	; 0x1e
+  .annotation buildVisibility Lcom/google/android/gms/common/util/VisibleForTesting;
+  .end annotation
+.end field
+.field static final MINIMUM_REFRESH_PERIOD_BURST_MODE_MS I = 5000	; 0x1388
+.field static final MINIMUM_REFRESH_PERIOD_MS J = 900000	; 0xdbba0
+.field static final REFRESH_PERIOD_ON_FAILURE_MS J = 3600000	; 0x36ee80
+.field static final REFRESH_PERIOD_ON_SUCCESS_MS J = 43200000	; 0x2932e00
+.field private mClock Lcom/google/tagmanager/Clock;
+.field private final mContainerId Ljava/lang/String;
+.field private final mContext Landroid/content/Context;
+.field private mCtfeHost Lcom/google/tagmanager/CtfeHost;
+.field private volatile mCtfeServerAddress Ljava/lang/String;
+.field private volatile mCtfeUrlPathAndQuery Ljava/lang/String;
+.field mDiskLoadCallback Lcom/google/tagmanager/LoadCallback;
+  .annotation buildVisibility Lcom/google/android/gms/common/util/VisibleForTesting;
+  .end annotation
+  .annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "Lcom/google/tagmanager/LoadCallback" , "<" , "Lcom/google/tagmanager/proto/Resource$ResourceWithMetadata;" , ">;" }
+  .end annotation
+.end field
+.field private mFunctionCallMacroHandlers Ljava/util/Map;
+  .annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "Ljava/util/Map" , "<" , "Ljava/lang/String;" , "Lcom/google/tagmanager/Container$FunctionCallMacroHandler;" , ">;" }
+  .end annotation
+.end field
+.field private mFunctionCallTagHandlers Ljava/util/Map;
+  .annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "Ljava/util/Map" , "<" , "Ljava/lang/String;" , "Lcom/google/tagmanager/Container$FunctionCallTagHandler;" , ">;" }
+  .end annotation
+.end field
+.field private mLastLoadedSupplementedResource Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+.field private volatile mLastRefreshMethodCalledTime J
+.field private volatile mLastRefreshTime J
+.field mNetworkLoadCallback Lcom/google/tagmanager/LoadCallback;
+  .annotation buildVisibility Lcom/google/android/gms/common/util/VisibleForTesting;
+  .end annotation
+  .annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "Lcom/google/tagmanager/LoadCallback" , "<" , "Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;" , ">;" }
+  .end annotation
+.end field
+.field private mNetworkLoadScheduler Lcom/google/tagmanager/Container$ResourceLoaderScheduler;
+.field private volatile mNumTokens I
+.field private volatile mResourceFormatVersion I
+.field private mResourceStorage Lcom/google/tagmanager/Container$ResourceStorage;
+.field private volatile mResourceVersion Ljava/lang/String;
+.field private mRuntime Lcom/google/tagmanager/Runtime;
+.field private final mTagManager Lcom/google/tagmanager/TagManager;
+.field private mUserCallback Lcom/google/tagmanager/Container$Callback;
+
+.method <init>(Landroid/content/Context;Ljava/lang/String;Lcom/google/tagmanager/TagManager;)V
+.annotation buildVisibility Lcom/google/android/gms/common/util/VisibleForTesting;
+.end annotation
+.limit registers 5
+; this: v1 (Lcom/google/tagmanager/Container;)
+; parameter[0] : v2 (Landroid/content/Context;)
+; parameter[1] : v3 (Ljava/lang/String;)
+; parameter[2] : v4 (Lcom/google/tagmanager/TagManager;)
+.line 208
+	new-instance	v0,com/google/tagmanager/ResourceStorageImpl
+; v0 : Lcom/google/tagmanager/ResourceStorageImpl;
+	invoke-direct	{v0,v2,v3},com/google/tagmanager/ResourceStorageImpl/<init>	; <init>(Landroid/content/Context;Ljava/lang/String;)V
+; v0 : Lcom/google/tagmanager/ResourceStorageImpl; , v2 : Landroid/content/Context; , v3 : Ljava/lang/String;
+	invoke-direct	{v1,v2,v3,v4,v0},com/google/tagmanager/Container/<init>	; <init>(Landroid/content/Context;Ljava/lang/String;Lcom/google/tagmanager/TagManager;Lcom/google/tagmanager/Container$ResourceStorage;)V
+; v1 : Lcom/google/tagmanager/Container; , v2 : Landroid/content/Context; , v3 : Ljava/lang/String; , v4 : Lcom/google/tagmanager/TagManager; , v0 : Lcom/google/tagmanager/ResourceStorageImpl;
+.line 210
+	return-void	
+.end method
+
+.method <init>(Landroid/content/Context;Ljava/lang/String;Lcom/google/tagmanager/TagManager;Lcom/google/tagmanager/Container$ResourceStorage;)V
+.annotation buildVisibility Lcom/google/android/gms/common/util/VisibleForTesting;
+.end annotation
+.limit registers 6
+; this: v1 (Lcom/google/tagmanager/Container;)
+; parameter[0] : v2 (Landroid/content/Context;)
+; parameter[1] : v3 (Ljava/lang/String;)
+; parameter[2] : v4 (Lcom/google/tagmanager/TagManager;)
+; parameter[3] : v5 (Lcom/google/tagmanager/Container$ResourceStorage;)
+.line 214
+	invoke-direct	{v1},java/lang/Object/<init>	; <init>()V
+; v1 : Lcom/google/tagmanager/Container;
+.line 199
+	const-string	v0,""
+; v0 : Ljava/lang/String;
+	iput-object	v0,v1,com/google/tagmanager/Container.mResourceVersion Ljava/lang/String;
+; v0 : Ljava/lang/String; , v1 : Lcom/google/tagmanager/Container;
+.line 200
+	const/4	v0,0
+; v0 : single-length
+	iput	v0,v1,com/google/tagmanager/Container.mResourceFormatVersion I
+; v0 : single-length , v1 : Lcom/google/tagmanager/Container;
+.line 215
+	new-instance	v0,com/google/tagmanager/CtfeHost
+; v0 : Lcom/google/tagmanager/CtfeHost;
+	invoke-direct	{v0},com/google/tagmanager/CtfeHost/<init>	; <init>()V
+; v0 : Lcom/google/tagmanager/CtfeHost;
+	iput-object	v0,v1,com/google/tagmanager/Container.mCtfeHost Lcom/google/tagmanager/CtfeHost;
+; v0 : Lcom/google/tagmanager/CtfeHost; , v1 : Lcom/google/tagmanager/Container;
+.line 216
+	iput-object	v2,v1,com/google/tagmanager/Container.mContext Landroid/content/Context;
+; v2 : Landroid/content/Context; , v1 : Lcom/google/tagmanager/Container;
+.line 217
+	iput-object	v3,v1,com/google/tagmanager/Container.mContainerId Ljava/lang/String;
+; v3 : Ljava/lang/String; , v1 : Lcom/google/tagmanager/Container;
+.line 218
+	iput-object	v4,v1,com/google/tagmanager/Container.mTagManager Lcom/google/tagmanager/TagManager;
+; v4 : Lcom/google/tagmanager/TagManager; , v1 : Lcom/google/tagmanager/Container;
+.line 219
+	new-instance	v0,com/google/analytics/containertag/proto/Serving$SupplementedResource
+; v0 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+	invoke-direct	{v0},com/google/analytics/containertag/proto/Serving$SupplementedResource/<init>	; <init>()V
+; v0 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+	iput-object	v0,v1,com/google/tagmanager/Container.mLastLoadedSupplementedResource Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+; v0 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource; , v1 : Lcom/google/tagmanager/Container;
+.line 220
+	iput-object	v5,v1,com/google/tagmanager/Container.mResourceStorage Lcom/google/tagmanager/Container$ResourceStorage;
+; v5 : Lcom/google/tagmanager/Container$ResourceStorage; , v1 : Lcom/google/tagmanager/Container;
+.line 221
+	const/16	v0,30
+; v0 : single-length
+	iput	v0,v1,com/google/tagmanager/Container.mNumTokens I
+; v0 : single-length , v1 : Lcom/google/tagmanager/Container;
+.line 222
+	new-instance	v0,java/util/HashMap
+; v0 : Ljava/util/HashMap;
+	invoke-direct	{v0},java/util/HashMap/<init>	; <init>()V
+; v0 : Ljava/util/HashMap;
+	iput-object	v0,v1,com/google/tagmanager/Container.mFunctionCallMacroHandlers Ljava/util/Map;
+; v0 : Ljava/util/HashMap; , v1 : Lcom/google/tagmanager/Container;
+.line 223
+	new-instance	v0,java/util/HashMap
+; v0 : Ljava/util/HashMap;
+	invoke-direct	{v0},java/util/HashMap/<init>	; <init>()V
+; v0 : Ljava/util/HashMap;
+	iput-object	v0,v1,com/google/tagmanager/Container.mFunctionCallTagHandlers Ljava/util/Map;
+; v0 : Ljava/util/HashMap; , v1 : Lcom/google/tagmanager/Container;
+.line 224
+	invoke-direct	{v1},com/google/tagmanager/Container/createInitialContainer	; createInitialContainer()V
+; v1 : Lcom/google/tagmanager/Container;
+.line 225
+	return-void	
+.end method
+
+.method static access$000(Lcom/google/tagmanager/Container;Lcom/google/tagmanager/Container$RefreshType;)V
+.limit registers 2
+; parameter[0] : v0 (Lcom/google/tagmanager/Container;)
+; parameter[1] : v1 (Lcom/google/tagmanager/Container$RefreshType;)
+.line 27
+	invoke-direct	{v0,v1},com/google/tagmanager/Container/callRefreshBegin	; callRefreshBegin(Lcom/google/tagmanager/Container$RefreshType;)V
+; v0 : Lcom/google/tagmanager/Container; , v1 : Lcom/google/tagmanager/Container$RefreshType;
+	return-void	
+.end method
+
+.method static access$100(Lcom/google/tagmanager/Container;)Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+.limit registers 2
+; parameter[0] : v1 (Lcom/google/tagmanager/Container;)
+.line 27
+	iget-object	v0,v1,com/google/tagmanager/Container.mLastLoadedSupplementedResource Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+; v0 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource; , v1 : Lcom/google/tagmanager/Container;
+	return-object	v0
+; v0 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+.end method
+
+.method static access$102(Lcom/google/tagmanager/Container;Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;)Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+.limit registers 2
+; parameter[0] : v0 (Lcom/google/tagmanager/Container;)
+; parameter[1] : v1 (Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;)
+.line 27
+	iput-object	v1,v0,com/google/tagmanager/Container.mLastLoadedSupplementedResource Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+; v1 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource; , v0 : Lcom/google/tagmanager/Container;
+	return-object	v1
+; v1 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+.end method
+
+.method static access$200(Lcom/google/tagmanager/Container;Lcom/google/analytics/containertag/proto/Serving$Resource;)V
+.limit registers 2
+; parameter[0] : v0 (Lcom/google/tagmanager/Container;)
+; parameter[1] : v1 (Lcom/google/analytics/containertag/proto/Serving$Resource;)
+.line 27
+	invoke-direct	{v0,v1},com/google/tagmanager/Container/initEvaluators	; initEvaluators(Lcom/google/analytics/containertag/proto/Serving$Resource;)V
+; v0 : Lcom/google/tagmanager/Container; , v1 : Lcom/google/analytics/containertag/proto/Serving$Resource;
+	return-void	
+.end method
+
+.method static access$300(Lcom/google/tagmanager/Container;[Lcom/google/analytics/containertag/proto/Serving$Supplemental;)V
+.limit registers 2
+; parameter[0] : v0 (Lcom/google/tagmanager/Container;)
+; parameter[1] : v1 ([Lcom/google/analytics/containertag/proto/Serving$Supplemental;)
+.line 27
+	invoke-direct	{v0,v1},com/google/tagmanager/Container/setSupplementals	; setSupplementals([Lcom/google/analytics/containertag/proto/Serving$Supplemental;)V
+; v0 : Lcom/google/tagmanager/Container; , v1 : [Lcom/google/analytics/containertag/proto/Serving$Supplemental;
+	return-void	
+.end method
+
+.method static access$400(Lcom/google/tagmanager/Container;)J
+.limit registers 3
+; parameter[0] : v2 (Lcom/google/tagmanager/Container;)
+.line 27
+	iget-wide	v0,v2,com/google/tagmanager/Container.mLastRefreshTime J
+; v0 : double-length , v2 : Lcom/google/tagmanager/Container;
+	return-wide	v0
+; v0 : double-length
+.end method
+
+.method static access$402(Lcom/google/tagmanager/Container;J)J
+.limit registers 3
+; parameter[0] : v0 (Lcom/google/tagmanager/Container;)
+; parameter[1] : v1 (J)
+.line 27
+	iput-wide	v1,v0,com/google/tagmanager/Container.mLastRefreshTime J
+; v1 : double-length , v0 : Lcom/google/tagmanager/Container;
+	return-wide	v1
+; v1 : double-length
+.end method
+
+.method static access$500(Lcom/google/tagmanager/Container;Lcom/google/tagmanager/Container$RefreshType;)V
+.limit registers 2
+; parameter[0] : v0 (Lcom/google/tagmanager/Container;)
+; parameter[1] : v1 (Lcom/google/tagmanager/Container$RefreshType;)
+.line 27
+	invoke-direct	{v0,v1},com/google/tagmanager/Container/callRefreshSuccess	; callRefreshSuccess(Lcom/google/tagmanager/Container$RefreshType;)V
+; v0 : Lcom/google/tagmanager/Container; , v1 : Lcom/google/tagmanager/Container$RefreshType;
+	return-void	
+.end method
+
+.method static access$600(Lcom/google/tagmanager/Container;Lcom/google/tagmanager/Container$RefreshType;Lcom/google/tagmanager/Container$RefreshFailure;)V
+.limit registers 3
+; parameter[0] : v0 (Lcom/google/tagmanager/Container;)
+; parameter[1] : v1 (Lcom/google/tagmanager/Container$RefreshType;)
+; parameter[2] : v2 (Lcom/google/tagmanager/Container$RefreshFailure;)
+.line 27
+	invoke-direct	{v0,v1,v2},com/google/tagmanager/Container/callRefreshFailure	; callRefreshFailure(Lcom/google/tagmanager/Container$RefreshType;Lcom/google/tagmanager/Container$RefreshFailure;)V
+; v0 : Lcom/google/tagmanager/Container; , v1 : Lcom/google/tagmanager/Container$RefreshType; , v2 : Lcom/google/tagmanager/Container$RefreshFailure;
+	return-void	
+.end method
+
+.method static access$700(Lcom/google/tagmanager/Container;)Z
+.limit registers 2
+; parameter[0] : v1 (Lcom/google/tagmanager/Container;)
+.line 27
+	invoke-direct	{v1},com/google/tagmanager/Container/isContainerPreview	; isContainerPreview()Z
+; v1 : Lcom/google/tagmanager/Container;
+	move-result	v0
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method static access$800(Lcom/google/tagmanager/Container;Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;)V
+.limit registers 2
+; parameter[0] : v0 (Lcom/google/tagmanager/Container;)
+; parameter[1] : v1 (Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;)
+.line 27
+	invoke-direct	{v0,v1},com/google/tagmanager/Container/saveResourceToDisk	; saveResourceToDisk(Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;)V
+; v0 : Lcom/google/tagmanager/Container; , v1 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+	return-void	
+.end method
+
+.method private synchronized callRefreshBegin(Lcom/google/tagmanager/Container$RefreshType;)V
+.limit registers 3
+; this: v1 (Lcom/google/tagmanager/Container;)
+; parameter[0] : v2 (Lcom/google/tagmanager/Container$RefreshType;)
+.catch java/lang/Exception from la4922 to la4934 using la4938
+.line 452
+	monitor-enter	v1
+; v1 : Lcom/google/tagmanager/Container;
+la4922:
+	iget-object	v0,v1,com/google/tagmanager/Container.mUserCallback Lcom/google/tagmanager/Container$Callback;
+; v0 : Lcom/google/tagmanager/Container$Callback; , v1 : Lcom/google/tagmanager/Container;
+	if-eqz	v0,la4934
+; v0 : Lcom/google/tagmanager/Container$Callback;
+.line 453
+	iget-object	v0,v1,com/google/tagmanager/Container.mUserCallback Lcom/google/tagmanager/Container$Callback;
+; v0 : Lcom/google/tagmanager/Container$Callback; , v1 : Lcom/google/tagmanager/Container;
+	invoke-interface	{v0,v1,v2},com/google/tagmanager/Container$Callback/containerRefreshBegin	; containerRefreshBegin(Lcom/google/tagmanager/Container;Lcom/google/tagmanager/Container$RefreshType;)V
+; v0 : Lcom/google/tagmanager/Container$Callback; , v1 : Lcom/google/tagmanager/Container; , v2 : Lcom/google/tagmanager/Container$RefreshType;
+la4934:
+.line 455
+	monitor-exit	v1
+; v1 : Lcom/google/tagmanager/Container;
+	return-void	
+la4938:
+.line 452
+	move-exception	v0
+; v0 : java/lang/Exception
+	monitor-exit	v1
+; v1 : Lcom/google/tagmanager/Container;
+	throw	v0
+; v0 : java/lang/Exception
+.end method
+
+.method private synchronized callRefreshFailure(Lcom/google/tagmanager/Container$RefreshType;Lcom/google/tagmanager/Container$RefreshFailure;)V
+.limit registers 4
+; this: v1 (Lcom/google/tagmanager/Container;)
+; parameter[0] : v2 (Lcom/google/tagmanager/Container$RefreshType;)
+; parameter[1] : v3 (Lcom/google/tagmanager/Container$RefreshFailure;)
+.catch java/lang/Exception from la495e to la4970 using la4974
+.line 446
+	monitor-enter	v1
+; v1 : Lcom/google/tagmanager/Container;
+la495e:
+	iget-object	v0,v1,com/google/tagmanager/Container.mUserCallback Lcom/google/tagmanager/Container$Callback;
+; v0 : Lcom/google/tagmanager/Container$Callback; , v1 : Lcom/google/tagmanager/Container;
+	if-eqz	v0,la4970
+; v0 : Lcom/google/tagmanager/Container$Callback;
+.line 447
+	iget-object	v0,v1,com/google/tagmanager/Container.mUserCallback Lcom/google/tagmanager/Container$Callback;
+; v0 : Lcom/google/tagmanager/Container$Callback; , v1 : Lcom/google/tagmanager/Container;
+	invoke-interface	{v0,v1,v2,v3},com/google/tagmanager/Container$Callback/containerRefreshFailure	; containerRefreshFailure(Lcom/google/tagmanager/Container;Lcom/google/tagmanager/Container$RefreshType;Lcom/google/tagmanager/Container$RefreshFailure;)V
+; v0 : Lcom/google/tagmanager/Container$Callback; , v1 : Lcom/google/tagmanager/Container; , v2 : Lcom/google/tagmanager/Container$RefreshType; , v3 : Lcom/google/tagmanager/Container$RefreshFailure;
+la4970:
+.line 449
+	monitor-exit	v1
+; v1 : Lcom/google/tagmanager/Container;
+	return-void	
+la4974:
+.line 446
+	move-exception	v0
+; v0 : java/lang/Exception
+	monitor-exit	v1
+; v1 : Lcom/google/tagmanager/Container;
+	throw	v0
+; v0 : java/lang/Exception
+.end method
+
+.method private synchronized callRefreshSuccess(Lcom/google/tagmanager/Container$RefreshType;)V
+.limit registers 4
+; this: v2 (Lcom/google/tagmanager/Container;)
+; parameter[0] : v3 (Lcom/google/tagmanager/Container$RefreshType;)
+.catch java/lang/Exception from la499a to la49f0 using la49f4
+.line 438
+	monitor-enter	v2
+; v2 : Lcom/google/tagmanager/Container;
+la499a:
+	new-instance	v0,java/lang/StringBuilder
+; v0 : Ljava/lang/StringBuilder;
+	invoke-direct	{v0},java/lang/StringBuilder/<init>	; <init>()V
+; v0 : Ljava/lang/StringBuilder;
+	const-string	v1,"calling containerRefreshSuccess("
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v1 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v0,v3},java/lang/StringBuilder/append	; append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v3 : Lcom/google/tagmanager/Container$RefreshType;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	const-string	v1,"): mUserCallback = "
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v1 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	iget-object	v1,v2,com/google/tagmanager/Container.mUserCallback Lcom/google/tagmanager/Container$Callback;
+; v1 : Lcom/google/tagmanager/Container$Callback; , v2 : Lcom/google/tagmanager/Container;
+	invoke-virtual	{v0,v1},java/lang/StringBuilder/append	; append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v1 : Lcom/google/tagmanager/Container$Callback;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v0},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v0 : Ljava/lang/StringBuilder;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	invoke-static	{v0},com/google/tagmanager/Log/v	; v(Ljava/lang/String;)V
+; v0 : Ljava/lang/String;
+.line 439
+	iget-object	v0,v2,com/google/tagmanager/Container.mUserCallback Lcom/google/tagmanager/Container$Callback;
+; v0 : Lcom/google/tagmanager/Container$Callback; , v2 : Lcom/google/tagmanager/Container;
+	if-eqz	v0,la49f0
+; v0 : Lcom/google/tagmanager/Container$Callback;
+.line 440
+	iget-object	v0,v2,com/google/tagmanager/Container.mUserCallback Lcom/google/tagmanager/Container$Callback;
+; v0 : Lcom/google/tagmanager/Container$Callback; , v2 : Lcom/google/tagmanager/Container;
+	invoke-interface	{v0,v2,v3},com/google/tagmanager/Container$Callback/containerRefreshSuccess	; containerRefreshSuccess(Lcom/google/tagmanager/Container;Lcom/google/tagmanager/Container$RefreshType;)V
+; v0 : Lcom/google/tagmanager/Container$Callback; , v2 : Lcom/google/tagmanager/Container; , v3 : Lcom/google/tagmanager/Container$RefreshType;
+la49f0:
+.line 442
+	monitor-exit	v2
+; v2 : Lcom/google/tagmanager/Container;
+	return-void	
+la49f4:
+.line 438
+	move-exception	v0
+; v0 : java/lang/Exception
+	monitor-exit	v2
+; v2 : Lcom/google/tagmanager/Container;
+	throw	v0
+; v0 : java/lang/Exception
+.end method
+
+.method private createInitialContainer()V
+.limit registers 7
+; this: v6 (Lcom/google/tagmanager/Container;)
+.line 733
+	new-instance	v3,java/lang/StringBuilder
+; v3 : Ljava/lang/StringBuilder;
+	invoke-direct	{v3},java/lang/StringBuilder/<init>	; <init>()V
+; v3 : Ljava/lang/StringBuilder;
+	const-string	v4,"tagmanager/"
+; v4 : Ljava/lang/String;
+	invoke-virtual	{v3,v4},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v3 : Ljava/lang/StringBuilder; , v4 : Ljava/lang/String;
+	move-result-object	v3
+; v3 : Ljava/lang/StringBuilder;
+	iget-object	v4,v6,com/google/tagmanager/Container.mContainerId Ljava/lang/String;
+; v4 : Ljava/lang/String; , v6 : Lcom/google/tagmanager/Container;
+	invoke-virtual	{v3,v4},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v3 : Ljava/lang/StringBuilder; , v4 : Ljava/lang/String;
+	move-result-object	v3
+; v3 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v3},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v3 : Ljava/lang/StringBuilder;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+.line 734
+	iget-object	v3,v6,com/google/tagmanager/Container.mResourceStorage Lcom/google/tagmanager/Container$ResourceStorage;
+; v3 : Lcom/google/tagmanager/Container$ResourceStorage; , v6 : Lcom/google/tagmanager/Container;
+	invoke-interface	{v3,v0},com/google/tagmanager/Container$ResourceStorage/loadResourceFromContainerAsset	; loadResourceFromContainerAsset(Ljava/lang/String;)Lcom/google/analytics/containertag/proto/Serving$Resource;
+; v3 : Lcom/google/tagmanager/Container$ResourceStorage; , v0 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Lcom/google/analytics/containertag/proto/Serving$Resource;
+.line 736
+	if-eqz	v2,la4a5a
+; v2 : Lcom/google/analytics/containertag/proto/Serving$Resource;
+.line 737
+	invoke-direct	{v6,v2},com/google/tagmanager/Container/initEvaluators	; initEvaluators(Lcom/google/analytics/containertag/proto/Serving$Resource;)V
+; v6 : Lcom/google/tagmanager/Container; , v2 : Lcom/google/analytics/containertag/proto/Serving$Resource;
+la4a58:
+.line 747
+	return-void	
+la4a5a:
+.line 740
+	iget-object	v3,v6,com/google/tagmanager/Container.mResourceStorage Lcom/google/tagmanager/Container$ResourceStorage;
+; v3 : Lcom/google/tagmanager/Container$ResourceStorage; , v6 : Lcom/google/tagmanager/Container;
+	new-instance	v4,java/lang/StringBuilder
+; v4 : Ljava/lang/StringBuilder;
+	invoke-direct	{v4},java/lang/StringBuilder/<init>	; <init>()V
+; v4 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v4,v0},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v4 : Ljava/lang/StringBuilder; , v0 : Ljava/lang/String;
+	move-result-object	v4
+; v4 : Ljava/lang/StringBuilder;
+	const-string	v5,".json"
+; v5 : Ljava/lang/String;
+	invoke-virtual	{v4,v5},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v4 : Ljava/lang/StringBuilder; , v5 : Ljava/lang/String;
+	move-result-object	v4
+; v4 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v4},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v4 : Ljava/lang/StringBuilder;
+	move-result-object	v4
+; v4 : Ljava/lang/String;
+	invoke-interface	{v3,v4},com/google/tagmanager/Container$ResourceStorage/loadExpandedResourceFromJsonAsset	; loadExpandedResourceFromJsonAsset(Ljava/lang/String;)Lcom/google/tagmanager/ResourceUtil$ExpandedResource;
+; v3 : Lcom/google/tagmanager/Container$ResourceStorage; , v4 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Lcom/google/tagmanager/ResourceUtil$ExpandedResource;
+.line 742
+	if-nez	v1,la4aaa
+; v1 : Lcom/google/tagmanager/ResourceUtil$ExpandedResource;
+.line 743
+	const-string	v3,"No default container found; creating an empty container."
+; v3 : Ljava/lang/String;
+	invoke-static	{v3},com/google/tagmanager/Log/w	; w(Ljava/lang/String;)V
+; v3 : Ljava/lang/String;
+.line 744
+	invoke-static	{},com/google/tagmanager/ResourceUtil$ExpandedResource/newBuilder	; newBuilder()Lcom/google/tagmanager/ResourceUtil$ExpandedResourceBuilder;
+; 
+	nop	
+	move-result-object	v3
+; v3 : Lcom/google/tagmanager/ResourceUtil$ExpandedResourceBuilder;
+	invoke-virtual	{v3},com/google/tagmanager/ResourceUtil$ExpandedResourceBuilder/build	; build()Lcom/google/tagmanager/ResourceUtil$ExpandedResource;
+; v3 : Lcom/google/tagmanager/ResourceUtil$ExpandedResourceBuilder;
+	move-result-object	v1
+; v1 : Lcom/google/tagmanager/ResourceUtil$ExpandedResource;
+la4aaa:
+.line 746
+	invoke-direct	{v6,v1},com/google/tagmanager/Container/initEvaluatorsWithExpandedResource	; initEvaluatorsWithExpandedResource(Lcom/google/tagmanager/ResourceUtil$ExpandedResource;)V
+; v6 : Lcom/google/tagmanager/Container; , v1 : Lcom/google/tagmanager/ResourceUtil$ExpandedResource;
+	goto	la4a58
+.end method
+
+.method private synchronized getRuntime()Lcom/google/tagmanager/Runtime;
+.limit registers 2
+; this: v1 (Lcom/google/tagmanager/Container;)
+.catch java/lang/Exception from la4ac6 to la4aca using la4ace
+.line 702
+	monitor-enter	v1
+; v1 : Lcom/google/tagmanager/Container;
+la4ac6:
+	iget-object	v0,v1,com/google/tagmanager/Container.mRuntime Lcom/google/tagmanager/Runtime;
+; v0 : Lcom/google/tagmanager/Runtime; , v1 : Lcom/google/tagmanager/Container;
+la4aca:
+	monitor-exit	v1
+; v1 : Lcom/google/tagmanager/Container;
+	return-object	v0
+; v0 : Lcom/google/tagmanager/Runtime;
+la4ace:
+	move-exception	v0
+; v0 : java/lang/Exception
+	monitor-exit	v1
+; v1 : Lcom/google/tagmanager/Container;
+	throw	v0
+; v0 : java/lang/Exception
+.end method
+
+.method private initEvaluators(Lcom/google/analytics/containertag/proto/Serving$Resource;)V
+.limit registers 6
+; this: v4 (Lcom/google/tagmanager/Container;)
+; parameter[0] : v5 (Lcom/google/analytics/containertag/proto/Serving$Resource;)
+.catch com/google/tagmanager/ResourceUtil$InvalidResourceException from la4af2 to la4af8 using la4b02
+.line 648
+	const/4	v1,0
+; v1 : single-length
+la4af2:
+.line 650
+	invoke-static	{v5},com/google/tagmanager/ResourceUtil/getExpandedResource	; getExpandedResource(Lcom/google/analytics/containertag/proto/Serving$Resource;)Lcom/google/tagmanager/ResourceUtil$ExpandedResource;
+; v5 : Lcom/google/analytics/containertag/proto/Serving$Resource;
+la4af8:
+	move-result-object	v1
+; v1 : Lcom/google/tagmanager/ResourceUtil$ExpandedResource;
+.line 655
+	invoke-direct	{v4,v1},com/google/tagmanager/Container/initEvaluatorsWithExpandedResource	; initEvaluatorsWithExpandedResource(Lcom/google/tagmanager/ResourceUtil$ExpandedResource;)V
+; v4 : Lcom/google/tagmanager/Container; , v1 : Lcom/google/tagmanager/ResourceUtil$ExpandedResource;
+la4b00:
+.line 656
+	return-void	
+la4b02:
+.line 651
+	move-exception	v0
+; v0 : com/google/tagmanager/ResourceUtil$InvalidResourceException
+.line 652
+	new-instance	v2,java/lang/StringBuilder
+; v2 : Ljava/lang/StringBuilder;
+	invoke-direct	{v2},java/lang/StringBuilder/<init>	; <init>()V
+; v2 : Ljava/lang/StringBuilder;
+	const-string	v3,"Not loading resource: "
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v2,v5},java/lang/StringBuilder/append	; append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v5 : Lcom/google/analytics/containertag/proto/Serving$Resource;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	const-string	v3," because it is invalid: "
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v0},com/google/tagmanager/ResourceUtil$InvalidResourceException/toString	; toString()Ljava/lang/String;
+; v0 : com/google/tagmanager/ResourceUtil$InvalidResourceException
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v2},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v2 : Ljava/lang/StringBuilder;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-static	{v2},com/google/tagmanager/Log/e	; e(Ljava/lang/String;)V
+; v2 : Ljava/lang/String;
+	goto	la4b00
+.end method
+
+.method private initEvaluatorsWithExpandedResource(Lcom/google/tagmanager/ResourceUtil$ExpandedResource;)V
+.limit registers 10
+; this: v8 (Lcom/google/tagmanager/Container;)
+; parameter[0] : v9 (Lcom/google/tagmanager/ResourceUtil$ExpandedResource;)
+	const/4	v7,0
+; v7 : single-length
+.line 669
+	invoke-virtual	{v9},com/google/tagmanager/ResourceUtil$ExpandedResource/getVersion	; getVersion()Ljava/lang/String;
+; v9 : Lcom/google/tagmanager/ResourceUtil$ExpandedResource;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	iput-object	v1,v8,com/google/tagmanager/Container.mResourceVersion Ljava/lang/String;
+; v1 : Ljava/lang/String; , v8 : Lcom/google/tagmanager/Container;
+.line 670
+	invoke-virtual	{v9},com/google/tagmanager/ResourceUtil$ExpandedResource/getResourceFormatVersion	; getResourceFormatVersion()I
+; v9 : Lcom/google/tagmanager/ResourceUtil$ExpandedResource;
+	move-result	v1
+; v1 : single-length
+	iput	v1,v8,com/google/tagmanager/Container.mResourceFormatVersion I
+; v1 : single-length , v8 : Lcom/google/tagmanager/Container;
+.line 671
+	iget-object	v1,v8,com/google/tagmanager/Container.mResourceVersion Ljava/lang/String;
+; v1 : Ljava/lang/String; , v8 : Lcom/google/tagmanager/Container;
+	invoke-virtual	{v8,v1},com/google/tagmanager/Container/createEventInfoDistributor	; createEventInfoDistributor(Ljava/lang/String;)Lcom/google/tagmanager/EventInfoDistributor;
+; v8 : Lcom/google/tagmanager/Container; , v1 : Ljava/lang/String;
+	move-result-object	v6
+; v6 : Lcom/google/tagmanager/EventInfoDistributor;
+.line 672
+	new-instance	v0,com/google/tagmanager/Runtime
+; v0 : Lcom/google/tagmanager/Runtime;
+	iget-object	v1,v8,com/google/tagmanager/Container.mContext Landroid/content/Context;
+; v1 : Landroid/content/Context; , v8 : Lcom/google/tagmanager/Container;
+	iget-object	v2,v8,com/google/tagmanager/Container.mTagManager Lcom/google/tagmanager/TagManager;
+; v2 : Lcom/google/tagmanager/TagManager; , v8 : Lcom/google/tagmanager/Container;
+	invoke-virtual	{v2},com/google/tagmanager/TagManager/getDataLayer	; getDataLayer()Lcom/google/tagmanager/DataLayer;
+; v2 : Lcom/google/tagmanager/TagManager;
+	move-result-object	v3
+; v3 : Lcom/google/tagmanager/DataLayer;
+	new-instance	v4,com/google/tagmanager/Container$FunctionCallMacroHandlerAdapter
+; v4 : Lcom/google/tagmanager/Container$FunctionCallMacroHandlerAdapter;
+	invoke-direct	{v4,v8,v7},com/google/tagmanager/Container$FunctionCallMacroHandlerAdapter/<init>	; <init>(Lcom/google/tagmanager/Container;Lcom/google/tagmanager/Container$1;)V
+; v4 : Lcom/google/tagmanager/Container$FunctionCallMacroHandlerAdapter; , v8 : Lcom/google/tagmanager/Container; , v7 : single-length
+	new-instance	v5,com/google/tagmanager/Container$FunctionCallTagHandlerAdapter
+; v5 : Lcom/google/tagmanager/Container$FunctionCallTagHandlerAdapter;
+	invoke-direct	{v5,v8,v7},com/google/tagmanager/Container$FunctionCallTagHandlerAdapter/<init>	; <init>(Lcom/google/tagmanager/Container;Lcom/google/tagmanager/Container$1;)V
+; v5 : Lcom/google/tagmanager/Container$FunctionCallTagHandlerAdapter; , v8 : Lcom/google/tagmanager/Container; , v7 : single-length
+	move-object	v2,v9
+; v2 : Lcom/google/tagmanager/ResourceUtil$ExpandedResource; , v9 : Lcom/google/tagmanager/ResourceUtil$ExpandedResource;
+	invoke-direct/range	{v0..v6},com/google/tagmanager/Runtime/<init>;	<init>(Landroid/content/Context;Lcom/google/tagmanager/ResourceUtil$ExpandedResource;Lcom/google/tagmanager/DataLayer;Lcom/google/tagmanager/CustomFunctionCall$CustomEvaluator;Lcom/google/tagmanager/CustomFunctionCall$CustomEvaluator;Lcom/google/tagmanager/EventInfoDistributor;)V
+; v0 : Lcom/google/tagmanager/Runtime; , v1 : Landroid/content/Context; , v2 : Lcom/google/tagmanager/ResourceUtil$ExpandedResource; , v3 : Lcom/google/tagmanager/DataLayer; , v4 : Lcom/google/tagmanager/Container$FunctionCallMacroHandlerAdapter; , v5 : Lcom/google/tagmanager/Container$FunctionCallTagHandlerAdapter; , v6 : Lcom/google/tagmanager/EventInfoDistributor;
+.line 675
+	invoke-direct	{v8,v0},com/google/tagmanager/Container/setRuntime	; setRuntime(Lcom/google/tagmanager/Runtime;)V
+; v8 : Lcom/google/tagmanager/Container; , v0 : Lcom/google/tagmanager/Runtime;
+.line 676
+	return-void	
+.end method
+
+.method private isContainerPreview()Z
+.limit registers 4
+; this: v3 (Lcom/google/tagmanager/Container;)
+.line 726
+	invoke-static	{},com/google/tagmanager/PreviewManager/getInstance	; getInstance()Lcom/google/tagmanager/PreviewManager;
+; 
+	nop	
+	move-result-object	v0
+; v0 : Lcom/google/tagmanager/PreviewManager;
+.line 727
+	invoke-virtual	{v0},com/google/tagmanager/PreviewManager/getPreviewMode	; getPreviewMode()Lcom/google/tagmanager/PreviewManager$PreviewMode;
+; v0 : Lcom/google/tagmanager/PreviewManager;
+	move-result-object	v1
+; v1 : Lcom/google/tagmanager/PreviewManager$PreviewMode;
+	sget-object	v2,com/google/tagmanager/PreviewManager$PreviewMode.CONTAINER Lcom/google/tagmanager/PreviewManager$PreviewMode;
+; v2 : Lcom/google/tagmanager/PreviewManager$PreviewMode;
+	if-eq	v1,v2,la4c08
+; v1 : Lcom/google/tagmanager/PreviewManager$PreviewMode; , v2 : Lcom/google/tagmanager/PreviewManager$PreviewMode;
+	invoke-virtual	{v0},com/google/tagmanager/PreviewManager/getPreviewMode	; getPreviewMode()Lcom/google/tagmanager/PreviewManager$PreviewMode;
+; v0 : Lcom/google/tagmanager/PreviewManager;
+	move-result-object	v1
+; v1 : Lcom/google/tagmanager/PreviewManager$PreviewMode;
+	sget-object	v2,com/google/tagmanager/PreviewManager$PreviewMode.CONTAINER_DEBUG Lcom/google/tagmanager/PreviewManager$PreviewMode;
+; v2 : Lcom/google/tagmanager/PreviewManager$PreviewMode;
+	if-ne	v1,v2,la4c24
+; v1 : Lcom/google/tagmanager/PreviewManager$PreviewMode; , v2 : Lcom/google/tagmanager/PreviewManager$PreviewMode;
+la4c08:
+	iget-object	v1,v3,com/google/tagmanager/Container.mContainerId Ljava/lang/String;
+; v1 : Ljava/lang/String; , v3 : Lcom/google/tagmanager/Container;
+	invoke-virtual	{v0},com/google/tagmanager/PreviewManager/getContainerId	; getContainerId()Ljava/lang/String;
+; v0 : Lcom/google/tagmanager/PreviewManager;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/String/equals	; equals(Ljava/lang/Object;)Z
+; v1 : Ljava/lang/String; , v2 : Ljava/lang/String;
+	move-result	v1
+; v1 : single-length
+	if-eqz	v1,la4c24
+; v1 : single-length
+	const/4	v1,1
+; v1 : single-length
+la4c22:
+	return	v1
+; v1 : single-length
+la4c24:
+	const/4	v1,0
+; v1 : single-length
+	goto	la4c22
+.end method
+
+.method private isDefaultContainerRefreshMode()Z
+.limit registers 3
+; this: v2 (Lcom/google/tagmanager/Container;)
+.line 750
+	iget-object	v0,v2,com/google/tagmanager/Container.mTagManager Lcom/google/tagmanager/TagManager;
+; v0 : Lcom/google/tagmanager/TagManager; , v2 : Lcom/google/tagmanager/Container;
+	invoke-virtual	{v0},com/google/tagmanager/TagManager/getRefreshMode	; getRefreshMode()Lcom/google/tagmanager/TagManager$RefreshMode;
+; v0 : Lcom/google/tagmanager/TagManager;
+	move-result-object	v0
+; v0 : Lcom/google/tagmanager/TagManager$RefreshMode;
+	sget-object	v1,com/google/tagmanager/TagManager$RefreshMode.DEFAULT_CONTAINER Lcom/google/tagmanager/TagManager$RefreshMode;
+; v1 : Lcom/google/tagmanager/TagManager$RefreshMode;
+	if-ne	v0,v1,la4c50
+; v0 : Lcom/google/tagmanager/TagManager$RefreshMode; , v1 : Lcom/google/tagmanager/TagManager$RefreshMode;
+	const/4	v0,1
+; v0 : single-length
+la4c4e:
+	return	v0
+; v0 : single-length
+la4c50:
+	const/4	v0,0
+; v0 : single-length
+	goto	la4c4e
+.end method
+
+.method private synchronized saveResourceToDisk(Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;)V
+.limit registers 5
+; this: v3 (Lcom/google/tagmanager/Container;)
+; parameter[0] : v4 (Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;)
+.catch java/lang/Exception from la4c66 to la4ca0 using la4ca4
+.var 0 is resourceWithMetadata Lcom/google/tagmanager/proto/Resource$ResourceWithMetadata; from la4c78 to la4ca0
+.line 638
+	monitor-enter	v3
+; v3 : Lcom/google/tagmanager/Container;
+la4c66:
+	iget-object	v1,v3,com/google/tagmanager/Container.mResourceStorage Lcom/google/tagmanager/Container$ResourceStorage;
+; v1 : Lcom/google/tagmanager/Container$ResourceStorage; , v3 : Lcom/google/tagmanager/Container;
+	if-eqz	v1,la4ca0
+; v1 : Lcom/google/tagmanager/Container$ResourceStorage;
+.line 639
+	new-instance	v0,com/google/tagmanager/proto/Resource$ResourceWithMetadata
+; v0 : Lcom/google/tagmanager/proto/Resource$ResourceWithMetadata;
+	invoke-direct	{v0},com/google/tagmanager/proto/Resource$ResourceWithMetadata/<init>	; <init>()V
+; v0 : Lcom/google/tagmanager/proto/Resource$ResourceWithMetadata;
+.line 640
+	invoke-virtual	{v3},com/google/tagmanager/Container/getLastRefreshTime	; getLastRefreshTime()J
+; v3 : Lcom/google/tagmanager/Container;
+	move-result-wide	v1
+; v1 : double-length
+	iput-wide	v1,v0,com/google/tagmanager/proto/Resource$ResourceWithMetadata.timeStamp J
+; v1 : double-length , v0 : Lcom/google/tagmanager/proto/Resource$ResourceWithMetadata;
+.line 641
+	new-instance	v1,com/google/analytics/containertag/proto/Serving$Resource
+; v1 : Lcom/google/analytics/containertag/proto/Serving$Resource;
+	invoke-direct	{v1},com/google/analytics/containertag/proto/Serving$Resource/<init>	; <init>()V
+; v1 : Lcom/google/analytics/containertag/proto/Serving$Resource;
+	iput-object	v1,v0,com/google/tagmanager/proto/Resource$ResourceWithMetadata.resource Lcom/google/analytics/containertag/proto/Serving$Resource;
+; v1 : Lcom/google/analytics/containertag/proto/Serving$Resource; , v0 : Lcom/google/tagmanager/proto/Resource$ResourceWithMetadata;
+.line 642
+	iput-object	v4,v0,com/google/tagmanager/proto/Resource$ResourceWithMetadata.supplementedResource Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+; v4 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource; , v0 : Lcom/google/tagmanager/proto/Resource$ResourceWithMetadata;
+.line 643
+	iget-object	v1,v3,com/google/tagmanager/Container.mResourceStorage Lcom/google/tagmanager/Container$ResourceStorage;
+; v1 : Lcom/google/tagmanager/Container$ResourceStorage; , v3 : Lcom/google/tagmanager/Container;
+	invoke-interface	{v1,v0},com/google/tagmanager/Container$ResourceStorage/saveResourceToDiskInBackground	; saveResourceToDiskInBackground(Lcom/google/tagmanager/proto/Resource$ResourceWithMetadata;)V
+; v1 : Lcom/google/tagmanager/Container$ResourceStorage; , v0 : Lcom/google/tagmanager/proto/Resource$ResourceWithMetadata;
+la4ca0:
+.line 645
+	monitor-exit	v3
+; v3 : Lcom/google/tagmanager/Container;
+	return-void	
+la4ca4:
+.line 638
+	move-exception	v1
+; v1 : java/lang/Exception
+	monitor-exit	v3
+; v3 : Lcom/google/tagmanager/Container;
+	throw	v1
+; v1 : java/lang/Exception
+.end method
+
+.method private synchronized setRuntime(Lcom/google/tagmanager/Runtime;)V
+.limit registers 3
+; this: v1 (Lcom/google/tagmanager/Container;)
+; parameter[0] : v2 (Lcom/google/tagmanager/Runtime;)
+.catch java/lang/Exception from la4cca to la4cce using la4cd2
+.line 698
+	monitor-enter	v1
+; v1 : Lcom/google/tagmanager/Container;
+la4cca:
+	iput-object	v2,v1,com/google/tagmanager/Container.mRuntime Lcom/google/tagmanager/Runtime;
+; v2 : Lcom/google/tagmanager/Runtime; , v1 : Lcom/google/tagmanager/Container;
+la4cce:
+.line 699
+	monitor-exit	v1
+; v1 : Lcom/google/tagmanager/Container;
+	return-void	
+la4cd2:
+.line 698
+	move-exception	v0
+; v0 : java/lang/Exception
+	monitor-exit	v1
+; v1 : Lcom/google/tagmanager/Container;
+	throw	v0
+; v0 : java/lang/Exception
+.end method
+
+.method private setSupplementals([Lcom/google/analytics/containertag/proto/Serving$Supplemental;)V
+.limit registers 8
+; this: v6 (Lcom/google/tagmanager/Container;)
+; parameter[0] : v7 ([Lcom/google/analytics/containertag/proto/Serving$Supplemental;)
+.var 3 is supplemental Lcom/google/analytics/containertag/proto/Serving$Supplemental; from la4d0c to la4d18
+.line 660
+	new-instance	v4,java/util/ArrayList
+; v4 : Ljava/util/ArrayList;
+	invoke-direct	{v4},java/util/ArrayList/<init>	; <init>()V
+; v4 : Ljava/util/ArrayList;
+.line 661
+	move-object	v0,v7
+; v0 : [Lcom/google/analytics/containertag/proto/Serving$Supplemental; , v7 : [Lcom/google/analytics/containertag/proto/Serving$Supplemental;
+	array-length	v2,v0
+; v2 : single-length , v0 : [Lcom/google/analytics/containertag/proto/Serving$Supplemental;
+	const/4	v1,0
+; v1 : single-length
+la4d04:
+	if-ge	v1,v2,la4d18
+; v1 : single-length , v2 : single-length
+	aget-object	v3,v0,v1
+; v3 : Lcom/google/analytics/containertag/proto/Serving$Supplemental; , v0 : [Lcom/google/analytics/containertag/proto/Serving$Supplemental; , v1 : single-length
+.line 662
+	invoke-interface	{v4,v3},java/util/List/add	; add(Ljava/lang/Object;)Z
+; v4 : Ljava/util/ArrayList; , v3 : Lcom/google/analytics/containertag/proto/Serving$Supplemental;
+.line 661
+	add-int/lit8	v1,v1,1
+; v1 : single-length , v1 : single-length
+	goto	la4d04
+la4d18:
+.line 665
+	invoke-direct	{v6},com/google/tagmanager/Container/getRuntime	; getRuntime()Lcom/google/tagmanager/Runtime;
+; v6 : Lcom/google/tagmanager/Container;
+	move-result-object	v5
+; v5 : Lcom/google/tagmanager/Runtime;
+	invoke-virtual	{v5,v4},com/google/tagmanager/Runtime/setSupplementals	; setSupplementals(Ljava/util/List;)V
+; v5 : Lcom/google/tagmanager/Runtime; , v4 : Ljava/util/ArrayList;
+.line 666
+	return-void	
+.end method
+
+.method private useAvailableToken(J)Z
+.limit registers 13
+; this: v10 (Lcom/google/tagmanager/Container;)
+; parameter[0] : v11 (J)
+.var 0 is numAddedTokens I from la4d94 to la4da6
+	const/16	v9,30
+; v9 : single-length
+	const/4	v3,1
+; v3 : single-length
+	const/4	v4,0
+; v4 : single-length
+.line 754
+	iget-wide	v5,v10,com/google/tagmanager/Container.mLastRefreshMethodCalledTime J
+; v5 : double-length , v10 : Lcom/google/tagmanager/Container;
+	const-wide/16	v7,0
+; v7 : double-length
+	cmp-long	v5,v5,v7
+; v5 : single-length , v5 : single-length , v7 : double-length
+	if-nez	v5,la4d5e
+; v5 : single-length
+.line 755
+	iget	v4,v10,com/google/tagmanager/Container.mNumTokens I
+; v4 : single-length , v10 : Lcom/google/tagmanager/Container;
+	add-int/lit8	v4,v4,255
+; v4 : single-length , v4 : single-length
+	iput	v4,v10,com/google/tagmanager/Container.mNumTokens I
+; v4 : single-length , v10 : Lcom/google/tagmanager/Container;
+la4d5c:
+.line 773
+	return	v3
+; v3 : single-length
+la4d5e:
+.line 759
+	iget-wide	v5,v10,com/google/tagmanager/Container.mLastRefreshMethodCalledTime J
+; v5 : double-length , v10 : Lcom/google/tagmanager/Container;
+	sub-long	v1,v11,v5
+; v1 : double-length , v11 : double-length , v5 : double-length
+.line 760
+	const-wide/16	v5,5000
+; v5 : double-length
+	cmp-long	v5,v1,v5
+; v5 : single-length , v1 : double-length , v5 : single-length
+	if-gez	v5,la4d76
+; v5 : single-length
+	move	v3,v4
+; v3 : single-length , v4 : single-length
+.line 761
+	goto	la4d5c
+la4d76:
+.line 763
+	iget	v5,v10,com/google/tagmanager/Container.mNumTokens I
+; v5 : single-length , v10 : Lcom/google/tagmanager/Container;
+	if-ge	v5,v9,la4da6
+; v5 : single-length , v9 : single-length
+.line 764
+	const-wide/32	v5,900000	; 0xdbba0
+; v5 : double-length
+	div-long	v5,v1,v5
+; v5 : double-length , v1 : double-length , v5 : double-length
+	long-to-double	v5,v5
+; v5 : double-length , v5 : double-length
+	invoke-static	{v5,v6},java/lang/Math/floor	; floor(D)D
+; v5 : double-length
+	move-result-wide	v5
+; v5 : double-length
+	double-to-int	v0,v5
+; v0 : single-length , v5 : double-length
+.line 765
+	iget	v5,v10,com/google/tagmanager/Container.mNumTokens I
+; v5 : single-length , v10 : Lcom/google/tagmanager/Container;
+	add-int/2addr	v5,v0
+; v5 : single-length , v0 : single-length
+	invoke-static	{v9,v5},java/lang/Math/min	; min(II)I
+; v9 : single-length , v5 : single-length
+	move-result	v5
+; v5 : single-length
+	iput	v5,v10,com/google/tagmanager/Container.mNumTokens I
+; v5 : single-length , v10 : Lcom/google/tagmanager/Container;
+la4da6:
+.line 768
+	iget	v5,v10,com/google/tagmanager/Container.mNumTokens I
+; v5 : single-length , v10 : Lcom/google/tagmanager/Container;
+	if-lez	v5,la4dbc
+; v5 : single-length
+.line 769
+	iget	v4,v10,com/google/tagmanager/Container.mNumTokens I
+; v4 : single-length , v10 : Lcom/google/tagmanager/Container;
+	add-int/lit8	v4,v4,255
+; v4 : single-length , v4 : single-length
+	iput	v4,v10,com/google/tagmanager/Container.mNumTokens I
+; v4 : single-length , v10 : Lcom/google/tagmanager/Container;
+	goto	la4d5c
+la4dbc:
+	move	v3,v4
+; v3 : single-length , v4 : single-length
+.line 773
+	goto	la4d5c
+.end method
+
+.method public synchronized close()V
+.limit registers 4
+; this: v3 (Lcom/google/tagmanager/Container;)
+.catch java/lang/Exception from la4e22 to la4e56 using la4e58
+.catch java/lang/Exception from la4e18 to la4e1c using la4e58
+.catch java/lang/Exception from la4dd2 to la4e16 using la4e20
+.catch java/lang/Exception from la4dd2 to la4e16 using la4e58
+.var 0 is e Ljava/lang/Exception; from la4e22 to la4e58
+.line 355
+	monitor-enter	v3
+; v3 : Lcom/google/tagmanager/Container;
+la4dd2:
+	iget-object	v1,v3,com/google/tagmanager/Container.mNetworkLoadScheduler Lcom/google/tagmanager/Container$ResourceLoaderScheduler;
+; v1 : Lcom/google/tagmanager/Container$ResourceLoaderScheduler; , v3 : Lcom/google/tagmanager/Container;
+	if-eqz	v1,la4de4
+; v1 : Lcom/google/tagmanager/Container$ResourceLoaderScheduler;
+.line 356
+	iget-object	v1,v3,com/google/tagmanager/Container.mNetworkLoadScheduler Lcom/google/tagmanager/Container$ResourceLoaderScheduler;
+; v1 : Lcom/google/tagmanager/Container$ResourceLoaderScheduler; , v3 : Lcom/google/tagmanager/Container;
+	invoke-interface	{v1},com/google/tagmanager/Container$ResourceLoaderScheduler/close	; close()V
+; v1 : Lcom/google/tagmanager/Container$ResourceLoaderScheduler;
+la4de4:
+.line 358
+	const/4	v1,0
+; v1 : single-length
+	iput-object	v1,v3,com/google/tagmanager/Container.mNetworkLoadScheduler Lcom/google/tagmanager/Container$ResourceLoaderScheduler;
+; v1 : single-length , v3 : Lcom/google/tagmanager/Container;
+.line 359
+	iget-object	v1,v3,com/google/tagmanager/Container.mResourceStorage Lcom/google/tagmanager/Container$ResourceStorage;
+; v1 : Lcom/google/tagmanager/Container$ResourceStorage; , v3 : Lcom/google/tagmanager/Container;
+	if-eqz	v1,la4dfc
+; v1 : Lcom/google/tagmanager/Container$ResourceStorage;
+.line 360
+	iget-object	v1,v3,com/google/tagmanager/Container.mResourceStorage Lcom/google/tagmanager/Container$ResourceStorage;
+; v1 : Lcom/google/tagmanager/Container$ResourceStorage; , v3 : Lcom/google/tagmanager/Container;
+	invoke-interface	{v1},com/google/tagmanager/Container$ResourceStorage/close	; close()V
+; v1 : Lcom/google/tagmanager/Container$ResourceStorage;
+la4dfc:
+.line 362
+	const/4	v1,0
+; v1 : single-length
+	iput-object	v1,v3,com/google/tagmanager/Container.mResourceStorage Lcom/google/tagmanager/Container$ResourceStorage;
+; v1 : single-length , v3 : Lcom/google/tagmanager/Container;
+.line 363
+	const/4	v1,0
+; v1 : single-length
+	iput-object	v1,v3,com/google/tagmanager/Container.mUserCallback Lcom/google/tagmanager/Container$Callback;
+; v1 : single-length , v3 : Lcom/google/tagmanager/Container;
+.line 364
+	iget-object	v1,v3,com/google/tagmanager/Container.mTagManager Lcom/google/tagmanager/TagManager;
+; v1 : Lcom/google/tagmanager/TagManager; , v3 : Lcom/google/tagmanager/Container;
+	iget-object	v2,v3,com/google/tagmanager/Container.mContainerId Ljava/lang/String;
+; v2 : Ljava/lang/String; , v3 : Lcom/google/tagmanager/Container;
+	invoke-virtual	{v1,v2},com/google/tagmanager/TagManager/removeContainer	; removeContainer(Ljava/lang/String;)Z
+; v1 : Lcom/google/tagmanager/TagManager; , v2 : Ljava/lang/String;
+la4e16:
+.line 368
+	const/4	v1,0
+; v1 : single-length
+la4e18:
+	iput-object	v1,v3,com/google/tagmanager/Container.mRuntime Lcom/google/tagmanager/Runtime;
+; v1 : single-length , v3 : Lcom/google/tagmanager/Container;
+la4e1c:
+.line 369
+	monitor-exit	v3
+; v3 : Lcom/google/tagmanager/Container;
+	return-void	
+la4e20:
+.line 365
+	move-exception	v0
+; v0 : java/lang/Exception
+la4e22:
+.line 366
+	new-instance	v1,java/lang/StringBuilder
+; v1 : Ljava/lang/StringBuilder;
+	invoke-direct	{v1},java/lang/StringBuilder/<init>	; <init>()V
+; v1 : Ljava/lang/StringBuilder;
+	const-string	v2,"Calling close() threw an exception: "
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v0},java/lang/Exception/getMessage	; getMessage()Ljava/lang/String;
+; v0 : java/lang/Exception
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v1},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v1 : Ljava/lang/StringBuilder;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-static	{v1},com/google/tagmanager/Log/e	; e(Ljava/lang/String;)V
+; v1 : Ljava/lang/String;
+la4e56:
+	goto	la4e16
+la4e58:
+.line 355
+	move-exception	v1
+; v1 : java/lang/Exception
+	monitor-exit	v3
+; v3 : Lcom/google/tagmanager/Container;
+	throw	v1
+; v1 : java/lang/Exception
+.end method
+
+.method createEventInfoDistributor(Ljava/lang/String;)Lcom/google/tagmanager/EventInfoDistributor;
+.annotation buildVisibility Lcom/google/android/gms/common/util/VisibleForTesting;
+.end annotation
+.limit registers 4
+; this: v2 (Lcom/google/tagmanager/Container;)
+; parameter[0] : v3 (Ljava/lang/String;)
+.line 688
+	invoke-static	{},com/google/tagmanager/PreviewManager/getInstance	; getInstance()Lcom/google/tagmanager/PreviewManager;
+; 
+	nop	
+	move-result-object	v0
+; v0 : Lcom/google/tagmanager/PreviewManager;
+	invoke-virtual	{v0},com/google/tagmanager/PreviewManager/getPreviewMode	; getPreviewMode()Lcom/google/tagmanager/PreviewManager$PreviewMode;
+; v0 : Lcom/google/tagmanager/PreviewManager;
+	move-result-object	v0
+; v0 : Lcom/google/tagmanager/PreviewManager$PreviewMode;
+	sget-object	v1,com/google/tagmanager/PreviewManager$PreviewMode.CONTAINER_DEBUG Lcom/google/tagmanager/PreviewManager$PreviewMode;
+; v1 : Lcom/google/tagmanager/PreviewManager$PreviewMode;
+	invoke-virtual	{v0,v1},com/google/tagmanager/PreviewManager$PreviewMode/equals	; equals(Ljava/lang/Object;)Z
+; v0 : Lcom/google/tagmanager/PreviewManager$PreviewMode; , v1 : Lcom/google/tagmanager/PreviewManager$PreviewMode;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,la4eb0
+; v0 : single-length
+la4eb0:
+.line 693
+	new-instance	v0,com/google/tagmanager/NoopEventInfoDistributor
+; v0 : Lcom/google/tagmanager/NoopEventInfoDistributor;
+	invoke-direct	{v0},com/google/tagmanager/NoopEventInfoDistributor/<init>	; <init>()V
+; v0 : Lcom/google/tagmanager/NoopEventInfoDistributor;
+	return-object	v0
+; v0 : Lcom/google/tagmanager/NoopEventInfoDistributor;
+.end method
+
+.method evaluateTags(Ljava/lang/String;)V
+.annotation buildVisibility Lcom/google/android/gms/common/util/VisibleForTesting;
+.end annotation
+.limit registers 3
+; this: v1 (Lcom/google/tagmanager/Container;)
+; parameter[0] : v2 (Ljava/lang/String;)
+.line 459
+	invoke-direct	{v1},com/google/tagmanager/Container/getRuntime	; getRuntime()Lcom/google/tagmanager/Runtime;
+; v1 : Lcom/google/tagmanager/Container;
+	move-result-object	v0
+; v0 : Lcom/google/tagmanager/Runtime;
+	invoke-virtual	{v0,v2},com/google/tagmanager/Runtime/evaluateTags	; evaluateTags(Ljava/lang/String;)V
+; v0 : Lcom/google/tagmanager/Runtime; , v2 : Ljava/lang/String;
+.line 460
+	return-void	
+.end method
+
+.method public getBoolean(Ljava/lang/String;)Z
+.limit registers 6
+; this: v4 (Lcom/google/tagmanager/Container;)
+; parameter[0] : v5 (Ljava/lang/String;)
+.catch java/lang/Exception from la4f14 to la4f36 using la4f3a
+.line 239
+	invoke-direct	{v4},com/google/tagmanager/Container/getRuntime	; getRuntime()Lcom/google/tagmanager/Runtime;
+; v4 : Lcom/google/tagmanager/Container;
+	move-result-object	v1
+; v1 : Lcom/google/tagmanager/Runtime;
+.line 240
+	if-nez	v1,la4f14
+; v1 : Lcom/google/tagmanager/Runtime;
+.line 241
+	const-string	v2,"getBoolean called for closed container."
+; v2 : Ljava/lang/String;
+	invoke-static	{v2},com/google/tagmanager/Log/e	; e(Ljava/lang/String;)V
+; v2 : Ljava/lang/String;
+.line 242
+	invoke-static	{},com/google/tagmanager/Types/getDefaultBoolean	; getDefaultBoolean()Ljava/lang/Boolean;
+; 
+	nop	
+	move-result-object	v2
+; v2 : Ljava/lang/Boolean;
+	invoke-virtual	{v2},java/lang/Boolean/booleanValue	; booleanValue()Z
+; v2 : Ljava/lang/Boolean;
+	move-result	v2
+; v2 : single-length
+la4f12:
+.line 249
+	return	v2
+; v2 : single-length
+la4f14:
+.line 245
+	invoke-virtual	{v1,v5},com/google/tagmanager/Runtime/evaluateMacroReference	; evaluateMacroReference(Ljava/lang/String;)Lcom/google/tagmanager/ObjectAndStatic;
+; v1 : Lcom/google/tagmanager/Runtime; , v5 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Lcom/google/tagmanager/ObjectAndStatic;
+	invoke-virtual	{v2},com/google/tagmanager/ObjectAndStatic/getObject	; getObject()Ljava/lang/Object;
+; v2 : Lcom/google/tagmanager/ObjectAndStatic;
+	move-result-object	v2
+; v2 : Ljava/lang/Object;
+	check-cast	v2,com/google/analytics/midtier/proto/containertag/TypeSystem$Value
+; v2 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	invoke-static	{v2},com/google/tagmanager/Types/valueToBoolean	; valueToBoolean(Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;)Ljava/lang/Boolean;
+; v2 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	move-result-object	v2
+; v2 : Ljava/lang/Boolean;
+	invoke-virtual	{v2},java/lang/Boolean/booleanValue	; booleanValue()Z
+; v2 : Ljava/lang/Boolean;
+la4f36:
+	move-result	v2
+; v2 : single-length
+	goto	la4f12
+la4f3a:
+.line 246
+	move-exception	v0
+; v0 : java/lang/Exception
+.line 247
+	new-instance	v2,java/lang/StringBuilder
+; v2 : Ljava/lang/StringBuilder;
+	invoke-direct	{v2},java/lang/StringBuilder/<init>	; <init>()V
+; v2 : Ljava/lang/StringBuilder;
+	const-string	v3,"Calling getBoolean() threw an exception: "
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v0},java/lang/Exception/getMessage	; getMessage()Ljava/lang/String;
+; v0 : java/lang/Exception
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	const-string	v3," Returning default value."
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v2},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v2 : Ljava/lang/StringBuilder;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-static	{v2},com/google/tagmanager/Log/e	; e(Ljava/lang/String;)V
+; v2 : Ljava/lang/String;
+.line 249
+	invoke-static	{},com/google/tagmanager/Types/getDefaultBoolean	; getDefaultBoolean()Ljava/lang/Boolean;
+; 
+	nop	
+	move-result-object	v2
+; v2 : Ljava/lang/Boolean;
+	invoke-virtual	{v2},java/lang/Boolean/booleanValue	; booleanValue()Z
+; v2 : Ljava/lang/Boolean;
+	move-result	v2
+; v2 : single-length
+	goto	la4f12
+.end method
+
+.method public getContainerId()Ljava/lang/String;
+.limit registers 2
+; this: v1 (Lcom/google/tagmanager/Container;)
+.line 231
+	iget-object	v0,v1,com/google/tagmanager/Container.mContainerId Ljava/lang/String;
+; v0 : Ljava/lang/String; , v1 : Lcom/google/tagmanager/Container;
+	return-object	v0
+; v0 : Ljava/lang/String;
+.end method
+
+.method getCtfeUrlPathAndQuery()Ljava/lang/String;
+.limit registers 2
+; this: v1 (Lcom/google/tagmanager/Container;)
+.line 722
+	iget-object	v0,v1,com/google/tagmanager/Container.mCtfeUrlPathAndQuery Ljava/lang/String;
+; v0 : Ljava/lang/String; , v1 : Lcom/google/tagmanager/Container;
+	return-object	v0
+; v0 : Ljava/lang/String;
+.end method
+
+.method public getDouble(Ljava/lang/String;)D
+.limit registers 6
+; this: v4 (Lcom/google/tagmanager/Container;)
+; parameter[0] : v5 (Ljava/lang/String;)
+.catch java/lang/Exception from la5008 to la502a using la502e
+.line 258
+	invoke-direct	{v4},com/google/tagmanager/Container/getRuntime	; getRuntime()Lcom/google/tagmanager/Runtime;
+; v4 : Lcom/google/tagmanager/Container;
+	move-result-object	v1
+; v1 : Lcom/google/tagmanager/Runtime;
+.line 259
+	if-nez	v1,la5008
+; v1 : Lcom/google/tagmanager/Runtime;
+.line 260
+	const-string	v2,"getDouble called for closed container."
+; v2 : Ljava/lang/String;
+	invoke-static	{v2},com/google/tagmanager/Log/e	; e(Ljava/lang/String;)V
+; v2 : Ljava/lang/String;
+.line 261
+	invoke-static	{},com/google/tagmanager/Types/getDefaultDouble	; getDefaultDouble()Ljava/lang/Double;
+; 
+	nop	
+	move-result-object	v2
+; v2 : Ljava/lang/Double;
+	invoke-virtual	{v2},java/lang/Double/doubleValue	; doubleValue()D
+; v2 : Ljava/lang/Double;
+	move-result-wide	v2
+; v2 : double-length
+la5006:
+.line 268
+	return-wide	v2
+; v2 : double-length
+la5008:
+.line 264
+	invoke-virtual	{v1,v5},com/google/tagmanager/Runtime/evaluateMacroReference	; evaluateMacroReference(Ljava/lang/String;)Lcom/google/tagmanager/ObjectAndStatic;
+; v1 : Lcom/google/tagmanager/Runtime; , v5 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Lcom/google/tagmanager/ObjectAndStatic;
+	invoke-virtual	{v2},com/google/tagmanager/ObjectAndStatic/getObject	; getObject()Ljava/lang/Object;
+; v2 : Lcom/google/tagmanager/ObjectAndStatic;
+	move-result-object	v2
+; v2 : Ljava/lang/Object;
+	check-cast	v2,com/google/analytics/midtier/proto/containertag/TypeSystem$Value
+; v2 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	invoke-static	{v2},com/google/tagmanager/Types/valueToDouble	; valueToDouble(Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;)Ljava/lang/Double;
+; v2 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	move-result-object	v2
+; v2 : Ljava/lang/Double;
+	invoke-virtual	{v2},java/lang/Double/doubleValue	; doubleValue()D
+; v2 : Ljava/lang/Double;
+la502a:
+	move-result-wide	v2
+; v2 : double-length
+	goto	la5006
+la502e:
+.line 265
+	move-exception	v0
+; v0 : java/lang/Exception
+.line 266
+	new-instance	v2,java/lang/StringBuilder
+; v2 : Ljava/lang/StringBuilder;
+	invoke-direct	{v2},java/lang/StringBuilder/<init>	; <init>()V
+; v2 : Ljava/lang/StringBuilder;
+	const-string	v3,"Calling getDouble() threw an exception: "
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v0},java/lang/Exception/getMessage	; getMessage()Ljava/lang/String;
+; v0 : java/lang/Exception
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	const-string	v3," Returning default value."
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v2},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v2 : Ljava/lang/StringBuilder;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-static	{v2},com/google/tagmanager/Log/e	; e(Ljava/lang/String;)V
+; v2 : Ljava/lang/String;
+.line 268
+	invoke-static	{},com/google/tagmanager/Types/getDefaultDouble	; getDefaultDouble()Ljava/lang/Double;
+; 
+	nop	
+	move-result-object	v2
+; v2 : Ljava/lang/Double;
+	invoke-virtual	{v2},java/lang/Double/doubleValue	; doubleValue()D
+; v2 : Ljava/lang/Double;
+	move-result-wide	v2
+; v2 : double-length
+	goto	la5006
+.end method
+
+.method public synchronized getFunctionCallMacroHandler(Ljava/lang/String;)Lcom/google/tagmanager/Container$FunctionCallMacroHandler;
+.limit registers 3
+; this: v1 (Lcom/google/tagmanager/Container;)
+; parameter[0] : v2 (Ljava/lang/String;)
+.catch java/lang/Exception from la50a6 to la50b6 using la50ba
+.line 413
+	monitor-enter	v1
+; v1 : Lcom/google/tagmanager/Container;
+la50a6:
+	iget-object	v0,v1,com/google/tagmanager/Container.mFunctionCallMacroHandlers Ljava/util/Map;
+; v0 : Ljava/util/Map; , v1 : Lcom/google/tagmanager/Container;
+	invoke-interface	{v0,v2},java/util/Map/get	; get(Ljava/lang/Object;)Ljava/lang/Object;
+; v0 : Ljava/util/Map; , v2 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,com/google/tagmanager/Container$FunctionCallMacroHandler
+; v0 : Lcom/google/tagmanager/Container$FunctionCallMacroHandler;
+la50b6:
+	monitor-exit	v1
+; v1 : Lcom/google/tagmanager/Container;
+	return-object	v0
+; v0 : Lcom/google/tagmanager/Container$FunctionCallMacroHandler;
+la50ba:
+	move-exception	v0
+; v0 : java/lang/Exception
+	monitor-exit	v1
+; v1 : Lcom/google/tagmanager/Container;
+	throw	v0
+; v0 : java/lang/Exception
+.end method
+
+.method public synchronized getFunctionCallTagHandler(Ljava/lang/String;)Lcom/google/tagmanager/Container$FunctionCallTagHandler;
+.limit registers 3
+; this: v1 (Lcom/google/tagmanager/Container;)
+; parameter[0] : v2 (Ljava/lang/String;)
+.catch java/lang/Exception from la50de to la50ee using la50f2
+.line 434
+	monitor-enter	v1
+; v1 : Lcom/google/tagmanager/Container;
+la50de:
+	iget-object	v0,v1,com/google/tagmanager/Container.mFunctionCallTagHandlers Ljava/util/Map;
+; v0 : Ljava/util/Map; , v1 : Lcom/google/tagmanager/Container;
+	invoke-interface	{v0,v2},java/util/Map/get	; get(Ljava/lang/Object;)Ljava/lang/Object;
+; v0 : Ljava/util/Map; , v2 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,com/google/tagmanager/Container$FunctionCallTagHandler
+; v0 : Lcom/google/tagmanager/Container$FunctionCallTagHandler;
+la50ee:
+	monitor-exit	v1
+; v1 : Lcom/google/tagmanager/Container;
+	return-object	v0
+; v0 : Lcom/google/tagmanager/Container$FunctionCallTagHandler;
+la50f2:
+	move-exception	v0
+; v0 : java/lang/Exception
+	monitor-exit	v1
+; v1 : Lcom/google/tagmanager/Container;
+	throw	v0
+; v0 : java/lang/Exception
+.end method
+
+.method public getLastRefreshTime()J
+.limit registers 3
+; this: v2 (Lcom/google/tagmanager/Container;)
+.line 315
+	iget-wide	v0,v2,com/google/tagmanager/Container.mLastRefreshTime J
+; v0 : double-length , v2 : Lcom/google/tagmanager/Container;
+	return-wide	v0
+; v0 : double-length
+.end method
+
+.method public getLong(Ljava/lang/String;)J
+.limit registers 6
+; this: v4 (Lcom/google/tagmanager/Container;)
+; parameter[0] : v5 (Ljava/lang/String;)
+.catch java/lang/Exception from la5154 to la5176 using la517a
+.line 277
+	invoke-direct	{v4},com/google/tagmanager/Container/getRuntime	; getRuntime()Lcom/google/tagmanager/Runtime;
+; v4 : Lcom/google/tagmanager/Container;
+	move-result-object	v1
+; v1 : Lcom/google/tagmanager/Runtime;
+.line 278
+	if-nez	v1,la5154
+; v1 : Lcom/google/tagmanager/Runtime;
+.line 279
+	const-string	v2,"getLong called for closed container."
+; v2 : Ljava/lang/String;
+	invoke-static	{v2},com/google/tagmanager/Log/e	; e(Ljava/lang/String;)V
+; v2 : Ljava/lang/String;
+.line 280
+	invoke-static	{},com/google/tagmanager/Types/getDefaultInt64	; getDefaultInt64()Ljava/lang/Long;
+; 
+	nop	
+	move-result-object	v2
+; v2 : Ljava/lang/Long;
+	invoke-virtual	{v2},java/lang/Long/longValue	; longValue()J
+; v2 : Ljava/lang/Long;
+	move-result-wide	v2
+; v2 : double-length
+la5152:
+.line 287
+	return-wide	v2
+; v2 : double-length
+la5154:
+.line 283
+	invoke-virtual	{v1,v5},com/google/tagmanager/Runtime/evaluateMacroReference	; evaluateMacroReference(Ljava/lang/String;)Lcom/google/tagmanager/ObjectAndStatic;
+; v1 : Lcom/google/tagmanager/Runtime; , v5 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Lcom/google/tagmanager/ObjectAndStatic;
+	invoke-virtual	{v2},com/google/tagmanager/ObjectAndStatic/getObject	; getObject()Ljava/lang/Object;
+; v2 : Lcom/google/tagmanager/ObjectAndStatic;
+	move-result-object	v2
+; v2 : Ljava/lang/Object;
+	check-cast	v2,com/google/analytics/midtier/proto/containertag/TypeSystem$Value
+; v2 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	invoke-static	{v2},com/google/tagmanager/Types/valueToInt64	; valueToInt64(Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;)Ljava/lang/Long;
+; v2 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	move-result-object	v2
+; v2 : Ljava/lang/Long;
+	invoke-virtual	{v2},java/lang/Long/longValue	; longValue()J
+; v2 : Ljava/lang/Long;
+la5176:
+	move-result-wide	v2
+; v2 : double-length
+	goto	la5152
+la517a:
+.line 284
+	move-exception	v0
+; v0 : java/lang/Exception
+.line 285
+	new-instance	v2,java/lang/StringBuilder
+; v2 : Ljava/lang/StringBuilder;
+	invoke-direct	{v2},java/lang/StringBuilder/<init>	; <init>()V
+; v2 : Ljava/lang/StringBuilder;
+	const-string	v3,"Calling getLong() threw an exception: "
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v0},java/lang/Exception/getMessage	; getMessage()Ljava/lang/String;
+; v0 : java/lang/Exception
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	const-string	v3," Returning default value."
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v2},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v2 : Ljava/lang/StringBuilder;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-static	{v2},com/google/tagmanager/Log/e	; e(Ljava/lang/String;)V
+; v2 : Ljava/lang/String;
+.line 287
+	invoke-static	{},com/google/tagmanager/Types/getDefaultInt64	; getDefaultInt64()Ljava/lang/Long;
+; 
+	nop	
+	move-result-object	v2
+; v2 : Ljava/lang/Long;
+	invoke-virtual	{v2},java/lang/Long/longValue	; longValue()J
+; v2 : Ljava/lang/Long;
+	move-result-wide	v2
+; v2 : double-length
+	goto	la5152
+.end method
+
+.method getResourceVersion()Ljava/lang/String;
+.annotation buildVisibility Lcom/google/android/gms/common/util/VisibleForTesting;
+.end annotation
+.limit registers 2
+; this: v1 (Lcom/google/tagmanager/Container;)
+.line 627
+	iget-object	v0,v1,com/google/tagmanager/Container.mResourceVersion Ljava/lang/String;
+; v0 : Ljava/lang/String; , v1 : Lcom/google/tagmanager/Container;
+	return-object	v0
+; v0 : Ljava/lang/String;
+.end method
+
+.method public getString(Ljava/lang/String;)Ljava/lang/String;
+.limit registers 6
+; this: v4 (Lcom/google/tagmanager/Container;)
+; parameter[0] : v5 (Ljava/lang/String;)
+.catch java/lang/Exception from la5228 to la5242 using la5246
+.line 296
+	invoke-direct	{v4},com/google/tagmanager/Container/getRuntime	; getRuntime()Lcom/google/tagmanager/Runtime;
+; v4 : Lcom/google/tagmanager/Container;
+	move-result-object	v1
+; v1 : Lcom/google/tagmanager/Runtime;
+.line 297
+	if-nez	v1,la5228
+; v1 : Lcom/google/tagmanager/Runtime;
+.line 298
+	const-string	v2,"getString called for closed container."
+; v2 : Ljava/lang/String;
+	invoke-static	{v2},com/google/tagmanager/Log/e	; e(Ljava/lang/String;)V
+; v2 : Ljava/lang/String;
+.line 299
+	invoke-static	{},com/google/tagmanager/Types/getDefaultString	; getDefaultString()Ljava/lang/String;
+; 
+	nop	
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+la5226:
+.line 306
+	return-object	v2
+; v2 : Ljava/lang/String;
+la5228:
+.line 302
+	invoke-virtual	{v1,v5},com/google/tagmanager/Runtime/evaluateMacroReference	; evaluateMacroReference(Ljava/lang/String;)Lcom/google/tagmanager/ObjectAndStatic;
+; v1 : Lcom/google/tagmanager/Runtime; , v5 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Lcom/google/tagmanager/ObjectAndStatic;
+	invoke-virtual	{v2},com/google/tagmanager/ObjectAndStatic/getObject	; getObject()Ljava/lang/Object;
+; v2 : Lcom/google/tagmanager/ObjectAndStatic;
+	move-result-object	v2
+; v2 : Ljava/lang/Object;
+	check-cast	v2,com/google/analytics/midtier/proto/containertag/TypeSystem$Value
+; v2 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	invoke-static	{v2},com/google/tagmanager/Types/valueToString	; valueToString(Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;)Ljava/lang/String;
+; v2 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+la5242:
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	goto	la5226
+la5246:
+.line 303
+	move-exception	v0
+; v0 : java/lang/Exception
+.line 304
+	new-instance	v2,java/lang/StringBuilder
+; v2 : Ljava/lang/StringBuilder;
+	invoke-direct	{v2},java/lang/StringBuilder/<init>	; <init>()V
+; v2 : Ljava/lang/StringBuilder;
+	const-string	v3,"Calling getString() threw an exception: "
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v0},java/lang/Exception/getMessage	; getMessage()Ljava/lang/String;
+; v0 : java/lang/Exception
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	const-string	v3," Returning default value."
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v2},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v2 : Ljava/lang/StringBuilder;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-static	{v2},com/google/tagmanager/Log/e	; e(Ljava/lang/String;)V
+; v2 : Ljava/lang/String;
+.line 306
+	invoke-static	{},com/google/tagmanager/Types/getDefaultString	; getDefaultString()Ljava/lang/String;
+; 
+	nop	
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	goto	la5226
+.end method
+
+.method public isDefault()Z
+.limit registers 5
+; this: v4 (Lcom/google/tagmanager/Container;)
+.line 375
+	invoke-virtual	{v4},com/google/tagmanager/Container/getLastRefreshTime	; getLastRefreshTime()J
+; v4 : Lcom/google/tagmanager/Container;
+	move-result-wide	v0
+; v0 : double-length
+	const-wide/16	v2,0
+; v2 : double-length
+	cmp-long	v0,v0,v2
+; v0 : single-length , v0 : single-length , v2 : double-length
+	if-nez	v0,la52cc
+; v0 : single-length
+	const/4	v0,1
+; v0 : single-length
+la52ca:
+	return	v0
+; v0 : single-length
+la52cc:
+	const/4	v0,0
+; v0 : single-length
+	goto	la52ca
+.end method
+
+.method load(Lcom/google/tagmanager/Container$Callback;)V
+.annotation buildVisibility Lcom/google/android/gms/common/util/VisibleForTesting;
+.end annotation
+.limit registers 7
+; this: v5 (Lcom/google/tagmanager/Container;)
+; parameter[0] : v6 (Lcom/google/tagmanager/Container$Callback;)
+.line 385
+	new-instance	v0,com/google/tagmanager/Container$1
+; v0 : Lcom/google/tagmanager/Container$1;
+	invoke-direct	{v0,v5},com/google/tagmanager/Container$1/<init>	; <init>(Lcom/google/tagmanager/Container;)V
+; v0 : Lcom/google/tagmanager/Container$1; , v5 : Lcom/google/tagmanager/Container;
+.line 391
+	new-instance	v1,com/google/tagmanager/ResourceLoaderSchedulerImpl
+; v1 : Lcom/google/tagmanager/ResourceLoaderSchedulerImpl;
+	iget-object	v2,v5,com/google/tagmanager/Container.mContext Landroid/content/Context;
+; v2 : Landroid/content/Context; , v5 : Lcom/google/tagmanager/Container;
+	iget-object	v3,v5,com/google/tagmanager/Container.mContainerId Ljava/lang/String;
+; v3 : Ljava/lang/String; , v5 : Lcom/google/tagmanager/Container;
+	iget-object	v4,v5,com/google/tagmanager/Container.mCtfeHost Lcom/google/tagmanager/CtfeHost;
+; v4 : Lcom/google/tagmanager/CtfeHost; , v5 : Lcom/google/tagmanager/Container;
+	invoke-direct	{v1,v2,v3,v4},com/google/tagmanager/ResourceLoaderSchedulerImpl/<init>	; <init>(Landroid/content/Context;Ljava/lang/String;Lcom/google/tagmanager/CtfeHost;)V
+; v1 : Lcom/google/tagmanager/ResourceLoaderSchedulerImpl; , v2 : Landroid/content/Context; , v3 : Ljava/lang/String; , v4 : Lcom/google/tagmanager/CtfeHost;
+	invoke-virtual	{v5,v6,v1,v0},com/google/tagmanager/Container/load	; load(Lcom/google/tagmanager/Container$Callback;Lcom/google/tagmanager/Container$ResourceLoaderScheduler;Lcom/google/tagmanager/Clock;)V
+; v5 : Lcom/google/tagmanager/Container; , v6 : Lcom/google/tagmanager/Container$Callback; , v1 : Lcom/google/tagmanager/ResourceLoaderSchedulerImpl; , v0 : Lcom/google/tagmanager/Container$1;
+.line 393
+	return-void	
+.end method
+
+.method synchronized load(Lcom/google/tagmanager/Container$Callback;Lcom/google/tagmanager/Container$ResourceLoaderScheduler;Lcom/google/tagmanager/Clock;)V
+.annotation buildVisibility Lcom/google/android/gms/common/util/VisibleForTesting;
+.end annotation
+.limit registers 7
+; this: v3 (Lcom/google/tagmanager/Container;)
+; parameter[0] : v4 (Lcom/google/tagmanager/Container$Callback;)
+; parameter[1] : v5 (Lcom/google/tagmanager/Container$ResourceLoaderScheduler;)
+; parameter[2] : v6 (Lcom/google/tagmanager/Clock;)
+.catch java/lang/Exception from la538e to la5402 using la5358
+.catch java/lang/Exception from la535e to la538a using la5358
+.catch java/lang/Exception from la531a to la5358 using la5358
+.line 465
+	monitor-enter	v3
+; v3 : Lcom/google/tagmanager/Container;
+la531a:
+	iget-object	v0,v3,com/google/tagmanager/Container.mDiskLoadCallback Lcom/google/tagmanager/LoadCallback;
+; v0 : Lcom/google/tagmanager/LoadCallback; , v3 : Lcom/google/tagmanager/Container;
+	if-eqz	v0,la535e
+; v0 : Lcom/google/tagmanager/LoadCallback;
+.line 466
+	new-instance	v0,java/lang/RuntimeException
+; v0 : Ljava/lang/RuntimeException;
+	new-instance	v1,java/lang/StringBuilder
+; v1 : Ljava/lang/StringBuilder;
+	invoke-direct	{v1},java/lang/StringBuilder/<init>	; <init>()V
+; v1 : Ljava/lang/StringBuilder;
+	const-string	v2,"Container already loaded: container ID: "
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	iget-object	v2,v3,com/google/tagmanager/Container.mContainerId Ljava/lang/String;
+; v2 : Ljava/lang/String; , v3 : Lcom/google/tagmanager/Container;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v1},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v1 : Ljava/lang/StringBuilder;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/RuntimeException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/RuntimeException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/RuntimeException;
+la5358:
+.line 465
+	move-exception	v0
+; v0 : java/lang/Exception
+	monitor-exit	v3
+; v3 : Lcom/google/tagmanager/Container;
+	throw	v0
+; v0 : java/lang/Exception
+la535e:
+.line 469
+	iput-object	v6,v3,com/google/tagmanager/Container.mClock Lcom/google/tagmanager/Clock;
+; v6 : Lcom/google/tagmanager/Clock; , v3 : Lcom/google/tagmanager/Container;
+.line 470
+	iput-object	v4,v3,com/google/tagmanager/Container.mUserCallback Lcom/google/tagmanager/Container$Callback;
+; v4 : Lcom/google/tagmanager/Container$Callback; , v3 : Lcom/google/tagmanager/Container;
+.line 471
+	new-instance	v0,com/google/tagmanager/Container$2
+; v0 : Lcom/google/tagmanager/Container$2;
+	invoke-direct	{v0,v3,v6},com/google/tagmanager/Container$2/<init>	; <init>(Lcom/google/tagmanager/Container;Lcom/google/tagmanager/Clock;)V
+; v0 : Lcom/google/tagmanager/Container$2; , v3 : Lcom/google/tagmanager/Container; , v6 : Lcom/google/tagmanager/Clock;
+	iput-object	v0,v3,com/google/tagmanager/Container.mDiskLoadCallback Lcom/google/tagmanager/LoadCallback;
+; v0 : Lcom/google/tagmanager/Container$2; , v3 : Lcom/google/tagmanager/Container;
+.line 532
+	invoke-direct	{v3},com/google/tagmanager/Container/isDefaultContainerRefreshMode	; isDefaultContainerRefreshMode()Z
+; v3 : Lcom/google/tagmanager/Container;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,la538e
+; v0 : single-length
+.line 533
+	const-string	v0,"Container is in DEFAULT_CONTAINER mode. Use default container."
+; v0 : Ljava/lang/String;
+	invoke-static	{v0},com/google/tagmanager/Log/i	; i(Ljava/lang/String;)V
+; v0 : Ljava/lang/String;
+la538a:
+.line 623
+	monitor-exit	v3
+; v3 : Lcom/google/tagmanager/Container;
+	return-void	
+la538e:
+.line 537
+	iget-object	v0,v3,com/google/tagmanager/Container.mResourceStorage Lcom/google/tagmanager/Container$ResourceStorage;
+; v0 : Lcom/google/tagmanager/Container$ResourceStorage; , v3 : Lcom/google/tagmanager/Container;
+	iget-object	v1,v3,com/google/tagmanager/Container.mDiskLoadCallback Lcom/google/tagmanager/LoadCallback;
+; v1 : Lcom/google/tagmanager/LoadCallback; , v3 : Lcom/google/tagmanager/Container;
+	invoke-interface	{v0,v1},com/google/tagmanager/Container$ResourceStorage/setLoadCallback	; setLoadCallback(Lcom/google/tagmanager/LoadCallback;)V
+; v0 : Lcom/google/tagmanager/Container$ResourceStorage; , v1 : Lcom/google/tagmanager/LoadCallback;
+.line 540
+	new-instance	v0,com/google/tagmanager/Container$3
+; v0 : Lcom/google/tagmanager/Container$3;
+	invoke-direct	{v0,v3,v6},com/google/tagmanager/Container$3/<init>	; <init>(Lcom/google/tagmanager/Container;Lcom/google/tagmanager/Clock;)V
+; v0 : Lcom/google/tagmanager/Container$3; , v3 : Lcom/google/tagmanager/Container; , v6 : Lcom/google/tagmanager/Clock;
+	iput-object	v0,v3,com/google/tagmanager/Container.mNetworkLoadCallback Lcom/google/tagmanager/LoadCallback;
+; v0 : Lcom/google/tagmanager/Container$3; , v3 : Lcom/google/tagmanager/Container;
+.line 610
+	iget-object	v0,v3,com/google/tagmanager/Container.mNetworkLoadCallback Lcom/google/tagmanager/LoadCallback;
+; v0 : Lcom/google/tagmanager/LoadCallback; , v3 : Lcom/google/tagmanager/Container;
+	invoke-interface	{v5,v0},com/google/tagmanager/Container$ResourceLoaderScheduler/setLoadCallback	; setLoadCallback(Lcom/google/tagmanager/LoadCallback;)V
+; v5 : Lcom/google/tagmanager/Container$ResourceLoaderScheduler; , v0 : Lcom/google/tagmanager/LoadCallback;
+.line 612
+	invoke-direct	{v3},com/google/tagmanager/Container/isContainerPreview	; isContainerPreview()Z
+; v3 : Lcom/google/tagmanager/Container;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,la53de
+; v0 : single-length
+.line 613
+	invoke-static	{},com/google/tagmanager/PreviewManager/getInstance	; getInstance()Lcom/google/tagmanager/PreviewManager;
+; 
+	nop	
+	move-result-object	v0
+; v0 : Lcom/google/tagmanager/PreviewManager;
+	invoke-virtual	{v0},com/google/tagmanager/PreviewManager/getCTFEUrlPath	; getCTFEUrlPath()Ljava/lang/String;
+; v0 : Lcom/google/tagmanager/PreviewManager;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	iput-object	v0,v3,com/google/tagmanager/Container.mCtfeUrlPathAndQuery Ljava/lang/String;
+; v0 : Ljava/lang/String; , v3 : Lcom/google/tagmanager/Container;
+.line 614
+	iget-object	v0,v3,com/google/tagmanager/Container.mCtfeUrlPathAndQuery Ljava/lang/String;
+; v0 : Ljava/lang/String; , v3 : Lcom/google/tagmanager/Container;
+	invoke-interface	{v5,v0},com/google/tagmanager/Container$ResourceLoaderScheduler/setCtfeURLPathAndQuery	; setCtfeURLPathAndQuery(Ljava/lang/String;)V
+; v5 : Lcom/google/tagmanager/Container$ResourceLoaderScheduler; , v0 : Ljava/lang/String;
+la53de:
+.line 616
+	iget-object	v0,v3,com/google/tagmanager/Container.mCtfeServerAddress Ljava/lang/String;
+; v0 : Ljava/lang/String; , v3 : Lcom/google/tagmanager/Container;
+	if-eqz	v0,la53f4
+; v0 : Ljava/lang/String;
+.line 617
+	iget-object	v0,v3,com/google/tagmanager/Container.mCtfeHost Lcom/google/tagmanager/CtfeHost;
+; v0 : Lcom/google/tagmanager/CtfeHost; , v3 : Lcom/google/tagmanager/Container;
+	iget-object	v1,v3,com/google/tagmanager/Container.mCtfeServerAddress Ljava/lang/String;
+; v1 : Ljava/lang/String; , v3 : Lcom/google/tagmanager/Container;
+	invoke-virtual	{v0,v1},com/google/tagmanager/CtfeHost/setCtfeServerAddress	; setCtfeServerAddress(Ljava/lang/String;)V
+; v0 : Lcom/google/tagmanager/CtfeHost; , v1 : Ljava/lang/String;
+la53f4:
+.line 619
+	iput-object	v5,v3,com/google/tagmanager/Container.mNetworkLoadScheduler Lcom/google/tagmanager/Container$ResourceLoaderScheduler;
+; v5 : Lcom/google/tagmanager/Container$ResourceLoaderScheduler; , v3 : Lcom/google/tagmanager/Container;
+.line 622
+	iget-object	v0,v3,com/google/tagmanager/Container.mResourceStorage Lcom/google/tagmanager/Container$ResourceStorage;
+; v0 : Lcom/google/tagmanager/Container$ResourceStorage; , v3 : Lcom/google/tagmanager/Container;
+	invoke-interface	{v0},com/google/tagmanager/Container$ResourceStorage/loadResourceFromDiskInBackground	; loadResourceFromDiskInBackground()V
+; v0 : Lcom/google/tagmanager/Container$ResourceStorage;
+la5402:
+	goto	la538a
+.end method
+
+.method synchronized loadAfterDelay(J)V
+.annotation buildVisibility Lcom/google/android/gms/common/util/VisibleForTesting;
+.end annotation
+.limit registers 5
+; this: v2 (Lcom/google/tagmanager/Container;)
+; parameter[0] : v3 (J)
+.catch java/lang/Exception from la5432 to la5458 using la545c
+.line 632
+	monitor-enter	v2
+; v2 : Lcom/google/tagmanager/Container;
+la5432:
+	iget-object	v0,v2,com/google/tagmanager/Container.mNetworkLoadScheduler Lcom/google/tagmanager/Container$ResourceLoaderScheduler;
+; v0 : Lcom/google/tagmanager/Container$ResourceLoaderScheduler; , v2 : Lcom/google/tagmanager/Container;
+	if-eqz	v0,la5458
+; v0 : Lcom/google/tagmanager/Container$ResourceLoaderScheduler;
+	invoke-direct	{v2},com/google/tagmanager/Container/isDefaultContainerRefreshMode	; isDefaultContainerRefreshMode()Z
+; v2 : Lcom/google/tagmanager/Container;
+	move-result	v0
+; v0 : single-length
+	if-nez	v0,la5458
+; v0 : single-length
+.line 633
+	iget-object	v0,v2,com/google/tagmanager/Container.mNetworkLoadScheduler Lcom/google/tagmanager/Container$ResourceLoaderScheduler;
+; v0 : Lcom/google/tagmanager/Container$ResourceLoaderScheduler; , v2 : Lcom/google/tagmanager/Container;
+	iget-object	v1,v2,com/google/tagmanager/Container.mLastLoadedSupplementedResource Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+; v1 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource; , v2 : Lcom/google/tagmanager/Container;
+	iget-object	v1,v1,com/google/analytics/containertag/proto/Serving$SupplementedResource.fingerprint Ljava/lang/String;
+; v1 : Ljava/lang/String; , v1 : Ljava/lang/String;
+	invoke-interface	{v0,v3,v4,v1},com/google/tagmanager/Container$ResourceLoaderScheduler/loadAfterDelay	; loadAfterDelay(JLjava/lang/String;)V
+; v0 : Lcom/google/tagmanager/Container$ResourceLoaderScheduler; , v3 : double-length , v1 : Ljava/lang/String;
+la5458:
+.line 635
+	monitor-exit	v2
+; v2 : Lcom/google/tagmanager/Container;
+	return-void	
+la545c:
+.line 632
+	move-exception	v0
+; v0 : java/lang/Exception
+	monitor-exit	v2
+; v2 : Lcom/google/tagmanager/Container;
+	throw	v0
+; v0 : java/lang/Exception
+.end method
+
+.method public synchronized refresh()V
+.limit registers 6
+; this: v5 (Lcom/google/tagmanager/Container;)
+.catch java/lang/Exception from la54f2 to la552e using la54b4
+.catch java/lang/Exception from la54f2 to la552e using la54ec
+.catch java/lang/Exception from la54b6 to la54ea using la54ec
+.catch java/lang/Exception from la549c to la54b2 using la54b4
+.catch java/lang/Exception from la549c to la54b2 using la54ec
+.catch java/lang/Exception from la5482 to la5498 using la54ec
+.var 2 is e Ljava/lang/Exception; from la54b6 to la54ec
+.line 326
+	monitor-enter	v5
+; v5 : Lcom/google/tagmanager/Container;
+la5482:
+	invoke-direct	{v5},com/google/tagmanager/Container/getRuntime	; getRuntime()Lcom/google/tagmanager/Runtime;
+; v5 : Lcom/google/tagmanager/Container;
+	move-result-object	v3
+; v3 : Lcom/google/tagmanager/Runtime;
+	if-nez	v3,la549c
+; v3 : Lcom/google/tagmanager/Runtime;
+.line 327
+	const-string	v3,"refresh called for closed container"
+; v3 : Ljava/lang/String;
+	invoke-static	{v3},com/google/tagmanager/Log/w	; w(Ljava/lang/String;)V
+; v3 : Ljava/lang/String;
+la5498:
+.line 347
+	monitor-exit	v5
+; v5 : Lcom/google/tagmanager/Container;
+	return-void	
+la549c:
+.line 331
+	invoke-direct	{v5},com/google/tagmanager/Container/isDefaultContainerRefreshMode	; isDefaultContainerRefreshMode()Z
+; v5 : Lcom/google/tagmanager/Container;
+	move-result	v3
+; v3 : single-length
+	if-eqz	v3,la54f2
+; v3 : single-length
+.line 332
+	const-string	v3,"Container is in DEFAULT_CONTAINER mode. Refresh request is ignored."
+; v3 : Ljava/lang/String;
+	invoke-static	{v3},com/google/tagmanager/Log/w	; w(Ljava/lang/String;)V
+; v3 : Ljava/lang/String;
+la54b2:
+	goto	la5498
+la54b4:
+.line 344
+	move-exception	v2
+; v2 : java/lang/Exception
+la54b6:
+.line 345
+	new-instance	v3,java/lang/StringBuilder
+; v3 : Ljava/lang/StringBuilder;
+	invoke-direct	{v3},java/lang/StringBuilder/<init>	; <init>()V
+; v3 : Ljava/lang/StringBuilder;
+	const-string	v4,"Calling refresh() throws an exception: "
+; v4 : Ljava/lang/String;
+	invoke-virtual	{v3,v4},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v3 : Ljava/lang/StringBuilder; , v4 : Ljava/lang/String;
+	move-result-object	v3
+; v3 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v2},java/lang/Exception/getMessage	; getMessage()Ljava/lang/String;
+; v2 : java/lang/Exception
+	move-result-object	v4
+; v4 : Ljava/lang/String;
+	invoke-virtual	{v3,v4},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v3 : Ljava/lang/StringBuilder; , v4 : Ljava/lang/String;
+	move-result-object	v3
+; v3 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v3},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v3 : Ljava/lang/StringBuilder;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-static	{v3},com/google/tagmanager/Log/e	; e(Ljava/lang/String;)V
+; v3 : Ljava/lang/String;
+la54ea:
+	goto	la5498
+la54ec:
+.line 326
+	move-exception	v3
+; v3 : java/lang/Exception
+	monitor-exit	v5
+; v5 : Lcom/google/tagmanager/Container;
+	throw	v3
+; v3 : java/lang/Exception
+la54f2:
+.line 336
+	iget-object	v3,v5,com/google/tagmanager/Container.mClock Lcom/google/tagmanager/Clock;
+; v3 : Lcom/google/tagmanager/Clock; , v5 : Lcom/google/tagmanager/Container;
+	invoke-interface	{v3},com/google/tagmanager/Clock/currentTimeMillis	; currentTimeMillis()J
+; v3 : Lcom/google/tagmanager/Clock;
+	move-result-wide	v0
+; v0 : double-length
+.line 337
+	invoke-direct	{v5,v0,v1},com/google/tagmanager/Container/useAvailableToken	; useAvailableToken(J)Z
+; v5 : Lcom/google/tagmanager/Container; , v0 : double-length
+	move-result	v3
+; v3 : single-length
+	if-eqz	v3,la5524
+; v3 : single-length
+.line 338
+	const-string	v3,"Container refresh requested"
+; v3 : Ljava/lang/String;
+	invoke-static	{v3},com/google/tagmanager/Log/v	; v(Ljava/lang/String;)V
+; v3 : Ljava/lang/String;
+.line 339
+	const-wide/16	v3,0
+; v3 : double-length
+	invoke-virtual	{v5,v3,v4},com/google/tagmanager/Container/loadAfterDelay	; loadAfterDelay(J)V
+; v5 : Lcom/google/tagmanager/Container; , v3 : double-length
+.line 340
+	iput-wide	v0,v5,com/google/tagmanager/Container.mLastRefreshMethodCalledTime J
+; v0 : double-length , v5 : Lcom/google/tagmanager/Container;
+	goto	la5498
+la5524:
+.line 342
+	const-string	v3,"Container refresh was called too often. Ignored."
+; v3 : Ljava/lang/String;
+	invoke-static	{v3},com/google/tagmanager/Log/v	; v(Ljava/lang/String;)V
+; v3 : Ljava/lang/String;
+la552e:
+	goto	la5498
+.end method
+
+.method public synchronized registerFunctionCallMacroHandler(Ljava/lang/String;Lcom/google/tagmanager/Container$FunctionCallMacroHandler;)V
+.limit registers 4
+; this: v1 (Lcom/google/tagmanager/Container;)
+; parameter[0] : v2 (Ljava/lang/String;)
+; parameter[1] : v3 (Lcom/google/tagmanager/Container$FunctionCallMacroHandler;)
+.catch java/lang/Exception from la556a to la5574 using la5578
+.line 406
+	monitor-enter	v1
+; v1 : Lcom/google/tagmanager/Container;
+la556a:
+	iget-object	v0,v1,com/google/tagmanager/Container.mFunctionCallMacroHandlers Ljava/util/Map;
+; v0 : Ljava/util/Map; , v1 : Lcom/google/tagmanager/Container;
+	invoke-interface	{v0,v2,v3},java/util/Map/put	; put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+; v0 : Ljava/util/Map; , v2 : Ljava/lang/String; , v3 : Lcom/google/tagmanager/Container$FunctionCallMacroHandler;
+la5574:
+.line 407
+	monitor-exit	v1
+; v1 : Lcom/google/tagmanager/Container;
+	return-void	
+la5578:
+.line 406
+	move-exception	v0
+; v0 : java/lang/Exception
+	monitor-exit	v1
+; v1 : Lcom/google/tagmanager/Container;
+	throw	v0
+; v0 : java/lang/Exception
+.end method
+
+.method public synchronized registerFunctionCallTagHandler(Ljava/lang/String;Lcom/google/tagmanager/Container$FunctionCallTagHandler;)V
+.limit registers 4
+; this: v1 (Lcom/google/tagmanager/Container;)
+; parameter[0] : v2 (Ljava/lang/String;)
+; parameter[1] : v3 (Lcom/google/tagmanager/Container$FunctionCallTagHandler;)
+.catch java/lang/Exception from la559e to la55a8 using la55ac
+.line 427
+	monitor-enter	v1
+; v1 : Lcom/google/tagmanager/Container;
+la559e:
+	iget-object	v0,v1,com/google/tagmanager/Container.mFunctionCallTagHandlers Ljava/util/Map;
+; v0 : Ljava/util/Map; , v1 : Lcom/google/tagmanager/Container;
+	invoke-interface	{v0,v2,v3},java/util/Map/put	; put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+; v0 : Ljava/util/Map; , v2 : Ljava/lang/String; , v3 : Lcom/google/tagmanager/Container$FunctionCallTagHandler;
+la55a8:
+.line 428
+	monitor-exit	v1
+; v1 : Lcom/google/tagmanager/Container;
+	return-void	
+la55ac:
+.line 427
+	move-exception	v0
+; v0 : java/lang/Exception
+	monitor-exit	v1
+; v1 : Lcom/google/tagmanager/Container;
+	throw	v0
+; v0 : java/lang/Exception
+.end method
+
+.method synchronized setCtfeServerAddress(Ljava/lang/String;)V
+.annotation buildVisibility Lcom/google/android/gms/common/util/VisibleForTesting;
+.end annotation
+.limit registers 3
+; this: v1 (Lcom/google/tagmanager/Container;)
+; parameter[0] : v2 (Ljava/lang/String;)
+.catch java/lang/Exception from la55d2 to la55e4 using la55e8
+.line 707
+	monitor-enter	v1
+; v1 : Lcom/google/tagmanager/Container;
+la55d2:
+	iput-object	v2,v1,com/google/tagmanager/Container.mCtfeServerAddress Ljava/lang/String;
+; v2 : Ljava/lang/String; , v1 : Lcom/google/tagmanager/Container;
+.line 708
+	if-eqz	v2,la55e4
+; v2 : Ljava/lang/String;
+.line 709
+	iget-object	v0,v1,com/google/tagmanager/Container.mCtfeHost Lcom/google/tagmanager/CtfeHost;
+; v0 : Lcom/google/tagmanager/CtfeHost; , v1 : Lcom/google/tagmanager/Container;
+	invoke-virtual	{v0,v2},com/google/tagmanager/CtfeHost/setCtfeServerAddress	; setCtfeServerAddress(Ljava/lang/String;)V
+; v0 : Lcom/google/tagmanager/CtfeHost; , v2 : Ljava/lang/String;
+la55e4:
+.line 711
+	monitor-exit	v1
+; v1 : Lcom/google/tagmanager/Container;
+	return-void	
+la55e8:
+.line 707
+	move-exception	v0
+; v0 : java/lang/Exception
+	monitor-exit	v1
+; v1 : Lcom/google/tagmanager/Container;
+	throw	v0
+; v0 : java/lang/Exception
+.end method
+
+.method synchronized setCtfeUrlPathAndQuery(Ljava/lang/String;)V
+.annotation buildVisibility Lcom/google/android/gms/common/util/VisibleForTesting;
+.end annotation
+.limit registers 3
+; this: v1 (Lcom/google/tagmanager/Container;)
+; parameter[0] : v2 (Ljava/lang/String;)
+.catch java/lang/Exception from la560e to la5624 using la5628
+.line 715
+	monitor-enter	v1
+; v1 : Lcom/google/tagmanager/Container;
+la560e:
+	iput-object	v2,v1,com/google/tagmanager/Container.mCtfeUrlPathAndQuery Ljava/lang/String;
+; v2 : Ljava/lang/String; , v1 : Lcom/google/tagmanager/Container;
+.line 716
+	iget-object	v0,v1,com/google/tagmanager/Container.mNetworkLoadScheduler Lcom/google/tagmanager/Container$ResourceLoaderScheduler;
+; v0 : Lcom/google/tagmanager/Container$ResourceLoaderScheduler; , v1 : Lcom/google/tagmanager/Container;
+	if-eqz	v0,la5624
+; v0 : Lcom/google/tagmanager/Container$ResourceLoaderScheduler;
+.line 717
+	iget-object	v0,v1,com/google/tagmanager/Container.mNetworkLoadScheduler Lcom/google/tagmanager/Container$ResourceLoaderScheduler;
+; v0 : Lcom/google/tagmanager/Container$ResourceLoaderScheduler; , v1 : Lcom/google/tagmanager/Container;
+	invoke-interface	{v0,v2},com/google/tagmanager/Container$ResourceLoaderScheduler/setCtfeURLPathAndQuery	; setCtfeURLPathAndQuery(Ljava/lang/String;)V
+; v0 : Lcom/google/tagmanager/Container$ResourceLoaderScheduler; , v2 : Ljava/lang/String;
+la5624:
+.line 719
+	monitor-exit	v1
+; v1 : Lcom/google/tagmanager/Container;
+	return-void	
+la5628:
+.line 715
+	move-exception	v0
+; v0 : java/lang/Exception
+	monitor-exit	v1
+; v1 : Lcom/google/tagmanager/Container;
+	throw	v0
+; v0 : java/lang/Exception
+.end method
+
+

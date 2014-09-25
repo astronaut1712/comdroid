@@ -1,0 +1,29 @@
+.class com/a/b/bg
+.super java/lang/Object
+.source MyApplication
+.implements java/util/concurrent/ThreadFactory
+
+
+.method <init>()V
+.limit registers 1
+; this: v0 (Lcom/a/b/bg;)
+.line 292
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Lcom/a/b/bg;
+	return-void	
+.end method
+
+.method public newThread(Ljava/lang/Runnable;)Ljava/lang/Thread;
+.limit registers 3
+; this: v1 (Lcom/a/b/bg;)
+; parameter[0] : v2 (Ljava/lang/Runnable;)
+.line 295
+	new-instance	v0,com/a/b/bf
+; v0 : Lcom/a/b/bf;
+	invoke-direct	{v0,v2},com/a/b/bf/<init>	; <init>(Ljava/lang/Runnable;)V
+; v0 : Lcom/a/b/bf; , v2 : Ljava/lang/Runnable;
+	return-object	v0
+; v0 : Lcom/a/b/bf;
+.end method
+
+

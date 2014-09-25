@@ -1,0 +1,67 @@
+.class com/fsharemobile/c/u
+.super java/lang/Object
+.source MyApplication
+.implements com/fsharemobile/a/aa
+
+.field final a Lcom/fsharemobile/c/s;
+
+.method <init>(Lcom/fsharemobile/c/s;)V
+.limit registers 2
+; this: v0 (Lcom/fsharemobile/c/u;)
+; parameter[0] : v1 (Lcom/fsharemobile/c/s;)
+.line 1
+	iput-object	v1,v0,com/fsharemobile/c/u.a Lcom/fsharemobile/c/s;
+; v1 : Lcom/fsharemobile/c/s; , v0 : Lcom/fsharemobile/c/u;
+.line 1079
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Lcom/fsharemobile/c/u;
+	return-void	
+.end method
+
+.method static a(Lcom/fsharemobile/c/u;)Lcom/fsharemobile/c/s;
+.limit registers 2
+; parameter[0] : v1 (Lcom/fsharemobile/c/u;)
+.line 1079
+	iget-object	v0,v1,com/fsharemobile/c/u.a Lcom/fsharemobile/c/s;
+; v0 : Lcom/fsharemobile/c/s; , v1 : Lcom/fsharemobile/c/u;
+	return-object	v0
+; v0 : Lcom/fsharemobile/c/s;
+.end method
+
+.method public a(Ljava/lang/Integer;)V
+.limit registers 5
+; this: v3 (Lcom/fsharemobile/c/u;)
+; parameter[0] : v4 (Ljava/lang/Integer;)
+.line 1084
+	invoke-virtual	{v4},java/lang/Integer/intValue	; intValue()I
+; v4 : Ljava/lang/Integer;
+	move-result	v0
+; v0 : single-length
+.line 1085
+	iget-object	v1,v3,com/fsharemobile/c/u.a Lcom/fsharemobile/c/s;
+; v1 : Lcom/fsharemobile/c/s; , v3 : Lcom/fsharemobile/c/u;
+	invoke-static	{v1},com/fsharemobile/c/s/a	; a(Lcom/fsharemobile/c/s;)Lcom/fsharemobile/c/r;
+; v1 : Lcom/fsharemobile/c/s;
+	move-result-object	v1
+; v1 : Lcom/fsharemobile/c/r;
+	invoke-static	{v1},com/fsharemobile/c/r/a	; a(Lcom/fsharemobile/c/r;)Lcom/fsharemobile/c/a;
+; v1 : Lcom/fsharemobile/c/r;
+	move-result-object	v1
+; v1 : Lcom/fsharemobile/c/a;
+	invoke-virtual	{v1},com/fsharemobile/c/a/getActivity	; getActivity()Landroid/support/v4/app/FragmentActivity;
+; v1 : Lcom/fsharemobile/c/a;
+	move-result-object	v1
+; v1 : Landroid/support/v4/app/FragmentActivity;
+.line 1087
+	new-instance	v2,com/fsharemobile/c/v
+; v2 : Lcom/fsharemobile/c/v;
+	invoke-direct	{v2,v3,v0},com/fsharemobile/c/v/<init>	; <init>(Lcom/fsharemobile/c/u;I)V
+; v2 : Lcom/fsharemobile/c/v; , v3 : Lcom/fsharemobile/c/u; , v0 : single-length
+.line 1086
+	invoke-virtual	{v1,v2},android/support/v4/app/FragmentActivity/runOnUiThread	; runOnUiThread(Ljava/lang/Runnable;)V
+; v1 : Landroid/support/v4/app/FragmentActivity; , v2 : Lcom/fsharemobile/c/v;
+.line 1107
+	return-void	
+.end method
+
+

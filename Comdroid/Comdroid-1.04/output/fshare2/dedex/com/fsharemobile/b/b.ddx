@@ -1,0 +1,1023 @@
+.class public com/fsharemobile/b/b
+.super java/lang/Object
+.source MyApplication
+
+.field private static a Lcom/fsharemobile/b/a;
+.field private final b Landroid/content/Context;
+.field private c Landroid/database/sqlite/SQLiteDatabase;
+.field private d Lcom/fsharemobile/f/a;
+
+.method public <init>(Landroid/content/Context;)V
+.limit registers 3
+; this: v1 (Lcom/fsharemobile/b/b;)
+; parameter[0] : v2 (Landroid/content/Context;)
+.line 24
+	invoke-direct	{v1},java/lang/Object/<init>	; <init>()V
+; v1 : Lcom/fsharemobile/b/b;
+.line 26
+	iput-object	v2,v1,com/fsharemobile/b/b.b Landroid/content/Context;
+; v2 : Landroid/content/Context; , v1 : Lcom/fsharemobile/b/b;
+.line 27
+	new-instance	v0,com/fsharemobile/f/a
+; v0 : Lcom/fsharemobile/f/a;
+	invoke-direct	{v0,v2},com/fsharemobile/f/a/<init>	; <init>(Landroid/content/Context;)V
+; v0 : Lcom/fsharemobile/f/a; , v2 : Landroid/content/Context;
+	iput-object	v0,v1,com/fsharemobile/b/b.d Lcom/fsharemobile/f/a;
+; v0 : Lcom/fsharemobile/f/a; , v1 : Lcom/fsharemobile/b/b;
+.line 28
+	return-void	
+.end method
+
+.method public a(I)I
+.limit registers 6
+; this: v4 (Lcom/fsharemobile/b/b;)
+; parameter[0] : v5 (I)
+.line 206
+	const/4	v0,15
+; v0 : single-length
+.line 207
+	new-instance	v1,java/lang/StringBuilder
+; v1 : Ljava/lang/StringBuilder;
+	const-string	v2,"SELECT * FROM Settings Where Key ='"
+; v2 : Ljava/lang/String;
+	invoke-direct	{v1,v2},java/lang/StringBuilder/<init>	; <init>(Ljava/lang/String;)V
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+.line 208
+	invoke-virtual	{v1,v5},java/lang/StringBuilder/append	; append(I)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v5 : single-length
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	const-string	v2,"'"
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+.line 207
+	invoke-virtual	{v1},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v1 : Ljava/lang/StringBuilder;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+.line 209
+	iget-object	v2,v4,com/fsharemobile/b/b.c Landroid/database/sqlite/SQLiteDatabase;
+; v2 : Landroid/database/sqlite/SQLiteDatabase; , v4 : Lcom/fsharemobile/b/b;
+	const/4	v3,0
+; v3 : single-length
+	invoke-virtual	{v2,v1,v3},android/database/sqlite/SQLiteDatabase/rawQuery	; rawQuery(Ljava/lang/String;[Ljava/lang/String;)Landroid/database/Cursor;
+; v2 : Landroid/database/sqlite/SQLiteDatabase; , v1 : Ljava/lang/String; , v3 : single-length
+	move-result-object	v1
+; v1 : Landroid/database/Cursor;
+.line 210
+	invoke-interface	{v1},android/database/Cursor/moveToFirst	; moveToFirst()Z
+; v1 : Landroid/database/Cursor;
+l88958:
+	invoke-interface	{v1},android/database/Cursor/isAfterLast	; isAfterLast()Z
+; v1 : Landroid/database/Cursor;
+	move-result	v2
+; v2 : single-length
+	if-eqz	v2,l8896c
+; v2 : single-length
+.line 213
+	invoke-interface	{v1},android/database/Cursor/close	; close()V
+; v1 : Landroid/database/Cursor;
+.line 214
+	return	v0
+; v0 : single-length
+l8896c:
+.line 211
+	const/4	v0,2
+; v0 : single-length
+	invoke-interface	{v1,v0},android/database/Cursor/getString	; getString(I)Ljava/lang/String;
+; v1 : Landroid/database/Cursor; , v0 : single-length
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	invoke-static	{v0},java/lang/Integer/parseInt	; parseInt(Ljava/lang/String;)I
+; v0 : Ljava/lang/String;
+	move-result	v0
+; v0 : single-length
+.line 210
+	invoke-interface	{v1},android/database/Cursor/moveToNext	; moveToNext()Z
+; v1 : Landroid/database/Cursor;
+	goto	l88958
+.end method
+
+.method public a(Lcom/fsharemobile/model/User;)J
+.limit registers 6
+; this: v4 (Lcom/fsharemobile/b/b;)
+; parameter[0] : v5 (Lcom/fsharemobile/model/User;)
+.line 146
+	new-instance	v0,android/content/ContentValues
+; v0 : Landroid/content/ContentValues;
+	invoke-direct	{v0},android/content/ContentValues/<init>	; <init>()V
+; v0 : Landroid/content/ContentValues;
+.line 147
+	const-string	v1,"Id"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v5},com/fsharemobile/model/User/a	; a()Ljava/lang/String;
+; v5 : Lcom/fsharemobile/model/User;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v0,v1,v2},android/content/ContentValues/put	; put(Ljava/lang/String;Ljava/lang/String;)V
+; v0 : Landroid/content/ContentValues; , v1 : Ljava/lang/String; , v2 : Ljava/lang/String;
+.line 148
+	const-string	v1,"Name"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v5},com/fsharemobile/model/User/b	; b()Ljava/lang/String;
+; v5 : Lcom/fsharemobile/model/User;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v0,v1,v2},android/content/ContentValues/put	; put(Ljava/lang/String;Ljava/lang/String;)V
+; v0 : Landroid/content/ContentValues; , v1 : Ljava/lang/String; , v2 : Ljava/lang/String;
+.line 149
+	const-string	v1,"Email"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v5},com/fsharemobile/model/User/c	; c()Ljava/lang/String;
+; v5 : Lcom/fsharemobile/model/User;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v0,v1,v2},android/content/ContentValues/put	; put(Ljava/lang/String;Ljava/lang/String;)V
+; v0 : Landroid/content/ContentValues; , v1 : Ljava/lang/String; , v2 : Ljava/lang/String;
+.line 150
+	const-string	v1,"Level"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v5},com/fsharemobile/model/User/d	; d()Ljava/lang/String;
+; v5 : Lcom/fsharemobile/model/User;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v0,v1,v2},android/content/ContentValues/put	; put(Ljava/lang/String;Ljava/lang/String;)V
+; v0 : Landroid/content/ContentValues; , v1 : Ljava/lang/String; , v2 : Ljava/lang/String;
+.line 151
+	const-string	v1,"JoinDate"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v5},com/fsharemobile/model/User/f	; f()Ljava/lang/String;
+; v5 : Lcom/fsharemobile/model/User;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v0,v1,v2},android/content/ContentValues/put	; put(Ljava/lang/String;Ljava/lang/String;)V
+; v0 : Landroid/content/ContentValues; , v1 : Ljava/lang/String; , v2 : Ljava/lang/String;
+.line 152
+	const-string	v1,"TotalPoints"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v5},com/fsharemobile/model/User/g	; g()Ljava/lang/String;
+; v5 : Lcom/fsharemobile/model/User;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v0,v1,v2},android/content/ContentValues/put	; put(Ljava/lang/String;Ljava/lang/String;)V
+; v0 : Landroid/content/ContentValues; , v1 : Ljava/lang/String; , v2 : Ljava/lang/String;
+.line 153
+	const-string	v1,"ExpireVip"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v5},com/fsharemobile/model/User/e	; e()Ljava/lang/String;
+; v5 : Lcom/fsharemobile/model/User;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v0,v1,v2},android/content/ContentValues/put	; put(Ljava/lang/String;Ljava/lang/String;)V
+; v0 : Landroid/content/ContentValues; , v1 : Ljava/lang/String; , v2 : Ljava/lang/String;
+.line 154
+	const-string	v1,"Traffic"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v5},com/fsharemobile/model/User/h	; h()Ljava/lang/String;
+; v5 : Lcom/fsharemobile/model/User;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v0,v1,v2},android/content/ContentValues/put	; put(Ljava/lang/String;Ljava/lang/String;)V
+; v0 : Landroid/content/ContentValues; , v1 : Ljava/lang/String; , v2 : Ljava/lang/String;
+.line 155
+	const-string	v1,"TrafficUsed"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v5},com/fsharemobile/model/User/i	; i()Ljava/lang/String;
+; v5 : Lcom/fsharemobile/model/User;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v0,v1,v2},android/content/ContentValues/put	; put(Ljava/lang/String;Ljava/lang/String;)V
+; v0 : Landroid/content/ContentValues; , v1 : Ljava/lang/String; , v2 : Ljava/lang/String;
+.line 156
+	const-string	v1,"Webspace"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v5},com/fsharemobile/model/User/j	; j()Ljava/lang/String;
+; v5 : Lcom/fsharemobile/model/User;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v0,v1,v2},android/content/ContentValues/put	; put(Ljava/lang/String;Ljava/lang/String;)V
+; v0 : Landroid/content/ContentValues; , v1 : Ljava/lang/String; , v2 : Ljava/lang/String;
+.line 157
+	const-string	v1,"WebspaceSecure"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v5},com/fsharemobile/model/User/k	; k()Ljava/lang/String;
+; v5 : Lcom/fsharemobile/model/User;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v0,v1,v2},android/content/ContentValues/put	; put(Ljava/lang/String;Ljava/lang/String;)V
+; v0 : Landroid/content/ContentValues; , v1 : Ljava/lang/String; , v2 : Ljava/lang/String;
+.line 158
+	const-string	v1,"WebspaceSecure"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v5},com/fsharemobile/model/User/l	; l()Ljava/lang/String;
+; v5 : Lcom/fsharemobile/model/User;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v0,v1,v2},android/content/ContentValues/put	; put(Ljava/lang/String;Ljava/lang/String;)V
+; v0 : Landroid/content/ContentValues; , v1 : Ljava/lang/String; , v2 : Ljava/lang/String;
+.line 159
+	const-string	v1,"WebspaceSecureUsed"
+; v1 : Ljava/lang/String;
+.line 160
+	invoke-virtual	{v5},com/fsharemobile/model/User/m	; m()Ljava/lang/String;
+; v5 : Lcom/fsharemobile/model/User;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+.line 159
+	invoke-virtual	{v0,v1,v2},android/content/ContentValues/put	; put(Ljava/lang/String;Ljava/lang/String;)V
+; v0 : Landroid/content/ContentValues; , v1 : Ljava/lang/String; , v2 : Ljava/lang/String;
+.line 161
+	const-string	v1,"Amount"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v5},com/fsharemobile/model/User/n	; n()Ljava/lang/String;
+; v5 : Lcom/fsharemobile/model/User;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v0,v1,v2},android/content/ContentValues/put	; put(Ljava/lang/String;Ljava/lang/String;)V
+; v0 : Landroid/content/ContentValues; , v1 : Ljava/lang/String; , v2 : Ljava/lang/String;
+.line 162
+	iget-object	v1,v4,com/fsharemobile/b/b.c Landroid/database/sqlite/SQLiteDatabase;
+; v1 : Landroid/database/sqlite/SQLiteDatabase; , v4 : Lcom/fsharemobile/b/b;
+	const-string	v2,"User"
+; v2 : Ljava/lang/String;
+	const/4	v3,0
+; v3 : single-length
+	invoke-virtual	{v1,v2,v3,v0},android/database/sqlite/SQLiteDatabase/insert	; insert(Ljava/lang/String;Ljava/lang/String;Landroid/content/ContentValues;)J
+; v1 : Landroid/database/sqlite/SQLiteDatabase; , v2 : Ljava/lang/String; , v3 : single-length , v0 : Landroid/content/ContentValues;
+	move-result-wide	v0
+; v0 : double-length
+	return-wide	v0
+; v0 : double-length
+.end method
+
+.method public a(Ljava/util/List;)J
+.limit registers 9
+; this: v7 (Lcom/fsharemobile/b/b;)
+; parameter[0] : v8 (Ljava/util/List;)
+.line 57
+	const-wide/16	v0,0
+; v0 : double-length
+.line 58
+	new-instance	v3,android/content/ContentValues
+; v3 : Landroid/content/ContentValues;
+	invoke-direct	{v3},android/content/ContentValues/<init>	; <init>()V
+; v3 : Landroid/content/ContentValues;
+.line 59
+	invoke-interface	{v8},java/util/List/iterator	; iterator()Ljava/util/Iterator;
+; v8 : Ljava/util/List;
+	move-result-object	v4
+; v4 : Ljava/util/Iterator;
+	move-wide	v1,v0
+; v1 : double-length , v0 : double-length
+l88adc:
+	invoke-interface	{v4},java/util/Iterator/hasNext	; hasNext()Z
+; v4 : Ljava/util/Iterator;
+	move-result	v0
+; v0 : single-length
+	if-nez	v0,l88aea
+; v0 : single-length
+.line 74
+	return-wide	v1
+; v1 : double-length
+l88aea:
+.line 59
+	invoke-interface	{v4},java/util/Iterator/next	; next()Ljava/lang/Object;
+; v4 : Ljava/util/Iterator;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,com/fsharemobile/model/File
+; v0 : Lcom/fsharemobile/model/File;
+.line 60
+	invoke-virtual	{v3},android/content/ContentValues/clear	; clear()V
+; v3 : Landroid/content/ContentValues;
+.line 61
+	const-string	v5,"Id"
+; v5 : Ljava/lang/String;
+	invoke-virtual	{v0},com/fsharemobile/model/File/a	; a()Ljava/lang/String;
+; v0 : Lcom/fsharemobile/model/File;
+	move-result-object	v6
+; v6 : Ljava/lang/String;
+	invoke-virtual	{v3,v5,v6},android/content/ContentValues/put	; put(Ljava/lang/String;Ljava/lang/String;)V
+; v3 : Landroid/content/ContentValues; , v5 : Ljava/lang/String; , v6 : Ljava/lang/String;
+.line 62
+	const-string	v5,"Name"
+; v5 : Ljava/lang/String;
+	invoke-virtual	{v0},com/fsharemobile/model/File/b	; b()Ljava/lang/String;
+; v0 : Lcom/fsharemobile/model/File;
+	move-result-object	v6
+; v6 : Ljava/lang/String;
+	invoke-virtual	{v3,v5,v6},android/content/ContentValues/put	; put(Ljava/lang/String;Ljava/lang/String;)V
+; v3 : Landroid/content/ContentValues; , v5 : Ljava/lang/String; , v6 : Ljava/lang/String;
+.line 63
+	const-string	v5,"LinkCode"
+; v5 : Ljava/lang/String;
+	invoke-virtual	{v0},com/fsharemobile/model/File/b	; b()Ljava/lang/String;
+; v0 : Lcom/fsharemobile/model/File;
+	move-result-object	v6
+; v6 : Ljava/lang/String;
+	invoke-virtual	{v3,v5,v6},android/content/ContentValues/put	; put(Ljava/lang/String;Ljava/lang/String;)V
+; v3 : Landroid/content/ContentValues; , v5 : Ljava/lang/String; , v6 : Ljava/lang/String;
+.line 64
+	const-string	v5,"Type"
+; v5 : Ljava/lang/String;
+	invoke-virtual	{v0},com/fsharemobile/model/File/d	; d()Ljava/lang/String;
+; v0 : Lcom/fsharemobile/model/File;
+	move-result-object	v6
+; v6 : Ljava/lang/String;
+	invoke-virtual	{v3,v5,v6},android/content/ContentValues/put	; put(Ljava/lang/String;Ljava/lang/String;)V
+; v3 : Landroid/content/ContentValues; , v5 : Ljava/lang/String; , v6 : Ljava/lang/String;
+.line 65
+	const-string	v5,"Path"
+; v5 : Ljava/lang/String;
+	invoke-virtual	{v0},com/fsharemobile/model/File/e	; e()Ljava/lang/String;
+; v0 : Lcom/fsharemobile/model/File;
+	move-result-object	v6
+; v6 : Ljava/lang/String;
+	invoke-virtual	{v3,v5,v6},android/content/ContentValues/put	; put(Ljava/lang/String;Ljava/lang/String;)V
+; v3 : Landroid/content/ContentValues; , v5 : Ljava/lang/String; , v6 : Ljava/lang/String;
+.line 66
+	const-string	v5,"Size"
+; v5 : Ljava/lang/String;
+	invoke-virtual	{v0},com/fsharemobile/model/File/f	; f()Ljava/lang/String;
+; v0 : Lcom/fsharemobile/model/File;
+	move-result-object	v6
+; v6 : Ljava/lang/String;
+	invoke-virtual	{v3,v5,v6},android/content/ContentValues/put	; put(Ljava/lang/String;Ljava/lang/String;)V
+; v3 : Landroid/content/ContentValues; , v5 : Ljava/lang/String; , v6 : Ljava/lang/String;
+.line 67
+	const-string	v5,"Created"
+; v5 : Ljava/lang/String;
+	invoke-virtual	{v0},com/fsharemobile/model/File/g	; g()Ljava/lang/String;
+; v0 : Lcom/fsharemobile/model/File;
+	move-result-object	v6
+; v6 : Ljava/lang/String;
+	invoke-virtual	{v3,v5,v6},android/content/ContentValues/put	; put(Ljava/lang/String;Ljava/lang/String;)V
+; v3 : Landroid/content/ContentValues; , v5 : Ljava/lang/String; , v6 : Ljava/lang/String;
+.line 68
+	const-string	v5,"OwnerId"
+; v5 : Ljava/lang/String;
+	invoke-virtual	{v0},com/fsharemobile/model/File/h	; h()Ljava/lang/String;
+; v0 : Lcom/fsharemobile/model/File;
+	move-result-object	v6
+; v6 : Ljava/lang/String;
+	invoke-virtual	{v3,v5,v6},android/content/ContentValues/put	; put(Ljava/lang/String;Ljava/lang/String;)V
+; v3 : Landroid/content/ContentValues; , v5 : Ljava/lang/String; , v6 : Ljava/lang/String;
+.line 69
+	const-string	v5,"LocalHash"
+; v5 : Ljava/lang/String;
+	invoke-virtual	{v0},com/fsharemobile/model/File/i	; i()Ljava/lang/String;
+; v0 : Lcom/fsharemobile/model/File;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v3,v5,v0},android/content/ContentValues/put	; put(Ljava/lang/String;Ljava/lang/String;)V
+; v3 : Landroid/content/ContentValues; , v5 : Ljava/lang/String; , v0 : Ljava/lang/String;
+.line 71
+	iget-object	v0,v7,com/fsharemobile/b/b.c Landroid/database/sqlite/SQLiteDatabase;
+; v0 : Landroid/database/sqlite/SQLiteDatabase; , v7 : Lcom/fsharemobile/b/b;
+	const-string	v5,"Files"
+; v5 : Ljava/lang/String;
+	const/4	v6,0
+; v6 : single-length
+	invoke-virtual	{v0,v5,v6,v3},android/database/sqlite/SQLiteDatabase/insert	; insert(Ljava/lang/String;Ljava/lang/String;Landroid/content/ContentValues;)J
+; v0 : Landroid/database/sqlite/SQLiteDatabase; , v5 : Ljava/lang/String; , v6 : single-length , v3 : Landroid/content/ContentValues;
+	move-result-wide	v5
+; v5 : double-length
+	add-long	v0,v1,v5
+; v0 : double-length , v1 : double-length , v5 : double-length
+	move-wide	v1,v0
+; v1 : double-length , v0 : double-length
+	goto	l88adc
+.end method
+
+.method public a()Lcom/fsharemobile/b/b;
+.limit registers 3
+; this: v2 (Lcom/fsharemobile/b/b;)
+.line 31
+	new-instance	v0,com/fsharemobile/b/a
+; v0 : Lcom/fsharemobile/b/a;
+	iget-object	v1,v2,com/fsharemobile/b/b.b Landroid/content/Context;
+; v1 : Landroid/content/Context; , v2 : Lcom/fsharemobile/b/b;
+	invoke-direct	{v0,v1},com/fsharemobile/b/a/<init>	; <init>(Landroid/content/Context;)V
+; v0 : Lcom/fsharemobile/b/a; , v1 : Landroid/content/Context;
+	sput-object	v0,com/fsharemobile/b/b.a Lcom/fsharemobile/b/a;
+; v0 : Lcom/fsharemobile/b/a;
+.line 32
+	sget-object	v0,com/fsharemobile/b/b.a Lcom/fsharemobile/b/a;
+; v0 : Lcom/fsharemobile/b/a;
+	invoke-virtual	{v0},com/fsharemobile/b/a/getWritableDatabase	; getWritableDatabase()Landroid/database/sqlite/SQLiteDatabase;
+; v0 : Lcom/fsharemobile/b/a;
+	move-result-object	v0
+; v0 : Landroid/database/sqlite/SQLiteDatabase;
+	iput-object	v0,v2,com/fsharemobile/b/b.c Landroid/database/sqlite/SQLiteDatabase;
+; v0 : Landroid/database/sqlite/SQLiteDatabase; , v2 : Lcom/fsharemobile/b/b;
+.line 33
+	return-object	v2
+; v2 : Lcom/fsharemobile/b/b;
+.end method
+
+.method public a(Ljava/lang/String;Ljava/lang/String;Z)Ljava/util/List;
+.limit registers 8
+; this: v4 (Lcom/fsharemobile/b/b;)
+; parameter[0] : v5 (Ljava/lang/String;)
+; parameter[1] : v6 (Ljava/lang/String;)
+; parameter[2] : v7 (Z)
+.line 100
+	new-instance	v1,java/util/ArrayList
+; v1 : Ljava/util/ArrayList;
+	invoke-direct	{v1},java/util/ArrayList/<init>	; <init>()V
+; v1 : Ljava/util/ArrayList;
+.line 101
+	iget-object	v0,v4,com/fsharemobile/b/b.d Lcom/fsharemobile/f/a;
+; v0 : Lcom/fsharemobile/f/a; , v4 : Lcom/fsharemobile/b/b;
+	invoke-virtual	{v0,v5},com/fsharemobile/f/a/a	; a(Ljava/lang/String;)Ljava/lang/String;
+; v0 : Lcom/fsharemobile/f/a; , v5 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+.line 102
+	const-string	v2,""
+; v2 : Ljava/lang/String;
+.line 103
+	if-eqz	v7,l88cd2
+; v7 : single-length
+.line 104
+	new-instance	v2,java/lang/StringBuilder
+; v2 : Ljava/lang/StringBuilder;
+	const-string	v3,"select * from Files where LocalHash='"
+; v3 : Ljava/lang/String;
+	invoke-direct	{v2,v3},java/lang/StringBuilder/<init>	; <init>(Ljava/lang/String;)V
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+.line 105
+	invoke-virtual	{v2,v0},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v0 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	const-string	v2,"'"
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v0,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+.line 106
+	const-string	v2," and "
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v0,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	const-string	v2,"OwnerId"
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v0,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	const-string	v2,"='"
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v0,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v0,v6},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v6 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	const-string	v2,"'"
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v0,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+.line 107
+	const-string	v2," or "
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v0,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	const-string	v2,"OwnerId"
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v0,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	const-string	v2,"='0'"
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v0,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+.line 104
+	invoke-virtual	{v0},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v0 : Ljava/lang/StringBuilder;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+l88ca0:
+.line 113
+	const-string	v2,"SQL_GET_LIST"
+; v2 : Ljava/lang/String;
+	invoke-static	{v2,v0},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v2 : Ljava/lang/String; , v0 : Ljava/lang/String;
+.line 114
+	iget-object	v2,v4,com/fsharemobile/b/b.c Landroid/database/sqlite/SQLiteDatabase;
+; v2 : Landroid/database/sqlite/SQLiteDatabase; , v4 : Lcom/fsharemobile/b/b;
+	const/4	v3,0
+; v3 : single-length
+	invoke-virtual	{v2,v0,v3},android/database/sqlite/SQLiteDatabase/rawQuery	; rawQuery(Ljava/lang/String;[Ljava/lang/String;)Landroid/database/Cursor;
+; v2 : Landroid/database/sqlite/SQLiteDatabase; , v0 : Ljava/lang/String; , v3 : single-length
+	move-result-object	v0
+; v0 : Landroid/database/Cursor;
+.line 115
+	invoke-interface	{v0},android/database/Cursor/moveToFirst	; moveToFirst()Z
+; v0 : Landroid/database/Cursor;
+l88cbe:
+	invoke-interface	{v0},android/database/Cursor/isAfterLast	; isAfterLast()Z
+; v0 : Landroid/database/Cursor;
+	move-result	v2
+; v2 : single-length
+	if-eqz	v2,l88d36
+; v2 : single-length
+.line 127
+	invoke-interface	{v0},android/database/Cursor/close	; close()V
+; v0 : Landroid/database/Cursor;
+.line 128
+	return-object	v1
+; v1 : Ljava/util/ArrayList;
+l88cd2:
+.line 109
+	new-instance	v2,java/lang/StringBuilder
+; v2 : Ljava/lang/StringBuilder;
+	const-string	v3,"select * from Files where LocalHash='"
+; v3 : Ljava/lang/String;
+	invoke-direct	{v2,v3},java/lang/StringBuilder/<init>	; <init>(Ljava/lang/String;)V
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+.line 110
+	invoke-virtual	{v2,v0},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v0 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	const-string	v2,"'"
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v0,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+.line 111
+	const-string	v2," and "
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v0,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	const-string	v2,"OwnerId"
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v0,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	const-string	v2,"='"
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v0,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v0,v6},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v6 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	const-string	v2,"'"
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v0,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+.line 109
+	invoke-virtual	{v0},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v0 : Ljava/lang/StringBuilder;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	goto	l88ca0
+l88d36:
+.line 116
+	new-instance	v2,com/fsharemobile/model/File
+; v2 : Lcom/fsharemobile/model/File;
+	invoke-direct	{v2},com/fsharemobile/model/File/<init>	; <init>()V
+; v2 : Lcom/fsharemobile/model/File;
+.line 117
+	const/4	v3,0
+; v3 : single-length
+	invoke-interface	{v0,v3},android/database/Cursor/getString	; getString(I)Ljava/lang/String;
+; v0 : Landroid/database/Cursor; , v3 : single-length
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},com/fsharemobile/model/File/a	; a(Ljava/lang/String;)V
+; v2 : Lcom/fsharemobile/model/File; , v3 : Ljava/lang/String;
+.line 118
+	const/4	v3,1
+; v3 : single-length
+	invoke-interface	{v0,v3},android/database/Cursor/getString	; getString(I)Ljava/lang/String;
+; v0 : Landroid/database/Cursor; , v3 : single-length
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},com/fsharemobile/model/File/b	; b(Ljava/lang/String;)V
+; v2 : Lcom/fsharemobile/model/File; , v3 : Ljava/lang/String;
+.line 119
+	const/4	v3,2
+; v3 : single-length
+	invoke-interface	{v0,v3},android/database/Cursor/getString	; getString(I)Ljava/lang/String;
+; v0 : Landroid/database/Cursor; , v3 : single-length
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},com/fsharemobile/model/File/c	; c(Ljava/lang/String;)V
+; v2 : Lcom/fsharemobile/model/File; , v3 : Ljava/lang/String;
+.line 120
+	const/4	v3,3
+; v3 : single-length
+	invoke-interface	{v0,v3},android/database/Cursor/getString	; getString(I)Ljava/lang/String;
+; v0 : Landroid/database/Cursor; , v3 : single-length
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},com/fsharemobile/model/File/d	; d(Ljava/lang/String;)V
+; v2 : Lcom/fsharemobile/model/File; , v3 : Ljava/lang/String;
+.line 121
+	const/4	v3,4
+; v3 : single-length
+	invoke-interface	{v0,v3},android/database/Cursor/getString	; getString(I)Ljava/lang/String;
+; v0 : Landroid/database/Cursor; , v3 : single-length
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},com/fsharemobile/model/File/e	; e(Ljava/lang/String;)V
+; v2 : Lcom/fsharemobile/model/File; , v3 : Ljava/lang/String;
+.line 122
+	const/4	v3,5
+; v3 : single-length
+	invoke-interface	{v0,v3},android/database/Cursor/getString	; getString(I)Ljava/lang/String;
+; v0 : Landroid/database/Cursor; , v3 : single-length
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},com/fsharemobile/model/File/f	; f(Ljava/lang/String;)V
+; v2 : Lcom/fsharemobile/model/File; , v3 : Ljava/lang/String;
+.line 123
+	const/4	v3,7
+; v3 : single-length
+	invoke-interface	{v0,v3},android/database/Cursor/getString	; getString(I)Ljava/lang/String;
+; v0 : Landroid/database/Cursor; , v3 : single-length
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},com/fsharemobile/model/File/g	; g(Ljava/lang/String;)V
+; v2 : Lcom/fsharemobile/model/File; , v3 : Ljava/lang/String;
+.line 124
+	const/16	v3,8
+; v3 : single-length
+	invoke-interface	{v0,v3},android/database/Cursor/getString	; getString(I)Ljava/lang/String;
+; v0 : Landroid/database/Cursor; , v3 : single-length
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},com/fsharemobile/model/File/i	; i(Ljava/lang/String;)V
+; v2 : Lcom/fsharemobile/model/File; , v3 : Ljava/lang/String;
+.line 125
+	invoke-interface	{v1,v2},java/util/List/add	; add(Ljava/lang/Object;)Z
+; v1 : Ljava/util/ArrayList; , v2 : Lcom/fsharemobile/model/File;
+.line 115
+	invoke-interface	{v0},android/database/Cursor/moveToNext	; moveToNext()Z
+; v0 : Landroid/database/Cursor;
+	goto/16	l88cbe
+.end method
+
+.method public a(II)V
+.limit registers 8
+; this: v5 (Lcom/fsharemobile/b/b;)
+; parameter[0] : v6 (I)
+; parameter[1] : v7 (I)
+.line 199
+	new-instance	v0,android/content/ContentValues
+; v0 : Landroid/content/ContentValues;
+	invoke-direct	{v0},android/content/ContentValues/<init>	; <init>()V
+; v0 : Landroid/content/ContentValues;
+.line 200
+	const-string	v1,"Value"
+; v1 : Ljava/lang/String;
+	invoke-static	{v7},java/lang/Integer/valueOf	; valueOf(I)Ljava/lang/Integer;
+; v7 : single-length
+	move-result-object	v2
+; v2 : Ljava/lang/Integer;
+	invoke-virtual	{v0,v1,v2},android/content/ContentValues/put	; put(Ljava/lang/String;Ljava/lang/Integer;)V
+; v0 : Landroid/content/ContentValues; , v1 : Ljava/lang/String; , v2 : Ljava/lang/Integer;
+.line 201
+	iget-object	v1,v5,com/fsharemobile/b/b.c Landroid/database/sqlite/SQLiteDatabase;
+; v1 : Landroid/database/sqlite/SQLiteDatabase; , v5 : Lcom/fsharemobile/b/b;
+	const-string	v2,"Settings"
+; v2 : Ljava/lang/String;
+	new-instance	v3,java/lang/StringBuilder
+; v3 : Ljava/lang/StringBuilder;
+	const-string	v4,"Key ="
+; v4 : Ljava/lang/String;
+	invoke-direct	{v3,v4},java/lang/StringBuilder/<init>	; <init>(Ljava/lang/String;)V
+; v3 : Ljava/lang/StringBuilder; , v4 : Ljava/lang/String;
+.line 202
+	invoke-virtual	{v3,v6},java/lang/StringBuilder/append	; append(I)Ljava/lang/StringBuilder;
+; v3 : Ljava/lang/StringBuilder; , v6 : single-length
+	move-result-object	v3
+; v3 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v3},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v3 : Ljava/lang/StringBuilder;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	const/4	v4,0
+; v4 : single-length
+.line 201
+	invoke-virtual	{v1,v2,v0,v3,v4},android/database/sqlite/SQLiteDatabase/update	; update(Ljava/lang/String;Landroid/content/ContentValues;Ljava/lang/String;[Ljava/lang/String;)I
+; v1 : Landroid/database/sqlite/SQLiteDatabase; , v2 : Ljava/lang/String; , v0 : Landroid/content/ContentValues; , v3 : Ljava/lang/String; , v4 : single-length
+.line 203
+	return-void	
+.end method
+
+.method public a(Ljava/lang/String;)V
+.limit registers 7
+; this: v5 (Lcom/fsharemobile/b/b;)
+; parameter[0] : v6 (Ljava/lang/String;)
+.line 133
+	iget-object	v0,v5,com/fsharemobile/b/b.d Lcom/fsharemobile/f/a;
+; v0 : Lcom/fsharemobile/f/a; , v5 : Lcom/fsharemobile/b/b;
+	invoke-virtual	{v0,v6},com/fsharemobile/f/a/a	; a(Ljava/lang/String;)Ljava/lang/String;
+; v0 : Lcom/fsharemobile/f/a; , v6 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+.line 134
+	iget-object	v1,v5,com/fsharemobile/b/b.c Landroid/database/sqlite/SQLiteDatabase;
+; v1 : Landroid/database/sqlite/SQLiteDatabase; , v5 : Lcom/fsharemobile/b/b;
+	const-string	v2,"Files"
+; v2 : Ljava/lang/String;
+	new-instance	v3,java/lang/StringBuilder
+; v3 : Ljava/lang/StringBuilder;
+	const-string	v4,"LocalHash='"
+; v4 : Ljava/lang/String;
+	invoke-direct	{v3,v4},java/lang/StringBuilder/<init>	; <init>(Ljava/lang/String;)V
+; v3 : Ljava/lang/StringBuilder; , v4 : Ljava/lang/String;
+.line 135
+	invoke-virtual	{v3,v0},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v3 : Ljava/lang/StringBuilder; , v0 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	const-string	v3,"'"
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v0,v3},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v0},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v0 : Ljava/lang/StringBuilder;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	const/4	v3,0
+; v3 : single-length
+.line 134
+	invoke-virtual	{v1,v2,v0,v3},android/database/sqlite/SQLiteDatabase/delete	; delete(Ljava/lang/String;Ljava/lang/String;[Ljava/lang/String;)I
+; v1 : Landroid/database/sqlite/SQLiteDatabase; , v2 : Ljava/lang/String; , v0 : Ljava/lang/String; , v3 : single-length
+.line 136
+	return-void	
+.end method
+
+.method public b()V
+.limit registers 2
+; this: v1 (Lcom/fsharemobile/b/b;)
+.line 37
+	sget-object	v0,com/fsharemobile/b/b.a Lcom/fsharemobile/b/a;
+; v0 : Lcom/fsharemobile/b/a;
+	invoke-virtual	{v0},com/fsharemobile/b/a/close	; close()V
+; v0 : Lcom/fsharemobile/b/a;
+.line 38
+	return-void	
+.end method
+
+.method public b(Ljava/lang/String;)V
+.limit registers 6
+; this: v4 (Lcom/fsharemobile/b/b;)
+; parameter[0] : v5 (Ljava/lang/String;)
+.line 168
+	iget-object	v0,v4,com/fsharemobile/b/b.c Landroid/database/sqlite/SQLiteDatabase;
+; v0 : Landroid/database/sqlite/SQLiteDatabase; , v4 : Lcom/fsharemobile/b/b;
+	const-string	v1,"User"
+; v1 : Ljava/lang/String;
+	new-instance	v2,java/lang/StringBuilder
+; v2 : Ljava/lang/StringBuilder;
+	const-string	v3,"Id='"
+; v3 : Ljava/lang/String;
+	invoke-direct	{v2,v3},java/lang/StringBuilder/<init>	; <init>(Ljava/lang/String;)V
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+.line 169
+	invoke-virtual	{v2,v5},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v5 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	const-string	v3,"'"
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v2},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v2 : Ljava/lang/StringBuilder;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	const/4	v3,0
+; v3 : single-length
+.line 168
+	invoke-virtual	{v0,v1,v2,v3},android/database/sqlite/SQLiteDatabase/delete	; delete(Ljava/lang/String;Ljava/lang/String;[Ljava/lang/String;)I
+; v0 : Landroid/database/sqlite/SQLiteDatabase; , v1 : Ljava/lang/String; , v2 : Ljava/lang/String; , v3 : single-length
+.line 170
+	return-void	
+.end method
+
+.method public c(Ljava/lang/String;)Lcom/fsharemobile/model/User;
+.limit registers 6
+; this: v4 (Lcom/fsharemobile/b/b;)
+; parameter[0] : v5 (Ljava/lang/String;)
+.line 173
+	new-instance	v0,com/fsharemobile/model/User
+; v0 : Lcom/fsharemobile/model/User;
+	invoke-direct	{v0},com/fsharemobile/model/User/<init>	; <init>()V
+; v0 : Lcom/fsharemobile/model/User;
+.line 174
+	new-instance	v1,java/lang/StringBuilder
+; v1 : Ljava/lang/StringBuilder;
+	const-string	v2,"select * from User where Id='"
+; v2 : Ljava/lang/String;
+	invoke-direct	{v1,v2},java/lang/StringBuilder/<init>	; <init>(Ljava/lang/String;)V
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+.line 175
+	invoke-virtual	{v1,v5},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v5 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	const-string	v2,"'"
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+.line 174
+	invoke-virtual	{v1},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v1 : Ljava/lang/StringBuilder;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+.line 176
+	iget-object	v2,v4,com/fsharemobile/b/b.c Landroid/database/sqlite/SQLiteDatabase;
+; v2 : Landroid/database/sqlite/SQLiteDatabase; , v4 : Lcom/fsharemobile/b/b;
+	const/4	v3,0
+; v3 : single-length
+	invoke-virtual	{v2,v1,v3},android/database/sqlite/SQLiteDatabase/rawQuery	; rawQuery(Ljava/lang/String;[Ljava/lang/String;)Landroid/database/Cursor;
+; v2 : Landroid/database/sqlite/SQLiteDatabase; , v1 : Ljava/lang/String; , v3 : single-length
+	move-result-object	v1
+; v1 : Landroid/database/Cursor;
+.line 177
+	invoke-interface	{v1},android/database/Cursor/moveToFirst	; moveToFirst()Z
+; v1 : Landroid/database/Cursor;
+l88f48:
+	invoke-interface	{v1},android/database/Cursor/isAfterLast	; isAfterLast()Z
+; v1 : Landroid/database/Cursor;
+	move-result	v2
+; v2 : single-length
+	if-eqz	v2,l88f5c
+; v2 : single-length
+.line 194
+	invoke-interface	{v1},android/database/Cursor/close	; close()V
+; v1 : Landroid/database/Cursor;
+.line 195
+	return-object	v0
+; v0 : Lcom/fsharemobile/model/User;
+l88f5c:
+.line 179
+	const/4	v2,0
+; v2 : single-length
+	invoke-interface	{v1,v2},android/database/Cursor/getString	; getString(I)Ljava/lang/String;
+; v1 : Landroid/database/Cursor; , v2 : single-length
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v0,v2},com/fsharemobile/model/User/a	; a(Ljava/lang/String;)V
+; v0 : Lcom/fsharemobile/model/User; , v2 : Ljava/lang/String;
+.line 180
+	const/4	v2,1
+; v2 : single-length
+	invoke-interface	{v1,v2},android/database/Cursor/getString	; getString(I)Ljava/lang/String;
+; v1 : Landroid/database/Cursor; , v2 : single-length
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v0,v2},com/fsharemobile/model/User/b	; b(Ljava/lang/String;)V
+; v0 : Lcom/fsharemobile/model/User; , v2 : Ljava/lang/String;
+.line 181
+	const/4	v2,2
+; v2 : single-length
+	invoke-interface	{v1,v2},android/database/Cursor/getString	; getString(I)Ljava/lang/String;
+; v1 : Landroid/database/Cursor; , v2 : single-length
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v0,v2},com/fsharemobile/model/User/c	; c(Ljava/lang/String;)V
+; v0 : Lcom/fsharemobile/model/User; , v2 : Ljava/lang/String;
+.line 182
+	const/4	v2,3
+; v2 : single-length
+	invoke-interface	{v1,v2},android/database/Cursor/getString	; getString(I)Ljava/lang/String;
+; v1 : Landroid/database/Cursor; , v2 : single-length
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v0,v2},com/fsharemobile/model/User/d	; d(Ljava/lang/String;)V
+; v0 : Lcom/fsharemobile/model/User; , v2 : Ljava/lang/String;
+.line 183
+	const/4	v2,4
+; v2 : single-length
+	invoke-interface	{v1,v2},android/database/Cursor/getString	; getString(I)Ljava/lang/String;
+; v1 : Landroid/database/Cursor; , v2 : single-length
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v0,v2},com/fsharemobile/model/User/f	; f(Ljava/lang/String;)V
+; v0 : Lcom/fsharemobile/model/User; , v2 : Ljava/lang/String;
+.line 184
+	const/4	v2,5
+; v2 : single-length
+	invoke-interface	{v1,v2},android/database/Cursor/getString	; getString(I)Ljava/lang/String;
+; v1 : Landroid/database/Cursor; , v2 : single-length
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v0,v2},com/fsharemobile/model/User/g	; g(Ljava/lang/String;)V
+; v0 : Lcom/fsharemobile/model/User; , v2 : Ljava/lang/String;
+.line 185
+	const/4	v2,6
+; v2 : single-length
+	invoke-interface	{v1,v2},android/database/Cursor/getString	; getString(I)Ljava/lang/String;
+; v1 : Landroid/database/Cursor; , v2 : single-length
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v0,v2},com/fsharemobile/model/User/e	; e(Ljava/lang/String;)V
+; v0 : Lcom/fsharemobile/model/User; , v2 : Ljava/lang/String;
+.line 186
+	const/4	v2,7
+; v2 : single-length
+	invoke-interface	{v1,v2},android/database/Cursor/getString	; getString(I)Ljava/lang/String;
+; v1 : Landroid/database/Cursor; , v2 : single-length
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v0,v2},com/fsharemobile/model/User/h	; h(Ljava/lang/String;)V
+; v0 : Lcom/fsharemobile/model/User; , v2 : Ljava/lang/String;
+.line 187
+	const/16	v2,8
+; v2 : single-length
+	invoke-interface	{v1,v2},android/database/Cursor/getString	; getString(I)Ljava/lang/String;
+; v1 : Landroid/database/Cursor; , v2 : single-length
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v0,v2},com/fsharemobile/model/User/i	; i(Ljava/lang/String;)V
+; v0 : Lcom/fsharemobile/model/User; , v2 : Ljava/lang/String;
+.line 188
+	const/16	v2,9
+; v2 : single-length
+	invoke-interface	{v1,v2},android/database/Cursor/getString	; getString(I)Ljava/lang/String;
+; v1 : Landroid/database/Cursor; , v2 : single-length
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v0,v2},com/fsharemobile/model/User/j	; j(Ljava/lang/String;)V
+; v0 : Lcom/fsharemobile/model/User; , v2 : Ljava/lang/String;
+.line 189
+	const/16	v2,10
+; v2 : single-length
+	invoke-interface	{v1,v2},android/database/Cursor/getString	; getString(I)Ljava/lang/String;
+; v1 : Landroid/database/Cursor; , v2 : single-length
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v0,v2},com/fsharemobile/model/User/k	; k(Ljava/lang/String;)V
+; v0 : Lcom/fsharemobile/model/User; , v2 : Ljava/lang/String;
+.line 190
+	const/16	v2,11
+; v2 : single-length
+	invoke-interface	{v1,v2},android/database/Cursor/getString	; getString(I)Ljava/lang/String;
+; v1 : Landroid/database/Cursor; , v2 : single-length
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v0,v2},com/fsharemobile/model/User/l	; l(Ljava/lang/String;)V
+; v0 : Lcom/fsharemobile/model/User; , v2 : Ljava/lang/String;
+.line 191
+	const/16	v2,12
+; v2 : single-length
+	invoke-interface	{v1,v2},android/database/Cursor/getString	; getString(I)Ljava/lang/String;
+; v1 : Landroid/database/Cursor; , v2 : single-length
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v0,v2},com/fsharemobile/model/User/m	; m(Ljava/lang/String;)V
+; v0 : Lcom/fsharemobile/model/User; , v2 : Ljava/lang/String;
+.line 192
+	const/16	v2,13
+; v2 : single-length
+	invoke-interface	{v1,v2},android/database/Cursor/getString	; getString(I)Ljava/lang/String;
+; v1 : Landroid/database/Cursor; , v2 : single-length
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v0,v2},com/fsharemobile/model/User/n	; n(Ljava/lang/String;)V
+; v0 : Lcom/fsharemobile/model/User; , v2 : Ljava/lang/String;
+.line 177
+	invoke-interface	{v1},android/database/Cursor/moveToNext	; moveToNext()Z
+; v1 : Landroid/database/Cursor;
+	goto/16	l88f48
+.end method
+
+

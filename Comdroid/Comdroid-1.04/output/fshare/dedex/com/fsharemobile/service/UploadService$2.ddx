@@ -1,0 +1,116 @@
+.class com/fsharemobile/service/UploadService$2
+.super java/lang/Object
+.source UploadService.java
+.implements com/fsharemobile/client/SessionProxy$OnCreateULSessionCompleted
+
+.enclosing method com/genUploadLink(Ljava/lang/String;Ljava/lang/String;JLjava/lang/String;Z)V
+.field final this$0 Lcom/fsharemobile/service/UploadService;
+.field private final val$myName Ljava/lang/String;
+.field private final val$myPath Ljava/lang/String;
+.field private final val$myRun Z
+
+.method <init>(Lcom/fsharemobile/service/UploadService;Ljava/lang/String;Ljava/lang/String;Z)V
+.limit registers 5
+; this: v0 (Lcom/fsharemobile/service/UploadService$2;)
+; parameter[0] : v1 (Lcom/fsharemobile/service/UploadService;)
+; parameter[1] : v2 (Ljava/lang/String;)
+; parameter[2] : v3 (Ljava/lang/String;)
+; parameter[3] : v4 (Z)
+.line 1
+	iput-object	v1,v0,com/fsharemobile/service/UploadService$2.this$0 Lcom/fsharemobile/service/UploadService;
+; v1 : Lcom/fsharemobile/service/UploadService; , v0 : Lcom/fsharemobile/service/UploadService$2;
+	iput-object	v2,v0,com/fsharemobile/service/UploadService$2.val$myName Ljava/lang/String;
+; v2 : Ljava/lang/String; , v0 : Lcom/fsharemobile/service/UploadService$2;
+	iput-object	v3,v0,com/fsharemobile/service/UploadService$2.val$myPath Ljava/lang/String;
+; v3 : Ljava/lang/String; , v0 : Lcom/fsharemobile/service/UploadService$2;
+	iput-boolean	v4,v0,com/fsharemobile/service/UploadService$2.val$myRun Z
+; v4 : single-length , v0 : Lcom/fsharemobile/service/UploadService$2;
+.line 316
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Lcom/fsharemobile/service/UploadService$2;
+	return-void	
+.end method
+
+.method public onCreateULSessionCompleted(ILjava/lang/String;)V
+.limit registers 7
+; this: v4 (Lcom/fsharemobile/service/UploadService$2;)
+; parameter[0] : v5 (I)
+; parameter[1] : v6 (Ljava/lang/String;)
+.var 0 is image Lcom/fsharemobile/model/LocalFile; from le0850 to le08b0
+.var 1 is upload Lcom/fsharemobile/model/UploadObject; from le0846 to le08b0
+.line 322
+	if-nez	v5,le08b0
+; v5 : single-length
+.line 323
+	new-instance	v1,com/fsharemobile/model/UploadObject
+; v1 : Lcom/fsharemobile/model/UploadObject;
+	invoke-direct	{v1},com/fsharemobile/model/UploadObject/<init>	; <init>()V
+; v1 : Lcom/fsharemobile/model/UploadObject;
+.line 324
+	new-instance	v0,com/fsharemobile/model/LocalFile
+; v0 : Lcom/fsharemobile/model/LocalFile;
+	invoke-direct	{v0},com/fsharemobile/model/LocalFile/<init>	; <init>()V
+; v0 : Lcom/fsharemobile/model/LocalFile;
+.line 325
+	iget-object	v2,v4,com/fsharemobile/service/UploadService$2.val$myName Ljava/lang/String;
+; v2 : Ljava/lang/String; , v4 : Lcom/fsharemobile/service/UploadService$2;
+	invoke-virtual	{v0,v2},com/fsharemobile/model/LocalFile/setName	; setName(Ljava/lang/String;)V
+; v0 : Lcom/fsharemobile/model/LocalFile; , v2 : Ljava/lang/String;
+.line 326
+	iget-object	v2,v4,com/fsharemobile/service/UploadService$2.val$myPath Ljava/lang/String;
+; v2 : Ljava/lang/String; , v4 : Lcom/fsharemobile/service/UploadService$2;
+	invoke-virtual	{v0,v2},com/fsharemobile/model/LocalFile/setPath	; setPath(Ljava/lang/String;)V
+; v0 : Lcom/fsharemobile/model/LocalFile; , v2 : Ljava/lang/String;
+.line 327
+	invoke-virtual	{v1,v6},com/fsharemobile/model/UploadObject/setUrl	; setUrl(Ljava/lang/String;)V
+; v1 : Lcom/fsharemobile/model/UploadObject; , v6 : Ljava/lang/String;
+.line 328
+	invoke-virtual	{v1,v0},com/fsharemobile/model/UploadObject/setLocalImage	; setLocalImage(Lcom/fsharemobile/model/LocalFile;)V
+; v1 : Lcom/fsharemobile/model/UploadObject; , v0 : Lcom/fsharemobile/model/LocalFile;
+.line 329
+	iget-object	v2,v4,com/fsharemobile/service/UploadService$2.this$0 Lcom/fsharemobile/service/UploadService;
+; v2 : Lcom/fsharemobile/service/UploadService; , v4 : Lcom/fsharemobile/service/UploadService$2;
+	invoke-static	{v2},com/fsharemobile/service/UploadService/access$2	; access$2(Lcom/fsharemobile/service/UploadService;)Z
+; v2 : Lcom/fsharemobile/service/UploadService;
+	move-result	v2
+; v2 : single-length
+	if-eqz	v2,le088a
+; v2 : single-length
+.line 330
+	const-string	v2,"GEN_LINK_SERVICE_GET_URL"
+; v2 : Ljava/lang/String;
+	invoke-static	{v2,v6},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v2 : Ljava/lang/String; , v6 : Ljava/lang/String;
+le088a:
+.line 333
+	iget-object	v2,v4,com/fsharemobile/service/UploadService$2.this$0 Lcom/fsharemobile/service/UploadService;
+; v2 : Lcom/fsharemobile/service/UploadService; , v4 : Lcom/fsharemobile/service/UploadService$2;
+	invoke-virtual	{v2,v1},com/fsharemobile/service/UploadService/addToQueue	; addToQueue(Lcom/fsharemobile/model/UploadObject;)V
+; v2 : Lcom/fsharemobile/service/UploadService; , v1 : Lcom/fsharemobile/model/UploadObject;
+.line 334
+	iget-boolean	v2,v4,com/fsharemobile/service/UploadService$2.val$myRun Z
+; v2 : single-length , v4 : Lcom/fsharemobile/service/UploadService$2;
+	if-eqz	v2,le08b0
+; v2 : single-length
+	sget	v2,com/fsharemobile/service/UploadService.uploadStatus I
+; v2 : single-length
+	const/4	v3,1
+; v3 : single-length
+	if-ne	v2,v3,le08b0
+; v2 : single-length , v3 : single-length
+.line 335
+	iget-object	v2,v4,com/fsharemobile/service/UploadService$2.this$0 Lcom/fsharemobile/service/UploadService;
+; v2 : Lcom/fsharemobile/service/UploadService; , v4 : Lcom/fsharemobile/service/UploadService$2;
+	invoke-static	{v2},com/fsharemobile/service/UploadService/access$3	; access$3(Lcom/fsharemobile/service/UploadService;)V
+; v2 : Lcom/fsharemobile/service/UploadService;
+le08b0:
+.line 342
+	const/4	v2,0
+; v2 : single-length
+	sput	v2,com/fsharemobile/service/UploadService.genLinkCount I
+; v2 : I
+.line 343
+	return-void	
+.end method
+
+

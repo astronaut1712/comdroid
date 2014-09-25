@@ -1,0 +1,95 @@
+.class com/fsharemobile/c/w
+.super java/lang/Object
+.source MyApplication
+.implements java/lang/Runnable
+
+.field final a Lcom/fsharemobile/c/s;
+
+.method <init>(Lcom/fsharemobile/c/s;)V
+.limit registers 2
+; this: v0 (Lcom/fsharemobile/c/w;)
+; parameter[0] : v1 (Lcom/fsharemobile/c/s;)
+.line 1
+	iput-object	v1,v0,com/fsharemobile/c/w.a Lcom/fsharemobile/c/s;
+; v1 : Lcom/fsharemobile/c/s; , v0 : Lcom/fsharemobile/c/w;
+.line 1130
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Lcom/fsharemobile/c/w;
+	return-void	
+.end method
+
+.method public run()V
+.limit registers 4
+; this: v3 (Lcom/fsharemobile/c/w;)
+.line 1133
+	iget-object	v0,v3,com/fsharemobile/c/w.a Lcom/fsharemobile/c/s;
+; v0 : Lcom/fsharemobile/c/s; , v3 : Lcom/fsharemobile/c/w;
+	invoke-static	{v0},com/fsharemobile/c/s/a	; a(Lcom/fsharemobile/c/s;)Lcom/fsharemobile/c/r;
+; v0 : Lcom/fsharemobile/c/s;
+	move-result-object	v0
+; v0 : Lcom/fsharemobile/c/r;
+	invoke-static	{v0},com/fsharemobile/c/r/a	; a(Lcom/fsharemobile/c/r;)Lcom/fsharemobile/c/a;
+; v0 : Lcom/fsharemobile/c/r;
+	move-result-object	v0
+; v0 : Lcom/fsharemobile/c/a;
+	invoke-static	{v0},com/fsharemobile/c/a/a	; a(Lcom/fsharemobile/c/a;)V
+; v0 : Lcom/fsharemobile/c/a;
+.line 1135
+	iget-object	v0,v3,com/fsharemobile/c/w.a Lcom/fsharemobile/c/s;
+; v0 : Lcom/fsharemobile/c/s; , v3 : Lcom/fsharemobile/c/w;
+	invoke-static	{v0},com/fsharemobile/c/s/a	; a(Lcom/fsharemobile/c/s;)Lcom/fsharemobile/c/r;
+; v0 : Lcom/fsharemobile/c/s;
+	move-result-object	v0
+; v0 : Lcom/fsharemobile/c/r;
+	invoke-static	{v0},com/fsharemobile/c/r/a	; a(Lcom/fsharemobile/c/r;)Lcom/fsharemobile/c/a;
+; v0 : Lcom/fsharemobile/c/r;
+	move-result-object	v0
+; v0 : Lcom/fsharemobile/c/a;
+	invoke-virtual	{v0},com/fsharemobile/c/a/getActivity	; getActivity()Landroid/support/v4/app/FragmentActivity;
+; v0 : Lcom/fsharemobile/c/a;
+	move-result-object	v0
+; v0 : Landroid/support/v4/app/FragmentActivity;
+.line 1136
+	iget-object	v1,v3,com/fsharemobile/c/w.a Lcom/fsharemobile/c/s;
+; v1 : Lcom/fsharemobile/c/s; , v3 : Lcom/fsharemobile/c/w;
+	invoke-static	{v1},com/fsharemobile/c/s/a	; a(Lcom/fsharemobile/c/s;)Lcom/fsharemobile/c/r;
+; v1 : Lcom/fsharemobile/c/s;
+	move-result-object	v1
+; v1 : Lcom/fsharemobile/c/r;
+	invoke-static	{v1},com/fsharemobile/c/r/a	; a(Lcom/fsharemobile/c/r;)Lcom/fsharemobile/c/a;
+; v1 : Lcom/fsharemobile/c/r;
+	move-result-object	v1
+; v1 : Lcom/fsharemobile/c/a;
+	invoke-virtual	{v1},com/fsharemobile/c/a/getActivity	; getActivity()Landroid/support/v4/app/FragmentActivity;
+; v1 : Lcom/fsharemobile/c/a;
+	move-result-object	v1
+; v1 : Landroid/support/v4/app/FragmentActivity;
+.line 1137
+	invoke-virtual	{v1},android/support/v4/app/FragmentActivity/getResources	; getResources()Landroid/content/res/Resources;
+; v1 : Landroid/support/v4/app/FragmentActivity;
+	move-result-object	v1
+; v1 : Landroid/content/res/Resources;
+.line 1139
+	const	v2,2131230784	; 0x7f080040
+; v2 : single-length
+.line 1138
+	invoke-virtual	{v1,v2},android/content/res/Resources/getString	; getString(I)Ljava/lang/String;
+; v1 : Landroid/content/res/Resources; , v2 : single-length
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+.line 1140
+	const/4	v2,1
+; v2 : single-length
+.line 1134
+	invoke-static	{v0,v1,v2},android/widget/Toast/makeText	; makeText(Landroid/content/Context;Ljava/lang/CharSequence;I)Landroid/widget/Toast;
+; v0 : Landroid/support/v4/app/FragmentActivity; , v1 : Ljava/lang/String; , v2 : single-length
+	move-result-object	v0
+; v0 : Landroid/widget/Toast;
+.line 1141
+	invoke-virtual	{v0},android/widget/Toast/show	; show()V
+; v0 : Landroid/widget/Toast;
+.line 1142
+	return-void	
+.end method
+
+

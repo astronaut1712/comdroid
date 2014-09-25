@@ -1,0 +1,152 @@
+.class public com/fsharemobile/client/PhotoProxy
+.super java/lang/Object
+.source PhotoProxy.java
+
+.inner class OnGetListCompleted inner com/fsharemobile/client/PhotoProxy$OnGetListCompleted outer com/fsharemobile/client/PhotoProxy
+.field private static final getListUri Ljava/lang/String; = "http://api2.fshare.vn/api/photos/list"
+.field private fclient Lcom/fsharemobile/client/FClient;
+
+.method public <init>(Lcom/fsharemobile/client/FClient;)V
+.limit registers 2
+; this: v0 (Lcom/fsharemobile/client/PhotoProxy;)
+; parameter[0] : v1 (Lcom/fsharemobile/client/FClient;)
+.line 29
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Lcom/fsharemobile/client/PhotoProxy;
+.line 30
+	iput-object	v1,v0,com/fsharemobile/client/PhotoProxy.fclient Lcom/fsharemobile/client/FClient;
+; v1 : Lcom/fsharemobile/client/FClient; , v0 : Lcom/fsharemobile/client/PhotoProxy;
+.line 31
+	return-void	
+.end method
+
+.method public getList(ILjava/lang/String;Lcom/fsharemobile/client/PhotoProxy$OnGetListCompleted;)V
+.throws Ljava/lang/Exception;
+.limit registers 12
+; this: v8 (Lcom/fsharemobile/client/PhotoProxy;)
+; parameter[0] : v9 (I)
+; parameter[1] : v10 (Ljava/lang/String;)
+; parameter[2] : v11 (Lcom/fsharemobile/client/PhotoProxy$OnGetListCompleted;)
+	const/4	v7,1
+; v7 : single-length
+	const/4	v6,0
+; v6 : single-length
+.line 36
+	new-instance	v2,java/lang/StringBuffer
+; v2 : Ljava/lang/StringBuffer;
+	const-string	v3,""
+; v3 : Ljava/lang/String;
+	invoke-direct	{v2,v3},java/lang/StringBuffer/<init>	; <init>(Ljava/lang/String;)V
+; v2 : Ljava/lang/StringBuffer; , v3 : Ljava/lang/String;
+.line 37
+	const-string	v3,"%s?pageIndex=%d"
+; v3 : Ljava/lang/String;
+	const/4	v4,2
+; v4 : single-length
+	new-array	v4,v4,[Ljava/lang/Object;
+; v4 : [Ljava/lang/Object; , v4 : [Ljava/lang/Object;
+	const-string	v5,"UTF-8"
+; v5 : Ljava/lang/String;
+	invoke-static	{v10,v5},java/net/URLEncoder/encode	; encode(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+; v10 : Ljava/lang/String; , v5 : Ljava/lang/String;
+	move-result-object	v5
+; v5 : Ljava/lang/String;
+	aput-object	v5,v4,v6
+; v5 : Ljava/lang/String; , v4 : [Ljava/lang/Object; , v6 : single-length
+	invoke-static	{v9},java/lang/Integer/valueOf	; valueOf(I)Ljava/lang/Integer;
+; v9 : single-length
+	move-result-object	v5
+; v5 : Ljava/lang/Integer;
+	aput-object	v5,v4,v7
+; v5 : Ljava/lang/Integer; , v4 : [Ljava/lang/Object; , v7 : single-length
+	invoke-static	{v3,v4},java/lang/String/format	; format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+; v3 : Ljava/lang/String; , v4 : [Ljava/lang/Object;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/lang/StringBuffer/append	; append(Ljava/lang/String;)Ljava/lang/StringBuffer;
+; v2 : Ljava/lang/StringBuffer; , v3 : Ljava/lang/String;
+.line 39
+	new-instance	v1,com/fsharemobile/client/HttpRequest
+; v1 : Lcom/fsharemobile/client/HttpRequest;
+	invoke-direct	{v1},com/fsharemobile/client/HttpRequest/<init>	; <init>()V
+; v1 : Lcom/fsharemobile/client/HttpRequest;
+.line 40
+	new-instance	v3,java/net/URL
+; v3 : Ljava/net/URL;
+	new-instance	v4,java/lang/StringBuilder
+; v4 : Ljava/lang/StringBuilder;
+	const-string	v5,"http://api2.fshare.vn/api/photos/list"
+; v5 : Ljava/lang/String;
+	invoke-direct	{v4,v5},java/lang/StringBuilder/<init>	; <init>(Ljava/lang/String;)V
+; v4 : Ljava/lang/StringBuilder; , v5 : Ljava/lang/String;
+	invoke-virtual	{v2},java/lang/StringBuffer/toString	; toString()Ljava/lang/String;
+; v2 : Ljava/lang/StringBuffer;
+	move-result-object	v5
+; v5 : Ljava/lang/String;
+	invoke-virtual	{v4,v5},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v4 : Ljava/lang/StringBuilder; , v5 : Ljava/lang/String;
+	move-result-object	v4
+; v4 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v4},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v4 : Ljava/lang/StringBuilder;
+	move-result-object	v4
+; v4 : Ljava/lang/String;
+	invoke-direct	{v3,v4},java/net/URL/<init>	; <init>(Ljava/lang/String;)V
+; v3 : Ljava/net/URL; , v4 : Ljava/lang/String;
+	invoke-virtual	{v1,v3},com/fsharemobile/client/HttpRequest/setUrl	; setUrl(Ljava/net/URL;)V
+; v1 : Lcom/fsharemobile/client/HttpRequest; , v3 : Ljava/net/URL;
+.line 43
+	invoke-virtual	{v1},com/fsharemobile/client/HttpRequest/getAddedHeaderFields	; getAddedHeaderFields()Ljava/util/Map;
+; v1 : Lcom/fsharemobile/client/HttpRequest;
+	move-result-object	v0
+; v0 : Ljava/util/Map;
+.line 44
+	const-string	v3,"Cookie"
+; v3 : Ljava/lang/String;
+.line 45
+	const-string	v4,";"
+; v4 : Ljava/lang/String;
+	iget-object	v5,v8,com/fsharemobile/client/PhotoProxy.fclient Lcom/fsharemobile/client/FClient;
+; v5 : Lcom/fsharemobile/client/FClient; , v8 : Lcom/fsharemobile/client/PhotoProxy;
+	invoke-virtual	{v5},com/fsharemobile/client/FClient/getCookies	; getCookies()Ljava/util/List;
+; v5 : Lcom/fsharemobile/client/FClient;
+	move-result-object	v5
+; v5 : Ljava/util/List;
+	invoke-interface	{v5},java/util/List/toArray	; toArray()[Ljava/lang/Object;
+; v5 : Ljava/util/List;
+	move-result-object	v5
+; v5 : [Ljava/lang/Object;
+	invoke-static	{v4,v5},android/text/TextUtils/join	; join(Ljava/lang/CharSequence;[Ljava/lang/Object;)Ljava/lang/String;
+; v4 : Ljava/lang/String; , v5 : [Ljava/lang/Object;
+	move-result-object	v4
+; v4 : Ljava/lang/String;
+.line 44
+	invoke-interface	{v0,v3,v4},java/util/Map/put	; put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+; v0 : Ljava/util/Map; , v3 : Ljava/lang/String; , v4 : Ljava/lang/String;
+.line 46
+	new-instance	v3,com/fsharemobile/client/APICallTask
+; v3 : Lcom/fsharemobile/client/APICallTask;
+	iget-object	v4,v8,com/fsharemobile/client/PhotoProxy.fclient Lcom/fsharemobile/client/FClient;
+; v4 : Lcom/fsharemobile/client/FClient; , v8 : Lcom/fsharemobile/client/PhotoProxy;
+	invoke-virtual	{v4},com/fsharemobile/client/FClient/getHttputil	; getHttputil()Lcom/fsharemobile/client/HttpUtil;
+; v4 : Lcom/fsharemobile/client/FClient;
+	move-result-object	v4
+; v4 : Lcom/fsharemobile/client/HttpUtil;
+	new-instance	v5,com/fsharemobile/client/PhotoProxy$1
+; v5 : Lcom/fsharemobile/client/PhotoProxy$1;
+	invoke-direct	{v5,v8,v11},com/fsharemobile/client/PhotoProxy$1/<init>	; <init>(Lcom/fsharemobile/client/PhotoProxy;Lcom/fsharemobile/client/PhotoProxy$OnGetListCompleted;)V
+; v5 : Lcom/fsharemobile/client/PhotoProxy$1; , v8 : Lcom/fsharemobile/client/PhotoProxy; , v11 : Lcom/fsharemobile/client/PhotoProxy$OnGetListCompleted;
+	invoke-direct	{v3,v4,v5},com/fsharemobile/client/APICallTask/<init>	; <init>(Lcom/fsharemobile/client/HttpUtil;Lcom/fsharemobile/client/APICallTask$OnAPICallCompleted;)V
+; v3 : Lcom/fsharemobile/client/APICallTask; , v4 : Lcom/fsharemobile/client/HttpUtil; , v5 : Lcom/fsharemobile/client/PhotoProxy$1;
+	new-array	v4,v7,[Ljava/lang/Object;
+; v4 : [Ljava/lang/Object; , v7 : single-length
+.line 88
+	aput-object	v1,v4,v6
+; v1 : Lcom/fsharemobile/client/HttpRequest; , v4 : [Ljava/lang/Object; , v6 : single-length
+	invoke-virtual	{v3,v4},com/fsharemobile/client/APICallTask/execute	; execute([Ljava/lang/Object;)Landroid/os/AsyncTask;
+; v3 : Lcom/fsharemobile/client/APICallTask; , v4 : [Ljava/lang/Object;
+.line 89
+	return-void	
+.end method
+
+

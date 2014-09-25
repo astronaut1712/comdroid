@@ -1,0 +1,176 @@
+.class com/fsharemobile/client/FileProxy$10
+.super java/lang/Object
+.source FileProxy.java
+.implements com/fsharemobile/client/APICallTask$OnAPICallCompleted
+
+.enclosing method com/moveToPath(Ljava/util/List;Ljava/lang/String;Lcom/fsharemobile/client/FileProxy$OnMoveCompleted;)V
+.field final this$0 Lcom/fsharemobile/client/FileProxy;
+.field private final val$callback Lcom/fsharemobile/client/FileProxy$OnMoveCompleted;
+
+.method <init>(Lcom/fsharemobile/client/FileProxy;Lcom/fsharemobile/client/FileProxy$OnMoveCompleted;)V
+.limit registers 3
+; this: v0 (Lcom/fsharemobile/client/FileProxy$10;)
+; parameter[0] : v1 (Lcom/fsharemobile/client/FileProxy;)
+; parameter[1] : v2 (Lcom/fsharemobile/client/FileProxy$OnMoveCompleted;)
+.line 1
+	iput-object	v1,v0,com/fsharemobile/client/FileProxy$10.this$0 Lcom/fsharemobile/client/FileProxy;
+; v1 : Lcom/fsharemobile/client/FileProxy; , v0 : Lcom/fsharemobile/client/FileProxy$10;
+	iput-object	v2,v0,com/fsharemobile/client/FileProxy$10.val$callback Lcom/fsharemobile/client/FileProxy$OnMoveCompleted;
+; v2 : Lcom/fsharemobile/client/FileProxy$OnMoveCompleted; , v0 : Lcom/fsharemobile/client/FileProxy$10;
+.line 628
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Lcom/fsharemobile/client/FileProxy$10;
+	return-void	
+.end method
+
+.method public onAPICallCompleted(Lcom/fsharemobile/client/HttpResponse;)V
+.limit registers 10
+; this: v8 (Lcom/fsharemobile/client/FileProxy$10;)
+; parameter[0] : v9 (Lcom/fsharemobile/client/HttpResponse;)
+.catch java/lang/Exception from lda0de to lda130 using lda16e
+.catch java/lang/Exception from lda0ac to lda0de using lda144
+.var 2 is jso Lorg/json/JSONObject; from lda0ac to lda0de
+.var 3 is jso Lorg/json/JSONObject; from lda0de to lda132
+.var 2 is jso Lorg/json/JSONObject; from lda132 to lda134
+.var 3 is jso Lorg/json/JSONObject; from lda134 to lda138
+.var 1 is jex Ljava/lang/Exception; from lda146 to lda16e
+.var 2 is jso Lorg/json/JSONObject; from lda138 to lda16e
+.var 3 is jso Lorg/json/JSONObject; from lda16e to lda172
+	const/16	v7,200
+; v7 : single-length
+.line 632
+	const/4	v0,0
+; v0 : single-length
+.line 633
+	const/4	v2,0
+; v2 : single-length
+lda0ac:
+.line 636
+	invoke-virtual	{v9},com/fsharemobile/client/HttpResponse/getHttpCode	; getHttpCode()I
+; v9 : Lcom/fsharemobile/client/HttpResponse;
+	move-result	v0
+; v0 : single-length
+.line 637
+	invoke-virtual	{v9},com/fsharemobile/client/HttpResponse/getHttpCode	; getHttpCode()I
+; v9 : Lcom/fsharemobile/client/HttpResponse;
+	move-result	v4
+; v4 : single-length
+	if-eq	v4,v7,lda0cc
+; v4 : single-length , v7 : single-length
+.line 638
+	iget-object	v4,v8,com/fsharemobile/client/FileProxy$10.val$callback Lcom/fsharemobile/client/FileProxy$OnMoveCompleted;
+; v4 : Lcom/fsharemobile/client/FileProxy$OnMoveCompleted; , v8 : Lcom/fsharemobile/client/FileProxy$10;
+	invoke-interface	{v4,v0},com/fsharemobile/client/FileProxy$OnMoveCompleted/onMoveCompleted	; onMoveCompleted(I)V
+; v4 : Lcom/fsharemobile/client/FileProxy$OnMoveCompleted; , v0 : single-length
+lda0ca:
+.line 656
+	return-void	
+lda0cc:
+.line 641
+	new-instance	v3,org/json/JSONObject
+; v3 : Lorg/json/JSONObject;
+	invoke-virtual	{v9},com/fsharemobile/client/HttpResponse/getBodyAsString	; getBodyAsString()Ljava/lang/String;
+; v9 : Lcom/fsharemobile/client/HttpResponse;
+	move-result-object	v4
+; v4 : Ljava/lang/String;
+	invoke-direct	{v3,v4},org/json/JSONObject/<init>	; <init>(Ljava/lang/String;)V
+; v3 : Lorg/json/JSONObject; , v4 : Ljava/lang/String;
+lda0de:
+.line 642
+	const-string	v4,"code"
+; v4 : Ljava/lang/String;
+	invoke-virtual	{v3,v4},org/json/JSONObject/getString	; getString(Ljava/lang/String;)Ljava/lang/String;
+; v3 : Lorg/json/JSONObject; , v4 : Ljava/lang/String;
+	move-result-object	v4
+; v4 : Ljava/lang/String;
+	invoke-static	{v4},java/lang/Integer/parseInt	; parseInt(Ljava/lang/String;)I
+; v4 : Ljava/lang/String;
+	move-result	v0
+; v0 : single-length
+.line 643
+	const-string	v4,"RESPONE_RENAME_ERR"
+; v4 : Ljava/lang/String;
+	new-instance	v5,java/lang/StringBuilder
+; v5 : Ljava/lang/StringBuilder;
+	const-string	v6,"code"
+; v6 : Ljava/lang/String;
+	invoke-virtual	{v3,v6},org/json/JSONObject/getString	; getString(Ljava/lang/String;)Ljava/lang/String;
+; v3 : Lorg/json/JSONObject; , v6 : Ljava/lang/String;
+	move-result-object	v6
+; v6 : Ljava/lang/String;
+	invoke-static	{v6},java/lang/String/valueOf	; valueOf(Ljava/lang/Object;)Ljava/lang/String;
+; v6 : Ljava/lang/String;
+	move-result-object	v6
+; v6 : Ljava/lang/String;
+	invoke-direct	{v5,v6},java/lang/StringBuilder/<init>	; <init>(Ljava/lang/String;)V
+; v5 : Ljava/lang/StringBuilder; , v6 : Ljava/lang/String;
+	invoke-virtual	{v5},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v5 : Ljava/lang/StringBuilder;
+	move-result-object	v5
+; v5 : Ljava/lang/String;
+	invoke-static	{v4,v5},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v4 : Ljava/lang/String; , v5 : Ljava/lang/String;
+.line 644
+	if-eq	v0,v7,lda134
+; v0 : single-length , v7 : single-length
+.line 645
+	iget-object	v4,v8,com/fsharemobile/client/FileProxy$10.val$callback Lcom/fsharemobile/client/FileProxy$OnMoveCompleted;
+; v4 : Lcom/fsharemobile/client/FileProxy$OnMoveCompleted; , v8 : Lcom/fsharemobile/client/FileProxy$10;
+	invoke-interface	{v4,v0},com/fsharemobile/client/FileProxy$OnMoveCompleted/onMoveCompleted	; onMoveCompleted(I)V
+; v4 : Lcom/fsharemobile/client/FileProxy$OnMoveCompleted; , v0 : single-length
+lda130:
+	move-object	v2,v3
+; v2 : Lorg/json/JSONObject; , v3 : Lorg/json/JSONObject;
+.line 646
+	goto	lda0ca
+lda134:
+.line 648
+	const/4	v0,0
+; v0 : single-length
+	move-object	v2,v3
+; v2 : Lorg/json/JSONObject; , v3 : Lorg/json/JSONObject;
+lda138:
+.line 654
+	iget-object	v4,v8,com/fsharemobile/client/FileProxy$10.val$callback Lcom/fsharemobile/client/FileProxy$OnMoveCompleted;
+; v4 : Lcom/fsharemobile/client/FileProxy$OnMoveCompleted; , v8 : Lcom/fsharemobile/client/FileProxy$10;
+	invoke-interface	{v4,v0},com/fsharemobile/client/FileProxy$OnMoveCompleted/onMoveCompleted	; onMoveCompleted(I)V
+; v4 : Lcom/fsharemobile/client/FileProxy$OnMoveCompleted; , v0 : single-length
+	goto	lda0ca
+lda144:
+.line 649
+	move-exception	v1
+; v1 : java/lang/Exception
+lda146:
+.line 650
+	sget-object	v4,java/lang/System.out Ljava/io/PrintStream;
+; v4 : Ljava/io/PrintStream;
+	invoke-virtual	{v1},java/lang/Exception/toString	; toString()Ljava/lang/String;
+; v1 : java/lang/Exception
+	move-result-object	v5
+; v5 : Ljava/lang/String;
+	invoke-virtual	{v4,v5},java/io/PrintStream/println	; println(Ljava/lang/String;)V
+; v4 : Ljava/io/PrintStream; , v5 : Ljava/lang/String;
+.line 651
+	const-string	v4,"API_MOVE_CATCH"
+; v4 : Ljava/lang/String;
+	invoke-virtual	{v1},java/lang/Exception/toString	; toString()Ljava/lang/String;
+; v1 : java/lang/Exception
+	move-result-object	v5
+; v5 : Ljava/lang/String;
+	invoke-static	{v4,v5},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v4 : Ljava/lang/String; , v5 : Ljava/lang/String;
+.line 652
+	const/4	v0,1
+; v0 : single-length
+	goto	lda138
+lda16e:
+.line 649
+	move-exception	v1
+; v1 : java/lang/Exception
+	move-object	v2,v3
+; v2 : Lorg/json/JSONObject; , v3 : Lorg/json/JSONObject;
+lda172:
+	goto	lda146
+.end method
+
+

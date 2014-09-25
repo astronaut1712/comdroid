@@ -1,0 +1,140 @@
+.class final com/squareup/okhttp/internal/http/UnknownLengthHttpInputStream
+.super com/squareup/okhttp/internal/http/AbstractHttpInputStream
+.source UnknownLengthHttpInputStream.java
+
+.field private inputExhausted Z
+
+.method <init>(Ljava/io/InputStream;Ljava/net/CacheRequest;Lcom/squareup/okhttp/internal/http/HttpEngine;)V
+.throws Ljava/io/IOException;
+.limit registers 4
+; this: v0 (Lcom/squareup/okhttp/internal/http/UnknownLengthHttpInputStream;)
+; parameter[0] : v1 (Ljava/io/InputStream;)
+; parameter[1] : v2 (Ljava/net/CacheRequest;)
+; parameter[2] : v3 (Lcom/squareup/okhttp/internal/http/HttpEngine;)
+.line 30
+	invoke-direct	{v0,v1,v3,v2},com/squareup/okhttp/internal/http/AbstractHttpInputStream/<init>	; <init>(Ljava/io/InputStream;Lcom/squareup/okhttp/internal/http/HttpEngine;Ljava/net/CacheRequest;)V
+; v0 : Lcom/squareup/okhttp/internal/http/UnknownLengthHttpInputStream; , v1 : Ljava/io/InputStream; , v3 : Lcom/squareup/okhttp/internal/http/HttpEngine; , v2 : Ljava/net/CacheRequest;
+.line 31
+	return-void	
+.end method
+
+.method public available()I
+.throws Ljava/io/IOException;
+.limit registers 2
+; this: v1 (Lcom/squareup/okhttp/internal/http/UnknownLengthHttpInputStream;)
+.line 50
+	invoke-virtual	{v1},com/squareup/okhttp/internal/http/UnknownLengthHttpInputStream/checkNotClosed	; checkNotClosed()V
+; v1 : Lcom/squareup/okhttp/internal/http/UnknownLengthHttpInputStream;
+.line 51
+	iget-object	v0,v1,com/squareup/okhttp/internal/http/UnknownLengthHttpInputStream.in Ljava/io/InputStream;
+; v0 : Ljava/io/InputStream; , v1 : Lcom/squareup/okhttp/internal/http/UnknownLengthHttpInputStream;
+	if-nez	v0,lf17ee
+; v0 : Ljava/io/InputStream;
+	const/4	v0,0
+; v0 : single-length
+lf17ec:
+	return	v0
+; v0 : single-length
+lf17ee:
+	iget-object	v0,v1,com/squareup/okhttp/internal/http/UnknownLengthHttpInputStream.in Ljava/io/InputStream;
+; v0 : Ljava/io/InputStream; , v1 : Lcom/squareup/okhttp/internal/http/UnknownLengthHttpInputStream;
+	invoke-virtual	{v0},java/io/InputStream/available	; available()I
+; v0 : Ljava/io/InputStream;
+	move-result	v0
+; v0 : single-length
+	goto	lf17ec
+.end method
+
+.method public close()V
+.throws Ljava/io/IOException;
+.limit registers 2
+; this: v1 (Lcom/squareup/okhttp/internal/http/UnknownLengthHttpInputStream;)
+.line 55
+	iget-boolean	v0,v1,com/squareup/okhttp/internal/http/UnknownLengthHttpInputStream.closed Z
+; v0 : single-length , v1 : Lcom/squareup/okhttp/internal/http/UnknownLengthHttpInputStream;
+	if-eqz	v0,lf1816
+; v0 : single-length
+lf1814:
+.line 62
+	return-void	
+lf1816:
+.line 58
+	const/4	v0,1
+; v0 : single-length
+	iput-boolean	v0,v1,com/squareup/okhttp/internal/http/UnknownLengthHttpInputStream.closed Z
+; v0 : single-length , v1 : Lcom/squareup/okhttp/internal/http/UnknownLengthHttpInputStream;
+.line 59
+	iget-boolean	v0,v1,com/squareup/okhttp/internal/http/UnknownLengthHttpInputStream.inputExhausted Z
+; v0 : single-length , v1 : Lcom/squareup/okhttp/internal/http/UnknownLengthHttpInputStream;
+	if-nez	v0,lf1814
+; v0 : single-length
+.line 60
+	invoke-virtual	{v1},com/squareup/okhttp/internal/http/UnknownLengthHttpInputStream/unexpectedEndOfInput	; unexpectedEndOfInput()V
+; v1 : Lcom/squareup/okhttp/internal/http/UnknownLengthHttpInputStream;
+	goto	lf1814
+.end method
+
+.method public read([BII)I
+.throws Ljava/io/IOException;
+.limit registers 7
+; this: v3 (Lcom/squareup/okhttp/internal/http/UnknownLengthHttpInputStream;)
+; parameter[0] : v4 ([B)
+; parameter[1] : v5 (I)
+; parameter[2] : v6 (I)
+	const/4	v1,15
+; v1 : single-length
+.line 34
+	array-length	v2,v4
+; v2 : single-length , v4 : [B
+	invoke-static	{v2,v5,v6},com/squareup/okhttp/internal/Util/checkOffsetAndCount	; checkOffsetAndCount(III)V
+; v2 : single-length , v5 : single-length , v6 : single-length
+.line 35
+	invoke-virtual	{v3},com/squareup/okhttp/internal/http/UnknownLengthHttpInputStream/checkNotClosed	; checkNotClosed()V
+; v3 : Lcom/squareup/okhttp/internal/http/UnknownLengthHttpInputStream;
+.line 36
+	iget-object	v2,v3,com/squareup/okhttp/internal/http/UnknownLengthHttpInputStream.in Ljava/io/InputStream;
+; v2 : Ljava/io/InputStream; , v3 : Lcom/squareup/okhttp/internal/http/UnknownLengthHttpInputStream;
+	if-eqz	v2,lf185c
+; v2 : Ljava/io/InputStream;
+	iget-boolean	v2,v3,com/squareup/okhttp/internal/http/UnknownLengthHttpInputStream.inputExhausted Z
+; v2 : single-length , v3 : Lcom/squareup/okhttp/internal/http/UnknownLengthHttpInputStream;
+	if-eqz	v2,lf1860
+; v2 : single-length
+lf185c:
+	move	v0,v1
+; v0 : single-length , v1 : single-length
+lf185e:
+.line 46
+	return	v0
+; v0 : single-length
+lf1860:
+.line 39
+	iget-object	v2,v3,com/squareup/okhttp/internal/http/UnknownLengthHttpInputStream.in Ljava/io/InputStream;
+; v2 : Ljava/io/InputStream; , v3 : Lcom/squareup/okhttp/internal/http/UnknownLengthHttpInputStream;
+	invoke-virtual	{v2,v4,v5,v6},java/io/InputStream/read	; read([BII)I
+; v2 : Ljava/io/InputStream; , v4 : [B , v5 : single-length , v6 : single-length
+	move-result	v0
+; v0 : single-length
+.line 40
+	if-ne	v0,v1,lf1880
+; v0 : single-length , v1 : single-length
+.line 41
+	const/4	v2,1
+; v2 : single-length
+	iput-boolean	v2,v3,com/squareup/okhttp/internal/http/UnknownLengthHttpInputStream.inputExhausted Z
+; v2 : single-length , v3 : Lcom/squareup/okhttp/internal/http/UnknownLengthHttpInputStream;
+.line 42
+	invoke-virtual	{v3},com/squareup/okhttp/internal/http/UnknownLengthHttpInputStream/endOfInput	; endOfInput()V
+; v3 : Lcom/squareup/okhttp/internal/http/UnknownLengthHttpInputStream;
+	move	v0,v1
+; v0 : single-length , v1 : single-length
+.line 43
+	goto	lf185e
+lf1880:
+.line 45
+	invoke-virtual	{v3,v4,v5,v0},com/squareup/okhttp/internal/http/UnknownLengthHttpInputStream/cacheWrite	; cacheWrite([BII)V
+; v3 : Lcom/squareup/okhttp/internal/http/UnknownLengthHttpInputStream; , v4 : [B , v5 : single-length , v0 : single-length
+	goto	lf185e
+.end method
+
+

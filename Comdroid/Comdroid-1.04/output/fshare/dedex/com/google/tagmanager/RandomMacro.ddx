@@ -1,0 +1,209 @@
+.class com/google/tagmanager/RandomMacro
+.super com/google/tagmanager/FunctionCallImplementation
+.source RandomMacro.java
+
+.field private static final ID Ljava/lang/String;
+.field private static final MAX Ljava/lang/String;
+.field private static final MIN Ljava/lang/String;
+
+.method static <clinit>()V
+.limit registers 1
+.line 16
+	sget-object	v0,com/google/analytics/containertag/common/FunctionType.RANDOM Lcom/google/analytics/containertag/common/FunctionType;
+; v0 : Lcom/google/analytics/containertag/common/FunctionType;
+	invoke-virtual	{v0},com/google/analytics/containertag/common/FunctionType/toString	; toString()Ljava/lang/String;
+; v0 : Lcom/google/analytics/containertag/common/FunctionType;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	sput-object	v0,com/google/tagmanager/RandomMacro.ID Ljava/lang/String;
+; v0 : Ljava/lang/String;
+.line 17
+	sget-object	v0,com/google/analytics/containertag/common/Key.MIN Lcom/google/analytics/containertag/common/Key;
+; v0 : Lcom/google/analytics/containertag/common/Key;
+	invoke-virtual	{v0},com/google/analytics/containertag/common/Key/toString	; toString()Ljava/lang/String;
+; v0 : Lcom/google/analytics/containertag/common/Key;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	sput-object	v0,com/google/tagmanager/RandomMacro.MIN Ljava/lang/String;
+; v0 : Ljava/lang/String;
+.line 18
+	sget-object	v0,com/google/analytics/containertag/common/Key.MAX Lcom/google/analytics/containertag/common/Key;
+; v0 : Lcom/google/analytics/containertag/common/Key;
+	invoke-virtual	{v0},com/google/analytics/containertag/common/Key/toString	; toString()Ljava/lang/String;
+; v0 : Lcom/google/analytics/containertag/common/Key;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	sput-object	v0,com/google/tagmanager/RandomMacro.MAX Ljava/lang/String;
+; v0 : Ljava/lang/String;
+	return-void	
+.end method
+
+.method public <init>()V
+.limit registers 3
+; this: v2 (Lcom/google/tagmanager/RandomMacro;)
+.line 25
+	sget-object	v0,com/google/tagmanager/RandomMacro.ID Ljava/lang/String;
+; v0 : Ljava/lang/String;
+	const/4	v1,0
+; v1 : single-length
+	new-array	v1,v1,[Ljava/lang/String;
+; v1 : [Ljava/lang/String; , v1 : [Ljava/lang/String;
+	invoke-direct	{v2,v0,v1},com/google/tagmanager/FunctionCallImplementation/<init>	; <init>(Ljava/lang/String;[Ljava/lang/String;)V
+; v2 : Lcom/google/tagmanager/RandomMacro; , v0 : Ljava/lang/String; , v1 : [Ljava/lang/String;
+.line 26
+	return-void	
+.end method
+
+.method public static getFunctionId()Ljava/lang/String;
+.limit registers 1
+.line 21
+	sget-object	v0,com/google/tagmanager/RandomMacro.ID Ljava/lang/String;
+; v0 : Ljava/lang/String;
+	return-object	v0
+; v0 : Ljava/lang/String;
+.end method
+
+.method public evaluate(Ljava/util/Map;)Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "(" , "Ljava/util/Map" , "<" , "Ljava/lang/String;" , "Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;" , ">;)" , "Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;" }
+.end annotation
+.limit registers 19
+; this: v17 (Lcom/google/tagmanager/RandomMacro;)
+; parameter[0] : v18 (Ljava/util/Map;)
+.var 3 is maxDouble D from leb826 to leb832
+.var 6 is maxValue Lcom/google/tagmanager/TypedNumber; from leb7fe to leb832
+.var 9 is minDouble D from leb81e to leb832
+.var 12 is minValue Lcom/google/tagmanager/TypedNumber; from leb7f6 to leb832
+.line 33
+	const-wide/16	v7,0
+; v7 : double-length
+.line 34
+	const-wide	v1,4746794007244308480	; 0x41dfffffffc00000
+; v1 : double-length
+.line 35
+	sget-object	v13,com/google/tagmanager/RandomMacro.MIN Ljava/lang/String;
+; v13 : Ljava/lang/String;
+	move-object/from16	v0,v18
+; v0 : Ljava/util/Map; , v18 : Ljava/util/Map;
+	invoke-interface	{v0,v13},java/util/Map/get	; get(Ljava/lang/Object;)Ljava/lang/Object;
+; v0 : Ljava/util/Map; , v13 : Ljava/lang/String;
+	move-result-object	v11
+; v11 : Ljava/lang/Object;
+	check-cast	v11,com/google/analytics/midtier/proto/containertag/TypeSystem$Value
+; v11 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+.line 36
+	sget-object	v13,com/google/tagmanager/RandomMacro.MAX Ljava/lang/String;
+; v13 : Ljava/lang/String;
+	move-object/from16	v0,v18
+; v0 : Ljava/util/Map; , v18 : Ljava/util/Map;
+	invoke-interface	{v0,v13},java/util/Map/get	; get(Ljava/lang/Object;)Ljava/lang/Object;
+; v0 : Ljava/util/Map; , v13 : Ljava/lang/String;
+	move-result-object	v5
+; v5 : Ljava/lang/Object;
+	check-cast	v5,com/google/analytics/midtier/proto/containertag/TypeSystem$Value
+; v5 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+.line 37
+	if-eqz	v11,leb832
+; v11 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	invoke-static	{},com/google/tagmanager/Types/getDefaultValue	; getDefaultValue()Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+; 
+	nop	
+	move-result-object	v13
+; v13 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	if-eq	v11,v13,leb832
+; v11 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v13 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	if-eqz	v5,leb832
+; v5 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	invoke-static	{},com/google/tagmanager/Types/getDefaultValue	; getDefaultValue()Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+; 
+	nop	
+	move-result-object	v13
+; v13 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	if-eq	v5,v13,leb832
+; v5 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v13 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+.line 39
+	invoke-static	{v11},com/google/tagmanager/Types/valueToNumber	; valueToNumber(Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;)Lcom/google/tagmanager/TypedNumber;
+; v11 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	move-result-object	v12
+; v12 : Lcom/google/tagmanager/TypedNumber;
+.line 40
+	invoke-static	{v5},com/google/tagmanager/Types/valueToNumber	; valueToNumber(Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;)Lcom/google/tagmanager/TypedNumber;
+; v5 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	move-result-object	v6
+; v6 : Lcom/google/tagmanager/TypedNumber;
+.line 41
+	invoke-static	{},com/google/tagmanager/Types/getDefaultNumber	; getDefaultNumber()Lcom/google/tagmanager/TypedNumber;
+; 
+	nop	
+	move-result-object	v13
+; v13 : Lcom/google/tagmanager/TypedNumber;
+	if-eq	v12,v13,leb832
+; v12 : Lcom/google/tagmanager/TypedNumber; , v13 : Lcom/google/tagmanager/TypedNumber;
+	invoke-static	{},com/google/tagmanager/Types/getDefaultNumber	; getDefaultNumber()Lcom/google/tagmanager/TypedNumber;
+; 
+	nop	
+	move-result-object	v13
+; v13 : Lcom/google/tagmanager/TypedNumber;
+	if-eq	v6,v13,leb832
+; v6 : Lcom/google/tagmanager/TypedNumber; , v13 : Lcom/google/tagmanager/TypedNumber;
+.line 42
+	invoke-virtual	{v12},com/google/tagmanager/TypedNumber/doubleValue	; doubleValue()D
+; v12 : Lcom/google/tagmanager/TypedNumber;
+	move-result-wide	v9
+; v9 : double-length
+.line 43
+	invoke-virtual	{v6},com/google/tagmanager/TypedNumber/doubleValue	; doubleValue()D
+; v6 : Lcom/google/tagmanager/TypedNumber;
+	move-result-wide	v3
+; v3 : double-length
+.line 44
+	cmpg-double	v13,v9,v3
+; v13 : single-length , v9 : double-length , v3 : double-length
+	if-gtz	v13,leb832
+; v13 : single-length
+.line 47
+	move-wide	v7,v9
+; v7 : double-length , v9 : double-length
+.line 48
+	move-wide	v1,v3
+; v1 : double-length , v3 : double-length
+leb832:
+.line 52
+	invoke-static	{},java/lang/Math/random	; random()D
+; 
+	nop	
+	move-result-wide	v13
+; v13 : double-length
+	sub-double	v15,v1,v7
+; v15 : double-length , v1 : double-length , v7 : double-length
+	mul-double/2addr	v13,v15
+; v13 : double-length , v15 : double-length
+	add-double/2addr	v13,v7
+; v13 : double-length , v7 : double-length
+	invoke-static	{v13,v14},java/lang/Math/round	; round(D)J
+; v13 : double-length
+	move-result-wide	v13
+; v13 : double-length
+	invoke-static	{v13,v14},java/lang/Long/valueOf	; valueOf(J)Ljava/lang/Long;
+; v13 : double-length
+	move-result-object	v13
+; v13 : Ljava/lang/Long;
+	invoke-static	{v13},com/google/tagmanager/Types/objectToValue	; objectToValue(Ljava/lang/Object;)Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+; v13 : Ljava/lang/Long;
+	move-result-object	v13
+; v13 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	return-object	v13
+; v13 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+.end method
+
+.method public isCacheable()Z
+.limit registers 2
+; this: v1 (Lcom/google/tagmanager/RandomMacro;)
+.line 29
+	const/4	v0,0
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+

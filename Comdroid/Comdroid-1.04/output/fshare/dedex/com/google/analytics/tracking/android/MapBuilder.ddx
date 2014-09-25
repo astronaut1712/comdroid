@@ -1,0 +1,804 @@
+.class public com/google/analytics/tracking/android/MapBuilder
+.super java/lang/Object
+.source MapBuilder.java
+
+.field private map Ljava/util/Map;
+  .annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "Ljava/util/Map" , "<" , "Ljava/lang/String;" , "Ljava/lang/String;" , ">;" }
+  .end annotation
+.end field
+
+.method public <init>()V
+.limit registers 2
+; this: v1 (Lcom/google/analytics/tracking/android/MapBuilder;)
+.line 53
+	invoke-direct	{v1},java/lang/Object/<init>	; <init>()V
+; v1 : Lcom/google/analytics/tracking/android/MapBuilder;
+.line 54
+	new-instance	v0,java/util/HashMap
+; v0 : Ljava/util/HashMap;
+	invoke-direct	{v0},java/util/HashMap/<init>	; <init>()V
+; v0 : Ljava/util/HashMap;
+	iput-object	v0,v1,com/google/analytics/tracking/android/MapBuilder.map Ljava/util/Map;
+; v0 : Ljava/util/HashMap; , v1 : Lcom/google/analytics/tracking/android/MapBuilder;
+	return-void	
+.end method
+
+.method static booleanToString(Ljava/lang/Boolean;)Ljava/lang/String;
+.limit registers 2
+; parameter[0] : v1 (Ljava/lang/Boolean;)
+.line 287
+	if-nez	v1,la24a0
+; v1 : Ljava/lang/Boolean;
+.line 288
+	const/4	v0,0
+; v0 : single-length
+la249e:
+.line 290
+	return-object	v0
+; v0 : Ljava/lang/String;
+la24a0:
+	invoke-virtual	{v1},java/lang/Boolean/booleanValue	; booleanValue()Z
+; v1 : Ljava/lang/Boolean;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,la24b2
+; v0 : single-length
+	const-string	v0,"1"
+; v0 : Ljava/lang/String;
+	goto	la249e
+la24b2:
+	const-string	v0,"0"
+; v0 : Ljava/lang/String;
+	goto	la249e
+.end method
+
+.method public static createAppView()Lcom/google/analytics/tracking/android/MapBuilder;
+.limit registers 3
+.line 88
+	invoke-static	{},com/google/analytics/tracking/android/GAUsage/getInstance	; getInstance()Lcom/google/analytics/tracking/android/GAUsage;
+; 
+	nop	
+	move-result-object	v1
+; v1 : Lcom/google/analytics/tracking/android/GAUsage;
+	sget-object	v2,com/google/analytics/tracking/android/GAUsage$Field.CONSTRUCT_APP_VIEW Lcom/google/analytics/tracking/android/GAUsage$Field;
+; v2 : Lcom/google/analytics/tracking/android/GAUsage$Field;
+	invoke-virtual	{v1,v2},com/google/analytics/tracking/android/GAUsage/setUsage	; setUsage(Lcom/google/analytics/tracking/android/GAUsage$Field;)V
+; v1 : Lcom/google/analytics/tracking/android/GAUsage; , v2 : Lcom/google/analytics/tracking/android/GAUsage$Field;
+.line 89
+	new-instance	v0,com/google/analytics/tracking/android/MapBuilder
+; v0 : Lcom/google/analytics/tracking/android/MapBuilder;
+	invoke-direct	{v0},com/google/analytics/tracking/android/MapBuilder/<init>	; <init>()V
+; v0 : Lcom/google/analytics/tracking/android/MapBuilder;
+.line 90
+	const-string	v1,"&t"
+; v1 : Ljava/lang/String;
+	const-string	v2,"appview"
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v0,v1,v2},com/google/analytics/tracking/android/MapBuilder/set	; set(Ljava/lang/String;Ljava/lang/String;)Lcom/google/analytics/tracking/android/MapBuilder;
+; v0 : Lcom/google/analytics/tracking/android/MapBuilder; , v1 : Ljava/lang/String; , v2 : Ljava/lang/String;
+.line 91
+	return-object	v0
+; v0 : Lcom/google/analytics/tracking/android/MapBuilder;
+.end method
+
+.method public static createEvent(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;)Lcom/google/analytics/tracking/android/MapBuilder;
+.limit registers 9
+; parameter[0] : v5 (Ljava/lang/String;)
+; parameter[1] : v6 (Ljava/lang/String;)
+; parameter[2] : v7 (Ljava/lang/String;)
+; parameter[3] : v8 (Ljava/lang/Long;)
+.line 99
+	invoke-static	{},com/google/analytics/tracking/android/GAUsage/getInstance	; getInstance()Lcom/google/analytics/tracking/android/GAUsage;
+; 
+	nop	
+	move-result-object	v1
+; v1 : Lcom/google/analytics/tracking/android/GAUsage;
+	sget-object	v2,com/google/analytics/tracking/android/GAUsage$Field.CONSTRUCT_EVENT Lcom/google/analytics/tracking/android/GAUsage$Field;
+; v2 : Lcom/google/analytics/tracking/android/GAUsage$Field;
+	invoke-virtual	{v1,v2},com/google/analytics/tracking/android/GAUsage/setUsage	; setUsage(Lcom/google/analytics/tracking/android/GAUsage$Field;)V
+; v1 : Lcom/google/analytics/tracking/android/GAUsage; , v2 : Lcom/google/analytics/tracking/android/GAUsage$Field;
+.line 100
+	new-instance	v0,com/google/analytics/tracking/android/MapBuilder
+; v0 : Lcom/google/analytics/tracking/android/MapBuilder;
+	invoke-direct	{v0},com/google/analytics/tracking/android/MapBuilder/<init>	; <init>()V
+; v0 : Lcom/google/analytics/tracking/android/MapBuilder;
+.line 101
+	const-string	v1,"&t"
+; v1 : Ljava/lang/String;
+	const-string	v2,"event"
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v0,v1,v2},com/google/analytics/tracking/android/MapBuilder/set	; set(Ljava/lang/String;Ljava/lang/String;)Lcom/google/analytics/tracking/android/MapBuilder;
+; v0 : Lcom/google/analytics/tracking/android/MapBuilder; , v1 : Ljava/lang/String; , v2 : Ljava/lang/String;
+.line 102
+	const-string	v1,"&ec"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1,v5},com/google/analytics/tracking/android/MapBuilder/set	; set(Ljava/lang/String;Ljava/lang/String;)Lcom/google/analytics/tracking/android/MapBuilder;
+; v0 : Lcom/google/analytics/tracking/android/MapBuilder; , v1 : Ljava/lang/String; , v5 : Ljava/lang/String;
+.line 103
+	const-string	v1,"&ea"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1,v6},com/google/analytics/tracking/android/MapBuilder/set	; set(Ljava/lang/String;Ljava/lang/String;)Lcom/google/analytics/tracking/android/MapBuilder;
+; v0 : Lcom/google/analytics/tracking/android/MapBuilder; , v1 : Ljava/lang/String; , v6 : Ljava/lang/String;
+.line 104
+	const-string	v1,"&el"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1,v7},com/google/analytics/tracking/android/MapBuilder/set	; set(Ljava/lang/String;Ljava/lang/String;)Lcom/google/analytics/tracking/android/MapBuilder;
+; v0 : Lcom/google/analytics/tracking/android/MapBuilder; , v1 : Ljava/lang/String; , v7 : Ljava/lang/String;
+.line 105
+	const-string	v2,"&ev"
+; v2 : Ljava/lang/String;
+	if-nez	v8,la255e
+; v8 : Ljava/lang/Long;
+	const/4	v1,0
+; v1 : single-length
+la2556:
+	invoke-virtual	{v0,v2,v1},com/google/analytics/tracking/android/MapBuilder/set	; set(Ljava/lang/String;Ljava/lang/String;)Lcom/google/analytics/tracking/android/MapBuilder;
+; v0 : Lcom/google/analytics/tracking/android/MapBuilder; , v2 : Ljava/lang/String; , v1 : Ljava/lang/String;
+.line 106
+	return-object	v0
+; v0 : Lcom/google/analytics/tracking/android/MapBuilder;
+la255e:
+.line 105
+	invoke-virtual	{v8},java/lang/Long/longValue	; longValue()J
+; v8 : Ljava/lang/Long;
+	move-result-wide	v3
+; v3 : double-length
+	invoke-static	{v3,v4},java/lang/Long/toString	; toString(J)Ljava/lang/String;
+; v3 : double-length
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	goto	la2556
+.end method
+
+.method public static createException(Ljava/lang/String;Ljava/lang/Boolean;)Lcom/google/analytics/tracking/android/MapBuilder;
+.limit registers 5
+; parameter[0] : v3 (Ljava/lang/String;)
+; parameter[1] : v4 (Ljava/lang/Boolean;)
+.line 164
+	invoke-static	{},com/google/analytics/tracking/android/GAUsage/getInstance	; getInstance()Lcom/google/analytics/tracking/android/GAUsage;
+; 
+	nop	
+	move-result-object	v1
+; v1 : Lcom/google/analytics/tracking/android/GAUsage;
+	sget-object	v2,com/google/analytics/tracking/android/GAUsage$Field.CONSTRUCT_EXCEPTION Lcom/google/analytics/tracking/android/GAUsage$Field;
+; v2 : Lcom/google/analytics/tracking/android/GAUsage$Field;
+	invoke-virtual	{v1,v2},com/google/analytics/tracking/android/GAUsage/setUsage	; setUsage(Lcom/google/analytics/tracking/android/GAUsage$Field;)V
+; v1 : Lcom/google/analytics/tracking/android/GAUsage; , v2 : Lcom/google/analytics/tracking/android/GAUsage$Field;
+.line 165
+	new-instance	v0,com/google/analytics/tracking/android/MapBuilder
+; v0 : Lcom/google/analytics/tracking/android/MapBuilder;
+	invoke-direct	{v0},com/google/analytics/tracking/android/MapBuilder/<init>	; <init>()V
+; v0 : Lcom/google/analytics/tracking/android/MapBuilder;
+.line 166
+	const-string	v1,"&t"
+; v1 : Ljava/lang/String;
+	const-string	v2,"exception"
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v0,v1,v2},com/google/analytics/tracking/android/MapBuilder/set	; set(Ljava/lang/String;Ljava/lang/String;)Lcom/google/analytics/tracking/android/MapBuilder;
+; v0 : Lcom/google/analytics/tracking/android/MapBuilder; , v1 : Ljava/lang/String; , v2 : Ljava/lang/String;
+.line 167
+	const-string	v1,"&exd"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1,v3},com/google/analytics/tracking/android/MapBuilder/set	; set(Ljava/lang/String;Ljava/lang/String;)Lcom/google/analytics/tracking/android/MapBuilder;
+; v0 : Lcom/google/analytics/tracking/android/MapBuilder; , v1 : Ljava/lang/String; , v3 : Ljava/lang/String;
+.line 168
+	const-string	v1,"&exf"
+; v1 : Ljava/lang/String;
+	invoke-static	{v4},com/google/analytics/tracking/android/MapBuilder/booleanToString	; booleanToString(Ljava/lang/Boolean;)Ljava/lang/String;
+; v4 : Ljava/lang/Boolean;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v0,v1,v2},com/google/analytics/tracking/android/MapBuilder/set	; set(Ljava/lang/String;Ljava/lang/String;)Lcom/google/analytics/tracking/android/MapBuilder;
+; v0 : Lcom/google/analytics/tracking/android/MapBuilder; , v1 : Ljava/lang/String; , v2 : Ljava/lang/String;
+.line 169
+	return-object	v0
+; v0 : Lcom/google/analytics/tracking/android/MapBuilder;
+.end method
+
+.method public static createItem(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Double;Ljava/lang/Long;Ljava/lang/String;)Lcom/google/analytics/tracking/android/MapBuilder;
+.limit registers 13
+; parameter[0] : v6 (Ljava/lang/String;)
+; parameter[1] : v7 (Ljava/lang/String;)
+; parameter[2] : v8 (Ljava/lang/String;)
+; parameter[3] : v9 (Ljava/lang/String;)
+; parameter[4] : v10 (Ljava/lang/Double;)
+; parameter[5] : v11 (Ljava/lang/Long;)
+; parameter[6] : v12 (Ljava/lang/String;)
+	const/4	v2,0
+; v2 : single-length
+.line 147
+	invoke-static	{},com/google/analytics/tracking/android/GAUsage/getInstance	; getInstance()Lcom/google/analytics/tracking/android/GAUsage;
+; 
+	nop	
+	move-result-object	v1
+; v1 : Lcom/google/analytics/tracking/android/GAUsage;
+	sget-object	v3,com/google/analytics/tracking/android/GAUsage$Field.CONSTRUCT_ITEM Lcom/google/analytics/tracking/android/GAUsage$Field;
+; v3 : Lcom/google/analytics/tracking/android/GAUsage$Field;
+	invoke-virtual	{v1,v3},com/google/analytics/tracking/android/GAUsage/setUsage	; setUsage(Lcom/google/analytics/tracking/android/GAUsage$Field;)V
+; v1 : Lcom/google/analytics/tracking/android/GAUsage; , v3 : Lcom/google/analytics/tracking/android/GAUsage$Field;
+.line 148
+	new-instance	v0,com/google/analytics/tracking/android/MapBuilder
+; v0 : Lcom/google/analytics/tracking/android/MapBuilder;
+	invoke-direct	{v0},com/google/analytics/tracking/android/MapBuilder/<init>	; <init>()V
+; v0 : Lcom/google/analytics/tracking/android/MapBuilder;
+.line 149
+	const-string	v1,"&t"
+; v1 : Ljava/lang/String;
+	const-string	v3,"item"
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v0,v1,v3},com/google/analytics/tracking/android/MapBuilder/set	; set(Ljava/lang/String;Ljava/lang/String;)Lcom/google/analytics/tracking/android/MapBuilder;
+; v0 : Lcom/google/analytics/tracking/android/MapBuilder; , v1 : Ljava/lang/String; , v3 : Ljava/lang/String;
+.line 150
+	const-string	v1,"&ti"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1,v6},com/google/analytics/tracking/android/MapBuilder/set	; set(Ljava/lang/String;Ljava/lang/String;)Lcom/google/analytics/tracking/android/MapBuilder;
+; v0 : Lcom/google/analytics/tracking/android/MapBuilder; , v1 : Ljava/lang/String; , v6 : Ljava/lang/String;
+.line 151
+	const-string	v1,"&ic"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1,v8},com/google/analytics/tracking/android/MapBuilder/set	; set(Ljava/lang/String;Ljava/lang/String;)Lcom/google/analytics/tracking/android/MapBuilder;
+; v0 : Lcom/google/analytics/tracking/android/MapBuilder; , v1 : Ljava/lang/String; , v8 : Ljava/lang/String;
+.line 152
+	const-string	v1,"&in"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1,v7},com/google/analytics/tracking/android/MapBuilder/set	; set(Ljava/lang/String;Ljava/lang/String;)Lcom/google/analytics/tracking/android/MapBuilder;
+; v0 : Lcom/google/analytics/tracking/android/MapBuilder; , v1 : Ljava/lang/String; , v7 : Ljava/lang/String;
+.line 153
+	const-string	v1,"&iv"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1,v9},com/google/analytics/tracking/android/MapBuilder/set	; set(Ljava/lang/String;Ljava/lang/String;)Lcom/google/analytics/tracking/android/MapBuilder;
+; v0 : Lcom/google/analytics/tracking/android/MapBuilder; , v1 : Ljava/lang/String; , v9 : Ljava/lang/String;
+.line 154
+	const-string	v3,"&ip"
+; v3 : Ljava/lang/String;
+	if-nez	v10,la2656
+; v10 : Ljava/lang/Double;
+	move-object	v1,v2
+; v1 : single-length , v2 : single-length
+la2636:
+	invoke-virtual	{v0,v3,v1},com/google/analytics/tracking/android/MapBuilder/set	; set(Ljava/lang/String;Ljava/lang/String;)Lcom/google/analytics/tracking/android/MapBuilder;
+; v0 : Lcom/google/analytics/tracking/android/MapBuilder; , v3 : Ljava/lang/String; , v1 : Ljava/lang/String;
+.line 155
+	const-string	v1,"&iq"
+; v1 : Ljava/lang/String;
+	if-nez	v11,la2668
+; v11 : Ljava/lang/Long;
+la2644:
+	invoke-virtual	{v0,v1,v2},com/google/analytics/tracking/android/MapBuilder/set	; set(Ljava/lang/String;Ljava/lang/String;)Lcom/google/analytics/tracking/android/MapBuilder;
+; v0 : Lcom/google/analytics/tracking/android/MapBuilder; , v1 : Ljava/lang/String; , v2 : Ljava/lang/String;
+.line 156
+	const-string	v1,"&cu"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1,v12},com/google/analytics/tracking/android/MapBuilder/set	; set(Ljava/lang/String;Ljava/lang/String;)Lcom/google/analytics/tracking/android/MapBuilder;
+; v0 : Lcom/google/analytics/tracking/android/MapBuilder; , v1 : Ljava/lang/String; , v12 : Ljava/lang/String;
+.line 157
+	return-object	v0
+; v0 : Lcom/google/analytics/tracking/android/MapBuilder;
+la2656:
+.line 154
+	invoke-virtual	{v10},java/lang/Double/doubleValue	; doubleValue()D
+; v10 : Ljava/lang/Double;
+	move-result-wide	v4
+; v4 : double-length
+	invoke-static	{v4,v5},java/lang/Double/toString	; toString(D)Ljava/lang/String;
+; v4 : double-length
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	goto	la2636
+la2668:
+.line 155
+	invoke-virtual	{v11},java/lang/Long/longValue	; longValue()J
+; v11 : Ljava/lang/Long;
+	move-result-wide	v2
+; v2 : double-length
+	invoke-static	{v2,v3},java/lang/Long/toString	; toString(J)Ljava/lang/String;
+; v2 : double-length
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	goto	la2644
+.end method
+
+.method public static createSocial(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Lcom/google/analytics/tracking/android/MapBuilder;
+.limit registers 6
+; parameter[0] : v3 (Ljava/lang/String;)
+; parameter[1] : v4 (Ljava/lang/String;)
+; parameter[2] : v5 (Ljava/lang/String;)
+.line 221
+	invoke-static	{},com/google/analytics/tracking/android/GAUsage/getInstance	; getInstance()Lcom/google/analytics/tracking/android/GAUsage;
+; 
+	nop	
+	move-result-object	v1
+; v1 : Lcom/google/analytics/tracking/android/GAUsage;
+	sget-object	v2,com/google/analytics/tracking/android/GAUsage$Field.CONSTRUCT_SOCIAL Lcom/google/analytics/tracking/android/GAUsage$Field;
+; v2 : Lcom/google/analytics/tracking/android/GAUsage$Field;
+	invoke-virtual	{v1,v2},com/google/analytics/tracking/android/GAUsage/setUsage	; setUsage(Lcom/google/analytics/tracking/android/GAUsage$Field;)V
+; v1 : Lcom/google/analytics/tracking/android/GAUsage; , v2 : Lcom/google/analytics/tracking/android/GAUsage$Field;
+.line 222
+	new-instance	v0,com/google/analytics/tracking/android/MapBuilder
+; v0 : Lcom/google/analytics/tracking/android/MapBuilder;
+	invoke-direct	{v0},com/google/analytics/tracking/android/MapBuilder/<init>	; <init>()V
+; v0 : Lcom/google/analytics/tracking/android/MapBuilder;
+.line 223
+	const-string	v1,"&t"
+; v1 : Ljava/lang/String;
+	const-string	v2,"social"
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v0,v1,v2},com/google/analytics/tracking/android/MapBuilder/set	; set(Ljava/lang/String;Ljava/lang/String;)Lcom/google/analytics/tracking/android/MapBuilder;
+; v0 : Lcom/google/analytics/tracking/android/MapBuilder; , v1 : Ljava/lang/String; , v2 : Ljava/lang/String;
+.line 224
+	const-string	v1,"&sn"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1,v3},com/google/analytics/tracking/android/MapBuilder/set	; set(Ljava/lang/String;Ljava/lang/String;)Lcom/google/analytics/tracking/android/MapBuilder;
+; v0 : Lcom/google/analytics/tracking/android/MapBuilder; , v1 : Ljava/lang/String; , v3 : Ljava/lang/String;
+.line 225
+	const-string	v1,"&sa"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1,v4},com/google/analytics/tracking/android/MapBuilder/set	; set(Ljava/lang/String;Ljava/lang/String;)Lcom/google/analytics/tracking/android/MapBuilder;
+; v0 : Lcom/google/analytics/tracking/android/MapBuilder; , v1 : Ljava/lang/String; , v4 : Ljava/lang/String;
+.line 226
+	const-string	v1,"&st"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1,v5},com/google/analytics/tracking/android/MapBuilder/set	; set(Ljava/lang/String;Ljava/lang/String;)Lcom/google/analytics/tracking/android/MapBuilder;
+; v0 : Lcom/google/analytics/tracking/android/MapBuilder; , v1 : Ljava/lang/String; , v5 : Ljava/lang/String;
+.line 227
+	return-object	v0
+; v0 : Lcom/google/analytics/tracking/android/MapBuilder;
+.end method
+
+.method public static createTiming(Ljava/lang/String;Ljava/lang/Long;Ljava/lang/String;Ljava/lang/String;)Lcom/google/analytics/tracking/android/MapBuilder;
+.limit registers 8
+; parameter[0] : v4 (Ljava/lang/String;)
+; parameter[1] : v5 (Ljava/lang/Long;)
+; parameter[2] : v6 (Ljava/lang/String;)
+; parameter[3] : v7 (Ljava/lang/String;)
+.line 203
+	invoke-static	{},com/google/analytics/tracking/android/GAUsage/getInstance	; getInstance()Lcom/google/analytics/tracking/android/GAUsage;
+; 
+	nop	
+	move-result-object	v2
+; v2 : Lcom/google/analytics/tracking/android/GAUsage;
+	sget-object	v3,com/google/analytics/tracking/android/GAUsage$Field.CONSTRUCT_TIMING Lcom/google/analytics/tracking/android/GAUsage$Field;
+; v3 : Lcom/google/analytics/tracking/android/GAUsage$Field;
+	invoke-virtual	{v2,v3},com/google/analytics/tracking/android/GAUsage/setUsage	; setUsage(Lcom/google/analytics/tracking/android/GAUsage$Field;)V
+; v2 : Lcom/google/analytics/tracking/android/GAUsage; , v3 : Lcom/google/analytics/tracking/android/GAUsage$Field;
+.line 204
+	new-instance	v0,com/google/analytics/tracking/android/MapBuilder
+; v0 : Lcom/google/analytics/tracking/android/MapBuilder;
+	invoke-direct	{v0},com/google/analytics/tracking/android/MapBuilder/<init>	; <init>()V
+; v0 : Lcom/google/analytics/tracking/android/MapBuilder;
+.line 205
+	const-string	v2,"&t"
+; v2 : Ljava/lang/String;
+	const-string	v3,"timing"
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v0,v2,v3},com/google/analytics/tracking/android/MapBuilder/set	; set(Ljava/lang/String;Ljava/lang/String;)Lcom/google/analytics/tracking/android/MapBuilder;
+; v0 : Lcom/google/analytics/tracking/android/MapBuilder; , v2 : Ljava/lang/String; , v3 : Ljava/lang/String;
+.line 206
+	const-string	v2,"&utc"
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v0,v2,v4},com/google/analytics/tracking/android/MapBuilder/set	; set(Ljava/lang/String;Ljava/lang/String;)Lcom/google/analytics/tracking/android/MapBuilder;
+; v0 : Lcom/google/analytics/tracking/android/MapBuilder; , v2 : Ljava/lang/String; , v4 : Ljava/lang/String;
+.line 207
+	const/4	v1,0
+; v1 : single-length
+.line 208
+	if-eqz	v5,la2732
+; v5 : Ljava/lang/Long;
+.line 209
+	invoke-virtual	{v5},java/lang/Long/longValue	; longValue()J
+; v5 : Ljava/lang/Long;
+	move-result-wide	v2
+; v2 : double-length
+	invoke-static	{v2,v3},java/lang/Long/toString	; toString(J)Ljava/lang/String;
+; v2 : double-length
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+la2732:
+.line 211
+	const-string	v2,"&utt"
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v0,v2,v1},com/google/analytics/tracking/android/MapBuilder/set	; set(Ljava/lang/String;Ljava/lang/String;)Lcom/google/analytics/tracking/android/MapBuilder;
+; v0 : Lcom/google/analytics/tracking/android/MapBuilder; , v2 : Ljava/lang/String; , v1 : single-length
+.line 212
+	const-string	v2,"&utv"
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v0,v2,v6},com/google/analytics/tracking/android/MapBuilder/set	; set(Ljava/lang/String;Ljava/lang/String;)Lcom/google/analytics/tracking/android/MapBuilder;
+; v0 : Lcom/google/analytics/tracking/android/MapBuilder; , v2 : Ljava/lang/String; , v6 : Ljava/lang/String;
+.line 213
+	const-string	v2,"&utl"
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v0,v2,v7},com/google/analytics/tracking/android/MapBuilder/set	; set(Ljava/lang/String;Ljava/lang/String;)Lcom/google/analytics/tracking/android/MapBuilder;
+; v0 : Lcom/google/analytics/tracking/android/MapBuilder; , v2 : Ljava/lang/String; , v7 : Ljava/lang/String;
+.line 214
+	return-object	v0
+; v0 : Lcom/google/analytics/tracking/android/MapBuilder;
+.end method
+
+.method public static createTransaction(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Double;Ljava/lang/Double;Ljava/lang/Double;Ljava/lang/String;)Lcom/google/analytics/tracking/android/MapBuilder;
+.limit registers 12
+; parameter[0] : v6 (Ljava/lang/String;)
+; parameter[1] : v7 (Ljava/lang/String;)
+; parameter[2] : v8 (Ljava/lang/Double;)
+; parameter[3] : v9 (Ljava/lang/Double;)
+; parameter[4] : v10 (Ljava/lang/Double;)
+; parameter[5] : v11 (Ljava/lang/String;)
+	const/4	v2,0
+; v2 : single-length
+.line 119
+	invoke-static	{},com/google/analytics/tracking/android/GAUsage/getInstance	; getInstance()Lcom/google/analytics/tracking/android/GAUsage;
+; 
+	nop	
+	move-result-object	v1
+; v1 : Lcom/google/analytics/tracking/android/GAUsage;
+	sget-object	v3,com/google/analytics/tracking/android/GAUsage$Field.CONSTRUCT_TRANSACTION Lcom/google/analytics/tracking/android/GAUsage$Field;
+; v3 : Lcom/google/analytics/tracking/android/GAUsage$Field;
+	invoke-virtual	{v1,v3},com/google/analytics/tracking/android/GAUsage/setUsage	; setUsage(Lcom/google/analytics/tracking/android/GAUsage$Field;)V
+; v1 : Lcom/google/analytics/tracking/android/GAUsage; , v3 : Lcom/google/analytics/tracking/android/GAUsage$Field;
+.line 120
+	new-instance	v0,com/google/analytics/tracking/android/MapBuilder
+; v0 : Lcom/google/analytics/tracking/android/MapBuilder;
+	invoke-direct	{v0},com/google/analytics/tracking/android/MapBuilder/<init>	; <init>()V
+; v0 : Lcom/google/analytics/tracking/android/MapBuilder;
+.line 121
+	const-string	v1,"&t"
+; v1 : Ljava/lang/String;
+	const-string	v3,"transaction"
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v0,v1,v3},com/google/analytics/tracking/android/MapBuilder/set	; set(Ljava/lang/String;Ljava/lang/String;)Lcom/google/analytics/tracking/android/MapBuilder;
+; v0 : Lcom/google/analytics/tracking/android/MapBuilder; , v1 : Ljava/lang/String; , v3 : Ljava/lang/String;
+.line 122
+	const-string	v1,"&ti"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1,v6},com/google/analytics/tracking/android/MapBuilder/set	; set(Ljava/lang/String;Ljava/lang/String;)Lcom/google/analytics/tracking/android/MapBuilder;
+; v0 : Lcom/google/analytics/tracking/android/MapBuilder; , v1 : Ljava/lang/String; , v6 : Ljava/lang/String;
+.line 123
+	const-string	v1,"&ta"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1,v7},com/google/analytics/tracking/android/MapBuilder/set	; set(Ljava/lang/String;Ljava/lang/String;)Lcom/google/analytics/tracking/android/MapBuilder;
+; v0 : Lcom/google/analytics/tracking/android/MapBuilder; , v1 : Ljava/lang/String; , v7 : Ljava/lang/String;
+.line 124
+	const-string	v3,"&tr"
+; v3 : Ljava/lang/String;
+	if-nez	v8,la27de
+; v8 : Ljava/lang/Double;
+	move-object	v1,v2
+; v1 : single-length , v2 : single-length
+la27ae:
+	invoke-virtual	{v0,v3,v1},com/google/analytics/tracking/android/MapBuilder/set	; set(Ljava/lang/String;Ljava/lang/String;)Lcom/google/analytics/tracking/android/MapBuilder;
+; v0 : Lcom/google/analytics/tracking/android/MapBuilder; , v3 : Ljava/lang/String; , v1 : Ljava/lang/String;
+.line 126
+	const-string	v3,"&tt"
+; v3 : Ljava/lang/String;
+	if-nez	v9,la27f0
+; v9 : Ljava/lang/Double;
+	move-object	v1,v2
+; v1 : single-length , v2 : single-length
+la27be:
+	invoke-virtual	{v0,v3,v1},com/google/analytics/tracking/android/MapBuilder/set	; set(Ljava/lang/String;Ljava/lang/String;)Lcom/google/analytics/tracking/android/MapBuilder;
+; v0 : Lcom/google/analytics/tracking/android/MapBuilder; , v3 : Ljava/lang/String; , v1 : Ljava/lang/String;
+.line 129
+	const-string	v1,"&ts"
+; v1 : Ljava/lang/String;
+	if-nez	v10,la2802
+; v10 : Ljava/lang/Double;
+la27cc:
+	invoke-virtual	{v0,v1,v2},com/google/analytics/tracking/android/MapBuilder/set	; set(Ljava/lang/String;Ljava/lang/String;)Lcom/google/analytics/tracking/android/MapBuilder;
+; v0 : Lcom/google/analytics/tracking/android/MapBuilder; , v1 : Ljava/lang/String; , v2 : Ljava/lang/String;
+.line 132
+	const-string	v1,"&cu"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1,v11},com/google/analytics/tracking/android/MapBuilder/set	; set(Ljava/lang/String;Ljava/lang/String;)Lcom/google/analytics/tracking/android/MapBuilder;
+; v0 : Lcom/google/analytics/tracking/android/MapBuilder; , v1 : Ljava/lang/String; , v11 : Ljava/lang/String;
+.line 133
+	return-object	v0
+; v0 : Lcom/google/analytics/tracking/android/MapBuilder;
+la27de:
+.line 124
+	invoke-virtual	{v8},java/lang/Double/doubleValue	; doubleValue()D
+; v8 : Ljava/lang/Double;
+	move-result-wide	v4
+; v4 : double-length
+	invoke-static	{v4,v5},java/lang/Double/toString	; toString(D)Ljava/lang/String;
+; v4 : double-length
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	goto	la27ae
+la27f0:
+.line 126
+	invoke-virtual	{v9},java/lang/Double/doubleValue	; doubleValue()D
+; v9 : Ljava/lang/Double;
+	move-result-wide	v4
+; v4 : double-length
+	invoke-static	{v4,v5},java/lang/Double/toString	; toString(D)Ljava/lang/String;
+; v4 : double-length
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	goto	la27be
+la2802:
+.line 129
+	invoke-virtual	{v10},java/lang/Double/doubleValue	; doubleValue()D
+; v10 : Ljava/lang/Double;
+	move-result-wide	v2
+; v2 : double-length
+	invoke-static	{v2,v3},java/lang/Double/toString	; toString(D)Ljava/lang/String;
+; v2 : double-length
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	goto	la27cc
+.end method
+
+.method public build()Ljava/util/Map;
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "()" , "Ljava/util/Map" , "<" , "Ljava/lang/String;" , "Ljava/lang/String;" , ">;" }
+.end annotation
+.limit registers 3
+; this: v2 (Lcom/google/analytics/tracking/android/MapBuilder;)
+.line 81
+	new-instance	v0,java/util/HashMap
+; v0 : Ljava/util/HashMap;
+	iget-object	v1,v2,com/google/analytics/tracking/android/MapBuilder.map Ljava/util/Map;
+; v1 : Ljava/util/Map; , v2 : Lcom/google/analytics/tracking/android/MapBuilder;
+	invoke-direct	{v0,v1},java/util/HashMap/<init>	; <init>(Ljava/util/Map;)V
+; v0 : Ljava/util/HashMap; , v1 : Ljava/util/Map;
+	return-object	v0
+; v0 : Ljava/util/HashMap;
+.end method
+
+.method public get(Ljava/lang/String;)Ljava/lang/String;
+.limit registers 4
+; this: v2 (Lcom/google/analytics/tracking/android/MapBuilder;)
+; parameter[0] : v3 (Ljava/lang/String;)
+.line 76
+	invoke-static	{},com/google/analytics/tracking/android/GAUsage/getInstance	; getInstance()Lcom/google/analytics/tracking/android/GAUsage;
+; 
+	nop	
+	move-result-object	v0
+; v0 : Lcom/google/analytics/tracking/android/GAUsage;
+	sget-object	v1,com/google/analytics/tracking/android/GAUsage$Field.MAP_BUILDER_GET Lcom/google/analytics/tracking/android/GAUsage$Field;
+; v1 : Lcom/google/analytics/tracking/android/GAUsage$Field;
+	invoke-virtual	{v0,v1},com/google/analytics/tracking/android/GAUsage/setUsage	; setUsage(Lcom/google/analytics/tracking/android/GAUsage$Field;)V
+; v0 : Lcom/google/analytics/tracking/android/GAUsage; , v1 : Lcom/google/analytics/tracking/android/GAUsage$Field;
+.line 77
+	iget-object	v0,v2,com/google/analytics/tracking/android/MapBuilder.map Ljava/util/Map;
+; v0 : Ljava/util/Map; , v2 : Lcom/google/analytics/tracking/android/MapBuilder;
+	invoke-interface	{v0,v3},java/util/Map/get	; get(Ljava/lang/Object;)Ljava/lang/Object;
+; v0 : Ljava/util/Map; , v3 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,java/lang/String
+; v0 : Ljava/lang/String;
+	return-object	v0
+; v0 : Ljava/lang/String;
+.end method
+
+.method public set(Ljava/lang/String;Ljava/lang/String;)Lcom/google/analytics/tracking/android/MapBuilder;
+.limit registers 5
+; this: v2 (Lcom/google/analytics/tracking/android/MapBuilder;)
+; parameter[0] : v3 (Ljava/lang/String;)
+; parameter[1] : v4 (Ljava/lang/String;)
+.line 57
+	invoke-static	{},com/google/analytics/tracking/android/GAUsage/getInstance	; getInstance()Lcom/google/analytics/tracking/android/GAUsage;
+; 
+	nop	
+	move-result-object	v0
+; v0 : Lcom/google/analytics/tracking/android/GAUsage;
+	sget-object	v1,com/google/analytics/tracking/android/GAUsage$Field.MAP_BUILDER_SET Lcom/google/analytics/tracking/android/GAUsage$Field;
+; v1 : Lcom/google/analytics/tracking/android/GAUsage$Field;
+	invoke-virtual	{v0,v1},com/google/analytics/tracking/android/GAUsage/setUsage	; setUsage(Lcom/google/analytics/tracking/android/GAUsage$Field;)V
+; v0 : Lcom/google/analytics/tracking/android/GAUsage; , v1 : Lcom/google/analytics/tracking/android/GAUsage$Field;
+.line 58
+	if-eqz	v3,la289a
+; v3 : Ljava/lang/String;
+.line 59
+	iget-object	v0,v2,com/google/analytics/tracking/android/MapBuilder.map Ljava/util/Map;
+; v0 : Ljava/util/Map; , v2 : Lcom/google/analytics/tracking/android/MapBuilder;
+	invoke-interface	{v0,v3,v4},java/util/Map/put	; put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+; v0 : Ljava/util/Map; , v3 : Ljava/lang/String; , v4 : Ljava/lang/String;
+la2898:
+.line 63
+	return-object	v2
+; v2 : Lcom/google/analytics/tracking/android/MapBuilder;
+la289a:
+.line 61
+	const-string	v0," MapBuilder.set() called with a null paramName."
+; v0 : Ljava/lang/String;
+	invoke-static	{v0},com/google/analytics/tracking/android/Log/w	; w(Ljava/lang/String;)V
+; v0 : Ljava/lang/String;
+	goto	la2898
+.end method
+
+.method public setAll(Ljava/util/Map;)Lcom/google/analytics/tracking/android/MapBuilder;
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "(" , "Ljava/util/Map" , "<" , "Ljava/lang/String;" , "Ljava/lang/String;" , ">;)" , "Lcom/google/analytics/tracking/android/MapBuilder;" }
+.end annotation
+.limit registers 4
+; this: v2 (Lcom/google/analytics/tracking/android/MapBuilder;)
+; parameter[0] : v3 (Ljava/util/Map;)
+.line 67
+	invoke-static	{},com/google/analytics/tracking/android/GAUsage/getInstance	; getInstance()Lcom/google/analytics/tracking/android/GAUsage;
+; 
+	nop	
+	move-result-object	v0
+; v0 : Lcom/google/analytics/tracking/android/GAUsage;
+	sget-object	v1,com/google/analytics/tracking/android/GAUsage$Field.MAP_BUILDER_SET_ALL Lcom/google/analytics/tracking/android/GAUsage$Field;
+; v1 : Lcom/google/analytics/tracking/android/GAUsage$Field;
+	invoke-virtual	{v0,v1},com/google/analytics/tracking/android/GAUsage/setUsage	; setUsage(Lcom/google/analytics/tracking/android/GAUsage$Field;)V
+; v0 : Lcom/google/analytics/tracking/android/GAUsage; , v1 : Lcom/google/analytics/tracking/android/GAUsage$Field;
+.line 68
+	if-nez	v3,la28d0
+; v3 : Ljava/util/Map;
+la28ce:
+.line 72
+	return-object	v2
+; v2 : Lcom/google/analytics/tracking/android/MapBuilder;
+la28d0:
+.line 71
+	iget-object	v0,v2,com/google/analytics/tracking/android/MapBuilder.map Ljava/util/Map;
+; v0 : Ljava/util/Map; , v2 : Lcom/google/analytics/tracking/android/MapBuilder;
+	new-instance	v1,java/util/HashMap
+; v1 : Ljava/util/HashMap;
+	invoke-direct	{v1,v3},java/util/HashMap/<init>	; <init>(Ljava/util/Map;)V
+; v1 : Ljava/util/HashMap; , v3 : Ljava/util/Map;
+	invoke-interface	{v0,v1},java/util/Map/putAll	; putAll(Ljava/util/Map;)V
+; v0 : Ljava/util/Map; , v1 : Ljava/util/HashMap;
+	goto	la28ce
+.end method
+
+.method public setCampaignParamsFromUrl(Ljava/lang/String;)Lcom/google/analytics/tracking/android/MapBuilder;
+.limit registers 6
+; this: v4 (Lcom/google/analytics/tracking/android/MapBuilder;)
+; parameter[0] : v5 (Ljava/lang/String;)
+.line 260
+	invoke-static	{},com/google/analytics/tracking/android/GAUsage/getInstance	; getInstance()Lcom/google/analytics/tracking/android/GAUsage;
+; 
+	nop	
+	move-result-object	v2
+; v2 : Lcom/google/analytics/tracking/android/GAUsage;
+	sget-object	v3,com/google/analytics/tracking/android/GAUsage$Field.MAP_BUILDER_SET_CAMPAIGN_PARAMS Lcom/google/analytics/tracking/android/GAUsage$Field;
+; v3 : Lcom/google/analytics/tracking/android/GAUsage$Field;
+	invoke-virtual	{v2,v3},com/google/analytics/tracking/android/GAUsage/setUsage	; setUsage(Lcom/google/analytics/tracking/android/GAUsage$Field;)V
+; v2 : Lcom/google/analytics/tracking/android/GAUsage; , v3 : Lcom/google/analytics/tracking/android/GAUsage$Field;
+.line 261
+	invoke-static	{v5},com/google/analytics/tracking/android/Utils/filterCampaign	; filterCampaign(Ljava/lang/String;)Ljava/lang/String;
+; v5 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+.line 262
+	invoke-static	{v0},android/text/TextUtils/isEmpty	; isEmpty(Ljava/lang/CharSequence;)Z
+; v0 : Ljava/lang/String;
+	move-result	v2
+; v2 : single-length
+	if-eqz	v2,la2920
+; v2 : single-length
+la291e:
+.line 283
+	return-object	v4
+; v4 : Lcom/google/analytics/tracking/android/MapBuilder;
+la2920:
+.line 267
+	invoke-static	{v0},com/google/analytics/tracking/android/Utils/parseURLParameters	; parseURLParameters(Ljava/lang/String;)Ljava/util/Map;
+; v0 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/util/Map;
+.line 273
+	const-string	v3,"&cc"
+; v3 : Ljava/lang/String;
+	const-string	v2,"utm_content"
+; v2 : Ljava/lang/String;
+	invoke-interface	{v1,v2},java/util/Map/get	; get(Ljava/lang/Object;)Ljava/lang/Object;
+; v1 : Ljava/util/Map; , v2 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/Object;
+	check-cast	v2,java/lang/String
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v4,v3,v2},com/google/analytics/tracking/android/MapBuilder/set	; set(Ljava/lang/String;Ljava/lang/String;)Lcom/google/analytics/tracking/android/MapBuilder;
+; v4 : Lcom/google/analytics/tracking/android/MapBuilder; , v3 : Ljava/lang/String; , v2 : Ljava/lang/String;
+.line 274
+	const-string	v3,"&cm"
+; v3 : Ljava/lang/String;
+	const-string	v2,"utm_medium"
+; v2 : Ljava/lang/String;
+	invoke-interface	{v1,v2},java/util/Map/get	; get(Ljava/lang/Object;)Ljava/lang/Object;
+; v1 : Ljava/util/Map; , v2 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/Object;
+	check-cast	v2,java/lang/String
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v4,v3,v2},com/google/analytics/tracking/android/MapBuilder/set	; set(Ljava/lang/String;Ljava/lang/String;)Lcom/google/analytics/tracking/android/MapBuilder;
+; v4 : Lcom/google/analytics/tracking/android/MapBuilder; , v3 : Ljava/lang/String; , v2 : Ljava/lang/String;
+.line 275
+	const-string	v3,"&cn"
+; v3 : Ljava/lang/String;
+	const-string	v2,"utm_campaign"
+; v2 : Ljava/lang/String;
+	invoke-interface	{v1,v2},java/util/Map/get	; get(Ljava/lang/Object;)Ljava/lang/Object;
+; v1 : Ljava/util/Map; , v2 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/Object;
+	check-cast	v2,java/lang/String
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v4,v3,v2},com/google/analytics/tracking/android/MapBuilder/set	; set(Ljava/lang/String;Ljava/lang/String;)Lcom/google/analytics/tracking/android/MapBuilder;
+; v4 : Lcom/google/analytics/tracking/android/MapBuilder; , v3 : Ljava/lang/String; , v2 : Ljava/lang/String;
+.line 276
+	const-string	v3,"&cs"
+; v3 : Ljava/lang/String;
+	const-string	v2,"utm_source"
+; v2 : Ljava/lang/String;
+	invoke-interface	{v1,v2},java/util/Map/get	; get(Ljava/lang/Object;)Ljava/lang/Object;
+; v1 : Ljava/util/Map; , v2 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/Object;
+	check-cast	v2,java/lang/String
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v4,v3,v2},com/google/analytics/tracking/android/MapBuilder/set	; set(Ljava/lang/String;Ljava/lang/String;)Lcom/google/analytics/tracking/android/MapBuilder;
+; v4 : Lcom/google/analytics/tracking/android/MapBuilder; , v3 : Ljava/lang/String; , v2 : Ljava/lang/String;
+.line 277
+	const-string	v3,"&ck"
+; v3 : Ljava/lang/String;
+	const-string	v2,"utm_term"
+; v2 : Ljava/lang/String;
+	invoke-interface	{v1,v2},java/util/Map/get	; get(Ljava/lang/Object;)Ljava/lang/Object;
+; v1 : Ljava/util/Map; , v2 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/Object;
+	check-cast	v2,java/lang/String
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v4,v3,v2},com/google/analytics/tracking/android/MapBuilder/set	; set(Ljava/lang/String;Ljava/lang/String;)Lcom/google/analytics/tracking/android/MapBuilder;
+; v4 : Lcom/google/analytics/tracking/android/MapBuilder; , v3 : Ljava/lang/String; , v2 : Ljava/lang/String;
+.line 278
+	const-string	v3,"&ci"
+; v3 : Ljava/lang/String;
+	const-string	v2,"utm_id"
+; v2 : Ljava/lang/String;
+	invoke-interface	{v1,v2},java/util/Map/get	; get(Ljava/lang/Object;)Ljava/lang/Object;
+; v1 : Ljava/util/Map; , v2 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/Object;
+	check-cast	v2,java/lang/String
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v4,v3,v2},com/google/analytics/tracking/android/MapBuilder/set	; set(Ljava/lang/String;Ljava/lang/String;)Lcom/google/analytics/tracking/android/MapBuilder;
+; v4 : Lcom/google/analytics/tracking/android/MapBuilder; , v3 : Ljava/lang/String; , v2 : Ljava/lang/String;
+.line 279
+	const-string	v3,"&gclid"
+; v3 : Ljava/lang/String;
+	const-string	v2,"gclid"
+; v2 : Ljava/lang/String;
+	invoke-interface	{v1,v2},java/util/Map/get	; get(Ljava/lang/Object;)Ljava/lang/Object;
+; v1 : Ljava/util/Map; , v2 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/Object;
+	check-cast	v2,java/lang/String
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v4,v3,v2},com/google/analytics/tracking/android/MapBuilder/set	; set(Ljava/lang/String;Ljava/lang/String;)Lcom/google/analytics/tracking/android/MapBuilder;
+; v4 : Lcom/google/analytics/tracking/android/MapBuilder; , v3 : Ljava/lang/String; , v2 : Ljava/lang/String;
+.line 280
+	const-string	v3,"&dclid"
+; v3 : Ljava/lang/String;
+	const-string	v2,"dclid"
+; v2 : Ljava/lang/String;
+	invoke-interface	{v1,v2},java/util/Map/get	; get(Ljava/lang/Object;)Ljava/lang/Object;
+; v1 : Ljava/util/Map; , v2 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/Object;
+	check-cast	v2,java/lang/String
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v4,v3,v2},com/google/analytics/tracking/android/MapBuilder/set	; set(Ljava/lang/String;Ljava/lang/String;)Lcom/google/analytics/tracking/android/MapBuilder;
+; v4 : Lcom/google/analytics/tracking/android/MapBuilder; , v3 : Ljava/lang/String; , v2 : Ljava/lang/String;
+.line 281
+	const-string	v3,"&gmob_t"
+; v3 : Ljava/lang/String;
+	const-string	v2,"gmob_t"
+; v2 : Ljava/lang/String;
+	invoke-interface	{v1,v2},java/util/Map/get	; get(Ljava/lang/Object;)Ljava/lang/Object;
+; v1 : Ljava/util/Map; , v2 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/Object;
+	check-cast	v2,java/lang/String
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v4,v3,v2},com/google/analytics/tracking/android/MapBuilder/set	; set(Ljava/lang/String;Ljava/lang/String;)Lcom/google/analytics/tracking/android/MapBuilder;
+; v4 : Lcom/google/analytics/tracking/android/MapBuilder; , v3 : Ljava/lang/String; , v2 : Ljava/lang/String;
+	goto	la291e
+.end method
+
+

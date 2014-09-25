@@ -1,0 +1,388 @@
+.class com/fsharemobile/ExplorerSearchResultsActivity$6
+.super java/lang/Object
+.source ExplorerSearchResultsActivity.java
+.implements com/fsharemobile/client/SessionProxy$OnCreateDLSessionCompleted
+
+.enclosing method com/createDownloadSessionFile(Ljava/lang/String;Ljava/lang/String;IZ)V
+.field final this$0 Lcom/fsharemobile/ExplorerSearchResultsActivity;
+.field private final val$isOpen Z
+.field private final val$name Ljava/lang/String;
+.field private final val$type Ljava/lang/String;
+
+.method <init>(Lcom/fsharemobile/ExplorerSearchResultsActivity;Ljava/lang/String;Ljava/lang/String;Z)V
+.limit registers 5
+; this: v0 (Lcom/fsharemobile/ExplorerSearchResultsActivity$6;)
+; parameter[0] : v1 (Lcom/fsharemobile/ExplorerSearchResultsActivity;)
+; parameter[1] : v2 (Ljava/lang/String;)
+; parameter[2] : v3 (Ljava/lang/String;)
+; parameter[3] : v4 (Z)
+.line 1
+	iput-object	v1,v0,com/fsharemobile/ExplorerSearchResultsActivity$6.this$0 Lcom/fsharemobile/ExplorerSearchResultsActivity;
+; v1 : Lcom/fsharemobile/ExplorerSearchResultsActivity; , v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity$6;
+	iput-object	v2,v0,com/fsharemobile/ExplorerSearchResultsActivity$6.val$name Ljava/lang/String;
+; v2 : Ljava/lang/String; , v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity$6;
+	iput-object	v3,v0,com/fsharemobile/ExplorerSearchResultsActivity$6.val$type Ljava/lang/String;
+; v3 : Ljava/lang/String; , v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity$6;
+	iput-boolean	v4,v0,com/fsharemobile/ExplorerSearchResultsActivity$6.val$isOpen Z
+; v4 : single-length , v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity$6;
+.line 887
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity$6;
+	return-void	
+.end method
+
+.method static access$0(Lcom/fsharemobile/ExplorerSearchResultsActivity$6;)Lcom/fsharemobile/ExplorerSearchResultsActivity;
+.limit registers 2
+; parameter[0] : v1 (Lcom/fsharemobile/ExplorerSearchResultsActivity$6;)
+.line 887
+	iget-object	v0,v1,com/fsharemobile/ExplorerSearchResultsActivity$6.this$0 Lcom/fsharemobile/ExplorerSearchResultsActivity;
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity; , v1 : Lcom/fsharemobile/ExplorerSearchResultsActivity$6;
+	return-object	v0
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity;
+.end method
+
+.method public onCreateDLSessionCompleted(ILjava/lang/String;)V
+.limit registers 17
+; this: v14 (Lcom/fsharemobile/ExplorerSearchResultsActivity$6;)
+; parameter[0] : v15 (I)
+; parameter[1] : v16 (Ljava/lang/String;)
+.var 8 is bn Landroid/widget/Button; from ld72a8 to ld733c
+.var 9 is bp Landroid/widget/Button; from ld72f2 to ld733c
+.var 11 is myDialog Landroid/app/AlertDialog; from ld7298 to ld733c
+.var 12 is reDownloadDialog Landroid/app/AlertDialog$Builder; from ld71a8 to ld733c
+.line 902
+	new-instance	v0,java/lang/StringBuilder
+; v0 : Ljava/lang/StringBuilder;
+	invoke-direct	{v0},java/lang/StringBuilder/<init>	; <init>()V
+; v0 : Ljava/lang/StringBuilder;
+.line 903
+	sget-object	v1,android/os/Environment.DIRECTORY_DOWNLOADS Ljava/lang/String;
+; v1 : Ljava/lang/String;
+	invoke-static	{v1},android/os/Environment/getExternalStoragePublicDirectory	; getExternalStoragePublicDirectory(Ljava/lang/String;)Ljava/io/File;
+; v1 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/io/File;
+	invoke-virtual	{v0,v1},java/lang/StringBuilder/append	; append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v1 : Ljava/io/File;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+.line 904
+	const-string	v1,"/"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v1 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	iget-object	v1,v14,com/fsharemobile/ExplorerSearchResultsActivity$6.val$name Ljava/lang/String;
+; v1 : Ljava/lang/String; , v14 : Lcom/fsharemobile/ExplorerSearchResultsActivity$6;
+	invoke-virtual	{v0,v1},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v1 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+.line 902
+	invoke-virtual	{v0},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v0 : Ljava/lang/StringBuilder;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+.line 910
+	sget-object	v0,android/os/Environment.DIRECTORY_DOWNLOADS Ljava/lang/String;
+; v0 : Ljava/lang/String;
+	invoke-static	{v0},android/os/Environment/getExternalStoragePublicDirectory	; getExternalStoragePublicDirectory(Ljava/lang/String;)Ljava/io/File;
+; v0 : Ljava/lang/String;
+	move-result-object	v10
+; v10 : Ljava/io/File;
+.line 911
+	new-instance	v6,java/io/File
+; v6 : Ljava/io/File;
+.line 912
+	new-instance	v0,java/lang/StringBuilder
+; v0 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v10},java/io/File/getAbsolutePath	; getAbsolutePath()Ljava/lang/String;
+; v10 : Ljava/io/File;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-static	{v1},java/lang/String/valueOf	; valueOf(Ljava/lang/Object;)Ljava/lang/String;
+; v1 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/StringBuilder/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/StringBuilder; , v1 : Ljava/lang/String;
+	const-string	v1,"/"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v1 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	iget-object	v1,v14,com/fsharemobile/ExplorerSearchResultsActivity$6.val$name Ljava/lang/String;
+; v1 : Ljava/lang/String; , v14 : Lcom/fsharemobile/ExplorerSearchResultsActivity$6;
+	invoke-virtual	{v0,v1},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v1 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v0},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v0 : Ljava/lang/StringBuilder;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+.line 911
+	invoke-direct	{v6,v0},java/io/File/<init>	; <init>(Ljava/lang/String;)V
+; v6 : Ljava/io/File; , v0 : Ljava/lang/String;
+.line 914
+	invoke-virtual	{v6},java/io/File/exists	; exists()Z
+; v6 : Ljava/io/File;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,ld733e
+; v0 : single-length
+.line 917
+	new-instance	v12,android/app/AlertDialog$Builder
+; v12 : Landroid/app/AlertDialog$Builder;
+.line 918
+	iget-object	v0,v14,com/fsharemobile/ExplorerSearchResultsActivity$6.this$0 Lcom/fsharemobile/ExplorerSearchResultsActivity;
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity; , v14 : Lcom/fsharemobile/ExplorerSearchResultsActivity$6;
+.line 917
+	invoke-direct	{v12,v0},android/app/AlertDialog$Builder/<init>	; <init>(Landroid/content/Context;)V
+; v12 : Landroid/app/AlertDialog$Builder; , v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity;
+.line 919
+	const/4	v0,0
+; v0 : single-length
+	invoke-virtual	{v12,v0},android/app/AlertDialog$Builder/setCancelable	; setCancelable(Z)Landroid/app/AlertDialog$Builder;
+; v12 : Landroid/app/AlertDialog$Builder; , v0 : single-length
+.line 922
+	iget-object	v0,v14,com/fsharemobile/ExplorerSearchResultsActivity$6.this$0 Lcom/fsharemobile/ExplorerSearchResultsActivity;
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity; , v14 : Lcom/fsharemobile/ExplorerSearchResultsActivity$6;
+	invoke-virtual	{v0},com/fsharemobile/ExplorerSearchResultsActivity/getResources	; getResources()Landroid/content/res/Resources;
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity;
+	move-result-object	v0
+; v0 : Landroid/content/res/Resources;
+.line 923
+	const	v1,2131230803	; 0x7f080053
+; v1 : single-length
+.line 922
+	invoke-virtual	{v0,v1},android/content/res/Resources/getText	; getText(I)Ljava/lang/CharSequence;
+; v0 : Landroid/content/res/Resources; , v1 : single-length
+	move-result-object	v0
+; v0 : Ljava/lang/CharSequence;
+.line 921
+	invoke-virtual	{v12,v0},android/app/AlertDialog$Builder/setTitle	; setTitle(Ljava/lang/CharSequence;)Landroid/app/AlertDialog$Builder;
+; v12 : Landroid/app/AlertDialog$Builder; , v0 : Ljava/lang/CharSequence;
+	move-result-object	v0
+; v0 : Landroid/app/AlertDialog$Builder;
+.line 924
+	const	v1,2130837587	; 0x7f020053
+; v1 : single-length
+	invoke-virtual	{v0,v1},android/app/AlertDialog$Builder/setIcon	; setIcon(I)Landroid/app/AlertDialog$Builder;
+; v0 : Landroid/app/AlertDialog$Builder; , v1 : single-length
+	move-result-object	v0
+; v0 : Landroid/app/AlertDialog$Builder;
+.line 926
+	new-instance	v1,java/lang/StringBuilder
+; v1 : Ljava/lang/StringBuilder;
+	invoke-direct	{v1},java/lang/StringBuilder/<init>	; <init>()V
+; v1 : Ljava/lang/StringBuilder;
+	iget-object	v2,v14,com/fsharemobile/ExplorerSearchResultsActivity$6.this$0 Lcom/fsharemobile/ExplorerSearchResultsActivity;
+; v2 : Lcom/fsharemobile/ExplorerSearchResultsActivity; , v14 : Lcom/fsharemobile/ExplorerSearchResultsActivity$6;
+	invoke-virtual	{v2},com/fsharemobile/ExplorerSearchResultsActivity/getResources	; getResources()Landroid/content/res/Resources;
+; v2 : Lcom/fsharemobile/ExplorerSearchResultsActivity;
+	move-result-object	v2
+; v2 : Landroid/content/res/Resources;
+.line 928
+	const	v4,2131230804	; 0x7f080054
+; v4 : single-length
+.line 927
+	invoke-virtual	{v2,v4},android/content/res/Resources/getText	; getText(I)Ljava/lang/CharSequence;
+; v2 : Landroid/content/res/Resources; , v4 : single-length
+	move-result-object	v2
+; v2 : Ljava/lang/CharSequence;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/CharSequence;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+.line 929
+	const-string	v2,"                        "
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+.line 926
+	invoke-virtual	{v1},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v1 : Ljava/lang/StringBuilder;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+.line 925
+	invoke-virtual	{v0,v1},android/app/AlertDialog$Builder/setMessage	; setMessage(Ljava/lang/CharSequence;)Landroid/app/AlertDialog$Builder;
+; v0 : Landroid/app/AlertDialog$Builder; , v1 : Ljava/lang/String;
+.line 932
+	iget-object	v0,v14,com/fsharemobile/ExplorerSearchResultsActivity$6.this$0 Lcom/fsharemobile/ExplorerSearchResultsActivity;
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity; , v14 : Lcom/fsharemobile/ExplorerSearchResultsActivity$6;
+	invoke-virtual	{v0},com/fsharemobile/ExplorerSearchResultsActivity/getResources	; getResources()Landroid/content/res/Resources;
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity;
+	move-result-object	v0
+; v0 : Landroid/content/res/Resources;
+	const	v1,2131230802	; 0x7f080052
+; v1 : single-length
+	invoke-virtual	{v0,v1},android/content/res/Resources/getText	; getText(I)Ljava/lang/CharSequence;
+; v0 : Landroid/content/res/Resources; , v1 : single-length
+	move-result-object	v0
+; v0 : Ljava/lang/CharSequence;
+.line 933
+	new-instance	v1,com/fsharemobile/ExplorerSearchResultsActivity$6$1
+; v1 : Lcom/fsharemobile/ExplorerSearchResultsActivity$6$1;
+	iget-object	v2,v14,com/fsharemobile/ExplorerSearchResultsActivity$6.val$type Ljava/lang/String;
+; v2 : Ljava/lang/String; , v14 : Lcom/fsharemobile/ExplorerSearchResultsActivity$6;
+	invoke-direct	{v1,v14,v3,v2},com/fsharemobile/ExplorerSearchResultsActivity$6$1/<init>	; <init>(Lcom/fsharemobile/ExplorerSearchResultsActivity$6;Ljava/lang/String;Ljava/lang/String;)V
+; v1 : Lcom/fsharemobile/ExplorerSearchResultsActivity$6$1; , v14 : Lcom/fsharemobile/ExplorerSearchResultsActivity$6; , v3 : Ljava/lang/String; , v2 : Ljava/lang/String;
+.line 931
+	invoke-virtual	{v12,v0,v1},android/app/AlertDialog$Builder/setNegativeButton	; setNegativeButton(Ljava/lang/CharSequence;Landroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
+; v12 : Landroid/app/AlertDialog$Builder; , v0 : Ljava/lang/CharSequence; , v1 : Lcom/fsharemobile/ExplorerSearchResultsActivity$6$1;
+.line 948
+	iget-object	v0,v14,com/fsharemobile/ExplorerSearchResultsActivity$6.this$0 Lcom/fsharemobile/ExplorerSearchResultsActivity;
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity; , v14 : Lcom/fsharemobile/ExplorerSearchResultsActivity$6;
+	invoke-virtual	{v0},com/fsharemobile/ExplorerSearchResultsActivity/getResources	; getResources()Landroid/content/res/Resources;
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity;
+	move-result-object	v0
+; v0 : Landroid/content/res/Resources;
+	const	v1,2131230801	; 0x7f080051
+; v1 : single-length
+	invoke-virtual	{v0,v1},android/content/res/Resources/getText	; getText(I)Ljava/lang/CharSequence;
+; v0 : Landroid/content/res/Resources; , v1 : single-length
+	move-result-object	v13
+; v13 : Ljava/lang/CharSequence;
+.line 949
+	new-instance	v0,com/fsharemobile/ExplorerSearchResultsActivity$6$2
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity$6$2;
+	iget-object	v2,v14,com/fsharemobile/ExplorerSearchResultsActivity$6.val$name Ljava/lang/String;
+; v2 : Ljava/lang/String; , v14 : Lcom/fsharemobile/ExplorerSearchResultsActivity$6;
+	iget-object	v5,v14,com/fsharemobile/ExplorerSearchResultsActivity$6.val$type Ljava/lang/String;
+; v5 : Ljava/lang/String; , v14 : Lcom/fsharemobile/ExplorerSearchResultsActivity$6;
+	iget-boolean	v7,v14,com/fsharemobile/ExplorerSearchResultsActivity$6.val$isOpen Z
+; v7 : single-length , v14 : Lcom/fsharemobile/ExplorerSearchResultsActivity$6;
+	move-object	v1,v14
+; v1 : Lcom/fsharemobile/ExplorerSearchResultsActivity$6; , v14 : Lcom/fsharemobile/ExplorerSearchResultsActivity$6;
+	move-object/from16	v4,v16
+; v4 : Ljava/lang/String; , v16 : Ljava/lang/String;
+	invoke-direct/range	{v0..v7},com/fsharemobile/ExplorerSearchResultsActivity$6$2/<init>;	<init>(Lcom/fsharemobile/ExplorerSearchResultsActivity$6;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/io/File;Z)V
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity$6$2; , v1 : Lcom/fsharemobile/ExplorerSearchResultsActivity$6; , v2 : Ljava/lang/String; , v3 : Ljava/lang/String; , v4 : Ljava/lang/String; , v5 : Ljava/lang/String; , v6 : Ljava/io/File; , v7 : single-length
+.line 947
+	invoke-virtual	{v12,v13,v0},android/app/AlertDialog$Builder/setPositiveButton	; setPositiveButton(Ljava/lang/CharSequence;Landroid/content/DialogInterface$OnClickListener;)Landroid/app/AlertDialog$Builder;
+; v12 : Landroid/app/AlertDialog$Builder; , v13 : Ljava/lang/CharSequence; , v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity$6$2;
+.line 964
+	invoke-virtual	{v12},android/app/AlertDialog$Builder/create	; create()Landroid/app/AlertDialog;
+; v12 : Landroid/app/AlertDialog$Builder;
+	move-result-object	v11
+; v11 : Landroid/app/AlertDialog;
+.line 965
+	invoke-virtual	{v11},android/app/AlertDialog/show	; show()V
+; v11 : Landroid/app/AlertDialog;
+.line 967
+	const/4	v0,14
+; v0 : single-length
+	invoke-virtual	{v11,v0},android/app/AlertDialog/getButton	; getButton(I)Landroid/widget/Button;
+; v11 : Landroid/app/AlertDialog; , v0 : single-length
+	move-result-object	v8
+; v8 : Landroid/widget/Button;
+.line 969
+	iget-object	v0,v14,com/fsharemobile/ExplorerSearchResultsActivity$6.this$0 Lcom/fsharemobile/ExplorerSearchResultsActivity;
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity; , v14 : Lcom/fsharemobile/ExplorerSearchResultsActivity$6;
+	invoke-virtual	{v0},com/fsharemobile/ExplorerSearchResultsActivity/getResources	; getResources()Landroid/content/res/Resources;
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity;
+	move-result-object	v0
+; v0 : Landroid/content/res/Resources;
+.line 970
+	const	v1,2131361800	; 0x7f0a0008
+; v1 : single-length
+.line 969
+	invoke-virtual	{v0,v1},android/content/res/Resources/getColor	; getColor(I)I
+; v0 : Landroid/content/res/Resources; , v1 : single-length
+	move-result	v0
+; v0 : single-length
+	invoke-virtual	{v8,v0},android/widget/Button/setBackgroundColor	; setBackgroundColor(I)V
+; v8 : Landroid/widget/Button; , v0 : single-length
+.line 971
+	iget-object	v0,v14,com/fsharemobile/ExplorerSearchResultsActivity$6.this$0 Lcom/fsharemobile/ExplorerSearchResultsActivity;
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity; , v14 : Lcom/fsharemobile/ExplorerSearchResultsActivity$6;
+	invoke-virtual	{v0},com/fsharemobile/ExplorerSearchResultsActivity/getResources	; getResources()Landroid/content/res/Resources;
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity;
+	move-result-object	v0
+; v0 : Landroid/content/res/Resources;
+.line 972
+	const	v1,2131361799	; 0x7f0a0007
+; v1 : single-length
+.line 971
+	invoke-virtual	{v0,v1},android/content/res/Resources/getColor	; getColor(I)I
+; v0 : Landroid/content/res/Resources; , v1 : single-length
+	move-result	v0
+; v0 : single-length
+	invoke-virtual	{v8,v0},android/widget/Button/setTextColor	; setTextColor(I)V
+; v8 : Landroid/widget/Button; , v0 : single-length
+.line 975
+	const/4	v0,15
+; v0 : single-length
+	invoke-virtual	{v11,v0},android/app/AlertDialog/getButton	; getButton(I)Landroid/widget/Button;
+; v11 : Landroid/app/AlertDialog; , v0 : single-length
+	move-result-object	v9
+; v9 : Landroid/widget/Button;
+.line 977
+	iget-object	v0,v14,com/fsharemobile/ExplorerSearchResultsActivity$6.this$0 Lcom/fsharemobile/ExplorerSearchResultsActivity;
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity; , v14 : Lcom/fsharemobile/ExplorerSearchResultsActivity$6;
+	invoke-virtual	{v0},com/fsharemobile/ExplorerSearchResultsActivity/getResources	; getResources()Landroid/content/res/Resources;
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity;
+	move-result-object	v0
+; v0 : Landroid/content/res/Resources;
+.line 978
+	const	v1,2131361800	; 0x7f0a0008
+; v1 : single-length
+.line 977
+	invoke-virtual	{v0,v1},android/content/res/Resources/getColor	; getColor(I)I
+; v0 : Landroid/content/res/Resources; , v1 : single-length
+	move-result	v0
+; v0 : single-length
+	invoke-virtual	{v9,v0},android/widget/Button/setBackgroundColor	; setBackgroundColor(I)V
+; v9 : Landroid/widget/Button; , v0 : single-length
+.line 979
+	iget-object	v0,v14,com/fsharemobile/ExplorerSearchResultsActivity$6.this$0 Lcom/fsharemobile/ExplorerSearchResultsActivity;
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity; , v14 : Lcom/fsharemobile/ExplorerSearchResultsActivity$6;
+	invoke-virtual	{v0},com/fsharemobile/ExplorerSearchResultsActivity/getResources	; getResources()Landroid/content/res/Resources;
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity;
+	move-result-object	v0
+; v0 : Landroid/content/res/Resources;
+.line 980
+	const	v1,2131361799	; 0x7f0a0007
+; v1 : single-length
+.line 979
+	invoke-virtual	{v0,v1},android/content/res/Resources/getColor	; getColor(I)I
+; v0 : Landroid/content/res/Resources; , v1 : single-length
+	move-result	v0
+; v0 : single-length
+	invoke-virtual	{v9,v0},android/widget/Button/setTextColor	; setTextColor(I)V
+; v9 : Landroid/widget/Button; , v0 : single-length
+.line 981
+	iget-object	v0,v14,com/fsharemobile/ExplorerSearchResultsActivity$6.this$0 Lcom/fsharemobile/ExplorerSearchResultsActivity;
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity; , v14 : Lcom/fsharemobile/ExplorerSearchResultsActivity$6;
+	const/4	v1,0
+; v1 : single-length
+	iput-boolean	v1,v0,com/fsharemobile/ExplorerSearchResultsActivity.isClicked Z
+; v1 : single-length , v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity;
+ld733c:
+.line 991
+	return-void	
+ld733e:
+.line 986
+	iget-object	v1,v14,com/fsharemobile/ExplorerSearchResultsActivity$6.this$0 Lcom/fsharemobile/ExplorerSearchResultsActivity;
+; v1 : Lcom/fsharemobile/ExplorerSearchResultsActivity; , v14 : Lcom/fsharemobile/ExplorerSearchResultsActivity$6;
+	iget-object	v2,v14,com/fsharemobile/ExplorerSearchResultsActivity$6.val$name Ljava/lang/String;
+; v2 : Ljava/lang/String; , v14 : Lcom/fsharemobile/ExplorerSearchResultsActivity$6;
+.line 987
+	iget-object	v5,v14,com/fsharemobile/ExplorerSearchResultsActivity$6.val$type Ljava/lang/String;
+; v5 : Ljava/lang/String; , v14 : Lcom/fsharemobile/ExplorerSearchResultsActivity$6;
+	iget-boolean	v7,v14,com/fsharemobile/ExplorerSearchResultsActivity$6.val$isOpen Z
+; v7 : single-length , v14 : Lcom/fsharemobile/ExplorerSearchResultsActivity$6;
+	move-object/from16	v4,v16
+; v4 : Ljava/lang/String; , v16 : Ljava/lang/String;
+.line 986
+	invoke-static/range	{v1..v7},com/fsharemobile/ExplorerSearchResultsActivity/access$21;	access$21(Lcom/fsharemobile/ExplorerSearchResultsActivity;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/io/File;Z)V
+; v1 : Lcom/fsharemobile/ExplorerSearchResultsActivity; , v2 : Ljava/lang/String; , v3 : Ljava/lang/String; , v4 : Ljava/lang/String; , v5 : Ljava/lang/String; , v6 : Ljava/io/File; , v7 : single-length
+	goto	ld733c
+.end method
+
+

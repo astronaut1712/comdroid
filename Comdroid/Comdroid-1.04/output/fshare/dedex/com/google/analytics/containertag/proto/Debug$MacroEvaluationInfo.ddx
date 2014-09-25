@@ -1,0 +1,479 @@
+.class public final com/google/analytics/containertag/proto/Debug$MacroEvaluationInfo
+.super com/google/tagmanager/protobuf/nano/ExtendableMessageNano
+.source Debug.java
+
+.inner class MacroEvaluationInfo inner com/google/analytics/containertag/proto/Debug$MacroEvaluationInfo outer com/google/analytics/containertag/proto/Debug
+.field public static final EMPTY_ARRAY [Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+.field public static final macro Lcom/google/tagmanager/protobuf/nano/Extension;
+  .annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "Lcom/google/tagmanager/protobuf/nano/Extension" , "<" , "Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;" , ">;" }
+  .end annotation
+.end field
+.field public result Lcom/google/analytics/containertag/proto/Debug$ResolvedFunctionCall;
+.field public rulesEvaluation Lcom/google/analytics/containertag/proto/Debug$RuleEvaluationStepInfo;
+
+.method static <clinit>()V
+.limit registers 2
+.line 1097
+	const/4	v0,0
+; v0 : single-length
+	new-array	v0,v0,[Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+; v0 : [Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo; , v0 : [Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+	sput-object	v0,com/google/analytics/containertag/proto/Debug$MacroEvaluationInfo.EMPTY_ARRAY [Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+; v0 : [Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+.line 1101
+	const	v0,47497405	; 0x2d4c0bd
+; v0 : single-length
+	new-instance	v1,com/google/analytics/containertag/proto/Debug$MacroEvaluationInfo$1
+; v1 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo$1;
+	invoke-direct	{v1},com/google/analytics/containertag/proto/Debug$MacroEvaluationInfo$1/<init>	; <init>()V
+; v1 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo$1;
+	invoke-static	{v0,v1},com/google/tagmanager/protobuf/nano/Extension/create	; create(ILcom/google/tagmanager/protobuf/nano/Extension$TypeLiteral;)Lcom/google/tagmanager/protobuf/nano/Extension;
+; v0 : single-length , v1 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo$1;
+	move-result-object	v0
+; v0 : Lcom/google/tagmanager/protobuf/nano/Extension;
+	sput-object	v0,com/google/analytics/containertag/proto/Debug$MacroEvaluationInfo.macro Lcom/google/tagmanager/protobuf/nano/Extension;
+; v0 : Lcom/google/tagmanager/protobuf/nano/Extension;
+	return-void	
+.end method
+
+.method public <init>()V
+.limit registers 2
+; this: v1 (Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;)
+	const/4	v0,0
+; v0 : single-length
+.line 1098
+	invoke-direct	{v1},com/google/tagmanager/protobuf/nano/ExtendableMessageNano/<init>	; <init>()V
+; v1 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+.line 1105
+	iput-object	v0,v1,com/google/analytics/containertag/proto/Debug$MacroEvaluationInfo.rulesEvaluation Lcom/google/analytics/containertag/proto/Debug$RuleEvaluationStepInfo;
+; v0 : single-length , v1 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+.line 1108
+	iput-object	v0,v1,com/google/analytics/containertag/proto/Debug$MacroEvaluationInfo.result Lcom/google/analytics/containertag/proto/Debug$ResolvedFunctionCall;
+; v0 : single-length , v1 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+.line 1098
+	return-void	
+.end method
+
+.method public static parseFrom(Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+.throws Lcom/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException;
+.limit registers 2
+; parameter[0] : v1 (Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)
+.line 1206
+	new-instance	v0,com/google/analytics/containertag/proto/Debug$MacroEvaluationInfo
+; v0 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+	invoke-direct	{v0},com/google/analytics/containertag/proto/Debug$MacroEvaluationInfo/<init>	; <init>()V
+; v0 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+	invoke-virtual	{v0,v1},com/google/analytics/containertag/proto/Debug$MacroEvaluationInfo/mergeFrom	; mergeFrom(Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+; v0 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo; , v1 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result-object	v0
+; v0 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+	return-object	v0
+; v0 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+.end method
+
+.method public static parseFrom([B)Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+.throws Lcom/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException;
+.limit registers 2
+; parameter[0] : v1 ([B)
+.line 1200
+	new-instance	v0,com/google/analytics/containertag/proto/Debug$MacroEvaluationInfo
+; v0 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+	invoke-direct	{v0},com/google/analytics/containertag/proto/Debug$MacroEvaluationInfo/<init>	; <init>()V
+; v0 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+	invoke-static	{v0,v1},com/google/tagmanager/protobuf/nano/MessageNano/mergeFrom	; mergeFrom(Lcom/google/tagmanager/protobuf/nano/MessageNano;[B)Lcom/google/tagmanager/protobuf/nano/MessageNano;
+; v0 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo; , v1 : [B
+	move-result-object	v0
+; v0 : Lcom/google/tagmanager/protobuf/nano/MessageNano;
+	check-cast	v0,com/google/analytics/containertag/proto/Debug$MacroEvaluationInfo
+; v0 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+	return-object	v0
+; v0 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+.end method
+
+.method public final clear()Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+.limit registers 2
+; this: v1 (Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;)
+	const/4	v0,0
+; v0 : single-length
+.line 1111
+	iput-object	v0,v1,com/google/analytics/containertag/proto/Debug$MacroEvaluationInfo.rulesEvaluation Lcom/google/analytics/containertag/proto/Debug$RuleEvaluationStepInfo;
+; v0 : single-length , v1 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+.line 1112
+	iput-object	v0,v1,com/google/analytics/containertag/proto/Debug$MacroEvaluationInfo.result Lcom/google/analytics/containertag/proto/Debug$ResolvedFunctionCall;
+; v0 : single-length , v1 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+.line 1113
+	iput-object	v0,v1,com/google/analytics/containertag/proto/Debug$MacroEvaluationInfo.unknownFieldData Ljava/util/List;
+; v0 : single-length , v1 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+.line 1114
+	const/4	v0,15
+; v0 : single-length
+	iput	v0,v1,com/google/analytics/containertag/proto/Debug$MacroEvaluationInfo.cachedSize I
+; v0 : single-length , v1 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+.line 1115
+	return-object	v1
+; v1 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+.end method
+
+.method public final equals(Ljava/lang/Object;)Z
+.limit registers 7
+; this: v5 (Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;)
+; parameter[0] : v6 (Ljava/lang/Object;)
+	const/4	v1,1
+; v1 : single-length
+	const/4	v2,0
+; v2 : single-length
+.line 1120
+	if-ne	v6,v5,lf856e
+; v6 : Ljava/lang/Object; , v5 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+lf856c:
+.line 1123
+	return	v1
+; v1 : single-length
+lf856e:
+.line 1121
+	instance-of	v3,v6,com/google/analytics/containertag/proto/Debug$MacroEvaluationInfo
+; v3 : single-length , v6 : Ljava/lang/Object;
+	if-nez	v3,lf857a
+; v3 : single-length
+	move	v1,v2
+; v1 : single-length , v2 : single-length
+	goto	lf856c
+lf857a:
+	move-object	v0,v6
+; v0 : Ljava/lang/Object; , v6 : Ljava/lang/Object;
+.line 1122
+	check-cast	v0,com/google/analytics/containertag/proto/Debug$MacroEvaluationInfo
+; v0 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+.line 1123
+	iget-object	v3,v5,com/google/analytics/containertag/proto/Debug$MacroEvaluationInfo.rulesEvaluation Lcom/google/analytics/containertag/proto/Debug$RuleEvaluationStepInfo;
+; v3 : Lcom/google/analytics/containertag/proto/Debug$RuleEvaluationStepInfo; , v5 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+	if-nez	v3,lf85b4
+; v3 : Lcom/google/analytics/containertag/proto/Debug$RuleEvaluationStepInfo;
+	iget-object	v3,v0,com/google/analytics/containertag/proto/Debug$MacroEvaluationInfo.rulesEvaluation Lcom/google/analytics/containertag/proto/Debug$RuleEvaluationStepInfo;
+; v3 : Lcom/google/analytics/containertag/proto/Debug$RuleEvaluationStepInfo; , v0 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+	if-nez	v3,lf85b0
+; v3 : Lcom/google/analytics/containertag/proto/Debug$RuleEvaluationStepInfo;
+lf8590:
+	iget-object	v3,v5,com/google/analytics/containertag/proto/Debug$MacroEvaluationInfo.result Lcom/google/analytics/containertag/proto/Debug$ResolvedFunctionCall;
+; v3 : Lcom/google/analytics/containertag/proto/Debug$ResolvedFunctionCall; , v5 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+	if-nez	v3,lf85ca
+; v3 : Lcom/google/analytics/containertag/proto/Debug$ResolvedFunctionCall;
+	iget-object	v3,v0,com/google/analytics/containertag/proto/Debug$MacroEvaluationInfo.result Lcom/google/analytics/containertag/proto/Debug$ResolvedFunctionCall;
+; v3 : Lcom/google/analytics/containertag/proto/Debug$ResolvedFunctionCall; , v0 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+	if-nez	v3,lf85b0
+; v3 : Lcom/google/analytics/containertag/proto/Debug$ResolvedFunctionCall;
+lf85a0:
+	iget-object	v3,v5,com/google/analytics/containertag/proto/Debug$MacroEvaluationInfo.unknownFieldData Ljava/util/List;
+; v3 : Ljava/util/List; , v5 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+	if-nez	v3,lf85e0
+; v3 : Ljava/util/List;
+	iget-object	v3,v0,com/google/analytics/containertag/proto/Debug$MacroEvaluationInfo.unknownFieldData Ljava/util/List;
+; v3 : Ljava/util/List; , v0 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+	if-eqz	v3,lf856c
+; v3 : Ljava/util/List;
+lf85b0:
+	move	v1,v2
+; v1 : single-length , v2 : single-length
+	goto	lf856c
+lf85b4:
+	iget-object	v3,v5,com/google/analytics/containertag/proto/Debug$MacroEvaluationInfo.rulesEvaluation Lcom/google/analytics/containertag/proto/Debug$RuleEvaluationStepInfo;
+; v3 : Lcom/google/analytics/containertag/proto/Debug$RuleEvaluationStepInfo; , v5 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+	iget-object	v4,v0,com/google/analytics/containertag/proto/Debug$MacroEvaluationInfo.rulesEvaluation Lcom/google/analytics/containertag/proto/Debug$RuleEvaluationStepInfo;
+; v4 : Lcom/google/analytics/containertag/proto/Debug$RuleEvaluationStepInfo; , v0 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+	invoke-virtual	{v3,v4},com/google/analytics/containertag/proto/Debug$RuleEvaluationStepInfo/equals	; equals(Ljava/lang/Object;)Z
+; v3 : Lcom/google/analytics/containertag/proto/Debug$RuleEvaluationStepInfo; , v4 : Lcom/google/analytics/containertag/proto/Debug$RuleEvaluationStepInfo;
+	move-result	v3
+; v3 : single-length
+	if-eqz	v3,lf85b0
+; v3 : single-length
+	goto	lf8590
+lf85ca:
+	iget-object	v3,v5,com/google/analytics/containertag/proto/Debug$MacroEvaluationInfo.result Lcom/google/analytics/containertag/proto/Debug$ResolvedFunctionCall;
+; v3 : Lcom/google/analytics/containertag/proto/Debug$ResolvedFunctionCall; , v5 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+	iget-object	v4,v0,com/google/analytics/containertag/proto/Debug$MacroEvaluationInfo.result Lcom/google/analytics/containertag/proto/Debug$ResolvedFunctionCall;
+; v4 : Lcom/google/analytics/containertag/proto/Debug$ResolvedFunctionCall; , v0 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+	invoke-virtual	{v3,v4},com/google/analytics/containertag/proto/Debug$ResolvedFunctionCall/equals	; equals(Ljava/lang/Object;)Z
+; v3 : Lcom/google/analytics/containertag/proto/Debug$ResolvedFunctionCall; , v4 : Lcom/google/analytics/containertag/proto/Debug$ResolvedFunctionCall;
+	move-result	v3
+; v3 : single-length
+	if-eqz	v3,lf85b0
+; v3 : single-length
+	goto	lf85a0
+lf85e0:
+	iget-object	v3,v5,com/google/analytics/containertag/proto/Debug$MacroEvaluationInfo.unknownFieldData Ljava/util/List;
+; v3 : Ljava/util/List; , v5 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+	iget-object	v4,v0,com/google/analytics/containertag/proto/Debug$MacroEvaluationInfo.unknownFieldData Ljava/util/List;
+; v4 : Ljava/util/List; , v0 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+	invoke-interface	{v3,v4},java/util/List/equals	; equals(Ljava/lang/Object;)Z
+; v3 : Ljava/util/List; , v4 : Ljava/util/List;
+	move-result	v3
+; v3 : single-length
+	if-eqz	v3,lf85b0
+; v3 : single-length
+	goto	lf856c
+.end method
+
+.method public getSerializedSize()I
+.limit registers 4
+; this: v3 (Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;)
+.line 1150
+	const/4	v0,0
+; v0 : single-length
+.line 1151
+	iget-object	v1,v3,com/google/analytics/containertag/proto/Debug$MacroEvaluationInfo.rulesEvaluation Lcom/google/analytics/containertag/proto/Debug$RuleEvaluationStepInfo;
+; v1 : Lcom/google/analytics/containertag/proto/Debug$RuleEvaluationStepInfo; , v3 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+	if-eqz	v1,lf8622
+; v1 : Lcom/google/analytics/containertag/proto/Debug$RuleEvaluationStepInfo;
+.line 1152
+	const/4	v1,1
+; v1 : single-length
+	iget-object	v2,v3,com/google/analytics/containertag/proto/Debug$MacroEvaluationInfo.rulesEvaluation Lcom/google/analytics/containertag/proto/Debug$RuleEvaluationStepInfo;
+; v2 : Lcom/google/analytics/containertag/proto/Debug$RuleEvaluationStepInfo; , v3 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+	invoke-static	{v1,v2},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/computeMessageSize	; computeMessageSize(ILcom/google/tagmanager/protobuf/nano/MessageNano;)I
+; v1 : single-length , v2 : Lcom/google/analytics/containertag/proto/Debug$RuleEvaluationStepInfo;
+	move-result	v1
+; v1 : single-length
+	add-int/2addr	v0,v1
+; v0 : single-length , v1 : single-length
+lf8622:
+.line 1155
+	iget-object	v1,v3,com/google/analytics/containertag/proto/Debug$MacroEvaluationInfo.result Lcom/google/analytics/containertag/proto/Debug$ResolvedFunctionCall;
+; v1 : Lcom/google/analytics/containertag/proto/Debug$ResolvedFunctionCall; , v3 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+	if-eqz	v1,lf863a
+; v1 : Lcom/google/analytics/containertag/proto/Debug$ResolvedFunctionCall;
+.line 1156
+	const/4	v1,3
+; v1 : single-length
+	iget-object	v2,v3,com/google/analytics/containertag/proto/Debug$MacroEvaluationInfo.result Lcom/google/analytics/containertag/proto/Debug$ResolvedFunctionCall;
+; v2 : Lcom/google/analytics/containertag/proto/Debug$ResolvedFunctionCall; , v3 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+	invoke-static	{v1,v2},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/computeMessageSize	; computeMessageSize(ILcom/google/tagmanager/protobuf/nano/MessageNano;)I
+; v1 : single-length , v2 : Lcom/google/analytics/containertag/proto/Debug$ResolvedFunctionCall;
+	move-result	v1
+; v1 : single-length
+	add-int/2addr	v0,v1
+; v0 : single-length , v1 : single-length
+lf863a:
+.line 1159
+	iget-object	v1,v3,com/google/analytics/containertag/proto/Debug$MacroEvaluationInfo.unknownFieldData Ljava/util/List;
+; v1 : Ljava/util/List; , v3 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+	invoke-static	{v1},com/google/tagmanager/protobuf/nano/WireFormatNano/computeWireSize	; computeWireSize(Ljava/util/List;)I
+; v1 : Ljava/util/List;
+	move-result	v1
+; v1 : single-length
+	add-int/2addr	v0,v1
+; v0 : single-length , v1 : single-length
+.line 1160
+	iput	v0,v3,com/google/analytics/containertag/proto/Debug$MacroEvaluationInfo.cachedSize I
+; v0 : single-length , v3 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+.line 1161
+	return	v0
+; v0 : single-length
+.end method
+
+.method public hashCode()I
+.limit registers 5
+; this: v4 (Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;)
+	const/4	v2,0
+; v2 : single-length
+.line 1129
+	const/16	v0,17
+; v0 : single-length
+.line 1130
+	iget-object	v1,v4,com/google/analytics/containertag/proto/Debug$MacroEvaluationInfo.rulesEvaluation Lcom/google/analytics/containertag/proto/Debug$RuleEvaluationStepInfo;
+; v1 : Lcom/google/analytics/containertag/proto/Debug$RuleEvaluationStepInfo; , v4 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+	if-nez	v1,lf8698
+; v1 : Lcom/google/analytics/containertag/proto/Debug$RuleEvaluationStepInfo;
+	move	v1,v2
+; v1 : single-length , v2 : single-length
+lf8670:
+	add-int/lit16	v0,v1,527
+; v0 : single-length , v1 : single-length
+.line 1131
+	mul-int/lit-8	v3,v0,31
+; v3 : single-length , v0 : single-length
+	iget-object	v1,v4,com/google/analytics/containertag/proto/Debug$MacroEvaluationInfo.result Lcom/google/analytics/containertag/proto/Debug$ResolvedFunctionCall;
+; v1 : Lcom/google/analytics/containertag/proto/Debug$ResolvedFunctionCall; , v4 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+	if-nez	v1,lf86a6
+; v1 : Lcom/google/analytics/containertag/proto/Debug$ResolvedFunctionCall;
+	move	v1,v2
+; v1 : single-length , v2 : single-length
+lf8682:
+	add-int	v0,v3,v1
+; v0 : single-length , v3 : single-length , v1 : single-length
+.line 1132
+	mul-int/lit-8	v1,v0,31
+; v1 : single-length , v0 : single-length
+	iget-object	v3,v4,com/google/analytics/containertag/proto/Debug$MacroEvaluationInfo.unknownFieldData Ljava/util/List;
+; v3 : Ljava/util/List; , v4 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+	if-nez	v3,lf86b4
+; v3 : Ljava/util/List;
+lf8692:
+	add-int	v0,v1,v2
+; v0 : single-length , v1 : single-length , v2 : single-length
+.line 1133
+	return	v0
+; v0 : single-length
+lf8698:
+.line 1130
+	iget-object	v1,v4,com/google/analytics/containertag/proto/Debug$MacroEvaluationInfo.rulesEvaluation Lcom/google/analytics/containertag/proto/Debug$RuleEvaluationStepInfo;
+; v1 : Lcom/google/analytics/containertag/proto/Debug$RuleEvaluationStepInfo; , v4 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+	invoke-virtual	{v1},com/google/analytics/containertag/proto/Debug$RuleEvaluationStepInfo/hashCode	; hashCode()I
+; v1 : Lcom/google/analytics/containertag/proto/Debug$RuleEvaluationStepInfo;
+	move-result	v1
+; v1 : single-length
+	goto	lf8670
+lf86a6:
+.line 1131
+	iget-object	v1,v4,com/google/analytics/containertag/proto/Debug$MacroEvaluationInfo.result Lcom/google/analytics/containertag/proto/Debug$ResolvedFunctionCall;
+; v1 : Lcom/google/analytics/containertag/proto/Debug$ResolvedFunctionCall; , v4 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+	invoke-virtual	{v1},com/google/analytics/containertag/proto/Debug$ResolvedFunctionCall/hashCode	; hashCode()I
+; v1 : Lcom/google/analytics/containertag/proto/Debug$ResolvedFunctionCall;
+	move-result	v1
+; v1 : single-length
+	goto	lf8682
+lf86b4:
+.line 1132
+	iget-object	v2,v4,com/google/analytics/containertag/proto/Debug$MacroEvaluationInfo.unknownFieldData Ljava/util/List;
+; v2 : Ljava/util/List; , v4 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+	invoke-interface	{v2},java/util/List/hashCode	; hashCode()I
+; v2 : Ljava/util/List;
+	move-result	v2
+; v2 : single-length
+	goto	lf8692
+.end method
+
+.method public mergeFrom(Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+.throws Ljava/io/IOException;
+.limit registers 4
+; this: v2 (Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;)
+; parameter[0] : v3 (Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)
+lf86d4:
+.line 1169
+	invoke-virtual	{v3},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readTag	; readTag()I
+; v3 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result	v0
+; v0 : single-length
+.line 1170
+	sparse-switch	v0
+		0 : spf86dc_f8708
+		10 : spf86dc_f870a
+		26 : spf86dc_f8724
+		default: spf86dc_default
+; v0 : single-length
+spf86dc_default:
+.line 1174
+	iget-object	v1,v2,com/google/analytics/containertag/proto/Debug$MacroEvaluationInfo.unknownFieldData Ljava/util/List;
+; v1 : Ljava/util/List; , v2 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+	if-nez	v1,lf86f8
+; v1 : Ljava/util/List;
+.line 1175
+	new-instance	v1,java/util/ArrayList
+; v1 : Ljava/util/ArrayList;
+	invoke-direct	{v1},java/util/ArrayList/<init>	; <init>()V
+; v1 : Ljava/util/ArrayList;
+	iput-object	v1,v2,com/google/analytics/containertag/proto/Debug$MacroEvaluationInfo.unknownFieldData Ljava/util/List;
+; v1 : Ljava/util/ArrayList; , v2 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+lf86f8:
+.line 1178
+	iget-object	v1,v2,com/google/analytics/containertag/proto/Debug$MacroEvaluationInfo.unknownFieldData Ljava/util/List;
+; v1 : Ljava/util/List; , v2 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+	invoke-static	{v1,v3,v0},com/google/tagmanager/protobuf/nano/WireFormatNano/storeUnknownField	; storeUnknownField(Ljava/util/List;Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;I)Z
+; v1 : Ljava/util/List; , v3 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano; , v0 : single-length
+	move-result	v1
+; v1 : single-length
+	if-nez	v1,lf86d4
+; v1 : single-length
+spf86dc_f8708:
+.line 1180
+	return-object	v2
+; v2 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+spf86dc_f870a:
+.line 1185
+	new-instance	v1,com/google/analytics/containertag/proto/Debug$RuleEvaluationStepInfo
+; v1 : Lcom/google/analytics/containertag/proto/Debug$RuleEvaluationStepInfo;
+	invoke-direct	{v1},com/google/analytics/containertag/proto/Debug$RuleEvaluationStepInfo/<init>	; <init>()V
+; v1 : Lcom/google/analytics/containertag/proto/Debug$RuleEvaluationStepInfo;
+	iput-object	v1,v2,com/google/analytics/containertag/proto/Debug$MacroEvaluationInfo.rulesEvaluation Lcom/google/analytics/containertag/proto/Debug$RuleEvaluationStepInfo;
+; v1 : Lcom/google/analytics/containertag/proto/Debug$RuleEvaluationStepInfo; , v2 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+.line 1186
+	iget-object	v1,v2,com/google/analytics/containertag/proto/Debug$MacroEvaluationInfo.rulesEvaluation Lcom/google/analytics/containertag/proto/Debug$RuleEvaluationStepInfo;
+; v1 : Lcom/google/analytics/containertag/proto/Debug$RuleEvaluationStepInfo; , v2 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+	invoke-virtual	{v3,v1},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readMessage	; readMessage(Lcom/google/tagmanager/protobuf/nano/MessageNano;)V
+; v3 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano; , v1 : Lcom/google/analytics/containertag/proto/Debug$RuleEvaluationStepInfo;
+	goto	lf86d4
+spf86dc_f8724:
+.line 1190
+	new-instance	v1,com/google/analytics/containertag/proto/Debug$ResolvedFunctionCall
+; v1 : Lcom/google/analytics/containertag/proto/Debug$ResolvedFunctionCall;
+	invoke-direct	{v1},com/google/analytics/containertag/proto/Debug$ResolvedFunctionCall/<init>	; <init>()V
+; v1 : Lcom/google/analytics/containertag/proto/Debug$ResolvedFunctionCall;
+	iput-object	v1,v2,com/google/analytics/containertag/proto/Debug$MacroEvaluationInfo.result Lcom/google/analytics/containertag/proto/Debug$ResolvedFunctionCall;
+; v1 : Lcom/google/analytics/containertag/proto/Debug$ResolvedFunctionCall; , v2 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+.line 1191
+	iget-object	v1,v2,com/google/analytics/containertag/proto/Debug$MacroEvaluationInfo.result Lcom/google/analytics/containertag/proto/Debug$ResolvedFunctionCall;
+; v1 : Lcom/google/analytics/containertag/proto/Debug$ResolvedFunctionCall; , v2 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+	invoke-virtual	{v3,v1},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readMessage	; readMessage(Lcom/google/tagmanager/protobuf/nano/MessageNano;)V
+; v3 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano; , v1 : Lcom/google/analytics/containertag/proto/Debug$ResolvedFunctionCall;
+	goto	lf86d4
+.line 1170
+lf873e:	data-array
+		0x00, 0x00
+	end data-array
+.end method
+
+.method public mergeFrom(Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)Lcom/google/tagmanager/protobuf/nano/MessageNano;
+.throws Ljava/io/IOException;
+.limit registers 3
+; this: v1 (Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;)
+; parameter[0] : v2 (Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)
+.line 1094
+	invoke-virtual	{v1,v2},com/google/analytics/containertag/proto/Debug$MacroEvaluationInfo/mergeFrom	; mergeFrom(Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+; v1 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo; , v2 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result-object	v0
+; v0 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+	return-object	v0
+; v0 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+.end method
+
+.method public writeTo(Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;)V
+.throws Ljava/io/IOException;
+.limit registers 4
+; this: v2 (Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;)
+; parameter[0] : v3 (Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;)
+.line 1138
+	iget-object	v0,v2,com/google/analytics/containertag/proto/Debug$MacroEvaluationInfo.rulesEvaluation Lcom/google/analytics/containertag/proto/Debug$RuleEvaluationStepInfo;
+; v0 : Lcom/google/analytics/containertag/proto/Debug$RuleEvaluationStepInfo; , v2 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+	if-eqz	v0,lf879c
+; v0 : Lcom/google/analytics/containertag/proto/Debug$RuleEvaluationStepInfo;
+.line 1139
+	const/4	v0,1
+; v0 : single-length
+	iget-object	v1,v2,com/google/analytics/containertag/proto/Debug$MacroEvaluationInfo.rulesEvaluation Lcom/google/analytics/containertag/proto/Debug$RuleEvaluationStepInfo;
+; v1 : Lcom/google/analytics/containertag/proto/Debug$RuleEvaluationStepInfo; , v2 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+	invoke-virtual	{v3,v0,v1},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeMessage	; writeMessage(ILcom/google/tagmanager/protobuf/nano/MessageNano;)V
+; v3 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v0 : single-length , v1 : Lcom/google/analytics/containertag/proto/Debug$RuleEvaluationStepInfo;
+lf879c:
+.line 1141
+	iget-object	v0,v2,com/google/analytics/containertag/proto/Debug$MacroEvaluationInfo.result Lcom/google/analytics/containertag/proto/Debug$ResolvedFunctionCall;
+; v0 : Lcom/google/analytics/containertag/proto/Debug$ResolvedFunctionCall; , v2 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+	if-eqz	v0,lf87b0
+; v0 : Lcom/google/analytics/containertag/proto/Debug$ResolvedFunctionCall;
+.line 1142
+	const/4	v0,3
+; v0 : single-length
+	iget-object	v1,v2,com/google/analytics/containertag/proto/Debug$MacroEvaluationInfo.result Lcom/google/analytics/containertag/proto/Debug$ResolvedFunctionCall;
+; v1 : Lcom/google/analytics/containertag/proto/Debug$ResolvedFunctionCall; , v2 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+	invoke-virtual	{v3,v0,v1},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeMessage	; writeMessage(ILcom/google/tagmanager/protobuf/nano/MessageNano;)V
+; v3 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v0 : single-length , v1 : Lcom/google/analytics/containertag/proto/Debug$ResolvedFunctionCall;
+lf87b0:
+.line 1144
+	iget-object	v0,v2,com/google/analytics/containertag/proto/Debug$MacroEvaluationInfo.unknownFieldData Ljava/util/List;
+; v0 : Ljava/util/List; , v2 : Lcom/google/analytics/containertag/proto/Debug$MacroEvaluationInfo;
+	invoke-static	{v0,v3},com/google/tagmanager/protobuf/nano/WireFormatNano/writeUnknownFields	; writeUnknownFields(Ljava/util/List;Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;)V
+; v0 : Ljava/util/List; , v3 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;
+.line 1146
+	return-void	
+.end method
+
+

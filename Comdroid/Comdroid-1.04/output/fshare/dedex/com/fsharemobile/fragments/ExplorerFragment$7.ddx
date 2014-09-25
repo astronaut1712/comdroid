@@ -1,0 +1,90 @@
+.class com/fsharemobile/fragments/ExplorerFragment$7
+.super java/lang/Object
+.source ExplorerFragment.java
+.implements com/fsharemobile/client/SessionProxy$OnCreateULSessionCompleted
+
+.enclosing method com/onActivityResult(IILandroid/content/Intent;)V
+.field final this$0 Lcom/fsharemobile/fragments/ExplorerFragment;
+.field private final val$fFilePath Ljava/lang/String;
+.field private final val$uploadFile Ljava/io/File;
+
+.method <init>(Lcom/fsharemobile/fragments/ExplorerFragment;Ljava/lang/String;Ljava/io/File;)V
+.limit registers 4
+; this: v0 (Lcom/fsharemobile/fragments/ExplorerFragment$7;)
+; parameter[0] : v1 (Lcom/fsharemobile/fragments/ExplorerFragment;)
+; parameter[1] : v2 (Ljava/lang/String;)
+; parameter[2] : v3 (Ljava/io/File;)
+.line 1
+	iput-object	v1,v0,com/fsharemobile/fragments/ExplorerFragment$7.this$0 Lcom/fsharemobile/fragments/ExplorerFragment;
+; v1 : Lcom/fsharemobile/fragments/ExplorerFragment; , v0 : Lcom/fsharemobile/fragments/ExplorerFragment$7;
+	iput-object	v2,v0,com/fsharemobile/fragments/ExplorerFragment$7.val$fFilePath Ljava/lang/String;
+; v2 : Ljava/lang/String; , v0 : Lcom/fsharemobile/fragments/ExplorerFragment$7;
+	iput-object	v3,v0,com/fsharemobile/fragments/ExplorerFragment$7.val$uploadFile Ljava/io/File;
+; v3 : Ljava/io/File; , v0 : Lcom/fsharemobile/fragments/ExplorerFragment$7;
+.line 1032
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Lcom/fsharemobile/fragments/ExplorerFragment$7;
+	return-void	
+.end method
+
+.method static access$0(Lcom/fsharemobile/fragments/ExplorerFragment$7;)Lcom/fsharemobile/fragments/ExplorerFragment;
+.limit registers 2
+; parameter[0] : v1 (Lcom/fsharemobile/fragments/ExplorerFragment$7;)
+.line 1032
+	iget-object	v0,v1,com/fsharemobile/fragments/ExplorerFragment$7.this$0 Lcom/fsharemobile/fragments/ExplorerFragment;
+; v0 : Lcom/fsharemobile/fragments/ExplorerFragment; , v1 : Lcom/fsharemobile/fragments/ExplorerFragment$7;
+	return-object	v0
+; v0 : Lcom/fsharemobile/fragments/ExplorerFragment;
+.end method
+
+.method public onCreateULSessionCompleted(ILjava/lang/String;)V
+.limit registers 10
+; this: v7 (Lcom/fsharemobile/fragments/ExplorerFragment$7;)
+; parameter[0] : v8 (I)
+; parameter[1] : v9 (Ljava/lang/String;)
+.line 1036
+	iget-object	v0,v7,com/fsharemobile/fragments/ExplorerFragment$7.this$0 Lcom/fsharemobile/fragments/ExplorerFragment;
+; v0 : Lcom/fsharemobile/fragments/ExplorerFragment; , v7 : Lcom/fsharemobile/fragments/ExplorerFragment$7;
+	invoke-static	{v0},com/fsharemobile/fragments/ExplorerFragment/access$18	; access$18(Lcom/fsharemobile/fragments/ExplorerFragment;)Ljava/util/concurrent/atomic/AtomicInteger;
+; v0 : Lcom/fsharemobile/fragments/ExplorerFragment;
+	move-result-object	v0
+; v0 : Ljava/util/concurrent/atomic/AtomicInteger;
+	const/4	v1,0
+; v1 : single-length
+	invoke-virtual	{v0,v1},java/util/concurrent/atomic/AtomicInteger/set	; set(I)V
+; v0 : Ljava/util/concurrent/atomic/AtomicInteger; , v1 : single-length
+.line 1037
+	const-string	v0,"Path_To_UPLOAD"
+; v0 : Ljava/lang/String;
+	sget-object	v1,com/fsharemobile/fragments/ExplorerFragment.currentPath Ljava/lang/String;
+; v1 : Ljava/lang/String;
+	invoke-static	{v0,v1},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v0 : Ljava/lang/String; , v1 : Ljava/lang/String;
+.line 1039
+	move	v2,v8
+; v2 : single-length , v8 : single-length
+.line 1043
+	new-instance	v6,java/lang/Thread
+; v6 : Ljava/lang/Thread;
+	new-instance	v0,com/fsharemobile/fragments/ExplorerFragment$7$1
+; v0 : Lcom/fsharemobile/fragments/ExplorerFragment$7$1;
+	iget-object	v4,v7,com/fsharemobile/fragments/ExplorerFragment$7.val$fFilePath Ljava/lang/String;
+; v4 : Ljava/lang/String; , v7 : Lcom/fsharemobile/fragments/ExplorerFragment$7;
+	iget-object	v5,v7,com/fsharemobile/fragments/ExplorerFragment$7.val$uploadFile Ljava/io/File;
+; v5 : Ljava/io/File; , v7 : Lcom/fsharemobile/fragments/ExplorerFragment$7;
+	move-object	v1,v7
+; v1 : Lcom/fsharemobile/fragments/ExplorerFragment$7; , v7 : Lcom/fsharemobile/fragments/ExplorerFragment$7;
+	move-object	v3,v9
+; v3 : Ljava/lang/String; , v9 : Ljava/lang/String;
+	invoke-direct/range	{v0..v5},com/fsharemobile/fragments/ExplorerFragment$7$1/<init>;	<init>(Lcom/fsharemobile/fragments/ExplorerFragment$7;ILjava/lang/String;Ljava/lang/String;Ljava/io/File;)V
+; v0 : Lcom/fsharemobile/fragments/ExplorerFragment$7$1; , v1 : Lcom/fsharemobile/fragments/ExplorerFragment$7; , v2 : single-length , v3 : Ljava/lang/String; , v4 : Ljava/lang/String; , v5 : Ljava/io/File;
+	invoke-direct	{v6,v0},java/lang/Thread/<init>	; <init>(Ljava/lang/Runnable;)V
+; v6 : Ljava/lang/Thread; , v0 : Lcom/fsharemobile/fragments/ExplorerFragment$7$1;
+.line 1224
+	invoke-virtual	{v6},java/lang/Thread/start	; start()V
+; v6 : Ljava/lang/Thread;
+.line 1225
+	return-void	
+.end method
+
+

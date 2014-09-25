@@ -1,0 +1,457 @@
+.class com/google/analytics/tracking/android/b
+.super java/lang/Object
+.source MyApplication
+.implements com/google/analytics/tracking/android/a
+
+.field private a Landroid/content/ServiceConnection;
+.field private b Lcom/google/analytics/tracking/android/d;
+.field private c Lcom/google/analytics/tracking/android/e;
+.field private d Landroid/content/Context;
+.field private e Lcom/google/android/gms/analytics/internal/b;
+
+.method public <init>(Landroid/content/Context;Lcom/google/analytics/tracking/android/d;Lcom/google/analytics/tracking/android/e;)V
+.limit registers 6
+; this: v2 (Lcom/google/analytics/tracking/android/b;)
+; parameter[0] : v3 (Landroid/content/Context;)
+; parameter[1] : v4 (Lcom/google/analytics/tracking/android/d;)
+; parameter[2] : v5 (Lcom/google/analytics/tracking/android/e;)
+.line 57
+	invoke-direct	{v2},java/lang/Object/<init>	; <init>()V
+; v2 : Lcom/google/analytics/tracking/android/b;
+.line 58
+	iput-object	v3,v2,com/google/analytics/tracking/android/b.d Landroid/content/Context;
+; v3 : Landroid/content/Context; , v2 : Lcom/google/analytics/tracking/android/b;
+.line 59
+	if-nez	v4,l9c192
+; v4 : Lcom/google/analytics/tracking/android/d;
+.line 60
+	new-instance	v0,java/lang/IllegalArgumentException
+; v0 : Ljava/lang/IllegalArgumentException;
+	const-string	v1,"onConnectedListener cannot be null"
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/IllegalArgumentException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/IllegalArgumentException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/IllegalArgumentException;
+l9c192:
+.line 62
+	iput-object	v4,v2,com/google/analytics/tracking/android/b.b Lcom/google/analytics/tracking/android/d;
+; v4 : Lcom/google/analytics/tracking/android/d; , v2 : Lcom/google/analytics/tracking/android/b;
+.line 63
+	if-nez	v5,l9c1aa
+; v5 : Lcom/google/analytics/tracking/android/e;
+.line 64
+	new-instance	v0,java/lang/IllegalArgumentException
+; v0 : Ljava/lang/IllegalArgumentException;
+	const-string	v1,"onConnectionFailedListener cannot be null"
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/IllegalArgumentException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/IllegalArgumentException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/IllegalArgumentException;
+l9c1aa:
+.line 66
+	iput-object	v5,v2,com/google/analytics/tracking/android/b.c Lcom/google/analytics/tracking/android/e;
+; v5 : Lcom/google/analytics/tracking/android/e; , v2 : Lcom/google/analytics/tracking/android/b;
+.line 67
+	return-void	
+.end method
+
+.method static a(Lcom/google/analytics/tracking/android/b;Landroid/content/ServiceConnection;)Landroid/content/ServiceConnection;
+.limit registers 2
+; parameter[0] : v0 (Lcom/google/analytics/tracking/android/b;)
+; parameter[1] : v1 (Landroid/content/ServiceConnection;)
+.line 24
+	iput-object	v1,v0,com/google/analytics/tracking/android/b.a Landroid/content/ServiceConnection;
+; v1 : Landroid/content/ServiceConnection; , v0 : Lcom/google/analytics/tracking/android/b;
+	return-object	v1
+; v1 : Landroid/content/ServiceConnection;
+.end method
+
+.method static a(Lcom/google/analytics/tracking/android/b;Lcom/google/android/gms/analytics/internal/b;)Lcom/google/android/gms/analytics/internal/b;
+.limit registers 2
+; parameter[0] : v0 (Lcom/google/analytics/tracking/android/b;)
+; parameter[1] : v1 (Lcom/google/android/gms/analytics/internal/b;)
+.line 24
+	iput-object	v1,v0,com/google/analytics/tracking/android/b.e Lcom/google/android/gms/analytics/internal/b;
+; v1 : Lcom/google/android/gms/analytics/internal/b; , v0 : Lcom/google/analytics/tracking/android/b;
+	return-object	v1
+; v1 : Lcom/google/android/gms/analytics/internal/b;
+.end method
+
+.method static a(Lcom/google/analytics/tracking/android/b;)V
+.limit registers 1
+; parameter[0] : v0 (Lcom/google/analytics/tracking/android/b;)
+.line 24
+	invoke-direct	{v0},com/google/analytics/tracking/android/b/g	; g()V
+; v0 : Lcom/google/analytics/tracking/android/b;
+	return-void	
+.end method
+
+.method static b(Lcom/google/analytics/tracking/android/b;)Landroid/content/Context;
+.limit registers 2
+; parameter[0] : v1 (Lcom/google/analytics/tracking/android/b;)
+.line 24
+	iget-object	v0,v1,com/google/analytics/tracking/android/b.d Landroid/content/Context;
+; v0 : Landroid/content/Context; , v1 : Lcom/google/analytics/tracking/android/b;
+	return-object	v0
+; v0 : Landroid/content/Context;
+.end method
+
+.method static c(Lcom/google/analytics/tracking/android/b;)Lcom/google/analytics/tracking/android/e;
+.limit registers 2
+; parameter[0] : v1 (Lcom/google/analytics/tracking/android/b;)
+.line 24
+	iget-object	v0,v1,com/google/analytics/tracking/android/b.c Lcom/google/analytics/tracking/android/e;
+; v0 : Lcom/google/analytics/tracking/android/e; , v1 : Lcom/google/analytics/tracking/android/b;
+	return-object	v0
+; v0 : Lcom/google/analytics/tracking/android/e;
+.end method
+
+.method static d(Lcom/google/analytics/tracking/android/b;)Lcom/google/analytics/tracking/android/d;
+.limit registers 2
+; parameter[0] : v1 (Lcom/google/analytics/tracking/android/b;)
+.line 24
+	iget-object	v0,v1,com/google/analytics/tracking/android/b.b Lcom/google/analytics/tracking/android/d;
+; v0 : Lcom/google/analytics/tracking/android/d; , v1 : Lcom/google/analytics/tracking/android/b;
+	return-object	v0
+; v0 : Lcom/google/analytics/tracking/android/d;
+.end method
+
+.method private f()Lcom/google/android/gms/analytics/internal/b;
+.limit registers 2
+; this: v1 (Lcom/google/analytics/tracking/android/b;)
+.line 146
+	invoke-virtual	{v1},com/google/analytics/tracking/android/b/d	; d()V
+; v1 : Lcom/google/analytics/tracking/android/b;
+.line 147
+	iget-object	v0,v1,com/google/analytics/tracking/android/b.e Lcom/google/android/gms/analytics/internal/b;
+; v0 : Lcom/google/android/gms/analytics/internal/b; , v1 : Lcom/google/analytics/tracking/android/b;
+	return-object	v0
+; v0 : Lcom/google/android/gms/analytics/internal/b;
+.end method
+
+.method private g()V
+.limit registers 1
+; this: v0 (Lcom/google/analytics/tracking/android/b;)
+.line 207
+	invoke-direct	{v0},com/google/analytics/tracking/android/b/h	; h()V
+; v0 : Lcom/google/analytics/tracking/android/b;
+.line 208
+	return-void	
+.end method
+
+.method private h()V
+.limit registers 2
+; this: v1 (Lcom/google/analytics/tracking/android/b;)
+.line 215
+	iget-object	v0,v1,com/google/analytics/tracking/android/b.b Lcom/google/analytics/tracking/android/d;
+; v0 : Lcom/google/analytics/tracking/android/d; , v1 : Lcom/google/analytics/tracking/android/b;
+	invoke-interface	{v0},com/google/analytics/tracking/android/d/a	; a()V
+; v0 : Lcom/google/analytics/tracking/android/d;
+.line 216
+	return-void	
+.end method
+
+.method public a()V
+.limit registers 4
+; this: v3 (Lcom/google/analytics/tracking/android/b;)
+.catch android/os/RemoteException from l9c2a0 to l9c2ae using l9c2b0
+l9c2a0:
+.line 140
+	invoke-direct	{v3},com/google/analytics/tracking/android/b/f	; f()Lcom/google/android/gms/analytics/internal/b;
+; v3 : Lcom/google/analytics/tracking/android/b;
+	move-result-object	v0
+; v0 : Lcom/google/android/gms/analytics/internal/b;
+	invoke-interface	{v0},com/google/android/gms/analytics/internal/b/a	; a()V
+; v0 : Lcom/google/android/gms/analytics/internal/b;
+l9c2ae:
+.line 144
+	return-void	
+l9c2b0:
+.line 141
+	move-exception	v0
+; v0 : android/os/RemoteException
+.line 142
+	new-instance	v1,java/lang/StringBuilder
+; v1 : Ljava/lang/StringBuilder;
+	invoke-direct	{v1},java/lang/StringBuilder/<init>	; <init>()V
+; v1 : Ljava/lang/StringBuilder;
+	const-string	v2,"clear hits failed: "
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v1,v0},java/lang/StringBuilder/append	; append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v0 : android/os/RemoteException
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v0},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v0 : Ljava/lang/StringBuilder;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	invoke-static	{v0},com/google/analytics/tracking/android/aq/a	; a(Ljava/lang/String;)V
+; v0 : Ljava/lang/String;
+	goto	l9c2ae
+.end method
+
+.method public a(Ljava/util/Map;JLjava/lang/String;Ljava/util/List;)V
+.limit registers 12
+; this: v6 (Lcom/google/analytics/tracking/android/b;)
+; parameter[0] : v7 (Ljava/util/Map;)
+; parameter[1] : v8 (J)
+; parameter[2] : v10 (Ljava/lang/String;)
+; parameter[3] : v11 (Ljava/util/List;)
+.catch android/os/RemoteException from l9c300 to l9c316 using l9c318
+l9c300:
+.line 131
+	invoke-direct	{v6},com/google/analytics/tracking/android/b/f	; f()Lcom/google/android/gms/analytics/internal/b;
+; v6 : Lcom/google/analytics/tracking/android/b;
+	move-result-object	v0
+; v0 : Lcom/google/android/gms/analytics/internal/b;
+	move-object	v1,v7
+; v1 : Ljava/util/Map; , v7 : Ljava/util/Map;
+	move-wide	v2,v8
+; v2 : double-length , v8 : double-length
+	move-object	v4,v10
+; v4 : Ljava/lang/String; , v10 : Ljava/lang/String;
+	move-object	v5,v11
+; v5 : Ljava/util/List; , v11 : Ljava/util/List;
+	invoke-interface/range	{v0..v5},com/google/android/gms/analytics/internal/b/a;	a(Ljava/util/Map;JLjava/lang/String;Ljava/util/List;)V
+; v0 : Lcom/google/android/gms/analytics/internal/b; , v1 : Ljava/util/Map; , v2 : double-length , v4 : Ljava/lang/String; , v5 : Ljava/util/List;
+l9c316:
+.line 135
+	return-void	
+l9c318:
+.line 132
+	move-exception	v0
+; v0 : android/os/RemoteException
+.line 133
+	new-instance	v1,java/lang/StringBuilder
+; v1 : Ljava/lang/StringBuilder;
+	invoke-direct	{v1},java/lang/StringBuilder/<init>	; <init>()V
+; v1 : Ljava/lang/StringBuilder;
+	const-string	v2,"sendHit failed: "
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v1,v0},java/lang/StringBuilder/append	; append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v0 : android/os/RemoteException
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v0},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v0 : Ljava/lang/StringBuilder;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	invoke-static	{v0},com/google/analytics/tracking/android/aq/a	; a(Ljava/lang/String;)V
+; v0 : Ljava/lang/String;
+	goto	l9c316
+.end method
+
+.method public b()V
+.limit registers 6
+; this: v5 (Lcom/google/analytics/tracking/android/b;)
+	const/4	v4,0
+; v4 : single-length
+.line 75
+	new-instance	v0,android/content/Intent
+; v0 : Landroid/content/Intent;
+	const-string	v1,"com.google.android.gms.analytics.service.START"
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},android/content/Intent/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Landroid/content/Intent; , v1 : Ljava/lang/String;
+.line 76
+	new-instance	v1,android/content/ComponentName
+; v1 : Landroid/content/ComponentName;
+	const-string	v2,"com.google.android.gms"
+; v2 : Ljava/lang/String;
+	const-string	v3,"com.google.android.gms.analytics.service.AnalyticsService"
+; v3 : Ljava/lang/String;
+	invoke-direct	{v1,v2,v3},android/content/ComponentName/<init>	; <init>(Ljava/lang/String;Ljava/lang/String;)V
+; v1 : Landroid/content/ComponentName; , v2 : Ljava/lang/String; , v3 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},android/content/Intent/setComponent	; setComponent(Landroid/content/ComponentName;)Landroid/content/Intent;
+; v0 : Landroid/content/Intent; , v1 : Landroid/content/ComponentName;
+.line 79
+	const-string	v1,"app_package_name"
+; v1 : Ljava/lang/String;
+	iget-object	v2,v5,com/google/analytics/tracking/android/b.d Landroid/content/Context;
+; v2 : Landroid/content/Context; , v5 : Lcom/google/analytics/tracking/android/b;
+	invoke-virtual	{v2},android/content/Context/getPackageName	; getPackageName()Ljava/lang/String;
+; v2 : Landroid/content/Context;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v0,v1,v2},android/content/Intent/putExtra	; putExtra(Ljava/lang/String;Ljava/lang/String;)Landroid/content/Intent;
+; v0 : Landroid/content/Intent; , v1 : Ljava/lang/String; , v2 : Ljava/lang/String;
+.line 80
+	iget-object	v1,v5,com/google/analytics/tracking/android/b.a Landroid/content/ServiceConnection;
+; v1 : Landroid/content/ServiceConnection; , v5 : Lcom/google/analytics/tracking/android/b;
+	if-eqz	v1,l9c3ba
+; v1 : Landroid/content/ServiceConnection;
+.line 81
+	const-string	v0,"Calling connect() while still connected, missing disconnect()."
+; v0 : Ljava/lang/String;
+	invoke-static	{v0},com/google/analytics/tracking/android/aq/a	; a(Ljava/lang/String;)V
+; v0 : Ljava/lang/String;
+l9c3b8:
+.line 92
+	return-void	
+l9c3ba:
+.line 84
+	new-instance	v1,com/google/analytics/tracking/android/c
+; v1 : Lcom/google/analytics/tracking/android/c;
+	invoke-direct	{v1,v5},com/google/analytics/tracking/android/c/<init>	; <init>(Lcom/google/analytics/tracking/android/b;)V
+; v1 : Lcom/google/analytics/tracking/android/c; , v5 : Lcom/google/analytics/tracking/android/b;
+	iput-object	v1,v5,com/google/analytics/tracking/android/b.a Landroid/content/ServiceConnection;
+; v1 : Lcom/google/analytics/tracking/android/c; , v5 : Lcom/google/analytics/tracking/android/b;
+.line 85
+	iget-object	v1,v5,com/google/analytics/tracking/android/b.d Landroid/content/Context;
+; v1 : Landroid/content/Context; , v5 : Lcom/google/analytics/tracking/android/b;
+	iget-object	v2,v5,com/google/analytics/tracking/android/b.a Landroid/content/ServiceConnection;
+; v2 : Landroid/content/ServiceConnection; , v5 : Lcom/google/analytics/tracking/android/b;
+	const/16	v3,129
+; v3 : single-length
+	invoke-virtual	{v1,v0,v2,v3},android/content/Context/bindService	; bindService(Landroid/content/Intent;Landroid/content/ServiceConnection;I)Z
+; v1 : Landroid/content/Context; , v0 : Landroid/content/Intent; , v2 : Landroid/content/ServiceConnection; , v3 : single-length
+	move-result	v1
+; v1 : single-length
+.line 87
+	new-instance	v2,java/lang/StringBuilder
+; v2 : Ljava/lang/StringBuilder;
+	invoke-direct	{v2},java/lang/StringBuilder/<init>	; <init>()V
+; v2 : Ljava/lang/StringBuilder;
+	const-string	v3,"connect: bindService returned "
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v2,v1},java/lang/StringBuilder/append	; append(Z)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v1 : single-length
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	const-string	v3," for "
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v2,v0},java/lang/StringBuilder/append	; append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v0 : Landroid/content/Intent;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v0},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v0 : Ljava/lang/StringBuilder;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	invoke-static	{v0},com/google/analytics/tracking/android/aq/c	; c(Ljava/lang/String;)V
+; v0 : Ljava/lang/String;
+.line 88
+	if-nez	v1,l9c3b8
+; v1 : single-length
+.line 89
+	iput-object	v4,v5,com/google/analytics/tracking/android/b.a Landroid/content/ServiceConnection;
+; v4 : single-length , v5 : Lcom/google/analytics/tracking/android/b;
+.line 90
+	iget-object	v0,v5,com/google/analytics/tracking/android/b.c Lcom/google/analytics/tracking/android/e;
+; v0 : Lcom/google/analytics/tracking/android/e; , v5 : Lcom/google/analytics/tracking/android/b;
+	const/4	v1,1
+; v1 : single-length
+	invoke-interface	{v0,v1,v4},com/google/analytics/tracking/android/e/a	; a(ILandroid/content/Intent;)V
+; v0 : Lcom/google/analytics/tracking/android/e; , v1 : single-length , v4 : single-length
+	goto	l9c3b8
+.end method
+
+.method public c()V
+.limit registers 4
+; this: v3 (Lcom/google/analytics/tracking/android/b;)
+.catch java/lang/IllegalStateException from l9c452 to l9c460 using l9c474
+.catch java/lang/IllegalArgumentException from l9c452 to l9c460 using l9c470
+	const/4	v2,0
+; v2 : single-length
+.line 103
+	iput-object	v2,v3,com/google/analytics/tracking/android/b.e Lcom/google/android/gms/analytics/internal/b;
+; v2 : single-length , v3 : Lcom/google/analytics/tracking/android/b;
+.line 104
+	iget-object	v0,v3,com/google/analytics/tracking/android/b.a Landroid/content/ServiceConnection;
+; v0 : Landroid/content/ServiceConnection; , v3 : Lcom/google/analytics/tracking/android/b;
+	if-eqz	v0,l9c46e
+; v0 : Landroid/content/ServiceConnection;
+l9c452:
+.line 113
+	iget-object	v0,v3,com/google/analytics/tracking/android/b.d Landroid/content/Context;
+; v0 : Landroid/content/Context; , v3 : Lcom/google/analytics/tracking/android/b;
+	iget-object	v1,v3,com/google/analytics/tracking/android/b.a Landroid/content/ServiceConnection;
+; v1 : Landroid/content/ServiceConnection; , v3 : Lcom/google/analytics/tracking/android/b;
+	invoke-virtual	{v0,v1},android/content/Context/unbindService	; unbindService(Landroid/content/ServiceConnection;)V
+; v0 : Landroid/content/Context; , v1 : Landroid/content/ServiceConnection;
+l9c460:
+.line 122
+	iput-object	v2,v3,com/google/analytics/tracking/android/b.a Landroid/content/ServiceConnection;
+; v2 : single-length , v3 : Lcom/google/analytics/tracking/android/b;
+.line 123
+	iget-object	v0,v3,com/google/analytics/tracking/android/b.b Lcom/google/analytics/tracking/android/d;
+; v0 : Lcom/google/analytics/tracking/android/d; , v3 : Lcom/google/analytics/tracking/android/b;
+	invoke-interface	{v0},com/google/analytics/tracking/android/d/b	; b()V
+; v0 : Lcom/google/analytics/tracking/android/d;
+l9c46e:
+.line 125
+	return-void	
+l9c470:
+.line 117
+	move-exception	v0
+; v0 : java/lang/IllegalArgumentException
+	goto	l9c460
+l9c474:
+.line 114
+	move-exception	v0
+; v0 : java/lang/IllegalStateException
+	goto	l9c460
+.end method
+
+.method protected d()V
+.limit registers 3
+; this: v2 (Lcom/google/analytics/tracking/android/b;)
+.line 155
+	invoke-virtual	{v2},com/google/analytics/tracking/android/b/e	; e()Z
+; v2 : Lcom/google/analytics/tracking/android/b;
+	move-result	v0
+; v0 : single-length
+	if-nez	v0,l9c4b4
+; v0 : single-length
+.line 156
+	new-instance	v0,java/lang/IllegalStateException
+; v0 : Ljava/lang/IllegalStateException;
+	const-string	v1,"Not connected. Call connect() and wait for onConnected() to be called."
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/IllegalStateException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/IllegalStateException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/IllegalStateException;
+l9c4b4:
+.line 159
+	return-void	
+.end method
+
+.method public e()Z
+.limit registers 2
+; this: v1 (Lcom/google/analytics/tracking/android/b;)
+.line 165
+	iget-object	v0,v1,com/google/analytics/tracking/android/b.e Lcom/google/android/gms/analytics/internal/b;
+; v0 : Lcom/google/android/gms/analytics/internal/b; , v1 : Lcom/google/analytics/tracking/android/b;
+	if-eqz	v0,l9c4d4
+; v0 : Lcom/google/android/gms/analytics/internal/b;
+	const/4	v0,1
+; v0 : single-length
+l9c4d2:
+	return	v0
+; v0 : single-length
+l9c4d4:
+	const/4	v0,0
+; v0 : single-length
+	goto	l9c4d2
+.end method
+
+

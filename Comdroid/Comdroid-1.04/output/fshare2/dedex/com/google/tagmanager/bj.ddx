@@ -1,0 +1,93 @@
+.class public final com/google/tagmanager/bj
+.super java/lang/Enum
+.source MyApplication
+
+.field public static final a Lcom/google/tagmanager/bj;
+.field public static final b Lcom/google/tagmanager/bj;
+.field private static final c [Lcom/google/tagmanager/bj;
+
+.method static <clinit>()V
+.limit registers 4
+	const/4	v3,1
+; v3 : single-length
+	const/4	v2,0
+; v2 : single-length
+.line 78
+	new-instance	v0,com/google/tagmanager/bj
+; v0 : Lcom/google/tagmanager/bj;
+	const-string	v1,"STANDARD"
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1,v2},com/google/tagmanager/bj/<init>	; <init>(Ljava/lang/String;I)V
+; v0 : Lcom/google/tagmanager/bj; , v1 : Ljava/lang/String; , v2 : single-length
+	sput-object	v0,com/google/tagmanager/bj.a Lcom/google/tagmanager/bj;
+; v0 : Lcom/google/tagmanager/bj;
+.line 89
+	new-instance	v0,com/google/tagmanager/bj
+; v0 : Lcom/google/tagmanager/bj;
+	const-string	v1,"DEFAULT_CONTAINER"
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1,v3},com/google/tagmanager/bj/<init>	; <init>(Ljava/lang/String;I)V
+; v0 : Lcom/google/tagmanager/bj; , v1 : Ljava/lang/String; , v3 : single-length
+	sput-object	v0,com/google/tagmanager/bj.b Lcom/google/tagmanager/bj;
+; v0 : Lcom/google/tagmanager/bj;
+.line 71
+	const/4	v0,2
+; v0 : single-length
+	new-array	v0,v0,[Lcom/google/tagmanager/bj;
+; v0 : [Lcom/google/tagmanager/bj; , v0 : [Lcom/google/tagmanager/bj;
+	sget-object	v1,com/google/tagmanager/bj.a Lcom/google/tagmanager/bj;
+; v1 : Lcom/google/tagmanager/bj;
+	aput-object	v1,v0,v2
+; v1 : Lcom/google/tagmanager/bj; , v0 : [Lcom/google/tagmanager/bj; , v2 : single-length
+	sget-object	v1,com/google/tagmanager/bj.b Lcom/google/tagmanager/bj;
+; v1 : Lcom/google/tagmanager/bj;
+	aput-object	v1,v0,v3
+; v1 : Lcom/google/tagmanager/bj; , v0 : [Lcom/google/tagmanager/bj; , v3 : single-length
+	sput-object	v0,com/google/tagmanager/bj.c [Lcom/google/tagmanager/bj;
+; v0 : [Lcom/google/tagmanager/bj;
+	return-void	
+.end method
+
+.method private <init>(Ljava/lang/String;I)V
+.limit registers 3
+; this: v0 (Lcom/google/tagmanager/bj;)
+; parameter[0] : v1 (Ljava/lang/String;)
+; parameter[1] : v2 (I)
+.line 71
+	invoke-direct	{v0,v1,v2},java/lang/Enum/<init>	; <init>(Ljava/lang/String;I)V
+; v0 : Lcom/google/tagmanager/bj; , v1 : Ljava/lang/String; , v2 : single-length
+	return-void	
+.end method
+
+.method public static valueOf(Ljava/lang/String;)Lcom/google/tagmanager/bj;
+.limit registers 2
+; parameter[0] : v1 (Ljava/lang/String;)
+.line 71
+	const-class	v0,com/google/tagmanager/bj
+; v0 : Ljava/lang/Class;
+	invoke-static	{v0,v1},java/lang/Enum/valueOf	; valueOf(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Enum;
+; v0 : Ljava/lang/Class; , v1 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/Enum;
+	check-cast	v0,com/google/tagmanager/bj
+; v0 : Lcom/google/tagmanager/bj;
+	return-object	v0
+; v0 : Lcom/google/tagmanager/bj;
+.end method
+
+.method public static values()[Lcom/google/tagmanager/bj;
+.limit registers 1
+.line 71
+	sget-object	v0,com/google/tagmanager/bj.c [Lcom/google/tagmanager/bj;
+; v0 : [Lcom/google/tagmanager/bj;
+	invoke-virtual	{v0},[Lcom/google/tagmanager/bj/clone	; clone()Ljava/lang/Object;
+; v0 : [Lcom/google/tagmanager/bj;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,[Lcom/google/tagmanager/bj
+; v0 : [Lcom/google/tagmanager/bj
+	return-object	v0
+; v0 : [Lcom/google/tagmanager/bj
+.end method
+
+

@@ -1,0 +1,89 @@
+.class com/squareup/picasso/Stats$StatsHandler
+.super android/os/Handler
+.source Stats.java
+
+.inner class StatsHandler inner com/squareup/picasso/Stats$StatsHandler outer com/squareup/picasso/Stats
+.field private final stats Lcom/squareup/picasso/Stats;
+
+.method public <init>(Landroid/os/Looper;Lcom/squareup/picasso/Stats;)V
+.limit registers 3
+; this: v0 (Lcom/squareup/picasso/Stats$StatsHandler;)
+; parameter[0] : v1 (Landroid/os/Looper;)
+; parameter[1] : v2 (Lcom/squareup/picasso/Stats;)
+.line 116
+	invoke-direct	{v0,v1},android/os/Handler/<init>	; <init>(Landroid/os/Looper;)V
+; v0 : Lcom/squareup/picasso/Stats$StatsHandler; , v1 : Landroid/os/Looper;
+.line 117
+	iput-object	v2,v0,com/squareup/picasso/Stats$StatsHandler.stats Lcom/squareup/picasso/Stats;
+; v2 : Lcom/squareup/picasso/Stats; , v0 : Lcom/squareup/picasso/Stats$StatsHandler;
+.line 118
+	return-void	
+.end method
+
+.method public handleMessage(Landroid/os/Message;)V
+.limit registers 5
+; this: v3 (Lcom/squareup/picasso/Stats$StatsHandler;)
+; parameter[0] : v4 (Landroid/os/Message;)
+.line 121
+	iget	v0,v4,android/os/Message.what I
+; v0 : single-length , v4 : Landroid/os/Message;
+	packed-switch	v0,0
+		psc5c30_c5c4c	; case 0
+		psc5c30_c5c58	; case 1
+		psc5c30_c5c64	; case 2
+		psc5c30_c5c76	; case 3
+		default: psc5c30_default
+; v0 : single-length
+psc5c30_default:
+.line 135
+	sget-object	v0,com/squareup/picasso/Picasso.HANDLER Landroid/os/Handler;
+; v0 : Landroid/os/Handler;
+	new-instance	v1,com/squareup/picasso/Stats$StatsHandler$1
+; v1 : Lcom/squareup/picasso/Stats$StatsHandler$1;
+	invoke-direct	{v1,v3,v4},com/squareup/picasso/Stats$StatsHandler$1/<init>	; <init>(Lcom/squareup/picasso/Stats$StatsHandler;Landroid/os/Message;)V
+; v1 : Lcom/squareup/picasso/Stats$StatsHandler$1; , v3 : Lcom/squareup/picasso/Stats$StatsHandler; , v4 : Landroid/os/Message;
+	invoke-virtual	{v0,v1},android/os/Handler/post	; post(Ljava/lang/Runnable;)Z
+; v0 : Landroid/os/Handler; , v1 : Lcom/squareup/picasso/Stats$StatsHandler$1;
+lc5c4a:
+.line 141
+	return-void	
+psc5c30_c5c4c:
+.line 123
+	iget-object	v0,v3,com/squareup/picasso/Stats$StatsHandler.stats Lcom/squareup/picasso/Stats;
+; v0 : Lcom/squareup/picasso/Stats; , v3 : Lcom/squareup/picasso/Stats$StatsHandler;
+	invoke-virtual	{v0},com/squareup/picasso/Stats/performCacheHit	; performCacheHit()V
+; v0 : Lcom/squareup/picasso/Stats;
+	goto	lc5c4a
+psc5c30_c5c58:
+.line 126
+	iget-object	v0,v3,com/squareup/picasso/Stats$StatsHandler.stats Lcom/squareup/picasso/Stats;
+; v0 : Lcom/squareup/picasso/Stats; , v3 : Lcom/squareup/picasso/Stats$StatsHandler;
+	invoke-virtual	{v0},com/squareup/picasso/Stats/performCacheMiss	; performCacheMiss()V
+; v0 : Lcom/squareup/picasso/Stats;
+	goto	lc5c4a
+psc5c30_c5c64:
+.line 129
+	iget-object	v0,v3,com/squareup/picasso/Stats$StatsHandler.stats Lcom/squareup/picasso/Stats;
+; v0 : Lcom/squareup/picasso/Stats; , v3 : Lcom/squareup/picasso/Stats$StatsHandler;
+	iget	v1,v4,android/os/Message.arg1 I
+; v1 : single-length , v4 : Landroid/os/Message;
+	int-to-long	v1,v1
+; v1 : double-length , v1 : double-length
+	invoke-virtual	{v0,v1,v2},com/squareup/picasso/Stats/performBitmapDecoded	; performBitmapDecoded(J)V
+; v0 : Lcom/squareup/picasso/Stats; , v1 : double-length
+	goto	lc5c4a
+psc5c30_c5c76:
+.line 132
+	iget-object	v0,v3,com/squareup/picasso/Stats$StatsHandler.stats Lcom/squareup/picasso/Stats;
+; v0 : Lcom/squareup/picasso/Stats; , v3 : Lcom/squareup/picasso/Stats$StatsHandler;
+	iget	v1,v4,android/os/Message.arg1 I
+; v1 : single-length , v4 : Landroid/os/Message;
+	int-to-long	v1,v1
+; v1 : double-length , v1 : double-length
+	invoke-virtual	{v0,v1,v2},com/squareup/picasso/Stats/performBitmapTransformed	; performBitmapTransformed(J)V
+; v0 : Lcom/squareup/picasso/Stats; , v1 : double-length
+	goto	lc5c4a
+.line 121
+.end method
+
+

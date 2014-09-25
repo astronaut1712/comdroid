@@ -1,0 +1,57 @@
+.class com/fsharemobile/ak
+.super java/lang/Object
+.source MyApplication
+.implements java/lang/Runnable
+
+.field final a Lcom/fsharemobile/ae;
+.field private final b I
+
+.method <init>(Lcom/fsharemobile/ae;I)V
+.limit registers 3
+; this: v0 (Lcom/fsharemobile/ak;)
+; parameter[0] : v1 (Lcom/fsharemobile/ae;)
+; parameter[1] : v2 (I)
+.line 1
+	iput-object	v1,v0,com/fsharemobile/ak.a Lcom/fsharemobile/ae;
+; v1 : Lcom/fsharemobile/ae; , v0 : Lcom/fsharemobile/ak;
+	iput	v2,v0,com/fsharemobile/ak.b I
+; v2 : single-length , v0 : Lcom/fsharemobile/ak;
+.line 1184
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Lcom/fsharemobile/ak;
+	return-void	
+.end method
+
+.method static a(Lcom/fsharemobile/ak;)Lcom/fsharemobile/ae;
+.limit registers 2
+; parameter[0] : v1 (Lcom/fsharemobile/ak;)
+.line 1184
+	iget-object	v0,v1,com/fsharemobile/ak.a Lcom/fsharemobile/ae;
+; v0 : Lcom/fsharemobile/ae; , v1 : Lcom/fsharemobile/ak;
+	return-object	v0
+; v0 : Lcom/fsharemobile/ae;
+.end method
+
+.method public run()V
+.limit registers 4
+; this: v3 (Lcom/fsharemobile/ak;)
+.line 1189
+	iget-object	v0,v3,com/fsharemobile/ak.a Lcom/fsharemobile/ae;
+; v0 : Lcom/fsharemobile/ae; , v3 : Lcom/fsharemobile/ak;
+	invoke-static	{v0},com/fsharemobile/ae/a	; a(Lcom/fsharemobile/ae;)Lcom/fsharemobile/ExplorerSearchResultsActivity;
+; v0 : Lcom/fsharemobile/ae;
+	move-result-object	v0
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity;
+	new-instance	v1,com/fsharemobile/al
+; v1 : Lcom/fsharemobile/al;
+	iget	v2,v3,com/fsharemobile/ak.b I
+; v2 : single-length , v3 : Lcom/fsharemobile/ak;
+	invoke-direct	{v1,v3,v2},com/fsharemobile/al/<init>	; <init>(Lcom/fsharemobile/ak;I)V
+; v1 : Lcom/fsharemobile/al; , v3 : Lcom/fsharemobile/ak; , v2 : single-length
+	invoke-virtual	{v0,v1},com/fsharemobile/ExplorerSearchResultsActivity/runOnUiThread	; runOnUiThread(Ljava/lang/Runnable;)V
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity; , v1 : Lcom/fsharemobile/al;
+.line 1202
+	return-void	
+.end method
+
+

@@ -1,0 +1,463 @@
+.class public com/squareup/okhttp/internal/StrictLineReader
+.super java/lang/Object
+.source StrictLineReader.java
+.implements java/io/Closeable
+
+.field private static final CR B = 13
+.field private static final LF B = 10
+.field private buf [B
+.field private final charset Ljava/nio/charset/Charset;
+.field private end I
+.field private final in Ljava/io/InputStream;
+.field private pos I
+
+.method public <init>(Ljava/io/InputStream;ILjava/nio/charset/Charset;)V
+.limit registers 6
+; this: v2 (Lcom/squareup/okhttp/internal/StrictLineReader;)
+; parameter[0] : v3 (Ljava/io/InputStream;)
+; parameter[1] : v4 (I)
+; parameter[2] : v5 (Ljava/nio/charset/Charset;)
+.line 86
+	invoke-direct	{v2},java/lang/Object/<init>	; <init>()V
+; v2 : Lcom/squareup/okhttp/internal/StrictLineReader;
+.line 87
+	if-eqz	v3,lb86e2
+; v3 : Ljava/io/InputStream;
+	if-nez	v5,lb86ee
+; v5 : Ljava/nio/charset/Charset;
+lb86e2:
+.line 88
+	new-instance	v0,java/lang/NullPointerException
+; v0 : Ljava/lang/NullPointerException;
+	invoke-direct	{v0},java/lang/NullPointerException/<init>	; <init>()V
+; v0 : Ljava/lang/NullPointerException;
+	throw	v0
+; v0 : Ljava/lang/NullPointerException;
+lb86ee:
+.line 90
+	if-gez	v4,lb8702
+; v4 : single-length
+.line 91
+	new-instance	v0,java/lang/IllegalArgumentException
+; v0 : Ljava/lang/IllegalArgumentException;
+	const-string	v1,"capacity <= 0"
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/IllegalArgumentException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/IllegalArgumentException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/IllegalArgumentException;
+lb8702:
+.line 93
+	sget-object	v0,com/squareup/okhttp/internal/Util.US_ASCII Ljava/nio/charset/Charset;
+; v0 : Ljava/nio/charset/Charset;
+	invoke-virtual	{v5,v0},java/nio/charset/Charset/equals	; equals(Ljava/lang/Object;)Z
+; v5 : Ljava/nio/charset/Charset; , v0 : Ljava/nio/charset/Charset;
+	move-result	v0
+; v0 : single-length
+	if-nez	v0,lb8722
+; v0 : single-length
+.line 94
+	new-instance	v0,java/lang/IllegalArgumentException
+; v0 : Ljava/lang/IllegalArgumentException;
+	const-string	v1,"Unsupported encoding"
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/IllegalArgumentException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/IllegalArgumentException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/IllegalArgumentException;
+lb8722:
+.line 97
+	iput-object	v3,v2,com/squareup/okhttp/internal/StrictLineReader.in Ljava/io/InputStream;
+; v3 : Ljava/io/InputStream; , v2 : Lcom/squareup/okhttp/internal/StrictLineReader;
+.line 98
+	iput-object	v5,v2,com/squareup/okhttp/internal/StrictLineReader.charset Ljava/nio/charset/Charset;
+; v5 : Ljava/nio/charset/Charset; , v2 : Lcom/squareup/okhttp/internal/StrictLineReader;
+.line 99
+	new-array	v0,v4,[B
+; v0 : [B , v4 : single-length
+	iput-object	v0,v2,com/squareup/okhttp/internal/StrictLineReader.buf [B
+; v0 : [B , v2 : Lcom/squareup/okhttp/internal/StrictLineReader;
+.line 100
+	return-void	
+.end method
+
+.method public <init>(Ljava/io/InputStream;Ljava/nio/charset/Charset;)V
+.limit registers 4
+; this: v1 (Lcom/squareup/okhttp/internal/StrictLineReader;)
+; parameter[0] : v2 (Ljava/io/InputStream;)
+; parameter[1] : v3 (Ljava/nio/charset/Charset;)
+.line 72
+	const/16	v0,8192
+; v0 : single-length
+	invoke-direct	{v1,v2,v0,v3},com/squareup/okhttp/internal/StrictLineReader/<init>	; <init>(Ljava/io/InputStream;ILjava/nio/charset/Charset;)V
+; v1 : Lcom/squareup/okhttp/internal/StrictLineReader; , v2 : Ljava/io/InputStream; , v0 : single-length , v3 : Ljava/nio/charset/Charset;
+.line 73
+	return-void	
+.end method
+
+.method static access$000(Lcom/squareup/okhttp/internal/StrictLineReader;)Ljava/nio/charset/Charset;
+.limit registers 2
+; parameter[0] : v1 (Lcom/squareup/okhttp/internal/StrictLineReader;)
+.line 45
+	iget-object	v0,v1,com/squareup/okhttp/internal/StrictLineReader.charset Ljava/nio/charset/Charset;
+; v0 : Ljava/nio/charset/Charset; , v1 : Lcom/squareup/okhttp/internal/StrictLineReader;
+	return-object	v0
+; v0 : Ljava/nio/charset/Charset;
+.end method
+
+.method private fillBuf()V
+.throws Ljava/io/IOException;
+.limit registers 6
+; this: v5 (Lcom/squareup/okhttp/internal/StrictLineReader;)
+	const/4	v4,0
+; v4 : single-length
+.line 199
+	iget-object	v1,v5,com/squareup/okhttp/internal/StrictLineReader.in Ljava/io/InputStream;
+; v1 : Ljava/io/InputStream; , v5 : Lcom/squareup/okhttp/internal/StrictLineReader;
+	iget-object	v2,v5,com/squareup/okhttp/internal/StrictLineReader.buf [B
+; v2 : [B , v5 : Lcom/squareup/okhttp/internal/StrictLineReader;
+	iget-object	v3,v5,com/squareup/okhttp/internal/StrictLineReader.buf [B
+; v3 : [B , v5 : Lcom/squareup/okhttp/internal/StrictLineReader;
+	array-length	v3,v3
+; v3 : single-length , v3 : single-length
+	invoke-virtual	{v1,v2,v4,v3},java/io/InputStream/read	; read([BII)I
+; v1 : Ljava/io/InputStream; , v2 : [B , v4 : single-length , v3 : single-length
+	move-result	v0
+; v0 : single-length
+.line 200
+	const/4	v1,15
+; v1 : single-length
+	if-ne	v0,v1,lb87a2
+; v0 : single-length , v1 : single-length
+.line 201
+	new-instance	v1,java/io/EOFException
+; v1 : Ljava/io/EOFException;
+	invoke-direct	{v1},java/io/EOFException/<init>	; <init>()V
+; v1 : Ljava/io/EOFException;
+	throw	v1
+; v1 : Ljava/io/EOFException;
+lb87a2:
+.line 203
+	iput	v4,v5,com/squareup/okhttp/internal/StrictLineReader.pos I
+; v4 : single-length , v5 : Lcom/squareup/okhttp/internal/StrictLineReader;
+.line 204
+	iput	v0,v5,com/squareup/okhttp/internal/StrictLineReader.end I
+; v0 : single-length , v5 : Lcom/squareup/okhttp/internal/StrictLineReader;
+.line 205
+	return-void	
+.end method
+
+.method public close()V
+.throws Ljava/io/IOException;
+.limit registers 3
+; this: v2 (Lcom/squareup/okhttp/internal/StrictLineReader;)
+.catch java/lang/Exception from lb87c2 to lb87e2 using lb87de
+.line 109
+	iget-object	v1,v2,com/squareup/okhttp/internal/StrictLineReader.in Ljava/io/InputStream;
+; v1 : Ljava/io/InputStream; , v2 : Lcom/squareup/okhttp/internal/StrictLineReader;
+	monitor-enter	v1
+; v1 : Ljava/io/InputStream;
+lb87c2:
+.line 110
+	iget-object	v0,v2,com/squareup/okhttp/internal/StrictLineReader.buf [B
+; v0 : [B , v2 : Lcom/squareup/okhttp/internal/StrictLineReader;
+	if-eqz	v0,lb87da
+; v0 : [B
+.line 111
+	const/4	v0,0
+; v0 : single-length
+	iput-object	v0,v2,com/squareup/okhttp/internal/StrictLineReader.buf [B
+; v0 : single-length , v2 : Lcom/squareup/okhttp/internal/StrictLineReader;
+.line 112
+	iget-object	v0,v2,com/squareup/okhttp/internal/StrictLineReader.in Ljava/io/InputStream;
+; v0 : Ljava/io/InputStream; , v2 : Lcom/squareup/okhttp/internal/StrictLineReader;
+	invoke-virtual	{v0},java/io/InputStream/close	; close()V
+; v0 : Ljava/io/InputStream;
+lb87da:
+.line 114
+	monitor-exit	v1
+; v1 : Ljava/io/InputStream;
+.line 115
+	return-void	
+lb87de:
+.line 114
+	move-exception	v0
+; v0 : java/lang/Exception
+	monitor-exit	v1
+; v1 : Ljava/io/InputStream;
+lb87e2:
+	throw	v0
+; v0 : java/lang/Exception
+.end method
+
+.method public readInt()I
+.throws Ljava/io/IOException;
+.limit registers 6
+; this: v5 (Lcom/squareup/okhttp/internal/StrictLineReader;)
+.catch java/lang/NumberFormatException from lb8808 to lb880e using lb8812
+.line 186
+	invoke-virtual	{v5},com/squareup/okhttp/internal/StrictLineReader/readLine	; readLine()Ljava/lang/String;
+; v5 : Lcom/squareup/okhttp/internal/StrictLineReader;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+lb8808:
+.line 188
+	invoke-static	{v1},java/lang/Integer/parseInt	; parseInt(Ljava/lang/String;)I
+; v1 : Ljava/lang/String;
+lb880e:
+	move-result	v2
+; v2 : single-length
+	return	v2
+; v2 : single-length
+lb8812:
+.line 189
+	move-exception	v0
+; v0 : java/lang/NumberFormatException
+.line 190
+	new-instance	v2,java/io/IOException
+; v2 : Ljava/io/IOException;
+	new-instance	v3,java/lang/StringBuilder
+; v3 : Ljava/lang/StringBuilder;
+	invoke-direct	{v3},java/lang/StringBuilder/<init>	; <init>()V
+; v3 : Ljava/lang/StringBuilder;
+	const-string	v4,"expected an int but was ""
+; v4 : Ljava/lang/String;
+	invoke-virtual	{v3,v4},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v3 : Ljava/lang/StringBuilder; , v4 : Ljava/lang/String;
+	move-result-object	v3
+; v3 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v3,v1},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v3 : Ljava/lang/StringBuilder; , v1 : Ljava/lang/String;
+	move-result-object	v3
+; v3 : Ljava/lang/StringBuilder;
+	const-string	v4,"""
+; v4 : Ljava/lang/String;
+	invoke-virtual	{v3,v4},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v3 : Ljava/lang/StringBuilder; , v4 : Ljava/lang/String;
+	move-result-object	v3
+; v3 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v3},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v3 : Ljava/lang/StringBuilder;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-direct	{v2,v3},java/io/IOException/<init>	; <init>(Ljava/lang/String;)V
+; v2 : Ljava/io/IOException; , v3 : Ljava/lang/String;
+	throw	v2
+; v2 : Ljava/io/IOException;
+.end method
+
+.method public readLine()Ljava/lang/String;
+.throws Ljava/io/IOException;
+.limit registers 11
+; this: v10 (Lcom/squareup/okhttp/internal/StrictLineReader;)
+.catch java/lang/Exception from lb889c to lb89a6 using lb8896
+.catch java/lang/Exception from lb887e to lb889a using lb8896
+.var 1 is lineEnd I from lb88e6 to lb8916
+.var 3 is res Ljava/lang/String; from lb890c to lb8916
+	const/16	v9,10
+; v9 : single-length
+.line 126
+	iget-object	v5,v10,com/squareup/okhttp/internal/StrictLineReader.in Ljava/io/InputStream;
+; v5 : Ljava/io/InputStream; , v10 : Lcom/squareup/okhttp/internal/StrictLineReader;
+	monitor-enter	v5
+; v5 : Ljava/io/InputStream;
+lb887e:
+.line 127
+	iget-object	v4,v10,com/squareup/okhttp/internal/StrictLineReader.buf [B
+; v4 : [B , v10 : Lcom/squareup/okhttp/internal/StrictLineReader;
+	if-nez	v4,lb889c
+; v4 : [B
+.line 128
+	new-instance	v4,java/io/IOException
+; v4 : Ljava/io/IOException;
+	const-string	v6,"LineReader is closed"
+; v6 : Ljava/lang/String;
+	invoke-direct	{v4,v6},java/io/IOException/<init>	; <init>(Ljava/lang/String;)V
+; v4 : Ljava/io/IOException; , v6 : Ljava/lang/String;
+	throw	v4
+; v4 : Ljava/io/IOException;
+lb8896:
+.line 175
+	move-exception	v4
+; v4 : java/lang/Exception
+	monitor-exit	v5
+; v5 : Ljava/io/InputStream;
+lb889a:
+	throw	v4
+; v4 : java/lang/Exception
+lb889c:
+.line 134
+	iget	v4,v10,com/squareup/okhttp/internal/StrictLineReader.pos I
+; v4 : single-length , v10 : Lcom/squareup/okhttp/internal/StrictLineReader;
+	iget	v6,v10,com/squareup/okhttp/internal/StrictLineReader.end I
+; v6 : single-length , v10 : Lcom/squareup/okhttp/internal/StrictLineReader;
+	if-lt	v4,v6,lb88ae
+; v4 : single-length , v6 : single-length
+.line 135
+	invoke-direct	{v10},com/squareup/okhttp/internal/StrictLineReader/fillBuf	; fillBuf()V
+; v10 : Lcom/squareup/okhttp/internal/StrictLineReader;
+lb88ae:
+.line 138
+	iget	v0,v10,com/squareup/okhttp/internal/StrictLineReader.pos I
+; v0 : single-length , v10 : Lcom/squareup/okhttp/internal/StrictLineReader;
+lb88b2:
+	iget	v4,v10,com/squareup/okhttp/internal/StrictLineReader.end I
+; v4 : single-length , v10 : Lcom/squareup/okhttp/internal/StrictLineReader;
+	if-eq	v0,v4,lb8922
+; v0 : single-length , v4 : single-length
+.line 139
+	iget-object	v4,v10,com/squareup/okhttp/internal/StrictLineReader.buf [B
+; v4 : [B , v10 : Lcom/squareup/okhttp/internal/StrictLineReader;
+	aget-byte	v4,v4,v0
+; v4 : single-length , v4 : single-length , v0 : single-length
+	if-ne	v4,v9,lb891c
+; v4 : single-length , v9 : single-length
+.line 140
+	iget	v4,v10,com/squareup/okhttp/internal/StrictLineReader.pos I
+; v4 : single-length , v10 : Lcom/squareup/okhttp/internal/StrictLineReader;
+	if-eq	v0,v4,lb8918
+; v0 : single-length , v4 : single-length
+	iget-object	v4,v10,com/squareup/okhttp/internal/StrictLineReader.buf [B
+; v4 : [B , v10 : Lcom/squareup/okhttp/internal/StrictLineReader;
+	add-int/lit8	v6,v0,255
+; v6 : single-length , v0 : single-length
+	aget-byte	v4,v4,v6
+; v4 : single-length , v4 : single-length , v6 : single-length
+	const/16	v6,13
+; v6 : single-length
+	if-ne	v4,v6,lb8918
+; v4 : single-length , v6 : single-length
+	add-int/lit8	v1,v0,255
+; v1 : single-length , v0 : single-length
+lb88e6:
+.line 141
+	new-instance	v3,java/lang/String
+; v3 : Ljava/lang/String;
+	iget-object	v4,v10,com/squareup/okhttp/internal/StrictLineReader.buf [B
+; v4 : [B , v10 : Lcom/squareup/okhttp/internal/StrictLineReader;
+	iget	v6,v10,com/squareup/okhttp/internal/StrictLineReader.pos I
+; v6 : single-length , v10 : Lcom/squareup/okhttp/internal/StrictLineReader;
+	iget	v7,v10,com/squareup/okhttp/internal/StrictLineReader.pos I
+; v7 : single-length , v10 : Lcom/squareup/okhttp/internal/StrictLineReader;
+	sub-int	v7,v1,v7
+; v7 : single-length , v1 : single-length , v7 : single-length
+	iget-object	v8,v10,com/squareup/okhttp/internal/StrictLineReader.charset Ljava/nio/charset/Charset;
+; v8 : Ljava/nio/charset/Charset; , v10 : Lcom/squareup/okhttp/internal/StrictLineReader;
+	invoke-virtual	{v8},java/nio/charset/Charset/name	; name()Ljava/lang/String;
+; v8 : Ljava/nio/charset/Charset;
+	move-result-object	v8
+; v8 : Ljava/lang/String;
+	invoke-direct	{v3,v4,v6,v7,v8},java/lang/String/<init>	; <init>([BIILjava/lang/String;)V
+; v3 : Ljava/lang/String; , v4 : [B , v6 : single-length , v7 : single-length , v8 : Ljava/lang/String;
+.line 142
+	add-int/lit8	v4,v0,1
+; v4 : single-length , v0 : single-length
+	iput	v4,v10,com/squareup/okhttp/internal/StrictLineReader.pos I
+; v4 : single-length , v10 : Lcom/squareup/okhttp/internal/StrictLineReader;
+.line 143
+	monitor-exit	v5
+; v5 : Ljava/io/InputStream;
+lb8916:
+.line 171
+	return-object	v3
+; v3 : Ljava/lang/String;
+lb8918:
+	move	v1,v0
+; v1 : single-length , v0 : single-length
+.line 140
+	goto	lb88e6
+lb891c:
+.line 138
+	add-int/lit8	v0,v0,1
+; v0 : single-length , v0 : single-length
+	goto	lb88b2
+lb8922:
+.line 148
+	new-instance	v2,com/squareup/okhttp/internal/StrictLineReader$1
+; v2 : Lcom/squareup/okhttp/internal/StrictLineReader$1;
+	iget	v4,v10,com/squareup/okhttp/internal/StrictLineReader.end I
+; v4 : single-length , v10 : Lcom/squareup/okhttp/internal/StrictLineReader;
+	iget	v6,v10,com/squareup/okhttp/internal/StrictLineReader.pos I
+; v6 : single-length , v10 : Lcom/squareup/okhttp/internal/StrictLineReader;
+	sub-int/2addr	v4,v6
+; v4 : single-length , v6 : single-length
+	add-int/lit8	v4,v4,80
+; v4 : single-length , v4 : single-length
+	invoke-direct	{v2,v10,v4},com/squareup/okhttp/internal/StrictLineReader$1/<init>	; <init>(Lcom/squareup/okhttp/internal/StrictLineReader;I)V
+; v2 : Lcom/squareup/okhttp/internal/StrictLineReader$1; , v10 : Lcom/squareup/okhttp/internal/StrictLineReader; , v4 : single-length
+lb893a:
+.line 160
+	iget-object	v4,v10,com/squareup/okhttp/internal/StrictLineReader.buf [B
+; v4 : [B , v10 : Lcom/squareup/okhttp/internal/StrictLineReader;
+	iget	v6,v10,com/squareup/okhttp/internal/StrictLineReader.pos I
+; v6 : single-length , v10 : Lcom/squareup/okhttp/internal/StrictLineReader;
+	iget	v7,v10,com/squareup/okhttp/internal/StrictLineReader.end I
+; v7 : single-length , v10 : Lcom/squareup/okhttp/internal/StrictLineReader;
+	iget	v8,v10,com/squareup/okhttp/internal/StrictLineReader.pos I
+; v8 : single-length , v10 : Lcom/squareup/okhttp/internal/StrictLineReader;
+	sub-int/2addr	v7,v8
+; v7 : single-length , v8 : single-length
+	invoke-virtual	{v2,v4,v6,v7},java/io/ByteArrayOutputStream/write	; write([BII)V
+; v2 : Lcom/squareup/okhttp/internal/StrictLineReader$1; , v4 : [B , v6 : single-length , v7 : single-length
+.line 162
+	const/4	v4,15
+; v4 : single-length
+	iput	v4,v10,com/squareup/okhttp/internal/StrictLineReader.end I
+; v4 : single-length , v10 : Lcom/squareup/okhttp/internal/StrictLineReader;
+.line 163
+	invoke-direct	{v10},com/squareup/okhttp/internal/StrictLineReader/fillBuf	; fillBuf()V
+; v10 : Lcom/squareup/okhttp/internal/StrictLineReader;
+.line 165
+	iget	v0,v10,com/squareup/okhttp/internal/StrictLineReader.pos I
+; v0 : single-length , v10 : Lcom/squareup/okhttp/internal/StrictLineReader;
+lb8962:
+	iget	v4,v10,com/squareup/okhttp/internal/StrictLineReader.end I
+; v4 : single-length , v10 : Lcom/squareup/okhttp/internal/StrictLineReader;
+	if-eq	v0,v4,lb893a
+; v0 : single-length , v4 : single-length
+.line 166
+	iget-object	v4,v10,com/squareup/okhttp/internal/StrictLineReader.buf [B
+; v4 : [B , v10 : Lcom/squareup/okhttp/internal/StrictLineReader;
+	aget-byte	v4,v4,v0
+; v4 : single-length , v4 : single-length , v0 : single-length
+	if-ne	v4,v9,lb89a8
+; v4 : single-length , v9 : single-length
+.line 167
+	iget	v4,v10,com/squareup/okhttp/internal/StrictLineReader.pos I
+; v4 : single-length , v10 : Lcom/squareup/okhttp/internal/StrictLineReader;
+	if-eq	v0,v4,lb8994
+; v0 : single-length , v4 : single-length
+.line 168
+	iget-object	v4,v10,com/squareup/okhttp/internal/StrictLineReader.buf [B
+; v4 : [B , v10 : Lcom/squareup/okhttp/internal/StrictLineReader;
+	iget	v6,v10,com/squareup/okhttp/internal/StrictLineReader.pos I
+; v6 : single-length , v10 : Lcom/squareup/okhttp/internal/StrictLineReader;
+	iget	v7,v10,com/squareup/okhttp/internal/StrictLineReader.pos I
+; v7 : single-length , v10 : Lcom/squareup/okhttp/internal/StrictLineReader;
+	sub-int	v7,v0,v7
+; v7 : single-length , v0 : single-length , v7 : single-length
+	invoke-virtual	{v2,v4,v6,v7},java/io/ByteArrayOutputStream/write	; write([BII)V
+; v2 : Lcom/squareup/okhttp/internal/StrictLineReader$1; , v4 : [B , v6 : single-length , v7 : single-length
+lb8994:
+.line 170
+	add-int/lit8	v4,v0,1
+; v4 : single-length , v0 : single-length
+	iput	v4,v10,com/squareup/okhttp/internal/StrictLineReader.pos I
+; v4 : single-length , v10 : Lcom/squareup/okhttp/internal/StrictLineReader;
+.line 171
+	invoke-virtual	{v2},java/io/ByteArrayOutputStream/toString	; toString()Ljava/lang/String;
+; v2 : Lcom/squareup/okhttp/internal/StrictLineReader$1;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	monitor-exit	v5
+; v5 : Ljava/io/InputStream;
+lb89a6:
+	goto	lb8916
+lb89a8:
+.line 165
+	add-int/lit8	v0,v0,1
+; v0 : single-length , v0 : single-length
+	goto	lb8962
+.end method
+
+

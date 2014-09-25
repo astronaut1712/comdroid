@@ -1,0 +1,155 @@
+.class com/a/b/n
+.super java/lang/Object
+.source MyApplication
+.implements android/view/ViewTreeObserver$OnPreDrawListener
+
+.field final a Lcom/a/b/as;
+.field final b Ljava/lang/ref/WeakReference;
+.field c Lcom/a/b/j;
+
+.method <init>(Lcom/a/b/as;Landroid/widget/ImageView;Lcom/a/b/j;)V
+.limit registers 5
+; this: v1 (Lcom/a/b/n;)
+; parameter[0] : v2 (Lcom/a/b/as;)
+; parameter[1] : v3 (Landroid/widget/ImageView;)
+; parameter[2] : v4 (Lcom/a/b/j;)
+.line 33
+	invoke-direct	{v1},java/lang/Object/<init>	; <init>()V
+; v1 : Lcom/a/b/n;
+.line 34
+	iput-object	v2,v1,com/a/b/n.a Lcom/a/b/as;
+; v2 : Lcom/a/b/as; , v1 : Lcom/a/b/n;
+.line 35
+	new-instance	v0,java/lang/ref/WeakReference
+; v0 : Ljava/lang/ref/WeakReference;
+	invoke-direct	{v0,v3},java/lang/ref/WeakReference/<init>	; <init>(Ljava/lang/Object;)V
+; v0 : Ljava/lang/ref/WeakReference; , v3 : Landroid/widget/ImageView;
+	iput-object	v0,v1,com/a/b/n.b Ljava/lang/ref/WeakReference;
+; v0 : Ljava/lang/ref/WeakReference; , v1 : Lcom/a/b/n;
+.line 36
+	iput-object	v4,v1,com/a/b/n.c Lcom/a/b/j;
+; v4 : Lcom/a/b/j; , v1 : Lcom/a/b/n;
+.line 37
+	invoke-virtual	{v3},android/widget/ImageView/getViewTreeObserver	; getViewTreeObserver()Landroid/view/ViewTreeObserver;
+; v3 : Landroid/widget/ImageView;
+	move-result-object	v0
+; v0 : Landroid/view/ViewTreeObserver;
+	invoke-virtual	{v0,v1},android/view/ViewTreeObserver/addOnPreDrawListener	; addOnPreDrawListener(Landroid/view/ViewTreeObserver$OnPreDrawListener;)V
+; v0 : Landroid/view/ViewTreeObserver; , v1 : Lcom/a/b/n;
+.line 38
+	return-void	
+.end method
+
+.method a()V
+.limit registers 3
+; this: v2 (Lcom/a/b/n;)
+.line 64
+	const/4	v0,0
+; v0 : single-length
+	iput-object	v0,v2,com/a/b/n.c Lcom/a/b/j;
+; v0 : single-length , v2 : Lcom/a/b/n;
+.line 65
+	iget-object	v0,v2,com/a/b/n.b Ljava/lang/ref/WeakReference;
+; v0 : Ljava/lang/ref/WeakReference; , v2 : Lcom/a/b/n;
+	invoke-virtual	{v0},java/lang/ref/WeakReference/get	; get()Ljava/lang/Object;
+; v0 : Ljava/lang/ref/WeakReference;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,android/widget/ImageView
+; v0 : Landroid/widget/ImageView;
+.line 66
+	if-nez	v0,l7b7b8
+; v0 : Landroid/widget/ImageView;
+l7b7b6:
+.line 74
+	return-void	
+l7b7b8:
+.line 69
+	invoke-virtual	{v0},android/widget/ImageView/getViewTreeObserver	; getViewTreeObserver()Landroid/view/ViewTreeObserver;
+; v0 : Landroid/widget/ImageView;
+	move-result-object	v0
+; v0 : Landroid/view/ViewTreeObserver;
+.line 70
+	invoke-virtual	{v0},android/view/ViewTreeObserver/isAlive	; isAlive()Z
+; v0 : Landroid/view/ViewTreeObserver;
+	move-result	v1
+; v1 : single-length
+	if-eqz	v1,l7b7b6
+; v1 : single-length
+.line 73
+	invoke-virtual	{v0,v2},android/view/ViewTreeObserver/removeOnPreDrawListener	; removeOnPreDrawListener(Landroid/view/ViewTreeObserver$OnPreDrawListener;)V
+; v0 : Landroid/view/ViewTreeObserver; , v2 : Lcom/a/b/n;
+	goto	l7b7b6
+.end method
+
+.method public onPreDraw()Z
+.limit registers 6
+; this: v5 (Lcom/a/b/n;)
+	const/4	v4,1
+; v4 : single-length
+.line 41
+	iget-object	v0,v5,com/a/b/n.b Ljava/lang/ref/WeakReference;
+; v0 : Ljava/lang/ref/WeakReference; , v5 : Lcom/a/b/n;
+	invoke-virtual	{v0},java/lang/ref/WeakReference/get	; get()Ljava/lang/Object;
+; v0 : Ljava/lang/ref/WeakReference;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,android/widget/ImageView
+; v0 : Landroid/widget/ImageView;
+.line 42
+	if-nez	v0,l7b7fc
+; v0 : Landroid/widget/ImageView;
+l7b7fa:
+.line 60
+	return	v4
+; v4 : single-length
+l7b7fc:
+.line 45
+	invoke-virtual	{v0},android/widget/ImageView/getViewTreeObserver	; getViewTreeObserver()Landroid/view/ViewTreeObserver;
+; v0 : Landroid/widget/ImageView;
+	move-result-object	v1
+; v1 : Landroid/view/ViewTreeObserver;
+.line 46
+	invoke-virtual	{v1},android/view/ViewTreeObserver/isAlive	; isAlive()Z
+; v1 : Landroid/view/ViewTreeObserver;
+	move-result	v2
+; v2 : single-length
+	if-eqz	v2,l7b7fa
+; v2 : single-length
+.line 50
+	invoke-virtual	{v0},android/widget/ImageView/getMeasuredWidth	; getMeasuredWidth()I
+; v0 : Landroid/widget/ImageView;
+	move-result	v2
+; v2 : single-length
+.line 51
+	invoke-virtual	{v0},android/widget/ImageView/getMeasuredHeight	; getMeasuredHeight()I
+; v0 : Landroid/widget/ImageView;
+	move-result	v3
+; v3 : single-length
+.line 53
+	if-lez	v2,l7b7fa
+; v2 : single-length
+	if-lez	v3,l7b7fa
+; v3 : single-length
+.line 57
+	invoke-virtual	{v1,v5},android/view/ViewTreeObserver/removeOnPreDrawListener	; removeOnPreDrawListener(Landroid/view/ViewTreeObserver$OnPreDrawListener;)V
+; v1 : Landroid/view/ViewTreeObserver; , v5 : Lcom/a/b/n;
+.line 59
+	iget-object	v1,v5,com/a/b/n.a Lcom/a/b/as;
+; v1 : Lcom/a/b/as; , v5 : Lcom/a/b/n;
+	invoke-virtual	{v1},com/a/b/as/a	; a()Lcom/a/b/as;
+; v1 : Lcom/a/b/as;
+	move-result-object	v1
+; v1 : Lcom/a/b/as;
+	invoke-virtual	{v1,v2,v3},com/a/b/as/a	; a(II)Lcom/a/b/as;
+; v1 : Lcom/a/b/as; , v2 : single-length , v3 : single-length
+	move-result-object	v1
+; v1 : Lcom/a/b/as;
+	iget-object	v2,v5,com/a/b/n.c Lcom/a/b/j;
+; v2 : Lcom/a/b/j; , v5 : Lcom/a/b/n;
+	invoke-virtual	{v1,v0,v2},com/a/b/as/a	; a(Landroid/widget/ImageView;Lcom/a/b/j;)V
+; v1 : Lcom/a/b/as; , v0 : Landroid/widget/ImageView; , v2 : Lcom/a/b/j;
+	goto	l7b7fa
+.end method
+
+

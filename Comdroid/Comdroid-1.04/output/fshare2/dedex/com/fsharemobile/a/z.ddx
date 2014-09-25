@@ -1,0 +1,2748 @@
+.class public com/fsharemobile/a/z
+.super java/lang/Object
+.source MyApplication
+
+.field private a Lcom/a/a/r;
+
+.method public <init>()V
+.limit registers 5
+; this: v4 (Lcom/fsharemobile/a/z;)
+	const-wide/16	v2,15
+; v2 : double-length
+.line 36
+	invoke-direct	{v4},java/lang/Object/<init>	; <init>()V
+; v4 : Lcom/fsharemobile/a/z;
+.line 33
+	const/4	v0,0
+; v0 : single-length
+	iput-object	v0,v4,com/fsharemobile/a/z.a Lcom/a/a/r;
+; v0 : single-length , v4 : Lcom/fsharemobile/a/z;
+.line 37
+	new-instance	v0,com/a/a/r
+; v0 : Lcom/a/a/r;
+	invoke-direct	{v0},com/a/a/r/<init>	; <init>()V
+; v0 : Lcom/a/a/r;
+	iput-object	v0,v4,com/fsharemobile/a/z.a Lcom/a/a/r;
+; v0 : Lcom/a/a/r; , v4 : Lcom/fsharemobile/a/z;
+.line 38
+	iget-object	v0,v4,com/fsharemobile/a/z.a Lcom/a/a/r;
+; v0 : Lcom/a/a/r; , v4 : Lcom/fsharemobile/a/z;
+	sget-object	v1,java/util/concurrent/TimeUnit.SECONDS Ljava/util/concurrent/TimeUnit;
+; v1 : Ljava/util/concurrent/TimeUnit;
+	invoke-virtual	{v0,v2,v3,v1},com/a/a/r/a	; a(JLjava/util/concurrent/TimeUnit;)V
+; v0 : Lcom/a/a/r; , v2 : double-length , v1 : Ljava/util/concurrent/TimeUnit;
+.line 39
+	iget-object	v0,v4,com/fsharemobile/a/z.a Lcom/a/a/r;
+; v0 : Lcom/a/a/r; , v4 : Lcom/fsharemobile/a/z;
+	sget-object	v1,java/util/concurrent/TimeUnit.SECONDS Ljava/util/concurrent/TimeUnit;
+; v1 : Ljava/util/concurrent/TimeUnit;
+	invoke-virtual	{v0,v2,v3,v1},com/a/a/r/b	; b(JLjava/util/concurrent/TimeUnit;)V
+; v0 : Lcom/a/a/r; , v2 : double-length , v1 : Ljava/util/concurrent/TimeUnit;
+.line 40
+	return-void	
+.end method
+
+.method public static a(Ljava/io/InputStream;)[B
+.limit registers 5
+; parameter[0] : v4 (Ljava/io/InputStream;)
+.catch java/lang/Exception from l837e2 to l837ee using l837f2
+.catch java/lang/Exception from l837b2 to l837bc using l837f2
+.line 456
+	new-instance	v1,java/io/ByteArrayOutputStream
+; v1 : Ljava/io/ByteArrayOutputStream;
+	invoke-direct	{v1},java/io/ByteArrayOutputStream/<init>	; <init>()V
+; v1 : Ljava/io/ByteArrayOutputStream;
+.line 458
+	const/16	v0,1024
+; v0 : single-length
+l837b2:
+	new-array	v2,v0,[B
+; v2 : [B , v0 : single-length
+.line 459
+	invoke-virtual	{v4,v2},java/io/InputStream/read	; read([B)I
+; v4 : Ljava/io/InputStream; , v2 : [B
+l837bc:
+	move-result	v0
+; v0 : single-length
+l837be:
+.line 460
+	if-gtz	v0,l837e0
+; v0 : single-length
+.line 465
+	if-eqz	v4,l837cc
+; v4 : Ljava/io/InputStream;
+.line 466
+	invoke-virtual	{v4},java/io/InputStream/close	; close()V
+; v4 : Ljava/io/InputStream;
+l837cc:
+.line 468
+	if-eqz	v1,l837d6
+; v1 : Ljava/io/ByteArrayOutputStream;
+.line 469
+	invoke-virtual	{v1},java/io/ByteArrayOutputStream/close	; close()V
+; v1 : Ljava/io/ByteArrayOutputStream;
+l837d6:
+.line 473
+	invoke-virtual	{v1},java/io/ByteArrayOutputStream/toByteArray	; toByteArray()[B
+; v1 : Ljava/io/ByteArrayOutputStream;
+	move-result-object	v0
+; v0 : [B
+	return-object	v0
+; v0 : [B
+l837e0:
+.line 461
+	const/4	v3,0
+; v3 : single-length
+l837e2:
+	invoke-virtual	{v1,v2,v3,v0},java/io/ByteArrayOutputStream/write	; write([BII)V
+; v1 : Ljava/io/ByteArrayOutputStream; , v2 : [B , v3 : single-length , v0 : single-length
+.line 462
+	invoke-virtual	{v4,v2},java/io/InputStream/read	; read([B)I
+; v4 : Ljava/io/InputStream; , v2 : [B
+l837ee:
+	move-result	v0
+; v0 : single-length
+	goto	l837be
+l837f2:
+.line 464
+	move-exception	v0
+; v0 : java/lang/Exception
+.line 465
+	if-eqz	v4,l837fe
+; v4 : Ljava/io/InputStream;
+.line 466
+	invoke-virtual	{v4},java/io/InputStream/close	; close()V
+; v4 : Ljava/io/InputStream;
+l837fe:
+.line 468
+	if-eqz	v1,l83808
+; v1 : Ljava/io/ByteArrayOutputStream;
+.line 469
+	invoke-virtual	{v1},java/io/ByteArrayOutputStream/close	; close()V
+; v1 : Ljava/io/ByteArrayOutputStream;
+l83808:
+.line 472
+	throw	v0
+; v0 : java/lang/Exception
+.end method
+
+.method public a(Ljava/net/URL;Ljava/lang/String;Lcom/fsharemobile/a/aa;Ljava/util/concurrent/atomic/AtomicInteger;)I
+.limit registers 18
+; this: v13 (Lcom/fsharemobile/a/z;)
+; parameter[0] : v14 (Ljava/net/URL;)
+; parameter[1] : v15 (Ljava/lang/String;)
+; parameter[2] : v16 (Lcom/fsharemobile/a/aa;)
+; parameter[3] : v17 (Ljava/util/concurrent/atomic/AtomicInteger;)
+.catch java/lang/Exception from l83a2c to l83a32 using l83a70
+.catch java/lang/Exception from l83a08 to l83a0e using l83a70
+.catch java/lang/Exception from l83992 to l839e4 using l839e6
+.catch java/lang/Exception from l83992 to l839e4 using l83a6a
+.catch java/lang/Exception from l83946 to l8396e using l839e6
+.catch java/lang/Exception from l83946 to l8396e using l83a6a
+.catch java/lang/Exception from l83934 to l8393e using l838c8
+.catch java/lang/Exception from l83934 to l8393e using l83a66
+.catch java/lang/Exception from l838cc to l83912 using l83a70
+.catch java/lang/Exception from l8385c to l838c8 using l838c8
+.catch java/lang/Exception from l8385c to l838c8 using l83a66
+.catch java/lang/Exception from l8384a to l8385a using l83a76
+.catch java/lang/Exception from l8384a to l8385a using l83a4c
+.line 146
+	new-instance	v7,com/fsharemobile/a/y
+; v7 : Lcom/fsharemobile/a/y;
+	invoke-direct	{v7},com/fsharemobile/a/y/<init>	; <init>()V
+; v7 : Lcom/fsharemobile/a/y;
+.line 147
+	const/4	v3,0
+; v3 : single-length
+.line 148
+	const/4	v2,0
+; v2 : single-length
+.line 149
+	iget-object	v1,v13,com/fsharemobile/a/z.a Lcom/a/a/r;
+; v1 : Lcom/a/a/r; , v13 : Lcom/fsharemobile/a/z;
+	invoke-virtual	{v1,v14},com/a/a/r/a	; a(Ljava/net/URL;)Ljava/net/HttpURLConnection;
+; v1 : Lcom/a/a/r; , v14 : Ljava/net/URL;
+	move-result-object	v8
+; v8 : Ljava/net/HttpURLConnection;
+l8384a:
+.line 152
+	invoke-virtual	{v8},java/net/HttpURLConnection/getContentLength	; getContentLength()I
+; v8 : Ljava/net/HttpURLConnection;
+	move-result	v1
+; v1 : single-length
+	int-to-long	v9,v1
+; v9 : double-length , v1 : single-length
+.line 153
+	invoke-virtual	{v8},java/net/HttpURLConnection/getInputStream	; getInputStream()Ljava/io/InputStream;
+; v8 : Ljava/net/HttpURLConnection;
+l8385a:
+	move-result-object	v4
+; v4 : Ljava/io/InputStream;
+l8385c:
+.line 156
+	invoke-virtual	{v8},java/net/HttpURLConnection/getResponseCode	; getResponseCode()I
+; v8 : Ljava/net/HttpURLConnection;
+	move-result	v1
+; v1 : single-length
+	invoke-virtual	{v7,v1},com/fsharemobile/a/y/a	; a(I)V
+; v7 : Lcom/fsharemobile/a/y; , v1 : single-length
+.line 157
+	invoke-virtual	{v8},java/net/HttpURLConnection/getResponseCode	; getResponseCode()I
+; v8 : Ljava/net/HttpURLConnection;
+	move-result	v1
+; v1 : single-length
+	const/16	v3,200
+; v3 : single-length
+	if-eq	v1,v3,l83934
+; v1 : single-length , v3 : single-length
+.line 158
+	new-instance	v1,java/io/IOException
+; v1 : Ljava/io/IOException;
+	new-instance	v3,java/lang/StringBuilder
+; v3 : Ljava/lang/StringBuilder;
+	const-string	v5,"Unexpected HTTP response: "
+; v5 : Ljava/lang/String;
+	invoke-direct	{v3,v5},java/lang/StringBuilder/<init>	; <init>(Ljava/lang/String;)V
+; v3 : Ljava/lang/StringBuilder; , v5 : Ljava/lang/String;
+.line 159
+	invoke-virtual	{v8},java/net/HttpURLConnection/getResponseCode	; getResponseCode()I
+; v8 : Ljava/net/HttpURLConnection;
+	move-result	v5
+; v5 : single-length
+	invoke-virtual	{v3,v5},java/lang/StringBuilder/append	; append(I)Ljava/lang/StringBuilder;
+; v3 : Ljava/lang/StringBuilder; , v5 : single-length
+	move-result-object	v3
+; v3 : Ljava/lang/StringBuilder;
+	const-string	v5," "
+; v5 : Ljava/lang/String;
+	invoke-virtual	{v3,v5},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v3 : Ljava/lang/StringBuilder; , v5 : Ljava/lang/String;
+	move-result-object	v3
+; v3 : Ljava/lang/StringBuilder;
+.line 160
+	invoke-virtual	{v8},java/net/HttpURLConnection/getResponseMessage	; getResponseMessage()Ljava/lang/String;
+; v8 : Ljava/net/HttpURLConnection;
+	move-result-object	v5
+; v5 : Ljava/lang/String;
+	invoke-virtual	{v3,v5},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v3 : Ljava/lang/StringBuilder; , v5 : Ljava/lang/String;
+	move-result-object	v3
+; v3 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v3},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v3 : Ljava/lang/StringBuilder;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+.line 158
+	invoke-direct	{v1,v3},java/io/IOException/<init>	; <init>(Ljava/lang/String;)V
+; v1 : Ljava/io/IOException; , v3 : Ljava/lang/String;
+	throw	v1
+; v1 : Ljava/io/IOException;
+l838c8:
+.line 184
+	move-exception	v1
+; v1 : java/lang/Exception
+	move-object	v3,v4
+; v3 : Ljava/io/InputStream; , v4 : Ljava/io/InputStream;
+l838cc:
+.line 185
+	invoke-virtual	{v1},java/lang/Exception/printStackTrace	; printStackTrace()V
+; v1 : java/lang/Exception
+.line 194
+	invoke-virtual	{v8},java/net/HttpURLConnection/getResponseCode	; getResponseCode()I
+; v8 : Ljava/net/HttpURLConnection;
+	move-result	v1
+; v1 : single-length
+	invoke-virtual	{v7,v1},com/fsharemobile/a/y/a	; a(I)V
+; v7 : Lcom/fsharemobile/a/y; , v1 : single-length
+.line 196
+	const-string	v1,"ErrorCode_Download_Util_Return"
+; v1 : Ljava/lang/String;
+	new-instance	v4,java/lang/StringBuilder
+; v4 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v7},com/fsharemobile/a/y/c	; c()I
+; v7 : Lcom/fsharemobile/a/y;
+	move-result	v5
+; v5 : single-length
+	invoke-static	{v5},java/lang/String/valueOf	; valueOf(I)Ljava/lang/String;
+; v5 : single-length
+	move-result-object	v5
+; v5 : Ljava/lang/String;
+	invoke-direct	{v4,v5},java/lang/StringBuilder/<init>	; <init>(Ljava/lang/String;)V
+; v4 : Ljava/lang/StringBuilder; , v5 : Ljava/lang/String;
+	invoke-virtual	{v4},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v4 : Ljava/lang/StringBuilder;
+	move-result-object	v4
+; v4 : Ljava/lang/String;
+	invoke-static	{v1,v4},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v1 : Ljava/lang/String; , v4 : Ljava/lang/String;
+.line 197
+	invoke-virtual	{v8},java/net/HttpURLConnection/getResponseCode	; getResponseCode()I
+; v8 : Ljava/net/HttpURLConnection;
+l83912:
+	move-result	v1
+; v1 : single-length
+	const/16	v4,200
+; v4 : single-length
+	if-ne	v1,v4,l83a08
+; v1 : single-length , v4 : single-length
+.line 205
+	if-eqz	v3,l83926
+; v3 : Ljava/io/InputStream;
+.line 206
+	invoke-virtual	{v3},java/io/InputStream/close	; close()V
+; v3 : Ljava/io/InputStream;
+l83926:
+.line 208
+	if-eqz	v2,l83930
+; v2 : single-length
+.line 209
+	invoke-virtual	{v2},java/io/OutputStream/close	; close()V
+; v2 : single-length
+l83930:
+.line 198
+	const/4	v1,1
+; v1 : single-length
+l83932:
+.line 202
+	return	v1
+; v1 : single-length
+l83934:
+.line 163
+	new-instance	v3,java/io/FileOutputStream
+; v3 : Ljava/io/FileOutputStream;
+	invoke-direct	{v3,v15},java/io/FileOutputStream/<init>	; <init>(Ljava/lang/String;)V
+; v3 : Ljava/io/FileOutputStream; , v15 : Ljava/lang/String;
+l8393e:
+.line 165
+	const-wide/16	v5,0
+; v5 : double-length
+.line 167
+	const/16	v1,1024
+; v1 : single-length
+l83946:
+	new-array	v2,v1,[B
+; v2 : [B , v1 : single-length
+.line 168
+	invoke-virtual	{v4,v2},java/io/InputStream/read	; read([B)I
+; v4 : Ljava/io/InputStream; , v2 : [B
+	move-result	v1
+; v1 : single-length
+l83952:
+.line 169
+	if-lez	v1,l83962
+; v1 : single-length
+	invoke-virtual/range	{v17},java/util/concurrent/atomic/AtomicInteger/intValue;	intValue()I
+; v17 : Ljava/util/concurrent/atomic/AtomicInteger;
+	move-result	v11
+; v11 : single-length
+	if-eqz	v11,l8398c
+; v11 : single-length
+l83962:
+.line 178
+	invoke-virtual	{v3},java/io/OutputStream/flush	; flush()V
+; v3 : Ljava/io/FileOutputStream;
+.line 179
+	invoke-virtual/range	{v17},java/util/concurrent/atomic/AtomicInteger/intValue;	intValue()I
+; v17 : Ljava/util/concurrent/atomic/AtomicInteger;
+l8396e:
+	move-result	v1
+; v1 : single-length
+	if-eqz	v1,l839f0
+; v1 : single-length
+.line 205
+	if-eqz	v4,l8397e
+; v4 : Ljava/io/InputStream;
+.line 206
+	invoke-virtual	{v4},java/io/InputStream/close	; close()V
+; v4 : Ljava/io/InputStream;
+l8397e:
+.line 208
+	if-eqz	v3,l83988
+; v3 : Ljava/io/FileOutputStream;
+.line 209
+	invoke-virtual	{v3},java/io/OutputStream/close	; close()V
+; v3 : Ljava/io/FileOutputStream;
+l83988:
+.line 180
+	const/4	v1,1
+; v1 : single-length
+	goto	l83932
+l8398c:
+.line 170
+	int-to-long	v11,v1
+; v11 : double-length , v1 : single-length
+	add-long/2addr	v5,v11
+; v5 : double-length , v11 : double-length
+.line 171
+	const/4	v11,0
+; v11 : single-length
+l83992:
+	invoke-virtual	{v3,v2,v11,v1},java/io/OutputStream/write	; write([BII)V
+; v3 : Ljava/io/FileOutputStream; , v2 : [B , v11 : single-length , v1 : single-length
+.line 173
+	const-wide/16	v11,100
+; v11 : double-length
+	mul-long/2addr	v11,v5
+; v11 : double-length , v5 : double-length
+	div-long/2addr	v11,v9
+; v11 : double-length , v9 : double-length
+	long-to-int	v1,v11
+; v1 : single-length , v11 : double-length
+	invoke-static	{v1},java/lang/Integer/valueOf	; valueOf(I)Ljava/lang/Integer;
+; v1 : single-length
+	move-result-object	v1
+; v1 : Ljava/lang/Integer;
+	move-object/from16	v0,v16
+; v0 : Lcom/fsharemobile/a/aa; , v16 : Lcom/fsharemobile/a/aa;
+	invoke-interface	{v0,v1},com/fsharemobile/a/aa/a	; a(Ljava/lang/Integer;)V
+; v0 : Lcom/fsharemobile/a/aa; , v1 : Ljava/lang/Integer;
+.line 174
+	invoke-virtual	{v4,v2},java/io/InputStream/read	; read([B)I
+; v4 : Ljava/io/InputStream; , v2 : [B
+	move-result	v1
+; v1 : single-length
+.line 175
+	const-string	v11,"Http_CANCLE_VALUE"
+; v11 : Ljava/lang/String;
+	new-instance	v12,java/lang/StringBuilder
+; v12 : Ljava/lang/StringBuilder;
+	invoke-direct	{v12},java/lang/StringBuilder/<init>	; <init>()V
+; v12 : Ljava/lang/StringBuilder;
+	move-object/from16	v0,v17
+; v0 : Ljava/util/concurrent/atomic/AtomicInteger; , v17 : Ljava/util/concurrent/atomic/AtomicInteger;
+	invoke-virtual	{v12,v0},java/lang/StringBuilder/append	; append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+; v12 : Ljava/lang/StringBuilder; , v0 : Ljava/util/concurrent/atomic/AtomicInteger;
+	move-result-object	v12
+; v12 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v12},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v12 : Ljava/lang/StringBuilder;
+	move-result-object	v12
+; v12 : Ljava/lang/String;
+	invoke-static	{v11,v12},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v11 : Ljava/lang/String; , v12 : Ljava/lang/String;
+l839e4:
+	goto	l83952
+l839e6:
+.line 184
+	move-exception	v1
+; v1 : java/lang/Exception
+	move-object	v2,v3
+; v2 : Ljava/io/FileOutputStream; , v3 : Ljava/io/FileOutputStream;
+	move-object	v3,v4
+; v3 : Ljava/io/InputStream; , v4 : Ljava/io/InputStream;
+	goto/16	l838cc
+l839f0:
+.line 205
+	if-eqz	v4,l839fa
+; v4 : Ljava/io/InputStream;
+.line 206
+	invoke-virtual	{v4},java/io/InputStream/close	; close()V
+; v4 : Ljava/io/InputStream;
+l839fa:
+.line 208
+	if-eqz	v3,l83a04
+; v3 : Ljava/io/FileOutputStream;
+.line 209
+	invoke-virtual	{v3},java/io/OutputStream/close	; close()V
+; v3 : Ljava/io/FileOutputStream;
+l83a04:
+.line 183
+	const/4	v1,0
+; v1 : single-length
+	goto	l83932
+l83a08:
+.line 199
+	invoke-virtual	{v8},java/net/HttpURLConnection/getResponseCode	; getResponseCode()I
+; v8 : Ljava/net/HttpURLConnection;
+l83a0e:
+	move-result	v1
+; v1 : single-length
+	if-nez	v1,l83a2c
+; v1 : single-length
+.line 205
+	if-eqz	v3,l83a1e
+; v3 : Ljava/io/InputStream;
+.line 206
+	invoke-virtual	{v3},java/io/InputStream/close	; close()V
+; v3 : Ljava/io/InputStream;
+l83a1e:
+.line 208
+	if-eqz	v2,l83a28
+; v2 : single-length
+.line 209
+	invoke-virtual	{v2},java/io/OutputStream/close	; close()V
+; v2 : single-length
+l83a28:
+.line 200
+	const/4	v1,1
+; v1 : single-length
+	goto	l83932
+l83a2c:
+.line 202
+	invoke-virtual	{v7},com/fsharemobile/a/y/c	; c()I
+; v7 : Lcom/fsharemobile/a/y;
+l83a32:
+	move-result	v1
+; v1 : single-length
+.line 205
+	if-eqz	v3,l83a3e
+; v3 : Ljava/io/InputStream;
+.line 206
+	invoke-virtual	{v3},java/io/InputStream/close	; close()V
+; v3 : Ljava/io/InputStream;
+l83a3e:
+.line 208
+	if-eqz	v2,l83932
+; v2 : single-length
+.line 209
+	invoke-virtual	{v2},java/io/OutputStream/close	; close()V
+; v2 : single-length
+	goto/16	l83932
+l83a4c:
+.line 204
+	move-exception	v1
+; v1 : java/lang/Exception
+	move-object	v4,v3
+; v4 : single-length , v3 : single-length
+l83a50:
+.line 205
+	if-eqz	v4,l83a5a
+; v4 : Ljava/io/InputStream;
+.line 206
+	invoke-virtual	{v4},java/io/InputStream/close	; close()V
+; v4 : Ljava/io/InputStream;
+l83a5a:
+.line 208
+	if-eqz	v2,l83a64
+; v2 : single-length
+.line 209
+	invoke-virtual	{v2},java/io/OutputStream/close	; close()V
+; v2 : single-length
+l83a64:
+.line 211
+	throw	v1
+; v1 : java/lang/Exception
+l83a66:
+.line 204
+	move-exception	v1
+; v1 : java/lang/Exception
+	goto	l83a50
+l83a6a:
+	move-exception	v1
+; v1 : java/lang/Exception
+	move-object	v2,v3
+; v2 : Ljava/io/FileOutputStream; , v3 : Ljava/io/FileOutputStream;
+	goto	l83a50
+l83a70:
+	move-exception	v1
+; v1 : java/lang/Exception
+	move-object	v4,v3
+; v4 : Ljava/io/InputStream; , v3 : Ljava/io/InputStream;
+	goto	l83a50
+l83a76:
+.line 184
+	move-exception	v1
+; v1 : java/lang/Exception
+	goto/16	l838cc
+.end method
+
+.method public a(Lcom/fsharemobile/a/x;)Lcom/fsharemobile/a/y;
+.limit registers 9
+; this: v7 (Lcom/fsharemobile/a/z;)
+; parameter[0] : v8 (Lcom/fsharemobile/a/x;)
+.catch java/lang/Exception from l83c66 to l83c82 using l83cc6
+.catch java/lang/Exception from l83c66 to l83c82 using l83cb8
+.catch java/lang/Exception from l83c5e to l83c64 using l83be6
+.catch java/lang/Exception from l83c5e to l83c64 using l83cb4
+.catch java/lang/Exception from l83c2a to l83c54 using l83c58
+.catch java/lang/Exception from l83c2a to l83c54 using l83c9a
+.catch java/lang/Exception from l83bec to l83c12 using l83cbe
+.catch java/lang/Exception from l83b3a to l83be6 using l83be6
+.catch java/lang/Exception from l83b3a to l83be6 using l83cb4
+.catch java/lang/Exception from l83b04 to l83b38 using l83c58
+.catch java/lang/Exception from l83b04 to l83b38 using l83c9a
+	const/4	v3,0
+; v3 : single-length
+.line 46
+	iget-object	v0,v7,com/fsharemobile/a/z.a Lcom/a/a/r;
+; v0 : Lcom/a/a/r; , v7 : Lcom/fsharemobile/a/z;
+	invoke-virtual	{v8},com/fsharemobile/a/x/a	; a()Ljava/net/URL;
+; v8 : Lcom/fsharemobile/a/x;
+	move-result-object	v1
+; v1 : Ljava/net/URL;
+	invoke-virtual	{v0,v1},com/a/a/r/a	; a(Ljava/net/URL;)Ljava/net/HttpURLConnection;
+; v0 : Lcom/a/a/r; , v1 : Ljava/net/URL;
+	move-result-object	v5
+; v5 : Ljava/net/HttpURLConnection;
+.line 49
+	new-instance	v2,com/fsharemobile/a/y
+; v2 : Lcom/fsharemobile/a/y;
+	invoke-direct	{v2},com/fsharemobile/a/y/<init>	; <init>()V
+; v2 : Lcom/fsharemobile/a/y;
+l83b04:
+.line 52
+	const-string	v0,"POST"
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v5,v0},java/net/HttpURLConnection/setRequestMethod	; setRequestMethod(Ljava/lang/String;)V
+; v5 : Ljava/net/HttpURLConnection; , v0 : Ljava/lang/String;
+.line 59
+	invoke-virtual	{v8},com/fsharemobile/a/x/b	; b()Ljava/util/Map;
+; v8 : Lcom/fsharemobile/a/x;
+	move-result-object	v0
+; v0 : Ljava/util/Map;
+	invoke-interface	{v0},java/util/Map/entrySet	; entrySet()Ljava/util/Set;
+; v0 : Ljava/util/Map;
+	move-result-object	v0
+; v0 : Ljava/util/Set;
+	invoke-interface	{v0},java/util/Set/iterator	; iterator()Ljava/util/Iterator;
+; v0 : Ljava/util/Set;
+	move-result-object	v4
+; v4 : Ljava/util/Iterator;
+l83b26:
+.line 58
+	invoke-interface	{v4},java/util/Iterator/hasNext	; hasNext()Z
+; v4 : Ljava/util/Iterator;
+	move-result	v0
+; v0 : single-length
+	if-nez	v0,l83c2a
+; v0 : single-length
+.line 62
+	invoke-virtual	{v5},java/net/HttpURLConnection/getOutputStream	; getOutputStream()Ljava/io/OutputStream;
+; v5 : Ljava/net/HttpURLConnection;
+l83b38:
+	move-result-object	v4
+; v4 : Ljava/io/OutputStream;
+l83b3a:
+.line 63
+	invoke-virtual	{v8},com/fsharemobile/a/x/c	; c()[B
+; v8 : Lcom/fsharemobile/a/x;
+	move-result-object	v0
+; v0 : [B
+	invoke-virtual	{v4,v0},java/io/OutputStream/write	; write([B)V
+; v4 : Ljava/io/OutputStream; , v0 : [B
+.line 64
+	invoke-virtual	{v4},java/io/OutputStream/close	; close()V
+; v4 : Ljava/io/OutputStream;
+.line 68
+	invoke-virtual	{v5},java/net/HttpURLConnection/getResponseCode	; getResponseCode()I
+; v5 : Ljava/net/HttpURLConnection;
+	move-result	v0
+; v0 : single-length
+	invoke-virtual	{v2,v0},com/fsharemobile/a/y/a	; a(I)V
+; v2 : Lcom/fsharemobile/a/y; , v0 : single-length
+.line 69
+	const-string	v0,"HTTP__POST_RESPONECODE"
+; v0 : Ljava/lang/String;
+	new-instance	v1,java/lang/StringBuilder
+; v1 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v5},java/net/HttpURLConnection/getResponseCode	; getResponseCode()I
+; v5 : Ljava/net/HttpURLConnection;
+	move-result	v6
+; v6 : single-length
+	invoke-static	{v6},java/lang/String/valueOf	; valueOf(I)Ljava/lang/String;
+; v6 : single-length
+	move-result-object	v6
+; v6 : Ljava/lang/String;
+	invoke-direct	{v1,v6},java/lang/StringBuilder/<init>	; <init>(Ljava/lang/String;)V
+; v1 : Ljava/lang/StringBuilder; , v6 : Ljava/lang/String;
+	invoke-virtual	{v1},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v1 : Ljava/lang/StringBuilder;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-static	{v0,v1},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v0 : Ljava/lang/String; , v1 : Ljava/lang/String;
+.line 70
+	invoke-virtual	{v5},java/net/HttpURLConnection/getResponseCode	; getResponseCode()I
+; v5 : Ljava/net/HttpURLConnection;
+	move-result	v0
+; v0 : single-length
+	const/16	v1,200
+; v1 : single-length
+	if-eq	v0,v1,l83c5e
+; v0 : single-length , v1 : single-length
+.line 71
+	new-instance	v0,java/io/IOException
+; v0 : Ljava/io/IOException;
+	new-instance	v1,java/lang/StringBuilder
+; v1 : Ljava/lang/StringBuilder;
+	const-string	v6,"Unexpected HTTP response: "
+; v6 : Ljava/lang/String;
+	invoke-direct	{v1,v6},java/lang/StringBuilder/<init>	; <init>(Ljava/lang/String;)V
+; v1 : Ljava/lang/StringBuilder; , v6 : Ljava/lang/String;
+.line 72
+	invoke-virtual	{v5},java/net/HttpURLConnection/getResponseCode	; getResponseCode()I
+; v5 : Ljava/net/HttpURLConnection;
+	move-result	v6
+; v6 : single-length
+	invoke-virtual	{v1,v6},java/lang/StringBuilder/append	; append(I)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v6 : single-length
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	const-string	v6," "
+; v6 : Ljava/lang/String;
+	invoke-virtual	{v1,v6},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v6 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+.line 73
+	invoke-virtual	{v5},java/net/HttpURLConnection/getResponseMessage	; getResponseMessage()Ljava/lang/String;
+; v5 : Ljava/net/HttpURLConnection;
+	move-result-object	v6
+; v6 : Ljava/lang/String;
+	invoke-virtual	{v1,v6},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v6 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v1},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v1 : Ljava/lang/StringBuilder;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+.line 71
+	invoke-direct	{v0,v1},java/io/IOException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/io/IOException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/io/IOException;
+l83be6:
+.line 80
+	move-exception	v0
+; v0 : java/lang/Exception
+	move-object	v1,v3
+; v1 : single-length , v3 : single-length
+	move-object	v3,v4
+; v3 : Ljava/io/OutputStream; , v4 : Ljava/io/OutputStream;
+l83bec:
+.line 81
+	invoke-virtual	{v0},java/lang/Exception/printStackTrace	; printStackTrace()V
+; v0 : java/lang/Exception
+.line 82
+	invoke-virtual	{v5},java/net/HttpURLConnection/getResponseCode	; getResponseCode()I
+; v5 : Ljava/net/HttpURLConnection;
+	move-result	v4
+; v4 : single-length
+	invoke-virtual	{v2,v4},com/fsharemobile/a/y/a	; a(I)V
+; v2 : Lcom/fsharemobile/a/y; , v4 : single-length
+.line 83
+	const-string	v4,"Http_Response_POST_Exception"
+; v4 : Ljava/lang/String;
+	invoke-virtual	{v0},java/lang/Exception/toString	; toString()Ljava/lang/String;
+; v0 : java/lang/Exception
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	invoke-static	{v4,v0},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v4 : Ljava/lang/String; , v0 : Ljava/lang/String;
+l83c12:
+.line 87
+	if-eqz	v3,l83c1c
+; v3 : Ljava/io/OutputStream;
+.line 88
+	invoke-virtual	{v3},java/io/OutputStream/close	; close()V
+; v3 : Ljava/io/OutputStream;
+l83c1c:
+.line 89
+	if-eqz	v1,l83c26
+; v1 : Ljava/io/InputStream;
+.line 90
+	invoke-virtual	{v1},java/io/InputStream/close	; close()V
+; v1 : Ljava/io/InputStream;
+l83c26:
+	move-object	v0,v2
+; v0 : Lcom/fsharemobile/a/y; , v2 : Lcom/fsharemobile/a/y;
+l83c28:
+.line 84
+	return-object	v0
+; v0 : Lcom/fsharemobile/a/y;
+l83c2a:
+.line 59
+	invoke-interface	{v4},java/util/Iterator/next	; next()Ljava/lang/Object;
+; v4 : Ljava/util/Iterator;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,java/util/Map$Entry
+; v0 : Ljava/util/Map$Entry;
+.line 60
+	invoke-interface	{v0},java/util/Map$Entry/getKey	; getKey()Ljava/lang/Object;
+; v0 : Ljava/util/Map$Entry;
+	move-result-object	v1
+; v1 : Ljava/lang/Object;
+	check-cast	v1,java/lang/String
+; v1 : Ljava/lang/String;
+	invoke-interface	{v0},java/util/Map$Entry/getValue	; getValue()Ljava/lang/Object;
+; v0 : Ljava/util/Map$Entry;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,java/lang/String
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v5,v1,v0},java/net/HttpURLConnection/setRequestProperty	; setRequestProperty(Ljava/lang/String;Ljava/lang/String;)V
+; v5 : Ljava/net/HttpURLConnection; , v1 : Ljava/lang/String; , v0 : Ljava/lang/String;
+l83c54:
+	goto/16	l83b26
+l83c58:
+.line 80
+	move-exception	v0
+; v0 : java/lang/Exception
+	move-object	v1,v3
+; v1 : single-length , v3 : single-length
+	goto	l83bec
+l83c5e:
+.line 75
+	invoke-virtual	{v5},java/net/HttpURLConnection/getInputStream	; getInputStream()Ljava/io/InputStream;
+; v5 : Ljava/net/HttpURLConnection;
+l83c64:
+	move-result-object	v1
+; v1 : Ljava/io/InputStream;
+l83c66:
+.line 76
+	invoke-static	{v1},com/fsharemobile/a/z/a	; a(Ljava/io/InputStream;)[B
+; v1 : Ljava/io/InputStream;
+	move-result-object	v0
+; v0 : [B
+.line 77
+	invoke-virtual	{v2,v0},com/fsharemobile/a/y/a	; a([B)V
+; v2 : Lcom/fsharemobile/a/y; , v0 : [B
+.line 78
+	invoke-virtual	{v5},java/net/HttpURLConnection/getHeaderFields	; getHeaderFields()Ljava/util/Map;
+; v5 : Ljava/net/HttpURLConnection;
+	move-result-object	v0
+; v0 : Ljava/util/Map;
+	invoke-virtual	{v2,v0},com/fsharemobile/a/y/a	; a(Ljava/util/Map;)V
+; v2 : Lcom/fsharemobile/a/y; , v0 : Ljava/util/Map;
+l83c82:
+.line 87
+	if-eqz	v4,l83c8c
+; v4 : Ljava/io/OutputStream;
+.line 88
+	invoke-virtual	{v4},java/io/OutputStream/close	; close()V
+; v4 : Ljava/io/OutputStream;
+l83c8c:
+.line 89
+	if-eqz	v1,l83c96
+; v1 : Ljava/io/InputStream;
+.line 90
+	invoke-virtual	{v1},java/io/InputStream/close	; close()V
+; v1 : Ljava/io/InputStream;
+l83c96:
+	move-object	v0,v2
+; v0 : Lcom/fsharemobile/a/y; , v2 : Lcom/fsharemobile/a/y;
+.line 79
+	goto	l83c28
+l83c9a:
+.line 85
+	move-exception	v0
+; v0 : java/lang/Exception
+	move-object	v4,v3
+; v4 : single-length , v3 : single-length
+l83c9e:
+.line 87
+	if-eqz	v4,l83ca8
+; v4 : Ljava/io/OutputStream;
+.line 88
+	invoke-virtual	{v4},java/io/OutputStream/close	; close()V
+; v4 : Ljava/io/OutputStream;
+l83ca8:
+.line 89
+	if-eqz	v3,l83cb2
+; v3 : Ljava/io/InputStream;
+.line 90
+	invoke-virtual	{v3},java/io/InputStream/close	; close()V
+; v3 : Ljava/io/InputStream;
+l83cb2:
+.line 91
+	throw	v0
+; v0 : java/lang/Exception
+l83cb4:
+.line 85
+	move-exception	v0
+; v0 : java/lang/Exception
+	goto	l83c9e
+l83cb8:
+	move-exception	v0
+; v0 : java/lang/Exception
+	move-object	v3,v1
+; v3 : Ljava/io/InputStream; , v1 : Ljava/io/InputStream;
+	goto	l83c9e
+l83cbe:
+	move-exception	v0
+; v0 : java/lang/Exception
+	move-object	v4,v3
+; v4 : Ljava/io/OutputStream; , v3 : Ljava/io/OutputStream;
+	move-object	v3,v1
+; v3 : single-length , v1 : single-length
+	goto	l83c9e
+l83cc6:
+.line 80
+	move-exception	v0
+; v0 : java/lang/Exception
+	move-object	v3,v4
+; v3 : Ljava/io/OutputStream; , v4 : Ljava/io/OutputStream;
+	goto	l83bec
+.end method
+
+.method public b(Ljava/net/URL;Ljava/lang/String;Lcom/fsharemobile/a/aa;Ljava/util/concurrent/atomic/AtomicInteger;)I
+.limit registers 20
+; this: v15 (Lcom/fsharemobile/a/z;)
+; parameter[0] : v16 (Ljava/net/URL;)
+; parameter[1] : v17 (Ljava/lang/String;)
+; parameter[2] : v18 (Lcom/fsharemobile/a/aa;)
+; parameter[3] : v19 (Ljava/util/concurrent/atomic/AtomicInteger;)
+.catch java/lang/Exception from l8407e to l84084 using l840cc
+.catch java/lang/Exception from l8404e to l84054 using l840cc
+.catch java/lang/Exception from l83ffe to l8402a using l83e3e
+.catch java/lang/Exception from l83ffe to l8402a using l840cc
+.catch java/lang/Exception from l83f42 to l83fb6 using l83e3e
+.catch java/lang/Exception from l83f42 to l83fb6 using l840cc
+.catch java/lang/Exception from l83eca to l83f1a using l83e3e
+.catch java/lang/Exception from l83eca to l83f1a using l840cc
+.catch java/lang/Exception from l83e40 to l83e98 using l840cc
+.catch java/lang/Exception from l83d94 to l83e3e using l83e3e
+.catch java/lang/Exception from l83d94 to l83e3e using l840cc
+.catch java/lang/Exception from l83d6c to l83d94 using l840d0
+.catch java/lang/Exception from l83d6c to l83d94 using l840a8
+.line 218
+	iget-object	v1,v15,com/fsharemobile/a/z.a Lcom/a/a/r;
+; v1 : Lcom/a/a/r; , v15 : Lcom/fsharemobile/a/z;
+	move-object/from16	v0,v16
+; v0 : Ljava/net/URL; , v16 : Ljava/net/URL;
+	invoke-virtual	{v1,v0},com/a/a/r/a	; a(Ljava/net/URL;)Ljava/net/HttpURLConnection;
+; v1 : Lcom/a/a/r; , v0 : Ljava/net/URL;
+	move-result-object	v8
+; v8 : Ljava/net/HttpURLConnection;
+.line 219
+	const/4	v5,0
+; v5 : single-length
+.line 220
+	const/4	v3,0
+; v3 : single-length
+.line 221
+	const/4	v2,0
+; v2 : single-length
+.line 222
+	new-instance	v9,com/fsharemobile/a/y
+; v9 : Lcom/fsharemobile/a/y;
+	invoke-direct	{v9},com/fsharemobile/a/y/<init>	; <init>()V
+; v9 : Lcom/fsharemobile/a/y;
+.line 223
+	const-string	v1,"Upload_Url_Util"
+; v1 : Ljava/lang/String;
+	invoke-virtual/range	{v16},java/net/URL/getFile;	getFile()Ljava/lang/String;
+; v16 : Ljava/net/URL;
+	move-result-object	v4
+; v4 : Ljava/lang/String;
+	invoke-static	{v1,v4},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v1 : Ljava/lang/String; , v4 : Ljava/lang/String;
+.line 224
+	const-string	v1,"Upload_FilePath_Util"
+; v1 : Ljava/lang/String;
+	move-object/from16	v0,v17
+; v0 : Ljava/lang/String; , v17 : Ljava/lang/String;
+	invoke-static	{v1,v0},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v1 : Ljava/lang/String; , v0 : Ljava/lang/String;
+.line 225
+	const-wide/16	v6,0
+; v6 : double-length
+l83d6c:
+.line 229
+	const-string	v1,"POST"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v8,v1},java/net/HttpURLConnection/setRequestMethod	; setRequestMethod(Ljava/lang/String;)V
+; v8 : Ljava/net/HttpURLConnection; , v1 : Ljava/lang/String;
+.line 230
+	invoke-virtual	{v8},java/net/HttpURLConnection/getOutputStream	; getOutputStream()Ljava/io/OutputStream;
+; v8 : Ljava/net/HttpURLConnection;
+	move-result-object	v3
+; v3 : Ljava/io/OutputStream;
+.line 233
+	const/16	v1,1024
+; v1 : single-length
+	new-array	v10,v1,[B
+; v10 : [B , v1 : single-length
+.line 234
+	new-instance	v4,java/io/FileInputStream
+; v4 : Ljava/io/FileInputStream;
+	move-object/from16	v0,v17
+; v0 : Ljava/lang/String; , v17 : Ljava/lang/String;
+	invoke-direct	{v4,v0},java/io/FileInputStream/<init>	; <init>(Ljava/lang/String;)V
+; v4 : Ljava/io/FileInputStream; , v0 : Ljava/lang/String;
+l83d94:
+.line 241
+	new-instance	v1,java/io/File
+; v1 : Ljava/io/File;
+	move-object/from16	v0,v17
+; v0 : Ljava/lang/String; , v17 : Ljava/lang/String;
+	invoke-direct	{v1,v0},java/io/File/<init>	; <init>(Ljava/lang/String;)V
+; v1 : Ljava/io/File; , v0 : Ljava/lang/String;
+	invoke-virtual	{v1},java/io/File/length	; length()J
+; v1 : Ljava/io/File;
+	move-result-wide	v11
+; v11 : double-length
+.line 242
+	invoke-virtual	{v4,v10},java/io/InputStream/read	; read([B)I
+; v4 : Ljava/io/FileInputStream; , v10 : [B
+	move-result	v1
+; v1 : single-length
+	move-wide	v5,v6
+; v5 : double-length , v6 : double-length
+l83db4:
+.line 243
+	if-lez	v1,l83dc4
+; v1 : single-length
+	invoke-virtual/range	{v19},java/util/concurrent/atomic/AtomicInteger/intValue;	intValue()I
+; v19 : Ljava/util/concurrent/atomic/AtomicInteger;
+	move-result	v7
+; v7 : single-length
+	if-eqz	v7,l83ec4
+; v7 : single-length
+l83dc4:
+.line 250
+	invoke-virtual	{v3},java/io/OutputStream/close	; close()V
+; v3 : Ljava/io/OutputStream;
+.line 253
+	invoke-virtual	{v8},java/net/HttpURLConnection/getResponseCode	; getResponseCode()I
+; v8 : Ljava/net/HttpURLConnection;
+	move-result	v1
+; v1 : single-length
+	invoke-virtual	{v9,v1},com/fsharemobile/a/y/a	; a(I)V
+; v9 : Lcom/fsharemobile/a/y; , v1 : single-length
+.line 254
+	invoke-virtual	{v8},java/net/HttpURLConnection/getInputStream	; getInputStream()Ljava/io/InputStream;
+; v8 : Ljava/net/HttpURLConnection;
+	move-result-object	v2
+; v2 : Ljava/io/InputStream;
+.line 255
+	invoke-virtual	{v8},java/net/HttpURLConnection/getResponseCode	; getResponseCode()I
+; v8 : Ljava/net/HttpURLConnection;
+	move-result	v1
+; v1 : single-length
+	const/16	v5,200
+; v5 : single-length
+	if-eq	v1,v5,l83ef8
+; v1 : single-length , v5 : single-length
+.line 256
+	new-instance	v1,java/io/IOException
+; v1 : Ljava/io/IOException;
+	new-instance	v5,java/lang/StringBuilder
+; v5 : Ljava/lang/StringBuilder;
+	const-string	v6,"Unexpected HTTP response: "
+; v6 : Ljava/lang/String;
+	invoke-direct	{v5,v6},java/lang/StringBuilder/<init>	; <init>(Ljava/lang/String;)V
+; v5 : Ljava/lang/StringBuilder; , v6 : Ljava/lang/String;
+.line 257
+	invoke-virtual	{v8},java/net/HttpURLConnection/getResponseCode	; getResponseCode()I
+; v8 : Ljava/net/HttpURLConnection;
+	move-result	v6
+; v6 : single-length
+	invoke-virtual	{v5,v6},java/lang/StringBuilder/append	; append(I)Ljava/lang/StringBuilder;
+; v5 : Ljava/lang/StringBuilder; , v6 : single-length
+	move-result-object	v5
+; v5 : Ljava/lang/StringBuilder;
+	const-string	v6," "
+; v6 : Ljava/lang/String;
+	invoke-virtual	{v5,v6},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v5 : Ljava/lang/StringBuilder; , v6 : Ljava/lang/String;
+	move-result-object	v5
+; v5 : Ljava/lang/StringBuilder;
+.line 258
+	invoke-virtual	{v8},java/net/HttpURLConnection/getResponseMessage	; getResponseMessage()Ljava/lang/String;
+; v8 : Ljava/net/HttpURLConnection;
+	move-result-object	v6
+; v6 : Ljava/lang/String;
+	invoke-virtual	{v5,v6},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v5 : Ljava/lang/StringBuilder; , v6 : Ljava/lang/String;
+	move-result-object	v5
+; v5 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v5},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v5 : Ljava/lang/StringBuilder;
+	move-result-object	v5
+; v5 : Ljava/lang/String;
+.line 256
+	invoke-direct	{v1,v5},java/io/IOException/<init>	; <init>(Ljava/lang/String;)V
+; v1 : Ljava/io/IOException; , v5 : Ljava/lang/String;
+	throw	v1
+; v1 : Ljava/io/IOException;
+l83e3e:
+.line 285
+	move-exception	v1
+; v1 : java/lang/Exception
+l83e40:
+.line 286
+	invoke-virtual	{v1},java/lang/Exception/printStackTrace	; printStackTrace()V
+; v1 : java/lang/Exception
+.line 287
+	const-string	v5,"Http_UpLoad_Response_Exception"
+; v5 : Ljava/lang/String;
+	invoke-virtual	{v1},java/lang/Exception/toString	; toString()Ljava/lang/String;
+; v1 : java/lang/Exception
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-static	{v5,v1},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v5 : Ljava/lang/String; , v1 : Ljava/lang/String;
+.line 288
+	invoke-virtual	{v8},java/net/HttpURLConnection/getResponseCode	; getResponseCode()I
+; v8 : Ljava/net/HttpURLConnection;
+	move-result	v1
+; v1 : single-length
+	invoke-virtual	{v9,v1},com/fsharemobile/a/y/a	; a(I)V
+; v9 : Lcom/fsharemobile/a/y; , v1 : single-length
+.line 291
+	const-string	v1,"ErrorCode_Upload_Util_Return"
+; v1 : Ljava/lang/String;
+	new-instance	v5,java/lang/StringBuilder
+; v5 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v9},com/fsharemobile/a/y/c	; c()I
+; v9 : Lcom/fsharemobile/a/y;
+	move-result	v6
+; v6 : single-length
+	invoke-static	{v6},java/lang/String/valueOf	; valueOf(I)Ljava/lang/String;
+; v6 : single-length
+	move-result-object	v6
+; v6 : Ljava/lang/String;
+	invoke-direct	{v5,v6},java/lang/StringBuilder/<init>	; <init>(Ljava/lang/String;)V
+; v5 : Ljava/lang/StringBuilder; , v6 : Ljava/lang/String;
+	invoke-virtual	{v5},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v5 : Ljava/lang/StringBuilder;
+	move-result-object	v5
+; v5 : Ljava/lang/String;
+	invoke-static	{v1,v5},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v1 : Ljava/lang/String; , v5 : Ljava/lang/String;
+.line 292
+	invoke-virtual	{v8},java/net/HttpURLConnection/getResponseCode	; getResponseCode()I
+; v8 : Ljava/net/HttpURLConnection;
+l83e98:
+	move-result	v1
+; v1 : single-length
+	const/16	v5,200
+; v5 : single-length
+	if-ne	v1,v5,l8404e
+; v1 : single-length , v5 : single-length
+.line 303
+	if-eqz	v4,l83eac
+; v4 : Ljava/io/FileInputStream;
+.line 304
+	invoke-virtual	{v4},java/io/InputStream/close	; close()V
+; v4 : Ljava/io/FileInputStream;
+l83eac:
+.line 305
+	if-eqz	v3,l83eb6
+; v3 : Ljava/io/OutputStream;
+.line 306
+	invoke-virtual	{v3},java/io/OutputStream/close	; close()V
+; v3 : Ljava/io/OutputStream;
+l83eb6:
+.line 307
+	if-eqz	v2,l83ec0
+; v2 : Ljava/io/InputStream;
+.line 308
+	invoke-virtual	{v2},java/io/InputStream/close	; close()V
+; v2 : Ljava/io/InputStream;
+l83ec0:
+.line 293
+	const/4	v1,1
+; v1 : single-length
+l83ec2:
+.line 297
+	return	v1
+; v1 : single-length
+l83ec4:
+.line 244
+	int-to-long	v13,v1
+; v13 : double-length , v1 : single-length
+	add-long/2addr	v5,v13
+; v5 : double-length , v13 : double-length
+.line 245
+	const/4	v7,0
+; v7 : single-length
+l83eca:
+	invoke-virtual	{v3,v10,v7,v1},java/io/OutputStream/write	; write([BII)V
+; v3 : Ljava/io/OutputStream; , v10 : [B , v7 : single-length , v1 : single-length
+.line 247
+	const-wide/16	v13,100
+; v13 : double-length
+	mul-long/2addr	v13,v5
+; v13 : double-length , v5 : double-length
+	div-long/2addr	v13,v11
+; v13 : double-length , v11 : double-length
+	long-to-int	v1,v13
+; v1 : single-length , v13 : double-length
+	invoke-static	{v1},java/lang/Integer/valueOf	; valueOf(I)Ljava/lang/Integer;
+; v1 : single-length
+	move-result-object	v1
+; v1 : Ljava/lang/Integer;
+	move-object/from16	v0,v18
+; v0 : Lcom/fsharemobile/a/aa; , v18 : Lcom/fsharemobile/a/aa;
+	invoke-interface	{v0,v1},com/fsharemobile/a/aa/a	; a(Ljava/lang/Integer;)V
+; v0 : Lcom/fsharemobile/a/aa; , v1 : Ljava/lang/Integer;
+.line 248
+	invoke-virtual	{v4,v10},java/io/InputStream/read	; read([B)I
+; v4 : Ljava/io/FileInputStream; , v10 : [B
+	move-result	v1
+; v1 : single-length
+	goto/16	l83db4
+l83ef8:
+.line 260
+	invoke-static	{v2},com/fsharemobile/a/z/a	; a(Ljava/io/InputStream;)[B
+; v2 : Ljava/io/InputStream;
+	move-result-object	v1
+; v1 : [B
+.line 261
+	invoke-virtual	{v9,v1},com/fsharemobile/a/y/a	; a([B)V
+; v9 : Lcom/fsharemobile/a/y; , v1 : [B
+.line 262
+	invoke-virtual	{v8},java/net/HttpURLConnection/getHeaderFields	; getHeaderFields()Ljava/util/Map;
+; v8 : Ljava/net/HttpURLConnection;
+	move-result-object	v1
+; v1 : Ljava/util/Map;
+	invoke-virtual	{v9,v1},com/fsharemobile/a/y/a	; a(Ljava/util/Map;)V
+; v9 : Lcom/fsharemobile/a/y; , v1 : Ljava/util/Map;
+.line 263
+	invoke-virtual/range	{v19},java/util/concurrent/atomic/AtomicInteger/intValue;	intValue()I
+; v19 : Ljava/util/concurrent/atomic/AtomicInteger;
+l83f1a:
+	move-result	v1
+; v1 : single-length
+	if-eqz	v1,l83f42
+; v1 : single-length
+.line 303
+	if-eqz	v4,l83f2a
+; v4 : Ljava/io/FileInputStream;
+.line 304
+	invoke-virtual	{v4},java/io/InputStream/close	; close()V
+; v4 : Ljava/io/FileInputStream;
+l83f2a:
+.line 305
+	if-eqz	v3,l83f34
+; v3 : Ljava/io/OutputStream;
+.line 306
+	invoke-virtual	{v3},java/io/OutputStream/close	; close()V
+; v3 : Ljava/io/OutputStream;
+l83f34:
+.line 307
+	if-eqz	v2,l83f3e
+; v2 : Ljava/io/InputStream;
+.line 308
+	invoke-virtual	{v2},java/io/InputStream/close	; close()V
+; v2 : Ljava/io/InputStream;
+l83f3e:
+.line 264
+	const/4	v1,1
+; v1 : single-length
+	goto	l83ec2
+l83f42:
+.line 269
+	new-instance	v1,org/json/JSONObject
+; v1 : Lorg/json/JSONObject;
+	invoke-virtual	{v9},com/fsharemobile/a/y/b	; b()Ljava/lang/String;
+; v9 : Lcom/fsharemobile/a/y;
+	move-result-object	v5
+; v5 : Ljava/lang/String;
+	invoke-direct	{v1,v5},org/json/JSONObject/<init>	; <init>(Ljava/lang/String;)V
+; v1 : Lorg/json/JSONObject; , v5 : Ljava/lang/String;
+.line 270
+	const-string	v5,"Upload_Body_res_"
+; v5 : Ljava/lang/String;
+	invoke-virtual	{v9},com/fsharemobile/a/y/b	; b()Ljava/lang/String;
+; v9 : Lcom/fsharemobile/a/y;
+	move-result-object	v6
+; v6 : Ljava/lang/String;
+	invoke-static	{v5,v6},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v5 : Ljava/lang/String; , v6 : Ljava/lang/String;
+.line 271
+	const-string	v5,"error"
+; v5 : Ljava/lang/String;
+	invoke-virtual	{v1,v5},org/json/JSONObject/has	; has(Ljava/lang/String;)Z
+; v1 : Lorg/json/JSONObject; , v5 : Ljava/lang/String;
+	move-result	v5
+; v5 : single-length
+	if-eqz	v5,l83ffe
+; v5 : single-length
+.line 272
+	const-string	v5,"code"
+; v5 : Ljava/lang/String;
+	invoke-virtual	{v1,v5},org/json/JSONObject/has	; has(Ljava/lang/String;)Z
+; v1 : Lorg/json/JSONObject; , v5 : Ljava/lang/String;
+	move-result	v5
+; v5 : single-length
+	if-eqz	v5,l83fd8
+; v5 : single-length
+.line 273
+	const-string	v5,"code"
+; v5 : Ljava/lang/String;
+	invoke-virtual	{v1,v5},org/json/JSONObject/getInt	; getInt(Ljava/lang/String;)I
+; v1 : Lorg/json/JSONObject; , v5 : Ljava/lang/String;
+	move-result	v1
+; v1 : single-length
+.line 274
+	const-string	v5,"Upload_Had_errcode"
+; v5 : Ljava/lang/String;
+	new-instance	v6,java/lang/StringBuilder
+; v6 : Ljava/lang/StringBuilder;
+	invoke-static	{v1},java/lang/String/valueOf	; valueOf(I)Ljava/lang/String;
+; v1 : single-length
+	move-result-object	v7
+; v7 : Ljava/lang/String;
+	invoke-direct	{v6,v7},java/lang/StringBuilder/<init>	; <init>(Ljava/lang/String;)V
+; v6 : Ljava/lang/StringBuilder; , v7 : Ljava/lang/String;
+	invoke-virtual	{v6},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v6 : Ljava/lang/StringBuilder;
+	move-result-object	v6
+; v6 : Ljava/lang/String;
+	invoke-static	{v5,v6},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v5 : Ljava/lang/String; , v6 : Ljava/lang/String;
+l83fb6:
+.line 303
+	if-eqz	v4,l83fc0
+; v4 : Ljava/io/FileInputStream;
+.line 304
+	invoke-virtual	{v4},java/io/InputStream/close	; close()V
+; v4 : Ljava/io/FileInputStream;
+l83fc0:
+.line 305
+	if-eqz	v3,l83fca
+; v3 : Ljava/io/OutputStream;
+.line 306
+	invoke-virtual	{v3},java/io/OutputStream/close	; close()V
+; v3 : Ljava/io/OutputStream;
+l83fca:
+.line 307
+	if-eqz	v2,l83ec2
+; v2 : Ljava/io/InputStream;
+.line 308
+	invoke-virtual	{v2},java/io/InputStream/close	; close()V
+; v2 : Ljava/io/InputStream;
+	goto/16	l83ec2
+l83fd8:
+.line 303
+	if-eqz	v4,l83fe2
+; v4 : Ljava/io/FileInputStream;
+.line 304
+	invoke-virtual	{v4},java/io/InputStream/close	; close()V
+; v4 : Ljava/io/FileInputStream;
+l83fe2:
+.line 305
+	if-eqz	v3,l83fec
+; v3 : Ljava/io/OutputStream;
+.line 306
+	invoke-virtual	{v3},java/io/OutputStream/close	; close()V
+; v3 : Ljava/io/OutputStream;
+l83fec:
+.line 307
+	if-eqz	v2,l83ff6
+; v2 : Ljava/io/InputStream;
+.line 308
+	invoke-virtual	{v2},java/io/InputStream/close	; close()V
+; v2 : Ljava/io/InputStream;
+l83ff6:
+.line 277
+	const/16	v1,504
+; v1 : single-length
+	goto/16	l83ec2
+l83ffe:
+.line 283
+	const-string	v1,"RESPONE_BODY_UPLOAD"
+; v1 : Ljava/lang/String;
+	new-instance	v5,java/lang/StringBuilder
+; v5 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v9},com/fsharemobile/a/y/b	; b()Ljava/lang/String;
+; v9 : Lcom/fsharemobile/a/y;
+	move-result-object	v6
+; v6 : Ljava/lang/String;
+	invoke-static	{v6},java/lang/String/valueOf	; valueOf(Ljava/lang/Object;)Ljava/lang/String;
+; v6 : Ljava/lang/String;
+	move-result-object	v6
+; v6 : Ljava/lang/String;
+	invoke-direct	{v5,v6},java/lang/StringBuilder/<init>	; <init>(Ljava/lang/String;)V
+; v5 : Ljava/lang/StringBuilder; , v6 : Ljava/lang/String;
+	invoke-virtual	{v5},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v5 : Ljava/lang/StringBuilder;
+	move-result-object	v5
+; v5 : Ljava/lang/String;
+	invoke-static	{v1,v5},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v1 : Ljava/lang/String; , v5 : Ljava/lang/String;
+l8402a:
+.line 303
+	if-eqz	v4,l84034
+; v4 : Ljava/io/FileInputStream;
+.line 304
+	invoke-virtual	{v4},java/io/InputStream/close	; close()V
+; v4 : Ljava/io/FileInputStream;
+l84034:
+.line 305
+	if-eqz	v3,l8403e
+; v3 : Ljava/io/OutputStream;
+.line 306
+	invoke-virtual	{v3},java/io/OutputStream/close	; close()V
+; v3 : Ljava/io/OutputStream;
+l8403e:
+.line 307
+	if-eqz	v2,l84048
+; v2 : Ljava/io/InputStream;
+.line 308
+	invoke-virtual	{v2},java/io/InputStream/close	; close()V
+; v2 : Ljava/io/InputStream;
+l84048:
+.line 284
+	const/4	v1,0
+; v1 : single-length
+	goto/16	l83ec2
+l8404e:
+.line 294
+	invoke-virtual	{v8},java/net/HttpURLConnection/getResponseCode	; getResponseCode()I
+; v8 : Ljava/net/HttpURLConnection;
+l84054:
+	move-result	v1
+; v1 : single-length
+	if-nez	v1,l8407e
+; v1 : single-length
+.line 303
+	if-eqz	v4,l84064
+; v4 : Ljava/io/FileInputStream;
+.line 304
+	invoke-virtual	{v4},java/io/InputStream/close	; close()V
+; v4 : Ljava/io/FileInputStream;
+l84064:
+.line 305
+	if-eqz	v3,l8406e
+; v3 : Ljava/io/OutputStream;
+.line 306
+	invoke-virtual	{v3},java/io/OutputStream/close	; close()V
+; v3 : Ljava/io/OutputStream;
+l8406e:
+.line 307
+	if-eqz	v2,l84078
+; v2 : Ljava/io/InputStream;
+.line 308
+	invoke-virtual	{v2},java/io/InputStream/close	; close()V
+; v2 : Ljava/io/InputStream;
+l84078:
+.line 295
+	const/4	v1,1
+; v1 : single-length
+	goto/16	l83ec2
+l8407e:
+.line 297
+	invoke-virtual	{v9},com/fsharemobile/a/y/c	; c()I
+; v9 : Lcom/fsharemobile/a/y;
+l84084:
+	move-result	v1
+; v1 : single-length
+.line 303
+	if-eqz	v4,l84090
+; v4 : Ljava/io/FileInputStream;
+.line 304
+	invoke-virtual	{v4},java/io/InputStream/close	; close()V
+; v4 : Ljava/io/FileInputStream;
+l84090:
+.line 305
+	if-eqz	v3,l8409a
+; v3 : Ljava/io/OutputStream;
+.line 306
+	invoke-virtual	{v3},java/io/OutputStream/close	; close()V
+; v3 : Ljava/io/OutputStream;
+l8409a:
+.line 307
+	if-eqz	v2,l83ec2
+; v2 : Ljava/io/InputStream;
+.line 308
+	invoke-virtual	{v2},java/io/InputStream/close	; close()V
+; v2 : Ljava/io/InputStream;
+	goto/16	l83ec2
+l840a8:
+.line 301
+	move-exception	v1
+; v1 : java/lang/Exception
+	move-object	v4,v5
+; v4 : single-length , v5 : single-length
+l840ac:
+.line 303
+	if-eqz	v4,l840b6
+; v4 : Ljava/io/FileInputStream;
+.line 304
+	invoke-virtual	{v4},java/io/InputStream/close	; close()V
+; v4 : Ljava/io/FileInputStream;
+l840b6:
+.line 305
+	if-eqz	v3,l840c0
+; v3 : Ljava/io/OutputStream;
+.line 306
+	invoke-virtual	{v3},java/io/OutputStream/close	; close()V
+; v3 : Ljava/io/OutputStream;
+l840c0:
+.line 307
+	if-eqz	v2,l840ca
+; v2 : Ljava/io/InputStream;
+.line 308
+	invoke-virtual	{v2},java/io/InputStream/close	; close()V
+; v2 : Ljava/io/InputStream;
+l840ca:
+.line 309
+	throw	v1
+; v1 : java/lang/Exception
+l840cc:
+.line 301
+	move-exception	v1
+; v1 : java/lang/Exception
+	goto	l840ac
+l840d0:
+.line 285
+	move-exception	v1
+; v1 : java/lang/Exception
+	move-object	v4,v5
+; v4 : single-length , v5 : single-length
+	goto/16	l83e40
+.end method
+
+.method public b(Lcom/fsharemobile/a/x;)Lcom/fsharemobile/a/y;
+.limit registers 8
+; this: v6 (Lcom/fsharemobile/a/z;)
+; parameter[0] : v7 (Lcom/fsharemobile/a/x;)
+.catch java/lang/Exception from l842a4 to l842c0 using l84220
+.catch java/lang/Exception from l842a4 to l842c0 using l842de
+.catch java/lang/Exception from l84270 to l8429a using l8429e
+.catch java/lang/Exception from l84270 to l8429a using l842ce
+.catch java/lang/Exception from l84222 to l84262 using l842de
+.catch java/lang/Exception from l84188 to l84220 using l84220
+.catch java/lang/Exception from l84188 to l84220 using l842de
+.catch java/lang/Exception from l8415c to l84186 using l8429e
+.catch java/lang/Exception from l8415c to l84186 using l842ce
+.line 96
+	iget-object	v0,v6,com/fsharemobile/a/z.a Lcom/a/a/r;
+; v0 : Lcom/a/a/r; , v6 : Lcom/fsharemobile/a/z;
+	invoke-virtual	{v7},com/fsharemobile/a/x/a	; a()Ljava/net/URL;
+; v7 : Lcom/fsharemobile/a/x;
+	move-result-object	v1
+; v1 : Ljava/net/URL;
+	invoke-virtual	{v0,v1},com/a/a/r/a	; a(Ljava/net/URL;)Ljava/net/HttpURLConnection;
+; v0 : Lcom/a/a/r; , v1 : Ljava/net/URL;
+	move-result-object	v4
+; v4 : Ljava/net/HttpURLConnection;
+.line 97
+	const/4	v3,0
+; v3 : single-length
+.line 98
+	new-instance	v2,com/fsharemobile/a/y
+; v2 : Lcom/fsharemobile/a/y;
+	invoke-direct	{v2},com/fsharemobile/a/y/<init>	; <init>()V
+; v2 : Lcom/fsharemobile/a/y;
+l8415c:
+.line 103
+	invoke-virtual	{v7},com/fsharemobile/a/x/b	; b()Ljava/util/Map;
+; v7 : Lcom/fsharemobile/a/x;
+	move-result-object	v0
+; v0 : Ljava/util/Map;
+	invoke-interface	{v0},java/util/Map/entrySet	; entrySet()Ljava/util/Set;
+; v0 : Ljava/util/Map;
+	move-result-object	v0
+; v0 : Ljava/util/Set;
+	invoke-interface	{v0},java/util/Set/iterator	; iterator()Ljava/util/Iterator;
+; v0 : Ljava/util/Set;
+	move-result-object	v5
+; v5 : Ljava/util/Iterator;
+l84174:
+.line 102
+	invoke-interface	{v5},java/util/Iterator/hasNext	; hasNext()Z
+; v5 : Ljava/util/Iterator;
+	move-result	v0
+; v0 : single-length
+	if-nez	v0,l84270
+; v0 : single-length
+.line 114
+	invoke-virtual	{v4},java/net/HttpURLConnection/getInputStream	; getInputStream()Ljava/io/InputStream;
+; v4 : Ljava/net/HttpURLConnection;
+l84186:
+	move-result-object	v1
+; v1 : Ljava/io/InputStream;
+l84188:
+.line 117
+	invoke-virtual	{v4},java/net/HttpURLConnection/getResponseCode	; getResponseCode()I
+; v4 : Ljava/net/HttpURLConnection;
+	move-result	v0
+; v0 : single-length
+	invoke-virtual	{v2,v0},com/fsharemobile/a/y/a	; a(I)V
+; v2 : Lcom/fsharemobile/a/y; , v0 : single-length
+.line 118
+	const-string	v0,"HTTP_GET_RESPONECODE"
+; v0 : Ljava/lang/String;
+	new-instance	v3,java/lang/StringBuilder
+; v3 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v4},java/net/HttpURLConnection/getResponseCode	; getResponseCode()I
+; v4 : Ljava/net/HttpURLConnection;
+	move-result	v5
+; v5 : single-length
+	invoke-static	{v5},java/lang/String/valueOf	; valueOf(I)Ljava/lang/String;
+; v5 : single-length
+	move-result-object	v5
+; v5 : Ljava/lang/String;
+	invoke-direct	{v3,v5},java/lang/StringBuilder/<init>	; <init>(Ljava/lang/String;)V
+; v3 : Ljava/lang/StringBuilder; , v5 : Ljava/lang/String;
+	invoke-virtual	{v3},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v3 : Ljava/lang/StringBuilder;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-static	{v0,v3},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v0 : Ljava/lang/String; , v3 : Ljava/lang/String;
+.line 119
+	invoke-virtual	{v4},java/net/HttpURLConnection/getResponseCode	; getResponseCode()I
+; v4 : Ljava/net/HttpURLConnection;
+	move-result	v0
+; v0 : single-length
+	const/16	v3,200
+; v3 : single-length
+	if-eq	v0,v3,l842a4
+; v0 : single-length , v3 : single-length
+.line 120
+	new-instance	v0,java/io/IOException
+; v0 : Ljava/io/IOException;
+	new-instance	v3,java/lang/StringBuilder
+; v3 : Ljava/lang/StringBuilder;
+	const-string	v5,"Unexpected HTTP response: "
+; v5 : Ljava/lang/String;
+	invoke-direct	{v3,v5},java/lang/StringBuilder/<init>	; <init>(Ljava/lang/String;)V
+; v3 : Ljava/lang/StringBuilder; , v5 : Ljava/lang/String;
+.line 121
+	invoke-virtual	{v4},java/net/HttpURLConnection/getResponseCode	; getResponseCode()I
+; v4 : Ljava/net/HttpURLConnection;
+	move-result	v5
+; v5 : single-length
+	invoke-virtual	{v3,v5},java/lang/StringBuilder/append	; append(I)Ljava/lang/StringBuilder;
+; v3 : Ljava/lang/StringBuilder; , v5 : single-length
+	move-result-object	v3
+; v3 : Ljava/lang/StringBuilder;
+	const-string	v5," "
+; v5 : Ljava/lang/String;
+	invoke-virtual	{v3,v5},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v3 : Ljava/lang/StringBuilder; , v5 : Ljava/lang/String;
+	move-result-object	v3
+; v3 : Ljava/lang/StringBuilder;
+.line 122
+	invoke-virtual	{v4},java/net/HttpURLConnection/getResponseMessage	; getResponseMessage()Ljava/lang/String;
+; v4 : Ljava/net/HttpURLConnection;
+	move-result-object	v5
+; v5 : Ljava/lang/String;
+	invoke-virtual	{v3,v5},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v3 : Ljava/lang/StringBuilder; , v5 : Ljava/lang/String;
+	move-result-object	v3
+; v3 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v3},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v3 : Ljava/lang/StringBuilder;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+.line 120
+	invoke-direct	{v0,v3},java/io/IOException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/io/IOException; , v3 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/io/IOException;
+l84220:
+.line 128
+	move-exception	v0
+; v0 : java/lang/Exception
+l84222:
+.line 129
+	invoke-virtual	{v0},java/lang/Exception/printStackTrace	; printStackTrace()V
+; v0 : java/lang/Exception
+.line 132
+	invoke-virtual	{v4},java/net/HttpURLConnection/getResponseCode	; getResponseCode()I
+; v4 : Ljava/net/HttpURLConnection;
+	move-result	v0
+; v0 : single-length
+	invoke-virtual	{v2,v0},com/fsharemobile/a/y/a	; a(I)V
+; v2 : Lcom/fsharemobile/a/y; , v0 : single-length
+.line 133
+	const-string	v0,"Http_Response_GET_Exception"
+; v0 : Ljava/lang/String;
+	new-instance	v3,java/lang/StringBuilder
+; v3 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v2},com/fsharemobile/a/y/c	; c()I
+; v2 : Lcom/fsharemobile/a/y;
+	move-result	v4
+; v4 : single-length
+	invoke-static	{v4},java/lang/String/valueOf	; valueOf(I)Ljava/lang/String;
+; v4 : single-length
+	move-result-object	v4
+; v4 : Ljava/lang/String;
+	invoke-direct	{v3,v4},java/lang/StringBuilder/<init>	; <init>(Ljava/lang/String;)V
+; v3 : Ljava/lang/StringBuilder; , v4 : Ljava/lang/String;
+	invoke-virtual	{v3},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v3 : Ljava/lang/StringBuilder;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-static	{v0,v3},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v0 : Ljava/lang/String; , v3 : Ljava/lang/String;
+l84262:
+.line 136
+	if-eqz	v1,l8426c
+; v1 : Ljava/io/InputStream;
+.line 137
+	invoke-virtual	{v1},java/io/InputStream/close	; close()V
+; v1 : Ljava/io/InputStream;
+l8426c:
+	move-object	v0,v2
+; v0 : Lcom/fsharemobile/a/y; , v2 : Lcom/fsharemobile/a/y;
+l8426e:
+.line 134
+	return-object	v0
+; v0 : Lcom/fsharemobile/a/y;
+l84270:
+.line 103
+	invoke-interface	{v5},java/util/Iterator/next	; next()Ljava/lang/Object;
+; v5 : Ljava/util/Iterator;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,java/util/Map$Entry
+; v0 : Ljava/util/Map$Entry;
+.line 104
+	invoke-interface	{v0},java/util/Map$Entry/getKey	; getKey()Ljava/lang/Object;
+; v0 : Ljava/util/Map$Entry;
+	move-result-object	v1
+; v1 : Ljava/lang/Object;
+	check-cast	v1,java/lang/String
+; v1 : Ljava/lang/String;
+	invoke-interface	{v0},java/util/Map$Entry/getValue	; getValue()Ljava/lang/Object;
+; v0 : Ljava/util/Map$Entry;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,java/lang/String
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v4,v1,v0},java/net/HttpURLConnection/setRequestProperty	; setRequestProperty(Ljava/lang/String;Ljava/lang/String;)V
+; v4 : Ljava/net/HttpURLConnection; , v1 : Ljava/lang/String; , v0 : Ljava/lang/String;
+l8429a:
+	goto/16	l84174
+l8429e:
+.line 128
+	move-exception	v0
+; v0 : java/lang/Exception
+	move-object	v1,v3
+; v1 : single-length , v3 : single-length
+	goto	l84222
+l842a4:
+.line 124
+	invoke-static	{v1},com/fsharemobile/a/z/a	; a(Ljava/io/InputStream;)[B
+; v1 : Ljava/io/InputStream;
+	move-result-object	v0
+; v0 : [B
+.line 125
+	invoke-virtual	{v2,v0},com/fsharemobile/a/y/a	; a([B)V
+; v2 : Lcom/fsharemobile/a/y; , v0 : [B
+.line 126
+	invoke-virtual	{v4},java/net/HttpURLConnection/getHeaderFields	; getHeaderFields()Ljava/util/Map;
+; v4 : Ljava/net/HttpURLConnection;
+	move-result-object	v0
+; v0 : Ljava/util/Map;
+	invoke-virtual	{v2,v0},com/fsharemobile/a/y/a	; a(Ljava/util/Map;)V
+; v2 : Lcom/fsharemobile/a/y; , v0 : Ljava/util/Map;
+l842c0:
+.line 136
+	if-eqz	v1,l842ca
+; v1 : Ljava/io/InputStream;
+.line 137
+	invoke-virtual	{v1},java/io/InputStream/close	; close()V
+; v1 : Ljava/io/InputStream;
+l842ca:
+	move-object	v0,v2
+; v0 : Lcom/fsharemobile/a/y; , v2 : Lcom/fsharemobile/a/y;
+.line 127
+	goto	l8426e
+l842ce:
+.line 135
+	move-exception	v0
+; v0 : java/lang/Exception
+	move-object	v1,v3
+; v1 : single-length , v3 : single-length
+l842d2:
+.line 136
+	if-eqz	v1,l842dc
+; v1 : Ljava/io/InputStream;
+.line 137
+	invoke-virtual	{v1},java/io/InputStream/close	; close()V
+; v1 : Ljava/io/InputStream;
+l842dc:
+.line 138
+	throw	v0
+; v0 : java/lang/Exception
+l842de:
+.line 135
+	move-exception	v0
+; v0 : java/lang/Exception
+	goto	l842d2
+.end method
+
+.method public c(Ljava/net/URL;Ljava/lang/String;Lcom/fsharemobile/a/aa;Ljava/util/concurrent/atomic/AtomicInteger;)I
+.annotation buildVisibility Landroid/annotation/SuppressLint;
+    value [Ljava/lang/String; = { "NewApi" , "UseValueOf" }
+.end annotation
+.limit registers 32
+; this: v27 (Lcom/fsharemobile/a/z;)
+; parameter[0] : v28 (Ljava/net/URL;)
+; parameter[1] : v29 (Ljava/lang/String;)
+; parameter[2] : v30 (Lcom/fsharemobile/a/aa;)
+; parameter[3] : v31 (Ljava/util/concurrent/atomic/AtomicInteger;)
+.catch java/lang/Exception from l84932 to l84938 using l84788
+.catch java/lang/Exception from l84902 to l84908 using l84788
+.catch java/lang/Exception from l848b2 to l848de using l8446a
+.catch java/lang/Exception from l848b2 to l848de using l84788
+.catch java/lang/Exception from l847f6 to l8486a using l8446a
+.catch java/lang/Exception from l847f6 to l8486a using l84788
+.catch java/lang/Exception from l847aa to l847cc using l8446a
+.catch java/lang/Exception from l847aa to l847cc using l84788
+.catch java/lang/Exception from l84516 to l84786 using l8446a
+.catch java/lang/Exception from l84516 to l84786 using l84788
+.catch java/lang/Exception from l8446c to l844c4 using l84788
+.catch java/lang/Exception from l843f6 to l8446a using l8446a
+.catch java/lang/Exception from l843f6 to l8446a using l84788
+.catch java/lang/Exception from l8437c to l843ea using l8496e
+.catch java/lang/Exception from l8437c to l843ea using l84788
+.catch java/lang/Exception from l8436a to l8437c using l84964
+.catch java/lang/Exception from l8436a to l8437c using l8495c
+.line 316
+	const/4	v8,0
+; v8 : single-length
+.line 317
+	const/4	v7,0
+; v7 : single-length
+.line 318
+	const/4	v5,0
+; v5 : single-length
+.line 319
+	const/4	v4,0
+; v4 : single-length
+.line 320
+	new-instance	v14,com/fsharemobile/a/y
+; v14 : Lcom/fsharemobile/a/y;
+	invoke-direct	{v14},com/fsharemobile/a/y/<init>	; <init>()V
+; v14 : Lcom/fsharemobile/a/y;
+.line 321
+	const-string	v3,"Upload_Url_Util"
+; v3 : Ljava/lang/String;
+	invoke-virtual/range	{v28},java/net/URL/getFile;	getFile()Ljava/lang/String;
+; v28 : Ljava/net/URL;
+	move-result-object	v6
+; v6 : Ljava/lang/String;
+	invoke-static	{v3,v6},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v3 : Ljava/lang/String; , v6 : Ljava/lang/String;
+.line 322
+	const-string	v3,"Upload_FilePath_Util"
+; v3 : Ljava/lang/String;
+	move-object/from16	v0,v29
+; v0 : Ljava/lang/String; , v29 : Ljava/lang/String;
+	invoke-static	{v3,v0},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v3 : Ljava/lang/String; , v0 : Ljava/lang/String;
+.line 323
+	const-wide/16	v12,0
+; v12 : double-length
+.line 327
+	const/16	v3,1024
+; v3 : single-length
+l8436a:
+	new-array	v15,v3,[B
+; v15 : [B , v3 : single-length
+.line 328
+	new-instance	v6,java/io/FileInputStream
+; v6 : Ljava/io/FileInputStream;
+	move-object/from16	v0,v29
+; v0 : Ljava/lang/String; , v29 : Ljava/lang/String;
+	invoke-direct	{v6,v0},java/io/FileInputStream/<init>	; <init>(Ljava/lang/String;)V
+; v6 : Ljava/io/FileInputStream; , v0 : Ljava/lang/String;
+l8437c:
+.line 329
+	new-instance	v3,java/io/File
+; v3 : Ljava/io/File;
+	move-object/from16	v0,v29
+; v0 : Ljava/lang/String; , v29 : Ljava/lang/String;
+	invoke-direct	{v3,v0},java/io/File/<init>	; <init>(Ljava/lang/String;)V
+; v3 : Ljava/io/File; , v0 : Ljava/lang/String;
+	invoke-virtual	{v3},java/io/File/length	; length()J
+; v3 : Ljava/io/File;
+	move-result-wide	v10
+; v10 : double-length
+.line 330
+	const-string	v3,"LENGHT_Of_File"
+; v3 : Ljava/lang/String;
+	new-instance	v7,java/lang/StringBuilder
+; v7 : Ljava/lang/StringBuilder;
+	invoke-static	{v10,v11},java/lang/String/valueOf	; valueOf(J)Ljava/lang/String;
+; v10 : double-length
+	move-result-object	v9
+; v9 : Ljava/lang/String;
+	invoke-direct	{v7,v9},java/lang/StringBuilder/<init>	; <init>(Ljava/lang/String;)V
+; v7 : Ljava/lang/StringBuilder; , v9 : Ljava/lang/String;
+	invoke-virtual	{v7},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v7 : Ljava/lang/StringBuilder;
+	move-result-object	v7
+; v7 : Ljava/lang/String;
+	invoke-static	{v3,v7},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v3 : Ljava/lang/String; , v7 : Ljava/lang/String;
+.line 332
+	const/high16	v16,160
+; v16 : single-length
+.line 333
+	const	v3,10485759	; 0x9fffff
+; v3 : single-length
+	int-to-long	v0,v3
+; v0 : double-length , v3 : single-length
+	move-wide/from16	v17,v0
+; v17 : double-length , v0 : double-length
+	add-long	v17,v17,v10
+; v17 : double-length , v17 : double-length , v10 : double-length
+	move/from16	v0,v16
+; v0 : single-length , v16 : single-length
+	int-to-long	v0,v0
+; v0 : double-length , v0 : double-length
+	move-wide/from16	v19,v0
+; v19 : double-length , v0 : double-length
+	div-long	v17,v17,v19
+; v17 : double-length , v17 : double-length , v19 : double-length
+	move-wide/from16	v0,v17
+; v0 : double-length , v17 : double-length
+	long-to-int	v0,v0
+; v0 : single-length , v0 : single-length
+	move/from16	v17,v0
+; v17 : single-length , v0 : single-length
+.line 334
+	const-string	v3,""
+; v3 : Ljava/lang/String;
+.line 335
+	const-string	v3,""
+; v3 : Ljava/lang/String;
+l843ea:
+.line 337
+	const/4	v3,0
+; v3 : single-length
+	move-object	v7,v8
+; v7 : single-length , v8 : single-length
+l843ee:
+	move/from16	v0,v17
+; v0 : single-length , v17 : single-length
+	if-lt	v3,v0,l844f0
+; v3 : single-length , v0 : single-length
+l843f6:
+.line 400
+	invoke-virtual	{v7},java/net/HttpURLConnection/getResponseCode	; getResponseCode()I
+; v7 : Ljava/net/HttpURLConnection;
+	move-result	v3
+; v3 : single-length
+	invoke-virtual	{v14,v3},com/fsharemobile/a/y/a	; a(I)V
+; v14 : Lcom/fsharemobile/a/y; , v3 : single-length
+.line 401
+	invoke-virtual	{v7},java/net/HttpURLConnection/getInputStream	; getInputStream()Ljava/io/InputStream;
+; v7 : Ljava/net/HttpURLConnection;
+	move-result-object	v4
+; v4 : Ljava/io/InputStream;
+.line 403
+	invoke-virtual	{v7},java/net/HttpURLConnection/getResponseCode	; getResponseCode()I
+; v7 : Ljava/net/HttpURLConnection;
+	move-result	v3
+; v3 : single-length
+	const/16	v8,200
+; v8 : single-length
+	if-eq	v3,v8,l847aa
+; v3 : single-length , v8 : single-length
+.line 404
+	new-instance	v3,java/io/IOException
+; v3 : Ljava/io/IOException;
+	new-instance	v8,java/lang/StringBuilder
+; v8 : Ljava/lang/StringBuilder;
+	const-string	v9,"Unexpected HTTP response: "
+; v9 : Ljava/lang/String;
+	invoke-direct	{v8,v9},java/lang/StringBuilder/<init>	; <init>(Ljava/lang/String;)V
+; v8 : Ljava/lang/StringBuilder; , v9 : Ljava/lang/String;
+.line 405
+	invoke-virtual	{v7},java/net/HttpURLConnection/getResponseCode	; getResponseCode()I
+; v7 : Ljava/net/HttpURLConnection;
+	move-result	v9
+; v9 : single-length
+	invoke-virtual	{v8,v9},java/lang/StringBuilder/append	; append(I)Ljava/lang/StringBuilder;
+; v8 : Ljava/lang/StringBuilder; , v9 : single-length
+	move-result-object	v8
+; v8 : Ljava/lang/StringBuilder;
+	const-string	v9," "
+; v9 : Ljava/lang/String;
+	invoke-virtual	{v8,v9},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v8 : Ljava/lang/StringBuilder; , v9 : Ljava/lang/String;
+	move-result-object	v8
+; v8 : Ljava/lang/StringBuilder;
+.line 406
+	invoke-virtual	{v7},java/net/HttpURLConnection/getResponseMessage	; getResponseMessage()Ljava/lang/String;
+; v7 : Ljava/net/HttpURLConnection;
+	move-result-object	v9
+; v9 : Ljava/lang/String;
+	invoke-virtual	{v8,v9},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v8 : Ljava/lang/StringBuilder; , v9 : Ljava/lang/String;
+	move-result-object	v8
+; v8 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v8},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v8 : Ljava/lang/StringBuilder;
+	move-result-object	v8
+; v8 : Ljava/lang/String;
+.line 404
+	invoke-direct	{v3,v8},java/io/IOException/<init>	; <init>(Ljava/lang/String;)V
+; v3 : Ljava/io/IOException; , v8 : Ljava/lang/String;
+	throw	v3
+; v3 : Ljava/io/IOException;
+l8446a:
+.line 427
+	move-exception	v3
+; v3 : java/lang/Exception
+l8446c:
+.line 428
+	invoke-virtual	{v3},java/lang/Exception/printStackTrace	; printStackTrace()V
+; v3 : java/lang/Exception
+.line 429
+	const-string	v8,"Http_UpLoad_Response_Exception"
+; v8 : Ljava/lang/String;
+	invoke-virtual	{v3},java/lang/Exception/toString	; toString()Ljava/lang/String;
+; v3 : java/lang/Exception
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-static	{v8,v3},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v8 : Ljava/lang/String; , v3 : Ljava/lang/String;
+.line 430
+	invoke-virtual	{v7},java/net/HttpURLConnection/getResponseCode	; getResponseCode()I
+; v7 : single-length
+	move-result	v3
+; v3 : single-length
+	invoke-virtual	{v14,v3},com/fsharemobile/a/y/a	; a(I)V
+; v14 : Lcom/fsharemobile/a/y; , v3 : single-length
+.line 431
+	const-string	v3,"ErrorCode_Upload_Util_Return"
+; v3 : Ljava/lang/String;
+	new-instance	v8,java/lang/StringBuilder
+; v8 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v14},com/fsharemobile/a/y/c	; c()I
+; v14 : Lcom/fsharemobile/a/y;
+	move-result	v9
+; v9 : single-length
+	invoke-static	{v9},java/lang/String/valueOf	; valueOf(I)Ljava/lang/String;
+; v9 : single-length
+	move-result-object	v9
+; v9 : Ljava/lang/String;
+	invoke-direct	{v8,v9},java/lang/StringBuilder/<init>	; <init>(Ljava/lang/String;)V
+; v8 : Ljava/lang/StringBuilder; , v9 : Ljava/lang/String;
+	invoke-virtual	{v8},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v8 : Ljava/lang/StringBuilder;
+	move-result-object	v8
+; v8 : Ljava/lang/String;
+	invoke-static	{v3,v8},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v3 : Ljava/lang/String; , v8 : Ljava/lang/String;
+.line 432
+	invoke-virtual	{v7},java/net/HttpURLConnection/getResponseCode	; getResponseCode()I
+; v7 : single-length
+l844c4:
+	move-result	v3
+; v3 : single-length
+	const/16	v8,200
+; v8 : single-length
+	if-ne	v3,v8,l84902
+; v3 : single-length , v8 : single-length
+.line 441
+	if-eqz	v6,l844d8
+; v6 : Ljava/io/FileInputStream;
+.line 442
+	invoke-virtual	{v6},java/io/InputStream/close	; close()V
+; v6 : Ljava/io/FileInputStream;
+l844d8:
+.line 443
+	if-eqz	v5,l844e2
+; v5 : single-length
+.line 444
+	invoke-virtual	{v5},java/io/OutputStream/close	; close()V
+; v5 : single-length
+l844e2:
+.line 445
+	if-eqz	v4,l844ec
+; v4 : single-length
+.line 446
+	invoke-virtual	{v4},java/io/InputStream/close	; close()V
+; v4 : single-length
+l844ec:
+.line 433
+	const/4	v3,1
+; v3 : single-length
+l844ee:
+.line 437
+	return	v3
+; v3 : single-length
+l844f0:
+.line 338
+	mul-int	v8,v3,v16
+; v8 : single-length , v3 : single-length , v16 : single-length
+	int-to-long	v0,v8
+; v0 : double-length , v8 : single-length
+	move-wide/from16	v18,v0
+; v18 : double-length , v0 : double-length
+.line 340
+	move/from16	v0,v16
+; v0 : single-length , v16 : single-length
+	int-to-long	v8,v0
+; v8 : double-length , v0 : single-length
+	add-long	v8,v8,v18
+; v8 : double-length , v8 : double-length , v18 : double-length
+	cmp-long	v8,v8,v10
+; v8 : single-length , v8 : single-length , v10 : double-length
+	if-lez	v8,l8472c
+; v8 : single-length
+	move-wide	v8,v10
+; v8 : double-length , v10 : double-length
+l8450e:
+.line 345
+	const-wide/16	v20,1
+; v20 : double-length
+	sub-long	v8,v8,v20
+; v8 : double-length , v8 : double-length , v20 : double-length
+l84516:
+.line 346
+	new-instance	v20,java/lang/StringBuilder
+; v20 : Ljava/lang/StringBuilder;
+	const-string	v21,"bytes "
+; v21 : Ljava/lang/String;
+	invoke-direct/range	{v20..v21},java/lang/StringBuilder/<init>;	<init>(Ljava/lang/String;)V
+; v20 : Ljava/lang/StringBuilder; , v21 : Ljava/lang/String;
+	move-object/from16	v0,v20
+; v0 : Ljava/lang/StringBuilder; , v20 : Ljava/lang/StringBuilder;
+	move-wide/from16	v1,v18
+; v1 : double-length , v18 : double-length
+	invoke-virtual	{v0,v1,v2},java/lang/StringBuilder/append	; append(J)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v1 : double-length
+	move-result-object	v20
+; v20 : Ljava/lang/StringBuilder;
+	const-string	v21,"-"
+; v21 : Ljava/lang/String;
+	invoke-virtual/range	{v20..v21},java/lang/StringBuilder/append;	append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v20 : Ljava/lang/StringBuilder; , v21 : Ljava/lang/String;
+	move-result-object	v20
+; v20 : Ljava/lang/StringBuilder;
+	move-object/from16	v0,v20
+; v0 : Ljava/lang/StringBuilder; , v20 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v0,v8,v9},java/lang/StringBuilder/append	; append(J)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v8 : double-length
+	move-result-object	v20
+; v20 : Ljava/lang/StringBuilder;
+	const-string	v21,"/"
+; v21 : Ljava/lang/String;
+	invoke-virtual/range	{v20..v21},java/lang/StringBuilder/append;	append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v20 : Ljava/lang/StringBuilder; , v21 : Ljava/lang/String;
+	move-result-object	v20
+; v20 : Ljava/lang/StringBuilder;
+	move-object/from16	v0,v20
+; v0 : Ljava/lang/StringBuilder; , v20 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v0,v10,v11},java/lang/StringBuilder/append	; append(J)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v10 : double-length
+	move-result-object	v20
+; v20 : Ljava/lang/StringBuilder;
+	invoke-virtual/range	{v20},java/lang/StringBuilder/toString;	toString()Ljava/lang/String;
+; v20 : Ljava/lang/StringBuilder;
+	move-result-object	v20
+; v20 : Ljava/lang/String;
+.line 347
+	new-instance	v21,java/lang/StringBuilder
+; v21 : Ljava/lang/StringBuilder;
+	const-string	v22,"Content-Length:"
+; v22 : Ljava/lang/String;
+	invoke-direct/range	{v21..v22},java/lang/StringBuilder/<init>;	<init>(Ljava/lang/String;)V
+; v21 : Ljava/lang/StringBuilder; , v22 : Ljava/lang/String;
+	sub-long	v22,v8,v18
+; v22 : double-length , v8 : double-length , v18 : double-length
+	const-wide/16	v24,1
+; v24 : double-length
+	add-long	v22,v22,v24
+; v22 : double-length , v22 : double-length , v24 : double-length
+	invoke-virtual/range	{v21..v23},java/lang/StringBuilder/append;	append(J)Ljava/lang/StringBuilder;
+; v21 : Ljava/lang/StringBuilder; , v22 : double-length
+	move-result-object	v21
+; v21 : Ljava/lang/StringBuilder;
+	invoke-virtual/range	{v21},java/lang/StringBuilder/toString;	toString()Ljava/lang/String;
+; v21 : Ljava/lang/StringBuilder;
+	move-result-object	v21
+; v21 : Ljava/lang/String;
+.line 348
+	const-string	v22,"Conten_LENGHT"
+; v22 : Ljava/lang/String;
+	move-object/from16	v0,v22
+; v0 : Ljava/lang/String; , v22 : Ljava/lang/String;
+	move-object/from16	v1,v21
+; v1 : Ljava/lang/String; , v21 : Ljava/lang/String;
+	invoke-static	{v0,v1},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v0 : Ljava/lang/String; , v1 : Ljava/lang/String;
+.line 349
+	move-object/from16	v0,v27
+; v0 : Lcom/fsharemobile/a/z; , v27 : Lcom/fsharemobile/a/z;
+	iget-object	v0,v0,com/fsharemobile/a/z.a Lcom/a/a/r;
+; v0 : Lcom/a/a/r; , v0 : Lcom/a/a/r;
+	move-object/from16	v21,v0
+; v21 : Lcom/a/a/r; , v0 : Lcom/a/a/r;
+	move-object/from16	v0,v21
+; v0 : Lcom/a/a/r; , v21 : Lcom/a/a/r;
+	move-object/from16	v1,v28
+; v1 : Ljava/net/URL; , v28 : Ljava/net/URL;
+	invoke-virtual	{v0,v1},com/a/a/r/a	; a(Ljava/net/URL;)Ljava/net/HttpURLConnection;
+; v0 : Lcom/a/a/r; , v1 : Ljava/net/URL;
+	move-result-object	v7
+; v7 : Ljava/net/HttpURLConnection;
+.line 351
+	const-string	v21,"POST"
+; v21 : Ljava/lang/String;
+	move-object/from16	v0,v21
+; v0 : Ljava/lang/String; , v21 : Ljava/lang/String;
+	invoke-virtual	{v7,v0},java/net/HttpURLConnection/setRequestMethod	; setRequestMethod(Ljava/lang/String;)V
+; v7 : Ljava/net/HttpURLConnection; , v0 : Ljava/lang/String;
+.line 353
+	const-string	v21,"Content-Range"
+; v21 : Ljava/lang/String;
+	move-object/from16	v0,v21
+; v0 : Ljava/lang/String; , v21 : Ljava/lang/String;
+	move-object/from16	v1,v20
+; v1 : Ljava/lang/String; , v20 : Ljava/lang/String;
+	invoke-virtual	{v7,v0,v1},java/net/HttpURLConnection/setRequestProperty	; setRequestProperty(Ljava/lang/String;Ljava/lang/String;)V
+; v7 : Ljava/net/HttpURLConnection; , v0 : Ljava/lang/String; , v1 : Ljava/lang/String;
+.line 354
+	const-string	v21,"Content-Length"
+; v21 : Ljava/lang/String;
+.line 355
+	sub-long	v8,v8,v18
+; v8 : double-length , v8 : double-length , v18 : double-length
+	const-wide/16	v18,1
+; v18 : double-length
+	add-long	v8,v8,v18
+; v8 : double-length , v8 : double-length , v18 : double-length
+	invoke-static	{v8,v9},java/lang/Long/toString	; toString(J)Ljava/lang/String;
+; v8 : double-length
+	move-result-object	v8
+; v8 : Ljava/lang/String;
+.line 354
+	move-object/from16	v0,v21
+; v0 : Ljava/lang/String; , v21 : Ljava/lang/String;
+	invoke-virtual	{v7,v0,v8},java/net/HttpURLConnection/setRequestProperty	; setRequestProperty(Ljava/lang/String;Ljava/lang/String;)V
+; v7 : Ljava/net/HttpURLConnection; , v0 : Ljava/lang/String; , v8 : Ljava/lang/String;
+.line 357
+	invoke-virtual	{v7},java/net/HttpURLConnection/getOutputStream	; getOutputStream()Ljava/io/OutputStream;
+; v7 : Ljava/net/HttpURLConnection;
+	move-result-object	v5
+; v5 : Ljava/io/OutputStream;
+.line 359
+	const-string	v8,"Lenght_Of_File"
+; v8 : Ljava/lang/String;
+	new-instance	v9,java/lang/StringBuilder
+; v9 : Ljava/lang/StringBuilder;
+	invoke-static	{v10,v11},java/lang/String/valueOf	; valueOf(J)Ljava/lang/String;
+; v10 : double-length
+	move-result-object	v18
+; v18 : Ljava/lang/String;
+	move-object/from16	v0,v18
+; v0 : Ljava/lang/String; , v18 : Ljava/lang/String;
+	invoke-direct	{v9,v0},java/lang/StringBuilder/<init>	; <init>(Ljava/lang/String;)V
+; v9 : Ljava/lang/StringBuilder; , v0 : Ljava/lang/String;
+	invoke-virtual	{v9},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v9 : Ljava/lang/StringBuilder;
+	move-result-object	v9
+; v9 : Ljava/lang/String;
+	invoke-static	{v8,v9},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v8 : Ljava/lang/String; , v9 : Ljava/lang/String;
+.line 360
+	const-string	v8,"Total_Packet"
+; v8 : Ljava/lang/String;
+	new-instance	v9,java/lang/StringBuilder
+; v9 : Ljava/lang/StringBuilder;
+	invoke-static/range	{v16},java/lang/String/valueOf;	valueOf(I)Ljava/lang/String;
+; v16 : single-length
+	move-result-object	v18
+; v18 : Ljava/lang/String;
+	move-object/from16	v0,v18
+; v0 : Ljava/lang/String; , v18 : Ljava/lang/String;
+	invoke-direct	{v9,v0},java/lang/StringBuilder/<init>	; <init>(Ljava/lang/String;)V
+; v9 : Ljava/lang/StringBuilder; , v0 : Ljava/lang/String;
+	invoke-virtual	{v9},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v9 : Ljava/lang/StringBuilder;
+	move-result-object	v9
+; v9 : Ljava/lang/String;
+	invoke-static	{v8,v9},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v8 : Ljava/lang/String; , v9 : Ljava/lang/String;
+.line 361
+	const-string	v8,"Total_Chunk"
+; v8 : Ljava/lang/String;
+	new-instance	v9,java/lang/StringBuilder
+; v9 : Ljava/lang/StringBuilder;
+	invoke-static/range	{v17},java/lang/String/valueOf;	valueOf(I)Ljava/lang/String;
+; v17 : single-length
+	move-result-object	v18
+; v18 : Ljava/lang/String;
+	move-object/from16	v0,v18
+; v0 : Ljava/lang/String; , v18 : Ljava/lang/String;
+	invoke-direct	{v9,v0},java/lang/StringBuilder/<init>	; <init>(Ljava/lang/String;)V
+; v9 : Ljava/lang/StringBuilder; , v0 : Ljava/lang/String;
+	invoke-virtual	{v9},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v9 : Ljava/lang/StringBuilder;
+	move-result-object	v9
+; v9 : Ljava/lang/String;
+	invoke-static	{v8,v9},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v8 : Ljava/lang/String; , v9 : Ljava/lang/String;
+.line 362
+	const-string	v8,"Header_Valure"
+; v8 : Ljava/lang/String;
+	move-object/from16	v0,v20
+; v0 : Ljava/lang/String; , v20 : Ljava/lang/String;
+	invoke-static	{v8,v0},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v8 : Ljava/lang/String; , v0 : Ljava/lang/String;
+.line 364
+	const/4	v8,1
+; v8 : single-length
+	move/from16	v26,v8
+; v26 : single-length , v8 : single-length
+	move-wide	v8,v12
+; v8 : double-length , v12 : double-length
+	move/from16	v12,v26
+; v12 : single-length , v26 : single-length
+l846a0:
+.line 366
+	if-lez	v12,l846c2
+; v12 : single-length
+	invoke-virtual/range	{v31},java/util/concurrent/atomic/AtomicInteger/intValue;	intValue()I
+; v31 : Ljava/util/concurrent/atomic/AtomicInteger;
+	move-result	v12
+; v12 : single-length
+	if-nez	v12,l846c2
+; v12 : single-length
+.line 367
+	add-int/lit8	v12,v3,1
+; v12 : single-length , v3 : single-length
+	mul-int	v12,v12,v16
+; v12 : single-length , v12 : single-length , v16 : single-length
+	int-to-long	v12,v12
+; v12 : double-length , v12 : double-length
+.line 366
+	cmp-long	v12,v8,v12
+; v12 : single-length , v8 : double-length , v12 : single-length
+	if-ltz	v12,l8473a
+; v12 : single-length
+l846c2:
+.line 383
+	add-int/lit8	v12,v17,255
+; v12 : single-length , v17 : single-length
+	if-ge	v3,v12,l8471c
+; v3 : single-length , v12 : single-length
+.line 384
+	const-string	v12,"Conection_INFO_i:"
+; v12 : Ljava/lang/String;
+.line 385
+	new-instance	v13,java/lang/StringBuilder
+; v13 : Ljava/lang/StringBuilder;
+	invoke-static	{v3},java/lang/String/valueOf	; valueOf(I)Ljava/lang/String;
+; v3 : single-length
+	move-result-object	v18
+; v18 : Ljava/lang/String;
+	move-object/from16	v0,v18
+; v0 : Ljava/lang/String; , v18 : Ljava/lang/String;
+	invoke-direct	{v13,v0},java/lang/StringBuilder/<init>	; <init>(Ljava/lang/String;)V
+; v13 : Ljava/lang/StringBuilder; , v0 : Ljava/lang/String;
+	const-string	v18,"____"
+; v18 : Ljava/lang/String;
+	move-object/from16	v0,v18
+; v0 : Ljava/lang/String; , v18 : Ljava/lang/String;
+	invoke-virtual	{v13,v0},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v13 : Ljava/lang/StringBuilder; , v0 : Ljava/lang/String;
+	move-result-object	v13
+; v13 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v7},java/net/HttpURLConnection/getContentLength	; getContentLength()I
+; v7 : Ljava/net/HttpURLConnection;
+	move-result	v18
+; v18 : single-length
+	move/from16	v0,v18
+; v0 : single-length , v18 : single-length
+	invoke-virtual	{v13,v0},java/lang/StringBuilder/append	; append(I)Ljava/lang/StringBuilder;
+; v13 : Ljava/lang/StringBuilder; , v0 : single-length
+	move-result-object	v13
+; v13 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v13},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v13 : Ljava/lang/StringBuilder;
+	move-result-object	v13
+; v13 : Ljava/lang/String;
+.line 384
+	invoke-static	{v12,v13},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v12 : Ljava/lang/String; , v13 : Ljava/lang/String;
+.line 387
+	invoke-virtual	{v7},java/net/HttpURLConnection/disconnect	; disconnect()V
+; v7 : Ljava/net/HttpURLConnection;
+l8471c:
+.line 395
+	invoke-virtual	{v5},java/io/OutputStream/close	; close()V
+; v5 : Ljava/io/OutputStream;
+.line 337
+	add-int/lit8	v3,v3,1
+; v3 : single-length , v3 : single-length
+	move-wide	v12,v8
+; v12 : double-length , v8 : double-length
+	goto/16	l843ee
+l8472c:
+.line 343
+	add-int/lit8	v8,v3,1
+; v8 : single-length , v3 : single-length
+	mul-int	v8,v8,v16
+; v8 : single-length , v8 : single-length , v16 : single-length
+	int-to-long	v8,v8
+; v8 : double-length , v8 : double-length
+	goto/16	l8450e
+l8473a:
+.line 368
+	invoke-virtual	{v6,v15},java/io/InputStream/read	; read([B)I
+; v6 : Ljava/io/FileInputStream; , v15 : [B
+	move-result	v12
+; v12 : single-length
+.line 369
+	if-lez	v12,l846a0
+; v12 : single-length
+.line 370
+	const/4	v13,0
+; v13 : single-length
+	invoke-virtual	{v5,v15,v13,v12},java/io/OutputStream/write	; write([BII)V
+; v5 : Ljava/io/OutputStream; , v15 : [B , v13 : single-length , v12 : single-length
+.line 371
+	int-to-long	v0,v12
+; v0 : double-length , v12 : single-length
+	move-wide/from16	v18,v0
+; v18 : double-length , v0 : double-length
+	add-long	v8,v8,v18
+; v8 : double-length , v8 : double-length , v18 : double-length
+.line 372
+	new-instance	v13,java/lang/Integer
+; v13 : Ljava/lang/Integer;
+.line 373
+	const-wide/16	v18,100
+; v18 : double-length
+	mul-long	v18,v18,v8
+; v18 : double-length , v18 : double-length , v8 : double-length
+	div-long	v18,v18,v10
+; v18 : double-length , v18 : double-length , v10 : double-length
+	move-wide/from16	v0,v18
+; v0 : double-length , v18 : double-length
+	long-to-int	v0,v0
+; v0 : single-length , v0 : single-length
+	move/from16	v18,v0
+; v18 : single-length , v0 : single-length
+	move/from16	v0,v18
+; v0 : single-length , v18 : single-length
+	invoke-direct	{v13,v0},java/lang/Integer/<init>	; <init>(I)V
+; v13 : Ljava/lang/Integer; , v0 : single-length
+.line 372
+	move-object/from16	v0,v30
+; v0 : Lcom/fsharemobile/a/aa; , v30 : Lcom/fsharemobile/a/aa;
+	invoke-interface	{v0,v13},com/fsharemobile/a/aa/a	; a(Ljava/lang/Integer;)V
+; v0 : Lcom/fsharemobile/a/aa; , v13 : Ljava/lang/Integer;
+l84786:
+	goto	l846a0
+l84788:
+.line 440
+	move-exception	v3
+; v3 : java/lang/Exception
+l8478a:
+.line 441
+	if-eqz	v6,l84794
+; v6 : Ljava/io/FileInputStream;
+.line 442
+	invoke-virtual	{v6},java/io/InputStream/close	; close()V
+; v6 : Ljava/io/FileInputStream;
+l84794:
+.line 443
+	if-eqz	v5,l8479e
+; v5 : single-length
+.line 444
+	invoke-virtual	{v5},java/io/OutputStream/close	; close()V
+; v5 : single-length
+l8479e:
+.line 445
+	if-eqz	v4,l847a8
+; v4 : single-length
+.line 446
+	invoke-virtual	{v4},java/io/InputStream/close	; close()V
+; v4 : single-length
+l847a8:
+.line 447
+	throw	v3
+; v3 : java/lang/Exception
+l847aa:
+.line 408
+	invoke-static	{v4},com/fsharemobile/a/z/a	; a(Ljava/io/InputStream;)[B
+; v4 : Ljava/io/InputStream;
+	move-result-object	v3
+; v3 : [B
+.line 409
+	invoke-virtual	{v14,v3},com/fsharemobile/a/y/a	; a([B)V
+; v14 : Lcom/fsharemobile/a/y; , v3 : [B
+.line 410
+	invoke-virtual	{v7},java/net/HttpURLConnection/getHeaderFields	; getHeaderFields()Ljava/util/Map;
+; v7 : Ljava/net/HttpURLConnection;
+	move-result-object	v3
+; v3 : Ljava/util/Map;
+	invoke-virtual	{v14,v3},com/fsharemobile/a/y/a	; a(Ljava/util/Map;)V
+; v14 : Lcom/fsharemobile/a/y; , v3 : Ljava/util/Map;
+.line 411
+	invoke-virtual/range	{v31},java/util/concurrent/atomic/AtomicInteger/intValue;	intValue()I
+; v31 : Ljava/util/concurrent/atomic/AtomicInteger;
+l847cc:
+	move-result	v3
+; v3 : single-length
+	if-eqz	v3,l847f6
+; v3 : single-length
+.line 441
+	if-eqz	v6,l847dc
+; v6 : Ljava/io/FileInputStream;
+.line 442
+	invoke-virtual	{v6},java/io/InputStream/close	; close()V
+; v6 : Ljava/io/FileInputStream;
+l847dc:
+.line 443
+	if-eqz	v5,l847e6
+; v5 : Ljava/io/OutputStream;
+.line 444
+	invoke-virtual	{v5},java/io/OutputStream/close	; close()V
+; v5 : Ljava/io/OutputStream;
+l847e6:
+.line 445
+	if-eqz	v4,l847f0
+; v4 : Ljava/io/InputStream;
+.line 446
+	invoke-virtual	{v4},java/io/InputStream/close	; close()V
+; v4 : Ljava/io/InputStream;
+l847f0:
+.line 412
+	const/4	v3,1
+; v3 : single-length
+	goto/16	l844ee
+l847f6:
+.line 414
+	new-instance	v3,org/json/JSONObject
+; v3 : Lorg/json/JSONObject;
+	invoke-virtual	{v14},com/fsharemobile/a/y/b	; b()Ljava/lang/String;
+; v14 : Lcom/fsharemobile/a/y;
+	move-result-object	v8
+; v8 : Ljava/lang/String;
+	invoke-direct	{v3,v8},org/json/JSONObject/<init>	; <init>(Ljava/lang/String;)V
+; v3 : Lorg/json/JSONObject; , v8 : Ljava/lang/String;
+.line 415
+	const-string	v8,"Upload_Body_res_"
+; v8 : Ljava/lang/String;
+	invoke-virtual	{v14},com/fsharemobile/a/y/b	; b()Ljava/lang/String;
+; v14 : Lcom/fsharemobile/a/y;
+	move-result-object	v9
+; v9 : Ljava/lang/String;
+	invoke-static	{v8,v9},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v8 : Ljava/lang/String; , v9 : Ljava/lang/String;
+.line 416
+	const-string	v8,"error"
+; v8 : Ljava/lang/String;
+	invoke-virtual	{v3,v8},org/json/JSONObject/has	; has(Ljava/lang/String;)Z
+; v3 : Lorg/json/JSONObject; , v8 : Ljava/lang/String;
+	move-result	v8
+; v8 : single-length
+	if-eqz	v8,l848b2
+; v8 : single-length
+.line 417
+	const-string	v8,"code"
+; v8 : Ljava/lang/String;
+	invoke-virtual	{v3,v8},org/json/JSONObject/has	; has(Ljava/lang/String;)Z
+; v3 : Lorg/json/JSONObject; , v8 : Ljava/lang/String;
+	move-result	v8
+; v8 : single-length
+	if-eqz	v8,l8488c
+; v8 : single-length
+.line 418
+	const-string	v8,"code"
+; v8 : Ljava/lang/String;
+	invoke-virtual	{v3,v8},org/json/JSONObject/getInt	; getInt(Ljava/lang/String;)I
+; v3 : Lorg/json/JSONObject; , v8 : Ljava/lang/String;
+	move-result	v3
+; v3 : single-length
+.line 419
+	const-string	v8,"Upload_Had_errcode"
+; v8 : Ljava/lang/String;
+	new-instance	v9,java/lang/StringBuilder
+; v9 : Ljava/lang/StringBuilder;
+	invoke-static	{v3},java/lang/String/valueOf	; valueOf(I)Ljava/lang/String;
+; v3 : single-length
+	move-result-object	v10
+; v10 : Ljava/lang/String;
+	invoke-direct	{v9,v10},java/lang/StringBuilder/<init>	; <init>(Ljava/lang/String;)V
+; v9 : Ljava/lang/StringBuilder; , v10 : Ljava/lang/String;
+	invoke-virtual	{v9},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v9 : Ljava/lang/StringBuilder;
+	move-result-object	v9
+; v9 : Ljava/lang/String;
+	invoke-static	{v8,v9},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v8 : Ljava/lang/String; , v9 : Ljava/lang/String;
+l8486a:
+.line 441
+	if-eqz	v6,l84874
+; v6 : Ljava/io/FileInputStream;
+.line 442
+	invoke-virtual	{v6},java/io/InputStream/close	; close()V
+; v6 : Ljava/io/FileInputStream;
+l84874:
+.line 443
+	if-eqz	v5,l8487e
+; v5 : Ljava/io/OutputStream;
+.line 444
+	invoke-virtual	{v5},java/io/OutputStream/close	; close()V
+; v5 : Ljava/io/OutputStream;
+l8487e:
+.line 445
+	if-eqz	v4,l844ee
+; v4 : Ljava/io/InputStream;
+.line 446
+	invoke-virtual	{v4},java/io/InputStream/close	; close()V
+; v4 : Ljava/io/InputStream;
+	goto/16	l844ee
+l8488c:
+.line 441
+	if-eqz	v6,l84896
+; v6 : Ljava/io/FileInputStream;
+.line 442
+	invoke-virtual	{v6},java/io/InputStream/close	; close()V
+; v6 : Ljava/io/FileInputStream;
+l84896:
+.line 443
+	if-eqz	v5,l848a0
+; v5 : Ljava/io/OutputStream;
+.line 444
+	invoke-virtual	{v5},java/io/OutputStream/close	; close()V
+; v5 : Ljava/io/OutputStream;
+l848a0:
+.line 445
+	if-eqz	v4,l848aa
+; v4 : Ljava/io/InputStream;
+.line 446
+	invoke-virtual	{v4},java/io/InputStream/close	; close()V
+; v4 : Ljava/io/InputStream;
+l848aa:
+.line 422
+	const/16	v3,504
+; v3 : single-length
+	goto/16	l844ee
+l848b2:
+.line 425
+	const-string	v3,"RESPONE_BODY_UPLOAD"
+; v3 : Ljava/lang/String;
+	new-instance	v8,java/lang/StringBuilder
+; v8 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v14},com/fsharemobile/a/y/b	; b()Ljava/lang/String;
+; v14 : Lcom/fsharemobile/a/y;
+	move-result-object	v9
+; v9 : Ljava/lang/String;
+	invoke-static	{v9},java/lang/String/valueOf	; valueOf(Ljava/lang/Object;)Ljava/lang/String;
+; v9 : Ljava/lang/String;
+	move-result-object	v9
+; v9 : Ljava/lang/String;
+	invoke-direct	{v8,v9},java/lang/StringBuilder/<init>	; <init>(Ljava/lang/String;)V
+; v8 : Ljava/lang/StringBuilder; , v9 : Ljava/lang/String;
+	invoke-virtual	{v8},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v8 : Ljava/lang/StringBuilder;
+	move-result-object	v8
+; v8 : Ljava/lang/String;
+	invoke-static	{v3,v8},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v3 : Ljava/lang/String; , v8 : Ljava/lang/String;
+l848de:
+.line 441
+	if-eqz	v6,l848e8
+; v6 : Ljava/io/FileInputStream;
+.line 442
+	invoke-virtual	{v6},java/io/InputStream/close	; close()V
+; v6 : Ljava/io/FileInputStream;
+l848e8:
+.line 443
+	if-eqz	v5,l848f2
+; v5 : Ljava/io/OutputStream;
+.line 444
+	invoke-virtual	{v5},java/io/OutputStream/close	; close()V
+; v5 : Ljava/io/OutputStream;
+l848f2:
+.line 445
+	if-eqz	v4,l848fc
+; v4 : Ljava/io/InputStream;
+.line 446
+	invoke-virtual	{v4},java/io/InputStream/close	; close()V
+; v4 : Ljava/io/InputStream;
+l848fc:
+.line 426
+	const/4	v3,0
+; v3 : single-length
+	goto/16	l844ee
+l84902:
+.line 434
+	invoke-virtual	{v7},java/net/HttpURLConnection/getResponseCode	; getResponseCode()I
+; v7 : single-length
+l84908:
+	move-result	v3
+; v3 : single-length
+	if-nez	v3,l84932
+; v3 : single-length
+.line 441
+	if-eqz	v6,l84918
+; v6 : Ljava/io/FileInputStream;
+.line 442
+	invoke-virtual	{v6},java/io/InputStream/close	; close()V
+; v6 : Ljava/io/FileInputStream;
+l84918:
+.line 443
+	if-eqz	v5,l84922
+; v5 : single-length
+.line 444
+	invoke-virtual	{v5},java/io/OutputStream/close	; close()V
+; v5 : single-length
+l84922:
+.line 445
+	if-eqz	v4,l8492c
+; v4 : single-length
+.line 446
+	invoke-virtual	{v4},java/io/InputStream/close	; close()V
+; v4 : single-length
+l8492c:
+.line 435
+	const/4	v3,1
+; v3 : single-length
+	goto/16	l844ee
+l84932:
+.line 437
+	invoke-virtual	{v14},com/fsharemobile/a/y/c	; c()I
+; v14 : Lcom/fsharemobile/a/y;
+l84938:
+	move-result	v3
+; v3 : single-length
+.line 441
+	if-eqz	v6,l84944
+; v6 : Ljava/io/FileInputStream;
+.line 442
+	invoke-virtual	{v6},java/io/InputStream/close	; close()V
+; v6 : Ljava/io/FileInputStream;
+l84944:
+.line 443
+	if-eqz	v5,l8494e
+; v5 : single-length
+.line 444
+	invoke-virtual	{v5},java/io/OutputStream/close	; close()V
+; v5 : single-length
+l8494e:
+.line 445
+	if-eqz	v4,l844ee
+; v4 : single-length
+.line 446
+	invoke-virtual	{v4},java/io/InputStream/close	; close()V
+; v4 : single-length
+	goto/16	l844ee
+l8495c:
+.line 440
+	move-exception	v3
+; v3 : java/lang/Exception
+	move-object	v6,v7
+; v6 : single-length , v7 : single-length
+	goto/16	l8478a
+l84964:
+.line 427
+	move-exception	v3
+; v3 : java/lang/Exception
+	move-object	v6,v7
+; v6 : single-length , v7 : single-length
+	move-object	v7,v8
+; v7 : single-length , v8 : single-length
+	goto/16	l8446c
+l8496e:
+	move-exception	v3
+; v3 : java/lang/Exception
+	move-object	v7,v8
+; v7 : single-length , v8 : single-length
+	goto/16	l8446c
+.end method
+
+

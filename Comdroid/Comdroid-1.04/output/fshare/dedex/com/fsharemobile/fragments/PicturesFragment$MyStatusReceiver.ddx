@@ -1,0 +1,54 @@
+.class com/fsharemobile/fragments/PicturesFragment$MyStatusReceiver
+.super android/content/BroadcastReceiver
+.source PicturesFragment.java
+
+.inner class MyStatusReceiver inner com/fsharemobile/fragments/PicturesFragment$MyStatusReceiver outer com/fsharemobile/fragments/PicturesFragment
+.field final this$0 Lcom/fsharemobile/fragments/PicturesFragment;
+
+.method private <init>(Lcom/fsharemobile/fragments/PicturesFragment;)V
+.limit registers 2
+; this: v0 (Lcom/fsharemobile/fragments/PicturesFragment$MyStatusReceiver;)
+; parameter[0] : v1 (Lcom/fsharemobile/fragments/PicturesFragment;)
+.line 986
+	iput-object	v1,v0,com/fsharemobile/fragments/PicturesFragment$MyStatusReceiver.this$0 Lcom/fsharemobile/fragments/PicturesFragment;
+; v1 : Lcom/fsharemobile/fragments/PicturesFragment; , v0 : Lcom/fsharemobile/fragments/PicturesFragment$MyStatusReceiver;
+	invoke-direct	{v0},android/content/BroadcastReceiver/<init>	; <init>()V
+; v0 : Lcom/fsharemobile/fragments/PicturesFragment$MyStatusReceiver;
+	return-void	
+.end method
+
+.method <init>(Lcom/fsharemobile/fragments/PicturesFragment;Lcom/fsharemobile/fragments/PicturesFragment$MyStatusReceiver;)V
+.limit registers 3
+; this: v0 (Lcom/fsharemobile/fragments/PicturesFragment$MyStatusReceiver;)
+; parameter[0] : v1 (Lcom/fsharemobile/fragments/PicturesFragment;)
+; parameter[1] : v2 (Lcom/fsharemobile/fragments/PicturesFragment$MyStatusReceiver;)
+.line 986
+	invoke-direct	{v0,v1},com/fsharemobile/fragments/PicturesFragment$MyStatusReceiver/<init>	; <init>(Lcom/fsharemobile/fragments/PicturesFragment;)V
+; v0 : Lcom/fsharemobile/fragments/PicturesFragment$MyStatusReceiver; , v1 : Lcom/fsharemobile/fragments/PicturesFragment;
+	return-void	
+.end method
+
+.method public onReceive(Landroid/content/Context;Landroid/content/Intent;)V
+.limit registers 6
+; this: v3 (Lcom/fsharemobile/fragments/PicturesFragment$MyStatusReceiver;)
+; parameter[0] : v4 (Landroid/content/Context;)
+; parameter[1] : v5 (Landroid/content/Intent;)
+.line 991
+	const-string	v1,"Status"
+; v1 : Ljava/lang/String;
+	const/4	v2,0
+; v2 : single-length
+	invoke-virtual	{v5,v1,v2},android/content/Intent/getIntExtra	; getIntExtra(Ljava/lang/String;I)I
+; v5 : Landroid/content/Intent; , v1 : Ljava/lang/String; , v2 : single-length
+	move-result	v0
+; v0 : single-length
+.line 992
+	iget-object	v1,v3,com/fsharemobile/fragments/PicturesFragment$MyStatusReceiver.this$0 Lcom/fsharemobile/fragments/PicturesFragment;
+; v1 : Lcom/fsharemobile/fragments/PicturesFragment; , v3 : Lcom/fsharemobile/fragments/PicturesFragment$MyStatusReceiver;
+	invoke-static	{v1,v0},com/fsharemobile/fragments/PicturesFragment/access$2	; access$2(Lcom/fsharemobile/fragments/PicturesFragment;I)V
+; v1 : Lcom/fsharemobile/fragments/PicturesFragment; , v0 : single-length
+.line 993
+	return-void	
+.end method
+
+

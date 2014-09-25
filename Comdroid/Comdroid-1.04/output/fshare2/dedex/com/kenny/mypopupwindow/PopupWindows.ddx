@@ -1,0 +1,206 @@
+.class public com/kenny/mypopupwindow/PopupWindows
+.super java/lang/Object
+.source MyApplication
+
+.field protected mBackground Landroid/graphics/drawable/Drawable;
+.field protected mContext Landroid/content/Context;
+.field protected mRootView Landroid/view/View;
+.field public mWindow Landroid/widget/PopupWindow;
+.field protected mWindowManager Landroid/view/WindowManager;
+
+.method public <init>(Landroid/content/Context;)V
+.limit registers 4
+; this: v2 (Lcom/kenny/mypopupwindow/PopupWindows;)
+; parameter[0] : v3 (Landroid/content/Context;)
+.line 34
+	invoke-direct	{v2},java/lang/Object/<init>	; <init>()V
+; v2 : Lcom/kenny/mypopupwindow/PopupWindows;
+.line 25
+	const/4	v0,0
+; v0 : single-length
+	iput-object	v0,v2,com/kenny/mypopupwindow/PopupWindows.mBackground Landroid/graphics/drawable/Drawable;
+; v0 : single-length , v2 : Lcom/kenny/mypopupwindow/PopupWindows;
+.line 35
+	iput-object	v3,v2,com/kenny/mypopupwindow/PopupWindows.mContext Landroid/content/Context;
+; v3 : Landroid/content/Context; , v2 : Lcom/kenny/mypopupwindow/PopupWindows;
+.line 36
+	new-instance	v0,android/widget/PopupWindow
+; v0 : Landroid/widget/PopupWindow;
+	invoke-direct	{v0,v3},android/widget/PopupWindow/<init>	; <init>(Landroid/content/Context;)V
+; v0 : Landroid/widget/PopupWindow; , v3 : Landroid/content/Context;
+	iput-object	v0,v2,com/kenny/mypopupwindow/PopupWindows.mWindow Landroid/widget/PopupWindow;
+; v0 : Landroid/widget/PopupWindow; , v2 : Lcom/kenny/mypopupwindow/PopupWindows;
+.line 37
+	iget-object	v0,v2,com/kenny/mypopupwindow/PopupWindows.mWindow Landroid/widget/PopupWindow;
+; v0 : Landroid/widget/PopupWindow; , v2 : Lcom/kenny/mypopupwindow/PopupWindows;
+	new-instance	v1,android/graphics/drawable/BitmapDrawable
+; v1 : Landroid/graphics/drawable/BitmapDrawable;
+	invoke-direct	{v1},android/graphics/drawable/BitmapDrawable/<init>	; <init>()V
+; v1 : Landroid/graphics/drawable/BitmapDrawable;
+	invoke-virtual	{v0,v1},android/widget/PopupWindow/setBackgroundDrawable	; setBackgroundDrawable(Landroid/graphics/drawable/Drawable;)V
+; v0 : Landroid/widget/PopupWindow; , v1 : Landroid/graphics/drawable/BitmapDrawable;
+.line 38
+	iget-object	v0,v2,com/kenny/mypopupwindow/PopupWindows.mWindow Landroid/widget/PopupWindow;
+; v0 : Landroid/widget/PopupWindow; , v2 : Lcom/kenny/mypopupwindow/PopupWindows;
+	new-instance	v1,com/kenny/mypopupwindow/PopupWindows$1
+; v1 : Lcom/kenny/mypopupwindow/PopupWindows$1;
+	invoke-direct	{v1,v2},com/kenny/mypopupwindow/PopupWindows$1/<init>	; <init>(Lcom/kenny/mypopupwindow/PopupWindows;)V
+; v1 : Lcom/kenny/mypopupwindow/PopupWindows$1; , v2 : Lcom/kenny/mypopupwindow/PopupWindows;
+	invoke-virtual	{v0,v1},android/widget/PopupWindow/setTouchInterceptor	; setTouchInterceptor(Landroid/view/View$OnTouchListener;)V
+; v0 : Landroid/widget/PopupWindow; , v1 : Lcom/kenny/mypopupwindow/PopupWindows$1;
+.line 50
+	const-string	v0,"window"
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v3,v0},android/content/Context/getSystemService	; getSystemService(Ljava/lang/String;)Ljava/lang/Object;
+; v3 : Landroid/content/Context; , v0 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,android/view/WindowManager
+; v0 : Landroid/view/WindowManager;
+	iput-object	v0,v2,com/kenny/mypopupwindow/PopupWindows.mWindowManager Landroid/view/WindowManager;
+; v0 : Landroid/view/WindowManager; , v2 : Lcom/kenny/mypopupwindow/PopupWindows;
+.line 51
+	return-void	
+.end method
+
+.method public dismiss()V
+.limit registers 2
+; this: v1 (Lcom/kenny/mypopupwindow/PopupWindows;)
+.line 133
+	iget-object	v0,v1,com/kenny/mypopupwindow/PopupWindows.mWindow Landroid/widget/PopupWindow;
+; v0 : Landroid/widget/PopupWindow; , v1 : Lcom/kenny/mypopupwindow/PopupWindows;
+	invoke-virtual	{v0},android/widget/PopupWindow/dismiss	; dismiss()V
+; v0 : Landroid/widget/PopupWindow;
+.line 134
+	return-void	
+.end method
+
+.method protected onDismiss()V
+.limit registers 1
+; this: v0 (Lcom/kenny/mypopupwindow/PopupWindows;)
+.line 57
+	return-void	
+.end method
+
+.method protected onShow()V
+.limit registers 1
+; this: v0 (Lcom/kenny/mypopupwindow/PopupWindows;)
+.line 63
+	return-void	
+.end method
+
+.method protected preShow()V
+.limit registers 3
+; this: v2 (Lcom/kenny/mypopupwindow/PopupWindows;)
+	const/4	v1,14
+; v1 : single-length
+.line 70
+	iget-object	v0,v2,com/kenny/mypopupwindow/PopupWindows.mRootView Landroid/view/View;
+; v0 : Landroid/view/View; , v2 : Lcom/kenny/mypopupwindow/PopupWindows;
+	if-nez	v0,la6fb2
+; v0 : Landroid/view/View;
+.line 71
+	new-instance	v0,java/lang/IllegalStateException
+; v0 : Ljava/lang/IllegalStateException;
+	const-string	v1,"setContentView was not called with a view to display."
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/IllegalStateException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/IllegalStateException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/IllegalStateException;
+la6fb2:
+.line 73
+	invoke-virtual	{v2},com/kenny/mypopupwindow/PopupWindows/onShow	; onShow()V
+; v2 : Lcom/kenny/mypopupwindow/PopupWindows;
+.line 80
+	iget-object	v0,v2,com/kenny/mypopupwindow/PopupWindows.mWindow Landroid/widget/PopupWindow;
+; v0 : Landroid/widget/PopupWindow; , v2 : Lcom/kenny/mypopupwindow/PopupWindows;
+	invoke-virtual	{v0,v1},android/widget/PopupWindow/setWidth	; setWidth(I)V
+; v0 : Landroid/widget/PopupWindow; , v1 : single-length
+.line 81
+	iget-object	v0,v2,com/kenny/mypopupwindow/PopupWindows.mWindow Landroid/widget/PopupWindow;
+; v0 : Landroid/widget/PopupWindow; , v2 : Lcom/kenny/mypopupwindow/PopupWindows;
+	invoke-virtual	{v0,v1},android/widget/PopupWindow/setHeight	; setHeight(I)V
+; v0 : Landroid/widget/PopupWindow; , v1 : single-length
+.line 86
+	iget-object	v0,v2,com/kenny/mypopupwindow/PopupWindows.mWindow Landroid/widget/PopupWindow;
+; v0 : Landroid/widget/PopupWindow; , v2 : Lcom/kenny/mypopupwindow/PopupWindows;
+	iget-object	v1,v2,com/kenny/mypopupwindow/PopupWindows.mRootView Landroid/view/View;
+; v1 : Landroid/view/View; , v2 : Lcom/kenny/mypopupwindow/PopupWindows;
+	invoke-virtual	{v0,v1},android/widget/PopupWindow/setContentView	; setContentView(Landroid/view/View;)V
+; v0 : Landroid/widget/PopupWindow; , v1 : Landroid/view/View;
+.line 87
+	return-void	
+.end method
+
+.method public setBackgroundDrawable(Landroid/graphics/drawable/Drawable;)V
+.limit registers 3
+; this: v1 (Lcom/kenny/mypopupwindow/PopupWindows;)
+; parameter[0] : v2 (Landroid/graphics/drawable/Drawable;)
+.line 95
+	iget-object	v0,v1,com/kenny/mypopupwindow/PopupWindows.mWindow Landroid/widget/PopupWindow;
+; v0 : Landroid/widget/PopupWindow; , v1 : Lcom/kenny/mypopupwindow/PopupWindows;
+	invoke-virtual	{v0,v2},android/widget/PopupWindow/setBackgroundDrawable	; setBackgroundDrawable(Landroid/graphics/drawable/Drawable;)V
+; v0 : Landroid/widget/PopupWindow; , v2 : Landroid/graphics/drawable/Drawable;
+.line 96
+	return-void	
+.end method
+
+.method public setContentView(I)V
+.limit registers 4
+; this: v2 (Lcom/kenny/mypopupwindow/PopupWindows;)
+; parameter[0] : v3 (I)
+.line 115
+	iget-object	v0,v2,com/kenny/mypopupwindow/PopupWindows.mContext Landroid/content/Context;
+; v0 : Landroid/content/Context; , v2 : Lcom/kenny/mypopupwindow/PopupWindows;
+	const-string	v1,"layout_inflater"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},android/content/Context/getSystemService	; getSystemService(Ljava/lang/String;)Ljava/lang/Object;
+; v0 : Landroid/content/Context; , v1 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,android/view/LayoutInflater
+; v0 : Landroid/view/LayoutInflater;
+.line 117
+	const/4	v1,0
+; v1 : single-length
+	invoke-virtual	{v0,v3,v1},android/view/LayoutInflater/inflate	; inflate(ILandroid/view/ViewGroup;)Landroid/view/View;
+; v0 : Landroid/view/LayoutInflater; , v3 : single-length , v1 : single-length
+	move-result-object	v0
+; v0 : Landroid/view/View;
+	invoke-virtual	{v2,v0},com/kenny/mypopupwindow/PopupWindows/setContentView	; setContentView(Landroid/view/View;)V
+; v2 : Lcom/kenny/mypopupwindow/PopupWindows; , v0 : Landroid/view/View;
+.line 118
+	return-void	
+.end method
+
+.method public setContentView(Landroid/view/View;)V
+.limit registers 3
+; this: v1 (Lcom/kenny/mypopupwindow/PopupWindows;)
+; parameter[0] : v2 (Landroid/view/View;)
+.line 104
+	iput-object	v2,v1,com/kenny/mypopupwindow/PopupWindows.mRootView Landroid/view/View;
+; v2 : Landroid/view/View; , v1 : Lcom/kenny/mypopupwindow/PopupWindows;
+.line 106
+	iget-object	v0,v1,com/kenny/mypopupwindow/PopupWindows.mWindow Landroid/widget/PopupWindow;
+; v0 : Landroid/widget/PopupWindow; , v1 : Lcom/kenny/mypopupwindow/PopupWindows;
+	invoke-virtual	{v0,v2},android/widget/PopupWindow/setContentView	; setContentView(Landroid/view/View;)V
+; v0 : Landroid/widget/PopupWindow; , v2 : Landroid/view/View;
+.line 107
+	return-void	
+.end method
+
+.method public setOnDismissListener(Landroid/widget/PopupWindow$OnDismissListener;)V
+.limit registers 3
+; this: v1 (Lcom/kenny/mypopupwindow/PopupWindows;)
+; parameter[0] : v2 (Landroid/widget/PopupWindow$OnDismissListener;)
+.line 126
+	iget-object	v0,v1,com/kenny/mypopupwindow/PopupWindows.mWindow Landroid/widget/PopupWindow;
+; v0 : Landroid/widget/PopupWindow; , v1 : Lcom/kenny/mypopupwindow/PopupWindows;
+	invoke-virtual	{v0,v2},android/widget/PopupWindow/setOnDismissListener	; setOnDismissListener(Landroid/widget/PopupWindow$OnDismissListener;)V
+; v0 : Landroid/widget/PopupWindow; , v2 : Landroid/widget/PopupWindow$OnDismissListener;
+.line 127
+	return-void	
+.end method
+
+

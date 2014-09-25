@@ -1,0 +1,303 @@
+.class public com/google/analytics/tracking/android/at
+.super java/lang/Object
+.source MyApplication
+
+.field private a Ljava/util/Map;
+
+.method public <init>()V
+.limit registers 2
+; this: v1 (Lcom/google/analytics/tracking/android/at;)
+.line 53
+	invoke-direct	{v1},java/lang/Object/<init>	; <init>()V
+; v1 : Lcom/google/analytics/tracking/android/at;
+.line 54
+	new-instance	v0,java/util/HashMap
+; v0 : Ljava/util/HashMap;
+	invoke-direct	{v0},java/util/HashMap/<init>	; <init>()V
+; v0 : Ljava/util/HashMap;
+	iput-object	v0,v1,com/google/analytics/tracking/android/at.a Ljava/util/Map;
+; v0 : Ljava/util/HashMap; , v1 : Lcom/google/analytics/tracking/android/at;
+	return-void	
+.end method
+
+.method public static a(Ljava/lang/String;Ljava/lang/Boolean;)Lcom/google/analytics/tracking/android/at;
+.limit registers 5
+; parameter[0] : v3 (Ljava/lang/String;)
+; parameter[1] : v4 (Ljava/lang/Boolean;)
+.line 164
+	invoke-static	{},com/google/analytics/tracking/android/al/a	; a()Lcom/google/analytics/tracking/android/al;
+; 
+	nop	
+	move-result-object	v0
+; v0 : Lcom/google/analytics/tracking/android/al;
+	sget-object	v1,com/google/analytics/tracking/android/am.H Lcom/google/analytics/tracking/android/am;
+; v1 : Lcom/google/analytics/tracking/android/am;
+	invoke-virtual	{v0,v1},com/google/analytics/tracking/android/al/a	; a(Lcom/google/analytics/tracking/android/am;)V
+; v0 : Lcom/google/analytics/tracking/android/al; , v1 : Lcom/google/analytics/tracking/android/am;
+.line 165
+	new-instance	v0,com/google/analytics/tracking/android/at
+; v0 : Lcom/google/analytics/tracking/android/at;
+	invoke-direct	{v0},com/google/analytics/tracking/android/at/<init>	; <init>()V
+; v0 : Lcom/google/analytics/tracking/android/at;
+.line 166
+	const-string	v1,"&t"
+; v1 : Ljava/lang/String;
+	const-string	v2,"exception"
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v0,v1,v2},com/google/analytics/tracking/android/at/a	; a(Ljava/lang/String;Ljava/lang/String;)Lcom/google/analytics/tracking/android/at;
+; v0 : Lcom/google/analytics/tracking/android/at; , v1 : Ljava/lang/String; , v2 : Ljava/lang/String;
+.line 167
+	const-string	v1,"&exd"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1,v3},com/google/analytics/tracking/android/at/a	; a(Ljava/lang/String;Ljava/lang/String;)Lcom/google/analytics/tracking/android/at;
+; v0 : Lcom/google/analytics/tracking/android/at; , v1 : Ljava/lang/String; , v3 : Ljava/lang/String;
+.line 168
+	const-string	v1,"&exf"
+; v1 : Ljava/lang/String;
+	invoke-static	{v4},com/google/analytics/tracking/android/at/a	; a(Ljava/lang/Boolean;)Ljava/lang/String;
+; v4 : Ljava/lang/Boolean;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v0,v1,v2},com/google/analytics/tracking/android/at/a	; a(Ljava/lang/String;Ljava/lang/String;)Lcom/google/analytics/tracking/android/at;
+; v0 : Lcom/google/analytics/tracking/android/at; , v1 : Ljava/lang/String; , v2 : Ljava/lang/String;
+.line 169
+	return-object	v0
+; v0 : Lcom/google/analytics/tracking/android/at;
+.end method
+
+.method static a(Ljava/lang/Boolean;)Ljava/lang/String;
+.limit registers 2
+; parameter[0] : v1 (Ljava/lang/Boolean;)
+.line 287
+	if-nez	v1,l9acac
+; v1 : Ljava/lang/Boolean;
+.line 288
+	const/4	v0,0
+; v0 : single-length
+l9acaa:
+.line 290
+	return-object	v0
+; v0 : Ljava/lang/String;
+l9acac:
+	invoke-virtual	{v1},java/lang/Boolean/booleanValue	; booleanValue()Z
+; v1 : Ljava/lang/Boolean;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,l9acbe
+; v0 : single-length
+	const-string	v0,"1"
+; v0 : Ljava/lang/String;
+	goto	l9acaa
+l9acbe:
+	const-string	v0,"0"
+; v0 : Ljava/lang/String;
+	goto	l9acaa
+.end method
+
+.method public a(Ljava/lang/String;)Lcom/google/analytics/tracking/android/at;
+.limit registers 5
+; this: v3 (Lcom/google/analytics/tracking/android/at;)
+; parameter[0] : v4 (Ljava/lang/String;)
+.line 260
+	invoke-static	{},com/google/analytics/tracking/android/al/a	; a()Lcom/google/analytics/tracking/android/al;
+; 
+	nop	
+	move-result-object	v0
+; v0 : Lcom/google/analytics/tracking/android/al;
+	sget-object	v1,com/google/analytics/tracking/android/am.d Lcom/google/analytics/tracking/android/am;
+; v1 : Lcom/google/analytics/tracking/android/am;
+	invoke-virtual	{v0,v1},com/google/analytics/tracking/android/al/a	; a(Lcom/google/analytics/tracking/android/am;)V
+; v0 : Lcom/google/analytics/tracking/android/al; , v1 : Lcom/google/analytics/tracking/android/am;
+.line 261
+	invoke-static	{v4},com/google/analytics/tracking/android/bi/b	; b(Ljava/lang/String;)Ljava/lang/String;
+; v4 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+.line 262
+	invoke-static	{v0},android/text/TextUtils/isEmpty	; isEmpty(Ljava/lang/CharSequence;)Z
+; v0 : Ljava/lang/String;
+	move-result	v1
+; v1 : single-length
+	if-eqz	v1,l9acfc
+; v1 : single-length
+l9acfa:
+.line 283
+	return-object	v3
+; v3 : Lcom/google/analytics/tracking/android/at;
+l9acfc:
+.line 267
+	invoke-static	{v0},com/google/analytics/tracking/android/bi/a	; a(Ljava/lang/String;)Ljava/util/Map;
+; v0 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/util/Map;
+.line 273
+	const-string	v2,"&cc"
+; v2 : Ljava/lang/String;
+	const-string	v0,"utm_content"
+; v0 : Ljava/lang/String;
+	invoke-interface	{v1,v0},java/util/Map/get	; get(Ljava/lang/Object;)Ljava/lang/Object;
+; v1 : Ljava/util/Map; , v0 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,java/lang/String
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v3,v2,v0},com/google/analytics/tracking/android/at/a	; a(Ljava/lang/String;Ljava/lang/String;)Lcom/google/analytics/tracking/android/at;
+; v3 : Lcom/google/analytics/tracking/android/at; , v2 : Ljava/lang/String; , v0 : Ljava/lang/String;
+.line 274
+	const-string	v2,"&cm"
+; v2 : Ljava/lang/String;
+	const-string	v0,"utm_medium"
+; v0 : Ljava/lang/String;
+	invoke-interface	{v1,v0},java/util/Map/get	; get(Ljava/lang/Object;)Ljava/lang/Object;
+; v1 : Ljava/util/Map; , v0 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,java/lang/String
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v3,v2,v0},com/google/analytics/tracking/android/at/a	; a(Ljava/lang/String;Ljava/lang/String;)Lcom/google/analytics/tracking/android/at;
+; v3 : Lcom/google/analytics/tracking/android/at; , v2 : Ljava/lang/String; , v0 : Ljava/lang/String;
+.line 275
+	const-string	v2,"&cn"
+; v2 : Ljava/lang/String;
+	const-string	v0,"utm_campaign"
+; v0 : Ljava/lang/String;
+	invoke-interface	{v1,v0},java/util/Map/get	; get(Ljava/lang/Object;)Ljava/lang/Object;
+; v1 : Ljava/util/Map; , v0 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,java/lang/String
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v3,v2,v0},com/google/analytics/tracking/android/at/a	; a(Ljava/lang/String;Ljava/lang/String;)Lcom/google/analytics/tracking/android/at;
+; v3 : Lcom/google/analytics/tracking/android/at; , v2 : Ljava/lang/String; , v0 : Ljava/lang/String;
+.line 276
+	const-string	v2,"&cs"
+; v2 : Ljava/lang/String;
+	const-string	v0,"utm_source"
+; v0 : Ljava/lang/String;
+	invoke-interface	{v1,v0},java/util/Map/get	; get(Ljava/lang/Object;)Ljava/lang/Object;
+; v1 : Ljava/util/Map; , v0 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,java/lang/String
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v3,v2,v0},com/google/analytics/tracking/android/at/a	; a(Ljava/lang/String;Ljava/lang/String;)Lcom/google/analytics/tracking/android/at;
+; v3 : Lcom/google/analytics/tracking/android/at; , v2 : Ljava/lang/String; , v0 : Ljava/lang/String;
+.line 277
+	const-string	v2,"&ck"
+; v2 : Ljava/lang/String;
+	const-string	v0,"utm_term"
+; v0 : Ljava/lang/String;
+	invoke-interface	{v1,v0},java/util/Map/get	; get(Ljava/lang/Object;)Ljava/lang/Object;
+; v1 : Ljava/util/Map; , v0 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,java/lang/String
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v3,v2,v0},com/google/analytics/tracking/android/at/a	; a(Ljava/lang/String;Ljava/lang/String;)Lcom/google/analytics/tracking/android/at;
+; v3 : Lcom/google/analytics/tracking/android/at; , v2 : Ljava/lang/String; , v0 : Ljava/lang/String;
+.line 278
+	const-string	v2,"&ci"
+; v2 : Ljava/lang/String;
+	const-string	v0,"utm_id"
+; v0 : Ljava/lang/String;
+	invoke-interface	{v1,v0},java/util/Map/get	; get(Ljava/lang/Object;)Ljava/lang/Object;
+; v1 : Ljava/util/Map; , v0 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,java/lang/String
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v3,v2,v0},com/google/analytics/tracking/android/at/a	; a(Ljava/lang/String;Ljava/lang/String;)Lcom/google/analytics/tracking/android/at;
+; v3 : Lcom/google/analytics/tracking/android/at; , v2 : Ljava/lang/String; , v0 : Ljava/lang/String;
+.line 279
+	const-string	v2,"&gclid"
+; v2 : Ljava/lang/String;
+	const-string	v0,"gclid"
+; v0 : Ljava/lang/String;
+	invoke-interface	{v1,v0},java/util/Map/get	; get(Ljava/lang/Object;)Ljava/lang/Object;
+; v1 : Ljava/util/Map; , v0 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,java/lang/String
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v3,v2,v0},com/google/analytics/tracking/android/at/a	; a(Ljava/lang/String;Ljava/lang/String;)Lcom/google/analytics/tracking/android/at;
+; v3 : Lcom/google/analytics/tracking/android/at; , v2 : Ljava/lang/String; , v0 : Ljava/lang/String;
+.line 280
+	const-string	v2,"&dclid"
+; v2 : Ljava/lang/String;
+	const-string	v0,"dclid"
+; v0 : Ljava/lang/String;
+	invoke-interface	{v1,v0},java/util/Map/get	; get(Ljava/lang/Object;)Ljava/lang/Object;
+; v1 : Ljava/util/Map; , v0 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,java/lang/String
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v3,v2,v0},com/google/analytics/tracking/android/at/a	; a(Ljava/lang/String;Ljava/lang/String;)Lcom/google/analytics/tracking/android/at;
+; v3 : Lcom/google/analytics/tracking/android/at; , v2 : Ljava/lang/String; , v0 : Ljava/lang/String;
+.line 281
+	const-string	v2,"&gmob_t"
+; v2 : Ljava/lang/String;
+	const-string	v0,"gmob_t"
+; v0 : Ljava/lang/String;
+	invoke-interface	{v1,v0},java/util/Map/get	; get(Ljava/lang/Object;)Ljava/lang/Object;
+; v1 : Ljava/util/Map; , v0 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,java/lang/String
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v3,v2,v0},com/google/analytics/tracking/android/at/a	; a(Ljava/lang/String;Ljava/lang/String;)Lcom/google/analytics/tracking/android/at;
+; v3 : Lcom/google/analytics/tracking/android/at; , v2 : Ljava/lang/String; , v0 : Ljava/lang/String;
+	goto	l9acfa
+.end method
+
+.method public a(Ljava/lang/String;Ljava/lang/String;)Lcom/google/analytics/tracking/android/at;
+.limit registers 5
+; this: v2 (Lcom/google/analytics/tracking/android/at;)
+; parameter[0] : v3 (Ljava/lang/String;)
+; parameter[1] : v4 (Ljava/lang/String;)
+.line 57
+	invoke-static	{},com/google/analytics/tracking/android/al/a	; a()Lcom/google/analytics/tracking/android/al;
+; 
+	nop	
+	move-result-object	v0
+; v0 : Lcom/google/analytics/tracking/android/al;
+	sget-object	v1,com/google/analytics/tracking/android/am.a Lcom/google/analytics/tracking/android/am;
+; v1 : Lcom/google/analytics/tracking/android/am;
+	invoke-virtual	{v0,v1},com/google/analytics/tracking/android/al/a	; a(Lcom/google/analytics/tracking/android/am;)V
+; v0 : Lcom/google/analytics/tracking/android/al; , v1 : Lcom/google/analytics/tracking/android/am;
+.line 58
+	if-eqz	v3,l9ae22
+; v3 : Ljava/lang/String;
+.line 59
+	iget-object	v0,v2,com/google/analytics/tracking/android/at.a Ljava/util/Map;
+; v0 : Ljava/util/Map; , v2 : Lcom/google/analytics/tracking/android/at;
+	invoke-interface	{v0,v3,v4},java/util/Map/put	; put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+; v0 : Ljava/util/Map; , v3 : Ljava/lang/String; , v4 : Ljava/lang/String;
+l9ae20:
+.line 63
+	return-object	v2
+; v2 : Lcom/google/analytics/tracking/android/at;
+l9ae22:
+.line 61
+	const-string	v0," MapBuilder.set() called with a null paramName."
+; v0 : Ljava/lang/String;
+	invoke-static	{v0},com/google/analytics/tracking/android/aq/d	; d(Ljava/lang/String;)V
+; v0 : Ljava/lang/String;
+	goto	l9ae20
+.end method
+
+.method public a()Ljava/util/Map;
+.limit registers 3
+; this: v2 (Lcom/google/analytics/tracking/android/at;)
+.line 81
+	new-instance	v0,java/util/HashMap
+; v0 : Ljava/util/HashMap;
+	iget-object	v1,v2,com/google/analytics/tracking/android/at.a Ljava/util/Map;
+; v1 : Ljava/util/Map; , v2 : Lcom/google/analytics/tracking/android/at;
+	invoke-direct	{v0,v1},java/util/HashMap/<init>	; <init>(Ljava/util/Map;)V
+; v0 : Ljava/util/HashMap; , v1 : Ljava/util/Map;
+	return-object	v0
+; v0 : Ljava/util/HashMap;
+.end method
+
+

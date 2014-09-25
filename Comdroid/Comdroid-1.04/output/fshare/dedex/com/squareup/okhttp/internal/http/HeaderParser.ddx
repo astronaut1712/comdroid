@@ -1,0 +1,296 @@
+.class final com/squareup/okhttp/internal/http/HeaderParser
+.super java/lang/Object
+.source HeaderParser.java
+
+.inner class CacheControlHandler inner com/squareup/okhttp/internal/http/HeaderParser$CacheControlHandler outer com/squareup/okhttp/internal/http/HeaderParser
+
+.method private <init>()V
+.limit registers 1
+; this: v0 (Lcom/squareup/okhttp/internal/http/HeaderParser;)
+.line 110
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Lcom/squareup/okhttp/internal/http/HeaderParser;
+.line 111
+	return-void	
+.end method
+
+.method public static parseCacheControl(Ljava/lang/String;Lcom/squareup/okhttp/internal/http/HeaderParser$CacheControlHandler;)V
+.limit registers 9
+; parameter[0] : v7 (Ljava/lang/String;)
+; parameter[1] : v8 (Lcom/squareup/okhttp/internal/http/HeaderParser$CacheControlHandler;)
+.var 1 is parameter Ljava/lang/String; from lb93f4 to lb9400
+.var 2 is parameterStart I from lb93e0 to lb9400
+.var 0 is directive Ljava/lang/String; from lb9378 to lb9420
+.var 1 is parameter Ljava/lang/String; from lb941e to lb9420
+.var 2 is parameterStart I from lb9402 to lb9420
+.var 4 is tokenStart I from lb935c to lb9420
+.line 27
+	const/4	v3,0
+; v3 : single-length
+lb934e:
+.line 28
+	invoke-virtual	{v7},java/lang/String/length	; length()I
+; v7 : Ljava/lang/String;
+	move-result	v5
+; v5 : single-length
+	if-ge	v3,v5,lb9420
+; v3 : single-length , v5 : single-length
+.line 29
+	move	v4,v3
+; v4 : single-length , v3 : single-length
+.line 30
+	const-string	v5,"=,;"
+; v5 : Ljava/lang/String;
+	invoke-static	{v7,v3,v5},com/squareup/okhttp/internal/http/HeaderParser/skipUntil	; skipUntil(Ljava/lang/String;ILjava/lang/String;)I
+; v7 : Ljava/lang/String; , v3 : single-length , v5 : Ljava/lang/String;
+	move-result	v3
+; v3 : single-length
+.line 31
+	invoke-virtual	{v7,v4,v3},java/lang/String/substring	; substring(II)Ljava/lang/String;
+; v7 : Ljava/lang/String; , v4 : single-length , v3 : single-length
+	move-result-object	v5
+; v5 : Ljava/lang/String;
+	invoke-virtual	{v5},java/lang/String/trim	; trim()Ljava/lang/String;
+; v5 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+.line 33
+	invoke-virtual	{v7},java/lang/String/length	; length()I
+; v7 : Ljava/lang/String;
+	move-result	v5
+; v5 : single-length
+	if-eq	v3,v5,lb93a4
+; v3 : single-length , v5 : single-length
+	invoke-virtual	{v7,v3},java/lang/String/charAt	; charAt(I)C
+; v7 : Ljava/lang/String; , v3 : single-length
+	move-result	v5
+; v5 : single-length
+	const/16	v6,44
+; v6 : single-length
+	if-eq	v5,v6,lb93a4
+; v5 : single-length , v6 : single-length
+	invoke-virtual	{v7,v3},java/lang/String/charAt	; charAt(I)C
+; v7 : Ljava/lang/String; , v3 : single-length
+	move-result	v5
+; v5 : single-length
+	const/16	v6,59
+; v6 : single-length
+	if-ne	v5,v6,lb93b2
+; v5 : single-length , v6 : single-length
+lb93a4:
+.line 34
+	add-int/lit8	v3,v3,1
+; v3 : single-length , v3 : single-length
+.line 35
+	const/4	v5,0
+; v5 : single-length
+	invoke-interface	{v8,v0,v5},com/squareup/okhttp/internal/http/HeaderParser$CacheControlHandler/handle	; handle(Ljava/lang/String;Ljava/lang/String;)V
+; v8 : Lcom/squareup/okhttp/internal/http/HeaderParser$CacheControlHandler; , v0 : Ljava/lang/String; , v5 : single-length
+	goto	lb934e
+lb93b2:
+.line 39
+	add-int/lit8	v3,v3,1
+; v3 : single-length , v3 : single-length
+.line 40
+	invoke-static	{v7,v3},com/squareup/okhttp/internal/http/HeaderParser/skipWhitespace	; skipWhitespace(Ljava/lang/String;I)I
+; v7 : Ljava/lang/String; , v3 : single-length
+	move-result	v3
+; v3 : single-length
+.line 45
+	invoke-virtual	{v7},java/lang/String/length	; length()I
+; v7 : Ljava/lang/String;
+	move-result	v5
+; v5 : single-length
+	if-ge	v3,v5,lb9400
+; v3 : single-length , v5 : single-length
+	invoke-virtual	{v7,v3},java/lang/String/charAt	; charAt(I)C
+; v7 : Ljava/lang/String; , v3 : single-length
+	move-result	v5
+; v5 : single-length
+	const/16	v6,34
+; v6 : single-length
+	if-ne	v5,v6,lb9400
+; v5 : single-length , v6 : single-length
+.line 46
+	add-int/lit8	v3,v3,1
+; v3 : single-length , v3 : single-length
+.line 47
+	move	v2,v3
+; v2 : single-length , v3 : single-length
+.line 48
+	const-string	v5,"""
+; v5 : Ljava/lang/String;
+	invoke-static	{v7,v3,v5},com/squareup/okhttp/internal/http/HeaderParser/skipUntil	; skipUntil(Ljava/lang/String;ILjava/lang/String;)I
+; v7 : Ljava/lang/String; , v3 : single-length , v5 : Ljava/lang/String;
+	move-result	v3
+; v3 : single-length
+.line 49
+	invoke-virtual	{v7,v2,v3},java/lang/String/substring	; substring(II)Ljava/lang/String;
+; v7 : Ljava/lang/String; , v2 : single-length , v3 : single-length
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+.line 50
+	add-int/lit8	v3,v3,1
+; v3 : single-length , v3 : single-length
+lb93f8:
+.line 59
+	invoke-interface	{v8,v0,v1},com/squareup/okhttp/internal/http/HeaderParser$CacheControlHandler/handle	; handle(Ljava/lang/String;Ljava/lang/String;)V
+; v8 : Lcom/squareup/okhttp/internal/http/HeaderParser$CacheControlHandler; , v0 : Ljava/lang/String; , v1 : Ljava/lang/String;
+	goto	lb934e
+lb9400:
+.line 54
+	move	v2,v3
+; v2 : single-length , v3 : single-length
+.line 55
+	const-string	v5,",;"
+; v5 : Ljava/lang/String;
+	invoke-static	{v7,v3,v5},com/squareup/okhttp/internal/http/HeaderParser/skipUntil	; skipUntil(Ljava/lang/String;ILjava/lang/String;)I
+; v7 : Ljava/lang/String; , v3 : single-length , v5 : Ljava/lang/String;
+	move-result	v3
+; v3 : single-length
+.line 56
+	invoke-virtual	{v7,v2,v3},java/lang/String/substring	; substring(II)Ljava/lang/String;
+; v7 : Ljava/lang/String; , v2 : single-length , v3 : single-length
+	move-result-object	v5
+; v5 : Ljava/lang/String;
+	invoke-virtual	{v5},java/lang/String/trim	; trim()Ljava/lang/String;
+; v5 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+lb941e:
+	goto	lb93f8
+lb9420:
+.line 61
+	return-void	
+.end method
+
+.method public static parseSeconds(Ljava/lang/String;)I
+.limit registers 6
+; parameter[0] : v5 (Ljava/lang/String;)
+.catch java/lang/NumberFormatException from lb9434 to lb943a using lb9466
+.var 1 is seconds J from lb943c to lb9450
+.var 1 is seconds J from lb9452 to lb9466
+lb9434:
+.line 97
+	invoke-static	{v5},java/lang/Long/parseLong	; parseLong(Ljava/lang/String;)J
+; v5 : Ljava/lang/String;
+lb943a:
+	move-result-wide	v1
+; v1 : double-length
+.line 98
+	const-wide/32	v3,2147483647	; 0x7fffffff
+; v3 : double-length
+	cmp-long	v3,v1,v3
+; v3 : single-length , v1 : double-length , v3 : single-length
+	if-lez	v3,lb9452
+; v3 : single-length
+.line 99
+	const	v3,2147483647	; 0x7fffffff
+; v3 : single-length
+lb9450:
+.line 106
+	return	v3
+; v3 : single-length
+lb9452:
+.line 100
+	const-wide/16	v3,0
+; v3 : double-length
+	cmp-long	v3,v1,v3
+; v3 : single-length , v1 : double-length , v3 : single-length
+	if-gez	v3,lb9462
+; v3 : single-length
+.line 101
+	const/4	v3,0
+; v3 : single-length
+	goto	lb9450
+lb9462:
+.line 103
+	long-to-int	v3,v1
+; v3 : single-length , v1 : double-length
+	goto	lb9450
+lb9466:
+.line 105
+	move-exception	v0
+; v0 : java/lang/NumberFormatException
+.line 106
+	const/4	v3,15
+; v3 : single-length
+	goto	lb9450
+.end method
+
+.method public static skipUntil(Ljava/lang/String;ILjava/lang/String;)I
+.limit registers 5
+; parameter[0] : v2 (Ljava/lang/String;)
+; parameter[1] : v3 (I)
+; parameter[2] : v4 (Ljava/lang/String;)
+lb948c:
+.line 69
+	invoke-virtual	{v2},java/lang/String/length	; length()I
+; v2 : Ljava/lang/String;
+	move-result	v0
+; v0 : single-length
+	if-ge	v3,v0,lb94ae
+; v3 : single-length , v0 : single-length
+.line 70
+	invoke-virtual	{v2,v3},java/lang/String/charAt	; charAt(I)C
+; v2 : Ljava/lang/String; , v3 : single-length
+	move-result	v0
+; v0 : single-length
+	invoke-virtual	{v4,v0},java/lang/String/indexOf	; indexOf(I)I
+; v4 : Ljava/lang/String; , v0 : single-length
+	move-result	v0
+; v0 : single-length
+	const/4	v1,15
+; v1 : single-length
+	if-eq	v0,v1,lb94b0
+; v0 : single-length , v1 : single-length
+lb94ae:
+.line 74
+	return	v3
+; v3 : single-length
+lb94b0:
+.line 69
+	add-int/lit8	v3,v3,1
+; v3 : single-length , v3 : single-length
+	goto	lb948c
+.end method
+
+.method public static skipWhitespace(Ljava/lang/String;I)I
+.limit registers 4
+; parameter[0] : v2 (Ljava/lang/String;)
+; parameter[1] : v3 (I)
+.var 0 is c C from lb94dc to lb94ec
+lb94c8:
+.line 82
+	invoke-virtual	{v2},java/lang/String/length	; length()I
+; v2 : Ljava/lang/String;
+	move-result	v1
+; v1 : single-length
+	if-ge	v3,v1,lb94ec
+; v3 : single-length , v1 : single-length
+.line 83
+	invoke-virtual	{v2,v3},java/lang/String/charAt	; charAt(I)C
+; v2 : Ljava/lang/String; , v3 : single-length
+	move-result	v0
+; v0 : single-length
+.line 84
+	const/16	v1,32
+; v1 : single-length
+	if-eq	v0,v1,lb94ee
+; v0 : single-length , v1 : single-length
+	const/16	v1,9
+; v1 : single-length
+	if-eq	v0,v1,lb94ee
+; v0 : single-length , v1 : single-length
+lb94ec:
+.line 88
+	return	v3
+; v3 : single-length
+lb94ee:
+.line 82
+	add-int/lit8	v3,v3,1
+; v3 : single-length , v3 : single-length
+	goto	lb94c8
+.end method
+
+

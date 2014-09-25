@@ -1,0 +1,122 @@
+.class com/google/analytics/tracking/android/ad
+.super java/util/TimerTask
+.source MyApplication
+
+.field final a Lcom/google/analytics/tracking/android/y;
+
+.method private <init>(Lcom/google/analytics/tracking/android/y;)V
+.limit registers 2
+; this: v0 (Lcom/google/analytics/tracking/android/ad;)
+; parameter[0] : v1 (Lcom/google/analytics/tracking/android/y;)
+.line 419
+	iput-object	v1,v0,com/google/analytics/tracking/android/ad.a Lcom/google/analytics/tracking/android/y;
+; v1 : Lcom/google/analytics/tracking/android/y; , v0 : Lcom/google/analytics/tracking/android/ad;
+	invoke-direct	{v0},java/util/TimerTask/<init>	; <init>()V
+; v0 : Lcom/google/analytics/tracking/android/ad;
+	return-void	
+.end method
+
+.method <init>(Lcom/google/analytics/tracking/android/y;Lcom/google/analytics/tracking/android/z;)V
+.limit registers 3
+; this: v0 (Lcom/google/analytics/tracking/android/ad;)
+; parameter[0] : v1 (Lcom/google/analytics/tracking/android/y;)
+; parameter[1] : v2 (Lcom/google/analytics/tracking/android/z;)
+.line 419
+	invoke-direct	{v0,v1},com/google/analytics/tracking/android/ad/<init>	; <init>(Lcom/google/analytics/tracking/android/y;)V
+; v0 : Lcom/google/analytics/tracking/android/ad; , v1 : Lcom/google/analytics/tracking/android/y;
+	return-void	
+.end method
+
+.method public run()V
+.limit registers 5
+; this: v4 (Lcom/google/analytics/tracking/android/ad;)
+.line 422
+	iget-object	v0,v4,com/google/analytics/tracking/android/ad.a Lcom/google/analytics/tracking/android/y;
+; v0 : Lcom/google/analytics/tracking/android/y; , v4 : Lcom/google/analytics/tracking/android/ad;
+	invoke-static	{v0},com/google/analytics/tracking/android/y/b	; b(Lcom/google/analytics/tracking/android/y;)Lcom/google/analytics/tracking/android/ac;
+; v0 : Lcom/google/analytics/tracking/android/y;
+	move-result-object	v0
+; v0 : Lcom/google/analytics/tracking/android/ac;
+	sget-object	v1,com/google/analytics/tracking/android/ac.b Lcom/google/analytics/tracking/android/ac;
+; v1 : Lcom/google/analytics/tracking/android/ac;
+	if-ne	v0,v1,l98e4c
+; v0 : Lcom/google/analytics/tracking/android/ac; , v1 : Lcom/google/analytics/tracking/android/ac;
+	iget-object	v0,v4,com/google/analytics/tracking/android/ad.a Lcom/google/analytics/tracking/android/y;
+; v0 : Lcom/google/analytics/tracking/android/y; , v4 : Lcom/google/analytics/tracking/android/ad;
+	invoke-static	{v0},com/google/analytics/tracking/android/y/e	; e(Lcom/google/analytics/tracking/android/y;)Ljava/util/Queue;
+; v0 : Lcom/google/analytics/tracking/android/y;
+	move-result-object	v0
+; v0 : Ljava/util/Queue;
+	invoke-interface	{v0},java/util/Queue/isEmpty	; isEmpty()Z
+; v0 : Ljava/util/Queue;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,l98e4c
+; v0 : single-length
+	iget-object	v0,v4,com/google/analytics/tracking/android/ad.a Lcom/google/analytics/tracking/android/y;
+; v0 : Lcom/google/analytics/tracking/android/y; , v4 : Lcom/google/analytics/tracking/android/ad;
+	invoke-static	{v0},com/google/analytics/tracking/android/y/f	; f(Lcom/google/analytics/tracking/android/y;)J
+; v0 : Lcom/google/analytics/tracking/android/y;
+	move-result-wide	v0
+; v0 : double-length
+	iget-object	v2,v4,com/google/analytics/tracking/android/ad.a Lcom/google/analytics/tracking/android/y;
+; v2 : Lcom/google/analytics/tracking/android/y; , v4 : Lcom/google/analytics/tracking/android/ad;
+	invoke-static	{v2},com/google/analytics/tracking/android/y/g	; g(Lcom/google/analytics/tracking/android/y;)J
+; v2 : Lcom/google/analytics/tracking/android/y;
+	move-result-wide	v2
+; v2 : double-length
+	add-long/2addr	v0,v2
+; v0 : double-length , v2 : double-length
+	iget-object	v2,v4,com/google/analytics/tracking/android/ad.a Lcom/google/analytics/tracking/android/y;
+; v2 : Lcom/google/analytics/tracking/android/y; , v4 : Lcom/google/analytics/tracking/android/ad;
+	invoke-static	{v2},com/google/analytics/tracking/android/y/h	; h(Lcom/google/analytics/tracking/android/y;)Lcom/google/analytics/tracking/android/l;
+; v2 : Lcom/google/analytics/tracking/android/y;
+	move-result-object	v2
+; v2 : Lcom/google/analytics/tracking/android/l;
+	invoke-interface	{v2},com/google/analytics/tracking/android/l/a	; a()J
+; v2 : Lcom/google/analytics/tracking/android/l;
+	move-result-wide	v2
+; v2 : double-length
+	cmp-long	v0,v0,v2
+; v0 : single-length , v0 : single-length , v2 : double-length
+	if-gez	v0,l98e4c
+; v0 : single-length
+.line 425
+	const-string	v0,"Disconnecting due to inactivity"
+; v0 : Ljava/lang/String;
+	invoke-static	{v0},com/google/analytics/tracking/android/aq/c	; c(Ljava/lang/String;)V
+; v0 : Ljava/lang/String;
+.line 426
+	iget-object	v0,v4,com/google/analytics/tracking/android/ad.a Lcom/google/analytics/tracking/android/y;
+; v0 : Lcom/google/analytics/tracking/android/y; , v4 : Lcom/google/analytics/tracking/android/ad;
+	invoke-static	{v0},com/google/analytics/tracking/android/y/i	; i(Lcom/google/analytics/tracking/android/y;)V
+; v0 : Lcom/google/analytics/tracking/android/y;
+l98e4a:
+.line 430
+	return-void	
+l98e4c:
+.line 428
+	iget-object	v0,v4,com/google/analytics/tracking/android/ad.a Lcom/google/analytics/tracking/android/y;
+; v0 : Lcom/google/analytics/tracking/android/y; , v4 : Lcom/google/analytics/tracking/android/ad;
+	invoke-static	{v0},com/google/analytics/tracking/android/y/j	; j(Lcom/google/analytics/tracking/android/y;)Ljava/util/Timer;
+; v0 : Lcom/google/analytics/tracking/android/y;
+	move-result-object	v0
+; v0 : Ljava/util/Timer;
+	new-instance	v1,com/google/analytics/tracking/android/ad
+; v1 : Lcom/google/analytics/tracking/android/ad;
+	iget-object	v2,v4,com/google/analytics/tracking/android/ad.a Lcom/google/analytics/tracking/android/y;
+; v2 : Lcom/google/analytics/tracking/android/y; , v4 : Lcom/google/analytics/tracking/android/ad;
+	invoke-direct	{v1,v2},com/google/analytics/tracking/android/ad/<init>	; <init>(Lcom/google/analytics/tracking/android/y;)V
+; v1 : Lcom/google/analytics/tracking/android/ad; , v2 : Lcom/google/analytics/tracking/android/y;
+	iget-object	v2,v4,com/google/analytics/tracking/android/ad.a Lcom/google/analytics/tracking/android/y;
+; v2 : Lcom/google/analytics/tracking/android/y; , v4 : Lcom/google/analytics/tracking/android/ad;
+	invoke-static	{v2},com/google/analytics/tracking/android/y/g	; g(Lcom/google/analytics/tracking/android/y;)J
+; v2 : Lcom/google/analytics/tracking/android/y;
+	move-result-wide	v2
+; v2 : double-length
+	invoke-virtual	{v0,v1,v2,v3},java/util/Timer/schedule	; schedule(Ljava/util/TimerTask;J)V
+; v0 : Ljava/util/Timer; , v1 : Lcom/google/analytics/tracking/android/ad; , v2 : double-length
+	goto	l98e4a
+.end method
+
+

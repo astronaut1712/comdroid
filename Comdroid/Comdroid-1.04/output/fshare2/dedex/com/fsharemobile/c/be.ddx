@@ -1,0 +1,37 @@
+.class com/fsharemobile/c/be
+.super java/lang/Object
+.source MyApplication
+.implements java/lang/Runnable
+
+.field final a Lcom/fsharemobile/c/bd;
+
+.method <init>(Lcom/fsharemobile/c/bd;)V
+.limit registers 2
+; this: v0 (Lcom/fsharemobile/c/be;)
+; parameter[0] : v1 (Lcom/fsharemobile/c/bd;)
+.line 1
+	iput-object	v1,v0,com/fsharemobile/c/be.a Lcom/fsharemobile/c/bd;
+; v1 : Lcom/fsharemobile/c/bd; , v0 : Lcom/fsharemobile/c/be;
+.line 60
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Lcom/fsharemobile/c/be;
+	return-void	
+.end method
+
+.method public run()V
+.limit registers 3
+; this: v2 (Lcom/fsharemobile/c/be;)
+.line 63
+	iget-object	v0,v2,com/fsharemobile/c/be.a Lcom/fsharemobile/c/bd;
+; v0 : Lcom/fsharemobile/c/bd; , v2 : Lcom/fsharemobile/c/be;
+	iget-object	v0,v0,com/fsharemobile/c/bd.e Landroid/widget/ScrollView;
+; v0 : Landroid/widget/ScrollView; , v0 : Landroid/widget/ScrollView;
+	const/16	v1,130
+; v1 : single-length
+	invoke-virtual	{v0,v1},android/widget/ScrollView/fullScroll	; fullScroll(I)Z
+; v0 : Landroid/widget/ScrollView; , v1 : single-length
+.line 64
+	return-void	
+.end method
+
+

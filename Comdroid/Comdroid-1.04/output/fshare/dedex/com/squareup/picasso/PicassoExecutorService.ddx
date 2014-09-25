@@ -1,0 +1,147 @@
+.class com/squareup/picasso/PicassoExecutorService
+.super java/util/concurrent/ThreadPoolExecutor
+.source PicassoExecutorService.java
+
+.field private static final DEFAULT_THREAD_COUNT I = 3	; 0x3
+
+.method <init>()V
+.limit registers 9
+; this: v8 (Lcom/squareup/picasso/PicassoExecutorService;)
+	const/4	v1,3
+; v1 : single-length
+.line 35
+	const-wide/16	v3,0
+; v3 : double-length
+	sget-object	v5,java/util/concurrent/TimeUnit.MILLISECONDS Ljava/util/concurrent/TimeUnit;
+; v5 : Ljava/util/concurrent/TimeUnit;
+	new-instance	v6,java/util/concurrent/LinkedBlockingQueue
+; v6 : Ljava/util/concurrent/LinkedBlockingQueue;
+	invoke-direct	{v6},java/util/concurrent/LinkedBlockingQueue/<init>	; <init>()V
+; v6 : Ljava/util/concurrent/LinkedBlockingQueue;
+	new-instance	v7,com/squareup/picasso/Utils$PicassoThreadFactory
+; v7 : Lcom/squareup/picasso/Utils$PicassoThreadFactory;
+	invoke-direct	{v7},com/squareup/picasso/Utils$PicassoThreadFactory/<init>	; <init>()V
+; v7 : Lcom/squareup/picasso/Utils$PicassoThreadFactory;
+	move-object	v0,v8
+; v0 : Lcom/squareup/picasso/PicassoExecutorService; , v8 : Lcom/squareup/picasso/PicassoExecutorService;
+	move	v2,v1
+; v2 : single-length , v1 : single-length
+	invoke-direct/range	{v0..v7},java/util/concurrent/ThreadPoolExecutor/<init>;	<init>(IIJLjava/util/concurrent/TimeUnit;Ljava/util/concurrent/BlockingQueue;Ljava/util/concurrent/ThreadFactory;)V
+; v0 : Lcom/squareup/picasso/PicassoExecutorService; , v1 : single-length , v2 : single-length , v3 : double-length , v5 : Ljava/util/concurrent/TimeUnit; , v6 : Ljava/util/concurrent/LinkedBlockingQueue; , v7 : Lcom/squareup/picasso/Utils$PicassoThreadFactory;
+.line 37
+	return-void	
+.end method
+
+.method private setThreadCount(I)V
+.limit registers 2
+; this: v0 (Lcom/squareup/picasso/PicassoExecutorService;)
+; parameter[0] : v1 (I)
+.line 78
+	invoke-virtual	{v0,v1},com/squareup/picasso/PicassoExecutorService/setCorePoolSize	; setCorePoolSize(I)V
+; v0 : Lcom/squareup/picasso/PicassoExecutorService; , v1 : single-length
+.line 79
+	invoke-virtual	{v0,v1},com/squareup/picasso/PicassoExecutorService/setMaximumPoolSize	; setMaximumPoolSize(I)V
+; v0 : Lcom/squareup/picasso/PicassoExecutorService; , v1 : single-length
+.line 80
+	return-void	
+.end method
+
+.method adjustThreadCount(Landroid/net/NetworkInfo;)V
+.limit registers 4
+; this: v2 (Lcom/squareup/picasso/PicassoExecutorService;)
+; parameter[0] : v3 (Landroid/net/NetworkInfo;)
+	const/4	v1,3
+; v1 : single-length
+.line 40
+	if-eqz	v3,lc4e2e
+; v3 : Landroid/net/NetworkInfo;
+	invoke-virtual	{v3},android/net/NetworkInfo/isConnectedOrConnecting	; isConnectedOrConnecting()Z
+; v3 : Landroid/net/NetworkInfo;
+	move-result	v0
+; v0 : single-length
+	if-nez	v0,lc4e36
+; v0 : single-length
+lc4e2e:
+.line 41
+	invoke-direct	{v2,v1},com/squareup/picasso/PicassoExecutorService/setThreadCount	; setThreadCount(I)V
+; v2 : Lcom/squareup/picasso/PicassoExecutorService; , v1 : single-length
+lc4e34:
+.line 75
+	return-void	
+lc4e36:
+.line 44
+	invoke-virtual	{v3},android/net/NetworkInfo/getType	; getType()I
+; v3 : Landroid/net/NetworkInfo;
+	move-result	v0
+; v0 : single-length
+	sparse-switch	v0
+		0 : spc4e3e_c4e56
+		1 : spc4e3e_c4e4c
+		6 : spc4e3e_c4e4c
+		9 : spc4e3e_c4e4c
+		default: spc4e3e_default
+; v0 : single-length
+spc4e3e_default:
+.line 73
+	invoke-direct	{v2,v1},com/squareup/picasso/PicassoExecutorService/setThreadCount	; setThreadCount(I)V
+; v2 : Lcom/squareup/picasso/PicassoExecutorService; , v1 : single-length
+	goto	lc4e34
+spc4e3e_c4e4c:
+.line 48
+	const/4	v0,4
+; v0 : single-length
+	invoke-direct	{v2,v0},com/squareup/picasso/PicassoExecutorService/setThreadCount	; setThreadCount(I)V
+; v2 : Lcom/squareup/picasso/PicassoExecutorService; , v0 : single-length
+	goto	lc4e34
+spc4e3e_c4e56:
+.line 51
+	invoke-virtual	{v3},android/net/NetworkInfo/getSubtype	; getSubtype()I
+; v3 : Landroid/net/NetworkInfo;
+	move-result	v0
+; v0 : single-length
+	packed-switch	v0,1
+		psc4e5e_c4e7e	; case 1
+		psc4e5e_c4e7e	; case 2
+		psc4e5e_c4e74	; case 3
+		psc4e5e_c4e74	; case 4
+		psc4e5e_c4e74	; case 5
+		psc4e5e_c4e74	; case 6
+		psc4e5e_c4e64	; case 7
+		psc4e5e_c4e64	; case 8
+		psc4e5e_c4e64	; case 9
+		psc4e5e_c4e64	; case 10
+		psc4e5e_c4e64	; case 11
+		psc4e5e_c4e74	; case 12
+		psc4e5e_c4e6c	; case 13
+		psc4e5e_c4e6c	; case 14
+		psc4e5e_c4e6c	; case 15
+		default: psc4e5e_default
+; v0 : single-length
+psc4e5e_default:
+.line 69
+	invoke-direct	{v2,v1},com/squareup/picasso/PicassoExecutorService/setThreadCount	; setThreadCount(I)V
+; v2 : Lcom/squareup/picasso/PicassoExecutorService; , v1 : single-length
+	goto	lc4e34
+psc4e5e_c4e6c:
+.line 55
+	invoke-direct	{v2,v1},com/squareup/picasso/PicassoExecutorService/setThreadCount	; setThreadCount(I)V
+; v2 : Lcom/squareup/picasso/PicassoExecutorService; , v1 : single-length
+	goto	lc4e34
+psc4e5e_c4e74:
+.line 62
+	const/4	v0,2
+; v0 : single-length
+	invoke-direct	{v2,v0},com/squareup/picasso/PicassoExecutorService/setThreadCount	; setThreadCount(I)V
+; v2 : Lcom/squareup/picasso/PicassoExecutorService; , v0 : single-length
+	goto	lc4e34
+psc4e5e_c4e7e:
+.line 66
+	const/4	v0,1
+; v0 : single-length
+	invoke-direct	{v2,v0},com/squareup/picasso/PicassoExecutorService/setThreadCount	; setThreadCount(I)V
+; v2 : Lcom/squareup/picasso/PicassoExecutorService; , v0 : single-length
+	goto	lc4e34
+.line 44
+.end method
+
+

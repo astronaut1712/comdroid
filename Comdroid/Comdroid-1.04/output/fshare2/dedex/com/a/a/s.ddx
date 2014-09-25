@@ -1,0 +1,98 @@
+.class com/a/a/s
+.super java/net/URLStreamHandler
+.source MyApplication
+
+.field final a Ljava/lang/String;
+.field final b Lcom/a/a/r;
+
+.method <init>(Lcom/a/a/r;Ljava/lang/String;)V
+.limit registers 3
+; this: v0 (Lcom/a/a/s;)
+; parameter[0] : v1 (Lcom/a/a/r;)
+; parameter[1] : v2 (Ljava/lang/String;)
+.line 392
+	iput-object	v1,v0,com/a/a/s.b Lcom/a/a/r;
+; v1 : Lcom/a/a/r; , v0 : Lcom/a/a/s;
+	iput-object	v2,v0,com/a/a/s.a Ljava/lang/String;
+; v2 : Ljava/lang/String; , v0 : Lcom/a/a/s;
+	invoke-direct	{v0},java/net/URLStreamHandler/<init>	; <init>()V
+; v0 : Lcom/a/a/s;
+	return-void	
+.end method
+
+.method protected getDefaultPort()I
+.limit registers 3
+; this: v2 (Lcom/a/a/s;)
+.line 402
+	iget-object	v0,v2,com/a/a/s.a Ljava/lang/String;
+; v0 : Ljava/lang/String; , v2 : Lcom/a/a/s;
+	const-string	v1,"http"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/String/equals	; equals(Ljava/lang/Object;)Z
+; v0 : Ljava/lang/String; , v1 : Ljava/lang/String;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,l77772
+; v0 : single-length
+	const/16	v0,80
+; v0 : single-length
+l77770:
+.line 403
+	return	v0
+; v0 : single-length
+l77772:
+	iget-object	v0,v2,com/a/a/s.a Ljava/lang/String;
+; v0 : Ljava/lang/String; , v2 : Lcom/a/a/s;
+	const-string	v1,"https"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/String/equals	; equals(Ljava/lang/Object;)Z
+; v0 : Ljava/lang/String; , v1 : Ljava/lang/String;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,l7778c
+; v0 : single-length
+	const/16	v0,443
+; v0 : single-length
+	goto	l77770
+l7778c:
+.line 404
+	new-instance	v0,java/lang/AssertionError
+; v0 : Ljava/lang/AssertionError;
+	invoke-direct	{v0},java/lang/AssertionError/<init>	; <init>()V
+; v0 : Ljava/lang/AssertionError;
+	throw	v0
+; v0 : Ljava/lang/AssertionError;
+.end method
+
+.method protected openConnection(Ljava/net/URL;)Ljava/net/URLConnection;
+.limit registers 3
+; this: v1 (Lcom/a/a/s;)
+; parameter[0] : v2 (Ljava/net/URL;)
+.line 394
+	iget-object	v0,v1,com/a/a/s.b Lcom/a/a/r;
+; v0 : Lcom/a/a/r; , v1 : Lcom/a/a/s;
+	invoke-virtual	{v0,v2},com/a/a/r/a	; a(Ljava/net/URL;)Ljava/net/HttpURLConnection;
+; v0 : Lcom/a/a/r; , v2 : Ljava/net/URL;
+	move-result-object	v0
+; v0 : Ljava/net/HttpURLConnection;
+	return-object	v0
+; v0 : Ljava/net/HttpURLConnection;
+.end method
+
+.method protected openConnection(Ljava/net/URL;Ljava/net/Proxy;)Ljava/net/URLConnection;
+.limit registers 4
+; this: v1 (Lcom/a/a/s;)
+; parameter[0] : v2 (Ljava/net/URL;)
+; parameter[1] : v3 (Ljava/net/Proxy;)
+.line 398
+	iget-object	v0,v1,com/a/a/s.b Lcom/a/a/r;
+; v0 : Lcom/a/a/r; , v1 : Lcom/a/a/s;
+	invoke-virtual	{v0,v2,v3},com/a/a/r/a	; a(Ljava/net/URL;Ljava/net/Proxy;)Ljava/net/HttpURLConnection;
+; v0 : Lcom/a/a/r; , v2 : Ljava/net/URL; , v3 : Ljava/net/Proxy;
+	move-result-object	v0
+; v0 : Ljava/net/HttpURLConnection;
+	return-object	v0
+; v0 : Ljava/net/HttpURLConnection;
+.end method
+
+

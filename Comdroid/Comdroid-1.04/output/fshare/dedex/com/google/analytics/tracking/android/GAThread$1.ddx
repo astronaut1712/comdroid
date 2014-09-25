@@ -1,0 +1,212 @@
+.class com/google/analytics/tracking/android/GAThread$1
+.super java/lang/Object
+.source GAThread.java
+.implements java/lang/Runnable
+
+.enclosing method com/sendHit(Ljava/util/Map;)V
+.field final this$0 Lcom/google/analytics/tracking/android/GAThread;
+.field final val$hitCopy Ljava/util/Map;
+
+.method <init>(Lcom/google/analytics/tracking/android/GAThread;Ljava/util/Map;)V
+.limit registers 3
+; this: v0 (Lcom/google/analytics/tracking/android/GAThread$1;)
+; parameter[0] : v1 (Lcom/google/analytics/tracking/android/GAThread;)
+; parameter[1] : v2 (Ljava/util/Map;)
+.line 129
+	iput-object	v1,v0,com/google/analytics/tracking/android/GAThread$1.this$0 Lcom/google/analytics/tracking/android/GAThread;
+; v1 : Lcom/google/analytics/tracking/android/GAThread; , v0 : Lcom/google/analytics/tracking/android/GAThread$1;
+	iput-object	v2,v0,com/google/analytics/tracking/android/GAThread$1.val$hitCopy Ljava/util/Map;
+; v2 : Ljava/util/Map; , v0 : Lcom/google/analytics/tracking/android/GAThread$1;
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Lcom/google/analytics/tracking/android/GAThread$1;
+	return-void	
+.end method
+
+.method public run()V
+.limit registers 7
+; this: v6 (Lcom/google/analytics/tracking/android/GAThread$1;)
+.line 134
+	iget-object	v0,v6,com/google/analytics/tracking/android/GAThread$1.val$hitCopy Ljava/util/Map;
+; v0 : Ljava/util/Map; , v6 : Lcom/google/analytics/tracking/android/GAThread$1;
+	const-string	v2,"&cid"
+; v2 : Ljava/lang/String;
+	invoke-interface	{v0,v2},java/util/Map/get	; get(Ljava/lang/Object;)Ljava/lang/Object;
+; v0 : Ljava/util/Map; , v2 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,java/lang/CharSequence
+; v0 : Ljava/lang/CharSequence;
+	invoke-static	{v0},android/text/TextUtils/isEmpty	; isEmpty(Ljava/lang/CharSequence;)Z
+; v0 : Ljava/lang/CharSequence;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,la1276
+; v0 : single-length
+.line 135
+	iget-object	v0,v6,com/google/analytics/tracking/android/GAThread$1.val$hitCopy Ljava/util/Map;
+; v0 : Ljava/util/Map; , v6 : Lcom/google/analytics/tracking/android/GAThread$1;
+	const-string	v2,"&cid"
+; v2 : Ljava/lang/String;
+	iget-object	v3,v6,com/google/analytics/tracking/android/GAThread$1.this$0 Lcom/google/analytics/tracking/android/GAThread;
+; v3 : Lcom/google/analytics/tracking/android/GAThread; , v6 : Lcom/google/analytics/tracking/android/GAThread$1;
+	invoke-static	{v3},com/google/analytics/tracking/android/GAThread/access$000	; access$000(Lcom/google/analytics/tracking/android/GAThread;)Ljava/lang/String;
+; v3 : Lcom/google/analytics/tracking/android/GAThread;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-interface	{v0,v2,v3},java/util/Map/put	; put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+; v0 : Ljava/util/Map; , v2 : Ljava/lang/String; , v3 : Ljava/lang/String;
+la1276:
+.line 143
+	iget-object	v0,v6,com/google/analytics/tracking/android/GAThread$1.this$0 Lcom/google/analytics/tracking/android/GAThread;
+; v0 : Lcom/google/analytics/tracking/android/GAThread; , v6 : Lcom/google/analytics/tracking/android/GAThread$1;
+	invoke-static	{v0},com/google/analytics/tracking/android/GAThread/access$100	; access$100(Lcom/google/analytics/tracking/android/GAThread;)Landroid/content/Context;
+; v0 : Lcom/google/analytics/tracking/android/GAThread;
+	move-result-object	v0
+; v0 : Landroid/content/Context;
+	invoke-static	{v0},com/google/analytics/tracking/android/GoogleAnalytics/getInstance	; getInstance(Landroid/content/Context;)Lcom/google/analytics/tracking/android/GoogleAnalytics;
+; v0 : Landroid/content/Context;
+	move-result-object	v0
+; v0 : Lcom/google/analytics/tracking/android/GoogleAnalytics;
+	invoke-virtual	{v0},com/google/analytics/tracking/android/GoogleAnalytics/getAppOptOut	; getAppOptOut()Z
+; v0 : Lcom/google/analytics/tracking/android/GoogleAnalytics;
+	move-result	v0
+; v0 : single-length
+	if-nez	v0,la12aa
+; v0 : single-length
+	iget-object	v0,v6,com/google/analytics/tracking/android/GAThread$1.this$0 Lcom/google/analytics/tracking/android/GAThread;
+; v0 : Lcom/google/analytics/tracking/android/GAThread; , v6 : Lcom/google/analytics/tracking/android/GAThread$1;
+	iget-object	v2,v6,com/google/analytics/tracking/android/GAThread$1.val$hitCopy Ljava/util/Map;
+; v2 : Ljava/util/Map; , v6 : Lcom/google/analytics/tracking/android/GAThread$1;
+	invoke-static	{v0,v2},com/google/analytics/tracking/android/GAThread/access$200	; access$200(Lcom/google/analytics/tracking/android/GAThread;Ljava/util/Map;)Z
+; v0 : Lcom/google/analytics/tracking/android/GAThread; , v2 : Ljava/util/Map;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,la12ac
+; v0 : single-length
+la12aa:
+.line 159
+	return-void	
+la12ac:
+.line 146
+	iget-object	v0,v6,com/google/analytics/tracking/android/GAThread$1.this$0 Lcom/google/analytics/tracking/android/GAThread;
+; v0 : Lcom/google/analytics/tracking/android/GAThread; , v6 : Lcom/google/analytics/tracking/android/GAThread$1;
+	invoke-static	{v0},com/google/analytics/tracking/android/GAThread/access$300	; access$300(Lcom/google/analytics/tracking/android/GAThread;)Ljava/lang/String;
+; v0 : Lcom/google/analytics/tracking/android/GAThread;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	invoke-static	{v0},android/text/TextUtils/isEmpty	; isEmpty(Ljava/lang/CharSequence;)Z
+; v0 : Ljava/lang/String;
+	move-result	v0
+; v0 : single-length
+	if-nez	v0,la1320
+; v0 : single-length
+.line 147
+	invoke-static	{},com/google/analytics/tracking/android/GAUsage/getInstance	; getInstance()Lcom/google/analytics/tracking/android/GAUsage;
+; 
+	nop	
+	move-result-object	v0
+; v0 : Lcom/google/analytics/tracking/android/GAUsage;
+	const/4	v2,1
+; v2 : single-length
+	invoke-virtual	{v0,v2},com/google/analytics/tracking/android/GAUsage/setDisableUsage	; setDisableUsage(Z)V
+; v0 : Lcom/google/analytics/tracking/android/GAUsage; , v2 : single-length
+.line 148
+	iget-object	v0,v6,com/google/analytics/tracking/android/GAThread$1.val$hitCopy Ljava/util/Map;
+; v0 : Ljava/util/Map; , v6 : Lcom/google/analytics/tracking/android/GAThread$1;
+	new-instance	v2,com/google/analytics/tracking/android/MapBuilder
+; v2 : Lcom/google/analytics/tracking/android/MapBuilder;
+	invoke-direct	{v2},com/google/analytics/tracking/android/MapBuilder/<init>	; <init>()V
+; v2 : Lcom/google/analytics/tracking/android/MapBuilder;
+	iget-object	v3,v6,com/google/analytics/tracking/android/GAThread$1.this$0 Lcom/google/analytics/tracking/android/GAThread;
+; v3 : Lcom/google/analytics/tracking/android/GAThread; , v6 : Lcom/google/analytics/tracking/android/GAThread$1;
+	invoke-static	{v3},com/google/analytics/tracking/android/GAThread/access$300	; access$300(Lcom/google/analytics/tracking/android/GAThread;)Ljava/lang/String;
+; v3 : Lcom/google/analytics/tracking/android/GAThread;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},com/google/analytics/tracking/android/MapBuilder/setCampaignParamsFromUrl	; setCampaignParamsFromUrl(Ljava/lang/String;)Lcom/google/analytics/tracking/android/MapBuilder;
+; v2 : Lcom/google/analytics/tracking/android/MapBuilder; , v3 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Lcom/google/analytics/tracking/android/MapBuilder;
+	invoke-virtual	{v2},com/google/analytics/tracking/android/MapBuilder/build	; build()Ljava/util/Map;
+; v2 : Lcom/google/analytics/tracking/android/MapBuilder;
+	move-result-object	v2
+; v2 : Ljava/util/Map;
+	invoke-interface	{v0,v2},java/util/Map/putAll	; putAll(Ljava/util/Map;)V
+; v0 : Ljava/util/Map; , v2 : Ljava/util/Map;
+.line 149
+	invoke-static	{},com/google/analytics/tracking/android/GAUsage/getInstance	; getInstance()Lcom/google/analytics/tracking/android/GAUsage;
+; 
+	nop	
+	move-result-object	v0
+; v0 : Lcom/google/analytics/tracking/android/GAUsage;
+	const/4	v2,0
+; v2 : single-length
+	invoke-virtual	{v0,v2},com/google/analytics/tracking/android/GAUsage/setDisableUsage	; setDisableUsage(Z)V
+; v0 : Lcom/google/analytics/tracking/android/GAUsage; , v2 : single-length
+.line 150
+	iget-object	v0,v6,com/google/analytics/tracking/android/GAThread$1.this$0 Lcom/google/analytics/tracking/android/GAThread;
+; v0 : Lcom/google/analytics/tracking/android/GAThread; , v6 : Lcom/google/analytics/tracking/android/GAThread$1;
+	const/4	v2,0
+; v2 : single-length
+	invoke-static	{v0,v2},com/google/analytics/tracking/android/GAThread/access$302	; access$302(Lcom/google/analytics/tracking/android/GAThread;Ljava/lang/String;)Ljava/lang/String;
+; v0 : Lcom/google/analytics/tracking/android/GAThread; , v2 : single-length
+la1320:
+.line 152
+	iget-object	v0,v6,com/google/analytics/tracking/android/GAThread$1.this$0 Lcom/google/analytics/tracking/android/GAThread;
+; v0 : Lcom/google/analytics/tracking/android/GAThread; , v6 : Lcom/google/analytics/tracking/android/GAThread$1;
+	iget-object	v2,v6,com/google/analytics/tracking/android/GAThread$1.val$hitCopy Ljava/util/Map;
+; v2 : Ljava/util/Map; , v6 : Lcom/google/analytics/tracking/android/GAThread$1;
+	invoke-static	{v0,v2},com/google/analytics/tracking/android/GAThread/access$400	; access$400(Lcom/google/analytics/tracking/android/GAThread;Ljava/util/Map;)V
+; v0 : Lcom/google/analytics/tracking/android/GAThread; , v2 : Ljava/util/Map;
+.line 153
+	iget-object	v0,v6,com/google/analytics/tracking/android/GAThread$1.val$hitCopy Ljava/util/Map;
+; v0 : Ljava/util/Map; , v6 : Lcom/google/analytics/tracking/android/GAThread$1;
+	invoke-static	{v0},com/google/analytics/tracking/android/HitBuilder/generateHitParams	; generateHitParams(Ljava/util/Map;)Ljava/util/Map;
+; v0 : Ljava/util/Map;
+	move-result-object	v1
+; v1 : Ljava/util/Map;
+.line 154
+	iget-object	v0,v6,com/google/analytics/tracking/android/GAThread$1.this$0 Lcom/google/analytics/tracking/android/GAThread;
+; v0 : Lcom/google/analytics/tracking/android/GAThread; , v6 : Lcom/google/analytics/tracking/android/GAThread$1;
+	invoke-static	{v0},com/google/analytics/tracking/android/GAThread/access$700	; access$700(Lcom/google/analytics/tracking/android/GAThread;)Lcom/google/analytics/tracking/android/ServiceProxy;
+; v0 : Lcom/google/analytics/tracking/android/GAThread;
+	move-result-object	v0
+; v0 : Lcom/google/analytics/tracking/android/ServiceProxy;
+	iget-object	v2,v6,com/google/analytics/tracking/android/GAThread$1.val$hitCopy Ljava/util/Map;
+; v2 : Ljava/util/Map; , v6 : Lcom/google/analytics/tracking/android/GAThread$1;
+	const-string	v3,"&ht"
+; v3 : Ljava/lang/String;
+	invoke-interface	{v2,v3},java/util/Map/get	; get(Ljava/lang/Object;)Ljava/lang/Object;
+; v2 : Ljava/util/Map; , v3 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/Object;
+	check-cast	v2,java/lang/String
+; v2 : Ljava/lang/String;
+	invoke-static	{v2},java/lang/Long/valueOf	; valueOf(Ljava/lang/String;)Ljava/lang/Long;
+; v2 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/Long;
+	invoke-virtual	{v2},java/lang/Long/longValue	; longValue()J
+; v2 : Ljava/lang/Long;
+	move-result-wide	v2
+; v2 : double-length
+	iget-object	v4,v6,com/google/analytics/tracking/android/GAThread$1.this$0 Lcom/google/analytics/tracking/android/GAThread;
+; v4 : Lcom/google/analytics/tracking/android/GAThread; , v6 : Lcom/google/analytics/tracking/android/GAThread$1;
+	iget-object	v5,v6,com/google/analytics/tracking/android/GAThread$1.val$hitCopy Ljava/util/Map;
+; v5 : Ljava/util/Map; , v6 : Lcom/google/analytics/tracking/android/GAThread$1;
+	invoke-static	{v4,v5},com/google/analytics/tracking/android/GAThread/access$500	; access$500(Lcom/google/analytics/tracking/android/GAThread;Ljava/util/Map;)Ljava/lang/String;
+; v4 : Lcom/google/analytics/tracking/android/GAThread; , v5 : Ljava/util/Map;
+	move-result-object	v4
+; v4 : Ljava/lang/String;
+	iget-object	v5,v6,com/google/analytics/tracking/android/GAThread$1.this$0 Lcom/google/analytics/tracking/android/GAThread;
+; v5 : Lcom/google/analytics/tracking/android/GAThread; , v6 : Lcom/google/analytics/tracking/android/GAThread$1;
+	invoke-static	{v5},com/google/analytics/tracking/android/GAThread/access$600	; access$600(Lcom/google/analytics/tracking/android/GAThread;)Ljava/util/List;
+; v5 : Lcom/google/analytics/tracking/android/GAThread;
+	move-result-object	v5
+; v5 : Ljava/util/List;
+	invoke-interface/range	{v0..v5},com/google/analytics/tracking/android/ServiceProxy/putHit;	putHit(Ljava/util/Map;JLjava/lang/String;Ljava/util/List;)V
+; v0 : Lcom/google/analytics/tracking/android/ServiceProxy; , v1 : Ljava/util/Map; , v2 : double-length , v4 : Ljava/lang/String; , v5 : Ljava/util/List;
+	goto	la12aa
+.end method
+
+

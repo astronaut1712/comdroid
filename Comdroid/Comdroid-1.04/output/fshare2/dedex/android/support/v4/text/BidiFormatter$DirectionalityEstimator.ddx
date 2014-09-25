@@ -1,0 +1,920 @@
+.class android/support/v4/text/BidiFormatter$DirectionalityEstimator
+.super java/lang/Object
+.source MyApplication
+
+.field private static final DIR_TYPE_CACHE [B = null
+.field private static final DIR_TYPE_CACHE_SIZE I = 1792	; 0x700
+.field private charIndex I
+.field private final isHtml Z
+.field private lastChar C
+.field private final length I
+.field private final text Ljava/lang/String;
+
+.method static <clinit>()V
+.limit registers 4
+	const/16	v3,1792
+; v3 : single-length
+.line 505
+	new-array	v0,v3,[B
+; v0 : [B , v3 : single-length
+	sput-object	v0,android/support/v4/text/BidiFormatter$DirectionalityEstimator.DIR_TYPE_CACHE [B
+; v0 : [B
+.line 506
+	const/4	v0,0
+; v0 : single-length
+l489a2:
+	if-ge	v0,v3,l489bc
+; v0 : single-length , v3 : single-length
+.line 507
+	sget-object	v1,android/support/v4/text/BidiFormatter$DirectionalityEstimator.DIR_TYPE_CACHE [B
+; v1 : [B
+	invoke-static	{v0},java/lang/Character/getDirectionality	; getDirectionality(I)B
+; v0 : single-length
+	move-result	v2
+; v2 : single-length
+	aput-byte	v2,v1,v0
+; v2 : single-length , v1 : [B , v0 : single-length
+.line 506
+	add-int/lit8	v0,v0,1
+; v0 : single-length , v0 : single-length
+	goto	l489a2
+l489bc:
+.line 509
+	return-void	
+.end method
+
+.method <init>(Ljava/lang/String;Z)V
+.limit registers 4
+; this: v1 (Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;)
+; parameter[0] : v2 (Ljava/lang/String;)
+; parameter[1] : v3 (Z)
+.line 549
+	invoke-direct	{v1},java/lang/Object/<init>	; <init>()V
+; v1 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+.line 550
+	iput-object	v2,v1,android/support/v4/text/BidiFormatter$DirectionalityEstimator.text Ljava/lang/String;
+; v2 : Ljava/lang/String; , v1 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+.line 551
+	iput-boolean	v3,v1,android/support/v4/text/BidiFormatter$DirectionalityEstimator.isHtml Z
+; v3 : single-length , v1 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+.line 552
+	invoke-virtual	{v2},java/lang/String/length	; length()I
+; v2 : Ljava/lang/String;
+	move-result	v0
+; v0 : single-length
+	iput	v0,v1,android/support/v4/text/BidiFormatter$DirectionalityEstimator.length I
+; v0 : single-length , v1 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+.line 553
+	return-void	
+.end method
+
+.method private static getCachedDirectionality(C)B
+.limit registers 2
+; parameter[0] : v1 (C)
+.line 724
+	const/16	v0,1792
+; v0 : single-length
+	if-ge	v1,v0,l48a0e
+; v1 : single-length , v0 : single-length
+	sget-object	v0,android/support/v4/text/BidiFormatter$DirectionalityEstimator.DIR_TYPE_CACHE [B
+; v0 : [B
+	aget-byte	v0,v0,v1
+; v0 : single-length , v0 : single-length , v1 : single-length
+l48a0c:
+	return	v0
+; v0 : single-length
+l48a0e:
+	invoke-static	{v1},java/lang/Character/getDirectionality	; getDirectionality(C)B
+; v1 : single-length
+	move-result	v0
+; v0 : single-length
+	goto	l48a0c
+.end method
+
+.method private skipEntityBackward()B
+.limit registers 5
+; this: v4 (Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;)
+	const/16	v3,59
+; v3 : single-length
+.line 865
+	iget	v0,v4,android/support/v4/text/BidiFormatter$DirectionalityEstimator.charIndex I
+; v0 : single-length , v4 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+l48a30:
+.line 866
+	iget	v1,v4,android/support/v4/text/BidiFormatter$DirectionalityEstimator.charIndex I
+; v1 : single-length , v4 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+	if-lez	v1,l48a6e
+; v1 : single-length
+.line 867
+	iget-object	v1,v4,android/support/v4/text/BidiFormatter$DirectionalityEstimator.text Ljava/lang/String;
+; v1 : Ljava/lang/String; , v4 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+	iget	v2,v4,android/support/v4/text/BidiFormatter$DirectionalityEstimator.charIndex I
+; v2 : single-length , v4 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+	add-int/lit8	v2,v2,255
+; v2 : single-length , v2 : single-length
+	iput	v2,v4,android/support/v4/text/BidiFormatter$DirectionalityEstimator.charIndex I
+; v2 : single-length , v4 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+	invoke-virtual	{v1,v2},java/lang/String/charAt	; charAt(I)C
+; v1 : Ljava/lang/String; , v2 : single-length
+	move-result	v1
+; v1 : single-length
+	iput-char	v1,v4,android/support/v4/text/BidiFormatter$DirectionalityEstimator.lastChar C
+; v1 : single-length , v4 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+.line 868
+	iget-char	v1,v4,android/support/v4/text/BidiFormatter$DirectionalityEstimator.lastChar C
+; v1 : single-length , v4 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+	const/16	v2,38
+; v2 : single-length
+	if-ne	v1,v2,l48a66
+; v1 : single-length , v2 : single-length
+.line 869
+	const/16	v0,12
+; v0 : single-length
+l48a64:
+.line 877
+	return	v0
+; v0 : single-length
+l48a66:
+.line 871
+	iget-char	v1,v4,android/support/v4/text/BidiFormatter$DirectionalityEstimator.lastChar C
+; v1 : single-length , v4 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+	if-ne	v1,v3,l48a30
+; v1 : single-length , v3 : single-length
+l48a6e:
+.line 875
+	iput	v0,v4,android/support/v4/text/BidiFormatter$DirectionalityEstimator.charIndex I
+; v0 : single-length , v4 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+.line 876
+	iput-char	v3,v4,android/support/v4/text/BidiFormatter$DirectionalityEstimator.lastChar C
+; v3 : single-length , v4 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+.line 877
+	const/16	v0,13
+; v0 : single-length
+	goto	l48a64
+.end method
+
+.method private skipEntityForward()B
+.limit registers 4
+; this: v3 (Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;)
+l48a8c:
+.line 850
+	iget	v0,v3,android/support/v4/text/BidiFormatter$DirectionalityEstimator.charIndex I
+; v0 : single-length , v3 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+	iget	v1,v3,android/support/v4/text/BidiFormatter$DirectionalityEstimator.length I
+; v1 : single-length , v3 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+	if-ge	v0,v1,l48abc
+; v0 : single-length , v1 : single-length
+	iget-object	v0,v3,android/support/v4/text/BidiFormatter$DirectionalityEstimator.text Ljava/lang/String;
+; v0 : Ljava/lang/String; , v3 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+	iget	v1,v3,android/support/v4/text/BidiFormatter$DirectionalityEstimator.charIndex I
+; v1 : single-length , v3 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+	add-int/lit8	v2,v1,1
+; v2 : single-length , v1 : single-length
+	iput	v2,v3,android/support/v4/text/BidiFormatter$DirectionalityEstimator.charIndex I
+; v2 : single-length , v3 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+	invoke-virtual	{v0,v1},java/lang/String/charAt	; charAt(I)C
+; v0 : Ljava/lang/String; , v1 : single-length
+	move-result	v0
+; v0 : single-length
+	iput-char	v0,v3,android/support/v4/text/BidiFormatter$DirectionalityEstimator.lastChar C
+; v0 : single-length , v3 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+	const/16	v1,59
+; v1 : single-length
+	if-ne	v0,v1,l48a8c
+; v0 : single-length , v1 : single-length
+l48abc:
+.line 851
+	const/16	v0,12
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method private skipTagBackward()B
+.limit registers 6
+; this: v5 (Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;)
+	const/16	v4,62
+; v4 : single-length
+.line 822
+	iget	v0,v5,android/support/v4/text/BidiFormatter$DirectionalityEstimator.charIndex I
+; v0 : single-length , v5 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+l48adc:
+.line 823
+	iget	v1,v5,android/support/v4/text/BidiFormatter$DirectionalityEstimator.charIndex I
+; v1 : single-length , v5 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+	if-lez	v1,l48b1a
+; v1 : single-length
+.line 824
+	iget-object	v1,v5,android/support/v4/text/BidiFormatter$DirectionalityEstimator.text Ljava/lang/String;
+; v1 : Ljava/lang/String; , v5 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+	iget	v2,v5,android/support/v4/text/BidiFormatter$DirectionalityEstimator.charIndex I
+; v2 : single-length , v5 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+	add-int/lit8	v2,v2,255
+; v2 : single-length , v2 : single-length
+	iput	v2,v5,android/support/v4/text/BidiFormatter$DirectionalityEstimator.charIndex I
+; v2 : single-length , v5 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+	invoke-virtual	{v1,v2},java/lang/String/charAt	; charAt(I)C
+; v1 : Ljava/lang/String; , v2 : single-length
+	move-result	v1
+; v1 : single-length
+	iput-char	v1,v5,android/support/v4/text/BidiFormatter$DirectionalityEstimator.lastChar C
+; v1 : single-length , v5 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+.line 825
+	iget-char	v1,v5,android/support/v4/text/BidiFormatter$DirectionalityEstimator.lastChar C
+; v1 : single-length , v5 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+	const/16	v2,60
+; v2 : single-length
+	if-ne	v1,v2,l48b12
+; v1 : single-length , v2 : single-length
+.line 827
+	const/16	v0,12
+; v0 : single-length
+l48b10:
+.line 841
+	return	v0
+; v0 : single-length
+l48b12:
+.line 829
+	iget-char	v1,v5,android/support/v4/text/BidiFormatter$DirectionalityEstimator.lastChar C
+; v1 : single-length , v5 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+	if-ne	v1,v4,l48b28
+; v1 : single-length , v4 : single-length
+l48b1a:
+.line 839
+	iput	v0,v5,android/support/v4/text/BidiFormatter$DirectionalityEstimator.charIndex I
+; v0 : single-length , v5 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+.line 840
+	iput-char	v4,v5,android/support/v4/text/BidiFormatter$DirectionalityEstimator.lastChar C
+; v4 : single-length , v5 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+.line 841
+	const/16	v0,13
+; v0 : single-length
+	goto	l48b10
+l48b28:
+.line 832
+	iget-char	v1,v5,android/support/v4/text/BidiFormatter$DirectionalityEstimator.lastChar C
+; v1 : single-length , v5 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+	const/16	v2,34
+; v2 : single-length
+	if-eq	v1,v2,l48b40
+; v1 : single-length , v2 : single-length
+	iget-char	v1,v5,android/support/v4/text/BidiFormatter$DirectionalityEstimator.lastChar C
+; v1 : single-length , v5 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+	const/16	v2,39
+; v2 : single-length
+	if-ne	v1,v2,l48adc
+; v1 : single-length , v2 : single-length
+l48b40:
+.line 834
+	iget-char	v1,v5,android/support/v4/text/BidiFormatter$DirectionalityEstimator.lastChar C
+; v1 : single-length , v5 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+l48b44:
+.line 835
+	iget	v2,v5,android/support/v4/text/BidiFormatter$DirectionalityEstimator.charIndex I
+; v2 : single-length , v5 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+	if-lez	v2,l48adc
+; v2 : single-length
+	iget-object	v2,v5,android/support/v4/text/BidiFormatter$DirectionalityEstimator.text Ljava/lang/String;
+; v2 : Ljava/lang/String; , v5 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+	iget	v3,v5,android/support/v4/text/BidiFormatter$DirectionalityEstimator.charIndex I
+; v3 : single-length , v5 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+	add-int/lit8	v3,v3,255
+; v3 : single-length , v3 : single-length
+	iput	v3,v5,android/support/v4/text/BidiFormatter$DirectionalityEstimator.charIndex I
+; v3 : single-length , v5 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+	invoke-virtual	{v2,v3},java/lang/String/charAt	; charAt(I)C
+; v2 : Ljava/lang/String; , v3 : single-length
+	move-result	v2
+; v2 : single-length
+	iput-char	v2,v5,android/support/v4/text/BidiFormatter$DirectionalityEstimator.lastChar C
+; v2 : single-length , v5 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+	if-eq	v2,v1,l48adc
+; v2 : single-length , v1 : single-length
+	goto	l48b44
+.end method
+
+.method private skipTagForward()B
+.limit registers 6
+; this: v5 (Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;)
+.line 793
+	iget	v0,v5,android/support/v4/text/BidiFormatter$DirectionalityEstimator.charIndex I
+; v0 : single-length , v5 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+l48b84:
+.line 794
+	iget	v1,v5,android/support/v4/text/BidiFormatter$DirectionalityEstimator.charIndex I
+; v1 : single-length , v5 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+	iget	v2,v5,android/support/v4/text/BidiFormatter$DirectionalityEstimator.length I
+; v2 : single-length , v5 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+	if-ge	v1,v2,l48c08
+; v1 : single-length , v2 : single-length
+.line 795
+	iget-object	v1,v5,android/support/v4/text/BidiFormatter$DirectionalityEstimator.text Ljava/lang/String;
+; v1 : Ljava/lang/String; , v5 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+	iget	v2,v5,android/support/v4/text/BidiFormatter$DirectionalityEstimator.charIndex I
+; v2 : single-length , v5 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+	add-int/lit8	v3,v2,1
+; v3 : single-length , v2 : single-length
+	iput	v3,v5,android/support/v4/text/BidiFormatter$DirectionalityEstimator.charIndex I
+; v3 : single-length , v5 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+	invoke-virtual	{v1,v2},java/lang/String/charAt	; charAt(I)C
+; v1 : Ljava/lang/String; , v2 : single-length
+	move-result	v1
+; v1 : single-length
+	iput-char	v1,v5,android/support/v4/text/BidiFormatter$DirectionalityEstimator.lastChar C
+; v1 : single-length , v5 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+.line 796
+	iget-char	v1,v5,android/support/v4/text/BidiFormatter$DirectionalityEstimator.lastChar C
+; v1 : single-length , v5 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+	const/16	v2,62
+; v2 : single-length
+	if-ne	v1,v2,l48bbe
+; v1 : single-length , v2 : single-length
+.line 798
+	const/16	v0,12
+; v0 : single-length
+l48bbc:
+.line 809
+	return	v0
+; v0 : single-length
+l48bbe:
+.line 800
+	iget-char	v1,v5,android/support/v4/text/BidiFormatter$DirectionalityEstimator.lastChar C
+; v1 : single-length , v5 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+	const/16	v2,34
+; v2 : single-length
+	if-eq	v1,v2,l48bd6
+; v1 : single-length , v2 : single-length
+	iget-char	v1,v5,android/support/v4/text/BidiFormatter$DirectionalityEstimator.lastChar C
+; v1 : single-length , v5 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+	const/16	v2,39
+; v2 : single-length
+	if-ne	v1,v2,l48b84
+; v1 : single-length , v2 : single-length
+l48bd6:
+.line 802
+	iget-char	v1,v5,android/support/v4/text/BidiFormatter$DirectionalityEstimator.lastChar C
+; v1 : single-length , v5 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+l48bda:
+.line 803
+	iget	v2,v5,android/support/v4/text/BidiFormatter$DirectionalityEstimator.charIndex I
+; v2 : single-length , v5 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+	iget	v3,v5,android/support/v4/text/BidiFormatter$DirectionalityEstimator.length I
+; v3 : single-length , v5 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+	if-ge	v2,v3,l48b84
+; v2 : single-length , v3 : single-length
+	iget-object	v2,v5,android/support/v4/text/BidiFormatter$DirectionalityEstimator.text Ljava/lang/String;
+; v2 : Ljava/lang/String; , v5 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+	iget	v3,v5,android/support/v4/text/BidiFormatter$DirectionalityEstimator.charIndex I
+; v3 : single-length , v5 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+	add-int/lit8	v4,v3,1
+; v4 : single-length , v3 : single-length
+	iput	v4,v5,android/support/v4/text/BidiFormatter$DirectionalityEstimator.charIndex I
+; v4 : single-length , v5 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+	invoke-virtual	{v2,v3},java/lang/String/charAt	; charAt(I)C
+; v2 : Ljava/lang/String; , v3 : single-length
+	move-result	v2
+; v2 : single-length
+	iput-char	v2,v5,android/support/v4/text/BidiFormatter$DirectionalityEstimator.lastChar C
+; v2 : single-length , v5 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+	if-eq	v2,v1,l48b84
+; v2 : single-length , v1 : single-length
+	goto	l48bda
+l48c08:
+.line 807
+	iput	v0,v5,android/support/v4/text/BidiFormatter$DirectionalityEstimator.charIndex I
+; v0 : single-length , v5 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+.line 808
+	const/16	v0,60
+; v0 : single-length
+	iput-char	v0,v5,android/support/v4/text/BidiFormatter$DirectionalityEstimator.lastChar C
+; v0 : single-length , v5 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+.line 809
+	const/16	v0,13
+; v0 : single-length
+	goto	l48bbc
+.end method
+
+.method dirTypeBackward()B
+.limit registers 4
+; this: v3 (Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;)
+.line 767
+	iget-object	v0,v3,android/support/v4/text/BidiFormatter$DirectionalityEstimator.text Ljava/lang/String;
+; v0 : Ljava/lang/String; , v3 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+	iget	v1,v3,android/support/v4/text/BidiFormatter$DirectionalityEstimator.charIndex I
+; v1 : single-length , v3 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+	add-int/lit8	v1,v1,255
+; v1 : single-length , v1 : single-length
+	invoke-virtual	{v0,v1},java/lang/String/charAt	; charAt(I)C
+; v0 : Ljava/lang/String; , v1 : single-length
+	move-result	v0
+; v0 : single-length
+	iput-char	v0,v3,android/support/v4/text/BidiFormatter$DirectionalityEstimator.lastChar C
+; v0 : single-length , v3 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+.line 768
+	iget-char	v0,v3,android/support/v4/text/BidiFormatter$DirectionalityEstimator.lastChar C
+; v0 : single-length , v3 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+	invoke-static	{v0},java/lang/Character/isLowSurrogate	; isLowSurrogate(C)Z
+; v0 : single-length
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,l48c80
+; v0 : single-length
+.line 769
+	iget-object	v0,v3,android/support/v4/text/BidiFormatter$DirectionalityEstimator.text Ljava/lang/String;
+; v0 : Ljava/lang/String; , v3 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+	iget	v1,v3,android/support/v4/text/BidiFormatter$DirectionalityEstimator.charIndex I
+; v1 : single-length , v3 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+	invoke-static	{v0,v1},java/lang/Character/codePointBefore	; codePointBefore(Ljava/lang/CharSequence;I)I
+; v0 : Ljava/lang/String; , v1 : single-length
+	move-result	v0
+; v0 : single-length
+.line 770
+	iget	v1,v3,android/support/v4/text/BidiFormatter$DirectionalityEstimator.charIndex I
+; v1 : single-length , v3 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+	invoke-static	{v0},java/lang/Character/charCount	; charCount(I)I
+; v0 : single-length
+	move-result	v2
+; v2 : single-length
+	sub-int/2addr	v1,v2
+; v1 : single-length , v2 : single-length
+	iput	v1,v3,android/support/v4/text/BidiFormatter$DirectionalityEstimator.charIndex I
+; v1 : single-length , v3 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+.line 771
+	invoke-static	{v0},java/lang/Character/getDirectionality	; getDirectionality(I)B
+; v0 : single-length
+	move-result	v0
+; v0 : single-length
+l48c7e:
+.line 783
+	return	v0
+; v0 : single-length
+l48c80:
+.line 773
+	iget	v0,v3,android/support/v4/text/BidiFormatter$DirectionalityEstimator.charIndex I
+; v0 : single-length , v3 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+	add-int/lit8	v0,v0,255
+; v0 : single-length , v0 : single-length
+	iput	v0,v3,android/support/v4/text/BidiFormatter$DirectionalityEstimator.charIndex I
+; v0 : single-length , v3 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+.line 774
+	iget-char	v0,v3,android/support/v4/text/BidiFormatter$DirectionalityEstimator.lastChar C
+; v0 : single-length , v3 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+	invoke-static	{v0},android/support/v4/text/BidiFormatter$DirectionalityEstimator/getCachedDirectionality	; getCachedDirectionality(C)B
+; v0 : single-length
+	move-result	v0
+; v0 : single-length
+.line 775
+	iget-boolean	v1,v3,android/support/v4/text/BidiFormatter$DirectionalityEstimator.isHtml Z
+; v1 : single-length , v3 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+	if-eqz	v1,l48c7e
+; v1 : single-length
+.line 777
+	iget-char	v1,v3,android/support/v4/text/BidiFormatter$DirectionalityEstimator.lastChar C
+; v1 : single-length , v3 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+	const/16	v2,62
+; v2 : single-length
+	if-ne	v1,v2,l48cb6
+; v1 : single-length , v2 : single-length
+.line 778
+	invoke-direct	{v3},android/support/v4/text/BidiFormatter$DirectionalityEstimator/skipTagBackward	; skipTagBackward()B
+; v3 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+	move-result	v0
+; v0 : single-length
+	goto	l48c7e
+l48cb6:
+.line 779
+	iget-char	v1,v3,android/support/v4/text/BidiFormatter$DirectionalityEstimator.lastChar C
+; v1 : single-length , v3 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+	const/16	v2,59
+; v2 : single-length
+	if-ne	v1,v2,l48c7e
+; v1 : single-length , v2 : single-length
+.line 780
+	invoke-direct	{v3},android/support/v4/text/BidiFormatter$DirectionalityEstimator/skipEntityBackward	; skipEntityBackward()B
+; v3 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+	move-result	v0
+; v0 : single-length
+	goto	l48c7e
+.end method
+
+.method dirTypeForward()B
+.limit registers 4
+; this: v3 (Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;)
+.line 737
+	iget-object	v0,v3,android/support/v4/text/BidiFormatter$DirectionalityEstimator.text Ljava/lang/String;
+; v0 : Ljava/lang/String; , v3 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+	iget	v1,v3,android/support/v4/text/BidiFormatter$DirectionalityEstimator.charIndex I
+; v1 : single-length , v3 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+	invoke-virtual	{v0,v1},java/lang/String/charAt	; charAt(I)C
+; v0 : Ljava/lang/String; , v1 : single-length
+	move-result	v0
+; v0 : single-length
+	iput-char	v0,v3,android/support/v4/text/BidiFormatter$DirectionalityEstimator.lastChar C
+; v0 : single-length , v3 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+.line 738
+	iget-char	v0,v3,android/support/v4/text/BidiFormatter$DirectionalityEstimator.lastChar C
+; v0 : single-length , v3 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+	invoke-static	{v0},java/lang/Character/isHighSurrogate	; isHighSurrogate(C)Z
+; v0 : single-length
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,l48d2c
+; v0 : single-length
+.line 739
+	iget-object	v0,v3,android/support/v4/text/BidiFormatter$DirectionalityEstimator.text Ljava/lang/String;
+; v0 : Ljava/lang/String; , v3 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+	iget	v1,v3,android/support/v4/text/BidiFormatter$DirectionalityEstimator.charIndex I
+; v1 : single-length , v3 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+	invoke-static	{v0,v1},java/lang/Character/codePointAt	; codePointAt(Ljava/lang/CharSequence;I)I
+; v0 : Ljava/lang/String; , v1 : single-length
+	move-result	v0
+; v0 : single-length
+.line 740
+	iget	v1,v3,android/support/v4/text/BidiFormatter$DirectionalityEstimator.charIndex I
+; v1 : single-length , v3 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+	invoke-static	{v0},java/lang/Character/charCount	; charCount(I)I
+; v0 : single-length
+	move-result	v2
+; v2 : single-length
+	add-int/2addr	v1,v2
+; v1 : single-length , v2 : single-length
+	iput	v1,v3,android/support/v4/text/BidiFormatter$DirectionalityEstimator.charIndex I
+; v1 : single-length , v3 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+.line 741
+	invoke-static	{v0},java/lang/Character/getDirectionality	; getDirectionality(I)B
+; v0 : single-length
+	move-result	v0
+; v0 : single-length
+l48d2a:
+.line 753
+	return	v0
+; v0 : single-length
+l48d2c:
+.line 743
+	iget	v0,v3,android/support/v4/text/BidiFormatter$DirectionalityEstimator.charIndex I
+; v0 : single-length , v3 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+	add-int/lit8	v0,v0,1
+; v0 : single-length , v0 : single-length
+	iput	v0,v3,android/support/v4/text/BidiFormatter$DirectionalityEstimator.charIndex I
+; v0 : single-length , v3 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+.line 744
+	iget-char	v0,v3,android/support/v4/text/BidiFormatter$DirectionalityEstimator.lastChar C
+; v0 : single-length , v3 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+	invoke-static	{v0},android/support/v4/text/BidiFormatter$DirectionalityEstimator/getCachedDirectionality	; getCachedDirectionality(C)B
+; v0 : single-length
+	move-result	v0
+; v0 : single-length
+.line 745
+	iget-boolean	v1,v3,android/support/v4/text/BidiFormatter$DirectionalityEstimator.isHtml Z
+; v1 : single-length , v3 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+	if-eqz	v1,l48d2a
+; v1 : single-length
+.line 747
+	iget-char	v1,v3,android/support/v4/text/BidiFormatter$DirectionalityEstimator.lastChar C
+; v1 : single-length , v3 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+	const/16	v2,60
+; v2 : single-length
+	if-ne	v1,v2,l48d62
+; v1 : single-length , v2 : single-length
+.line 748
+	invoke-direct	{v3},android/support/v4/text/BidiFormatter$DirectionalityEstimator/skipTagForward	; skipTagForward()B
+; v3 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+	move-result	v0
+; v0 : single-length
+	goto	l48d2a
+l48d62:
+.line 749
+	iget-char	v1,v3,android/support/v4/text/BidiFormatter$DirectionalityEstimator.lastChar C
+; v1 : single-length , v3 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+	const/16	v2,38
+; v2 : single-length
+	if-ne	v1,v2,l48d2a
+; v1 : single-length , v2 : single-length
+.line 750
+	invoke-direct	{v3},android/support/v4/text/BidiFormatter$DirectionalityEstimator/skipEntityForward	; skipEntityForward()B
+; v3 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+	move-result	v0
+; v0 : single-length
+	goto	l48d2a
+.end method
+
+.method getEntryDir()I
+.limit registers 9
+; this: v8 (Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;)
+	const/4	v5,1
+; v5 : single-length
+	const/4	v4,15
+; v4 : single-length
+	const/4	v1,0
+; v1 : single-length
+.line 567
+	iput	v1,v8,android/support/v4/text/BidiFormatter$DirectionalityEstimator.charIndex I
+; v1 : single-length , v8 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+	move	v0,v1
+; v0 : single-length , v1 : single-length
+	move	v3,v1
+; v3 : single-length , v1 : single-length
+	move	v2,v1
+; v2 : single-length , v1 : single-length
+l48d98:
+.line 571
+	iget	v6,v8,android/support/v4/text/BidiFormatter$DirectionalityEstimator.charIndex I
+; v6 : single-length , v8 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+	iget	v7,v8,android/support/v4/text/BidiFormatter$DirectionalityEstimator.length I
+; v7 : single-length , v8 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+	if-ge	v6,v7,l48de8
+; v6 : single-length , v7 : single-length
+	if-nez	v0,l48de8
+; v0 : single-length
+.line 572
+	invoke-virtual	{v8},android/support/v4/text/BidiFormatter$DirectionalityEstimator/dirTypeForward	; dirTypeForward()B
+; v8 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+	move-result	v6
+; v6 : single-length
+	packed-switch	v6,0
+		ps48db0_48dd2	; case 0
+		ps48db0_48ddc	; case 1
+		ps48db0_48ddc	; case 2
+		ps48db0_48db6	; case 3
+		ps48db0_48db6	; case 4
+		ps48db0_48db6	; case 5
+		ps48db0_48db6	; case 6
+		ps48db0_48db6	; case 7
+		ps48db0_48db6	; case 8
+		ps48db0_48d98	; case 9
+		ps48db0_48db6	; case 10
+		ps48db0_48db6	; case 11
+		ps48db0_48db6	; case 12
+		ps48db0_48db6	; case 13
+		ps48db0_48dba	; case 14
+		ps48db0_48dba	; case 15
+		ps48db0_48dc2	; case 16
+		ps48db0_48dc2	; case 17
+		ps48db0_48dca	; case 18
+		default: ps48db0_default
+; v6 : single-length
+ps48db0_default:
+	move	v0,v2
+; v0 : single-length , v2 : single-length
+.line 607
+	goto	l48d98
+ps48db0_48dba:
+.line 575
+	add-int/lit8	v2,v2,1
+; v2 : single-length , v2 : single-length
+	move	v3,v4
+; v3 : single-length , v4 : single-length
+.line 577
+	goto	l48d98
+ps48db0_48dc2:
+.line 580
+	add-int/lit8	v2,v2,1
+; v2 : single-length , v2 : single-length
+	move	v3,v5
+; v3 : single-length , v5 : single-length
+.line 582
+	goto	l48d98
+ps48db0_48dca:
+.line 584
+	add-int/lit8	v2,v2,255
+; v2 : single-length , v2 : single-length
+	move	v3,v1
+; v3 : single-length , v1 : single-length
+.line 589
+	goto	l48d98
+ps48db0_48dd2:
+.line 593
+	if-nez	v2,l48dd8
+; v2 : single-length
+l48dd6:
+.line 649
+	return	v4
+; v4 : single-length
+l48dd8:
+	move	v0,v2
+; v0 : single-length , v2 : single-length
+.line 597
+	goto	l48d98
+ps48db0_48ddc:
+.line 600
+	if-nez	v2,l48de4
+; v2 : single-length
+	move	v4,v5
+; v4 : single-length , v5 : single-length
+.line 601
+	goto	l48dd6
+l48de4:
+	move	v0,v2
+; v0 : single-length , v2 : single-length
+.line 604
+	goto	l48d98
+l48de8:
+.line 613
+	if-nez	v0,l48df0
+; v0 : single-length
+	move	v4,v1
+; v4 : single-length , v1 : single-length
+.line 616
+	goto	l48dd6
+l48df0:
+.line 620
+	if-eqz	v3,l48df8
+; v3 : single-length
+	move	v4,v3
+; v4 : single-length , v3 : single-length
+.line 622
+	goto	l48dd6
+l48df8:
+.line 627
+	iget	v3,v8,android/support/v4/text/BidiFormatter$DirectionalityEstimator.charIndex I
+; v3 : single-length , v8 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+	if-lez	v3,l48e2e
+; v3 : single-length
+.line 628
+	invoke-virtual	{v8},android/support/v4/text/BidiFormatter$DirectionalityEstimator/dirTypeBackward	; dirTypeBackward()B
+; v8 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+	move-result	v3
+; v3 : single-length
+	packed-switch	v3,14
+		ps48e08_48e10	; case 14
+		ps48e08_48e10	; case 15
+		ps48e08_48e1a	; case 16
+		ps48e08_48e1a	; case 17
+		ps48e08_48e28	; case 18
+		default: ps48e08_default
+; v3 : single-length
+ps48e08_default:
+	goto	l48df8
+ps48e08_48e10:
+.line 631
+	if-eq	v0,v2,l48dd6
+; v0 : single-length , v2 : single-length
+.line 634
+	add-int/lit8	v2,v2,255
+; v2 : single-length , v2 : single-length
+.line 635
+	goto	l48df8
+ps48e08_48e1a:
+.line 638
+	if-ne	v0,v2,l48e22
+; v0 : single-length , v2 : single-length
+	move	v4,v5
+; v4 : single-length , v5 : single-length
+.line 639
+	goto	l48dd6
+l48e22:
+.line 641
+	add-int/lit8	v2,v2,255
+; v2 : single-length , v2 : single-length
+.line 642
+	goto	l48df8
+ps48e08_48e28:
+.line 644
+	add-int/lit8	v2,v2,1
+; v2 : single-length , v2 : single-length
+	goto	l48df8
+l48e2e:
+	move	v4,v1
+; v4 : single-length , v1 : single-length
+.line 649
+	goto	l48dd6
+.line 572
+l48e32:	data-array
+		0x00, 0x00
+	end data-array
+.end method
+
+.method getExitDir()I
+.limit registers 7
+; this: v6 (Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;)
+	const/4	v4,1
+; v4 : single-length
+	const/4	v3,15
+; v3 : single-length
+	const/4	v1,0
+; v1 : single-length
+.line 665
+	iget	v0,v6,android/support/v4/text/BidiFormatter$DirectionalityEstimator.length I
+; v0 : single-length , v6 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+	iput	v0,v6,android/support/v4/text/BidiFormatter$DirectionalityEstimator.charIndex I
+; v0 : single-length , v6 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+	move	v0,v1
+; v0 : single-length , v1 : single-length
+	move	v2,v1
+; v2 : single-length , v1 : single-length
+l48ec6:
+.line 668
+	iget	v5,v6,android/support/v4/text/BidiFormatter$DirectionalityEstimator.charIndex I
+; v5 : single-length , v6 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+	if-lez	v5,l48eea
+; v5 : single-length
+.line 669
+	invoke-virtual	{v6},android/support/v4/text/BidiFormatter$DirectionalityEstimator/dirTypeBackward	; dirTypeBackward()B
+; v6 : Landroid/support/v4/text/BidiFormatter$DirectionalityEstimator;
+	move-result	v5
+; v5 : single-length
+	packed-switch	v5,0
+		ps48ed6_48ee4	; case 0
+		ps48ed6_48f02	; case 1
+		ps48ed6_48f02	; case 2
+		ps48ed6_48edc	; case 3
+		ps48ed6_48edc	; case 4
+		ps48ed6_48edc	; case 5
+		ps48ed6_48edc	; case 6
+		ps48ed6_48edc	; case 7
+		ps48ed6_48edc	; case 8
+		ps48ed6_48ec6	; case 9
+		ps48ed6_48edc	; case 10
+		ps48ed6_48edc	; case 11
+		ps48ed6_48edc	; case 12
+		ps48ed6_48edc	; case 13
+		ps48ed6_48ef4	; case 14
+		ps48ed6_48ef4	; case 15
+		ps48ed6_48f12	; case 16
+		ps48ed6_48f12	; case 17
+		ps48ed6_48f20	; case 18
+		default: ps48ed6_default
+; v5 : single-length
+ps48ed6_default:
+.line 707
+	if-nez	v0,l48ec6
+; v0 : single-length
+	move	v0,v2
+; v0 : single-length , v2 : single-length
+.line 708
+	goto	l48ec6
+ps48ed6_48ee4:
+.line 671
+	if-nez	v2,l48eec
+; v2 : single-length
+	move	v1,v3
+; v1 : single-length , v3 : single-length
+l48eea:
+.line 713
+	return	v1
+; v1 : single-length
+l48eec:
+.line 674
+	if-nez	v0,l48ec6
+; v0 : single-length
+	move	v0,v2
+; v0 : single-length , v2 : single-length
+.line 675
+	goto	l48ec6
+ps48ed6_48ef4:
+.line 680
+	if-ne	v0,v2,l48efc
+; v0 : single-length , v2 : single-length
+	move	v1,v3
+; v1 : single-length , v3 : single-length
+.line 681
+	goto	l48eea
+l48efc:
+.line 683
+	add-int/lit8	v2,v2,255
+; v2 : single-length , v2 : single-length
+.line 684
+	goto	l48ec6
+ps48ed6_48f02:
+.line 687
+	if-nez	v2,l48f0a
+; v2 : single-length
+	move	v1,v4
+; v1 : single-length , v4 : single-length
+.line 688
+	goto	l48eea
+l48f0a:
+.line 690
+	if-nez	v0,l48ec6
+; v0 : single-length
+	move	v0,v2
+; v0 : single-length , v2 : single-length
+.line 691
+	goto	l48ec6
+ps48ed6_48f12:
+.line 696
+	if-ne	v0,v2,l48f1a
+; v0 : single-length , v2 : single-length
+	move	v1,v4
+; v1 : single-length , v4 : single-length
+.line 697
+	goto	l48eea
+l48f1a:
+.line 699
+	add-int/lit8	v2,v2,255
+; v2 : single-length , v2 : single-length
+.line 700
+	goto	l48ec6
+ps48ed6_48f20:
+.line 702
+	add-int/lit8	v2,v2,1
+; v2 : single-length , v2 : single-length
+.line 703
+	goto	l48ec6
+.line 669
+l48f26:	data-array
+		0x00, 0x00
+	end data-array
+.end method
+
+

@@ -1,0 +1,43 @@
+.class com/kenny/mypopupwindow/MainActivity$2$1
+.super java/lang/Object
+.source MainActivity.java
+.implements android/view/View$OnClickListener
+
+.enclosing method com/onClick(Landroid/view/View;)V
+.field final this$1 Lcom/kenny/mypopupwindow/MainActivity$2;
+
+.method <init>(Lcom/kenny/mypopupwindow/MainActivity$2;)V
+.limit registers 2
+; this: v0 (Lcom/kenny/mypopupwindow/MainActivity$2$1;)
+; parameter[0] : v1 (Lcom/kenny/mypopupwindow/MainActivity$2;)
+.line 1
+	iput-object	v1,v0,com/kenny/mypopupwindow/MainActivity$2$1.this$1 Lcom/kenny/mypopupwindow/MainActivity$2;
+; v1 : Lcom/kenny/mypopupwindow/MainActivity$2; , v0 : Lcom/kenny/mypopupwindow/MainActivity$2$1;
+.line 55
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Lcom/kenny/mypopupwindow/MainActivity$2$1;
+	return-void	
+.end method
+
+.method public onClick(Landroid/view/View;)V
+.limit registers 3
+; this: v1 (Lcom/kenny/mypopupwindow/MainActivity$2$1;)
+; parameter[0] : v2 (Landroid/view/View;)
+.line 59
+	iget-object	v0,v1,com/kenny/mypopupwindow/MainActivity$2$1.this$1 Lcom/kenny/mypopupwindow/MainActivity$2;
+; v0 : Lcom/kenny/mypopupwindow/MainActivity$2; , v1 : Lcom/kenny/mypopupwindow/MainActivity$2$1;
+	invoke-static	{v0},com/kenny/mypopupwindow/MainActivity$2/access$0	; access$0(Lcom/kenny/mypopupwindow/MainActivity$2;)Lcom/kenny/mypopupwindow/MainActivity;
+; v0 : Lcom/kenny/mypopupwindow/MainActivity$2;
+	move-result-object	v0
+; v0 : Lcom/kenny/mypopupwindow/MainActivity;
+	invoke-static	{v0},com/kenny/mypopupwindow/MainActivity/access$2	; access$2(Lcom/kenny/mypopupwindow/MainActivity;)Landroid/widget/PopupWindow;
+; v0 : Lcom/kenny/mypopupwindow/MainActivity;
+	move-result-object	v0
+; v0 : Landroid/widget/PopupWindow;
+	invoke-virtual	{v0},android/widget/PopupWindow/dismiss	; dismiss()V
+; v0 : Landroid/widget/PopupWindow;
+.line 60
+	return-void	
+.end method
+
+

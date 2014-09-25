@@ -1,0 +1,705 @@
+.class public final com/a/a/f
+.super java/net/ResponseCache
+.source MyApplication
+
+.field final a Lcom/a/a/t;
+.field private final b Lcom/a/a/a/c;
+.field private c I
+.field private d I
+.field private e I
+.field private f I
+.field private g I
+
+.method public <init>(Ljava/io/File;J)V
+.limit registers 6
+; this: v2 (Lcom/a/a/f;)
+; parameter[0] : v3 (Ljava/io/File;)
+; parameter[1] : v4 (J)
+.line 168
+	invoke-direct	{v2},java/net/ResponseCache/<init>	; <init>()V
+; v2 : Lcom/a/a/f;
+.line 140
+	new-instance	v0,com/a/a/g
+; v0 : Lcom/a/a/g;
+	invoke-direct	{v0,v2},com/a/a/g/<init>	; <init>(Lcom/a/a/f;)V
+; v0 : Lcom/a/a/g; , v2 : Lcom/a/a/f;
+	iput-object	v0,v2,com/a/a/f.a Lcom/a/a/t;
+; v0 : Lcom/a/a/g; , v2 : Lcom/a/a/f;
+.line 169
+	const	v0,201105	; 0x31191
+; v0 : single-length
+	const/4	v1,2
+; v1 : single-length
+	invoke-static	{v3,v0,v1,v4,v5},com/a/a/a/c/a	; a(Ljava/io/File;IIJ)Lcom/a/a/a/c;
+; v3 : Ljava/io/File; , v0 : single-length , v1 : single-length , v4 : double-length
+	move-result-object	v0
+; v0 : Lcom/a/a/a/c;
+	iput-object	v0,v2,com/a/a/f.b Lcom/a/a/a/c;
+; v0 : Lcom/a/a/a/c; , v2 : Lcom/a/a/f;
+.line 170
+	return-void	
+.end method
+
+.method private a(Ljava/net/URLConnection;)Lcom/a/a/a/a/h;
+.limit registers 3
+; this: v1 (Lcom/a/a/f;)
+; parameter[0] : v2 (Ljava/net/URLConnection;)
+.line 298
+	instance-of	v0,v2,com/a/a/a/a/p
+; v0 : single-length , v2 : Ljava/net/URLConnection;
+	if-eqz	v0,l75cea
+; v0 : single-length
+.line 299
+	check-cast	v2,com/a/a/a/a/p
+; v2 : Lcom/a/a/a/a/p;
+	invoke-virtual	{v2},com/a/a/a/a/p/b	; b()Lcom/a/a/a/a/h;
+; v2 : Lcom/a/a/a/a/p;
+	move-result-object	v0
+; v0 : Lcom/a/a/a/a/h;
+l75ce8:
+.line 303
+	return-object	v0
+; v0 : Lcom/a/a/a/a/h;
+l75cea:
+.line 300
+	instance-of	v0,v2,com/a/a/a/a/s
+; v0 : single-length , v2 : Ljava/net/URLConnection;
+	if-eqz	v0,l75d00
+; v0 : single-length
+.line 301
+	check-cast	v2,com/a/a/a/a/s
+; v2 : Lcom/a/a/a/a/s;
+	invoke-virtual	{v2},com/a/a/a/a/s/a	; a()Lcom/a/a/a/a/h;
+; v2 : Lcom/a/a/a/a/s;
+	move-result-object	v0
+; v0 : Lcom/a/a/a/a/h;
+	goto	l75ce8
+l75d00:
+.line 303
+	const/4	v0,0
+; v0 : single-length
+	goto	l75ce8
+.end method
+
+.method static a(Lcom/a/a/a/i;)Ljava/io/InputStream;
+.limit registers 2
+; parameter[0] : v1 (Lcom/a/a/a/i;)
+.line 118
+	invoke-static	{v1},com/a/a/f/b	; b(Lcom/a/a/a/i;)Ljava/io/InputStream;
+; v1 : Lcom/a/a/a/i;
+	move-result-object	v0
+; v0 : Ljava/io/InputStream;
+	return-object	v0
+; v0 : Ljava/io/InputStream;
+.end method
+
+.method private a(Ljava/net/URI;)Ljava/lang/String;
+.limit registers 3
+; this: v1 (Lcom/a/a/f;)
+; parameter[0] : v2 (Ljava/net/URI;)
+.line 173
+	invoke-virtual	{v2},java/net/URI/toString	; toString()Ljava/lang/String;
+; v2 : Ljava/net/URI;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	invoke-static	{v0},com/a/a/a/u/b	; b(Ljava/lang/String;)Ljava/lang/String;
+; v0 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	return-object	v0
+; v0 : Ljava/lang/String;
+.end method
+
+.method private synchronized a()V
+.limit registers 2
+; this: v1 (Lcom/a/a/f;)
+.catch java/lang/Exception from l75d56 to l75d62 using l75d66
+.line 363
+	monitor-enter	v1
+; v1 : Lcom/a/a/f;
+l75d56:
+	iget	v0,v1,com/a/a/f.f I
+; v0 : single-length , v1 : Lcom/a/a/f;
+	add-int/lit8	v0,v0,1
+; v0 : single-length , v0 : single-length
+	iput	v0,v1,com/a/a/f.f I
+; v0 : single-length , v1 : Lcom/a/a/f;
+l75d62:
+.line 364
+	monitor-exit	v1
+; v1 : Lcom/a/a/f;
+	return-void	
+l75d66:
+.line 363
+	move-exception	v0
+; v0 : java/lang/Exception
+	monitor-exit	v1
+; v1 : Lcom/a/a/f;
+	throw	v0
+; v0 : java/lang/Exception
+.end method
+
+.method private a(Lcom/a/a/a/f;)V
+.limit registers 3
+; this: v1 (Lcom/a/a/f;)
+; parameter[0] : v2 (Lcom/a/a/a/f;)
+.catch java/io/IOException from l75d8c to l75d92 using l75d94
+.line 290
+	if-eqz	v2,l75d92
+; v2 : Lcom/a/a/a/f;
+l75d8c:
+.line 291
+	invoke-virtual	{v2},com/a/a/a/f/b	; b()V
+; v2 : Lcom/a/a/a/f;
+l75d92:
+.line 295
+	return-void	
+l75d94:
+.line 293
+	move-exception	v0
+; v0 : java/io/IOException
+	goto	l75d92
+.end method
+
+.method static a(Lcom/a/a/f;)V
+.limit registers 1
+; parameter[0] : v0 (Lcom/a/a/f;)
+.line 118
+	invoke-direct	{v0},com/a/a/f/a	; a()V
+; v0 : Lcom/a/a/f;
+	return-void	
+.end method
+
+.method static a(Lcom/a/a/f;Lcom/a/a/u;)V
+.limit registers 2
+; parameter[0] : v0 (Lcom/a/a/f;)
+; parameter[1] : v1 (Lcom/a/a/u;)
+.line 118
+	invoke-direct	{v0,v1},com/a/a/f/a	; a(Lcom/a/a/u;)V
+; v0 : Lcom/a/a/f; , v1 : Lcom/a/a/u;
+	return-void	
+.end method
+
+.method static a(Lcom/a/a/f;Ljava/net/CacheResponse;Ljava/net/HttpURLConnection;)V
+.limit registers 3
+; parameter[0] : v0 (Lcom/a/a/f;)
+; parameter[1] : v1 (Ljava/net/CacheResponse;)
+; parameter[2] : v2 (Ljava/net/HttpURLConnection;)
+.line 118
+	invoke-direct	{v0,v1,v2},com/a/a/f/a	; a(Ljava/net/CacheResponse;Ljava/net/HttpURLConnection;)V
+; v0 : Lcom/a/a/f; , v1 : Ljava/net/CacheResponse; , v2 : Ljava/net/HttpURLConnection;
+	return-void	
+.end method
+
+.method private synchronized a(Lcom/a/a/u;)V
+.limit registers 4
+; this: v2 (Lcom/a/a/f;)
+; parameter[0] : v3 (Lcom/a/a/u;)
+.catch java/lang/Exception from l75e3c to l75e48 using l75e36
+.catch java/lang/Exception from l75e28 to l75e34 using l75e36
+.catch java/lang/Exception from l75e02 to l75e1e using l75e36
+.line 349
+	monitor-enter	v2
+; v2 : Lcom/a/a/f;
+l75e02:
+	iget	v0,v2,com/a/a/f.g I
+; v0 : single-length , v2 : Lcom/a/a/f;
+	add-int/lit8	v0,v0,1
+; v0 : single-length , v0 : single-length
+	iput	v0,v2,com/a/a/f.g I
+; v0 : single-length , v2 : Lcom/a/a/f;
+.line 351
+	sget-object	v0,com/a/a/i.a [I
+; v0 : [I
+	invoke-virtual	{v3},com/a/a/u/ordinal	; ordinal()I
+; v3 : Lcom/a/a/u;
+	move-result	v1
+; v1 : single-length
+	aget	v0,v0,v1
+; v0 : single-length , v0 : single-length , v1 : single-length
+l75e1e:
+	packed-switch	v0,1
+		ps75e1e_75e28	; case 1
+		ps75e1e_75e3c	; case 2
+		ps75e1e_75e3c	; case 3
+		default: ps75e1e_default
+; v0 : single-length
+l75e24:
+.line 360
+	monitor-exit	v2
+; v2 : Lcom/a/a/f;
+	return-void	
+l75e28:
+.line 353
+	iget	v0,v2,com/a/a/f.f I
+; v0 : single-length , v2 : Lcom/a/a/f;
+	add-int/lit8	v0,v0,1
+; v0 : single-length , v0 : single-length
+	iput	v0,v2,com/a/a/f.f I
+; v0 : single-length , v2 : Lcom/a/a/f;
+l75e34:
+	goto	l75e24
+l75e36:
+.line 349
+	move-exception	v0
+; v0 : java/lang/Exception
+	monitor-exit	v2
+; v2 : Lcom/a/a/f;
+	throw	v0
+; v0 : java/lang/Exception
+l75e3c:
+.line 357
+	iget	v0,v2,com/a/a/f.e I
+; v0 : single-length , v2 : Lcom/a/a/f;
+	add-int/lit8	v0,v0,1
+; v0 : single-length , v0 : single-length
+	iput	v0,v2,com/a/a/f.e I
+; v0 : single-length , v2 : Lcom/a/a/f;
+l75e48:
+	goto	l75e24
+.line 351
+l75e4a:	data-array
+		0x00, 0x00
+	end data-array
+.end method
+
+.method private a(Ljava/net/CacheResponse;Ljava/net/HttpURLConnection;)V
+.limit registers 6
+; this: v3 (Lcom/a/a/f;)
+; parameter[0] : v4 (Ljava/net/CacheResponse;)
+; parameter[1] : v5 (Ljava/net/HttpURLConnection;)
+.catch java/io/IOException from l75ef0 to l75efc using l75f18
+.catch java/io/IOException from l75ee4 to l75eea using l75f0c
+.line 266
+	invoke-direct	{v3,v5},com/a/a/f/a	; a(Ljava/net/URLConnection;)Lcom/a/a/a/a/h;
+; v3 : Lcom/a/a/f; , v5 : Ljava/net/HttpURLConnection;
+	move-result-object	v0
+; v0 : Lcom/a/a/a/a/h;
+.line 267
+	invoke-virtual	{v0},com/a/a/a/a/h/a	; a()Ljava/net/URI;
+; v0 : Lcom/a/a/a/a/h;
+	move-result-object	v1
+; v1 : Ljava/net/URI;
+.line 268
+	invoke-virtual	{v0},com/a/a/a/a/h/i	; i()Lcom/a/a/a/a/ab;
+; v0 : Lcom/a/a/a/a/h;
+	move-result-object	v2
+; v2 : Lcom/a/a/a/a/ab;
+.line 269
+	invoke-virtual	{v0},com/a/a/a/a/h/h	; h()Lcom/a/a/a/a/z;
+; v0 : Lcom/a/a/a/a/h;
+	move-result-object	v0
+; v0 : Lcom/a/a/a/a/z;
+	invoke-virtual	{v0},com/a/a/a/a/z/c	; c()Lcom/a/a/a/a/x;
+; v0 : Lcom/a/a/a/a/z;
+	move-result-object	v0
+; v0 : Lcom/a/a/a/a/x;
+	invoke-virtual	{v2},com/a/a/a/a/ab/g	; g()Ljava/util/Set;
+; v2 : Lcom/a/a/a/a/ab;
+	move-result-object	v2
+; v2 : Ljava/util/Set;
+	invoke-virtual	{v0,v2},com/a/a/a/a/x/a	; a(Ljava/util/Set;)Lcom/a/a/a/a/x;
+; v0 : Lcom/a/a/a/a/x; , v2 : Ljava/util/Set;
+	move-result-object	v0
+; v0 : Lcom/a/a/a/a/x;
+.line 271
+	new-instance	v2,com/a/a/l
+; v2 : Lcom/a/a/l;
+	invoke-direct	{v2,v1,v0,v5},com/a/a/l/<init>	; <init>(Ljava/net/URI;Lcom/a/a/a/a/x;Ljava/net/HttpURLConnection;)V
+; v2 : Lcom/a/a/l; , v1 : Ljava/net/URI; , v0 : Lcom/a/a/a/a/x; , v5 : Ljava/net/HttpURLConnection;
+.line 272
+	instance-of	v0,v4,com/a/a/m
+; v0 : single-length , v4 : Ljava/net/CacheResponse;
+	if-eqz	v0,l75efe
+; v0 : single-length
+	check-cast	v4,com/a/a/m
+; v4 : Lcom/a/a/m;
+	invoke-static	{v4},com/a/a/m/a	; a(Lcom/a/a/m;)Lcom/a/a/a/i;
+; v4 : Lcom/a/a/m;
+	move-result-object	v0
+; v0 : Lcom/a/a/a/i;
+l75ee2:
+.line 275
+	const/4	v1,0
+; v1 : single-length
+l75ee4:
+.line 277
+	invoke-virtual	{v0},com/a/a/a/i/a	; a()Lcom/a/a/a/f;
+; v0 : Lcom/a/a/a/i;
+l75eea:
+	move-result-object	v0
+; v0 : Lcom/a/a/a/f;
+.line 278
+	if-eqz	v0,l75efc
+; v0 : Lcom/a/a/a/f;
+l75ef0:
+.line 279
+	invoke-virtual	{v2,v0},com/a/a/l/a	; a(Lcom/a/a/a/f;)V
+; v2 : Lcom/a/a/l; , v0 : Lcom/a/a/a/f;
+.line 280
+	invoke-virtual	{v0},com/a/a/a/f/a	; a()V
+; v0 : Lcom/a/a/a/f;
+l75efc:
+.line 285
+	return-void	
+l75efe:
+.line 272
+	check-cast	v4,com/a/a/n
+; v4 : Lcom/a/a/n;
+	invoke-static	{v4},com/a/a/n/a	; a(Lcom/a/a/n;)Lcom/a/a/a/i;
+; v4 : Lcom/a/a/n;
+	move-result-object	v0
+; v0 : Lcom/a/a/a/i;
+	goto	l75ee2
+l75f0c:
+.line 282
+	move-exception	v0
+; v0 : java/io/IOException
+	move-object	v0,v1
+; v0 : single-length , v1 : single-length
+l75f10:
+.line 283
+	invoke-direct	{v3,v0},com/a/a/f/a	; a(Lcom/a/a/a/f;)V
+; v3 : Lcom/a/a/f; , v0 : Lcom/a/a/a/f;
+	goto	l75efc
+l75f18:
+.line 282
+	move-exception	v1
+; v1 : java/io/IOException
+	goto	l75f10
+.end method
+
+.method static a(Lcom/a/a/f;Ljava/lang/String;Ljava/net/URI;)Z
+.limit registers 4
+; parameter[0] : v1 (Lcom/a/a/f;)
+; parameter[1] : v2 (Ljava/lang/String;)
+; parameter[2] : v3 (Ljava/net/URI;)
+.line 118
+	invoke-direct	{v1,v2,v3},com/a/a/f/a	; a(Ljava/lang/String;Ljava/net/URI;)Z
+; v1 : Lcom/a/a/f; , v2 : Ljava/lang/String; , v3 : Ljava/net/URI;
+	move-result	v0
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method private a(Ljava/lang/String;Ljava/net/URI;)Z
+.limit registers 5
+; this: v2 (Lcom/a/a/f;)
+; parameter[0] : v3 (Ljava/lang/String;)
+; parameter[1] : v4 (Ljava/net/URI;)
+.catch java/io/IOException from l75f94 to l75fa6 using l75fae
+.line 252
+	const-string	v0,"POST"
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v3,v0},java/lang/String/equals	; equals(Ljava/lang/Object;)Z
+; v3 : Ljava/lang/String; , v0 : Ljava/lang/String;
+	move-result	v0
+; v0 : single-length
+	if-nez	v0,l75f94
+; v0 : single-length
+	const-string	v0,"PUT"
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v3,v0},java/lang/String/equals	; equals(Ljava/lang/Object;)Z
+; v3 : Ljava/lang/String; , v0 : Ljava/lang/String;
+	move-result	v0
+; v0 : single-length
+	if-nez	v0,l75f94
+; v0 : single-length
+	const-string	v0,"DELETE"
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v3,v0},java/lang/String/equals	; equals(Ljava/lang/Object;)Z
+; v3 : Ljava/lang/String; , v0 : Ljava/lang/String;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,l75faa
+; v0 : single-length
+l75f94:
+.line 255
+	iget-object	v0,v2,com/a/a/f.b Lcom/a/a/a/c;
+; v0 : Lcom/a/a/a/c; , v2 : Lcom/a/a/f;
+	invoke-direct	{v2,v4},com/a/a/f/a	; a(Ljava/net/URI;)Ljava/lang/String;
+; v2 : Lcom/a/a/f; , v4 : Ljava/net/URI;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},com/a/a/a/c/c	; c(Ljava/lang/String;)Z
+; v0 : Lcom/a/a/a/c; , v1 : Ljava/lang/String;
+l75fa6:
+.line 259
+	const/4	v0,1
+; v0 : single-length
+l75fa8:
+.line 261
+	return	v0
+; v0 : single-length
+l75faa:
+	const/4	v0,0
+; v0 : single-length
+	goto	l75fa8
+l75fae:
+.line 256
+	move-exception	v0
+; v0 : java/io/IOException
+	goto	l75fa6
+.end method
+
+.method static b(Lcom/a/a/f;)I
+.limit registers 3
+; parameter[0] : v2 (Lcom/a/a/f;)
+.line 118
+	iget	v0,v2,com/a/a/f.c I
+; v0 : single-length , v2 : Lcom/a/a/f;
+	add-int/lit8	v1,v0,1
+; v1 : single-length , v0 : single-length
+	iput	v1,v2,com/a/a/f.c I
+; v1 : single-length , v2 : Lcom/a/a/f;
+	return	v0
+; v0 : single-length
+.end method
+
+.method private static b(Lcom/a/a/a/i;)Ljava/io/InputStream;
+.limit registers 3
+; parameter[0] : v2 (Lcom/a/a/a/i;)
+.line 642
+	new-instance	v0,com/a/a/h
+; v0 : Lcom/a/a/h;
+	const/4	v1,1
+; v1 : single-length
+	invoke-virtual	{v2,v1},com/a/a/a/i/a	; a(I)Ljava/io/InputStream;
+; v2 : Lcom/a/a/a/i; , v1 : single-length
+	move-result-object	v1
+; v1 : Ljava/io/InputStream;
+	invoke-direct	{v0,v1,v2},com/a/a/h/<init>	; <init>(Ljava/io/InputStream;Lcom/a/a/a/i;)V
+; v0 : Lcom/a/a/h; , v1 : Ljava/io/InputStream; , v2 : Lcom/a/a/a/i;
+	return-object	v0
+; v0 : Lcom/a/a/h;
+.end method
+
+.method static c(Lcom/a/a/f;)I
+.limit registers 3
+; parameter[0] : v2 (Lcom/a/a/f;)
+.line 118
+	iget	v0,v2,com/a/a/f.d I
+; v0 : single-length , v2 : Lcom/a/a/f;
+	add-int/lit8	v1,v0,1
+; v1 : single-length , v0 : single-length
+	iput	v1,v2,com/a/a/f.d I
+; v1 : single-length , v2 : Lcom/a/a/f;
+	return	v0
+; v0 : single-length
+.end method
+
+.method public get(Ljava/net/URI;Ljava/lang/String;Ljava/util/Map;)Ljava/net/CacheResponse;
+.limit registers 8
+; this: v4 (Lcom/a/a/f;)
+; parameter[0] : v5 (Ljava/net/URI;)
+; parameter[1] : v6 (Ljava/lang/String;)
+; parameter[2] : v7 (Ljava/util/Map;)
+.catch java/io/IOException from l76046 to l7606c using l760a4
+	const/4	v0,0
+; v0 : single-length
+.line 178
+	invoke-direct	{v4,v5},com/a/a/f/a	; a(Ljava/net/URI;)Ljava/lang/String;
+; v4 : Lcom/a/a/f; , v5 : Ljava/net/URI;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+l76046:
+.line 182
+	iget-object	v2,v4,com/a/a/f.b Lcom/a/a/a/c;
+; v2 : Lcom/a/a/a/c; , v4 : Lcom/a/a/f;
+	invoke-virtual	{v2,v1},com/a/a/a/c/a	; a(Ljava/lang/String;)Lcom/a/a/a/i;
+; v2 : Lcom/a/a/a/c; , v1 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Lcom/a/a/a/i;
+.line 183
+	if-nez	v1,l76058
+; v1 : Lcom/a/a/a/i;
+l76056:
+.line 197
+	return-object	v0
+; v0 : Ljava/lang/Object;
+l76058:
+.line 186
+	new-instance	v2,com/a/a/l
+; v2 : Lcom/a/a/l;
+	const/4	v3,0
+; v3 : single-length
+	invoke-virtual	{v1,v3},com/a/a/a/i/a	; a(I)Ljava/io/InputStream;
+; v1 : Lcom/a/a/a/i; , v3 : single-length
+	move-result-object	v3
+; v3 : Ljava/io/InputStream;
+	invoke-direct	{v2,v3},com/a/a/l/<init>	; <init>(Ljava/io/InputStream;)V
+; v2 : Lcom/a/a/l; , v3 : Ljava/io/InputStream;
+l7606c:
+.line 192
+	invoke-virtual	{v2,v5,v6,v7},com/a/a/l/a	; a(Ljava/net/URI;Ljava/lang/String;Ljava/util/Map;)Z
+; v2 : Lcom/a/a/l; , v5 : Ljava/net/URI; , v6 : Ljava/lang/String; , v7 : Ljava/util/Map;
+	move-result	v3
+; v3 : single-length
+	if-nez	v3,l76080
+; v3 : single-length
+.line 193
+	invoke-virtual	{v1},com/a/a/a/i/close	; close()V
+; v1 : Lcom/a/a/a/i;
+	goto	l76056
+l76080:
+.line 197
+	invoke-static	{v2},com/a/a/l/a	; a(Lcom/a/a/l;)Z
+; v2 : Lcom/a/a/l;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,l76098
+; v0 : single-length
+	new-instance	v0,com/a/a/n
+; v0 : Lcom/a/a/n;
+	invoke-direct	{v0,v2,v1},com/a/a/n/<init>	; <init>(Lcom/a/a/l;Lcom/a/a/a/i;)V
+; v0 : Lcom/a/a/n; , v2 : Lcom/a/a/l; , v1 : Lcom/a/a/a/i;
+	goto	l76056
+l76098:
+	new-instance	v0,com/a/a/m
+; v0 : Lcom/a/a/m;
+	invoke-direct	{v0,v2,v1},com/a/a/m/<init>	; <init>(Lcom/a/a/l;Lcom/a/a/a/i;)V
+; v0 : Lcom/a/a/m; , v2 : Lcom/a/a/l; , v1 : Lcom/a/a/a/i;
+	goto	l76056
+l760a4:
+.line 187
+	move-exception	v1
+; v1 : java/io/IOException
+	goto	l76056
+.end method
+
+.method public put(Ljava/net/URI;Ljava/net/URLConnection;)Ljava/net/CacheRequest;
+.limit registers 7
+; this: v4 (Lcom/a/a/f;)
+; parameter[0] : v5 (Ljava/net/URI;)
+; parameter[1] : v6 (Ljava/net/URLConnection;)
+.catch java/io/IOException from l7615e to l7616e using l7617e
+.catch java/io/IOException from l76146 to l76158 using l76172
+	const/4	v0,0
+; v0 : single-length
+.line 202
+	instance-of	v1,v6,java/net/HttpURLConnection
+; v1 : single-length , v6 : Ljava/net/URLConnection;
+	if-nez	v1,l760d4
+; v1 : single-length
+l760d2:
+.line 243
+	return-object	v0
+; v0 : Lcom/a/a/j;
+l760d4:
+.line 206
+	check-cast	v6,java/net/HttpURLConnection
+; v6 : Ljava/net/HttpURLConnection;
+.line 207
+	invoke-virtual	{v6},java/net/HttpURLConnection/getRequestMethod	; getRequestMethod()Ljava/lang/String;
+; v6 : Ljava/net/HttpURLConnection;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+.line 209
+	invoke-direct	{v4,v1,v5},com/a/a/f/a	; a(Ljava/lang/String;Ljava/net/URI;)Z
+; v4 : Lcom/a/a/f; , v1 : Ljava/lang/String; , v5 : Ljava/net/URI;
+	move-result	v2
+; v2 : single-length
+	if-nez	v2,l760d2
+; v2 : single-length
+.line 212
+	const-string	v2,"GET"
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/String/equals	; equals(Ljava/lang/Object;)Z
+; v1 : Ljava/lang/String; , v2 : Ljava/lang/String;
+	move-result	v1
+; v1 : single-length
+	if-eqz	v1,l760d2
+; v1 : single-length
+.line 219
+	invoke-direct	{v4,v6},com/a/a/f/a	; a(Ljava/net/URLConnection;)Lcom/a/a/a/a/h;
+; v4 : Lcom/a/a/f; , v6 : Ljava/net/HttpURLConnection;
+	move-result-object	v1
+; v1 : Lcom/a/a/a/a/h;
+.line 220
+	if-eqz	v1,l760d2
+; v1 : Lcom/a/a/a/a/h;
+.line 225
+	invoke-virtual	{v1},com/a/a/a/a/h/i	; i()Lcom/a/a/a/a/ab;
+; v1 : Lcom/a/a/a/a/h;
+	move-result-object	v2
+; v2 : Lcom/a/a/a/a/ab;
+.line 226
+	invoke-virtual	{v2},com/a/a/a/a/ab/i	; i()Z
+; v2 : Lcom/a/a/a/a/ab;
+	move-result	v3
+; v3 : single-length
+	if-nez	v3,l760d2
+; v3 : single-length
+.line 230
+	invoke-virtual	{v1},com/a/a/a/a/h/h	; h()Lcom/a/a/a/a/z;
+; v1 : Lcom/a/a/a/a/h;
+	move-result-object	v1
+; v1 : Lcom/a/a/a/a/z;
+	invoke-virtual	{v1},com/a/a/a/a/z/c	; c()Lcom/a/a/a/a/x;
+; v1 : Lcom/a/a/a/a/z;
+	move-result-object	v1
+; v1 : Lcom/a/a/a/a/x;
+	invoke-virtual	{v2},com/a/a/a/a/ab/g	; g()Ljava/util/Set;
+; v2 : Lcom/a/a/a/a/ab;
+	move-result-object	v2
+; v2 : Ljava/util/Set;
+	invoke-virtual	{v1,v2},com/a/a/a/a/x/a	; a(Ljava/util/Set;)Lcom/a/a/a/a/x;
+; v1 : Lcom/a/a/a/a/x; , v2 : Ljava/util/Set;
+	move-result-object	v1
+; v1 : Lcom/a/a/a/a/x;
+.line 232
+	new-instance	v3,com/a/a/l
+; v3 : Lcom/a/a/l;
+	invoke-direct	{v3,v5,v1,v6},com/a/a/l/<init>	; <init>(Ljava/net/URI;Lcom/a/a/a/a/x;Ljava/net/HttpURLConnection;)V
+; v3 : Lcom/a/a/l; , v5 : Ljava/net/URI; , v1 : Lcom/a/a/a/a/x; , v6 : Ljava/net/HttpURLConnection;
+l76146:
+.line 235
+	iget-object	v1,v4,com/a/a/f.b Lcom/a/a/a/c;
+; v1 : Lcom/a/a/a/c; , v4 : Lcom/a/a/f;
+	invoke-direct	{v4,v5},com/a/a/f/a	; a(Ljava/net/URI;)Ljava/lang/String;
+; v4 : Lcom/a/a/f; , v5 : Ljava/net/URI;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},com/a/a/a/c/b	; b(Ljava/lang/String;)Lcom/a/a/a/f;
+; v1 : Lcom/a/a/a/c; , v2 : Ljava/lang/String;
+l76158:
+	move-result-object	v2
+; v2 : Lcom/a/a/a/f;
+.line 236
+	if-eqz	v2,l760d2
+; v2 : Lcom/a/a/a/f;
+l7615e:
+.line 239
+	invoke-virtual	{v3,v2},com/a/a/l/a	; a(Lcom/a/a/a/f;)V
+; v3 : Lcom/a/a/l; , v2 : Lcom/a/a/a/f;
+.line 240
+	new-instance	v1,com/a/a/j
+; v1 : Lcom/a/a/j;
+	invoke-direct	{v1,v4,v2},com/a/a/j/<init>	; <init>(Lcom/a/a/f;Lcom/a/a/a/f;)V
+; v1 : Lcom/a/a/j; , v4 : Lcom/a/a/f; , v2 : Lcom/a/a/a/f;
+l7616e:
+	move-object	v0,v1
+; v0 : Lcom/a/a/j; , v1 : Lcom/a/a/j;
+	goto	l760d2
+l76172:
+.line 241
+	move-exception	v1
+; v1 : java/io/IOException
+	move-object	v1,v0
+; v1 : single-length , v0 : single-length
+l76176:
+.line 242
+	invoke-direct	{v4,v1},com/a/a/f/a	; a(Lcom/a/a/a/f;)V
+; v4 : Lcom/a/a/f; , v1 : Lcom/a/a/a/f;
+	goto	l760d2
+l7617e:
+.line 241
+	move-exception	v1
+; v1 : java/io/IOException
+	move-object	v1,v2
+; v1 : Lcom/a/a/a/f; , v2 : Lcom/a/a/a/f;
+	goto	l76176
+.end method
+
+

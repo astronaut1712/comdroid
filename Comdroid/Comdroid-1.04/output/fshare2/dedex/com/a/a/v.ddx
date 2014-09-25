@@ -1,0 +1,235 @@
+.class public com/a/a/v
+.super java/lang/Object
+.source MyApplication
+
+.field final a Lcom/a/a/a;
+.field final b Ljava/net/Proxy;
+.field final c Ljava/net/InetSocketAddress;
+.field final d Z
+
+.method public <init>(Lcom/a/a/a;Ljava/net/Proxy;Ljava/net/InetSocketAddress;Z)V
+.limit registers 7
+; this: v2 (Lcom/a/a/v;)
+; parameter[0] : v3 (Lcom/a/a/a;)
+; parameter[1] : v4 (Ljava/net/Proxy;)
+; parameter[2] : v5 (Ljava/net/InetSocketAddress;)
+; parameter[3] : v6 (Z)
+.line 29
+	invoke-direct	{v2},java/lang/Object/<init>	; <init>()V
+; v2 : Lcom/a/a/v;
+.line 30
+	if-nez	v3,l778fa
+; v3 : Lcom/a/a/a;
+	new-instance	v0,java/lang/NullPointerException
+; v0 : Ljava/lang/NullPointerException;
+	const-string	v1,"address == null"
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/NullPointerException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/NullPointerException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/NullPointerException;
+l778fa:
+.line 31
+	if-nez	v4,l7790e
+; v4 : Ljava/net/Proxy;
+	new-instance	v0,java/lang/NullPointerException
+; v0 : Ljava/lang/NullPointerException;
+	const-string	v1,"proxy == null"
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/NullPointerException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/NullPointerException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/NullPointerException;
+l7790e:
+.line 32
+	if-nez	v5,l77922
+; v5 : Ljava/net/InetSocketAddress;
+	new-instance	v0,java/lang/NullPointerException
+; v0 : Ljava/lang/NullPointerException;
+	const-string	v1,"inetSocketAddress == null"
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/NullPointerException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/NullPointerException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/NullPointerException;
+l77922:
+.line 33
+	iput-object	v3,v2,com/a/a/v.a Lcom/a/a/a;
+; v3 : Lcom/a/a/a; , v2 : Lcom/a/a/v;
+.line 34
+	iput-object	v4,v2,com/a/a/v.b Ljava/net/Proxy;
+; v4 : Ljava/net/Proxy; , v2 : Lcom/a/a/v;
+.line 35
+	iput-object	v5,v2,com/a/a/v.c Ljava/net/InetSocketAddress;
+; v5 : Ljava/net/InetSocketAddress; , v2 : Lcom/a/a/v;
+.line 36
+	iput-boolean	v6,v2,com/a/a/v.d Z
+; v6 : single-length , v2 : Lcom/a/a/v;
+.line 37
+	return-void	
+.end method
+
+.method public a()Lcom/a/a/a;
+.limit registers 2
+; this: v1 (Lcom/a/a/v;)
+.line 41
+	iget-object	v0,v1,com/a/a/v.a Lcom/a/a/a;
+; v0 : Lcom/a/a/a; , v1 : Lcom/a/a/v;
+	return-object	v0
+; v0 : Lcom/a/a/a;
+.end method
+
+.method public b()Ljava/net/Proxy;
+.limit registers 2
+; this: v1 (Lcom/a/a/v;)
+.line 54
+	iget-object	v0,v1,com/a/a/v.b Ljava/net/Proxy;
+; v0 : Ljava/net/Proxy; , v1 : Lcom/a/a/v;
+	return-object	v0
+; v0 : Ljava/net/Proxy;
+.end method
+
+.method c()Lcom/a/a/v;
+.limit registers 6
+; this: v5 (Lcom/a/a/v;)
+.line 69
+	new-instance	v1,com/a/a/v
+; v1 : Lcom/a/a/v;
+	iget-object	v2,v5,com/a/a/v.a Lcom/a/a/a;
+; v2 : Lcom/a/a/a; , v5 : Lcom/a/a/v;
+	iget-object	v3,v5,com/a/a/v.b Ljava/net/Proxy;
+; v3 : Ljava/net/Proxy; , v5 : Lcom/a/a/v;
+	iget-object	v4,v5,com/a/a/v.c Ljava/net/InetSocketAddress;
+; v4 : Ljava/net/InetSocketAddress; , v5 : Lcom/a/a/v;
+	iget-boolean	v0,v5,com/a/a/v.d Z
+; v0 : single-length , v5 : Lcom/a/a/v;
+	if-nez	v0,l77996
+; v0 : single-length
+	const/4	v0,1
+; v0 : single-length
+l7798e:
+	invoke-direct	{v1,v2,v3,v4,v0},com/a/a/v/<init>	; <init>(Lcom/a/a/a;Ljava/net/Proxy;Ljava/net/InetSocketAddress;Z)V
+; v1 : Lcom/a/a/v; , v2 : Lcom/a/a/a; , v3 : Ljava/net/Proxy; , v4 : Ljava/net/InetSocketAddress; , v0 : single-length
+	return-object	v1
+; v1 : Lcom/a/a/v;
+l77996:
+	const/4	v0,0
+; v0 : single-length
+	goto	l7798e
+.end method
+
+.method public equals(Ljava/lang/Object;)Z
+.limit registers 5
+; this: v3 (Lcom/a/a/v;)
+; parameter[0] : v4 (Ljava/lang/Object;)
+	const/4	v0,0
+; v0 : single-length
+.line 73
+	instance-of	v1,v4,com/a/a/v
+; v1 : single-length , v4 : Ljava/lang/Object;
+	if-eqz	v1,l77a04
+; v1 : single-length
+.line 74
+	check-cast	v4,com/a/a/v
+; v4 : Lcom/a/a/v;
+.line 75
+	iget-object	v1,v3,com/a/a/v.a Lcom/a/a/a;
+; v1 : Lcom/a/a/a; , v3 : Lcom/a/a/v;
+	iget-object	v2,v4,com/a/a/v.a Lcom/a/a/a;
+; v2 : Lcom/a/a/a; , v4 : Lcom/a/a/v;
+	invoke-virtual	{v1,v2},com/a/a/a/equals	; equals(Ljava/lang/Object;)Z
+; v1 : Lcom/a/a/a; , v2 : Lcom/a/a/a;
+	move-result	v1
+; v1 : single-length
+	if-eqz	v1,l77a04
+; v1 : single-length
+	iget-object	v1,v3,com/a/a/v.b Ljava/net/Proxy;
+; v1 : Ljava/net/Proxy; , v3 : Lcom/a/a/v;
+	iget-object	v2,v4,com/a/a/v.b Ljava/net/Proxy;
+; v2 : Ljava/net/Proxy; , v4 : Lcom/a/a/v;
+	invoke-virtual	{v1,v2},java/net/Proxy/equals	; equals(Ljava/lang/Object;)Z
+; v1 : Ljava/net/Proxy; , v2 : Ljava/net/Proxy;
+	move-result	v1
+; v1 : single-length
+	if-eqz	v1,l77a04
+; v1 : single-length
+	iget-object	v1,v3,com/a/a/v.c Ljava/net/InetSocketAddress;
+; v1 : Ljava/net/InetSocketAddress; , v3 : Lcom/a/a/v;
+	iget-object	v2,v4,com/a/a/v.c Ljava/net/InetSocketAddress;
+; v2 : Ljava/net/InetSocketAddress; , v4 : Lcom/a/a/v;
+	invoke-virtual	{v1,v2},java/net/InetSocketAddress/equals	; equals(Ljava/lang/Object;)Z
+; v1 : Ljava/net/InetSocketAddress; , v2 : Ljava/net/InetSocketAddress;
+	move-result	v1
+; v1 : single-length
+	if-eqz	v1,l77a04
+; v1 : single-length
+	iget-boolean	v1,v3,com/a/a/v.d Z
+; v1 : single-length , v3 : Lcom/a/a/v;
+	iget-boolean	v2,v4,com/a/a/v.d Z
+; v2 : single-length , v4 : Lcom/a/a/v;
+	if-ne	v1,v2,l77a04
+; v1 : single-length , v2 : single-length
+	const/4	v0,1
+; v0 : single-length
+l77a04:
+.line 80
+	return	v0
+; v0 : single-length
+.end method
+
+.method public hashCode()I
+.limit registers 3
+; this: v2 (Lcom/a/a/v;)
+.line 84
+.line 85
+	iget-object	v0,v2,com/a/a/v.a Lcom/a/a/a;
+; v0 : Lcom/a/a/a; , v2 : Lcom/a/a/v;
+	invoke-virtual	{v0},com/a/a/a/hashCode	; hashCode()I
+; v0 : Lcom/a/a/a;
+	move-result	v0
+; v0 : single-length
+	add-int/lit16	v0,v0,527
+; v0 : single-length , v0 : single-length
+.line 86
+	mul-int/lit-8	v0,v0,31
+; v0 : single-length , v0 : single-length
+	iget-object	v1,v2,com/a/a/v.b Ljava/net/Proxy;
+; v1 : Ljava/net/Proxy; , v2 : Lcom/a/a/v;
+	invoke-virtual	{v1},java/net/Proxy/hashCode	; hashCode()I
+; v1 : Ljava/net/Proxy;
+	move-result	v1
+; v1 : single-length
+	add-int/2addr	v0,v1
+; v0 : single-length , v1 : single-length
+.line 87
+	mul-int/lit-8	v0,v0,31
+; v0 : single-length , v0 : single-length
+	iget-object	v1,v2,com/a/a/v.c Ljava/net/InetSocketAddress;
+; v1 : Ljava/net/InetSocketAddress; , v2 : Lcom/a/a/v;
+	invoke-virtual	{v1},java/net/InetSocketAddress/hashCode	; hashCode()I
+; v1 : Ljava/net/InetSocketAddress;
+	move-result	v1
+; v1 : single-length
+	add-int/2addr	v1,v0
+; v1 : single-length , v0 : single-length
+.line 88
+	iget-boolean	v0,v2,com/a/a/v.d Z
+; v0 : single-length , v2 : Lcom/a/a/v;
+	if-eqz	v0,l77a5c
+; v0 : single-length
+	mul-int/lit-8	v0,v1,31
+; v0 : single-length , v1 : single-length
+l77a58:
+	add-int/2addr	v0,v1
+; v0 : single-length , v1 : single-length
+.line 89
+	return	v0
+; v0 : single-length
+l77a5c:
+.line 88
+	const/4	v0,0
+; v0 : single-length
+	goto	l77a58
+.end method
+
+

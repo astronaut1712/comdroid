@@ -1,0 +1,103 @@
+.class com/fsharemobile/fragments/SettingFragment$4
+.super java/lang/Object
+.source SettingFragment.java
+.implements android/content/DialogInterface$OnClickListener
+
+.enclosing method com/onClick(Landroid/view/View;)V
+.field final this$0 Lcom/fsharemobile/fragments/SettingFragment;
+
+.method <init>(Lcom/fsharemobile/fragments/SettingFragment;)V
+.limit registers 2
+; this: v0 (Lcom/fsharemobile/fragments/SettingFragment$4;)
+; parameter[0] : v1 (Lcom/fsharemobile/fragments/SettingFragment;)
+.line 1
+	iput-object	v1,v0,com/fsharemobile/fragments/SettingFragment$4.this$0 Lcom/fsharemobile/fragments/SettingFragment;
+; v1 : Lcom/fsharemobile/fragments/SettingFragment; , v0 : Lcom/fsharemobile/fragments/SettingFragment$4;
+.line 246
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Lcom/fsharemobile/fragments/SettingFragment$4;
+	return-void	
+.end method
+
+.method public onClick(Landroid/content/DialogInterface;I)V
+.limit registers 6
+; this: v3 (Lcom/fsharemobile/fragments/SettingFragment$4;)
+; parameter[0] : v4 (Landroid/content/DialogInterface;)
+; parameter[1] : v5 (I)
+.line 253
+	iget-object	v1,v3,com/fsharemobile/fragments/SettingFragment$4.this$0 Lcom/fsharemobile/fragments/SettingFragment;
+; v1 : Lcom/fsharemobile/fragments/SettingFragment; , v3 : Lcom/fsharemobile/fragments/SettingFragment$4;
+	invoke-static	{v1},com/fsharemobile/fragments/SettingFragment/access$2	; access$2(Lcom/fsharemobile/fragments/SettingFragment;)Lcom/fsharemobile/client/FClient;
+; v1 : Lcom/fsharemobile/fragments/SettingFragment;
+	move-result-object	v1
+; v1 : Lcom/fsharemobile/client/FClient;
+	const-string	v2,""
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},com/fsharemobile/client/FClient/setSessionid	; setSessionid(Ljava/lang/String;)V
+; v1 : Lcom/fsharemobile/client/FClient; , v2 : Ljava/lang/String;
+.line 254
+	iget-object	v1,v3,com/fsharemobile/fragments/SettingFragment$4.this$0 Lcom/fsharemobile/fragments/SettingFragment;
+; v1 : Lcom/fsharemobile/fragments/SettingFragment; , v3 : Lcom/fsharemobile/fragments/SettingFragment$4;
+	invoke-static	{v1},com/fsharemobile/fragments/SettingFragment/access$2	; access$2(Lcom/fsharemobile/fragments/SettingFragment;)Lcom/fsharemobile/client/FClient;
+; v1 : Lcom/fsharemobile/fragments/SettingFragment;
+	move-result-object	v1
+; v1 : Lcom/fsharemobile/client/FClient;
+	const-string	v2,""
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},com/fsharemobile/client/FClient/setToken	; setToken(Ljava/lang/String;)V
+; v1 : Lcom/fsharemobile/client/FClient; , v2 : Ljava/lang/String;
+.line 255
+	iget-object	v1,v3,com/fsharemobile/fragments/SettingFragment$4.this$0 Lcom/fsharemobile/fragments/SettingFragment;
+; v1 : Lcom/fsharemobile/fragments/SettingFragment; , v3 : Lcom/fsharemobile/fragments/SettingFragment$4;
+	invoke-static	{v1},com/fsharemobile/fragments/SettingFragment/access$2	; access$2(Lcom/fsharemobile/fragments/SettingFragment;)Lcom/fsharemobile/client/FClient;
+; v1 : Lcom/fsharemobile/fragments/SettingFragment;
+	move-result-object	v1
+; v1 : Lcom/fsharemobile/client/FClient;
+	invoke-virtual	{v1},com/fsharemobile/client/FClient/getCookies	; getCookies()Ljava/util/List;
+; v1 : Lcom/fsharemobile/client/FClient;
+	move-result-object	v1
+; v1 : Ljava/util/List;
+	invoke-interface	{v1},java/util/List/clear	; clear()V
+; v1 : Ljava/util/List;
+.line 259
+	new-instance	v0,android/content/Intent
+; v0 : Landroid/content/Intent;
+	iget-object	v1,v3,com/fsharemobile/fragments/SettingFragment$4.this$0 Lcom/fsharemobile/fragments/SettingFragment;
+; v1 : Lcom/fsharemobile/fragments/SettingFragment; , v3 : Lcom/fsharemobile/fragments/SettingFragment$4;
+	invoke-virtual	{v1},com/fsharemobile/fragments/SettingFragment/getActivity	; getActivity()Landroid/support/v4/app/FragmentActivity;
+; v1 : Lcom/fsharemobile/fragments/SettingFragment;
+	move-result-object	v1
+; v1 : Landroid/support/v4/app/FragmentActivity;
+.line 260
+	const-class	v2,com/fsharemobile/WelcomeActivity
+; v2 : Ljava/lang/Class;
+.line 259
+	invoke-direct	{v0,v1,v2},android/content/Intent/<init>	; <init>(Landroid/content/Context;Ljava/lang/Class;)V
+; v0 : Landroid/content/Intent; , v1 : Landroid/support/v4/app/FragmentActivity; , v2 : Ljava/lang/Class;
+.line 262
+	const	v1,268468224	; 0x10008000
+; v1 : single-length
+	invoke-virtual	{v0,v1},android/content/Intent/setFlags	; setFlags(I)Landroid/content/Intent;
+; v0 : Landroid/content/Intent; , v1 : single-length
+.line 264
+	const-string	v1,"data"
+; v1 : Ljava/lang/String;
+	const/4	v2,1
+; v2 : single-length
+	invoke-virtual	{v0,v1,v2},android/content/Intent/putExtra	; putExtra(Ljava/lang/String;Z)Landroid/content/Intent;
+; v0 : Landroid/content/Intent; , v1 : Ljava/lang/String; , v2 : single-length
+.line 265
+	iget-object	v1,v3,com/fsharemobile/fragments/SettingFragment$4.this$0 Lcom/fsharemobile/fragments/SettingFragment;
+; v1 : Lcom/fsharemobile/fragments/SettingFragment; , v3 : Lcom/fsharemobile/fragments/SettingFragment$4;
+	invoke-static	{v1},com/fsharemobile/fragments/SettingFragment/access$3	; access$3(Lcom/fsharemobile/fragments/SettingFragment;)V
+; v1 : Lcom/fsharemobile/fragments/SettingFragment;
+.line 266
+	iget-object	v1,v3,com/fsharemobile/fragments/SettingFragment$4.this$0 Lcom/fsharemobile/fragments/SettingFragment;
+; v1 : Lcom/fsharemobile/fragments/SettingFragment; , v3 : Lcom/fsharemobile/fragments/SettingFragment$4;
+	invoke-virtual	{v1,v0},com/fsharemobile/fragments/SettingFragment/startActivity	; startActivity(Landroid/content/Intent;)V
+; v1 : Lcom/fsharemobile/fragments/SettingFragment; , v0 : Landroid/content/Intent;
+.line 268
+	return-void	
+.end method
+
+

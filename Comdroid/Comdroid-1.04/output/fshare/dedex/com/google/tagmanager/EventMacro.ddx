@@ -1,0 +1,94 @@
+.class com/google/tagmanager/EventMacro
+.super com/google/tagmanager/FunctionCallImplementation
+.source EventMacro.java
+
+.field private static final ID Ljava/lang/String;
+.field private final mRuntime Lcom/google/tagmanager/Runtime;
+
+.method static <clinit>()V
+.limit registers 1
+.line 14
+	sget-object	v0,com/google/analytics/containertag/common/FunctionType.EVENT Lcom/google/analytics/containertag/common/FunctionType;
+; v0 : Lcom/google/analytics/containertag/common/FunctionType;
+	invoke-virtual	{v0},com/google/analytics/containertag/common/FunctionType/toString	; toString()Ljava/lang/String;
+; v0 : Lcom/google/analytics/containertag/common/FunctionType;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	sput-object	v0,com/google/tagmanager/EventMacro.ID Ljava/lang/String;
+; v0 : Ljava/lang/String;
+	return-void	
+.end method
+
+.method public <init>(Lcom/google/tagmanager/Runtime;)V
+.limit registers 4
+; this: v2 (Lcom/google/tagmanager/EventMacro;)
+; parameter[0] : v3 (Lcom/google/tagmanager/Runtime;)
+.line 23
+	sget-object	v0,com/google/tagmanager/EventMacro.ID Ljava/lang/String;
+; v0 : Ljava/lang/String;
+	const/4	v1,0
+; v1 : single-length
+	new-array	v1,v1,[Ljava/lang/String;
+; v1 : [Ljava/lang/String; , v1 : [Ljava/lang/String;
+	invoke-direct	{v2,v0,v1},com/google/tagmanager/FunctionCallImplementation/<init>	; <init>(Ljava/lang/String;[Ljava/lang/String;)V
+; v2 : Lcom/google/tagmanager/EventMacro; , v0 : Ljava/lang/String; , v1 : [Ljava/lang/String;
+.line 24
+	iput-object	v3,v2,com/google/tagmanager/EventMacro.mRuntime Lcom/google/tagmanager/Runtime;
+; v3 : Lcom/google/tagmanager/Runtime; , v2 : Lcom/google/tagmanager/EventMacro;
+.line 25
+	return-void	
+.end method
+
+.method public static getFunctionId()Ljava/lang/String;
+.limit registers 1
+.line 19
+	sget-object	v0,com/google/tagmanager/EventMacro.ID Ljava/lang/String;
+; v0 : Ljava/lang/String;
+	return-object	v0
+; v0 : Ljava/lang/String;
+.end method
+
+.method public evaluate(Ljava/util/Map;)Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "(" , "Ljava/util/Map" , "<" , "Ljava/lang/String;" , "Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;" , ">;)" , "Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;" }
+.end annotation
+.limit registers 4
+; this: v2 (Lcom/google/tagmanager/EventMacro;)
+; parameter[0] : v3 (Ljava/util/Map;)
+.line 32
+	iget-object	v1,v2,com/google/tagmanager/EventMacro.mRuntime Lcom/google/tagmanager/Runtime;
+; v1 : Lcom/google/tagmanager/Runtime; , v2 : Lcom/google/tagmanager/EventMacro;
+	invoke-virtual	{v1},com/google/tagmanager/Runtime/getCurrentEventName	; getCurrentEventName()Ljava/lang/String;
+; v1 : Lcom/google/tagmanager/Runtime;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+.line 33
+	if-nez	v0,le913e
+; v0 : Ljava/lang/String;
+	invoke-static	{},com/google/tagmanager/Types/getDefaultValue	; getDefaultValue()Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+; 
+	nop	
+	move-result-object	v1
+; v1 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+le913c:
+	return-object	v1
+; v1 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+le913e:
+	invoke-static	{v0},com/google/tagmanager/Types/objectToValue	; objectToValue(Ljava/lang/Object;)Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+; v0 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	goto	le913c
+.end method
+
+.method public isCacheable()Z
+.limit registers 2
+; this: v1 (Lcom/google/tagmanager/EventMacro;)
+.line 28
+	const/4	v0,0
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+

@@ -1,0 +1,77 @@
+.class com/fsharemobile/z
+.super java/lang/Object
+.source MyApplication
+.implements com/fsharemobile/a/s
+
+.field final a Lcom/fsharemobile/ExplorerSearchResultsActivity;
+
+.method <init>(Lcom/fsharemobile/ExplorerSearchResultsActivity;)V
+.limit registers 2
+; this: v0 (Lcom/fsharemobile/z;)
+; parameter[0] : v1 (Lcom/fsharemobile/ExplorerSearchResultsActivity;)
+.line 1
+	iput-object	v1,v0,com/fsharemobile/z.a Lcom/fsharemobile/ExplorerSearchResultsActivity;
+; v1 : Lcom/fsharemobile/ExplorerSearchResultsActivity; , v0 : Lcom/fsharemobile/z;
+.line 758
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Lcom/fsharemobile/z;
+	return-void	
+.end method
+
+.method public a(ILjava/util/List;)V
+.limit registers 5
+; this: v2 (Lcom/fsharemobile/z;)
+; parameter[0] : v3 (I)
+; parameter[1] : v4 (Ljava/util/List;)
+.line 763
+	sget-object	v0,java/lang/System.out Ljava/io/PrintStream;
+; v0 : Ljava/io/PrintStream;
+	invoke-virtual	{v0,v3},java/io/PrintStream/println	; println(I)V
+; v0 : Ljava/io/PrintStream; , v3 : single-length
+.line 764
+	if-eqz	v3,l953f6
+; v3 : single-length
+.line 765
+	iget-object	v0,v2,com/fsharemobile/z.a Lcom/fsharemobile/ExplorerSearchResultsActivity;
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity; , v2 : Lcom/fsharemobile/z;
+	const-string	v1,"Load data failed!"
+; v1 : Ljava/lang/String;
+	invoke-static	{v0,v3,v1},com/fsharemobile/ExplorerSearchResultsActivity/b	; b(Lcom/fsharemobile/ExplorerSearchResultsActivity;ILjava/lang/String;)V
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity; , v3 : single-length , v1 : Ljava/lang/String;
+l953f4:
+.line 774
+	return-void	
+l953f6:
+.line 768
+	iget-object	v0,v2,com/fsharemobile/z.a Lcom/fsharemobile/ExplorerSearchResultsActivity;
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity; , v2 : Lcom/fsharemobile/z;
+	iget-object	v0,v0,com/fsharemobile/ExplorerSearchResultsActivity.i Lcom/fsharemobile/adapter/a;
+; v0 : Lcom/fsharemobile/adapter/a; , v0 : Lcom/fsharemobile/adapter/a;
+	invoke-virtual	{v0,v4},com/fsharemobile/adapter/a/addAll	; addAll(Ljava/util/Collection;)V
+; v0 : Lcom/fsharemobile/adapter/a; , v4 : Ljava/util/List;
+.line 769
+	invoke-interface	{v4},java/util/List/size	; size()I
+; v4 : Ljava/util/List;
+	move-result	v0
+; v0 : single-length
+	const/16	v1,100
+; v1 : single-length
+	if-ge	v0,v1,l95420
+; v0 : single-length , v1 : single-length
+.line 770
+	iget-object	v0,v2,com/fsharemobile/z.a Lcom/fsharemobile/ExplorerSearchResultsActivity;
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity; , v2 : Lcom/fsharemobile/z;
+	const/4	v1,1
+; v1 : single-length
+	invoke-static	{v0,v1},com/fsharemobile/ExplorerSearchResultsActivity/a	; a(Lcom/fsharemobile/ExplorerSearchResultsActivity;Z)V
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity; , v1 : single-length
+l95420:
+.line 772
+	iget-object	v0,v2,com/fsharemobile/z.a Lcom/fsharemobile/ExplorerSearchResultsActivity;
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity; , v2 : Lcom/fsharemobile/z;
+	invoke-static	{v0},com/fsharemobile/ExplorerSearchResultsActivity/e	; e(Lcom/fsharemobile/ExplorerSearchResultsActivity;)V
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity;
+	goto	l953f4
+.end method
+
+

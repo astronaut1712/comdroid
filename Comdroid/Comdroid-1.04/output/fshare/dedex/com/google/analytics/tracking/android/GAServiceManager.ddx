@@ -1,0 +1,949 @@
+.class public com/google/analytics/tracking/android/GAServiceManager
+.super com/google/analytics/tracking/android/ServiceManager
+.source GAServiceManager.java
+
+.field private static final MSG_KEY I = 1	; 0x1
+.field private static final MSG_OBJECT Ljava/lang/Object;
+.field private static instance Lcom/google/analytics/tracking/android/GAServiceManager;
+.field private connected Z
+.field private ctx Landroid/content/Context;
+.field private dispatchPeriodInSeconds I
+.field private handler Landroid/os/Handler;
+.field private listenForNetwork Z
+.field private listener Lcom/google/analytics/tracking/android/AnalyticsStoreStateListener;
+.field private networkReceiver Lcom/google/analytics/tracking/android/GANetworkReceiver;
+.field private pendingDispatch Z
+.field private pendingForceLocalDispatch Z
+.field private pendingHostOverride Ljava/lang/String;
+.field private store Lcom/google/analytics/tracking/android/AnalyticsStore;
+.field private storeIsEmpty Z
+.field private volatile thread Lcom/google/analytics/tracking/android/AnalyticsThread;
+
+.method static <clinit>()V
+.limit registers 1
+.line 40
+	new-instance	v0,java/lang/Object
+; v0 : Ljava/lang/Object;
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Ljava/lang/Object;
+	sput-object	v0,com/google/analytics/tracking/android/GAServiceManager.MSG_OBJECT Ljava/lang/Object;
+; v0 : Ljava/lang/Object;
+	return-void	
+.end method
+
+.method private <init>()V
+.annotation buildVisibility Lcom/google/android/gms/common/util/VisibleForTesting;
+.end annotation
+.limit registers 3
+; this: v2 (Lcom/google/analytics/tracking/android/GAServiceManager;)
+	const/4	v1,1
+; v1 : single-length
+.line 82
+	invoke-direct	{v2},com/google/analytics/tracking/android/ServiceManager/<init>	; <init>()V
+; v2 : Lcom/google/analytics/tracking/android/GAServiceManager;
+.line 45
+	const/16	v0,1800
+; v0 : single-length
+	iput	v0,v2,com/google/analytics/tracking/android/GAServiceManager.dispatchPeriodInSeconds I
+; v0 : single-length , v2 : Lcom/google/analytics/tracking/android/GAServiceManager;
+.line 46
+	iput-boolean	v1,v2,com/google/analytics/tracking/android/GAServiceManager.pendingDispatch Z
+; v1 : single-length , v2 : Lcom/google/analytics/tracking/android/GAServiceManager;
+.line 51
+	iput-boolean	v1,v2,com/google/analytics/tracking/android/GAServiceManager.connected Z
+; v1 : single-length , v2 : Lcom/google/analytics/tracking/android/GAServiceManager;
+.line 55
+	iput-boolean	v1,v2,com/google/analytics/tracking/android/GAServiceManager.listenForNetwork Z
+; v1 : single-length , v2 : Lcom/google/analytics/tracking/android/GAServiceManager;
+.line 57
+	new-instance	v0,com/google/analytics/tracking/android/GAServiceManager$1
+; v0 : Lcom/google/analytics/tracking/android/GAServiceManager$1;
+	invoke-direct	{v0,v2},com/google/analytics/tracking/android/GAServiceManager$1/<init>	; <init>(Lcom/google/analytics/tracking/android/GAServiceManager;)V
+; v0 : Lcom/google/analytics/tracking/android/GAServiceManager$1; , v2 : Lcom/google/analytics/tracking/android/GAServiceManager;
+	iput-object	v0,v2,com/google/analytics/tracking/android/GAServiceManager.listener Lcom/google/analytics/tracking/android/AnalyticsStoreStateListener;
+; v0 : Lcom/google/analytics/tracking/android/GAServiceManager$1; , v2 : Lcom/google/analytics/tracking/android/GAServiceManager;
+.line 71
+	const/4	v0,0
+; v0 : single-length
+	iput-boolean	v0,v2,com/google/analytics/tracking/android/GAServiceManager.storeIsEmpty Z
+; v0 : single-length , v2 : Lcom/google/analytics/tracking/android/GAServiceManager;
+.line 83
+	return-void	
+.end method
+
+.method <init>(Landroid/content/Context;Lcom/google/analytics/tracking/android/AnalyticsThread;Lcom/google/analytics/tracking/android/AnalyticsStore;Z)V
+.annotation buildVisibility Lcom/google/android/gms/common/util/VisibleForTesting;
+.end annotation
+.limit registers 7
+; this: v2 (Lcom/google/analytics/tracking/android/GAServiceManager;)
+; parameter[0] : v3 (Landroid/content/Context;)
+; parameter[1] : v4 (Lcom/google/analytics/tracking/android/AnalyticsThread;)
+; parameter[2] : v5 (Lcom/google/analytics/tracking/android/AnalyticsStore;)
+; parameter[3] : v6 (Z)
+	const/4	v1,1
+; v1 : single-length
+.line 92
+	invoke-direct	{v2},com/google/analytics/tracking/android/ServiceManager/<init>	; <init>()V
+; v2 : Lcom/google/analytics/tracking/android/GAServiceManager;
+.line 45
+	const/16	v0,1800
+; v0 : single-length
+	iput	v0,v2,com/google/analytics/tracking/android/GAServiceManager.dispatchPeriodInSeconds I
+; v0 : single-length , v2 : Lcom/google/analytics/tracking/android/GAServiceManager;
+.line 46
+	iput-boolean	v1,v2,com/google/analytics/tracking/android/GAServiceManager.pendingDispatch Z
+; v1 : single-length , v2 : Lcom/google/analytics/tracking/android/GAServiceManager;
+.line 51
+	iput-boolean	v1,v2,com/google/analytics/tracking/android/GAServiceManager.connected Z
+; v1 : single-length , v2 : Lcom/google/analytics/tracking/android/GAServiceManager;
+.line 55
+	iput-boolean	v1,v2,com/google/analytics/tracking/android/GAServiceManager.listenForNetwork Z
+; v1 : single-length , v2 : Lcom/google/analytics/tracking/android/GAServiceManager;
+.line 57
+	new-instance	v0,com/google/analytics/tracking/android/GAServiceManager$1
+; v0 : Lcom/google/analytics/tracking/android/GAServiceManager$1;
+	invoke-direct	{v0,v2},com/google/analytics/tracking/android/GAServiceManager$1/<init>	; <init>(Lcom/google/analytics/tracking/android/GAServiceManager;)V
+; v0 : Lcom/google/analytics/tracking/android/GAServiceManager$1; , v2 : Lcom/google/analytics/tracking/android/GAServiceManager;
+	iput-object	v0,v2,com/google/analytics/tracking/android/GAServiceManager.listener Lcom/google/analytics/tracking/android/AnalyticsStoreStateListener;
+; v0 : Lcom/google/analytics/tracking/android/GAServiceManager$1; , v2 : Lcom/google/analytics/tracking/android/GAServiceManager;
+.line 71
+	const/4	v0,0
+; v0 : single-length
+	iput-boolean	v0,v2,com/google/analytics/tracking/android/GAServiceManager.storeIsEmpty Z
+; v0 : single-length , v2 : Lcom/google/analytics/tracking/android/GAServiceManager;
+.line 93
+	iput-object	v5,v2,com/google/analytics/tracking/android/GAServiceManager.store Lcom/google/analytics/tracking/android/AnalyticsStore;
+; v5 : Lcom/google/analytics/tracking/android/AnalyticsStore; , v2 : Lcom/google/analytics/tracking/android/GAServiceManager;
+.line 94
+	iput-object	v4,v2,com/google/analytics/tracking/android/GAServiceManager.thread Lcom/google/analytics/tracking/android/AnalyticsThread;
+; v4 : Lcom/google/analytics/tracking/android/AnalyticsThread; , v2 : Lcom/google/analytics/tracking/android/GAServiceManager;
+.line 95
+	iput-boolean	v6,v2,com/google/analytics/tracking/android/GAServiceManager.listenForNetwork Z
+; v6 : single-length , v2 : Lcom/google/analytics/tracking/android/GAServiceManager;
+.line 96
+	invoke-virtual	{v2,v3,v4},com/google/analytics/tracking/android/GAServiceManager/initialize	; initialize(Landroid/content/Context;Lcom/google/analytics/tracking/android/AnalyticsThread;)V
+; v2 : Lcom/google/analytics/tracking/android/GAServiceManager; , v3 : Landroid/content/Context; , v4 : Lcom/google/analytics/tracking/android/AnalyticsThread;
+.line 97
+	return-void	
+.end method
+
+.method static access$000(Lcom/google/analytics/tracking/android/GAServiceManager;)Z
+.limit registers 2
+; parameter[0] : v1 (Lcom/google/analytics/tracking/android/GAServiceManager;)
+.line 26
+	iget-boolean	v0,v1,com/google/analytics/tracking/android/GAServiceManager.connected Z
+; v0 : single-length , v1 : Lcom/google/analytics/tracking/android/GAServiceManager;
+	return	v0
+; v0 : single-length
+.end method
+
+.method static access$100()Ljava/lang/Object;
+.limit registers 1
+.line 26
+	sget-object	v0,com/google/analytics/tracking/android/GAServiceManager.MSG_OBJECT Ljava/lang/Object;
+; v0 : Ljava/lang/Object;
+	return-object	v0
+; v0 : Ljava/lang/Object;
+.end method
+
+.method static access$200(Lcom/google/analytics/tracking/android/GAServiceManager;)I
+.limit registers 2
+; parameter[0] : v1 (Lcom/google/analytics/tracking/android/GAServiceManager;)
+.line 26
+	iget	v0,v1,com/google/analytics/tracking/android/GAServiceManager.dispatchPeriodInSeconds I
+; v0 : single-length , v1 : Lcom/google/analytics/tracking/android/GAServiceManager;
+	return	v0
+; v0 : single-length
+.end method
+
+.method static access$300(Lcom/google/analytics/tracking/android/GAServiceManager;)Z
+.limit registers 2
+; parameter[0] : v1 (Lcom/google/analytics/tracking/android/GAServiceManager;)
+.line 26
+	iget-boolean	v0,v1,com/google/analytics/tracking/android/GAServiceManager.storeIsEmpty Z
+; v0 : single-length , v1 : Lcom/google/analytics/tracking/android/GAServiceManager;
+	return	v0
+; v0 : single-length
+.end method
+
+.method static access$400(Lcom/google/analytics/tracking/android/GAServiceManager;)Landroid/os/Handler;
+.limit registers 2
+; parameter[0] : v1 (Lcom/google/analytics/tracking/android/GAServiceManager;)
+.line 26
+	iget-object	v0,v1,com/google/analytics/tracking/android/GAServiceManager.handler Landroid/os/Handler;
+; v0 : Landroid/os/Handler; , v1 : Lcom/google/analytics/tracking/android/GAServiceManager;
+	return-object	v0
+; v0 : Landroid/os/Handler;
+.end method
+
+.method static clearInstance()V
+.annotation buildVisibility Lcom/google/android/gms/common/util/VisibleForTesting;
+.end annotation
+.limit registers 1
+.line 87
+	const/4	v0,0
+; v0 : single-length
+	sput-object	v0,com/google/analytics/tracking/android/GAServiceManager.instance Lcom/google/analytics/tracking/android/GAServiceManager;
+; v0 : Lcom/google/analytics/tracking/android/GAServiceManager;
+.line 88
+	return-void	
+.end method
+
+.method public static getInstance()Lcom/google/analytics/tracking/android/GAServiceManager;
+.limit registers 1
+.line 76
+	sget-object	v0,com/google/analytics/tracking/android/GAServiceManager.instance Lcom/google/analytics/tracking/android/GAServiceManager;
+; v0 : Lcom/google/analytics/tracking/android/GAServiceManager;
+	if-nez	v0,le2006
+; v0 : Lcom/google/analytics/tracking/android/GAServiceManager;
+.line 77
+	new-instance	v0,com/google/analytics/tracking/android/GAServiceManager
+; v0 : Lcom/google/analytics/tracking/android/GAServiceManager;
+	invoke-direct	{v0},com/google/analytics/tracking/android/GAServiceManager/<init>	; <init>()V
+; v0 : Lcom/google/analytics/tracking/android/GAServiceManager;
+	sput-object	v0,com/google/analytics/tracking/android/GAServiceManager.instance Lcom/google/analytics/tracking/android/GAServiceManager;
+; v0 : Lcom/google/analytics/tracking/android/GAServiceManager;
+le2006:
+.line 79
+	sget-object	v0,com/google/analytics/tracking/android/GAServiceManager.instance Lcom/google/analytics/tracking/android/GAServiceManager;
+; v0 : Lcom/google/analytics/tracking/android/GAServiceManager;
+	return-object	v0
+; v0 : Lcom/google/analytics/tracking/android/GAServiceManager;
+.end method
+
+.method private initializeHandler()V
+.limit registers 5
+; this: v4 (Lcom/google/analytics/tracking/android/GAServiceManager;)
+.line 105
+	new-instance	v0,android/os/Handler
+; v0 : Landroid/os/Handler;
+	iget-object	v1,v4,com/google/analytics/tracking/android/GAServiceManager.ctx Landroid/content/Context;
+; v1 : Landroid/content/Context; , v4 : Lcom/google/analytics/tracking/android/GAServiceManager;
+	invoke-virtual	{v1},android/content/Context/getMainLooper	; getMainLooper()Landroid/os/Looper;
+; v1 : Landroid/content/Context;
+	move-result-object	v1
+; v1 : Landroid/os/Looper;
+	new-instance	v2,com/google/analytics/tracking/android/GAServiceManager$2
+; v2 : Lcom/google/analytics/tracking/android/GAServiceManager$2;
+	invoke-direct	{v2,v4},com/google/analytics/tracking/android/GAServiceManager$2/<init>	; <init>(Lcom/google/analytics/tracking/android/GAServiceManager;)V
+; v2 : Lcom/google/analytics/tracking/android/GAServiceManager$2; , v4 : Lcom/google/analytics/tracking/android/GAServiceManager;
+	invoke-direct	{v0,v1,v2},android/os/Handler/<init>	; <init>(Landroid/os/Looper;Landroid/os/Handler$Callback;)V
+; v0 : Landroid/os/Handler; , v1 : Landroid/os/Looper; , v2 : Lcom/google/analytics/tracking/android/GAServiceManager$2;
+	iput-object	v0,v4,com/google/analytics/tracking/android/GAServiceManager.handler Landroid/os/Handler;
+; v0 : Landroid/os/Handler; , v4 : Lcom/google/analytics/tracking/android/GAServiceManager;
+.line 123
+	iget	v0,v4,com/google/analytics/tracking/android/GAServiceManager.dispatchPeriodInSeconds I
+; v0 : single-length , v4 : Lcom/google/analytics/tracking/android/GAServiceManager;
+	if-lez	v0,le206e
+; v0 : single-length
+.line 124
+	iget-object	v0,v4,com/google/analytics/tracking/android/GAServiceManager.handler Landroid/os/Handler;
+; v0 : Landroid/os/Handler; , v4 : Lcom/google/analytics/tracking/android/GAServiceManager;
+	iget-object	v1,v4,com/google/analytics/tracking/android/GAServiceManager.handler Landroid/os/Handler;
+; v1 : Landroid/os/Handler; , v4 : Lcom/google/analytics/tracking/android/GAServiceManager;
+	const/4	v2,1
+; v2 : single-length
+	sget-object	v3,com/google/analytics/tracking/android/GAServiceManager.MSG_OBJECT Ljava/lang/Object;
+; v3 : Ljava/lang/Object;
+	invoke-virtual	{v1,v2,v3},android/os/Handler/obtainMessage	; obtainMessage(ILjava/lang/Object;)Landroid/os/Message;
+; v1 : Landroid/os/Handler; , v2 : single-length , v3 : Ljava/lang/Object;
+	move-result-object	v1
+; v1 : Landroid/os/Message;
+	iget	v2,v4,com/google/analytics/tracking/android/GAServiceManager.dispatchPeriodInSeconds I
+; v2 : single-length , v4 : Lcom/google/analytics/tracking/android/GAServiceManager;
+	mul-int/lit16	v2,v2,1000
+; v2 : single-length , v2 : single-length
+	int-to-long	v2,v2
+; v2 : double-length , v2 : double-length
+	invoke-virtual	{v0,v1,v2,v3},android/os/Handler/sendMessageDelayed	; sendMessageDelayed(Landroid/os/Message;J)Z
+; v0 : Landroid/os/Handler; , v1 : Landroid/os/Message; , v2 : double-length
+le206e:
+.line 127
+	return-void	
+.end method
+
+.method private initializeNetworkReceiver()V
+.limit registers 3
+; this: v2 (Lcom/google/analytics/tracking/android/GAServiceManager;)
+.line 100
+	new-instance	v0,com/google/analytics/tracking/android/GANetworkReceiver
+; v0 : Lcom/google/analytics/tracking/android/GANetworkReceiver;
+	invoke-direct	{v0,v2},com/google/analytics/tracking/android/GANetworkReceiver/<init>	; <init>(Lcom/google/analytics/tracking/android/ServiceManager;)V
+; v0 : Lcom/google/analytics/tracking/android/GANetworkReceiver; , v2 : Lcom/google/analytics/tracking/android/GAServiceManager;
+	iput-object	v0,v2,com/google/analytics/tracking/android/GAServiceManager.networkReceiver Lcom/google/analytics/tracking/android/GANetworkReceiver;
+; v0 : Lcom/google/analytics/tracking/android/GANetworkReceiver; , v2 : Lcom/google/analytics/tracking/android/GAServiceManager;
+.line 101
+	iget-object	v0,v2,com/google/analytics/tracking/android/GAServiceManager.networkReceiver Lcom/google/analytics/tracking/android/GANetworkReceiver;
+; v0 : Lcom/google/analytics/tracking/android/GANetworkReceiver; , v2 : Lcom/google/analytics/tracking/android/GAServiceManager;
+	iget-object	v1,v2,com/google/analytics/tracking/android/GAServiceManager.ctx Landroid/content/Context;
+; v1 : Landroid/content/Context; , v2 : Lcom/google/analytics/tracking/android/GAServiceManager;
+	invoke-virtual	{v0,v1},com/google/analytics/tracking/android/GANetworkReceiver/register	; register(Landroid/content/Context;)V
+; v0 : Lcom/google/analytics/tracking/android/GANetworkReceiver; , v1 : Landroid/content/Context;
+.line 102
+	return-void	
+.end method
+
+.method public synchronized dispatchLocalHits()V
+.annotation runtimeVisibility Ljava/lang/Deprecated;
+.end annotation
+.limit registers 3
+; this: v2 (Lcom/google/analytics/tracking/android/GAServiceManager;)
+.catch java/lang/Exception from le20ce to le20ea using le20ec
+.catch java/lang/Exception from le20b2 to le20ca using le20ec
+.line 207
+	monitor-enter	v2
+; v2 : Lcom/google/analytics/tracking/android/GAServiceManager;
+le20b2:
+	iget-object	v0,v2,com/google/analytics/tracking/android/GAServiceManager.thread Lcom/google/analytics/tracking/android/AnalyticsThread;
+; v0 : Lcom/google/analytics/tracking/android/AnalyticsThread; , v2 : Lcom/google/analytics/tracking/android/GAServiceManager;
+	if-nez	v0,le20ce
+; v0 : Lcom/google/analytics/tracking/android/AnalyticsThread;
+.line 208
+	const-string	v0,"Dispatch call queued. Dispatch will run once initialization is complete."
+; v0 : Ljava/lang/String;
+	invoke-static	{v0},com/google/analytics/tracking/android/Log/v	; v(Ljava/lang/String;)V
+; v0 : Ljava/lang/String;
+.line 209
+	const/4	v0,1
+; v0 : single-length
+	iput-boolean	v0,v2,com/google/analytics/tracking/android/GAServiceManager.pendingDispatch Z
+; v0 : single-length , v2 : Lcom/google/analytics/tracking/android/GAServiceManager;
+le20ca:
+.line 215
+	monitor-exit	v2
+; v2 : Lcom/google/analytics/tracking/android/GAServiceManager;
+	return-void	
+le20ce:
+.line 213
+	invoke-static	{},com/google/analytics/tracking/android/GAUsage/getInstance	; getInstance()Lcom/google/analytics/tracking/android/GAUsage;
+; 
+	nop	
+	move-result-object	v0
+; v0 : Lcom/google/analytics/tracking/android/GAUsage;
+	sget-object	v1,com/google/analytics/tracking/android/GAUsage$Field.DISPATCH Lcom/google/analytics/tracking/android/GAUsage$Field;
+; v1 : Lcom/google/analytics/tracking/android/GAUsage$Field;
+	invoke-virtual	{v0,v1},com/google/analytics/tracking/android/GAUsage/setUsage	; setUsage(Lcom/google/analytics/tracking/android/GAUsage$Field;)V
+; v0 : Lcom/google/analytics/tracking/android/GAUsage; , v1 : Lcom/google/analytics/tracking/android/GAUsage$Field;
+.line 214
+	iget-object	v0,v2,com/google/analytics/tracking/android/GAServiceManager.thread Lcom/google/analytics/tracking/android/AnalyticsThread;
+; v0 : Lcom/google/analytics/tracking/android/AnalyticsThread; , v2 : Lcom/google/analytics/tracking/android/GAServiceManager;
+	invoke-interface	{v0},com/google/analytics/tracking/android/AnalyticsThread/dispatch	; dispatch()V
+; v0 : Lcom/google/analytics/tracking/android/AnalyticsThread;
+le20ea:
+	goto	le20ca
+le20ec:
+.line 207
+	move-exception	v0
+; v0 : java/lang/Exception
+	monitor-exit	v2
+; v2 : Lcom/google/analytics/tracking/android/GAServiceManager;
+	throw	v0
+; v0 : java/lang/Exception
+.end method
+
+.method getListener()Lcom/google/analytics/tracking/android/AnalyticsStoreStateListener;
+.annotation buildVisibility Lcom/google/android/gms/common/util/VisibleForTesting;
+.end annotation
+.limit registers 2
+; this: v1 (Lcom/google/analytics/tracking/android/GAServiceManager;)
+.line 159
+	iget-object	v0,v1,com/google/analytics/tracking/android/GAServiceManager.listener Lcom/google/analytics/tracking/android/AnalyticsStoreStateListener;
+; v0 : Lcom/google/analytics/tracking/android/AnalyticsStoreStateListener; , v1 : Lcom/google/analytics/tracking/android/GAServiceManager;
+	return-object	v0
+; v0 : Lcom/google/analytics/tracking/android/AnalyticsStoreStateListener;
+.end method
+
+.method synchronized getStore()Lcom/google/analytics/tracking/android/AnalyticsStore;
+.limit registers 4
+; this: v3 (Lcom/google/analytics/tracking/android/GAServiceManager;)
+.catch java/lang/Exception from le2158 to le21ba using le2152
+.catch java/lang/Exception from le2132 to le2152 using le2152
+.line 167
+	monitor-enter	v3
+; v3 : Lcom/google/analytics/tracking/android/GAServiceManager;
+le2132:
+	iget-object	v0,v3,com/google/analytics/tracking/android/GAServiceManager.store Lcom/google/analytics/tracking/android/AnalyticsStore;
+; v0 : Lcom/google/analytics/tracking/android/AnalyticsStore; , v3 : Lcom/google/analytics/tracking/android/GAServiceManager;
+	if-nez	v0,le2192
+; v0 : Lcom/google/analytics/tracking/android/AnalyticsStore;
+.line 168
+	iget-object	v0,v3,com/google/analytics/tracking/android/GAServiceManager.ctx Landroid/content/Context;
+; v0 : Landroid/content/Context; , v3 : Lcom/google/analytics/tracking/android/GAServiceManager;
+	if-nez	v0,le2158
+; v0 : Landroid/content/Context;
+.line 171
+	new-instance	v0,java/lang/IllegalStateException
+; v0 : Ljava/lang/IllegalStateException;
+	const-string	v1,"Cant get a store unless we have a context"
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/IllegalStateException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/IllegalStateException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/IllegalStateException;
+le2152:
+.line 167
+	move-exception	v0
+; v0 : java/lang/Exception
+	monitor-exit	v3
+; v3 : Lcom/google/analytics/tracking/android/GAServiceManager;
+	throw	v0
+; v0 : java/lang/Exception
+le2158:
+.line 173
+	new-instance	v0,com/google/analytics/tracking/android/PersistentAnalyticsStore
+; v0 : Lcom/google/analytics/tracking/android/PersistentAnalyticsStore;
+	iget-object	v1,v3,com/google/analytics/tracking/android/GAServiceManager.listener Lcom/google/analytics/tracking/android/AnalyticsStoreStateListener;
+; v1 : Lcom/google/analytics/tracking/android/AnalyticsStoreStateListener; , v3 : Lcom/google/analytics/tracking/android/GAServiceManager;
+	iget-object	v2,v3,com/google/analytics/tracking/android/GAServiceManager.ctx Landroid/content/Context;
+; v2 : Landroid/content/Context; , v3 : Lcom/google/analytics/tracking/android/GAServiceManager;
+	invoke-direct	{v0,v1,v2},com/google/analytics/tracking/android/PersistentAnalyticsStore/<init>	; <init>(Lcom/google/analytics/tracking/android/AnalyticsStoreStateListener;Landroid/content/Context;)V
+; v0 : Lcom/google/analytics/tracking/android/PersistentAnalyticsStore; , v1 : Lcom/google/analytics/tracking/android/AnalyticsStoreStateListener; , v2 : Landroid/content/Context;
+	iput-object	v0,v3,com/google/analytics/tracking/android/GAServiceManager.store Lcom/google/analytics/tracking/android/AnalyticsStore;
+; v0 : Lcom/google/analytics/tracking/android/PersistentAnalyticsStore; , v3 : Lcom/google/analytics/tracking/android/GAServiceManager;
+.line 174
+	iget-object	v0,v3,com/google/analytics/tracking/android/GAServiceManager.pendingHostOverride Ljava/lang/String;
+; v0 : Ljava/lang/String; , v3 : Lcom/google/analytics/tracking/android/GAServiceManager;
+	if-eqz	v0,le2192
+; v0 : Ljava/lang/String;
+.line 175
+	iget-object	v0,v3,com/google/analytics/tracking/android/GAServiceManager.store Lcom/google/analytics/tracking/android/AnalyticsStore;
+; v0 : Lcom/google/analytics/tracking/android/AnalyticsStore; , v3 : Lcom/google/analytics/tracking/android/GAServiceManager;
+	invoke-interface	{v0},com/google/analytics/tracking/android/AnalyticsStore/getDispatcher	; getDispatcher()Lcom/google/analytics/tracking/android/Dispatcher;
+; v0 : Lcom/google/analytics/tracking/android/AnalyticsStore;
+	move-result-object	v0
+; v0 : Lcom/google/analytics/tracking/android/Dispatcher;
+	iget-object	v1,v3,com/google/analytics/tracking/android/GAServiceManager.pendingHostOverride Ljava/lang/String;
+; v1 : Ljava/lang/String; , v3 : Lcom/google/analytics/tracking/android/GAServiceManager;
+	invoke-interface	{v0,v1},com/google/analytics/tracking/android/Dispatcher/overrideHostUrl	; overrideHostUrl(Ljava/lang/String;)V
+; v0 : Lcom/google/analytics/tracking/android/Dispatcher; , v1 : Ljava/lang/String;
+.line 176
+	const/4	v0,0
+; v0 : single-length
+	iput-object	v0,v3,com/google/analytics/tracking/android/GAServiceManager.pendingHostOverride Ljava/lang/String;
+; v0 : single-length , v3 : Lcom/google/analytics/tracking/android/GAServiceManager;
+le2192:
+.line 179
+	iget-object	v0,v3,com/google/analytics/tracking/android/GAServiceManager.handler Landroid/os/Handler;
+; v0 : Landroid/os/Handler; , v3 : Lcom/google/analytics/tracking/android/GAServiceManager;
+	if-nez	v0,le21a0
+; v0 : Landroid/os/Handler;
+.line 181
+	invoke-direct	{v3},com/google/analytics/tracking/android/GAServiceManager/initializeHandler	; initializeHandler()V
+; v3 : Lcom/google/analytics/tracking/android/GAServiceManager;
+le21a0:
+.line 183
+	iget-object	v0,v3,com/google/analytics/tracking/android/GAServiceManager.networkReceiver Lcom/google/analytics/tracking/android/GANetworkReceiver;
+; v0 : Lcom/google/analytics/tracking/android/GANetworkReceiver; , v3 : Lcom/google/analytics/tracking/android/GAServiceManager;
+	if-nez	v0,le21b6
+; v0 : Lcom/google/analytics/tracking/android/GANetworkReceiver;
+	iget-boolean	v0,v3,com/google/analytics/tracking/android/GAServiceManager.listenForNetwork Z
+; v0 : single-length , v3 : Lcom/google/analytics/tracking/android/GAServiceManager;
+	if-eqz	v0,le21b6
+; v0 : single-length
+.line 184
+	invoke-direct	{v3},com/google/analytics/tracking/android/GAServiceManager/initializeNetworkReceiver	; initializeNetworkReceiver()V
+; v3 : Lcom/google/analytics/tracking/android/GAServiceManager;
+le21b6:
+.line 186
+	iget-object	v0,v3,com/google/analytics/tracking/android/GAServiceManager.store Lcom/google/analytics/tracking/android/AnalyticsStore;
+; v0 : Lcom/google/analytics/tracking/android/AnalyticsStore; , v3 : Lcom/google/analytics/tracking/android/GAServiceManager;
+le21ba:
+	monitor-exit	v3
+; v3 : Lcom/google/analytics/tracking/android/GAServiceManager;
+	return-object	v0
+; v0 : Lcom/google/analytics/tracking/android/AnalyticsStore;
+.end method
+
+.method synchronized initialize(Landroid/content/Context;Lcom/google/analytics/tracking/android/AnalyticsThread;)V
+.limit registers 4
+; this: v1 (Lcom/google/analytics/tracking/android/GAServiceManager;)
+; parameter[0] : v2 (Landroid/content/Context;)
+; parameter[1] : v3 (Lcom/google/analytics/tracking/android/AnalyticsThread;)
+.catch java/lang/Exception from le21f2 to le2232 using le2234
+.catch java/lang/Exception from le21e6 to le21ea using le2234
+.line 139
+	monitor-enter	v1
+; v1 : Lcom/google/analytics/tracking/android/GAServiceManager;
+le21e6:
+	iget-object	v0,v1,com/google/analytics/tracking/android/GAServiceManager.ctx Landroid/content/Context;
+; v0 : Landroid/content/Context; , v1 : Lcom/google/analytics/tracking/android/GAServiceManager;
+le21ea:
+	if-eqz	v0,le21f2
+; v0 : Landroid/content/Context;
+le21ee:
+.line 155
+	monitor-exit	v1
+; v1 : Lcom/google/analytics/tracking/android/GAServiceManager;
+	return-void	
+le21f2:
+.line 142
+	invoke-virtual	{v2},android/content/Context/getApplicationContext	; getApplicationContext()Landroid/content/Context;
+; v2 : Landroid/content/Context;
+	move-result-object	v0
+; v0 : Landroid/content/Context;
+	iput-object	v0,v1,com/google/analytics/tracking/android/GAServiceManager.ctx Landroid/content/Context;
+; v0 : Landroid/content/Context; , v1 : Lcom/google/analytics/tracking/android/GAServiceManager;
+.line 144
+	iget-object	v0,v1,com/google/analytics/tracking/android/GAServiceManager.thread Lcom/google/analytics/tracking/android/AnalyticsThread;
+; v0 : Lcom/google/analytics/tracking/android/AnalyticsThread; , v1 : Lcom/google/analytics/tracking/android/GAServiceManager;
+	if-nez	v0,le21ee
+; v0 : Lcom/google/analytics/tracking/android/AnalyticsThread;
+.line 145
+	iput-object	v3,v1,com/google/analytics/tracking/android/GAServiceManager.thread Lcom/google/analytics/tracking/android/AnalyticsThread;
+; v3 : Lcom/google/analytics/tracking/android/AnalyticsThread; , v1 : Lcom/google/analytics/tracking/android/GAServiceManager;
+.line 146
+	iget-boolean	v0,v1,com/google/analytics/tracking/android/GAServiceManager.pendingDispatch Z
+; v0 : single-length , v1 : Lcom/google/analytics/tracking/android/GAServiceManager;
+	if-eqz	v0,le221e
+; v0 : single-length
+.line 147
+	invoke-virtual	{v1},com/google/analytics/tracking/android/GAServiceManager/dispatchLocalHits	; dispatchLocalHits()V
+; v1 : Lcom/google/analytics/tracking/android/GAServiceManager;
+.line 148
+	const/4	v0,0
+; v0 : single-length
+	iput-boolean	v0,v1,com/google/analytics/tracking/android/GAServiceManager.pendingDispatch Z
+; v0 : single-length , v1 : Lcom/google/analytics/tracking/android/GAServiceManager;
+le221e:
+.line 150
+	iget-boolean	v0,v1,com/google/analytics/tracking/android/GAServiceManager.pendingForceLocalDispatch Z
+; v0 : single-length , v1 : Lcom/google/analytics/tracking/android/GAServiceManager;
+	if-eqz	v0,le21ee
+; v0 : single-length
+.line 151
+	invoke-virtual	{v1},com/google/analytics/tracking/android/GAServiceManager/setForceLocalDispatch	; setForceLocalDispatch()V
+; v1 : Lcom/google/analytics/tracking/android/GAServiceManager;
+.line 152
+	const/4	v0,0
+; v0 : single-length
+	iput-boolean	v0,v1,com/google/analytics/tracking/android/GAServiceManager.pendingForceLocalDispatch Z
+; v0 : single-length , v1 : Lcom/google/analytics/tracking/android/GAServiceManager;
+le2232:
+	goto	le21ee
+le2234:
+.line 139
+	move-exception	v0
+; v0 : java/lang/Exception
+	monitor-exit	v1
+; v1 : Lcom/google/analytics/tracking/android/GAServiceManager;
+	throw	v0
+; v0 : java/lang/Exception
+.end method
+
+.method synchronized onRadioPowered()V
+.limit registers 5
+; this: v4 (Lcom/google/analytics/tracking/android/GAServiceManager;)
+.catch java/lang/Exception from le2262 to le22a6 using le22aa
+.line 277
+	monitor-enter	v4
+; v4 : Lcom/google/analytics/tracking/android/GAServiceManager;
+le2262:
+	iget-boolean	v0,v4,com/google/analytics/tracking/android/GAServiceManager.storeIsEmpty Z
+; v0 : single-length , v4 : Lcom/google/analytics/tracking/android/GAServiceManager;
+	if-nez	v0,le22a6
+; v0 : single-length
+	iget-boolean	v0,v4,com/google/analytics/tracking/android/GAServiceManager.connected Z
+; v0 : single-length , v4 : Lcom/google/analytics/tracking/android/GAServiceManager;
+	if-eqz	v0,le22a6
+; v0 : single-length
+	iget	v0,v4,com/google/analytics/tracking/android/GAServiceManager.dispatchPeriodInSeconds I
+; v0 : single-length , v4 : Lcom/google/analytics/tracking/android/GAServiceManager;
+	if-lez	v0,le22a6
+; v0 : single-length
+.line 281
+	iget-object	v0,v4,com/google/analytics/tracking/android/GAServiceManager.handler Landroid/os/Handler;
+; v0 : Landroid/os/Handler; , v4 : Lcom/google/analytics/tracking/android/GAServiceManager;
+	const/4	v1,1
+; v1 : single-length
+	sget-object	v2,com/google/analytics/tracking/android/GAServiceManager.MSG_OBJECT Ljava/lang/Object;
+; v2 : Ljava/lang/Object;
+	invoke-virtual	{v0,v1,v2},android/os/Handler/removeMessages	; removeMessages(ILjava/lang/Object;)V
+; v0 : Landroid/os/Handler; , v1 : single-length , v2 : Ljava/lang/Object;
+.line 282
+	iget-object	v0,v4,com/google/analytics/tracking/android/GAServiceManager.handler Landroid/os/Handler;
+; v0 : Landroid/os/Handler; , v4 : Lcom/google/analytics/tracking/android/GAServiceManager;
+	iget-object	v1,v4,com/google/analytics/tracking/android/GAServiceManager.handler Landroid/os/Handler;
+; v1 : Landroid/os/Handler; , v4 : Lcom/google/analytics/tracking/android/GAServiceManager;
+	const/4	v2,1
+; v2 : single-length
+	sget-object	v3,com/google/analytics/tracking/android/GAServiceManager.MSG_OBJECT Ljava/lang/Object;
+; v3 : Ljava/lang/Object;
+	invoke-virtual	{v1,v2,v3},android/os/Handler/obtainMessage	; obtainMessage(ILjava/lang/Object;)Landroid/os/Message;
+; v1 : Landroid/os/Handler; , v2 : single-length , v3 : Ljava/lang/Object;
+	move-result-object	v1
+; v1 : Landroid/os/Message;
+	invoke-virtual	{v0,v1},android/os/Handler/sendMessage	; sendMessage(Landroid/os/Message;)Z
+; v0 : Landroid/os/Handler; , v1 : Landroid/os/Message;
+le22a6:
+.line 284
+	monitor-exit	v4
+; v4 : Lcom/google/analytics/tracking/android/GAServiceManager;
+	return-void	
+le22aa:
+.line 277
+	move-exception	v0
+; v0 : java/lang/Exception
+	monitor-exit	v4
+; v4 : Lcom/google/analytics/tracking/android/GAServiceManager;
+	throw	v0
+; v0 : java/lang/Exception
+.end method
+
+.method synchronized overrideHostUrl(Ljava/lang/String;)V
+.annotation buildVisibility Lcom/google/android/gms/common/util/VisibleForTesting;
+.end annotation
+.limit registers 3
+; this: v1 (Lcom/google/analytics/tracking/android/GAServiceManager;)
+; parameter[0] : v2 (Ljava/lang/String;)
+.catch java/lang/Exception from le22de to le22f0 using le22f2
+.catch java/lang/Exception from le22ce to le22da using le22f2
+.line 195
+	monitor-enter	v1
+; v1 : Lcom/google/analytics/tracking/android/GAServiceManager;
+le22ce:
+	iget-object	v0,v1,com/google/analytics/tracking/android/GAServiceManager.store Lcom/google/analytics/tracking/android/AnalyticsStore;
+; v0 : Lcom/google/analytics/tracking/android/AnalyticsStore; , v1 : Lcom/google/analytics/tracking/android/GAServiceManager;
+	if-nez	v0,le22de
+; v0 : Lcom/google/analytics/tracking/android/AnalyticsStore;
+.line 196
+	iput-object	v2,v1,com/google/analytics/tracking/android/GAServiceManager.pendingHostOverride Ljava/lang/String;
+; v2 : Ljava/lang/String; , v1 : Lcom/google/analytics/tracking/android/GAServiceManager;
+le22da:
+.line 200
+	monitor-exit	v1
+; v1 : Lcom/google/analytics/tracking/android/GAServiceManager;
+	return-void	
+le22de:
+.line 198
+	iget-object	v0,v1,com/google/analytics/tracking/android/GAServiceManager.store Lcom/google/analytics/tracking/android/AnalyticsStore;
+; v0 : Lcom/google/analytics/tracking/android/AnalyticsStore; , v1 : Lcom/google/analytics/tracking/android/GAServiceManager;
+	invoke-interface	{v0},com/google/analytics/tracking/android/AnalyticsStore/getDispatcher	; getDispatcher()Lcom/google/analytics/tracking/android/Dispatcher;
+; v0 : Lcom/google/analytics/tracking/android/AnalyticsStore;
+	move-result-object	v0
+; v0 : Lcom/google/analytics/tracking/android/Dispatcher;
+	invoke-interface	{v0,v2},com/google/analytics/tracking/android/Dispatcher/overrideHostUrl	; overrideHostUrl(Ljava/lang/String;)V
+; v0 : Lcom/google/analytics/tracking/android/Dispatcher; , v2 : Ljava/lang/String;
+le22f0:
+	goto	le22da
+le22f2:
+.line 195
+	move-exception	v0
+; v0 : java/lang/Exception
+	monitor-exit	v1
+; v1 : Lcom/google/analytics/tracking/android/GAServiceManager;
+	throw	v0
+; v0 : java/lang/Exception
+.end method
+
+.method public setForceLocalDispatch()V
+.annotation runtimeVisibility Ljava/lang/Deprecated;
+.end annotation
+.limit registers 3
+; this: v2 (Lcom/google/analytics/tracking/android/GAServiceManager;)
+.line 243
+	iget-object	v0,v2,com/google/analytics/tracking/android/GAServiceManager.thread Lcom/google/analytics/tracking/android/AnalyticsThread;
+; v0 : Lcom/google/analytics/tracking/android/AnalyticsThread; , v2 : Lcom/google/analytics/tracking/android/GAServiceManager;
+	if-nez	v0,le2336
+; v0 : Lcom/google/analytics/tracking/android/AnalyticsThread;
+.line 244
+	const-string	v0,"setForceLocalDispatch() queued. It will be called once initialization is complete."
+; v0 : Ljava/lang/String;
+	invoke-static	{v0},com/google/analytics/tracking/android/Log/v	; v(Ljava/lang/String;)V
+; v0 : Ljava/lang/String;
+.line 245
+	const/4	v0,1
+; v0 : single-length
+	iput-boolean	v0,v2,com/google/analytics/tracking/android/GAServiceManager.pendingForceLocalDispatch Z
+; v0 : single-length , v2 : Lcom/google/analytics/tracking/android/GAServiceManager;
+le2334:
+.line 250
+	return-void	
+le2336:
+.line 248
+	invoke-static	{},com/google/analytics/tracking/android/GAUsage/getInstance	; getInstance()Lcom/google/analytics/tracking/android/GAUsage;
+; 
+	nop	
+	move-result-object	v0
+; v0 : Lcom/google/analytics/tracking/android/GAUsage;
+	sget-object	v1,com/google/analytics/tracking/android/GAUsage$Field.SET_FORCE_LOCAL_DISPATCH Lcom/google/analytics/tracking/android/GAUsage$Field;
+; v1 : Lcom/google/analytics/tracking/android/GAUsage$Field;
+	invoke-virtual	{v0,v1},com/google/analytics/tracking/android/GAUsage/setUsage	; setUsage(Lcom/google/analytics/tracking/android/GAUsage$Field;)V
+; v0 : Lcom/google/analytics/tracking/android/GAUsage; , v1 : Lcom/google/analytics/tracking/android/GAUsage$Field;
+.line 249
+	iget-object	v0,v2,com/google/analytics/tracking/android/GAServiceManager.thread Lcom/google/analytics/tracking/android/AnalyticsThread;
+; v0 : Lcom/google/analytics/tracking/android/AnalyticsThread; , v2 : Lcom/google/analytics/tracking/android/GAServiceManager;
+	invoke-interface	{v0},com/google/analytics/tracking/android/AnalyticsThread/setForceLocalDispatch	; setForceLocalDispatch()V
+; v0 : Lcom/google/analytics/tracking/android/AnalyticsThread;
+	goto	le2334
+.end method
+
+.method public synchronized setLocalDispatchPeriod(I)V
+.annotation runtimeVisibility Ljava/lang/Deprecated;
+.end annotation
+.limit registers 6
+; this: v4 (Lcom/google/analytics/tracking/android/GAServiceManager;)
+; parameter[0] : v5 (I)
+.catch java/lang/Exception from le2380 to le23f4 using le23f6
+.catch java/lang/Exception from le2366 to le237c using le23f6
+.line 220
+	monitor-enter	v4
+; v4 : Lcom/google/analytics/tracking/android/GAServiceManager;
+le2366:
+	iget-object	v0,v4,com/google/analytics/tracking/android/GAServiceManager.handler Landroid/os/Handler;
+; v0 : Landroid/os/Handler; , v4 : Lcom/google/analytics/tracking/android/GAServiceManager;
+	if-nez	v0,le2380
+; v0 : Landroid/os/Handler;
+.line 221
+	const-string	v0,"Dispatch period set with null handler. Dispatch will run once initialization is complete."
+; v0 : Ljava/lang/String;
+	invoke-static	{v0},com/google/analytics/tracking/android/Log/v	; v(Ljava/lang/String;)V
+; v0 : Ljava/lang/String;
+.line 223
+	iput	v5,v4,com/google/analytics/tracking/android/GAServiceManager.dispatchPeriodInSeconds I
+; v5 : single-length , v4 : Lcom/google/analytics/tracking/android/GAServiceManager;
+le237c:
+.line 237
+	monitor-exit	v4
+; v4 : Lcom/google/analytics/tracking/android/GAServiceManager;
+	return-void	
+le2380:
+.line 227
+	invoke-static	{},com/google/analytics/tracking/android/GAUsage/getInstance	; getInstance()Lcom/google/analytics/tracking/android/GAUsage;
+; 
+	nop	
+	move-result-object	v0
+; v0 : Lcom/google/analytics/tracking/android/GAUsage;
+	sget-object	v1,com/google/analytics/tracking/android/GAUsage$Field.SET_DISPATCH_PERIOD Lcom/google/analytics/tracking/android/GAUsage$Field;
+; v1 : Lcom/google/analytics/tracking/android/GAUsage$Field;
+	invoke-virtual	{v0,v1},com/google/analytics/tracking/android/GAUsage/setUsage	; setUsage(Lcom/google/analytics/tracking/android/GAUsage$Field;)V
+; v0 : Lcom/google/analytics/tracking/android/GAUsage; , v1 : Lcom/google/analytics/tracking/android/GAUsage$Field;
+.line 229
+	iget-boolean	v0,v4,com/google/analytics/tracking/android/GAServiceManager.storeIsEmpty Z
+; v0 : single-length , v4 : Lcom/google/analytics/tracking/android/GAServiceManager;
+	if-nez	v0,le23ba
+; v0 : single-length
+	iget-boolean	v0,v4,com/google/analytics/tracking/android/GAServiceManager.connected Z
+; v0 : single-length , v4 : Lcom/google/analytics/tracking/android/GAServiceManager;
+	if-eqz	v0,le23ba
+; v0 : single-length
+	iget	v0,v4,com/google/analytics/tracking/android/GAServiceManager.dispatchPeriodInSeconds I
+; v0 : single-length , v4 : Lcom/google/analytics/tracking/android/GAServiceManager;
+	if-lez	v0,le23ba
+; v0 : single-length
+.line 230
+	iget-object	v0,v4,com/google/analytics/tracking/android/GAServiceManager.handler Landroid/os/Handler;
+; v0 : Landroid/os/Handler; , v4 : Lcom/google/analytics/tracking/android/GAServiceManager;
+	const/4	v1,1
+; v1 : single-length
+	sget-object	v2,com/google/analytics/tracking/android/GAServiceManager.MSG_OBJECT Ljava/lang/Object;
+; v2 : Ljava/lang/Object;
+	invoke-virtual	{v0,v1,v2},android/os/Handler/removeMessages	; removeMessages(ILjava/lang/Object;)V
+; v0 : Landroid/os/Handler; , v1 : single-length , v2 : Ljava/lang/Object;
+le23ba:
+.line 232
+	iput	v5,v4,com/google/analytics/tracking/android/GAServiceManager.dispatchPeriodInSeconds I
+; v5 : single-length , v4 : Lcom/google/analytics/tracking/android/GAServiceManager;
+.line 233
+	if-lez	v5,le237c
+; v5 : single-length
+	iget-boolean	v0,v4,com/google/analytics/tracking/android/GAServiceManager.storeIsEmpty Z
+; v0 : single-length , v4 : Lcom/google/analytics/tracking/android/GAServiceManager;
+	if-nez	v0,le237c
+; v0 : single-length
+	iget-boolean	v0,v4,com/google/analytics/tracking/android/GAServiceManager.connected Z
+; v0 : single-length , v4 : Lcom/google/analytics/tracking/android/GAServiceManager;
+	if-eqz	v0,le237c
+; v0 : single-length
+.line 234
+	iget-object	v0,v4,com/google/analytics/tracking/android/GAServiceManager.handler Landroid/os/Handler;
+; v0 : Landroid/os/Handler; , v4 : Lcom/google/analytics/tracking/android/GAServiceManager;
+	iget-object	v1,v4,com/google/analytics/tracking/android/GAServiceManager.handler Landroid/os/Handler;
+; v1 : Landroid/os/Handler; , v4 : Lcom/google/analytics/tracking/android/GAServiceManager;
+	const/4	v2,1
+; v2 : single-length
+	sget-object	v3,com/google/analytics/tracking/android/GAServiceManager.MSG_OBJECT Ljava/lang/Object;
+; v3 : Ljava/lang/Object;
+	invoke-virtual	{v1,v2,v3},android/os/Handler/obtainMessage	; obtainMessage(ILjava/lang/Object;)Landroid/os/Message;
+; v1 : Landroid/os/Handler; , v2 : single-length , v3 : Ljava/lang/Object;
+	move-result-object	v1
+; v1 : Landroid/os/Message;
+	mul-int/lit16	v2,v5,1000
+; v2 : single-length , v5 : single-length
+	int-to-long	v2,v2
+; v2 : double-length , v2 : double-length
+	invoke-virtual	{v0,v1,v2,v3},android/os/Handler/sendMessageDelayed	; sendMessageDelayed(Landroid/os/Message;J)Z
+; v0 : Landroid/os/Handler; , v1 : Landroid/os/Message; , v2 : double-length
+le23f4:
+	goto	le237c
+le23f6:
+.line 220
+	move-exception	v0
+; v0 : java/lang/Exception
+	monitor-exit	v4
+; v4 : Lcom/google/analytics/tracking/android/GAServiceManager;
+	throw	v0
+; v0 : java/lang/Exception
+.end method
+
+.method synchronized updateConnectivityStatus(Z)V
+.limit registers 3
+; this: v1 (Lcom/google/analytics/tracking/android/GAServiceManager;)
+; parameter[0] : v2 (Z)
+.catch java/lang/Exception from le2422 to le242c using le2430
+.line 272
+	monitor-enter	v1
+; v1 : Lcom/google/analytics/tracking/android/GAServiceManager;
+le2422:
+	iget-boolean	v0,v1,com/google/analytics/tracking/android/GAServiceManager.storeIsEmpty Z
+; v0 : single-length , v1 : Lcom/google/analytics/tracking/android/GAServiceManager;
+	invoke-virtual	{v1,v0,v2},com/google/analytics/tracking/android/GAServiceManager/updatePowerSaveMode	; updatePowerSaveMode(ZZ)V
+; v1 : Lcom/google/analytics/tracking/android/GAServiceManager; , v0 : single-length , v2 : single-length
+le242c:
+.line 273
+	monitor-exit	v1
+; v1 : Lcom/google/analytics/tracking/android/GAServiceManager;
+	return-void	
+le2430:
+.line 272
+	move-exception	v0
+; v0 : java/lang/Exception
+	monitor-exit	v1
+; v1 : Lcom/google/analytics/tracking/android/GAServiceManager;
+	throw	v0
+; v0 : java/lang/Exception
+.end method
+
+.method synchronized updatePowerSaveMode(ZZ)V
+.annotation buildVisibility Lcom/google/android/gms/common/util/VisibleForTesting;
+.end annotation
+.limit registers 7
+; this: v4 (Lcom/google/analytics/tracking/android/GAServiceManager;)
+; parameter[0] : v5 (Z)
+; parameter[1] : v6 (Z)
+.catch java/lang/Exception from le2508 to le250c using le2502
+.catch java/lang/Exception from le2472 to le2500 using le2502
+.catch java/lang/Exception from le2456 to le2462 using le2502
+.line 254
+	monitor-enter	v4
+; v4 : Lcom/google/analytics/tracking/android/GAServiceManager;
+le2456:
+	iget-boolean	v0,v4,com/google/analytics/tracking/android/GAServiceManager.storeIsEmpty Z
+; v0 : single-length , v4 : Lcom/google/analytics/tracking/android/GAServiceManager;
+	if-ne	v0,v5,le246a
+; v0 : single-length , v5 : single-length
+	iget-boolean	v0,v4,com/google/analytics/tracking/android/GAServiceManager.connected Z
+; v0 : single-length , v4 : Lcom/google/analytics/tracking/android/GAServiceManager;
+le2462:
+	if-ne	v0,v6,le246a
+; v0 : single-length , v6 : single-length
+le2466:
+.line 268
+	monitor-exit	v4
+; v4 : Lcom/google/analytics/tracking/android/GAServiceManager;
+	return-void	
+le246a:
+.line 257
+	if-nez	v5,le2472
+; v5 : single-length
+	if-nez	v6,le248a
+; v6 : single-length
+le2472:
+	iget	v0,v4,com/google/analytics/tracking/android/GAServiceManager.dispatchPeriodInSeconds I
+; v0 : single-length , v4 : Lcom/google/analytics/tracking/android/GAServiceManager;
+	if-lez	v0,le248a
+; v0 : single-length
+.line 258
+	iget-object	v0,v4,com/google/analytics/tracking/android/GAServiceManager.handler Landroid/os/Handler;
+; v0 : Landroid/os/Handler; , v4 : Lcom/google/analytics/tracking/android/GAServiceManager;
+	const/4	v1,1
+; v1 : single-length
+	sget-object	v2,com/google/analytics/tracking/android/GAServiceManager.MSG_OBJECT Ljava/lang/Object;
+; v2 : Ljava/lang/Object;
+	invoke-virtual	{v0,v1,v2},android/os/Handler/removeMessages	; removeMessages(ILjava/lang/Object;)V
+; v0 : Landroid/os/Handler; , v1 : single-length , v2 : Ljava/lang/Object;
+le248a:
+.line 260
+	if-nez	v5,le24c0
+; v5 : single-length
+	if-eqz	v6,le24c0
+; v6 : single-length
+	iget	v0,v4,com/google/analytics/tracking/android/GAServiceManager.dispatchPeriodInSeconds I
+; v0 : single-length , v4 : Lcom/google/analytics/tracking/android/GAServiceManager;
+	if-lez	v0,le24c0
+; v0 : single-length
+.line 261
+	iget-object	v0,v4,com/google/analytics/tracking/android/GAServiceManager.handler Landroid/os/Handler;
+; v0 : Landroid/os/Handler; , v4 : Lcom/google/analytics/tracking/android/GAServiceManager;
+	iget-object	v1,v4,com/google/analytics/tracking/android/GAServiceManager.handler Landroid/os/Handler;
+; v1 : Landroid/os/Handler; , v4 : Lcom/google/analytics/tracking/android/GAServiceManager;
+	const/4	v2,1
+; v2 : single-length
+	sget-object	v3,com/google/analytics/tracking/android/GAServiceManager.MSG_OBJECT Ljava/lang/Object;
+; v3 : Ljava/lang/Object;
+	invoke-virtual	{v1,v2,v3},android/os/Handler/obtainMessage	; obtainMessage(ILjava/lang/Object;)Landroid/os/Message;
+; v1 : Landroid/os/Handler; , v2 : single-length , v3 : Ljava/lang/Object;
+	move-result-object	v1
+; v1 : Landroid/os/Message;
+	iget	v2,v4,com/google/analytics/tracking/android/GAServiceManager.dispatchPeriodInSeconds I
+; v2 : single-length , v4 : Lcom/google/analytics/tracking/android/GAServiceManager;
+	mul-int/lit16	v2,v2,1000
+; v2 : single-length , v2 : single-length
+	int-to-long	v2,v2
+; v2 : double-length , v2 : double-length
+	invoke-virtual	{v0,v1,v2,v3},android/os/Handler/sendMessageDelayed	; sendMessageDelayed(Landroid/os/Message;J)Z
+; v0 : Landroid/os/Handler; , v1 : Landroid/os/Message; , v2 : double-length
+le24c0:
+.line 264
+	new-instance	v0,java/lang/StringBuilder
+; v0 : Ljava/lang/StringBuilder;
+	invoke-direct	{v0},java/lang/StringBuilder/<init>	; <init>()V
+; v0 : Ljava/lang/StringBuilder;
+	const-string	v1,"PowerSaveMode "
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v1 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	if-nez	v5,le24de
+; v5 : single-length
+	if-nez	v6,le2508
+; v6 : single-length
+le24de:
+	const-string	v0,"initiated."
+; v0 : Ljava/lang/String;
+le24e2:
+	invoke-virtual	{v1,v0},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v0 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v0},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v0 : Ljava/lang/StringBuilder;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	invoke-static	{v0},com/google/analytics/tracking/android/Log/v	; v(Ljava/lang/String;)V
+; v0 : Ljava/lang/String;
+.line 266
+	iput-boolean	v5,v4,com/google/analytics/tracking/android/GAServiceManager.storeIsEmpty Z
+; v5 : single-length , v4 : Lcom/google/analytics/tracking/android/GAServiceManager;
+.line 267
+	iput-boolean	v6,v4,com/google/analytics/tracking/android/GAServiceManager.connected Z
+; v6 : single-length , v4 : Lcom/google/analytics/tracking/android/GAServiceManager;
+le2500:
+	goto	le2466
+le2502:
+.line 254
+	move-exception	v0
+; v0 : java/lang/Exception
+	monitor-exit	v4
+; v4 : Lcom/google/analytics/tracking/android/GAServiceManager;
+	throw	v0
+; v0 : java/lang/Exception
+le2508:
+.line 264
+	const-string	v0,"terminated."
+; v0 : Ljava/lang/String;
+le250c:
+	goto	le24e2
+.end method
+
+

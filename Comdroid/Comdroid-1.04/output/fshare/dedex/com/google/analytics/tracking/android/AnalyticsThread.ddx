@@ -1,0 +1,30 @@
+.interface abstract com/google/analytics/tracking/android/AnalyticsThread
+.super java/lang/Object
+.source AnalyticsThread.java
+
+
+.method public abstract clearHits()V
+.end method
+
+.method public abstract dispatch()V
+.end method
+
+.method public abstract getQueue()Ljava/util/concurrent/LinkedBlockingQueue;
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "()" , "Ljava/util/concurrent/LinkedBlockingQueue" , "<" , "Ljava/lang/Runnable;" , ">;" }
+.end annotation
+.end method
+
+.method public abstract getThread()Ljava/lang/Thread;
+.end method
+
+.method public abstract sendHit(Ljava/util/Map;)V
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "(" , "Ljava/util/Map" , "<" , "Ljava/lang/String;" , "Ljava/lang/String;" , ">;)V" }
+.end annotation
+.end method
+
+.method public abstract setForceLocalDispatch()V
+.end method
+
+

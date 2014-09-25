@@ -1,0 +1,493 @@
+.class public com/google/tagmanager/ExperimentMacroHelper
+.super java/lang/Object
+.source ExperimentMacroHelper.java
+
+
+.method public <init>()V
+.limit registers 1
+; this: v0 (Lcom/google/tagmanager/ExperimentMacroHelper;)
+.line 13
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Lcom/google/tagmanager/ExperimentMacroHelper;
+	return-void	
+.end method
+
+.method private static clearKeys(Lcom/google/tagmanager/DataLayer;Lcom/google/analytics/containertag/proto/Serving$GaExperimentSupplemental;)V
+.limit registers 7
+; parameter[0] : v5 (Lcom/google/tagmanager/DataLayer;)
+; parameter[1] : v6 (Lcom/google/analytics/containertag/proto/Serving$GaExperimentSupplemental;)
+.var 3 is value Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; from la6be8 to la6bfc
+.line 34
+	iget-object	v0,v6,com/google/analytics/containertag/proto/Serving$GaExperimentSupplemental.valueToClear [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+; v0 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v6 : Lcom/google/analytics/containertag/proto/Serving$GaExperimentSupplemental;
+	array-length	v2,v0
+; v2 : single-length , v0 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	const/4	v1,0
+; v1 : single-length
+la6be0:
+	if-ge	v1,v2,la6bfc
+; v1 : single-length , v2 : single-length
+	aget-object	v3,v0,v1
+; v3 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v0 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v1 : single-length
+.line 35
+	invoke-static	{v3},com/google/tagmanager/Types/valueToString	; valueToString(Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;)Ljava/lang/String;
+; v3 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	move-result-object	v4
+; v4 : Ljava/lang/String;
+	invoke-virtual	{v5,v4},com/google/tagmanager/DataLayer/clearPersistentKeysWithPrefix	; clearPersistentKeysWithPrefix(Ljava/lang/String;)V
+; v5 : Lcom/google/tagmanager/DataLayer; , v4 : Ljava/lang/String;
+.line 34
+	add-int/lit8	v1,v1,1
+; v1 : single-length , v1 : single-length
+	goto	la6be0
+la6bfc:
+.line 37
+	return-void	
+.end method
+
+.method public static handleExperimentSupplemental(Lcom/google/tagmanager/DataLayer;Lcom/google/analytics/containertag/proto/Serving$Supplemental;)V
+.limit registers 3
+; parameter[0] : v1 (Lcom/google/tagmanager/DataLayer;)
+; parameter[1] : v2 (Lcom/google/analytics/containertag/proto/Serving$Supplemental;)
+.line 24
+	iget-object	v0,v2,com/google/analytics/containertag/proto/Serving$Supplemental.experimentSupplemental Lcom/google/analytics/containertag/proto/Serving$GaExperimentSupplemental;
+; v0 : Lcom/google/analytics/containertag/proto/Serving$GaExperimentSupplemental; , v2 : Lcom/google/analytics/containertag/proto/Serving$Supplemental;
+	if-nez	v0,la6c24
+; v0 : Lcom/google/analytics/containertag/proto/Serving$GaExperimentSupplemental;
+.line 25
+	const-string	v0,"supplemental missing experimentSupplemental"
+; v0 : Ljava/lang/String;
+	invoke-static	{v0},com/google/tagmanager/Log/w	; w(Ljava/lang/String;)V
+; v0 : Ljava/lang/String;
+la6c22:
+.line 31
+	return-void	
+la6c24:
+.line 28
+	iget-object	v0,v2,com/google/analytics/containertag/proto/Serving$Supplemental.experimentSupplemental Lcom/google/analytics/containertag/proto/Serving$GaExperimentSupplemental;
+; v0 : Lcom/google/analytics/containertag/proto/Serving$GaExperimentSupplemental; , v2 : Lcom/google/analytics/containertag/proto/Serving$Supplemental;
+	invoke-static	{v1,v0},com/google/tagmanager/ExperimentMacroHelper/clearKeys	; clearKeys(Lcom/google/tagmanager/DataLayer;Lcom/google/analytics/containertag/proto/Serving$GaExperimentSupplemental;)V
+; v1 : Lcom/google/tagmanager/DataLayer; , v0 : Lcom/google/analytics/containertag/proto/Serving$GaExperimentSupplemental;
+.line 29
+	iget-object	v0,v2,com/google/analytics/containertag/proto/Serving$Supplemental.experimentSupplemental Lcom/google/analytics/containertag/proto/Serving$GaExperimentSupplemental;
+; v0 : Lcom/google/analytics/containertag/proto/Serving$GaExperimentSupplemental; , v2 : Lcom/google/analytics/containertag/proto/Serving$Supplemental;
+	invoke-static	{v1,v0},com/google/tagmanager/ExperimentMacroHelper/pushValues	; pushValues(Lcom/google/tagmanager/DataLayer;Lcom/google/analytics/containertag/proto/Serving$GaExperimentSupplemental;)V
+; v1 : Lcom/google/tagmanager/DataLayer; , v0 : Lcom/google/analytics/containertag/proto/Serving$GaExperimentSupplemental;
+.line 30
+	iget-object	v0,v2,com/google/analytics/containertag/proto/Serving$Supplemental.experimentSupplemental Lcom/google/analytics/containertag/proto/Serving$GaExperimentSupplemental;
+; v0 : Lcom/google/analytics/containertag/proto/Serving$GaExperimentSupplemental; , v2 : Lcom/google/analytics/containertag/proto/Serving$Supplemental;
+	invoke-static	{v1,v0},com/google/tagmanager/ExperimentMacroHelper/setRandomValues	; setRandomValues(Lcom/google/tagmanager/DataLayer;Lcom/google/analytics/containertag/proto/Serving$GaExperimentSupplemental;)V
+; v1 : Lcom/google/tagmanager/DataLayer; , v0 : Lcom/google/analytics/containertag/proto/Serving$GaExperimentSupplemental;
+	goto	la6c22
+.end method
+
+.method private static pushValues(Lcom/google/tagmanager/DataLayer;Lcom/google/analytics/containertag/proto/Serving$GaExperimentSupplemental;)V
+.limit registers 7
+; parameter[0] : v5 (Lcom/google/tagmanager/DataLayer;)
+; parameter[1] : v6 (Lcom/google/analytics/containertag/proto/Serving$GaExperimentSupplemental;)
+.var 3 is map Ljava/util/Map; from la6c6c to la6c7c
+.var 4 is value Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; from la6c64 to la6c7c
+.line 40
+	iget-object	v0,v6,com/google/analytics/containertag/proto/Serving$GaExperimentSupplemental.valueToPush [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+; v0 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v6 : Lcom/google/analytics/containertag/proto/Serving$GaExperimentSupplemental;
+	array-length	v2,v0
+; v2 : single-length , v0 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	const/4	v1,0
+; v1 : single-length
+la6c5c:
+	if-ge	v1,v2,la6c7c
+; v1 : single-length , v2 : single-length
+	aget-object	v4,v0,v1
+; v4 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v0 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v1 : single-length
+.line 41
+	invoke-static	{v4},com/google/tagmanager/ExperimentMacroHelper/valueToMap	; valueToMap(Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;)Ljava/util/Map;
+; v4 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	move-result-object	v3
+; v3 : Ljava/util/Map;
+.line 42
+	if-eqz	v3,la6c76
+; v3 : Ljava/util/Map;
+.line 43
+	invoke-virtual	{v5,v3},com/google/tagmanager/DataLayer/push	; push(Ljava/util/Map;)V
+; v5 : Lcom/google/tagmanager/DataLayer; , v3 : Ljava/util/Map;
+la6c76:
+.line 40
+	add-int/lit8	v1,v1,1
+; v1 : single-length , v1 : single-length
+	goto	la6c5c
+la6c7c:
+.line 46
+	return-void	
+.end method
+
+.method private static setRandomValues(Lcom/google/tagmanager/DataLayer;Lcom/google/analytics/containertag/proto/Serving$GaExperimentSupplemental;)V
+.limit registers 23
+; parameter[0] : v21 (Lcom/google/tagmanager/DataLayer;)
+; parameter[1] : v22 (Lcom/google/analytics/containertag/proto/Serving$GaExperimentSupplemental;)
+.var 14 is random Ljava/lang/Object; from la6cd8 to la6d5a
+.var 7 is map Ljava/util/Map; from la6d88 to la6e0c
+.var 8 is maxRandom J from la6cee to la6e0c
+.var 10 is minRandom J from la6cea to la6e0c
+.var 15 is randomValue Ljava/lang/Long; from la6ce6 to la6e0c
+.var 12 is n Ljava/lang/Number; from la6e12 to la6e26
+.var 14 is random Ljava/lang/Object; from la6e0c to la6e34
+.var 4 is gtmMap Ljava/util/Map; from la6e56 to la6e7a
+.var 3 is expRandom Lcom/google/analytics/containertag/proto/Serving$GaExperimentRandom; from la6ca4 to la6e86
+.var 7 is map Ljava/util/Map; from la6e34 to la6e86
+.var 8 is maxRandom J from la6e26 to la6e86
+.var 10 is minRandom J from la6e26 to la6e86
+.var 13 is o Ljava/lang/Object; from la6e44 to la6e86
+.var 15 is randomValue Ljava/lang/Long; from la6e22 to la6e86
+.line 50
+	move-object/from16	v0,v22
+; v0 : Lcom/google/analytics/containertag/proto/Serving$GaExperimentSupplemental; , v22 : Lcom/google/analytics/containertag/proto/Serving$GaExperimentSupplemental;
+	iget-object	v2,v0,com/google/analytics/containertag/proto/Serving$GaExperimentSupplemental.experimentRandom [Lcom/google/analytics/containertag/proto/Serving$GaExperimentRandom;
+; v2 : [Lcom/google/analytics/containertag/proto/Serving$GaExperimentRandom; , v0 : Lcom/google/analytics/containertag/proto/Serving$GaExperimentSupplemental;
+	array-length	v6,v2
+; v6 : single-length , v2 : [Lcom/google/analytics/containertag/proto/Serving$GaExperimentRandom;
+	const/4	v5,0
+; v5 : single-length
+la6c9c:
+	if-ge	v5,v6,la6e86
+; v5 : single-length , v6 : single-length
+	aget-object	v3,v2,v5
+; v3 : Lcom/google/analytics/containertag/proto/Serving$GaExperimentRandom; , v2 : [Lcom/google/analytics/containertag/proto/Serving$GaExperimentRandom; , v5 : single-length
+.line 51
+	iget-object	v0,v3,com/google/analytics/containertag/proto/Serving$GaExperimentRandom.key Ljava/lang/String;
+; v0 : Ljava/lang/String; , v3 : Lcom/google/analytics/containertag/proto/Serving$GaExperimentRandom;
+	move-object/from16	v16,v0
+; v16 : Ljava/lang/String; , v0 : Ljava/lang/String;
+	if-nez	v16,la6cc0
+; v16 : Ljava/lang/String;
+.line 52
+	const-string	v16,"GaExperimentRandom: No key"
+; v16 : Ljava/lang/String;
+	invoke-static/range	{v16},com/google/tagmanager/Log/w;	w(Ljava/lang/String;)V
+; v16 : Ljava/lang/String;
+la6cba:
+.line 50
+	add-int/lit8	v5,v5,1
+; v5 : single-length , v5 : single-length
+	goto	la6c9c
+la6cc0:
+.line 57
+	iget-object	v0,v3,com/google/analytics/containertag/proto/Serving$GaExperimentRandom.key Ljava/lang/String;
+; v0 : Ljava/lang/String; , v3 : Lcom/google/analytics/containertag/proto/Serving$GaExperimentRandom;
+	move-object/from16	v16,v0
+; v16 : Ljava/lang/String; , v0 : Ljava/lang/String;
+	move-object/from16	v0,v21
+; v0 : Lcom/google/tagmanager/DataLayer; , v21 : Lcom/google/tagmanager/DataLayer;
+	move-object/from16	v1,v16
+; v1 : Ljava/lang/String; , v16 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},com/google/tagmanager/DataLayer/get	; get(Ljava/lang/String;)Ljava/lang/Object;
+; v0 : Lcom/google/tagmanager/DataLayer; , v1 : Ljava/lang/String;
+	move-result-object	v14
+; v14 : Ljava/lang/Object;
+.line 59
+	instance-of	v0,v14,java/lang/Number
+; v0 : single-length , v14 : Ljava/lang/Object;
+	move/from16	v16,v0
+; v16 : single-length , v0 : single-length
+	if-nez	v16,la6e0c
+; v16 : single-length
+.line 60
+	const/4	v15,0
+; v15 : single-length
+la6ce6:
+.line 69
+	iget-wide	v10,v3,com/google/analytics/containertag/proto/Serving$GaExperimentRandom.minRandom J
+; v10 : double-length , v3 : Lcom/google/analytics/containertag/proto/Serving$GaExperimentRandom;
+.line 70
+	iget-wide	v8,v3,com/google/analytics/containertag/proto/Serving$GaExperimentRandom.maxRandom J
+; v8 : double-length , v3 : Lcom/google/analytics/containertag/proto/Serving$GaExperimentRandom;
+.line 71
+	iget-boolean	v0,v3,com/google/analytics/containertag/proto/Serving$GaExperimentRandom.retainOriginalValue Z
+; v0 : single-length , v3 : Lcom/google/analytics/containertag/proto/Serving$GaExperimentRandom;
+	move/from16	v16,v0
+; v16 : single-length , v0 : single-length
+	if-eqz	v16,la6d1e
+; v16 : single-length
+	if-eqz	v15,la6d1e
+; v15 : Ljava/lang/Long;
+	invoke-virtual	{v15},java/lang/Long/longValue	; longValue()J
+; v15 : Ljava/lang/Long;
+	move-result-wide	v16
+; v16 : double-length
+	cmp-long	v16,v16,v10
+; v16 : single-length , v16 : single-length , v10 : double-length
+	if-ltz	v16,la6d1e
+; v16 : single-length
+	invoke-virtual	{v15},java/lang/Long/longValue	; longValue()J
+; v15 : Ljava/lang/Long;
+	move-result-wide	v16
+; v16 : double-length
+	cmp-long	v16,v16,v8
+; v16 : single-length , v16 : single-length , v8 : double-length
+	if-lez	v16,la6d5a
+; v16 : single-length
+la6d1e:
+.line 73
+	cmp-long	v16,v10,v8
+; v16 : single-length , v10 : double-length , v8 : double-length
+	if-gtz	v16,la6e26
+; v16 : single-length
+.line 74
+	invoke-static	{},java/lang/Math/random	; random()D
+; 
+	nop	
+	move-result-wide	v16
+; v16 : double-length
+	sub-long	v18,v8,v10
+; v18 : double-length , v8 : double-length , v10 : double-length
+	move-wide/from16	v0,v18
+; v0 : double-length , v18 : double-length
+	long-to-double	v0,v0
+; v0 : double-length , v0 : double-length
+	move-wide/from16	v18,v0
+; v18 : double-length , v0 : double-length
+	mul-double	v16,v16,v18
+; v16 : double-length , v16 : double-length , v18 : double-length
+	long-to-double	v0,v10
+; v0 : double-length , v10 : double-length
+	move-wide/from16	v18,v0
+; v18 : double-length , v0 : double-length
+	add-double	v16,v16,v18
+; v16 : double-length , v16 : double-length , v18 : double-length
+	invoke-static/range	{v16..v17},java/lang/Math/round;	round(D)J
+; v16 : double-length
+	move-result-wide	v16
+; v16 : double-length
+	invoke-static/range	{v16..v17},java/lang/Long/valueOf;	valueOf(J)Ljava/lang/Long;
+; v16 : double-length
+	move-result-object	v14
+; v14 : Ljava/lang/Long;
+la6d5a:
+.line 82
+	iget-object	v0,v3,com/google/analytics/containertag/proto/Serving$GaExperimentRandom.key Ljava/lang/String;
+; v0 : Ljava/lang/String; , v3 : Lcom/google/analytics/containertag/proto/Serving$GaExperimentRandom;
+	move-object/from16	v16,v0
+; v16 : Ljava/lang/String; , v0 : Ljava/lang/String;
+	move-object/from16	v0,v21
+; v0 : Lcom/google/tagmanager/DataLayer; , v21 : Lcom/google/tagmanager/DataLayer;
+	move-object/from16	v1,v16
+; v1 : Ljava/lang/String; , v16 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},com/google/tagmanager/DataLayer/clearPersistentKeysWithPrefix	; clearPersistentKeysWithPrefix(Ljava/lang/String;)V
+; v0 : Lcom/google/tagmanager/DataLayer; , v1 : Ljava/lang/String;
+.line 85
+	iget-object	v0,v3,com/google/analytics/containertag/proto/Serving$GaExperimentRandom.key Ljava/lang/String;
+; v0 : Ljava/lang/String; , v3 : Lcom/google/analytics/containertag/proto/Serving$GaExperimentRandom;
+	move-object/from16	v16,v0
+; v16 : Ljava/lang/String; , v0 : Ljava/lang/String;
+	move-object/from16	v0,v21
+; v0 : Lcom/google/tagmanager/DataLayer; , v21 : Lcom/google/tagmanager/DataLayer;
+	move-object/from16	v1,v16
+; v1 : Ljava/lang/String; , v16 : Ljava/lang/String;
+	invoke-virtual	{v0,v1,v14},com/google/tagmanager/DataLayer/expandKeyValue	; expandKeyValue(Ljava/lang/Object;Ljava/lang/Object;)Ljava/util/Map;
+; v0 : Lcom/google/tagmanager/DataLayer; , v1 : Ljava/lang/String; , v14 : Ljava/lang/Long;
+	move-result-object	v7
+; v7 : Ljava/util/Map;
+.line 87
+	iget-wide	v0,v3,com/google/analytics/containertag/proto/Serving$GaExperimentRandom.lifetimeInMilliseconds J
+; v0 : double-length , v3 : Lcom/google/analytics/containertag/proto/Serving$GaExperimentRandom;
+	move-wide/from16	v16,v0
+; v16 : double-length , v0 : double-length
+	const-wide/16	v18,0
+; v18 : double-length
+	cmp-long	v16,v16,v18
+; v16 : single-length , v16 : single-length , v18 : double-length
+	if-lez	v16,la6dfe
+; v16 : single-length
+.line 88
+	const-string	v16,"gtm"
+; v16 : Ljava/lang/String;
+	move-object/from16	v0,v16
+; v0 : Ljava/lang/String; , v16 : Ljava/lang/String;
+	invoke-interface	{v7,v0},java/util/Map/containsKey	; containsKey(Ljava/lang/Object;)Z
+; v7 : Ljava/util/Map; , v0 : Ljava/lang/String;
+	move-result	v16
+; v16 : single-length
+	if-nez	v16,la6e34
+; v16 : single-length
+.line 89
+	const-string	v16,"gtm"
+; v16 : Ljava/lang/String;
+	const/16	v17,2
+; v17 : single-length
+	move/from16	v0,v17
+; v0 : single-length , v17 : single-length
+	new-array	v0,v0,[Ljava/lang/Object;
+; v0 : [Ljava/lang/Object; , v0 : [Ljava/lang/Object;
+	move-object/from16	v17,v0
+; v17 : [Ljava/lang/Object; , v0 : [Ljava/lang/Object;
+	const/16	v18,0
+; v18 : single-length
+	const-string	v19,"lifetime"
+; v19 : Ljava/lang/String;
+	aput-object	v19,v17,v18
+; v19 : Ljava/lang/String; , v17 : [Ljava/lang/Object; , v18 : single-length
+	const/16	v18,1
+; v18 : single-length
+	iget-wide	v0,v3,com/google/analytics/containertag/proto/Serving$GaExperimentRandom.lifetimeInMilliseconds J
+; v0 : double-length , v3 : Lcom/google/analytics/containertag/proto/Serving$GaExperimentRandom;
+	move-wide/from16	v19,v0
+; v19 : double-length , v0 : double-length
+	invoke-static/range	{v19..v20},java/lang/Long/valueOf;	valueOf(J)Ljava/lang/Long;
+; v19 : double-length
+	move-result-object	v19
+; v19 : Ljava/lang/Long;
+	aput-object	v19,v17,v18
+; v19 : Ljava/lang/Long; , v17 : [Ljava/lang/Object; , v18 : single-length
+	invoke-static/range	{v17},com/google/tagmanager/DataLayer/mapOf;	mapOf([Ljava/lang/Object;)Ljava/util/Map;
+; v17 : [Ljava/lang/Object;
+	move-result-object	v17
+; v17 : Ljava/util/Map;
+	move-object/from16	v0,v16
+; v0 : Ljava/lang/String; , v16 : Ljava/lang/String;
+	move-object/from16	v1,v17
+; v1 : Ljava/util/Map; , v17 : Ljava/util/Map;
+	invoke-interface	{v7,v0,v1},java/util/Map/put	; put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+; v7 : Ljava/util/Map; , v0 : Ljava/lang/String; , v1 : Ljava/util/Map;
+la6dfe:
+.line 108
+	move-object/from16	v0,v21
+; v0 : Lcom/google/tagmanager/DataLayer; , v21 : Lcom/google/tagmanager/DataLayer;
+	invoke-virtual	{v0,v7},com/google/tagmanager/DataLayer/push	; push(Ljava/util/Map;)V
+; v0 : Lcom/google/tagmanager/DataLayer; , v7 : Ljava/util/Map;
+	goto/16	la6cba
+la6e0c:
+	move-object	v12,v14
+; v12 : Ljava/lang/Object; , v14 : Ljava/lang/Object;
+.line 63
+	check-cast	v12,java/lang/Number
+; v12 : Ljava/lang/Number;
+.line 64
+	invoke-virtual	{v12},java/lang/Number/longValue	; longValue()J
+; v12 : Ljava/lang/Number;
+	move-result-wide	v16
+; v16 : double-length
+	invoke-static/range	{v16..v17},java/lang/Long/valueOf;	valueOf(J)Ljava/lang/Long;
+; v16 : double-length
+	move-result-object	v15
+; v15 : Ljava/lang/Long;
+la6e22:
+	goto/16	la6ce6
+la6e26:
+.line 76
+	const-string	v16,"GaExperimentRandom: random range invalid"
+; v16 : Ljava/lang/String;
+	invoke-static/range	{v16},com/google/tagmanager/Log/w;	w(Ljava/lang/String;)V
+; v16 : Ljava/lang/String;
+	goto/16	la6cba
+la6e34:
+.line 91
+	const-string	v16,"gtm"
+; v16 : Ljava/lang/String;
+	move-object/from16	v0,v16
+; v0 : Ljava/lang/String; , v16 : Ljava/lang/String;
+	invoke-interface	{v7,v0},java/util/Map/get	; get(Ljava/lang/Object;)Ljava/lang/Object;
+; v7 : Ljava/util/Map; , v0 : Ljava/lang/String;
+	move-result-object	v13
+; v13 : Ljava/lang/Object;
+.line 92
+	instance-of	v0,v13,java/util/Map
+; v0 : single-length , v13 : Ljava/lang/Object;
+	move/from16	v16,v0
+; v16 : single-length , v0 : single-length
+	if-eqz	v16,la6e7a
+; v16 : single-length
+	move-object	v4,v13
+; v4 : Ljava/lang/Object; , v13 : Ljava/lang/Object;
+.line 94
+	check-cast	v4,java/util/Map
+; v4 : Ljava/util/Map;
+.line 100
+	const-string	v16,"lifetime"
+; v16 : Ljava/lang/String;
+	iget-wide	v0,v3,com/google/analytics/containertag/proto/Serving$GaExperimentRandom.lifetimeInMilliseconds J
+; v0 : double-length , v3 : Lcom/google/analytics/containertag/proto/Serving$GaExperimentRandom;
+	move-wide/from16	v17,v0
+; v17 : double-length , v0 : double-length
+	invoke-static/range	{v17..v18},java/lang/Long/valueOf;	valueOf(J)Ljava/lang/Long;
+; v17 : double-length
+	move-result-object	v17
+; v17 : Ljava/lang/Long;
+	move-object/from16	v0,v16
+; v0 : Ljava/lang/String; , v16 : Ljava/lang/String;
+	move-object/from16	v1,v17
+; v1 : Ljava/lang/Long; , v17 : Ljava/lang/Long;
+	invoke-interface	{v4,v0,v1},java/util/Map/put	; put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+; v4 : Ljava/util/Map; , v0 : Ljava/lang/String; , v1 : Ljava/lang/Long;
+	goto	la6dfe
+la6e7a:
+.line 102
+	const-string	v16,"GaExperimentRandom: gtm not a map"
+; v16 : Ljava/lang/String;
+	invoke-static/range	{v16},com/google/tagmanager/Log/w;	w(Ljava/lang/String;)V
+; v16 : Ljava/lang/String;
+	goto	la6dfe
+la6e86:
+.line 110
+	return-void	
+.end method
+
+.method private static valueToMap(Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;)Ljava/util/Map;
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "(" , "Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;" , ")" , "Ljava/util/Map" , "<" , "Ljava/lang/Object;" , "Ljava/lang/Object;" , ">;" }
+.end annotation
+.limit registers 5
+; parameter[0] : v4 (Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;)
+.line 113
+	invoke-static	{v4},com/google/tagmanager/Types/valueToObject	; valueToObject(Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;)Ljava/lang/Object;
+; v4 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	move-result-object	v1
+; v1 : Ljava/lang/Object;
+.line 114
+	instance-of	v2,v1,java/util/Map
+; v2 : single-length , v1 : Ljava/lang/Object;
+	if-nez	v2,la6ee4
+; v2 : single-length
+.line 115
+	new-instance	v2,java/lang/StringBuilder
+; v2 : Ljava/lang/StringBuilder;
+	invoke-direct	{v2},java/lang/StringBuilder/<init>	; <init>()V
+; v2 : Ljava/lang/StringBuilder;
+	const-string	v3,"value: "
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v2,v1},java/lang/StringBuilder/append	; append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v1 : Ljava/lang/Object;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	const-string	v3," is not a map value, ignored."
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v2},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v2 : Ljava/lang/StringBuilder;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-static	{v2},com/google/tagmanager/Log/w	; w(Ljava/lang/String;)V
+; v2 : Ljava/lang/String;
+.line 116
+	const/4	v0,0
+; v0 : single-length
+la6ee2:
+.line 120
+	return-object	v0
+; v0 : Ljava/util/Map;
+la6ee4:
+	move-object	v0,v1
+; v0 : Ljava/lang/Object; , v1 : Ljava/lang/Object;
+.line 119
+	check-cast	v0,java/util/Map
+; v0 : Ljava/util/Map;
+.line 120
+	goto	la6ee2
+.end method
+
+

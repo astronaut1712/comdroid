@@ -1,0 +1,827 @@
+.class com/google/tagmanager/ServiceManagerImpl
+.super com/google/tagmanager/ServiceManager
+.source ServiceManagerImpl.java
+
+.field private static final MSG_KEY I = 1	; 0x1
+.field private static final MSG_OBJECT Ljava/lang/Object;
+.field private static instance Lcom/google/tagmanager/ServiceManagerImpl;
+.field private connected Z
+.field private ctx Landroid/content/Context;
+.field private dispatchPeriodInSeconds I
+.field private handler Landroid/os/Handler;
+.field private listenForNetwork Z
+.field private listener Lcom/google/tagmanager/HitStoreStateListener;
+.field private networkReceiver Lcom/google/tagmanager/NetworkReceiver;
+.field private pendingDispatch Z
+.field private readyToDispatch Z
+.field private store Lcom/google/tagmanager/HitStore;
+.field private storeIsEmpty Z
+.field private volatile thread Lcom/google/tagmanager/HitSendingThread;
+
+.method static <clinit>()V
+.limit registers 1
+.line 36
+	new-instance	v0,java/lang/Object
+; v0 : Ljava/lang/Object;
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Ljava/lang/Object;
+	sput-object	v0,com/google/tagmanager/ServiceManagerImpl.MSG_OBJECT Ljava/lang/Object;
+; v0 : Ljava/lang/Object;
+	return-void	
+.end method
+
+.method private <init>()V
+.annotation buildVisibility Lcom/google/android/gms/common/util/VisibleForTesting;
+.end annotation
+.limit registers 4
+; this: v3 (Lcom/google/tagmanager/ServiceManagerImpl;)
+	const/4	v2,0
+; v2 : single-length
+	const/4	v1,1
+; v1 : single-length
+.line 77
+	invoke-direct	{v3},com/google/tagmanager/ServiceManager/<init>	; <init>()V
+; v3 : Lcom/google/tagmanager/ServiceManagerImpl;
+.line 41
+	const/16	v0,1800
+; v0 : single-length
+	iput	v0,v3,com/google/tagmanager/ServiceManagerImpl.dispatchPeriodInSeconds I
+; v0 : single-length , v3 : Lcom/google/tagmanager/ServiceManagerImpl;
+.line 42
+	iput-boolean	v1,v3,com/google/tagmanager/ServiceManagerImpl.pendingDispatch Z
+; v1 : single-length , v3 : Lcom/google/tagmanager/ServiceManagerImpl;
+.line 43
+	iput-boolean	v2,v3,com/google/tagmanager/ServiceManagerImpl.readyToDispatch Z
+; v2 : single-length , v3 : Lcom/google/tagmanager/ServiceManagerImpl;
+.line 46
+	iput-boolean	v1,v3,com/google/tagmanager/ServiceManagerImpl.connected Z
+; v1 : single-length , v3 : Lcom/google/tagmanager/ServiceManagerImpl;
+.line 50
+	iput-boolean	v1,v3,com/google/tagmanager/ServiceManagerImpl.listenForNetwork Z
+; v1 : single-length , v3 : Lcom/google/tagmanager/ServiceManagerImpl;
+.line 52
+	new-instance	v0,com/google/tagmanager/ServiceManagerImpl$1
+; v0 : Lcom/google/tagmanager/ServiceManagerImpl$1;
+	invoke-direct	{v0,v3},com/google/tagmanager/ServiceManagerImpl$1/<init>	; <init>(Lcom/google/tagmanager/ServiceManagerImpl;)V
+; v0 : Lcom/google/tagmanager/ServiceManagerImpl$1; , v3 : Lcom/google/tagmanager/ServiceManagerImpl;
+	iput-object	v0,v3,com/google/tagmanager/ServiceManagerImpl.listener Lcom/google/tagmanager/HitStoreStateListener;
+; v0 : Lcom/google/tagmanager/ServiceManagerImpl$1; , v3 : Lcom/google/tagmanager/ServiceManagerImpl;
+.line 66
+	iput-boolean	v2,v3,com/google/tagmanager/ServiceManagerImpl.storeIsEmpty Z
+; v2 : single-length , v3 : Lcom/google/tagmanager/ServiceManagerImpl;
+.line 78
+	return-void	
+.end method
+
+.method <init>(Landroid/content/Context;Lcom/google/tagmanager/HitSendingThread;Lcom/google/tagmanager/HitStore;Z)V
+.annotation buildVisibility Lcom/google/android/gms/common/util/VisibleForTesting;
+.end annotation
+.limit registers 8
+; this: v3 (Lcom/google/tagmanager/ServiceManagerImpl;)
+; parameter[0] : v4 (Landroid/content/Context;)
+; parameter[1] : v5 (Lcom/google/tagmanager/HitSendingThread;)
+; parameter[2] : v6 (Lcom/google/tagmanager/HitStore;)
+; parameter[3] : v7 (Z)
+	const/4	v2,0
+; v2 : single-length
+	const/4	v1,1
+; v1 : single-length
+.line 87
+	invoke-direct	{v3},com/google/tagmanager/ServiceManager/<init>	; <init>()V
+; v3 : Lcom/google/tagmanager/ServiceManagerImpl;
+.line 41
+	const/16	v0,1800
+; v0 : single-length
+	iput	v0,v3,com/google/tagmanager/ServiceManagerImpl.dispatchPeriodInSeconds I
+; v0 : single-length , v3 : Lcom/google/tagmanager/ServiceManagerImpl;
+.line 42
+	iput-boolean	v1,v3,com/google/tagmanager/ServiceManagerImpl.pendingDispatch Z
+; v1 : single-length , v3 : Lcom/google/tagmanager/ServiceManagerImpl;
+.line 43
+	iput-boolean	v2,v3,com/google/tagmanager/ServiceManagerImpl.readyToDispatch Z
+; v2 : single-length , v3 : Lcom/google/tagmanager/ServiceManagerImpl;
+.line 46
+	iput-boolean	v1,v3,com/google/tagmanager/ServiceManagerImpl.connected Z
+; v1 : single-length , v3 : Lcom/google/tagmanager/ServiceManagerImpl;
+.line 50
+	iput-boolean	v1,v3,com/google/tagmanager/ServiceManagerImpl.listenForNetwork Z
+; v1 : single-length , v3 : Lcom/google/tagmanager/ServiceManagerImpl;
+.line 52
+	new-instance	v0,com/google/tagmanager/ServiceManagerImpl$1
+; v0 : Lcom/google/tagmanager/ServiceManagerImpl$1;
+	invoke-direct	{v0,v3},com/google/tagmanager/ServiceManagerImpl$1/<init>	; <init>(Lcom/google/tagmanager/ServiceManagerImpl;)V
+; v0 : Lcom/google/tagmanager/ServiceManagerImpl$1; , v3 : Lcom/google/tagmanager/ServiceManagerImpl;
+	iput-object	v0,v3,com/google/tagmanager/ServiceManagerImpl.listener Lcom/google/tagmanager/HitStoreStateListener;
+; v0 : Lcom/google/tagmanager/ServiceManagerImpl$1; , v3 : Lcom/google/tagmanager/ServiceManagerImpl;
+.line 66
+	iput-boolean	v2,v3,com/google/tagmanager/ServiceManagerImpl.storeIsEmpty Z
+; v2 : single-length , v3 : Lcom/google/tagmanager/ServiceManagerImpl;
+.line 88
+	iput-object	v6,v3,com/google/tagmanager/ServiceManagerImpl.store Lcom/google/tagmanager/HitStore;
+; v6 : Lcom/google/tagmanager/HitStore; , v3 : Lcom/google/tagmanager/ServiceManagerImpl;
+.line 89
+	iput-object	v5,v3,com/google/tagmanager/ServiceManagerImpl.thread Lcom/google/tagmanager/HitSendingThread;
+; v5 : Lcom/google/tagmanager/HitSendingThread; , v3 : Lcom/google/tagmanager/ServiceManagerImpl;
+.line 90
+	iput-boolean	v7,v3,com/google/tagmanager/ServiceManagerImpl.listenForNetwork Z
+; v7 : single-length , v3 : Lcom/google/tagmanager/ServiceManagerImpl;
+.line 91
+	invoke-virtual	{v3,v4,v5},com/google/tagmanager/ServiceManagerImpl/initialize	; initialize(Landroid/content/Context;Lcom/google/tagmanager/HitSendingThread;)V
+; v3 : Lcom/google/tagmanager/ServiceManagerImpl; , v4 : Landroid/content/Context; , v5 : Lcom/google/tagmanager/HitSendingThread;
+.line 92
+	return-void	
+.end method
+
+.method static access$000(Lcom/google/tagmanager/ServiceManagerImpl;)Z
+.limit registers 2
+; parameter[0] : v1 (Lcom/google/tagmanager/ServiceManagerImpl;)
+.line 22
+	iget-boolean	v0,v1,com/google/tagmanager/ServiceManagerImpl.connected Z
+; v0 : single-length , v1 : Lcom/google/tagmanager/ServiceManagerImpl;
+	return	v0
+; v0 : single-length
+.end method
+
+.method static access$100()Ljava/lang/Object;
+.limit registers 1
+.line 22
+	sget-object	v0,com/google/tagmanager/ServiceManagerImpl.MSG_OBJECT Ljava/lang/Object;
+; v0 : Ljava/lang/Object;
+	return-object	v0
+; v0 : Ljava/lang/Object;
+.end method
+
+.method static access$200(Lcom/google/tagmanager/ServiceManagerImpl;)I
+.limit registers 2
+; parameter[0] : v1 (Lcom/google/tagmanager/ServiceManagerImpl;)
+.line 22
+	iget	v0,v1,com/google/tagmanager/ServiceManagerImpl.dispatchPeriodInSeconds I
+; v0 : single-length , v1 : Lcom/google/tagmanager/ServiceManagerImpl;
+	return	v0
+; v0 : single-length
+.end method
+
+.method static access$300(Lcom/google/tagmanager/ServiceManagerImpl;)Z
+.limit registers 2
+; parameter[0] : v1 (Lcom/google/tagmanager/ServiceManagerImpl;)
+.line 22
+	iget-boolean	v0,v1,com/google/tagmanager/ServiceManagerImpl.storeIsEmpty Z
+; v0 : single-length , v1 : Lcom/google/tagmanager/ServiceManagerImpl;
+	return	v0
+; v0 : single-length
+.end method
+
+.method static access$400(Lcom/google/tagmanager/ServiceManagerImpl;)Landroid/os/Handler;
+.limit registers 2
+; parameter[0] : v1 (Lcom/google/tagmanager/ServiceManagerImpl;)
+.line 22
+	iget-object	v0,v1,com/google/tagmanager/ServiceManagerImpl.handler Landroid/os/Handler;
+; v0 : Landroid/os/Handler; , v1 : Lcom/google/tagmanager/ServiceManagerImpl;
+	return-object	v0
+; v0 : Landroid/os/Handler;
+.end method
+
+.method static access$500(Lcom/google/tagmanager/ServiceManagerImpl;)Lcom/google/tagmanager/HitStore;
+.limit registers 2
+; parameter[0] : v1 (Lcom/google/tagmanager/ServiceManagerImpl;)
+.line 22
+	iget-object	v0,v1,com/google/tagmanager/ServiceManagerImpl.store Lcom/google/tagmanager/HitStore;
+; v0 : Lcom/google/tagmanager/HitStore; , v1 : Lcom/google/tagmanager/ServiceManagerImpl;
+	return-object	v0
+; v0 : Lcom/google/tagmanager/HitStore;
+.end method
+
+.method static clearInstance()V
+.annotation buildVisibility Lcom/google/android/gms/common/util/VisibleForTesting;
+.end annotation
+.limit registers 1
+.line 82
+	const/4	v0,0
+; v0 : single-length
+	sput-object	v0,com/google/tagmanager/ServiceManagerImpl.instance Lcom/google/tagmanager/ServiceManagerImpl;
+; v0 : Lcom/google/tagmanager/ServiceManagerImpl;
+.line 83
+	return-void	
+.end method
+
+.method public static getInstance()Lcom/google/tagmanager/ServiceManagerImpl;
+.limit registers 1
+.line 71
+	sget-object	v0,com/google/tagmanager/ServiceManagerImpl.instance Lcom/google/tagmanager/ServiceManagerImpl;
+; v0 : Lcom/google/tagmanager/ServiceManagerImpl;
+	if-nez	v0,lecc1e
+; v0 : Lcom/google/tagmanager/ServiceManagerImpl;
+.line 72
+	new-instance	v0,com/google/tagmanager/ServiceManagerImpl
+; v0 : Lcom/google/tagmanager/ServiceManagerImpl;
+	invoke-direct	{v0},com/google/tagmanager/ServiceManagerImpl/<init>	; <init>()V
+; v0 : Lcom/google/tagmanager/ServiceManagerImpl;
+	sput-object	v0,com/google/tagmanager/ServiceManagerImpl.instance Lcom/google/tagmanager/ServiceManagerImpl;
+; v0 : Lcom/google/tagmanager/ServiceManagerImpl;
+lecc1e:
+.line 74
+	sget-object	v0,com/google/tagmanager/ServiceManagerImpl.instance Lcom/google/tagmanager/ServiceManagerImpl;
+; v0 : Lcom/google/tagmanager/ServiceManagerImpl;
+	return-object	v0
+; v0 : Lcom/google/tagmanager/ServiceManagerImpl;
+.end method
+
+.method private initializeHandler()V
+.limit registers 5
+; this: v4 (Lcom/google/tagmanager/ServiceManagerImpl;)
+.line 100
+	new-instance	v0,android/os/Handler
+; v0 : Landroid/os/Handler;
+	iget-object	v1,v4,com/google/tagmanager/ServiceManagerImpl.ctx Landroid/content/Context;
+; v1 : Landroid/content/Context; , v4 : Lcom/google/tagmanager/ServiceManagerImpl;
+	invoke-virtual	{v1},android/content/Context/getMainLooper	; getMainLooper()Landroid/os/Looper;
+; v1 : Landroid/content/Context;
+	move-result-object	v1
+; v1 : Landroid/os/Looper;
+	new-instance	v2,com/google/tagmanager/ServiceManagerImpl$2
+; v2 : Lcom/google/tagmanager/ServiceManagerImpl$2;
+	invoke-direct	{v2,v4},com/google/tagmanager/ServiceManagerImpl$2/<init>	; <init>(Lcom/google/tagmanager/ServiceManagerImpl;)V
+; v2 : Lcom/google/tagmanager/ServiceManagerImpl$2; , v4 : Lcom/google/tagmanager/ServiceManagerImpl;
+	invoke-direct	{v0,v1,v2},android/os/Handler/<init>	; <init>(Landroid/os/Looper;Landroid/os/Handler$Callback;)V
+; v0 : Landroid/os/Handler; , v1 : Landroid/os/Looper; , v2 : Lcom/google/tagmanager/ServiceManagerImpl$2;
+	iput-object	v0,v4,com/google/tagmanager/ServiceManagerImpl.handler Landroid/os/Handler;
+; v0 : Landroid/os/Handler; , v4 : Lcom/google/tagmanager/ServiceManagerImpl;
+.line 116
+	iget	v0,v4,com/google/tagmanager/ServiceManagerImpl.dispatchPeriodInSeconds I
+; v0 : single-length , v4 : Lcom/google/tagmanager/ServiceManagerImpl;
+	if-lez	v0,lecc86
+; v0 : single-length
+.line 117
+	iget-object	v0,v4,com/google/tagmanager/ServiceManagerImpl.handler Landroid/os/Handler;
+; v0 : Landroid/os/Handler; , v4 : Lcom/google/tagmanager/ServiceManagerImpl;
+	iget-object	v1,v4,com/google/tagmanager/ServiceManagerImpl.handler Landroid/os/Handler;
+; v1 : Landroid/os/Handler; , v4 : Lcom/google/tagmanager/ServiceManagerImpl;
+	const/4	v2,1
+; v2 : single-length
+	sget-object	v3,com/google/tagmanager/ServiceManagerImpl.MSG_OBJECT Ljava/lang/Object;
+; v3 : Ljava/lang/Object;
+	invoke-virtual	{v1,v2,v3},android/os/Handler/obtainMessage	; obtainMessage(ILjava/lang/Object;)Landroid/os/Message;
+; v1 : Landroid/os/Handler; , v2 : single-length , v3 : Ljava/lang/Object;
+	move-result-object	v1
+; v1 : Landroid/os/Message;
+	iget	v2,v4,com/google/tagmanager/ServiceManagerImpl.dispatchPeriodInSeconds I
+; v2 : single-length , v4 : Lcom/google/tagmanager/ServiceManagerImpl;
+	mul-int/lit16	v2,v2,1000
+; v2 : single-length , v2 : single-length
+	int-to-long	v2,v2
+; v2 : double-length , v2 : double-length
+	invoke-virtual	{v0,v1,v2,v3},android/os/Handler/sendMessageDelayed	; sendMessageDelayed(Landroid/os/Message;J)Z
+; v0 : Landroid/os/Handler; , v1 : Landroid/os/Message; , v2 : double-length
+lecc86:
+.line 120
+	return-void	
+.end method
+
+.method private initializeNetworkReceiver()V
+.limit registers 3
+; this: v2 (Lcom/google/tagmanager/ServiceManagerImpl;)
+.line 95
+	new-instance	v0,com/google/tagmanager/NetworkReceiver
+; v0 : Lcom/google/tagmanager/NetworkReceiver;
+	invoke-direct	{v0,v2},com/google/tagmanager/NetworkReceiver/<init>	; <init>(Lcom/google/tagmanager/ServiceManager;)V
+; v0 : Lcom/google/tagmanager/NetworkReceiver; , v2 : Lcom/google/tagmanager/ServiceManagerImpl;
+	iput-object	v0,v2,com/google/tagmanager/ServiceManagerImpl.networkReceiver Lcom/google/tagmanager/NetworkReceiver;
+; v0 : Lcom/google/tagmanager/NetworkReceiver; , v2 : Lcom/google/tagmanager/ServiceManagerImpl;
+.line 96
+	iget-object	v0,v2,com/google/tagmanager/ServiceManagerImpl.networkReceiver Lcom/google/tagmanager/NetworkReceiver;
+; v0 : Lcom/google/tagmanager/NetworkReceiver; , v2 : Lcom/google/tagmanager/ServiceManagerImpl;
+	iget-object	v1,v2,com/google/tagmanager/ServiceManagerImpl.ctx Landroid/content/Context;
+; v1 : Landroid/content/Context; , v2 : Lcom/google/tagmanager/ServiceManagerImpl;
+	invoke-virtual	{v0,v1},com/google/tagmanager/NetworkReceiver/register	; register(Landroid/content/Context;)V
+; v0 : Lcom/google/tagmanager/NetworkReceiver; , v1 : Landroid/content/Context;
+.line 97
+	return-void	
+.end method
+
+.method public synchronized dispatch()V
+.limit registers 3
+; this: v2 (Lcom/google/tagmanager/ServiceManagerImpl;)
+.catch java/lang/Exception from lecce6 to leccfa using leccfc
+.catch java/lang/Exception from leccca to lecce2 using leccfc
+.line 180
+	monitor-enter	v2
+; v2 : Lcom/google/tagmanager/ServiceManagerImpl;
+leccca:
+	iget-boolean	v0,v2,com/google/tagmanager/ServiceManagerImpl.readyToDispatch Z
+; v0 : single-length , v2 : Lcom/google/tagmanager/ServiceManagerImpl;
+	if-nez	v0,lecce6
+; v0 : single-length
+.line 181
+	const-string	v0,"Dispatch call queued. Dispatch will run once initialization is complete."
+; v0 : Ljava/lang/String;
+	invoke-static	{v0},com/google/tagmanager/Log/v	; v(Ljava/lang/String;)V
+; v0 : Ljava/lang/String;
+.line 182
+	const/4	v0,1
+; v0 : single-length
+	iput-boolean	v0,v2,com/google/tagmanager/ServiceManagerImpl.pendingDispatch Z
+; v0 : single-length , v2 : Lcom/google/tagmanager/ServiceManagerImpl;
+lecce2:
+.line 192
+	monitor-exit	v2
+; v2 : Lcom/google/tagmanager/ServiceManagerImpl;
+	return-void	
+lecce6:
+.line 186
+	iget-object	v0,v2,com/google/tagmanager/ServiceManagerImpl.thread Lcom/google/tagmanager/HitSendingThread;
+; v0 : Lcom/google/tagmanager/HitSendingThread; , v2 : Lcom/google/tagmanager/ServiceManagerImpl;
+	new-instance	v1,com/google/tagmanager/ServiceManagerImpl$3
+; v1 : Lcom/google/tagmanager/ServiceManagerImpl$3;
+	invoke-direct	{v1,v2},com/google/tagmanager/ServiceManagerImpl$3/<init>	; <init>(Lcom/google/tagmanager/ServiceManagerImpl;)V
+; v1 : Lcom/google/tagmanager/ServiceManagerImpl$3; , v2 : Lcom/google/tagmanager/ServiceManagerImpl;
+	invoke-interface	{v0,v1},com/google/tagmanager/HitSendingThread/queueToThread	; queueToThread(Ljava/lang/Runnable;)V
+; v0 : Lcom/google/tagmanager/HitSendingThread; , v1 : Lcom/google/tagmanager/ServiceManagerImpl$3;
+leccfa:
+	goto	lecce2
+leccfc:
+.line 180
+	move-exception	v0
+; v0 : java/lang/Exception
+	monitor-exit	v2
+; v2 : Lcom/google/tagmanager/ServiceManagerImpl;
+	throw	v0
+; v0 : java/lang/Exception
+.end method
+
+.method getListener()Lcom/google/tagmanager/HitStoreStateListener;
+.annotation buildVisibility Lcom/google/android/gms/common/util/VisibleForTesting;
+.end annotation
+.limit registers 2
+; this: v1 (Lcom/google/tagmanager/ServiceManagerImpl;)
+.line 144
+	iget-object	v0,v1,com/google/tagmanager/ServiceManagerImpl.listener Lcom/google/tagmanager/HitStoreStateListener;
+; v0 : Lcom/google/tagmanager/HitStoreStateListener; , v1 : Lcom/google/tagmanager/ServiceManagerImpl;
+	return-object	v0
+; v0 : Lcom/google/tagmanager/HitStoreStateListener;
+.end method
+
+.method synchronized getStore()Lcom/google/tagmanager/HitStore;
+.limit registers 4
+; this: v3 (Lcom/google/tagmanager/ServiceManagerImpl;)
+.catch java/lang/Exception from lecd68 to lecdc0 using lecd62
+.catch java/lang/Exception from lecd42 to lecd62 using lecd62
+.line 152
+	monitor-enter	v3
+; v3 : Lcom/google/tagmanager/ServiceManagerImpl;
+lecd42:
+	iget-object	v0,v3,com/google/tagmanager/ServiceManagerImpl.store Lcom/google/tagmanager/HitStore;
+; v0 : Lcom/google/tagmanager/HitStore; , v3 : Lcom/google/tagmanager/ServiceManagerImpl;
+	if-nez	v0,lecd7e
+; v0 : Lcom/google/tagmanager/HitStore;
+.line 153
+	iget-object	v0,v3,com/google/tagmanager/ServiceManagerImpl.ctx Landroid/content/Context;
+; v0 : Landroid/content/Context; , v3 : Lcom/google/tagmanager/ServiceManagerImpl;
+	if-nez	v0,lecd68
+; v0 : Landroid/content/Context;
+.line 156
+	new-instance	v0,java/lang/IllegalStateException
+; v0 : Ljava/lang/IllegalStateException;
+	const-string	v1,"Cant get a store unless we have a context"
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/IllegalStateException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/IllegalStateException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/IllegalStateException;
+lecd62:
+.line 152
+	move-exception	v0
+; v0 : java/lang/Exception
+	monitor-exit	v3
+; v3 : Lcom/google/tagmanager/ServiceManagerImpl;
+	throw	v0
+; v0 : java/lang/Exception
+lecd68:
+.line 158
+	new-instance	v0,com/google/tagmanager/PersistentHitStore
+; v0 : Lcom/google/tagmanager/PersistentHitStore;
+	iget-object	v1,v3,com/google/tagmanager/ServiceManagerImpl.listener Lcom/google/tagmanager/HitStoreStateListener;
+; v1 : Lcom/google/tagmanager/HitStoreStateListener; , v3 : Lcom/google/tagmanager/ServiceManagerImpl;
+	iget-object	v2,v3,com/google/tagmanager/ServiceManagerImpl.ctx Landroid/content/Context;
+; v2 : Landroid/content/Context; , v3 : Lcom/google/tagmanager/ServiceManagerImpl;
+	invoke-direct	{v0,v1,v2},com/google/tagmanager/PersistentHitStore/<init>	; <init>(Lcom/google/tagmanager/HitStoreStateListener;Landroid/content/Context;)V
+; v0 : Lcom/google/tagmanager/PersistentHitStore; , v1 : Lcom/google/tagmanager/HitStoreStateListener; , v2 : Landroid/content/Context;
+	iput-object	v0,v3,com/google/tagmanager/ServiceManagerImpl.store Lcom/google/tagmanager/HitStore;
+; v0 : Lcom/google/tagmanager/PersistentHitStore; , v3 : Lcom/google/tagmanager/ServiceManagerImpl;
+lecd7e:
+.line 160
+	iget-object	v0,v3,com/google/tagmanager/ServiceManagerImpl.handler Landroid/os/Handler;
+; v0 : Landroid/os/Handler; , v3 : Lcom/google/tagmanager/ServiceManagerImpl;
+	if-nez	v0,lecd8c
+; v0 : Landroid/os/Handler;
+.line 162
+	invoke-direct	{v3},com/google/tagmanager/ServiceManagerImpl/initializeHandler	; initializeHandler()V
+; v3 : Lcom/google/tagmanager/ServiceManagerImpl;
+lecd8c:
+.line 166
+	const/4	v0,1
+; v0 : single-length
+	iput-boolean	v0,v3,com/google/tagmanager/ServiceManagerImpl.readyToDispatch Z
+; v0 : single-length , v3 : Lcom/google/tagmanager/ServiceManagerImpl;
+.line 167
+	iget-boolean	v0,v3,com/google/tagmanager/ServiceManagerImpl.pendingDispatch Z
+; v0 : single-length , v3 : Lcom/google/tagmanager/ServiceManagerImpl;
+	if-eqz	v0,lecda6
+; v0 : single-length
+.line 168
+	invoke-virtual	{v3},com/google/tagmanager/ServiceManagerImpl/dispatch	; dispatch()V
+; v3 : Lcom/google/tagmanager/ServiceManagerImpl;
+.line 169
+	const/4	v0,0
+; v0 : single-length
+	iput-boolean	v0,v3,com/google/tagmanager/ServiceManagerImpl.pendingDispatch Z
+; v0 : single-length , v3 : Lcom/google/tagmanager/ServiceManagerImpl;
+lecda6:
+.line 172
+	iget-object	v0,v3,com/google/tagmanager/ServiceManagerImpl.networkReceiver Lcom/google/tagmanager/NetworkReceiver;
+; v0 : Lcom/google/tagmanager/NetworkReceiver; , v3 : Lcom/google/tagmanager/ServiceManagerImpl;
+	if-nez	v0,lecdbc
+; v0 : Lcom/google/tagmanager/NetworkReceiver;
+	iget-boolean	v0,v3,com/google/tagmanager/ServiceManagerImpl.listenForNetwork Z
+; v0 : single-length , v3 : Lcom/google/tagmanager/ServiceManagerImpl;
+	if-eqz	v0,lecdbc
+; v0 : single-length
+.line 173
+	invoke-direct	{v3},com/google/tagmanager/ServiceManagerImpl/initializeNetworkReceiver	; initializeNetworkReceiver()V
+; v3 : Lcom/google/tagmanager/ServiceManagerImpl;
+lecdbc:
+.line 175
+	iget-object	v0,v3,com/google/tagmanager/ServiceManagerImpl.store Lcom/google/tagmanager/HitStore;
+; v0 : Lcom/google/tagmanager/HitStore; , v3 : Lcom/google/tagmanager/ServiceManagerImpl;
+lecdc0:
+	monitor-exit	v3
+; v3 : Lcom/google/tagmanager/ServiceManagerImpl;
+	return-object	v0
+; v0 : Lcom/google/tagmanager/HitStore;
+.end method
+
+.method synchronized initialize(Landroid/content/Context;Lcom/google/tagmanager/HitSendingThread;)V
+.limit registers 4
+; this: v1 (Lcom/google/tagmanager/ServiceManagerImpl;)
+; parameter[0] : v2 (Landroid/content/Context;)
+; parameter[1] : v3 (Lcom/google/tagmanager/HitSendingThread;)
+.catch java/lang/Exception from lecdf6 to lece0e using lece10
+.catch java/lang/Exception from lecdea to lecdee using lece10
+.line 132
+	monitor-enter	v1
+; v1 : Lcom/google/tagmanager/ServiceManagerImpl;
+lecdea:
+	iget-object	v0,v1,com/google/tagmanager/ServiceManagerImpl.ctx Landroid/content/Context;
+; v0 : Landroid/content/Context; , v1 : Lcom/google/tagmanager/ServiceManagerImpl;
+lecdee:
+	if-eqz	v0,lecdf6
+; v0 : Landroid/content/Context;
+lecdf2:
+.line 140
+	monitor-exit	v1
+; v1 : Lcom/google/tagmanager/ServiceManagerImpl;
+	return-void	
+lecdf6:
+.line 135
+	invoke-virtual	{v2},android/content/Context/getApplicationContext	; getApplicationContext()Landroid/content/Context;
+; v2 : Landroid/content/Context;
+	move-result-object	v0
+; v0 : Landroid/content/Context;
+	iput-object	v0,v1,com/google/tagmanager/ServiceManagerImpl.ctx Landroid/content/Context;
+; v0 : Landroid/content/Context; , v1 : Lcom/google/tagmanager/ServiceManagerImpl;
+.line 137
+	iget-object	v0,v1,com/google/tagmanager/ServiceManagerImpl.thread Lcom/google/tagmanager/HitSendingThread;
+; v0 : Lcom/google/tagmanager/HitSendingThread; , v1 : Lcom/google/tagmanager/ServiceManagerImpl;
+	if-nez	v0,lecdf2
+; v0 : Lcom/google/tagmanager/HitSendingThread;
+.line 138
+	iput-object	v3,v1,com/google/tagmanager/ServiceManagerImpl.thread Lcom/google/tagmanager/HitSendingThread;
+; v3 : Lcom/google/tagmanager/HitSendingThread; , v1 : Lcom/google/tagmanager/ServiceManagerImpl;
+lece0e:
+	goto	lecdf2
+lece10:
+.line 132
+	move-exception	v0
+; v0 : java/lang/Exception
+	monitor-exit	v1
+; v1 : Lcom/google/tagmanager/ServiceManagerImpl;
+	throw	v0
+; v0 : java/lang/Exception
+.end method
+
+.method synchronized onRadioPowered()V
+.limit registers 5
+; this: v4 (Lcom/google/tagmanager/ServiceManagerImpl;)
+.catch java/lang/Exception from lece3e to lece82 using lece86
+.line 238
+	monitor-enter	v4
+; v4 : Lcom/google/tagmanager/ServiceManagerImpl;
+lece3e:
+	iget-boolean	v0,v4,com/google/tagmanager/ServiceManagerImpl.storeIsEmpty Z
+; v0 : single-length , v4 : Lcom/google/tagmanager/ServiceManagerImpl;
+	if-nez	v0,lece82
+; v0 : single-length
+	iget-boolean	v0,v4,com/google/tagmanager/ServiceManagerImpl.connected Z
+; v0 : single-length , v4 : Lcom/google/tagmanager/ServiceManagerImpl;
+	if-eqz	v0,lece82
+; v0 : single-length
+	iget	v0,v4,com/google/tagmanager/ServiceManagerImpl.dispatchPeriodInSeconds I
+; v0 : single-length , v4 : Lcom/google/tagmanager/ServiceManagerImpl;
+	if-lez	v0,lece82
+; v0 : single-length
+.line 242
+	iget-object	v0,v4,com/google/tagmanager/ServiceManagerImpl.handler Landroid/os/Handler;
+; v0 : Landroid/os/Handler; , v4 : Lcom/google/tagmanager/ServiceManagerImpl;
+	const/4	v1,1
+; v1 : single-length
+	sget-object	v2,com/google/tagmanager/ServiceManagerImpl.MSG_OBJECT Ljava/lang/Object;
+; v2 : Ljava/lang/Object;
+	invoke-virtual	{v0,v1,v2},android/os/Handler/removeMessages	; removeMessages(ILjava/lang/Object;)V
+; v0 : Landroid/os/Handler; , v1 : single-length , v2 : Ljava/lang/Object;
+.line 243
+	iget-object	v0,v4,com/google/tagmanager/ServiceManagerImpl.handler Landroid/os/Handler;
+; v0 : Landroid/os/Handler; , v4 : Lcom/google/tagmanager/ServiceManagerImpl;
+	iget-object	v1,v4,com/google/tagmanager/ServiceManagerImpl.handler Landroid/os/Handler;
+; v1 : Landroid/os/Handler; , v4 : Lcom/google/tagmanager/ServiceManagerImpl;
+	const/4	v2,1
+; v2 : single-length
+	sget-object	v3,com/google/tagmanager/ServiceManagerImpl.MSG_OBJECT Ljava/lang/Object;
+; v3 : Ljava/lang/Object;
+	invoke-virtual	{v1,v2,v3},android/os/Handler/obtainMessage	; obtainMessage(ILjava/lang/Object;)Landroid/os/Message;
+; v1 : Landroid/os/Handler; , v2 : single-length , v3 : Ljava/lang/Object;
+	move-result-object	v1
+; v1 : Landroid/os/Message;
+	invoke-virtual	{v0,v1},android/os/Handler/sendMessage	; sendMessage(Landroid/os/Message;)Z
+; v0 : Landroid/os/Handler; , v1 : Landroid/os/Message;
+lece82:
+.line 245
+	monitor-exit	v4
+; v4 : Lcom/google/tagmanager/ServiceManagerImpl;
+	return-void	
+lece86:
+.line 238
+	move-exception	v0
+; v0 : java/lang/Exception
+	monitor-exit	v4
+; v4 : Lcom/google/tagmanager/ServiceManagerImpl;
+	throw	v0
+; v0 : java/lang/Exception
+.end method
+
+.method public synchronized setDispatchPeriod(I)V
+.limit registers 6
+; this: v4 (Lcom/google/tagmanager/ServiceManagerImpl;)
+; parameter[0] : v5 (I)
+.catch java/lang/Exception from lecec4 to lecf26 using lecf28
+.catch java/lang/Exception from leceaa to lecec0 using lecf28
+.line 196
+	monitor-enter	v4
+; v4 : Lcom/google/tagmanager/ServiceManagerImpl;
+leceaa:
+	iget-object	v0,v4,com/google/tagmanager/ServiceManagerImpl.handler Landroid/os/Handler;
+; v0 : Landroid/os/Handler; , v4 : Lcom/google/tagmanager/ServiceManagerImpl;
+	if-nez	v0,lecec4
+; v0 : Landroid/os/Handler;
+.line 197
+	const-string	v0,"Dispatch period set with null handler. Dispatch will run once initialization is complete."
+; v0 : Ljava/lang/String;
+	invoke-static	{v0},com/google/tagmanager/Log/v	; v(Ljava/lang/String;)V
+; v0 : Ljava/lang/String;
+.line 199
+	iput	v5,v4,com/google/tagmanager/ServiceManagerImpl.dispatchPeriodInSeconds I
+; v5 : single-length , v4 : Lcom/google/tagmanager/ServiceManagerImpl;
+lecec0:
+.line 211
+	monitor-exit	v4
+; v4 : Lcom/google/tagmanager/ServiceManagerImpl;
+	return-void	
+lecec4:
+.line 203
+	iget-boolean	v0,v4,com/google/tagmanager/ServiceManagerImpl.storeIsEmpty Z
+; v0 : single-length , v4 : Lcom/google/tagmanager/ServiceManagerImpl;
+	if-nez	v0,leceec
+; v0 : single-length
+	iget-boolean	v0,v4,com/google/tagmanager/ServiceManagerImpl.connected Z
+; v0 : single-length , v4 : Lcom/google/tagmanager/ServiceManagerImpl;
+	if-eqz	v0,leceec
+; v0 : single-length
+	iget	v0,v4,com/google/tagmanager/ServiceManagerImpl.dispatchPeriodInSeconds I
+; v0 : single-length , v4 : Lcom/google/tagmanager/ServiceManagerImpl;
+	if-lez	v0,leceec
+; v0 : single-length
+.line 204
+	iget-object	v0,v4,com/google/tagmanager/ServiceManagerImpl.handler Landroid/os/Handler;
+; v0 : Landroid/os/Handler; , v4 : Lcom/google/tagmanager/ServiceManagerImpl;
+	const/4	v1,1
+; v1 : single-length
+	sget-object	v2,com/google/tagmanager/ServiceManagerImpl.MSG_OBJECT Ljava/lang/Object;
+; v2 : Ljava/lang/Object;
+	invoke-virtual	{v0,v1,v2},android/os/Handler/removeMessages	; removeMessages(ILjava/lang/Object;)V
+; v0 : Landroid/os/Handler; , v1 : single-length , v2 : Ljava/lang/Object;
+leceec:
+.line 206
+	iput	v5,v4,com/google/tagmanager/ServiceManagerImpl.dispatchPeriodInSeconds I
+; v5 : single-length , v4 : Lcom/google/tagmanager/ServiceManagerImpl;
+.line 207
+	if-lez	v5,lecec0
+; v5 : single-length
+	iget-boolean	v0,v4,com/google/tagmanager/ServiceManagerImpl.storeIsEmpty Z
+; v0 : single-length , v4 : Lcom/google/tagmanager/ServiceManagerImpl;
+	if-nez	v0,lecec0
+; v0 : single-length
+	iget-boolean	v0,v4,com/google/tagmanager/ServiceManagerImpl.connected Z
+; v0 : single-length , v4 : Lcom/google/tagmanager/ServiceManagerImpl;
+	if-eqz	v0,lecec0
+; v0 : single-length
+.line 208
+	iget-object	v0,v4,com/google/tagmanager/ServiceManagerImpl.handler Landroid/os/Handler;
+; v0 : Landroid/os/Handler; , v4 : Lcom/google/tagmanager/ServiceManagerImpl;
+	iget-object	v1,v4,com/google/tagmanager/ServiceManagerImpl.handler Landroid/os/Handler;
+; v1 : Landroid/os/Handler; , v4 : Lcom/google/tagmanager/ServiceManagerImpl;
+	const/4	v2,1
+; v2 : single-length
+	sget-object	v3,com/google/tagmanager/ServiceManagerImpl.MSG_OBJECT Ljava/lang/Object;
+; v3 : Ljava/lang/Object;
+	invoke-virtual	{v1,v2,v3},android/os/Handler/obtainMessage	; obtainMessage(ILjava/lang/Object;)Landroid/os/Message;
+; v1 : Landroid/os/Handler; , v2 : single-length , v3 : Ljava/lang/Object;
+	move-result-object	v1
+; v1 : Landroid/os/Message;
+	mul-int/lit16	v2,v5,1000
+; v2 : single-length , v5 : single-length
+	int-to-long	v2,v2
+; v2 : double-length , v2 : double-length
+	invoke-virtual	{v0,v1,v2,v3},android/os/Handler/sendMessageDelayed	; sendMessageDelayed(Landroid/os/Message;J)Z
+; v0 : Landroid/os/Handler; , v1 : Landroid/os/Message; , v2 : double-length
+lecf26:
+	goto	lecec0
+lecf28:
+.line 196
+	move-exception	v0
+; v0 : java/lang/Exception
+	monitor-exit	v4
+; v4 : Lcom/google/tagmanager/ServiceManagerImpl;
+	throw	v0
+; v0 : java/lang/Exception
+.end method
+
+.method synchronized updateConnectivityStatus(Z)V
+.limit registers 3
+; this: v1 (Lcom/google/tagmanager/ServiceManagerImpl;)
+; parameter[0] : v2 (Z)
+.catch java/lang/Exception from lecf56 to lecf60 using lecf64
+.line 233
+	monitor-enter	v1
+; v1 : Lcom/google/tagmanager/ServiceManagerImpl;
+lecf56:
+	iget-boolean	v0,v1,com/google/tagmanager/ServiceManagerImpl.storeIsEmpty Z
+; v0 : single-length , v1 : Lcom/google/tagmanager/ServiceManagerImpl;
+	invoke-virtual	{v1,v0,v2},com/google/tagmanager/ServiceManagerImpl/updatePowerSaveMode	; updatePowerSaveMode(ZZ)V
+; v1 : Lcom/google/tagmanager/ServiceManagerImpl; , v0 : single-length , v2 : single-length
+lecf60:
+.line 234
+	monitor-exit	v1
+; v1 : Lcom/google/tagmanager/ServiceManagerImpl;
+	return-void	
+lecf64:
+.line 233
+	move-exception	v0
+; v0 : java/lang/Exception
+	monitor-exit	v1
+; v1 : Lcom/google/tagmanager/ServiceManagerImpl;
+	throw	v0
+; v0 : java/lang/Exception
+.end method
+
+.method synchronized updatePowerSaveMode(ZZ)V
+.annotation buildVisibility Lcom/google/android/gms/common/util/VisibleForTesting;
+.end annotation
+.limit registers 7
+; this: v4 (Lcom/google/tagmanager/ServiceManagerImpl;)
+; parameter[0] : v5 (Z)
+; parameter[1] : v6 (Z)
+.catch java/lang/Exception from led03c to led040 using led036
+.catch java/lang/Exception from lecfa6 to led034 using led036
+.catch java/lang/Exception from lecf8a to lecf96 using led036
+.line 215
+	monitor-enter	v4
+; v4 : Lcom/google/tagmanager/ServiceManagerImpl;
+lecf8a:
+	iget-boolean	v0,v4,com/google/tagmanager/ServiceManagerImpl.storeIsEmpty Z
+; v0 : single-length , v4 : Lcom/google/tagmanager/ServiceManagerImpl;
+	if-ne	v0,v5,lecf9e
+; v0 : single-length , v5 : single-length
+	iget-boolean	v0,v4,com/google/tagmanager/ServiceManagerImpl.connected Z
+; v0 : single-length , v4 : Lcom/google/tagmanager/ServiceManagerImpl;
+lecf96:
+	if-ne	v0,v6,lecf9e
+; v0 : single-length , v6 : single-length
+lecf9a:
+.line 229
+	monitor-exit	v4
+; v4 : Lcom/google/tagmanager/ServiceManagerImpl;
+	return-void	
+lecf9e:
+.line 218
+	if-nez	v5,lecfa6
+; v5 : single-length
+	if-nez	v6,lecfbe
+; v6 : single-length
+lecfa6:
+	iget	v0,v4,com/google/tagmanager/ServiceManagerImpl.dispatchPeriodInSeconds I
+; v0 : single-length , v4 : Lcom/google/tagmanager/ServiceManagerImpl;
+	if-lez	v0,lecfbe
+; v0 : single-length
+.line 219
+	iget-object	v0,v4,com/google/tagmanager/ServiceManagerImpl.handler Landroid/os/Handler;
+; v0 : Landroid/os/Handler; , v4 : Lcom/google/tagmanager/ServiceManagerImpl;
+	const/4	v1,1
+; v1 : single-length
+	sget-object	v2,com/google/tagmanager/ServiceManagerImpl.MSG_OBJECT Ljava/lang/Object;
+; v2 : Ljava/lang/Object;
+	invoke-virtual	{v0,v1,v2},android/os/Handler/removeMessages	; removeMessages(ILjava/lang/Object;)V
+; v0 : Landroid/os/Handler; , v1 : single-length , v2 : Ljava/lang/Object;
+lecfbe:
+.line 221
+	if-nez	v5,lecff4
+; v5 : single-length
+	if-eqz	v6,lecff4
+; v6 : single-length
+	iget	v0,v4,com/google/tagmanager/ServiceManagerImpl.dispatchPeriodInSeconds I
+; v0 : single-length , v4 : Lcom/google/tagmanager/ServiceManagerImpl;
+	if-lez	v0,lecff4
+; v0 : single-length
+.line 222
+	iget-object	v0,v4,com/google/tagmanager/ServiceManagerImpl.handler Landroid/os/Handler;
+; v0 : Landroid/os/Handler; , v4 : Lcom/google/tagmanager/ServiceManagerImpl;
+	iget-object	v1,v4,com/google/tagmanager/ServiceManagerImpl.handler Landroid/os/Handler;
+; v1 : Landroid/os/Handler; , v4 : Lcom/google/tagmanager/ServiceManagerImpl;
+	const/4	v2,1
+; v2 : single-length
+	sget-object	v3,com/google/tagmanager/ServiceManagerImpl.MSG_OBJECT Ljava/lang/Object;
+; v3 : Ljava/lang/Object;
+	invoke-virtual	{v1,v2,v3},android/os/Handler/obtainMessage	; obtainMessage(ILjava/lang/Object;)Landroid/os/Message;
+; v1 : Landroid/os/Handler; , v2 : single-length , v3 : Ljava/lang/Object;
+	move-result-object	v1
+; v1 : Landroid/os/Message;
+	iget	v2,v4,com/google/tagmanager/ServiceManagerImpl.dispatchPeriodInSeconds I
+; v2 : single-length , v4 : Lcom/google/tagmanager/ServiceManagerImpl;
+	mul-int/lit16	v2,v2,1000
+; v2 : single-length , v2 : single-length
+	int-to-long	v2,v2
+; v2 : double-length , v2 : double-length
+	invoke-virtual	{v0,v1,v2,v3},android/os/Handler/sendMessageDelayed	; sendMessageDelayed(Landroid/os/Message;J)Z
+; v0 : Landroid/os/Handler; , v1 : Landroid/os/Message; , v2 : double-length
+lecff4:
+.line 225
+	new-instance	v0,java/lang/StringBuilder
+; v0 : Ljava/lang/StringBuilder;
+	invoke-direct	{v0},java/lang/StringBuilder/<init>	; <init>()V
+; v0 : Ljava/lang/StringBuilder;
+	const-string	v1,"PowerSaveMode "
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v1 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	if-nez	v5,led012
+; v5 : single-length
+	if-nez	v6,led03c
+; v6 : single-length
+led012:
+	const-string	v0,"initiated."
+; v0 : Ljava/lang/String;
+led016:
+	invoke-virtual	{v1,v0},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v0 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v0},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v0 : Ljava/lang/StringBuilder;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	invoke-static	{v0},com/google/tagmanager/Log/v	; v(Ljava/lang/String;)V
+; v0 : Ljava/lang/String;
+.line 227
+	iput-boolean	v5,v4,com/google/tagmanager/ServiceManagerImpl.storeIsEmpty Z
+; v5 : single-length , v4 : Lcom/google/tagmanager/ServiceManagerImpl;
+.line 228
+	iput-boolean	v6,v4,com/google/tagmanager/ServiceManagerImpl.connected Z
+; v6 : single-length , v4 : Lcom/google/tagmanager/ServiceManagerImpl;
+led034:
+	goto	lecf9a
+led036:
+.line 215
+	move-exception	v0
+; v0 : java/lang/Exception
+	monitor-exit	v4
+; v4 : Lcom/google/tagmanager/ServiceManagerImpl;
+	throw	v0
+; v0 : java/lang/Exception
+led03c:
+.line 225
+	const-string	v0,"terminated."
+; v0 : Ljava/lang/String;
+led040:
+	goto	led016
+.end method
+
+

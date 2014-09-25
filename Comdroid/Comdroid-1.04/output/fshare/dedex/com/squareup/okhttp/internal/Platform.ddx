@@ -1,0 +1,616 @@
+.class public com/squareup/okhttp/internal/Platform
+.super java/lang/Object
+.source Platform.java
+
+.inner class 1 inner com/squareup/okhttp/internal/Platform$1 outer com/squareup/okhttp/internal/Platform
+.inner class JettyNpnProvider inner com/squareup/okhttp/internal/Platform$JettyNpnProvider outer com/squareup/okhttp/internal/Platform
+.inner class JdkWithJettyNpnPlatform inner com/squareup/okhttp/internal/Platform$JdkWithJettyNpnPlatform outer com/squareup/okhttp/internal/Platform
+.inner class Android41 inner com/squareup/okhttp/internal/Platform$Android41 outer com/squareup/okhttp/internal/Platform
+.inner class Android23 inner com/squareup/okhttp/internal/Platform$Android23 outer com/squareup/okhttp/internal/Platform
+.field private static final PLATFORM Lcom/squareup/okhttp/internal/Platform;
+.field private deflaterConstructor Ljava/lang/reflect/Constructor;
+  .annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "Ljava/lang/reflect/Constructor" , "<" , "Ljava/util/zip/DeflaterOutputStream;" , ">;" }
+  .end annotation
+.end field
+
+.method static <clinit>()V
+.limit registers 1
+.line 51
+	invoke-static	{},com/squareup/okhttp/internal/Platform/findPlatform	; findPlatform()Lcom/squareup/okhttp/internal/Platform;
+; 
+	nop	
+	move-result-object	v0
+; v0 : Lcom/squareup/okhttp/internal/Platform;
+	sput-object	v0,com/squareup/okhttp/internal/Platform.PLATFORM Lcom/squareup/okhttp/internal/Platform;
+; v0 : Lcom/squareup/okhttp/internal/Platform;
+	return-void	
+.end method
+
+.method public <init>()V
+.limit registers 1
+; this: v0 (Lcom/squareup/okhttp/internal/Platform;)
+.line 50
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Lcom/squareup/okhttp/internal/Platform;
+.line 332
+	return-void	
+.end method
+
+.method private static findPlatform()Lcom/squareup/okhttp/internal/Platform;
+.limit registers 17
+.catch java/lang/ClassNotFoundException from lb82de to lb83bc using lb83c0
+.catch java/lang/NoSuchMethodException from lb82de to lb83bc using lb83d0
+.catch java/lang/ClassNotFoundException from lb82be to lb82da using lb82dc
+.catch java/lang/NoSuchMethodException from lb82be to lb82da using lb83d4
+.catch java/lang/NoSuchMethodException from lb8280 to lb82ba using lb82cc
+.catch java/lang/ClassNotFoundException from lb8280 to lb82ba using lb82dc
+.catch java/lang/ClassNotFoundException from lb8248 to lb827e using lb82dc
+.catch java/lang/NoSuchMethodException from lb8248 to lb827e using lb83d4
+.catch java/lang/ClassNotFoundException from lb823c to lb8246 using lb82bc
+.catch java/lang/NoSuchMethodException from lb823c to lb8246 using lb83d4
+.var 1 is openSslSocketClass Ljava/lang/Class; from lb8248 to lb82ba
+.var 2 is setUseSessionTickets Ljava/lang/reflect/Method; from lb8264 to lb82ba
+.var 3 is setHostname Ljava/lang/reflect/Method; from lb8280 to lb82ba
+.var 4 is setNpnProtocols Ljava/lang/reflect/Method; from lb829c to lb82ba
+.var 5 is getNpnSelectedProtocol Ljava/lang/reflect/Method; from lb82ae to lb82ba
+.var 11 is npnClassName Ljava/lang/String; from lb82ba to lb82bc
+.var 9 is ignored Ljava/lang/ClassNotFoundException; from lb82be to lb82cc
+.var 1 is openSslSocketClass Ljava/lang/Class; from lb82ca to lb82dc
+.var 2 is setUseSessionTickets Ljava/lang/reflect/Method; from lb82cc to lb82dc
+.var 3 is setHostname Ljava/lang/reflect/Method; from lb82cc to lb82dc
+.var 9 is ignored Ljava/lang/ClassNotFoundException; from lb82dc to lb82e8
+.var 7 is clientProviderClass Ljava/lang/Class; from lb8346 to lb83c0
+.var 8 is getMethod Ljava/lang/reflect/Method; from lb83b2 to lb83c0
+.var 10 is nextProtoNegoClass Ljava/lang/Class; from lb82ea to lb83c0
+.var 12 is providerClass Ljava/lang/Class; from lb8318 to lb83c0
+.var 13 is putMethod Ljava/lang/reflect/Method; from lb8396 to lb83c0
+.var 14 is serverProviderClass Ljava/lang/Class; from lb8374 to lb83c0
+.var 9 is ignored Ljava/lang/ClassNotFoundException; from lb83c0 to lb83c2
+.var 11 is npnClassName Ljava/lang/String; from lb82e2 to lb83d4
+lb823c:
+.line 145
+	const-string	v0,"com.android.org.conscrypt.OpenSSLSocketImpl"
+; v0 : Ljava/lang/String;
+	invoke-static	{v0},java/lang/Class/forName	; forName(Ljava/lang/String;)Ljava/lang/Class;
+; v0 : Ljava/lang/String;
+lb8246:
+	move-result-object	v1
+; v1 : Ljava/lang/Class;
+lb8248:
+.line 152
+	const-string	v0,"setUseSessionTickets"
+; v0 : Ljava/lang/String;
+	const/4	v6,1
+; v6 : single-length
+	new-array	v6,v6,[Ljava/lang/Class;
+; v6 : [Ljava/lang/Class; , v6 : [Ljava/lang/Class;
+	const/4	v15,0
+; v15 : single-length
+	sget-object	v16,java/lang/Boolean.TYPE Ljava/lang/Class;
+; v16 : Ljava/lang/Class;
+	aput-object	v16,v6,v15
+; v16 : Ljava/lang/Class; , v6 : [Ljava/lang/Class; , v15 : single-length
+	invoke-virtual	{v1,v0,v6},java/lang/Class/getMethod	; getMethod(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+; v1 : Ljava/lang/Class; , v0 : Ljava/lang/String; , v6 : [Ljava/lang/Class;
+	move-result-object	v2
+; v2 : Ljava/lang/reflect/Method;
+.line 153
+	const-string	v0,"setHostname"
+; v0 : Ljava/lang/String;
+	const/4	v6,1
+; v6 : single-length
+	new-array	v6,v6,[Ljava/lang/Class;
+; v6 : [Ljava/lang/Class; , v6 : [Ljava/lang/Class;
+	const/4	v15,0
+; v15 : single-length
+	const-class	v16,java/lang/String
+; v16 : Ljava/lang/Class;
+	aput-object	v16,v6,v15
+; v16 : Ljava/lang/Class; , v6 : [Ljava/lang/Class; , v15 : single-length
+	invoke-virtual	{v1,v0,v6},java/lang/Class/getMethod	; getMethod(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+; v1 : Ljava/lang/Class; , v0 : Ljava/lang/String; , v6 : [Ljava/lang/Class;
+lb827e:
+	move-result-object	v3
+; v3 : Ljava/lang/reflect/Method;
+lb8280:
+.line 157
+	const-string	v0,"setNpnProtocols"
+; v0 : Ljava/lang/String;
+	const/4	v6,1
+; v6 : single-length
+	new-array	v6,v6,[Ljava/lang/Class;
+; v6 : [Ljava/lang/Class; , v6 : [Ljava/lang/Class;
+	const/4	v15,0
+; v15 : single-length
+	const-class	v16,[B
+; v16 : Ljava/lang/Class;
+	aput-object	v16,v6,v15
+; v16 : Ljava/lang/Class; , v6 : [Ljava/lang/Class; , v15 : single-length
+	invoke-virtual	{v1,v0,v6},java/lang/Class/getMethod	; getMethod(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+; v1 : Ljava/lang/Class; , v0 : Ljava/lang/String; , v6 : [Ljava/lang/Class;
+	move-result-object	v4
+; v4 : Ljava/lang/reflect/Method;
+.line 158
+	const-string	v0,"getNpnSelectedProtocol"
+; v0 : Ljava/lang/String;
+	const/4	v6,0
+; v6 : single-length
+	new-array	v6,v6,[Ljava/lang/Class;
+; v6 : [Ljava/lang/Class; , v6 : [Ljava/lang/Class;
+	invoke-virtual	{v1,v0,v6},java/lang/Class/getMethod	; getMethod(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+; v1 : Ljava/lang/Class; , v0 : Ljava/lang/String; , v6 : [Ljava/lang/Class;
+	move-result-object	v5
+; v5 : Ljava/lang/reflect/Method;
+.line 159
+	new-instance	v0,com/squareup/okhttp/internal/Platform$Android41
+; v0 : Lcom/squareup/okhttp/internal/Platform$Android41;
+	const/4	v6,0
+; v6 : single-length
+	invoke-direct/range	{v0..v6},com/squareup/okhttp/internal/Platform$Android41/<init>;	<init>(Ljava/lang/Class;Ljava/lang/reflect/Method;Ljava/lang/reflect/Method;Ljava/lang/reflect/Method;Ljava/lang/reflect/Method;Lcom/squareup/okhttp/internal/Platform$1;)V
+; v0 : Lcom/squareup/okhttp/internal/Platform$Android41; , v1 : Ljava/lang/Class; , v2 : Ljava/lang/reflect/Method; , v3 : Ljava/lang/reflect/Method; , v4 : Ljava/lang/reflect/Method; , v5 : Ljava/lang/reflect/Method; , v6 : single-length
+lb82ba:
+.line 187
+	return-object	v0
+; v0 : Ljava/lang/Object;
+lb82bc:
+.line 146
+	move-exception	v9
+; v9 : java/lang/ClassNotFoundException
+lb82be:
+.line 148
+	const-string	v0,"org.apache.harmony.xnet.provider.jsse.OpenSSLSocketImpl"
+; v0 : Ljava/lang/String;
+	invoke-static	{v0},java/lang/Class/forName	; forName(Ljava/lang/String;)Ljava/lang/Class;
+; v0 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/Class;
+lb82ca:
+	goto	lb8248
+lb82cc:
+.line 161
+	move-exception	v9
+; v9 : java/lang/NoSuchMethodException
+.line 162
+	new-instance	v0,com/squareup/okhttp/internal/Platform$Android23
+; v0 : Lcom/squareup/okhttp/internal/Platform$Android23;
+	const/4	v6,0
+; v6 : single-length
+	invoke-direct	{v0,v1,v2,v3,v6},com/squareup/okhttp/internal/Platform$Android23/<init>	; <init>(Ljava/lang/Class;Ljava/lang/reflect/Method;Ljava/lang/reflect/Method;Lcom/squareup/okhttp/internal/Platform$1;)V
+; v0 : Lcom/squareup/okhttp/internal/Platform$Android23; , v1 : Ljava/lang/Class; , v2 : Ljava/lang/reflect/Method; , v3 : Ljava/lang/reflect/Method; , v6 : single-length
+lb82da:
+	goto	lb82ba
+lb82dc:
+.line 164
+	move-exception	v0
+; v0 : java/lang/ClassNotFoundException
+lb82de:
+.line 172
+	const-string	v11,"org.eclipse.jetty.npn.NextProtoNego"
+; v11 : Ljava/lang/String;
+.line 173
+	invoke-static	{v11},java/lang/Class/forName	; forName(Ljava/lang/String;)Ljava/lang/Class;
+; v11 : Ljava/lang/String;
+lb82e8:
+	move-result-object	v10
+; v10 : Ljava/lang/Class;
+.line 174
+	new-instance	v0,java/lang/StringBuilder
+; v0 : Ljava/lang/StringBuilder;
+	invoke-direct	{v0},java/lang/StringBuilder/<init>	; <init>()V
+; v0 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v0,v11},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v11 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	const-string	v6,"$Provider"
+; v6 : Ljava/lang/String;
+	invoke-virtual	{v0,v6},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v6 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v0},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v0 : Ljava/lang/StringBuilder;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	invoke-static	{v0},java/lang/Class/forName	; forName(Ljava/lang/String;)Ljava/lang/Class;
+; v0 : Ljava/lang/String;
+	move-result-object	v12
+; v12 : Ljava/lang/Class;
+.line 175
+	new-instance	v0,java/lang/StringBuilder
+; v0 : Ljava/lang/StringBuilder;
+	invoke-direct	{v0},java/lang/StringBuilder/<init>	; <init>()V
+; v0 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v0,v11},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v11 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	const-string	v6,"$ClientProvider"
+; v6 : Ljava/lang/String;
+	invoke-virtual	{v0,v6},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v6 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v0},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v0 : Ljava/lang/StringBuilder;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	invoke-static	{v0},java/lang/Class/forName	; forName(Ljava/lang/String;)Ljava/lang/Class;
+; v0 : Ljava/lang/String;
+	move-result-object	v7
+; v7 : Ljava/lang/Class;
+.line 176
+	new-instance	v0,java/lang/StringBuilder
+; v0 : Ljava/lang/StringBuilder;
+	invoke-direct	{v0},java/lang/StringBuilder/<init>	; <init>()V
+; v0 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v0,v11},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v11 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	const-string	v6,"$ServerProvider"
+; v6 : Ljava/lang/String;
+	invoke-virtual	{v0,v6},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v6 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v0},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v0 : Ljava/lang/StringBuilder;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	invoke-static	{v0},java/lang/Class/forName	; forName(Ljava/lang/String;)Ljava/lang/Class;
+; v0 : Ljava/lang/String;
+	move-result-object	v14
+; v14 : Ljava/lang/Class;
+.line 177
+	const-string	v0,"put"
+; v0 : Ljava/lang/String;
+	const/4	v6,2
+; v6 : single-length
+	new-array	v6,v6,[Ljava/lang/Class;
+; v6 : [Ljava/lang/Class; , v6 : [Ljava/lang/Class;
+	const/4	v15,0
+; v15 : single-length
+	const-class	v16,javax/net/ssl/SSLSocket
+; v16 : Ljava/lang/Class;
+	aput-object	v16,v6,v15
+; v16 : Ljava/lang/Class; , v6 : [Ljava/lang/Class; , v15 : single-length
+	const/4	v15,1
+; v15 : single-length
+	aput-object	v12,v6,v15
+; v12 : Ljava/lang/Class; , v6 : [Ljava/lang/Class; , v15 : single-length
+	invoke-virtual	{v10,v0,v6},java/lang/Class/getMethod	; getMethod(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+; v10 : Ljava/lang/Class; , v0 : Ljava/lang/String; , v6 : [Ljava/lang/Class;
+	move-result-object	v13
+; v13 : Ljava/lang/reflect/Method;
+.line 178
+	const-string	v0,"get"
+; v0 : Ljava/lang/String;
+	const/4	v6,1
+; v6 : single-length
+	new-array	v6,v6,[Ljava/lang/Class;
+; v6 : [Ljava/lang/Class; , v6 : [Ljava/lang/Class;
+	const/4	v15,0
+; v15 : single-length
+	const-class	v16,javax/net/ssl/SSLSocket
+; v16 : Ljava/lang/Class;
+	aput-object	v16,v6,v15
+; v16 : Ljava/lang/Class; , v6 : [Ljava/lang/Class; , v15 : single-length
+	invoke-virtual	{v10,v0,v6},java/lang/Class/getMethod	; getMethod(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+; v10 : Ljava/lang/Class; , v0 : Ljava/lang/String; , v6 : [Ljava/lang/Class;
+	move-result-object	v8
+; v8 : Ljava/lang/reflect/Method;
+.line 179
+	new-instance	v0,com/squareup/okhttp/internal/Platform$JdkWithJettyNpnPlatform
+; v0 : Lcom/squareup/okhttp/internal/Platform$JdkWithJettyNpnPlatform;
+	invoke-direct	{v0,v13,v8,v7,v14},com/squareup/okhttp/internal/Platform$JdkWithJettyNpnPlatform/<init>	; <init>(Ljava/lang/reflect/Method;Ljava/lang/reflect/Method;Ljava/lang/Class;Ljava/lang/Class;)V
+; v0 : Lcom/squareup/okhttp/internal/Platform$JdkWithJettyNpnPlatform; , v13 : Ljava/lang/reflect/Method; , v8 : Ljava/lang/reflect/Method; , v7 : Ljava/lang/Class; , v14 : Ljava/lang/Class;
+lb83bc:
+	goto/16	lb82ba
+lb83c0:
+.line 181
+	move-exception	v0
+; v0 : java/lang/ClassNotFoundException
+lb83c2:
+.line 187
+	new-instance	v0,com/squareup/okhttp/internal/Platform
+; v0 : Lcom/squareup/okhttp/internal/Platform;
+	invoke-direct	{v0},com/squareup/okhttp/internal/Platform/<init>	; <init>()V
+; v0 : Lcom/squareup/okhttp/internal/Platform;
+	goto/16	lb82ba
+lb83d0:
+.line 183
+	move-exception	v0
+; v0 : java/lang/NoSuchMethodException
+	goto	lb83c2
+lb83d4:
+.line 166
+	move-exception	v0
+; v0 : java/lang/NoSuchMethodException
+	goto	lb82de
+.end method
+
+.method public static get()Lcom/squareup/okhttp/internal/Platform;
+.limit registers 1
+.line 56
+	sget-object	v0,com/squareup/okhttp/internal/Platform.PLATFORM Lcom/squareup/okhttp/internal/Platform;
+; v0 : Lcom/squareup/okhttp/internal/Platform;
+	return-object	v0
+; v0 : Lcom/squareup/okhttp/internal/Platform;
+.end method
+
+.method public connectSocket(Ljava/net/Socket;Ljava/net/InetSocketAddress;I)V
+.throws Ljava/io/IOException;
+.limit registers 4
+; this: v0 (Lcom/squareup/okhttp/internal/Platform;)
+; parameter[0] : v1 (Ljava/net/Socket;)
+; parameter[1] : v2 (Ljava/net/InetSocketAddress;)
+; parameter[2] : v3 (I)
+.line 108
+	invoke-virtual	{v1,v2,v3},java/net/Socket/connect	; connect(Ljava/net/SocketAddress;I)V
+; v1 : Ljava/net/Socket; , v2 : Ljava/net/InetSocketAddress; , v3 : single-length
+.line 109
+	return-void	
+.end method
+
+.method public enableTlsExtensions(Ljavax/net/ssl/SSLSocket;Ljava/lang/String;)V
+.limit registers 3
+; this: v0 (Lcom/squareup/okhttp/internal/Platform;)
+; parameter[0] : v1 (Ljavax/net/ssl/SSLSocket;)
+; parameter[1] : v2 (Ljava/lang/String;)
+.line 84
+	return-void	
+.end method
+
+.method public getNpnSelectedProtocol(Ljavax/net/ssl/SSLSocket;)[B
+.limit registers 3
+; this: v1 (Lcom/squareup/okhttp/internal/Platform;)
+; parameter[0] : v2 (Ljavax/net/ssl/SSLSocket;)
+.line 96
+	const/4	v0,0
+; v0 : single-length
+	return-object	v0
+; v0 : single-length
+.end method
+
+.method public getPrefix()Ljava/lang/String;
+.limit registers 2
+; this: v1 (Lcom/squareup/okhttp/internal/Platform;)
+.line 61
+	const-string	v0,"OkHttp"
+; v0 : Ljava/lang/String;
+	return-object	v0
+; v0 : Ljava/lang/String;
+.end method
+
+.method public logW(Ljava/lang/String;)V
+.limit registers 3
+; this: v1 (Lcom/squareup/okhttp/internal/Platform;)
+; parameter[0] : v2 (Ljava/lang/String;)
+.line 65
+	sget-object	v0,java/lang/System.out Ljava/io/PrintStream;
+; v0 : Ljava/io/PrintStream;
+	invoke-virtual	{v0,v2},java/io/PrintStream/println	; println(Ljava/lang/String;)V
+; v0 : Ljava/io/PrintStream; , v2 : Ljava/lang/String;
+.line 66
+	return-void	
+.end method
+
+.method public newDeflaterOutputStream(Ljava/io/OutputStream;Ljava/util/zip/Deflater;Z)Ljava/io/OutputStream;
+.limit registers 10
+; this: v6 (Lcom/squareup/okhttp/internal/Platform;)
+; parameter[0] : v7 (Ljava/io/OutputStream;)
+; parameter[1] : v8 (Ljava/util/zip/Deflater;)
+; parameter[2] : v9 (Z)
+.catch java/lang/NoSuchMethodException from lb84c0 to lb8528 using lb852a
+.catch java/lang/reflect/InvocationTargetException from lb84c0 to lb8528 using lb853c
+.catch java/lang/InstantiationException from lb84c0 to lb8528 using lb8570
+.catch java/lang/IllegalAccessException from lb84c0 to lb8528 using lb857e
+.var 0 is constructor Ljava/lang/reflect/Constructor; from lb84c4 to lb84f8
+.var 0 is constructor Ljava/lang/reflect/Constructor; from lb84fc to lb852a
+.var 1 is e Ljava/lang/NoSuchMethodException; from lb852c to lb853c
+.var 1 is e Ljava/lang/reflect/InvocationTargetException; from lb853e to lb8570
+.var 1 is e Ljava/lang/InstantiationException; from lb8572 to lb857e
+lb84c0:
+.line 119
+	iget-object	v0,v6,com/squareup/okhttp/internal/Platform.deflaterConstructor Ljava/lang/reflect/Constructor;
+; v0 : Ljava/lang/reflect/Constructor; , v6 : Lcom/squareup/okhttp/internal/Platform;
+.line 120
+	if-nez	v0,lb84fc
+; v0 : Ljava/lang/reflect/Constructor;
+.line 121
+	const-class	v2,java/util/zip/DeflaterOutputStream
+; v2 : Ljava/lang/Class;
+	const/4	v3,3
+; v3 : single-length
+	new-array	v3,v3,[Ljava/lang/Class;
+; v3 : [Ljava/lang/Class; , v3 : [Ljava/lang/Class;
+	const/4	v4,0
+; v4 : single-length
+	const-class	v5,java/io/OutputStream
+; v5 : Ljava/lang/Class;
+	aput-object	v5,v3,v4
+; v5 : Ljava/lang/Class; , v3 : [Ljava/lang/Class; , v4 : single-length
+	const/4	v4,1
+; v4 : single-length
+	const-class	v5,java/util/zip/Deflater
+; v5 : Ljava/lang/Class;
+	aput-object	v5,v3,v4
+; v5 : Ljava/lang/Class; , v3 : [Ljava/lang/Class; , v4 : single-length
+	const/4	v4,2
+; v4 : single-length
+	sget-object	v5,java/lang/Boolean.TYPE Ljava/lang/Class;
+; v5 : Ljava/lang/Class;
+	aput-object	v5,v3,v4
+; v5 : Ljava/lang/Class; , v3 : [Ljava/lang/Class; , v4 : single-length
+	invoke-virtual	{v2,v3},java/lang/Class/getConstructor	; getConstructor([Ljava/lang/Class;)Ljava/lang/reflect/Constructor;
+; v2 : Ljava/lang/Class; , v3 : [Ljava/lang/Class;
+	move-result-object	v0
+; v0 : Ljava/lang/reflect/Constructor;
+lb84f8:
+	iput-object	v0,v6,com/squareup/okhttp/internal/Platform.deflaterConstructor Ljava/lang/reflect/Constructor;
+; v0 : Ljava/lang/reflect/Constructor; , v6 : Lcom/squareup/okhttp/internal/Platform;
+lb84fc:
+.line 124
+	const/4	v2,3
+; v2 : single-length
+	new-array	v2,v2,[Ljava/lang/Object;
+; v2 : [Ljava/lang/Object; , v2 : [Ljava/lang/Object;
+	const/4	v3,0
+; v3 : single-length
+	aput-object	v7,v2,v3
+; v7 : Ljava/io/OutputStream; , v2 : [Ljava/lang/Object; , v3 : single-length
+	const/4	v3,1
+; v3 : single-length
+	aput-object	v8,v2,v3
+; v8 : Ljava/util/zip/Deflater; , v2 : [Ljava/lang/Object; , v3 : single-length
+	const/4	v3,2
+; v3 : single-length
+	invoke-static	{v9},java/lang/Boolean/valueOf	; valueOf(Z)Ljava/lang/Boolean;
+; v9 : single-length
+	move-result-object	v4
+; v4 : Ljava/lang/Boolean;
+	aput-object	v4,v2,v3
+; v4 : Ljava/lang/Boolean; , v2 : [Ljava/lang/Object; , v3 : single-length
+	invoke-virtual	{v0,v2},java/lang/reflect/Constructor/newInstance	; newInstance([Ljava/lang/Object;)Ljava/lang/Object;
+; v0 : Ljava/lang/reflect/Constructor; , v2 : [Ljava/lang/Object;
+	move-result-object	v2
+; v2 : Ljava/lang/Object;
+	check-cast	v2,java/io/OutputStream
+; v2 : Ljava/io/OutputStream;
+lb8528:
+	return-object	v2
+; v2 : Ljava/io/OutputStream;
+lb852a:
+.line 125
+	move-exception	v1
+; v1 : java/lang/NoSuchMethodException
+.line 126
+	new-instance	v2,java/lang/UnsupportedOperationException
+; v2 : Ljava/lang/UnsupportedOperationException;
+	const-string	v3,"Cannot SPDY; no SYNC_FLUSH available"
+; v3 : Ljava/lang/String;
+	invoke-direct	{v2,v3},java/lang/UnsupportedOperationException/<init>	; <init>(Ljava/lang/String;)V
+; v2 : Ljava/lang/UnsupportedOperationException; , v3 : Ljava/lang/String;
+	throw	v2
+; v2 : Ljava/lang/UnsupportedOperationException;
+lb853c:
+.line 127
+	move-exception	v1
+; v1 : java/lang/reflect/InvocationTargetException
+.line 128
+	invoke-virtual	{v1},java/lang/reflect/InvocationTargetException/getCause	; getCause()Ljava/lang/Throwable;
+; v1 : java/lang/reflect/InvocationTargetException
+	move-result-object	v2
+; v2 : Ljava/lang/Throwable;
+	instance-of	v2,v2,java/lang/RuntimeException
+; v2 : single-length , v2 : single-length
+	if-eqz	v2,lb855c
+; v2 : single-length
+	invoke-virtual	{v1},java/lang/reflect/InvocationTargetException/getCause	; getCause()Ljava/lang/Throwable;
+; v1 : java/lang/reflect/InvocationTargetException
+	move-result-object	v2
+; v2 : Ljava/lang/Throwable;
+	check-cast	v2,java/lang/RuntimeException
+; v2 : Ljava/lang/RuntimeException;
+lb855a:
+	throw	v2
+; v2 : Ljava/lang/RuntimeException;
+lb855c:
+	new-instance	v2,java/lang/RuntimeException
+; v2 : Ljava/lang/RuntimeException;
+	invoke-virtual	{v1},java/lang/reflect/InvocationTargetException/getCause	; getCause()Ljava/lang/Throwable;
+; v1 : java/lang/reflect/InvocationTargetException
+	move-result-object	v3
+; v3 : Ljava/lang/Throwable;
+	invoke-direct	{v2,v3},java/lang/RuntimeException/<init>	; <init>(Ljava/lang/Throwable;)V
+; v2 : Ljava/lang/RuntimeException; , v3 : Ljava/lang/Throwable;
+	goto	lb855a
+lb8570:
+.line 130
+	move-exception	v1
+; v1 : java/lang/InstantiationException
+.line 131
+	new-instance	v2,java/lang/RuntimeException
+; v2 : Ljava/lang/RuntimeException;
+	invoke-direct	{v2,v1},java/lang/RuntimeException/<init>	; <init>(Ljava/lang/Throwable;)V
+; v2 : Ljava/lang/RuntimeException; , v1 : java/lang/InstantiationException
+	throw	v2
+; v2 : Ljava/lang/RuntimeException;
+lb857e:
+.line 132
+	move-exception	v1
+; v1 : java/lang/IllegalAccessException
+.line 133
+	new-instance	v2,java/lang/AssertionError
+; v2 : Ljava/lang/AssertionError;
+	invoke-direct	{v2},java/lang/AssertionError/<init>	; <init>()V
+; v2 : Ljava/lang/AssertionError;
+	throw	v2
+; v2 : Ljava/lang/AssertionError;
+.end method
+
+.method public setNpnProtocols(Ljavax/net/ssl/SSLSocket;[B)V
+.limit registers 3
+; this: v0 (Lcom/squareup/okhttp/internal/Platform;)
+; parameter[0] : v1 (Ljavax/net/ssl/SSLSocket;)
+; parameter[1] : v2 ([B)
+.line 104
+	return-void	
+.end method
+
+.method public supportTlsIntolerantServer(Ljavax/net/ssl/SSLSocket;)V
+.limit registers 5
+; this: v3 (Lcom/squareup/okhttp/internal/Platform;)
+; parameter[0] : v4 (Ljavax/net/ssl/SSLSocket;)
+.line 91
+	const/4	v0,1
+; v0 : single-length
+	new-array	v0,v0,[Ljava/lang/String;
+; v0 : [Ljava/lang/String; , v0 : [Ljava/lang/String;
+	const/4	v1,0
+; v1 : single-length
+	const-string	v2,"SSLv3"
+; v2 : Ljava/lang/String;
+	aput-object	v2,v0,v1
+; v2 : Ljava/lang/String; , v0 : [Ljava/lang/String; , v1 : single-length
+	invoke-virtual	{v4,v0},javax/net/ssl/SSLSocket/setEnabledProtocols	; setEnabledProtocols([Ljava/lang/String;)V
+; v4 : Ljavax/net/ssl/SSLSocket; , v0 : [Ljava/lang/String;
+.line 92
+	return-void	
+.end method
+
+.method public tagSocket(Ljava/net/Socket;)V
+.throws Ljava/net/SocketException;
+.limit registers 2
+; this: v0 (Lcom/squareup/okhttp/internal/Platform;)
+; parameter[0] : v1 (Ljava/net/Socket;)
+.line 69
+	return-void	
+.end method
+
+.method public toUriLenient(Ljava/net/URL;)Ljava/net/URI;
+.throws Ljava/net/URISyntaxException;
+.limit registers 3
+; this: v1 (Lcom/squareup/okhttp/internal/Platform;)
+; parameter[0] : v2 (Ljava/net/URL;)
+.line 75
+	invoke-virtual	{v2},java/net/URL/toURI	; toURI()Ljava/net/URI;
+; v2 : Ljava/net/URL;
+	move-result-object	v0
+; v0 : Ljava/net/URI;
+	return-object	v0
+; v0 : Ljava/net/URI;
+.end method
+
+.method public untagSocket(Ljava/net/Socket;)V
+.throws Ljava/net/SocketException;
+.limit registers 2
+; this: v0 (Lcom/squareup/okhttp/internal/Platform;)
+; parameter[0] : v1 (Ljava/net/Socket;)
+.line 72
+	return-void	
+.end method
+
+

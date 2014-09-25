@@ -1,0 +1,639 @@
+.class public android/support/v4/app/ShareCompat$IntentReader
+.super java/lang/Object
+.source MyApplication
+
+.field private static final TAG Ljava/lang/String; = "IntentReader"
+.field private mActivity Landroid/app/Activity;
+.field private mCallingActivity Landroid/content/ComponentName;
+.field private mCallingPackage Ljava/lang/String;
+.field private mIntent Landroid/content/Intent;
+.field private mStreams Ljava/util/ArrayList;
+
+.method private <init>(Landroid/app/Activity;)V
+.limit registers 3
+; this: v1 (Landroid/support/v4/app/ShareCompat$IntentReader;)
+; parameter[0] : v2 (Landroid/app/Activity;)
+.line 675
+	invoke-direct	{v1},java/lang/Object/<init>	; <init>()V
+; v1 : Landroid/support/v4/app/ShareCompat$IntentReader;
+.line 676
+	iput-object	v2,v1,android/support/v4/app/ShareCompat$IntentReader.mActivity Landroid/app/Activity;
+; v2 : Landroid/app/Activity; , v1 : Landroid/support/v4/app/ShareCompat$IntentReader;
+.line 677
+	invoke-virtual	{v2},android/app/Activity/getIntent	; getIntent()Landroid/content/Intent;
+; v2 : Landroid/app/Activity;
+	move-result-object	v0
+; v0 : Landroid/content/Intent;
+	iput-object	v0,v1,android/support/v4/app/ShareCompat$IntentReader.mIntent Landroid/content/Intent;
+; v0 : Landroid/content/Intent; , v1 : Landroid/support/v4/app/ShareCompat$IntentReader;
+.line 678
+	invoke-static	{v2},android/support/v4/app/ShareCompat/getCallingPackage	; getCallingPackage(Landroid/app/Activity;)Ljava/lang/String;
+; v2 : Landroid/app/Activity;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	iput-object	v0,v1,android/support/v4/app/ShareCompat$IntentReader.mCallingPackage Ljava/lang/String;
+; v0 : Ljava/lang/String; , v1 : Landroid/support/v4/app/ShareCompat$IntentReader;
+.line 679
+	invoke-static	{v2},android/support/v4/app/ShareCompat/getCallingActivity	; getCallingActivity(Landroid/app/Activity;)Landroid/content/ComponentName;
+; v2 : Landroid/app/Activity;
+	move-result-object	v0
+; v0 : Landroid/content/ComponentName;
+	iput-object	v0,v1,android/support/v4/app/ShareCompat$IntentReader.mCallingActivity Landroid/content/ComponentName;
+; v0 : Landroid/content/ComponentName; , v1 : Landroid/support/v4/app/ShareCompat$IntentReader;
+.line 680
+	return-void	
+.end method
+
+.method public static from(Landroid/app/Activity;)Landroid/support/v4/app/ShareCompat$IntentReader;
+.limit registers 2
+; parameter[0] : v1 (Landroid/app/Activity;)
+.line 672
+	new-instance	v0,android/support/v4/app/ShareCompat$IntentReader
+; v0 : Landroid/support/v4/app/ShareCompat$IntentReader;
+	invoke-direct	{v0,v1},android/support/v4/app/ShareCompat$IntentReader/<init>	; <init>(Landroid/app/Activity;)V
+; v0 : Landroid/support/v4/app/ShareCompat$IntentReader; , v1 : Landroid/app/Activity;
+	return-object	v0
+; v0 : Landroid/support/v4/app/ShareCompat$IntentReader;
+.end method
+
+.method public getCallingActivity()Landroid/content/ComponentName;
+.limit registers 2
+; this: v1 (Landroid/support/v4/app/ShareCompat$IntentReader;)
+.line 887
+	iget-object	v0,v1,android/support/v4/app/ShareCompat$IntentReader.mCallingActivity Landroid/content/ComponentName;
+; v0 : Landroid/content/ComponentName; , v1 : Landroid/support/v4/app/ShareCompat$IntentReader;
+	return-object	v0
+; v0 : Landroid/content/ComponentName;
+.end method
+
+.method public getCallingActivityIcon()Landroid/graphics/drawable/Drawable;
+.limit registers 5
+; this: v4 (Landroid/support/v4/app/ShareCompat$IntentReader;)
+.catch android/content/pm/PackageManager$NameNotFoundException from l42470 to l4247a using l4247e
+	const/4	v0,0
+; v0 : single-length
+.line 901
+	iget-object	v1,v4,android/support/v4/app/ShareCompat$IntentReader.mCallingActivity Landroid/content/ComponentName;
+; v1 : Landroid/content/ComponentName; , v4 : Landroid/support/v4/app/ShareCompat$IntentReader;
+	if-nez	v1,l42464
+; v1 : Landroid/content/ComponentName;
+l42462:
+.line 909
+	return-object	v0
+; v0 : Landroid/graphics/drawable/Drawable;
+l42464:
+.line 903
+	iget-object	v1,v4,android/support/v4/app/ShareCompat$IntentReader.mActivity Landroid/app/Activity;
+; v1 : Landroid/app/Activity; , v4 : Landroid/support/v4/app/ShareCompat$IntentReader;
+	invoke-virtual	{v1},android/app/Activity/getPackageManager	; getPackageManager()Landroid/content/pm/PackageManager;
+; v1 : Landroid/app/Activity;
+	move-result-object	v1
+; v1 : Landroid/content/pm/PackageManager;
+l42470:
+.line 905
+	iget-object	v2,v4,android/support/v4/app/ShareCompat$IntentReader.mCallingActivity Landroid/content/ComponentName;
+; v2 : Landroid/content/ComponentName; , v4 : Landroid/support/v4/app/ShareCompat$IntentReader;
+	invoke-virtual	{v1,v2},android/content/pm/PackageManager/getActivityIcon	; getActivityIcon(Landroid/content/ComponentName;)Landroid/graphics/drawable/Drawable;
+; v1 : Landroid/content/pm/PackageManager; , v2 : Landroid/content/ComponentName;
+l4247a:
+	move-result-object	v0
+; v0 : Landroid/graphics/drawable/Drawable;
+	goto	l42462
+l4247e:
+.line 906
+	move-exception	v1
+; v1 : android/content/pm/PackageManager$NameNotFoundException
+.line 907
+	const-string	v2,"IntentReader"
+; v2 : Ljava/lang/String;
+	const-string	v3,"Could not retrieve icon for calling activity"
+; v3 : Ljava/lang/String;
+	invoke-static	{v2,v3,v1},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
+; v2 : Ljava/lang/String; , v3 : Ljava/lang/String; , v1 : android/content/pm/PackageManager$NameNotFoundException
+	goto	l42462
+.end method
+
+.method public getCallingApplicationIcon()Landroid/graphics/drawable/Drawable;
+.limit registers 5
+; this: v4 (Landroid/support/v4/app/ShareCompat$IntentReader;)
+.catch android/content/pm/PackageManager$NameNotFoundException from l424c4 to l424ce using l424d2
+	const/4	v0,0
+; v0 : single-length
+.line 923
+	iget-object	v1,v4,android/support/v4/app/ShareCompat$IntentReader.mCallingPackage Ljava/lang/String;
+; v1 : Ljava/lang/String; , v4 : Landroid/support/v4/app/ShareCompat$IntentReader;
+	if-nez	v1,l424b8
+; v1 : Ljava/lang/String;
+l424b6:
+.line 931
+	return-object	v0
+; v0 : Landroid/graphics/drawable/Drawable;
+l424b8:
+.line 925
+	iget-object	v1,v4,android/support/v4/app/ShareCompat$IntentReader.mActivity Landroid/app/Activity;
+; v1 : Landroid/app/Activity; , v4 : Landroid/support/v4/app/ShareCompat$IntentReader;
+	invoke-virtual	{v1},android/app/Activity/getPackageManager	; getPackageManager()Landroid/content/pm/PackageManager;
+; v1 : Landroid/app/Activity;
+	move-result-object	v1
+; v1 : Landroid/content/pm/PackageManager;
+l424c4:
+.line 927
+	iget-object	v2,v4,android/support/v4/app/ShareCompat$IntentReader.mCallingPackage Ljava/lang/String;
+; v2 : Ljava/lang/String; , v4 : Landroid/support/v4/app/ShareCompat$IntentReader;
+	invoke-virtual	{v1,v2},android/content/pm/PackageManager/getApplicationIcon	; getApplicationIcon(Ljava/lang/String;)Landroid/graphics/drawable/Drawable;
+; v1 : Landroid/content/pm/PackageManager; , v2 : Ljava/lang/String;
+l424ce:
+	move-result-object	v0
+; v0 : Landroid/graphics/drawable/Drawable;
+	goto	l424b6
+l424d2:
+.line 928
+	move-exception	v1
+; v1 : android/content/pm/PackageManager$NameNotFoundException
+.line 929
+	const-string	v2,"IntentReader"
+; v2 : Ljava/lang/String;
+	const-string	v3,"Could not retrieve icon for calling application"
+; v3 : Ljava/lang/String;
+	invoke-static	{v2,v3,v1},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
+; v2 : Ljava/lang/String; , v3 : Ljava/lang/String; , v1 : android/content/pm/PackageManager$NameNotFoundException
+	goto	l424b6
+.end method
+
+.method public getCallingApplicationLabel()Ljava/lang/CharSequence;
+.limit registers 5
+; this: v4 (Landroid/support/v4/app/ShareCompat$IntentReader;)
+.catch android/content/pm/PackageManager$NameNotFoundException from l42518 to l4252c using l42530
+	const/4	v0,0
+; v0 : single-length
+.line 945
+	iget-object	v1,v4,android/support/v4/app/ShareCompat$IntentReader.mCallingPackage Ljava/lang/String;
+; v1 : Ljava/lang/String; , v4 : Landroid/support/v4/app/ShareCompat$IntentReader;
+	if-nez	v1,l4250c
+; v1 : Ljava/lang/String;
+l4250a:
+.line 953
+	return-object	v0
+; v0 : Ljava/lang/CharSequence;
+l4250c:
+.line 947
+	iget-object	v1,v4,android/support/v4/app/ShareCompat$IntentReader.mActivity Landroid/app/Activity;
+; v1 : Landroid/app/Activity; , v4 : Landroid/support/v4/app/ShareCompat$IntentReader;
+	invoke-virtual	{v1},android/app/Activity/getPackageManager	; getPackageManager()Landroid/content/pm/PackageManager;
+; v1 : Landroid/app/Activity;
+	move-result-object	v1
+; v1 : Landroid/content/pm/PackageManager;
+l42518:
+.line 949
+	iget-object	v2,v4,android/support/v4/app/ShareCompat$IntentReader.mCallingPackage Ljava/lang/String;
+; v2 : Ljava/lang/String; , v4 : Landroid/support/v4/app/ShareCompat$IntentReader;
+	const/4	v3,0
+; v3 : single-length
+	invoke-virtual	{v1,v2,v3},android/content/pm/PackageManager/getApplicationInfo	; getApplicationInfo(Ljava/lang/String;I)Landroid/content/pm/ApplicationInfo;
+; v1 : Landroid/content/pm/PackageManager; , v2 : Ljava/lang/String; , v3 : single-length
+	move-result-object	v2
+; v2 : Landroid/content/pm/ApplicationInfo;
+	invoke-virtual	{v1,v2},android/content/pm/PackageManager/getApplicationLabel	; getApplicationLabel(Landroid/content/pm/ApplicationInfo;)Ljava/lang/CharSequence;
+; v1 : Landroid/content/pm/PackageManager; , v2 : Landroid/content/pm/ApplicationInfo;
+l4252c:
+	move-result-object	v0
+; v0 : Ljava/lang/CharSequence;
+	goto	l4250a
+l42530:
+.line 950
+	move-exception	v1
+; v1 : android/content/pm/PackageManager$NameNotFoundException
+.line 951
+	const-string	v2,"IntentReader"
+; v2 : Ljava/lang/String;
+	const-string	v3,"Could not retrieve label for calling application"
+; v3 : Ljava/lang/String;
+	invoke-static	{v2,v3,v1},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
+; v2 : Ljava/lang/String; , v3 : Ljava/lang/String; , v1 : android/content/pm/PackageManager$NameNotFoundException
+	goto	l4250a
+.end method
+
+.method public getCallingPackage()Ljava/lang/String;
+.limit registers 2
+; this: v1 (Landroid/support/v4/app/ShareCompat$IntentReader;)
+.line 870
+	iget-object	v0,v1,android/support/v4/app/ShareCompat$IntentReader.mCallingPackage Ljava/lang/String;
+; v0 : Ljava/lang/String; , v1 : Landroid/support/v4/app/ShareCompat$IntentReader;
+	return-object	v0
+; v0 : Ljava/lang/String;
+.end method
+
+.method public getEmailBcc()[Ljava/lang/String;
+.limit registers 3
+; this: v2 (Landroid/support/v4/app/ShareCompat$IntentReader;)
+.line 843
+	iget-object	v0,v2,android/support/v4/app/ShareCompat$IntentReader.mIntent Landroid/content/Intent;
+; v0 : Landroid/content/Intent; , v2 : Landroid/support/v4/app/ShareCompat$IntentReader;
+	const-string	v1,"android.intent.extra.BCC"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},android/content/Intent/getStringArrayExtra	; getStringArrayExtra(Ljava/lang/String;)[Ljava/lang/String;
+; v0 : Landroid/content/Intent; , v1 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : [Ljava/lang/String;
+	return-object	v0
+; v0 : [Ljava/lang/String;
+.end method
+
+.method public getEmailCc()[Ljava/lang/String;
+.limit registers 3
+; this: v2 (Landroid/support/v4/app/ShareCompat$IntentReader;)
+.line 833
+	iget-object	v0,v2,android/support/v4/app/ShareCompat$IntentReader.mIntent Landroid/content/Intent;
+; v0 : Landroid/content/Intent; , v2 : Landroid/support/v4/app/ShareCompat$IntentReader;
+	const-string	v1,"android.intent.extra.CC"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},android/content/Intent/getStringArrayExtra	; getStringArrayExtra(Ljava/lang/String;)[Ljava/lang/String;
+; v0 : Landroid/content/Intent; , v1 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : [Ljava/lang/String;
+	return-object	v0
+; v0 : [Ljava/lang/String;
+.end method
+
+.method public getEmailTo()[Ljava/lang/String;
+.limit registers 3
+; this: v2 (Landroid/support/v4/app/ShareCompat$IntentReader;)
+.line 823
+	iget-object	v0,v2,android/support/v4/app/ShareCompat$IntentReader.mIntent Landroid/content/Intent;
+; v0 : Landroid/content/Intent; , v2 : Landroid/support/v4/app/ShareCompat$IntentReader;
+	const-string	v1,"android.intent.extra.EMAIL"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},android/content/Intent/getStringArrayExtra	; getStringArrayExtra(Ljava/lang/String;)[Ljava/lang/String;
+; v0 : Landroid/content/Intent; , v1 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : [Ljava/lang/String;
+	return-object	v0
+; v0 : [Ljava/lang/String;
+.end method
+
+.method public getHtmlText()Ljava/lang/String;
+.limit registers 4
+; this: v3 (Landroid/support/v4/app/ShareCompat$IntentReader;)
+.line 749
+	iget-object	v0,v3,android/support/v4/app/ShareCompat$IntentReader.mIntent Landroid/content/Intent;
+; v0 : Landroid/content/Intent; , v3 : Landroid/support/v4/app/ShareCompat$IntentReader;
+	const-string	v1,"android.intent.extra.HTML_TEXT"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},android/content/Intent/getStringExtra	; getStringExtra(Ljava/lang/String;)Ljava/lang/String;
+; v0 : Landroid/content/Intent; , v1 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+.line 750
+	if-nez	v1,l4262c
+; v1 : Ljava/lang/String;
+.line 751
+	invoke-virtual	{v3},android/support/v4/app/ShareCompat$IntentReader/getText	; getText()Ljava/lang/CharSequence;
+; v3 : Landroid/support/v4/app/ShareCompat$IntentReader;
+	move-result-object	v0
+; v0 : Ljava/lang/CharSequence;
+.line 752
+	instance-of	v2,v0,android/text/Spanned
+; v2 : single-length , v0 : Ljava/lang/CharSequence;
+	if-eqz	v2,l42616
+; v2 : single-length
+.line 753
+	check-cast	v0,android/text/Spanned
+; v0 : Landroid/text/Spanned;
+	invoke-static	{v0},android/text/Html/toHtml	; toHtml(Landroid/text/Spanned;)Ljava/lang/String;
+; v0 : Landroid/text/Spanned;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+l42614:
+.line 758
+	return-object	v0
+; v0 : Ljava/lang/String;
+l42616:
+.line 754
+	if-eqz	v0,l4262c
+; v0 : Ljava/lang/CharSequence;
+.line 755
+	invoke-static	{},android/support/v4/app/ShareCompat/access$000	; access$000()Landroid/support/v4/app/ShareCompat$ShareCompatImpl;
+; 
+	nop	
+	move-result-object	v1
+; v1 : Landroid/support/v4/app/ShareCompat$ShareCompatImpl;
+	invoke-interface	{v1,v0},android/support/v4/app/ShareCompat$ShareCompatImpl/escapeHtml	; escapeHtml(Ljava/lang/CharSequence;)Ljava/lang/String;
+; v1 : Landroid/support/v4/app/ShareCompat$ShareCompatImpl; , v0 : Ljava/lang/CharSequence;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	goto	l42614
+l4262c:
+	move-object	v0,v1
+; v0 : Ljava/lang/String; , v1 : Ljava/lang/String;
+	goto	l42614
+.end method
+
+.method public getStream()Landroid/net/Uri;
+.limit registers 3
+; this: v2 (Landroid/support/v4/app/ShareCompat$IntentReader;)
+.line 773
+	iget-object	v0,v2,android/support/v4/app/ShareCompat$IntentReader.mIntent Landroid/content/Intent;
+; v0 : Landroid/content/Intent; , v2 : Landroid/support/v4/app/ShareCompat$IntentReader;
+	const-string	v1,"android.intent.extra.STREAM"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},android/content/Intent/getParcelableExtra	; getParcelableExtra(Ljava/lang/String;)Landroid/os/Parcelable;
+; v0 : Landroid/content/Intent; , v1 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Landroid/os/Parcelable;
+	check-cast	v0,android/net/Uri
+; v0 : Landroid/net/Uri;
+	return-object	v0
+; v0 : Landroid/net/Uri;
+.end method
+
+.method public getStream(I)Landroid/net/Uri;
+.limit registers 5
+; this: v3 (Landroid/support/v4/app/ShareCompat$IntentReader;)
+; parameter[0] : v4 (I)
+.line 786
+	iget-object	v0,v3,android/support/v4/app/ShareCompat$IntentReader.mStreams Ljava/util/ArrayList;
+; v0 : Ljava/util/ArrayList; , v3 : Landroid/support/v4/app/ShareCompat$IntentReader;
+	if-nez	v0,l42690
+; v0 : Ljava/util/ArrayList;
+	invoke-virtual	{v3},android/support/v4/app/ShareCompat$IntentReader/isMultipleShare	; isMultipleShare()Z
+; v3 : Landroid/support/v4/app/ShareCompat$IntentReader;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,l42690
+; v0 : single-length
+.line 787
+	iget-object	v0,v3,android/support/v4/app/ShareCompat$IntentReader.mIntent Landroid/content/Intent;
+; v0 : Landroid/content/Intent; , v3 : Landroid/support/v4/app/ShareCompat$IntentReader;
+	const-string	v1,"android.intent.extra.STREAM"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},android/content/Intent/getParcelableArrayListExtra	; getParcelableArrayListExtra(Ljava/lang/String;)Ljava/util/ArrayList;
+; v0 : Landroid/content/Intent; , v1 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/util/ArrayList;
+	iput-object	v0,v3,android/support/v4/app/ShareCompat$IntentReader.mStreams Ljava/util/ArrayList;
+; v0 : Ljava/util/ArrayList; , v3 : Landroid/support/v4/app/ShareCompat$IntentReader;
+l42690:
+.line 789
+	iget-object	v0,v3,android/support/v4/app/ShareCompat$IntentReader.mStreams Ljava/util/ArrayList;
+; v0 : Ljava/util/ArrayList; , v3 : Landroid/support/v4/app/ShareCompat$IntentReader;
+	if-eqz	v0,l426aa
+; v0 : Ljava/util/ArrayList;
+.line 790
+	iget-object	v0,v3,android/support/v4/app/ShareCompat$IntentReader.mStreams Ljava/util/ArrayList;
+; v0 : Ljava/util/ArrayList; , v3 : Landroid/support/v4/app/ShareCompat$IntentReader;
+	invoke-virtual	{v0,v4},java/util/ArrayList/get	; get(I)Ljava/lang/Object;
+; v0 : Ljava/util/ArrayList; , v4 : single-length
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,android/net/Uri
+; v0 : Landroid/net/Uri;
+l426a8:
+.line 793
+	return-object	v0
+; v0 : Landroid/net/Uri;
+l426aa:
+.line 792
+	if-nez	v4,l426c4
+; v4 : single-length
+.line 793
+	iget-object	v0,v3,android/support/v4/app/ShareCompat$IntentReader.mIntent Landroid/content/Intent;
+; v0 : Landroid/content/Intent; , v3 : Landroid/support/v4/app/ShareCompat$IntentReader;
+	const-string	v1,"android.intent.extra.STREAM"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},android/content/Intent/getParcelableExtra	; getParcelableExtra(Ljava/lang/String;)Landroid/os/Parcelable;
+; v0 : Landroid/content/Intent; , v1 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Landroid/os/Parcelable;
+	check-cast	v0,android/net/Uri
+; v0 : Landroid/net/Uri;
+	goto	l426a8
+l426c4:
+.line 795
+	new-instance	v0,java/lang/IndexOutOfBoundsException
+; v0 : Ljava/lang/IndexOutOfBoundsException;
+	new-instance	v1,java/lang/StringBuilder
+; v1 : Ljava/lang/StringBuilder;
+	invoke-direct	{v1},java/lang/StringBuilder/<init>	; <init>()V
+; v1 : Ljava/lang/StringBuilder;
+	const-string	v2,"Stream items available: "
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v3},android/support/v4/app/ShareCompat$IntentReader/getStreamCount	; getStreamCount()I
+; v3 : Landroid/support/v4/app/ShareCompat$IntentReader;
+	move-result	v2
+; v2 : single-length
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(I)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : single-length
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	const-string	v2," index requested: "
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v1,v4},java/lang/StringBuilder/append	; append(I)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v4 : single-length
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v1},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v1 : Ljava/lang/StringBuilder;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/IndexOutOfBoundsException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/IndexOutOfBoundsException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/IndexOutOfBoundsException;
+.end method
+
+.method public getStreamCount()I
+.limit registers 3
+; this: v2 (Landroid/support/v4/app/ShareCompat$IntentReader;)
+.line 807
+	iget-object	v0,v2,android/support/v4/app/ShareCompat$IntentReader.mStreams Ljava/util/ArrayList;
+; v0 : Ljava/util/ArrayList; , v2 : Landroid/support/v4/app/ShareCompat$IntentReader;
+	if-nez	v0,l4274c
+; v0 : Ljava/util/ArrayList;
+	invoke-virtual	{v2},android/support/v4/app/ShareCompat$IntentReader/isMultipleShare	; isMultipleShare()Z
+; v2 : Landroid/support/v4/app/ShareCompat$IntentReader;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,l4274c
+; v0 : single-length
+.line 808
+	iget-object	v0,v2,android/support/v4/app/ShareCompat$IntentReader.mIntent Landroid/content/Intent;
+; v0 : Landroid/content/Intent; , v2 : Landroid/support/v4/app/ShareCompat$IntentReader;
+	const-string	v1,"android.intent.extra.STREAM"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},android/content/Intent/getParcelableArrayListExtra	; getParcelableArrayListExtra(Ljava/lang/String;)Ljava/util/ArrayList;
+; v0 : Landroid/content/Intent; , v1 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/util/ArrayList;
+	iput-object	v0,v2,android/support/v4/app/ShareCompat$IntentReader.mStreams Ljava/util/ArrayList;
+; v0 : Ljava/util/ArrayList; , v2 : Landroid/support/v4/app/ShareCompat$IntentReader;
+l4274c:
+.line 810
+	iget-object	v0,v2,android/support/v4/app/ShareCompat$IntentReader.mStreams Ljava/util/ArrayList;
+; v0 : Ljava/util/ArrayList; , v2 : Landroid/support/v4/app/ShareCompat$IntentReader;
+	if-eqz	v0,l42762
+; v0 : Ljava/util/ArrayList;
+.line 811
+	iget-object	v0,v2,android/support/v4/app/ShareCompat$IntentReader.mStreams Ljava/util/ArrayList;
+; v0 : Ljava/util/ArrayList; , v2 : Landroid/support/v4/app/ShareCompat$IntentReader;
+	invoke-virtual	{v0},java/util/ArrayList/size	; size()I
+; v0 : Ljava/util/ArrayList;
+	move-result	v0
+; v0 : single-length
+l42760:
+.line 813
+	return	v0
+; v0 : single-length
+l42762:
+	iget-object	v0,v2,android/support/v4/app/ShareCompat$IntentReader.mIntent Landroid/content/Intent;
+; v0 : Landroid/content/Intent; , v2 : Landroid/support/v4/app/ShareCompat$IntentReader;
+	const-string	v1,"android.intent.extra.STREAM"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},android/content/Intent/hasExtra	; hasExtra(Ljava/lang/String;)Z
+; v0 : Landroid/content/Intent; , v1 : Ljava/lang/String;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,l4277a
+; v0 : single-length
+	const/4	v0,1
+; v0 : single-length
+	goto	l42760
+l4277a:
+	const/4	v0,0
+; v0 : single-length
+	goto	l42760
+.end method
+
+.method public getSubject()Ljava/lang/String;
+.limit registers 3
+; this: v2 (Landroid/support/v4/app/ShareCompat$IntentReader;)
+.line 853
+	iget-object	v0,v2,android/support/v4/app/ShareCompat$IntentReader.mIntent Landroid/content/Intent;
+; v0 : Landroid/content/Intent; , v2 : Landroid/support/v4/app/ShareCompat$IntentReader;
+	const-string	v1,"android.intent.extra.SUBJECT"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},android/content/Intent/getStringExtra	; getStringExtra(Ljava/lang/String;)Ljava/lang/String;
+; v0 : Landroid/content/Intent; , v1 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	return-object	v0
+; v0 : Ljava/lang/String;
+.end method
+
+.method public getText()Ljava/lang/CharSequence;
+.limit registers 3
+; this: v2 (Landroid/support/v4/app/ShareCompat$IntentReader;)
+.line 735
+	iget-object	v0,v2,android/support/v4/app/ShareCompat$IntentReader.mIntent Landroid/content/Intent;
+; v0 : Landroid/content/Intent; , v2 : Landroid/support/v4/app/ShareCompat$IntentReader;
+	const-string	v1,"android.intent.extra.TEXT"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},android/content/Intent/getCharSequenceExtra	; getCharSequenceExtra(Ljava/lang/String;)Ljava/lang/CharSequence;
+; v0 : Landroid/content/Intent; , v1 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/CharSequence;
+	return-object	v0
+; v0 : Ljava/lang/CharSequence;
+.end method
+
+.method public getType()Ljava/lang/String;
+.limit registers 2
+; this: v1 (Landroid/support/v4/app/ShareCompat$IntentReader;)
+.line 725
+	iget-object	v0,v1,android/support/v4/app/ShareCompat$IntentReader.mIntent Landroid/content/Intent;
+; v0 : Landroid/content/Intent; , v1 : Landroid/support/v4/app/ShareCompat$IntentReader;
+	invoke-virtual	{v0},android/content/Intent/getType	; getType()Ljava/lang/String;
+; v0 : Landroid/content/Intent;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	return-object	v0
+; v0 : Ljava/lang/String;
+.end method
+
+.method public isMultipleShare()Z
+.limit registers 3
+; this: v2 (Landroid/support/v4/app/ShareCompat$IntentReader;)
+.line 715
+	const-string	v0,"android.intent.action.SEND_MULTIPLE"
+; v0 : Ljava/lang/String;
+	iget-object	v1,v2,android/support/v4/app/ShareCompat$IntentReader.mIntent Landroid/content/Intent;
+; v1 : Landroid/content/Intent; , v2 : Landroid/support/v4/app/ShareCompat$IntentReader;
+	invoke-virtual	{v1},android/content/Intent/getAction	; getAction()Ljava/lang/String;
+; v1 : Landroid/content/Intent;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/String/equals	; equals(Ljava/lang/Object;)Z
+; v0 : Ljava/lang/String; , v1 : Ljava/lang/String;
+	move-result	v0
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public isShareIntent()Z
+.limit registers 3
+; this: v2 (Landroid/support/v4/app/ShareCompat$IntentReader;)
+.line 691
+	iget-object	v0,v2,android/support/v4/app/ShareCompat$IntentReader.mIntent Landroid/content/Intent;
+; v0 : Landroid/content/Intent; , v2 : Landroid/support/v4/app/ShareCompat$IntentReader;
+	invoke-virtual	{v0},android/content/Intent/getAction	; getAction()Ljava/lang/String;
+; v0 : Landroid/content/Intent;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+.line 692
+	const-string	v1,"android.intent.action.SEND"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v1,v0},java/lang/String/equals	; equals(Ljava/lang/Object;)Z
+; v1 : Ljava/lang/String; , v0 : Ljava/lang/String;
+	move-result	v1
+; v1 : single-length
+	if-nez	v1,l42850
+; v1 : single-length
+	const-string	v1,"android.intent.action.SEND_MULTIPLE"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v1,v0},java/lang/String/equals	; equals(Ljava/lang/Object;)Z
+; v1 : Ljava/lang/String; , v0 : Ljava/lang/String;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,l42854
+; v0 : single-length
+l42850:
+	const/4	v0,1
+; v0 : single-length
+l42852:
+	return	v0
+; v0 : single-length
+l42854:
+	const/4	v0,0
+; v0 : single-length
+	goto	l42852
+.end method
+
+.method public isSingleShare()Z
+.limit registers 3
+; this: v2 (Landroid/support/v4/app/ShareCompat$IntentReader;)
+.line 704
+	const-string	v0,"android.intent.action.SEND"
+; v0 : Ljava/lang/String;
+	iget-object	v1,v2,android/support/v4/app/ShareCompat$IntentReader.mIntent Landroid/content/Intent;
+; v1 : Landroid/content/Intent; , v2 : Landroid/support/v4/app/ShareCompat$IntentReader;
+	invoke-virtual	{v1},android/content/Intent/getAction	; getAction()Ljava/lang/String;
+; v1 : Landroid/content/Intent;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/String/equals	; equals(Ljava/lang/Object;)Z
+; v0 : Ljava/lang/String; , v1 : Ljava/lang/String;
+	move-result	v0
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+

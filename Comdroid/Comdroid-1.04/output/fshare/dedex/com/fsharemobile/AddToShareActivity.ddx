@@ -1,0 +1,1523 @@
+.class public com/fsharemobile/AddToShareActivity
+.super android/app/Activity
+.source AddToShareActivity.java
+.implements android/view/View$OnClickListener
+
+.field static active Z
+.field private static currentId Ljava/lang/String;
+.field private static currentPageIndex I
+.field private static currentPath Ljava/lang/String;
+.field private static nameOfFolder Ljava/lang/String;
+.field private static parentPath Ljava/lang/String;
+.field btnCancel Landroid/widget/Button;
+.field btnCancelProgress Landroid/widget/Button;
+.field btnOk Landroid/widget/Button;
+.field private cancelDownload Ljava/util/concurrent/atomic/AtomicInteger;
+.field constans Lcom/fsharemobile/utils/Constants;
+.field dialogDownload Landroid/app/Dialog;
+.field explorerAdapter Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+.field private fclient Lcom/fsharemobile/client/FClient;
+.field fileList Ljava/util/List;
+  .annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "Ljava/util/List" , "<" , "Lcom/fsharemobile/model/File;" , ">;" }
+  .end annotation
+.end field
+.field fileName Ljava/lang/String;
+.field fileProxy Lcom/fsharemobile/client/FileProxy;
+.field idList Ljava/util/List;
+  .annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "Ljava/util/List" , "<" , "Ljava/lang/String;" , ">;" }
+  .end annotation
+.end field
+.field private isTheLastPage Z
+.field ivBack Landroid/widget/ImageView;
+.field layoutBack Landroid/widget/LinearLayout;
+.field lvEx Landroid/widget/ListView;
+.field private mPrevTotalItemCount I
+.field myFile Ljava/io/File;
+.field progressDownload Landroid/widget/ProgressBar;
+.field runningCount I
+.field sesProxy Lcom/fsharemobile/client/SessionProxy;
+.field stFile Ljava/util/Stack;
+  .annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "Ljava/util/Stack" , "<" , "Lcom/fsharemobile/model/File;" , ">;" }
+  .end annotation
+.end field
+.field txtDownloadProgress Landroid/widget/TextView;
+.field txtDownloadProgressFileName Landroid/widget/TextView;
+.field txtLabel Landroid/widget/TextView;
+.field txtPath Landroid/widget/TextView;
+.field txtStatus Landroid/widget/TextView;
+.field userProxy Lcom/fsharemobile/client/UserProxy;
+
+.method static <clinit>()V
+.limit registers 1
+.line 62
+	const-string	v0,""
+; v0 : Ljava/lang/String;
+	sput-object	v0,com/fsharemobile/AddToShareActivity.currentPath Ljava/lang/String;
+; v0 : Ljava/lang/String;
+.line 64
+	const-string	v0,""
+; v0 : Ljava/lang/String;
+	sput-object	v0,com/fsharemobile/AddToShareActivity.currentId Ljava/lang/String;
+; v0 : Ljava/lang/String;
+.line 66
+	const-string	v0,""
+; v0 : Ljava/lang/String;
+	sput-object	v0,com/fsharemobile/AddToShareActivity.parentPath Ljava/lang/String;
+; v0 : Ljava/lang/String;
+.line 67
+	const-string	v0,""
+; v0 : Ljava/lang/String;
+	sput-object	v0,com/fsharemobile/AddToShareActivity.nameOfFolder Ljava/lang/String;
+; v0 : Ljava/lang/String;
+.line 93
+	const/4	v0,0
+; v0 : single-length
+	sput-boolean	v0,com/fsharemobile/AddToShareActivity.active Z
+; v0 : Z
+	return-void	
+.end method
+
+.method public <init>()V
+.limit registers 4
+; this: v3 (Lcom/fsharemobile/AddToShareActivity;)
+	const/4	v2,0
+; v2 : single-length
+	const/4	v1,0
+; v1 : single-length
+.line 52
+	invoke-direct	{v3},android/app/Activity/<init>	; <init>()V
+; v3 : Lcom/fsharemobile/AddToShareActivity;
+.line 59
+	new-instance	v0,java/util/ArrayList
+; v0 : Ljava/util/ArrayList;
+	invoke-direct	{v0},java/util/ArrayList/<init>	; <init>()V
+; v0 : Ljava/util/ArrayList;
+	iput-object	v0,v3,com/fsharemobile/AddToShareActivity.fileList Ljava/util/List;
+; v0 : Ljava/util/ArrayList; , v3 : Lcom/fsharemobile/AddToShareActivity;
+.line 75
+	iput-object	v2,v3,com/fsharemobile/AddToShareActivity.fclient Lcom/fsharemobile/client/FClient;
+; v2 : single-length , v3 : Lcom/fsharemobile/AddToShareActivity;
+.line 80
+	iput-object	v2,v3,com/fsharemobile/AddToShareActivity.idList Ljava/util/List;
+; v2 : single-length , v3 : Lcom/fsharemobile/AddToShareActivity;
+.line 81
+	new-instance	v0,java/util/Stack
+; v0 : Ljava/util/Stack;
+	invoke-direct	{v0},java/util/Stack/<init>	; <init>()V
+; v0 : Ljava/util/Stack;
+	iput-object	v0,v3,com/fsharemobile/AddToShareActivity.stFile Ljava/util/Stack;
+; v0 : Ljava/util/Stack; , v3 : Lcom/fsharemobile/AddToShareActivity;
+.line 86
+	iput	v1,v3,com/fsharemobile/AddToShareActivity.runningCount I
+; v1 : single-length , v3 : Lcom/fsharemobile/AddToShareActivity;
+.line 91
+	new-instance	v0,java/util/concurrent/atomic/AtomicInteger
+; v0 : Ljava/util/concurrent/atomic/AtomicInteger;
+	invoke-direct	{v0,v1},java/util/concurrent/atomic/AtomicInteger/<init>	; <init>(I)V
+; v0 : Ljava/util/concurrent/atomic/AtomicInteger; , v1 : single-length
+	iput-object	v0,v3,com/fsharemobile/AddToShareActivity.cancelDownload Ljava/util/concurrent/atomic/AtomicInteger;
+; v0 : Ljava/util/concurrent/atomic/AtomicInteger; , v3 : Lcom/fsharemobile/AddToShareActivity;
+.line 52
+	return-void	
+.end method
+
+.method private LoadData(IILjava/lang/String;)V
+.limit registers 11
+; this: v7 (Lcom/fsharemobile/AddToShareActivity;)
+; parameter[0] : v8 (I)
+; parameter[1] : v9 (I)
+; parameter[2] : v10 (Ljava/lang/String;)
+.catch java/lang/Exception from l8e142 to l8e15e using l8e160
+.line 417
+	iget-object	v0,v7,com/fsharemobile/AddToShareActivity.txtStatus Landroid/widget/TextView;
+; v0 : Landroid/widget/TextView; , v7 : Lcom/fsharemobile/AddToShareActivity;
+	const/4	v1,0
+; v1 : single-length
+	invoke-virtual	{v0,v1},android/widget/TextView/setVisibility	; setVisibility(I)V
+; v0 : Landroid/widget/TextView; , v1 : single-length
+.line 418
+	iget-object	v0,v7,com/fsharemobile/AddToShareActivity.txtStatus Landroid/widget/TextView;
+; v0 : Landroid/widget/TextView; , v7 : Lcom/fsharemobile/AddToShareActivity;
+	const-string	v1,"Loading folder..."
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},android/widget/TextView/setText	; setText(Ljava/lang/CharSequence;)V
+; v0 : Landroid/widget/TextView; , v1 : Ljava/lang/String;
+l8e142:
+.line 420
+	iget-object	v0,v7,com/fsharemobile/AddToShareActivity.fileProxy Lcom/fsharemobile/client/FileProxy;
+; v0 : Lcom/fsharemobile/client/FileProxy; , v7 : Lcom/fsharemobile/AddToShareActivity;
+.line 421
+	new-instance	v4,com/fsharemobile/AddToShareActivity$4
+; v4 : Lcom/fsharemobile/AddToShareActivity$4;
+	invoke-direct	{v4,v7},com/fsharemobile/AddToShareActivity$4/<init>	; <init>(Lcom/fsharemobile/AddToShareActivity;)V
+; v4 : Lcom/fsharemobile/AddToShareActivity$4; , v7 : Lcom/fsharemobile/AddToShareActivity;
+	move	v1,v8
+; v1 : single-length , v8 : single-length
+	move	v2,v9
+; v2 : single-length , v9 : single-length
+	move-object	v3,v10
+; v3 : Ljava/lang/String; , v10 : Ljava/lang/String;
+	move-object	v5,v7
+; v5 : Lcom/fsharemobile/AddToShareActivity; , v7 : Lcom/fsharemobile/AddToShareActivity;
+.line 420
+	invoke-virtual/range	{v0..v5},com/fsharemobile/client/FileProxy/getList;	getList(IILjava/lang/String;Lcom/fsharemobile/client/FileProxy$OnGetListCompleted;Landroid/content/Context;)V
+; v0 : Lcom/fsharemobile/client/FileProxy; , v1 : single-length , v2 : single-length , v3 : Ljava/lang/String; , v4 : Lcom/fsharemobile/AddToShareActivity$4; , v5 : Lcom/fsharemobile/AddToShareActivity;
+l8e15e:
+.line 447
+	return-void	
+l8e160:
+.line 444
+	move-exception	v6
+; v6 : java/lang/Exception
+.line 445
+	sget-object	v0,java/lang/System.out Ljava/io/PrintStream;
+; v0 : Ljava/io/PrintStream;
+	invoke-virtual	{v6},java/lang/Exception/toString	; toString()Ljava/lang/String;
+; v6 : java/lang/Exception
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/io/PrintStream/println	; println(Ljava/lang/String;)V
+; v0 : Ljava/io/PrintStream; , v1 : Ljava/lang/String;
+	goto	l8e15e
+.end method
+
+.method private RenderData()V
+.limit registers 2
+; this: v1 (Lcom/fsharemobile/AddToShareActivity;)
+.line 452
+	iget-object	v0,v1,com/fsharemobile/AddToShareActivity.explorerAdapter Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v1 : Lcom/fsharemobile/AddToShareActivity;
+	invoke-virtual	{v0},com/fsharemobile/adapter/ExplorerArrayAdapter/notifyDataSetChanged	; notifyDataSetChanged()V
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+.line 453
+	sget-object	v0,com/fsharemobile/AddToShareActivity.currentPath Ljava/lang/String;
+; v0 : Ljava/lang/String;
+	invoke-direct	{v1,v0},com/fsharemobile/AddToShareActivity/renderBackBar	; renderBackBar(Ljava/lang/String;)V
+; v1 : Lcom/fsharemobile/AddToShareActivity; , v0 : Ljava/lang/String;
+.line 455
+	return-void	
+.end method
+
+.method static access$0(Ljava/lang/String;)V
+.limit registers 1
+; parameter[0] : v0 (Ljava/lang/String;)
+.line 67
+	sput-object	v0,com/fsharemobile/AddToShareActivity.nameOfFolder Ljava/lang/String;
+; v0 : Ljava/lang/String;
+	return-void	
+.end method
+
+.method static access$1()Ljava/lang/String;
+.limit registers 1
+.line 62
+	sget-object	v0,com/fsharemobile/AddToShareActivity.currentPath Ljava/lang/String;
+; v0 : Ljava/lang/String;
+	return-object	v0
+; v0 : Ljava/lang/String;
+.end method
+
+.method static access$10(Lcom/fsharemobile/AddToShareActivity;I)V
+.limit registers 2
+; parameter[0] : v0 (Lcom/fsharemobile/AddToShareActivity;)
+; parameter[1] : v1 (I)
+.line 71
+	iput	v1,v0,com/fsharemobile/AddToShareActivity.mPrevTotalItemCount I
+; v1 : single-length , v0 : Lcom/fsharemobile/AddToShareActivity;
+	return-void	
+.end method
+
+.method static access$11(Lcom/fsharemobile/AddToShareActivity;)Z
+.limit registers 2
+; parameter[0] : v1 (Lcom/fsharemobile/AddToShareActivity;)
+.line 70
+	iget-boolean	v0,v1,com/fsharemobile/AddToShareActivity.isTheLastPage Z
+; v0 : single-length , v1 : Lcom/fsharemobile/AddToShareActivity;
+	return	v0
+; v0 : single-length
+.end method
+
+.method static access$12(Lcom/fsharemobile/AddToShareActivity;)I
+.limit registers 2
+; parameter[0] : v1 (Lcom/fsharemobile/AddToShareActivity;)
+.line 71
+	iget	v0,v1,com/fsharemobile/AddToShareActivity.mPrevTotalItemCount I
+; v0 : single-length , v1 : Lcom/fsharemobile/AddToShareActivity;
+	return	v0
+; v0 : single-length
+.end method
+
+.method static access$13()I
+.limit registers 1
+.line 69
+	sget	v0,com/fsharemobile/AddToShareActivity.currentPageIndex I
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method static access$14(Lcom/fsharemobile/AddToShareActivity;)Ljava/util/concurrent/atomic/AtomicInteger;
+.limit registers 2
+; parameter[0] : v1 (Lcom/fsharemobile/AddToShareActivity;)
+.line 91
+	iget-object	v0,v1,com/fsharemobile/AddToShareActivity.cancelDownload Ljava/util/concurrent/atomic/AtomicInteger;
+; v0 : Ljava/util/concurrent/atomic/AtomicInteger; , v1 : Lcom/fsharemobile/AddToShareActivity;
+	return-object	v0
+; v0 : Ljava/util/concurrent/atomic/AtomicInteger;
+.end method
+
+.method static access$15(Lcom/fsharemobile/AddToShareActivity;)Lcom/fsharemobile/client/FClient;
+.limit registers 2
+; parameter[0] : v1 (Lcom/fsharemobile/AddToShareActivity;)
+.line 75
+	iget-object	v0,v1,com/fsharemobile/AddToShareActivity.fclient Lcom/fsharemobile/client/FClient;
+; v0 : Lcom/fsharemobile/client/FClient; , v1 : Lcom/fsharemobile/AddToShareActivity;
+	return-object	v0
+; v0 : Lcom/fsharemobile/client/FClient;
+.end method
+
+.method static access$16(Lcom/fsharemobile/AddToShareActivity;ILjava/lang/String;)V
+.limit registers 3
+; parameter[0] : v0 (Lcom/fsharemobile/AddToShareActivity;)
+; parameter[1] : v1 (I)
+; parameter[2] : v2 (Ljava/lang/String;)
+.line 531
+	invoke-direct	{v0,v1,v2},com/fsharemobile/AddToShareActivity/handlerError	; handlerError(ILjava/lang/String;)V
+; v0 : Lcom/fsharemobile/AddToShareActivity; , v1 : single-length , v2 : Ljava/lang/String;
+	return-void	
+.end method
+
+.method static access$17(Lcom/fsharemobile/AddToShareActivity;)V
+.limit registers 1
+; parameter[0] : v0 (Lcom/fsharemobile/AddToShareActivity;)
+.line 450
+	invoke-direct	{v0},com/fsharemobile/AddToShareActivity/RenderData	; RenderData()V
+; v0 : Lcom/fsharemobile/AddToShareActivity;
+	return-void	
+.end method
+
+.method static access$2(Lcom/fsharemobile/AddToShareActivity;Ljava/lang/String;)Z
+.limit registers 3
+; parameter[0] : v1 (Lcom/fsharemobile/AddToShareActivity;)
+; parameter[1] : v2 (Ljava/lang/String;)
+.line 467
+	invoke-direct	{v1,v2},com/fsharemobile/AddToShareActivity/isRoot	; isRoot(Ljava/lang/String;)Z
+; v1 : Lcom/fsharemobile/AddToShareActivity; , v2 : Ljava/lang/String;
+	move-result	v0
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method static access$3()Ljava/lang/String;
+.limit registers 1
+.line 67
+	sget-object	v0,com/fsharemobile/AddToShareActivity.nameOfFolder Ljava/lang/String;
+; v0 : Ljava/lang/String;
+	return-object	v0
+; v0 : Ljava/lang/String;
+.end method
+
+.method static access$4(Ljava/lang/String;)V
+.limit registers 1
+; parameter[0] : v0 (Ljava/lang/String;)
+.line 64
+	sput-object	v0,com/fsharemobile/AddToShareActivity.currentId Ljava/lang/String;
+; v0 : Ljava/lang/String;
+	return-void	
+.end method
+
+.method static access$5(Lcom/fsharemobile/AddToShareActivity;Z)V
+.limit registers 2
+; parameter[0] : v0 (Lcom/fsharemobile/AddToShareActivity;)
+; parameter[1] : v1 (Z)
+.line 70
+	iput-boolean	v1,v0,com/fsharemobile/AddToShareActivity.isTheLastPage Z
+; v1 : single-length , v0 : Lcom/fsharemobile/AddToShareActivity;
+	return-void	
+.end method
+
+.method static access$6(Lcom/fsharemobile/AddToShareActivity;IILjava/lang/String;)V
+.limit registers 4
+; parameter[0] : v0 (Lcom/fsharemobile/AddToShareActivity;)
+; parameter[1] : v1 (I)
+; parameter[2] : v2 (I)
+; parameter[3] : v3 (Ljava/lang/String;)
+.line 416
+	invoke-direct	{v0,v1,v2,v3},com/fsharemobile/AddToShareActivity/LoadData	; LoadData(IILjava/lang/String;)V
+; v0 : Lcom/fsharemobile/AddToShareActivity; , v1 : single-length , v2 : single-length , v3 : Ljava/lang/String;
+	return-void	
+.end method
+
+.method static access$7(Ljava/lang/String;)V
+.limit registers 1
+; parameter[0] : v0 (Ljava/lang/String;)
+.line 66
+	sput-object	v0,com/fsharemobile/AddToShareActivity.parentPath Ljava/lang/String;
+; v0 : Ljava/lang/String;
+	return-void	
+.end method
+
+.method static access$8(Ljava/lang/String;)V
+.limit registers 1
+; parameter[0] : v0 (Ljava/lang/String;)
+.line 62
+	sput-object	v0,com/fsharemobile/AddToShareActivity.currentPath Ljava/lang/String;
+; v0 : Ljava/lang/String;
+	return-void	
+.end method
+
+.method static access$9(I)V
+.limit registers 1
+; parameter[0] : v0 (I)
+.line 69
+	sput	v0,com/fsharemobile/AddToShareActivity.currentPageIndex I
+; v0 : I
+	return-void	
+.end method
+
+.method private checkLogin()V
+.limit registers 8
+; this: v7 (Lcom/fsharemobile/AddToShareActivity;)
+.catch java/lang/Exception from l8e456 to l8e46a using l8e46c
+.line 488
+	const-string	v4,"CHECK_LOGIN_COOKIES"
+; v4 : Ljava/lang/String;
+	new-instance	v5,java/lang/StringBuilder
+; v5 : Ljava/lang/StringBuilder;
+	invoke-direct	{v5},java/lang/StringBuilder/<init>	; <init>()V
+; v5 : Ljava/lang/StringBuilder;
+	iget-object	v6,v7,com/fsharemobile/AddToShareActivity.fclient Lcom/fsharemobile/client/FClient;
+; v6 : Lcom/fsharemobile/client/FClient; , v7 : Lcom/fsharemobile/AddToShareActivity;
+	invoke-virtual	{v6},com/fsharemobile/client/FClient/getCookies	; getCookies()Ljava/util/List;
+; v6 : Lcom/fsharemobile/client/FClient;
+	move-result-object	v6
+; v6 : Ljava/util/List;
+	invoke-virtual	{v5,v6},java/lang/StringBuilder/append	; append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+; v5 : Ljava/lang/StringBuilder; , v6 : Ljava/util/List;
+	move-result-object	v5
+; v5 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v5},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v5 : Ljava/lang/StringBuilder;
+	move-result-object	v5
+; v5 : Ljava/lang/String;
+	invoke-static	{v4,v5},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v4 : Ljava/lang/String; , v5 : Ljava/lang/String;
+.line 489
+	const-string	v4,"CHECK_LOGIN_TOKEN"
+; v4 : Ljava/lang/String;
+	new-instance	v5,java/lang/StringBuilder
+; v5 : Ljava/lang/StringBuilder;
+	iget-object	v6,v7,com/fsharemobile/AddToShareActivity.fclient Lcom/fsharemobile/client/FClient;
+; v6 : Lcom/fsharemobile/client/FClient; , v7 : Lcom/fsharemobile/AddToShareActivity;
+	invoke-virtual	{v6},com/fsharemobile/client/FClient/getToken	; getToken()Ljava/lang/String;
+; v6 : Lcom/fsharemobile/client/FClient;
+	move-result-object	v6
+; v6 : Ljava/lang/String;
+	invoke-static	{v6},java/lang/String/valueOf	; valueOf(Ljava/lang/Object;)Ljava/lang/String;
+; v6 : Ljava/lang/String;
+	move-result-object	v6
+; v6 : Ljava/lang/String;
+	invoke-direct	{v5,v6},java/lang/StringBuilder/<init>	; <init>(Ljava/lang/String;)V
+; v5 : Ljava/lang/StringBuilder; , v6 : Ljava/lang/String;
+	invoke-virtual	{v5},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v5 : Ljava/lang/StringBuilder;
+	move-result-object	v5
+; v5 : Ljava/lang/String;
+	invoke-static	{v4,v5},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v4 : Ljava/lang/String; , v5 : Ljava/lang/String;
+.line 490
+	iget-object	v4,v7,com/fsharemobile/AddToShareActivity.fclient Lcom/fsharemobile/client/FClient;
+; v4 : Lcom/fsharemobile/client/FClient; , v7 : Lcom/fsharemobile/AddToShareActivity;
+	const-string	v5,""
+; v5 : Ljava/lang/String;
+	invoke-virtual	{v4,v5},com/fsharemobile/client/FClient/setSessionid	; setSessionid(Ljava/lang/String;)V
+; v4 : Lcom/fsharemobile/client/FClient; , v5 : Ljava/lang/String;
+.line 491
+	iget-object	v4,v7,com/fsharemobile/AddToShareActivity.fclient Lcom/fsharemobile/client/FClient;
+; v4 : Lcom/fsharemobile/client/FClient; , v7 : Lcom/fsharemobile/AddToShareActivity;
+	const-string	v5,""
+; v5 : Ljava/lang/String;
+	invoke-virtual	{v4,v5},com/fsharemobile/client/FClient/setToken	; setToken(Ljava/lang/String;)V
+; v4 : Lcom/fsharemobile/client/FClient; , v5 : Ljava/lang/String;
+.line 492
+	iget-object	v4,v7,com/fsharemobile/AddToShareActivity.fclient Lcom/fsharemobile/client/FClient;
+; v4 : Lcom/fsharemobile/client/FClient; , v7 : Lcom/fsharemobile/AddToShareActivity;
+	invoke-virtual	{v4},com/fsharemobile/client/FClient/getCookies	; getCookies()Ljava/util/List;
+; v4 : Lcom/fsharemobile/client/FClient;
+	move-result-object	v4
+; v4 : Ljava/util/List;
+	invoke-interface	{v4},java/util/List/clear	; clear()V
+; v4 : Ljava/util/List;
+.line 494
+	iget-object	v4,v7,com/fsharemobile/AddToShareActivity.fclient Lcom/fsharemobile/client/FClient;
+; v4 : Lcom/fsharemobile/client/FClient; , v7 : Lcom/fsharemobile/AddToShareActivity;
+	invoke-virtual	{v4},com/fsharemobile/client/FClient/getUserProxy	; getUserProxy()Lcom/fsharemobile/client/UserProxy;
+; v4 : Lcom/fsharemobile/client/FClient;
+	move-result-object	v4
+; v4 : Lcom/fsharemobile/client/UserProxy;
+	iput-object	v4,v7,com/fsharemobile/AddToShareActivity.userProxy Lcom/fsharemobile/client/UserProxy;
+; v4 : Lcom/fsharemobile/client/UserProxy; , v7 : Lcom/fsharemobile/AddToShareActivity;
+.line 495
+	new-instance	v4,com/fsharemobile/utils/Constants
+; v4 : Lcom/fsharemobile/utils/Constants;
+	invoke-direct	{v4,v7},com/fsharemobile/utils/Constants/<init>	; <init>(Landroid/content/Context;)V
+; v4 : Lcom/fsharemobile/utils/Constants; , v7 : Lcom/fsharemobile/AddToShareActivity;
+	iput-object	v4,v7,com/fsharemobile/AddToShareActivity.constans Lcom/fsharemobile/utils/Constants;
+; v4 : Lcom/fsharemobile/utils/Constants; , v7 : Lcom/fsharemobile/AddToShareActivity;
+.line 496
+	iget-object	v4,v7,com/fsharemobile/AddToShareActivity.constans Lcom/fsharemobile/utils/Constants;
+; v4 : Lcom/fsharemobile/utils/Constants; , v7 : Lcom/fsharemobile/AddToShareActivity;
+	invoke-virtual	{v4},com/fsharemobile/utils/Constants/restoringPreferences	; restoringPreferences()Lcom/fsharemobile/model/LocalUser;
+; v4 : Lcom/fsharemobile/utils/Constants;
+	move-result-object	v0
+; v0 : Lcom/fsharemobile/model/LocalUser;
+.line 497
+	invoke-virtual	{v0},com/fsharemobile/model/LocalUser/getEmail	; getEmail()Ljava/lang/String;
+; v0 : Lcom/fsharemobile/model/LocalUser;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+.line 498
+	invoke-virtual	{v0},com/fsharemobile/model/LocalUser/getPass	; getPass()Ljava/lang/String;
+; v0 : Lcom/fsharemobile/model/LocalUser;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+.line 499
+	iget-object	v4,v7,com/fsharemobile/AddToShareActivity.txtStatus Landroid/widget/TextView;
+; v4 : Landroid/widget/TextView; , v7 : Lcom/fsharemobile/AddToShareActivity;
+	const/4	v5,0
+; v5 : single-length
+	invoke-virtual	{v4,v5},android/widget/TextView/setVisibility	; setVisibility(I)V
+; v4 : Landroid/widget/TextView; , v5 : single-length
+.line 500
+	iget-object	v4,v7,com/fsharemobile/AddToShareActivity.txtStatus Landroid/widget/TextView;
+; v4 : Landroid/widget/TextView; , v7 : Lcom/fsharemobile/AddToShareActivity;
+	const-string	v5,"....."
+; v5 : Ljava/lang/String;
+	invoke-virtual	{v4,v5},android/widget/TextView/setText	; setText(Ljava/lang/CharSequence;)V
+; v4 : Landroid/widget/TextView; , v5 : Ljava/lang/String;
+l8e456:
+.line 502
+	iget-object	v4,v7,com/fsharemobile/AddToShareActivity.userProxy Lcom/fsharemobile/client/UserProxy;
+; v4 : Lcom/fsharemobile/client/UserProxy; , v7 : Lcom/fsharemobile/AddToShareActivity;
+	new-instance	v5,com/fsharemobile/AddToShareActivity$5
+; v5 : Lcom/fsharemobile/AddToShareActivity$5;
+	invoke-direct	{v5,v7},com/fsharemobile/AddToShareActivity$5/<init>	; <init>(Lcom/fsharemobile/AddToShareActivity;)V
+; v5 : Lcom/fsharemobile/AddToShareActivity$5; , v7 : Lcom/fsharemobile/AddToShareActivity;
+	invoke-virtual	{v4,v2,v3,v5},com/fsharemobile/client/UserProxy/login	; login(Ljava/lang/String;Ljava/lang/String;Lcom/fsharemobile/client/UserProxy$OnLoginCompleted;)V
+; v4 : Lcom/fsharemobile/client/UserProxy; , v2 : Ljava/lang/String; , v3 : Ljava/lang/String; , v5 : Lcom/fsharemobile/AddToShareActivity$5;
+l8e46a:
+.line 529
+	return-void	
+l8e46c:
+.line 525
+	move-exception	v1
+; v1 : java/lang/Exception
+.line 527
+	invoke-virtual	{v1},java/lang/Exception/printStackTrace	; printStackTrace()V
+; v1 : java/lang/Exception
+	goto	l8e46a
+.end method
+
+.method private handlerError(ILjava/lang/String;)V
+.limit registers 10
+; this: v7 (Lcom/fsharemobile/AddToShareActivity;)
+; parameter[0] : v8 (I)
+; parameter[1] : v9 (Ljava/lang/String;)
+	const/4	v6,3
+; v6 : single-length
+.line 534
+	new-instance	v1,android/app/Dialog
+; v1 : Landroid/app/Dialog;
+	invoke-direct	{v1,v7},android/app/Dialog/<init>	; <init>(Landroid/content/Context;)V
+; v1 : Landroid/app/Dialog; , v7 : Lcom/fsharemobile/AddToShareActivity;
+.line 535
+	const-string	v3,"Handler_Error_UI"
+; v3 : Ljava/lang/String;
+	new-instance	v4,java/lang/StringBuilder
+; v4 : Ljava/lang/StringBuilder;
+	invoke-static	{v8},java/lang/String/valueOf	; valueOf(I)Ljava/lang/String;
+; v8 : single-length
+	move-result-object	v5
+; v5 : Ljava/lang/String;
+	invoke-direct	{v4,v5},java/lang/StringBuilder/<init>	; <init>(Ljava/lang/String;)V
+; v4 : Ljava/lang/StringBuilder; , v5 : Ljava/lang/String;
+	invoke-virtual	{v4},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v4 : Ljava/lang/StringBuilder;
+	move-result-object	v4
+; v4 : Ljava/lang/String;
+	invoke-static	{v3,v4},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v3 : Ljava/lang/String; , v4 : Ljava/lang/String;
+.line 538
+	invoke-virtual	{v1,v6},android/app/Dialog/requestWindowFeature	; requestWindowFeature(I)Z
+; v1 : Landroid/app/Dialog; , v6 : single-length
+.line 539
+	const	v3,2130903072	; 0x7f030020
+; v3 : single-length
+	invoke-virtual	{v1,v3},android/app/Dialog/setContentView	; setContentView(I)V
+; v1 : Landroid/app/Dialog; , v3 : single-length
+.line 540
+	const	v3,2131230863	; 0x7f08008f
+; v3 : single-length
+	invoke-virtual	{v1,v3},android/app/Dialog/setTitle	; setTitle(I)V
+; v1 : Landroid/app/Dialog; , v3 : single-length
+.line 546
+	const	v3,2131427464	; 0x7f0b0088
+; v3 : single-length
+	invoke-virtual	{v1,v3},android/app/Dialog/findViewById	; findViewById(I)Landroid/view/View;
+; v1 : Landroid/app/Dialog; , v3 : single-length
+	move-result-object	v2
+; v2 : Landroid/view/View;
+.line 545
+	check-cast	v2,android/widget/TextView
+; v2 : Landroid/widget/TextView;
+.line 547
+	const	v3,2131427465	; 0x7f0b0089
+; v3 : single-length
+	invoke-virtual	{v1,v3},android/app/Dialog/findViewById	; findViewById(I)Landroid/view/View;
+; v1 : Landroid/app/Dialog; , v3 : single-length
+	move-result-object	v0
+; v0 : Landroid/view/View;
+	check-cast	v0,android/widget/Button
+; v0 : Landroid/widget/Button;
+.line 549
+	new-instance	v3,java/lang/StringBuilder
+; v3 : Ljava/lang/StringBuilder;
+	invoke-static	{v9},java/lang/String/valueOf	; valueOf(Ljava/lang/Object;)Ljava/lang/String;
+; v9 : Ljava/lang/String;
+	move-result-object	v4
+; v4 : Ljava/lang/String;
+	invoke-direct	{v3,v4},java/lang/StringBuilder/<init>	; <init>(Ljava/lang/String;)V
+; v3 : Ljava/lang/StringBuilder; , v4 : Ljava/lang/String;
+	const-string	v4,"."
+; v4 : Ljava/lang/String;
+	invoke-virtual	{v3,v4},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v3 : Ljava/lang/StringBuilder; , v4 : Ljava/lang/String;
+	move-result-object	v3
+; v3 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v3},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v3 : Ljava/lang/StringBuilder;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},android/widget/TextView/setText	; setText(Ljava/lang/CharSequence;)V
+; v2 : Landroid/widget/TextView; , v3 : Ljava/lang/String;
+.line 550
+	new-instance	v3,com/fsharemobile/AddToShareActivity$6
+; v3 : Lcom/fsharemobile/AddToShareActivity$6;
+	invoke-direct	{v3,v7,v1},com/fsharemobile/AddToShareActivity$6/<init>	; <init>(Lcom/fsharemobile/AddToShareActivity;Landroid/app/Dialog;)V
+; v3 : Lcom/fsharemobile/AddToShareActivity$6; , v7 : Lcom/fsharemobile/AddToShareActivity; , v1 : Landroid/app/Dialog;
+	invoke-virtual	{v0,v3},android/widget/Button/setOnClickListener	; setOnClickListener(Landroid/view/View$OnClickListener;)V
+; v0 : Landroid/widget/Button; , v3 : Lcom/fsharemobile/AddToShareActivity$6;
+.line 558
+	sget-boolean	v3,com/fsharemobile/AddToShareActivity.active Z
+; v3 : single-length
+	if-eqz	v3,l8e560
+; v3 : single-length
+.line 559
+	invoke-virtual	{v1},android/app/Dialog/show	; show()V
+; v1 : Landroid/app/Dialog;
+.line 561
+	const	v3,2130837548	; 0x7f02002c
+; v3 : single-length
+.line 560
+	invoke-virtual	{v1,v6,v3},android/app/Dialog/setFeatureDrawableResource	; setFeatureDrawableResource(II)V
+; v1 : Landroid/app/Dialog; , v6 : single-length , v3 : single-length
+l8e560:
+.line 563
+	return-void	
+.end method
+
+.method private initDowloadDialog()V
+.limit registers 3
+; this: v2 (Lcom/fsharemobile/AddToShareActivity;)
+.line 566
+	new-instance	v0,android/app/Dialog
+; v0 : Landroid/app/Dialog;
+	invoke-direct	{v0,v2},android/app/Dialog/<init>	; <init>(Landroid/content/Context;)V
+; v0 : Landroid/app/Dialog; , v2 : Lcom/fsharemobile/AddToShareActivity;
+	iput-object	v0,v2,com/fsharemobile/AddToShareActivity.dialogDownload Landroid/app/Dialog;
+; v0 : Landroid/app/Dialog; , v2 : Lcom/fsharemobile/AddToShareActivity;
+.line 567
+	iget-object	v0,v2,com/fsharemobile/AddToShareActivity.dialogDownload Landroid/app/Dialog;
+; v0 : Landroid/app/Dialog; , v2 : Lcom/fsharemobile/AddToShareActivity;
+	const	v1,2130903068	; 0x7f03001c
+; v1 : single-length
+	invoke-virtual	{v0,v1},android/app/Dialog/setContentView	; setContentView(I)V
+; v0 : Landroid/app/Dialog; , v1 : single-length
+.line 569
+	iget-object	v0,v2,com/fsharemobile/AddToShareActivity.dialogDownload Landroid/app/Dialog;
+; v0 : Landroid/app/Dialog; , v2 : Lcom/fsharemobile/AddToShareActivity;
+	const/4	v1,0
+; v1 : single-length
+	invoke-virtual	{v0,v1},android/app/Dialog/setCanceledOnTouchOutside	; setCanceledOnTouchOutside(Z)V
+; v0 : Landroid/app/Dialog; , v1 : single-length
+.line 571
+	iget-object	v0,v2,com/fsharemobile/AddToShareActivity.dialogDownload Landroid/app/Dialog;
+; v0 : Landroid/app/Dialog; , v2 : Lcom/fsharemobile/AddToShareActivity;
+.line 572
+	const	v1,2131427450	; 0x7f0b007a
+; v1 : single-length
+	invoke-virtual	{v0,v1},android/app/Dialog/findViewById	; findViewById(I)Landroid/view/View;
+; v0 : Landroid/app/Dialog; , v1 : single-length
+	move-result-object	v0
+; v0 : Landroid/view/View;
+	check-cast	v0,android/widget/Button
+; v0 : Landroid/widget/Button;
+.line 571
+	iput-object	v0,v2,com/fsharemobile/AddToShareActivity.btnCancelProgress Landroid/widget/Button;
+; v0 : Landroid/widget/Button; , v2 : Lcom/fsharemobile/AddToShareActivity;
+.line 573
+	iget-object	v0,v2,com/fsharemobile/AddToShareActivity.dialogDownload Landroid/app/Dialog;
+; v0 : Landroid/app/Dialog; , v2 : Lcom/fsharemobile/AddToShareActivity;
+.line 574
+	const	v1,2131427449	; 0x7f0b0079
+; v1 : single-length
+	invoke-virtual	{v0,v1},android/app/Dialog/findViewById	; findViewById(I)Landroid/view/View;
+; v0 : Landroid/app/Dialog; , v1 : single-length
+	move-result-object	v0
+; v0 : Landroid/view/View;
+	check-cast	v0,android/widget/TextView
+; v0 : Landroid/widget/TextView;
+.line 573
+	iput-object	v0,v2,com/fsharemobile/AddToShareActivity.txtDownloadProgress Landroid/widget/TextView;
+; v0 : Landroid/widget/TextView; , v2 : Lcom/fsharemobile/AddToShareActivity;
+.line 575
+	iget-object	v0,v2,com/fsharemobile/AddToShareActivity.dialogDownload Landroid/app/Dialog;
+; v0 : Landroid/app/Dialog; , v2 : Lcom/fsharemobile/AddToShareActivity;
+.line 576
+	const	v1,2131427447	; 0x7f0b0077
+; v1 : single-length
+	invoke-virtual	{v0,v1},android/app/Dialog/findViewById	; findViewById(I)Landroid/view/View;
+; v0 : Landroid/app/Dialog; , v1 : single-length
+	move-result-object	v0
+; v0 : Landroid/view/View;
+	check-cast	v0,android/widget/TextView
+; v0 : Landroid/widget/TextView;
+.line 575
+	iput-object	v0,v2,com/fsharemobile/AddToShareActivity.txtDownloadProgressFileName Landroid/widget/TextView;
+; v0 : Landroid/widget/TextView; , v2 : Lcom/fsharemobile/AddToShareActivity;
+.line 577
+	iget-object	v0,v2,com/fsharemobile/AddToShareActivity.dialogDownload Landroid/app/Dialog;
+; v0 : Landroid/app/Dialog; , v2 : Lcom/fsharemobile/AddToShareActivity;
+.line 578
+	const	v1,2131427448	; 0x7f0b0078
+; v1 : single-length
+	invoke-virtual	{v0,v1},android/app/Dialog/findViewById	; findViewById(I)Landroid/view/View;
+; v0 : Landroid/app/Dialog; , v1 : single-length
+	move-result-object	v0
+; v0 : Landroid/view/View;
+	check-cast	v0,android/widget/ProgressBar
+; v0 : Landroid/widget/ProgressBar;
+.line 577
+	iput-object	v0,v2,com/fsharemobile/AddToShareActivity.progressDownload Landroid/widget/ProgressBar;
+; v0 : Landroid/widget/ProgressBar; , v2 : Lcom/fsharemobile/AddToShareActivity;
+.line 579
+	iget-object	v0,v2,com/fsharemobile/AddToShareActivity.progressDownload Landroid/widget/ProgressBar;
+; v0 : Landroid/widget/ProgressBar; , v2 : Lcom/fsharemobile/AddToShareActivity;
+	const/16	v1,100
+; v1 : single-length
+	invoke-virtual	{v0,v1},android/widget/ProgressBar/setMax	; setMax(I)V
+; v0 : Landroid/widget/ProgressBar; , v1 : single-length
+.line 581
+	iget-object	v0,v2,com/fsharemobile/AddToShareActivity.btnCancelProgress Landroid/widget/Button;
+; v0 : Landroid/widget/Button; , v2 : Lcom/fsharemobile/AddToShareActivity;
+	new-instance	v1,com/fsharemobile/AddToShareActivity$7
+; v1 : Lcom/fsharemobile/AddToShareActivity$7;
+	invoke-direct	{v1,v2},com/fsharemobile/AddToShareActivity$7/<init>	; <init>(Lcom/fsharemobile/AddToShareActivity;)V
+; v1 : Lcom/fsharemobile/AddToShareActivity$7; , v2 : Lcom/fsharemobile/AddToShareActivity;
+	invoke-virtual	{v0,v1},android/widget/Button/setOnClickListener	; setOnClickListener(Landroid/view/View$OnClickListener;)V
+; v0 : Landroid/widget/Button; , v1 : Lcom/fsharemobile/AddToShareActivity$7;
+.line 589
+	return-void	
+.end method
+
+.method private isRoot(Ljava/lang/String;)Z
+.limit registers 3
+; this: v1 (Lcom/fsharemobile/AddToShareActivity;)
+; parameter[0] : v2 (Ljava/lang/String;)
+.line 468
+	const-string	v0,"/"
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v2,v0},java/lang/String/equals	; equals(Ljava/lang/Object;)Z
+; v2 : Ljava/lang/String; , v0 : Ljava/lang/String;
+	move-result	v0
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method private renderBackBar(Ljava/lang/String;)V
+.limit registers 4
+; this: v2 (Lcom/fsharemobile/AddToShareActivity;)
+; parameter[0] : v3 (Ljava/lang/String;)
+.line 459
+	iget-object	v0,v2,com/fsharemobile/AddToShareActivity.txtPath Landroid/widget/TextView;
+; v0 : Landroid/widget/TextView; , v2 : Lcom/fsharemobile/AddToShareActivity;
+	invoke-virtual	{v0,v3},android/widget/TextView/setText	; setText(Ljava/lang/CharSequence;)V
+; v0 : Landroid/widget/TextView; , v3 : Ljava/lang/String;
+.line 460
+	sget-object	v0,com/fsharemobile/AddToShareActivity.currentPath Ljava/lang/String;
+; v0 : Ljava/lang/String;
+	invoke-direct	{v2,v0},com/fsharemobile/AddToShareActivity/isRoot	; isRoot(Ljava/lang/String;)Z
+; v2 : Lcom/fsharemobile/AddToShareActivity; , v0 : Ljava/lang/String;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,l8e686
+; v0 : single-length
+.line 461
+	iget-object	v0,v2,com/fsharemobile/AddToShareActivity.layoutBack Landroid/widget/LinearLayout;
+; v0 : Landroid/widget/LinearLayout; , v2 : Lcom/fsharemobile/AddToShareActivity;
+	const/16	v1,8
+; v1 : single-length
+	invoke-virtual	{v0,v1},android/widget/LinearLayout/setVisibility	; setVisibility(I)V
+; v0 : Landroid/widget/LinearLayout; , v1 : single-length
+l8e684:
+.line 465
+	return-void	
+l8e686:
+.line 463
+	iget-object	v0,v2,com/fsharemobile/AddToShareActivity.layoutBack Landroid/widget/LinearLayout;
+; v0 : Landroid/widget/LinearLayout; , v2 : Lcom/fsharemobile/AddToShareActivity;
+	const/4	v1,0
+; v1 : single-length
+	invoke-virtual	{v0,v1},android/widget/LinearLayout/setVisibility	; setVisibility(I)V
+; v0 : Landroid/widget/LinearLayout; , v1 : single-length
+	goto	l8e684
+.end method
+
+.method public onClick(Landroid/view/View;)V
+.limit registers 10
+; this: v8 (Lcom/fsharemobile/AddToShareActivity;)
+; parameter[0] : v9 (Landroid/view/View;)
+.catch java/lang/Exception from l8e7e0 to l8e810 using l8e812
+.var 7 is file Lcom/fsharemobile/model/File; from l8e6da to l8e710
+.var 6 is e Ljava/lang/Exception; from l8e814 to l8e81e
+	const/4	v2,0
+; v2 : single-length
+.line 230
+	invoke-virtual	{v9},android/view/View/getId	; getId()I
+; v9 : Landroid/view/View;
+	move-result	v0
+; v0 : single-length
+	const	v1,2131427395	; 0x7f0b0043
+; v1 : single-length
+	if-eq	v0,v1,l8e6ca
+; v0 : single-length , v1 : single-length
+	invoke-virtual	{v9},android/view/View/getId	; getId()I
+; v9 : Landroid/view/View;
+	move-result	v0
+; v0 : single-length
+	const	v1,2131427369	; 0x7f0b0029
+; v1 : single-length
+	if-ne	v0,v1,l8e712
+; v0 : single-length , v1 : single-length
+l8e6ca:
+.line 232
+	iget-object	v0,v8,com/fsharemobile/AddToShareActivity.stFile Ljava/util/Stack;
+; v0 : Ljava/util/Stack; , v8 : Lcom/fsharemobile/AddToShareActivity;
+	invoke-virtual	{v0},java/util/Stack/pop	; pop()Ljava/lang/Object;
+; v0 : Ljava/util/Stack;
+	move-result-object	v7
+; v7 : Ljava/lang/Object;
+	check-cast	v7,com/fsharemobile/model/File
+; v7 : Lcom/fsharemobile/model/File;
+.line 233
+	invoke-virtual	{v7},com/fsharemobile/model/File/getmPath	; getmPath()Ljava/lang/String;
+; v7 : Lcom/fsharemobile/model/File;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	sput-object	v0,com/fsharemobile/AddToShareActivity.currentPath Ljava/lang/String;
+; v0 : Ljava/lang/String;
+.line 234
+	invoke-virtual	{v7},com/fsharemobile/model/File/getmLinkCode	; getmLinkCode()Ljava/lang/String;
+; v7 : Lcom/fsharemobile/model/File;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	sput-object	v0,com/fsharemobile/AddToShareActivity.currentId Ljava/lang/String;
+; v0 : Ljava/lang/String;
+.line 237
+	iget-object	v0,v8,com/fsharemobile/AddToShareActivity.explorerAdapter Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v8 : Lcom/fsharemobile/AddToShareActivity;
+	invoke-virtual	{v0},com/fsharemobile/adapter/ExplorerArrayAdapter/clear	; clear()V
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+.line 238
+	iput-boolean	v2,v8,com/fsharemobile/AddToShareActivity.isTheLastPage Z
+; v2 : single-length , v8 : Lcom/fsharemobile/AddToShareActivity;
+.line 239
+	iput	v2,v8,com/fsharemobile/AddToShareActivity.mPrevTotalItemCount I
+; v2 : single-length , v8 : Lcom/fsharemobile/AddToShareActivity;
+.line 241
+	const/4	v0,1
+; v0 : single-length
+	sget-object	v1,com/fsharemobile/AddToShareActivity.currentPath Ljava/lang/String;
+; v1 : Ljava/lang/String;
+	invoke-direct	{v8,v0,v2,v1},com/fsharemobile/AddToShareActivity/LoadData	; LoadData(IILjava/lang/String;)V
+; v8 : Lcom/fsharemobile/AddToShareActivity; , v0 : single-length , v2 : single-length , v1 : Ljava/lang/String;
+l8e710:
+.line 414
+	return-void	
+l8e712:
+.line 243
+	invoke-virtual	{v9},android/view/View/getId	; getId()I
+; v9 : Landroid/view/View;
+	move-result	v0
+; v0 : single-length
+	const	v1,2131427351	; 0x7f0b0017
+; v1 : single-length
+	if-ne	v0,v1,l8e81e
+; v0 : single-length , v1 : single-length
+.line 244
+	const-string	v0,"UPLOAD_FILEPATH"
+; v0 : Ljava/lang/String;
+	sget-object	v1,com/fsharemobile/AddToShareActivity.currentPath Ljava/lang/String;
+; v1 : Ljava/lang/String;
+	invoke-static	{v0,v1},android/util/Log/i	; i(Ljava/lang/String;Ljava/lang/String;)I
+; v0 : Ljava/lang/String; , v1 : Ljava/lang/String;
+.line 248
+	iget-object	v0,v8,com/fsharemobile/AddToShareActivity.dialogDownload Landroid/app/Dialog;
+; v0 : Landroid/app/Dialog; , v8 : Lcom/fsharemobile/AddToShareActivity;
+	new-instance	v1,java/lang/StringBuilder
+; v1 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v8},com/fsharemobile/AddToShareActivity/getResources	; getResources()Landroid/content/res/Resources;
+; v8 : Lcom/fsharemobile/AddToShareActivity;
+	move-result-object	v2
+; v2 : Landroid/content/res/Resources;
+.line 249
+	const	v3,2131230781	; 0x7f08003d
+; v3 : single-length
+	invoke-virtual	{v2,v3},android/content/res/Resources/getString	; getString(I)Ljava/lang/String;
+; v2 : Landroid/content/res/Resources; , v3 : single-length
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-static	{v2},java/lang/String/valueOf	; valueOf(Ljava/lang/Object;)Ljava/lang/String;
+; v2 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-direct	{v1,v2},java/lang/StringBuilder/<init>	; <init>(Ljava/lang/String;)V
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	const-string	v2,"..."
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v1},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v1 : Ljava/lang/StringBuilder;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+.line 248
+	invoke-virtual	{v0,v1},android/app/Dialog/setTitle	; setTitle(Ljava/lang/CharSequence;)V
+; v0 : Landroid/app/Dialog; , v1 : Ljava/lang/String;
+.line 250
+	iget-object	v0,v8,com/fsharemobile/AddToShareActivity.dialogDownload Landroid/app/Dialog;
+; v0 : Landroid/app/Dialog; , v8 : Lcom/fsharemobile/AddToShareActivity;
+	invoke-virtual	{v0},android/app/Dialog/show	; show()V
+; v0 : Landroid/app/Dialog;
+.line 251
+	iget-object	v0,v8,com/fsharemobile/AddToShareActivity.txtDownloadProgressFileName Landroid/widget/TextView;
+; v0 : Landroid/widget/TextView; , v8 : Lcom/fsharemobile/AddToShareActivity;
+	new-instance	v1,java/lang/StringBuilder
+; v1 : Ljava/lang/StringBuilder;
+	const-string	v2,"'"
+; v2 : Ljava/lang/String;
+	invoke-direct	{v1,v2},java/lang/StringBuilder/<init>	; <init>(Ljava/lang/String;)V
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	iget-object	v2,v8,com/fsharemobile/AddToShareActivity.myFile Ljava/io/File;
+; v2 : Ljava/io/File; , v8 : Lcom/fsharemobile/AddToShareActivity;
+	invoke-virtual	{v2},java/io/File/getName	; getName()Ljava/lang/String;
+; v2 : Ljava/io/File;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	const-string	v2,"' "
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+.line 252
+	invoke-virtual	{v8},com/fsharemobile/AddToShareActivity/getResources	; getResources()Landroid/content/res/Resources;
+; v8 : Lcom/fsharemobile/AddToShareActivity;
+	move-result-object	v2
+; v2 : Landroid/content/res/Resources;
+	const	v3,2131230782	; 0x7f08003e
+; v3 : single-length
+	invoke-virtual	{v2,v3},android/content/res/Resources/getString	; getString(I)Ljava/lang/String;
+; v2 : Landroid/content/res/Resources; , v3 : single-length
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v1},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v1 : Ljava/lang/StringBuilder;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+.line 251
+	invoke-virtual	{v0,v1},android/widget/TextView/setText	; setText(Ljava/lang/CharSequence;)V
+; v0 : Landroid/widget/TextView; , v1 : Ljava/lang/String;
+l8e7e0:
+.line 254
+	iget-object	v0,v8,com/fsharemobile/AddToShareActivity.sesProxy Lcom/fsharemobile/client/SessionProxy;
+; v0 : Lcom/fsharemobile/client/SessionProxy; , v8 : Lcom/fsharemobile/AddToShareActivity;
+	iget-object	v1,v8,com/fsharemobile/AddToShareActivity.myFile Ljava/io/File;
+; v1 : Ljava/io/File; , v8 : Lcom/fsharemobile/AddToShareActivity;
+	invoke-virtual	{v1},java/io/File/getName	; getName()Ljava/lang/String;
+; v1 : Ljava/io/File;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	sget-object	v2,com/fsharemobile/AddToShareActivity.currentPath Ljava/lang/String;
+; v2 : Ljava/lang/String;
+.line 255
+	iget-object	v3,v8,com/fsharemobile/AddToShareActivity.myFile Ljava/io/File;
+; v3 : Ljava/io/File; , v8 : Lcom/fsharemobile/AddToShareActivity;
+	invoke-virtual	{v3},java/io/File/length	; length()J
+; v3 : Ljava/io/File;
+	move-result-wide	v3
+; v3 : double-length
+	new-instance	v5,com/fsharemobile/AddToShareActivity$3
+; v5 : Lcom/fsharemobile/AddToShareActivity$3;
+	invoke-direct	{v5,v8},com/fsharemobile/AddToShareActivity$3/<init>	; <init>(Lcom/fsharemobile/AddToShareActivity;)V
+; v5 : Lcom/fsharemobile/AddToShareActivity$3; , v8 : Lcom/fsharemobile/AddToShareActivity;
+.line 254
+	invoke-virtual/range	{v0..v5},com/fsharemobile/client/SessionProxy/createUploadSession;	createUploadSession(Ljava/lang/String;Ljava/lang/String;JLcom/fsharemobile/client/SessionProxy$OnCreateULSessionCompleted;)V
+; v0 : Lcom/fsharemobile/client/SessionProxy; , v1 : Ljava/lang/String; , v2 : Ljava/lang/String; , v3 : double-length , v5 : Lcom/fsharemobile/AddToShareActivity$3;
+l8e810:
+	goto	l8e710
+l8e812:
+.line 406
+	move-exception	v6
+; v6 : java/lang/Exception
+.line 407
+	invoke-virtual	{v6},java/lang/Exception/printStackTrace	; printStackTrace()V
+; v6 : java/lang/Exception
+	goto/16	l8e710
+l8e81e:
+.line 410
+	invoke-virtual	{v9},android/view/View/getId	; getId()I
+; v9 : Landroid/view/View;
+	move-result	v0
+; v0 : single-length
+	const	v1,2131427352	; 0x7f0b0018
+; v1 : single-length
+	if-ne	v0,v1,l8e710
+; v0 : single-length , v1 : single-length
+.line 411
+	invoke-virtual	{v8},com/fsharemobile/AddToShareActivity/finish	; finish()V
+; v8 : Lcom/fsharemobile/AddToShareActivity;
+	goto/16	l8e710
+.end method
+
+.method protected onCreate(Landroid/os/Bundle;)V
+.limit registers 16
+; this: v14 (Lcom/fsharemobile/AddToShareActivity;)
+; parameter[0] : v15 (Landroid/os/Bundle;)
+.var 0 is contentResolver Landroid/content/ContentResolver; from l8e90c to l8e94c
+.var 1 is uri Landroid/net/Uri; from l8e8d0 to l8e94c
+.var 6 is cursor Landroid/database/Cursor; from l8e91a to l8e94c
+.var 7 is extras Landroid/os/Bundle; from l8e8b0 to l8e94c
+.var 9 is mimeType Ljava/lang/String; from l8e8fa to l8e94c
+.var 10 is scheme Ljava/lang/String; from l8e8d8 to l8e94c
+.var 11 is share Lcom/fsharemobile/model/Share; from l8e982 to l8eb58
+.var 1 is uri Landroid/net/Uri; from l8eb58 to l8eb86
+.var 7 is extras Landroid/os/Bundle; from l8eb58 to l8eb86
+.var 10 is scheme Ljava/lang/String; from l8eb58 to l8eb86
+	const/4	v13,1
+; v13 : single-length
+	const/4	v2,0
+; v2 : single-length
+	const/4	v12,0
+; v12 : single-length
+.line 97
+	invoke-super	{v14,v15},android/app/Activity/onCreate	; onCreate(Landroid/os/Bundle;)V
+; v14 : Lcom/fsharemobile/AddToShareActivity; , v15 : Landroid/os/Bundle;
+.line 99
+	invoke-virtual	{v14,v13},com/fsharemobile/AddToShareActivity/requestWindowFeature	; requestWindowFeature(I)Z
+; v14 : Lcom/fsharemobile/AddToShareActivity; , v13 : single-length
+.line 102
+	invoke-virtual	{v14,v12},com/fsharemobile/AddToShareActivity/setFinishOnTouchOutside	; setFinishOnTouchOutside(Z)V
+; v14 : Lcom/fsharemobile/AddToShareActivity; , v12 : single-length
+.line 105
+	const	v3,2130903050	; 0x7f03000a
+; v3 : single-length
+	invoke-virtual	{v14,v3},com/fsharemobile/AddToShareActivity/setContentView	; setContentView(I)V
+; v14 : Lcom/fsharemobile/AddToShareActivity; , v3 : single-length
+.line 106
+	const-string	v3,"unknow"
+; v3 : Ljava/lang/String;
+	iput-object	v3,v14,com/fsharemobile/AddToShareActivity.fileName Ljava/lang/String;
+; v3 : Ljava/lang/String; , v14 : Lcom/fsharemobile/AddToShareActivity;
+.line 107
+	invoke-virtual	{v14},com/fsharemobile/AddToShareActivity/getIntent	; getIntent()Landroid/content/Intent;
+; v14 : Lcom/fsharemobile/AddToShareActivity;
+	move-result-object	v8
+; v8 : Landroid/content/Intent;
+.line 108
+	const-string	v3,"android.intent.action.SEND"
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v8},android/content/Intent/getAction	; getAction()Ljava/lang/String;
+; v8 : Landroid/content/Intent;
+	move-result-object	v4
+; v4 : Ljava/lang/String;
+	invoke-virtual	{v3,v4},java/lang/String/equals	; equals(Ljava/lang/Object;)Z
+; v3 : Ljava/lang/String; , v4 : Ljava/lang/String;
+	move-result	v3
+; v3 : single-length
+	if-eqz	v3,l8e94c
+; v3 : single-length
+.line 109
+	invoke-virtual	{v8},android/content/Intent/getExtras	; getExtras()Landroid/os/Bundle;
+; v8 : Landroid/content/Intent;
+	move-result-object	v7
+; v7 : Landroid/os/Bundle;
+.line 110
+	const-string	v3,"android.intent.extra.STREAM"
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v7,v3},android/os/Bundle/containsKey	; containsKey(Ljava/lang/String;)Z
+; v7 : Landroid/os/Bundle; , v3 : Ljava/lang/String;
+	move-result	v3
+; v3 : single-length
+	if-eqz	v3,l8e94c
+; v3 : single-length
+.line 111
+	const-string	v3,"android.intent.extra.STREAM"
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v7,v3},android/os/Bundle/getParcelable	; getParcelable(Ljava/lang/String;)Landroid/os/Parcelable;
+; v7 : Landroid/os/Bundle; , v3 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Landroid/os/Parcelable;
+	check-cast	v1,android/net/Uri
+; v1 : Landroid/net/Uri;
+.line 112
+	invoke-virtual	{v1},android/net/Uri/getScheme	; getScheme()Ljava/lang/String;
+; v1 : Landroid/net/Uri;
+	move-result-object	v10
+; v10 : Ljava/lang/String;
+.line 113
+	const-string	v3,"ADD_TO_SHARE_SCHEME"
+; v3 : Ljava/lang/String;
+	invoke-static	{v3,v10},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v3 : Ljava/lang/String; , v10 : Ljava/lang/String;
+.line 114
+	const-string	v3,"content"
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v10,v3},java/lang/String/equals	; equals(Ljava/lang/Object;)Z
+; v10 : Ljava/lang/String; , v3 : Ljava/lang/String;
+	move-result	v3
+; v3 : single-length
+	if-eqz	v3,l8eb58
+; v3 : single-length
+.line 115
+	invoke-virtual	{v8},android/content/Intent/getType	; getType()Ljava/lang/String;
+; v8 : Landroid/content/Intent;
+	move-result-object	v9
+; v9 : Ljava/lang/String;
+.line 116
+	const-string	v3,"ADD_TO_SHARE_MineType"
+; v3 : Ljava/lang/String;
+	invoke-static	{v3,v9},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v3 : Ljava/lang/String; , v9 : Ljava/lang/String;
+.line 117
+	invoke-virtual	{v14},com/fsharemobile/AddToShareActivity/getContentResolver	; getContentResolver()Landroid/content/ContentResolver;
+; v14 : Lcom/fsharemobile/AddToShareActivity;
+	move-result-object	v0
+; v0 : Landroid/content/ContentResolver;
+l8e90c:
+	move-object	v3,v2
+; v3 : single-length , v2 : single-length
+	move-object	v4,v2
+; v4 : single-length , v2 : single-length
+	move-object	v5,v2
+; v5 : single-length , v2 : single-length
+.line 118
+	invoke-virtual/range	{v0..v5},android/content/ContentResolver/query;	query(Landroid/net/Uri;[Ljava/lang/String;Ljava/lang/String;[Ljava/lang/String;Ljava/lang/String;)Landroid/database/Cursor;
+; v0 : Landroid/content/ContentResolver; , v1 : Landroid/net/Uri; , v2 : single-length , v3 : single-length , v4 : single-length , v5 : single-length
+	move-result-object	v6
+; v6 : Landroid/database/Cursor;
+.line 120
+	invoke-interface	{v6},android/database/Cursor/moveToFirst	; moveToFirst()Z
+; v6 : Landroid/database/Cursor;
+.line 122
+	const-string	v2,"_data"
+; v2 : Ljava/lang/String;
+	invoke-interface	{v6,v2},android/database/Cursor/getColumnIndexOrThrow	; getColumnIndexOrThrow(Ljava/lang/String;)I
+; v6 : Landroid/database/Cursor; , v2 : Ljava/lang/String;
+	move-result	v2
+; v2 : single-length
+.line 121
+	invoke-interface	{v6,v2},android/database/Cursor/getString	; getString(I)Ljava/lang/String;
+; v6 : Landroid/database/Cursor; , v2 : single-length
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	iput-object	v2,v14,com/fsharemobile/AddToShareActivity.fileName Ljava/lang/String;
+; v2 : Ljava/lang/String; , v14 : Lcom/fsharemobile/AddToShareActivity;
+.line 123
+	const-string	v2,"ADD_TO_SHARE_IMAGE__PATH"
+; v2 : Ljava/lang/String;
+	iget-object	v3,v14,com/fsharemobile/AddToShareActivity.fileName Ljava/lang/String;
+; v3 : Ljava/lang/String; , v14 : Lcom/fsharemobile/AddToShareActivity;
+	invoke-static	{v2,v3},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v2 : Ljava/lang/String; , v3 : Ljava/lang/String;
+.line 125
+	invoke-interface	{v6},android/database/Cursor/close	; close()V
+; v6 : Landroid/database/Cursor;
+l8e94c:
+.line 133
+	iget-object	v2,v14,com/fsharemobile/AddToShareActivity.fileName Ljava/lang/String;
+; v2 : Ljava/lang/String; , v14 : Lcom/fsharemobile/AddToShareActivity;
+	if-eqz	v2,l8e97a
+; v2 : Ljava/lang/String;
+	iget-object	v2,v14,com/fsharemobile/AddToShareActivity.fileName Ljava/lang/String;
+; v2 : Ljava/lang/String; , v14 : Lcom/fsharemobile/AddToShareActivity;
+	const-string	v3,"unknow"
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/lang/String/equals	; equals(Ljava/lang/Object;)Z
+; v2 : Ljava/lang/String; , v3 : Ljava/lang/String;
+	move-result	v2
+; v2 : single-length
+	if-nez	v2,l8e97a
+; v2 : single-length
+.line 134
+	new-instance	v2,java/io/File
+; v2 : Ljava/io/File;
+	iget-object	v3,v14,com/fsharemobile/AddToShareActivity.fileName Ljava/lang/String;
+; v3 : Ljava/lang/String; , v14 : Lcom/fsharemobile/AddToShareActivity;
+	invoke-direct	{v2,v3},java/io/File/<init>	; <init>(Ljava/lang/String;)V
+; v2 : Ljava/io/File; , v3 : Ljava/lang/String;
+	iput-object	v2,v14,com/fsharemobile/AddToShareActivity.myFile Ljava/io/File;
+; v2 : Ljava/io/File; , v14 : Lcom/fsharemobile/AddToShareActivity;
+l8e97a:
+.line 137
+	invoke-static	{},com/fsharemobile/model/Share/getInstance	; getInstance()Lcom/fsharemobile/model/Share;
+; 
+	nop	
+	move-result-object	v11
+; v11 : Lcom/fsharemobile/model/Share;
+.line 138
+	invoke-virtual	{v11},com/fsharemobile/model/Share/getFclient	; getFclient()Lcom/fsharemobile/client/FClient;
+; v11 : Lcom/fsharemobile/model/Share;
+	move-result-object	v2
+; v2 : Lcom/fsharemobile/client/FClient;
+	iput-object	v2,v14,com/fsharemobile/AddToShareActivity.fclient Lcom/fsharemobile/client/FClient;
+; v2 : Lcom/fsharemobile/client/FClient; , v14 : Lcom/fsharemobile/AddToShareActivity;
+.line 139
+	iget-object	v2,v14,com/fsharemobile/AddToShareActivity.fclient Lcom/fsharemobile/client/FClient;
+; v2 : Lcom/fsharemobile/client/FClient; , v14 : Lcom/fsharemobile/AddToShareActivity;
+	invoke-virtual	{v2},com/fsharemobile/client/FClient/getFileProxy	; getFileProxy()Lcom/fsharemobile/client/FileProxy;
+; v2 : Lcom/fsharemobile/client/FClient;
+	move-result-object	v2
+; v2 : Lcom/fsharemobile/client/FileProxy;
+	iput-object	v2,v14,com/fsharemobile/AddToShareActivity.fileProxy Lcom/fsharemobile/client/FileProxy;
+; v2 : Lcom/fsharemobile/client/FileProxy; , v14 : Lcom/fsharemobile/AddToShareActivity;
+.line 140
+	iget-object	v2,v14,com/fsharemobile/AddToShareActivity.fclient Lcom/fsharemobile/client/FClient;
+; v2 : Lcom/fsharemobile/client/FClient; , v14 : Lcom/fsharemobile/AddToShareActivity;
+	invoke-virtual	{v2},com/fsharemobile/client/FClient/getSesProxy	; getSesProxy()Lcom/fsharemobile/client/SessionProxy;
+; v2 : Lcom/fsharemobile/client/FClient;
+	move-result-object	v2
+; v2 : Lcom/fsharemobile/client/SessionProxy;
+	iput-object	v2,v14,com/fsharemobile/AddToShareActivity.sesProxy Lcom/fsharemobile/client/SessionProxy;
+; v2 : Lcom/fsharemobile/client/SessionProxy; , v14 : Lcom/fsharemobile/AddToShareActivity;
+.line 142
+	const-string	v2,"/"
+; v2 : Ljava/lang/String;
+	sput-object	v2,com/fsharemobile/AddToShareActivity.currentPath Ljava/lang/String;
+; v2 : Ljava/lang/String;
+.line 143
+	const-string	v2,"/"
+; v2 : Ljava/lang/String;
+	sput-object	v2,com/fsharemobile/AddToShareActivity.parentPath Ljava/lang/String;
+; v2 : Ljava/lang/String;
+.line 144
+	sput	v12,com/fsharemobile/AddToShareActivity.currentPageIndex I
+; v12 : I
+.line 145
+	iput-boolean	v12,v14,com/fsharemobile/AddToShareActivity.isTheLastPage Z
+; v12 : I , v14 : Lcom/fsharemobile/AddToShareActivity;
+.line 147
+	invoke-direct	{v14},com/fsharemobile/AddToShareActivity/initDowloadDialog	; initDowloadDialog()V
+; v14 : Lcom/fsharemobile/AddToShareActivity;
+.line 149
+	invoke-virtual	{v14},com/fsharemobile/AddToShareActivity/getIntent	; getIntent()Landroid/content/Intent;
+; v14 : Lcom/fsharemobile/AddToShareActivity;
+	move-result-object	v2
+; v2 : Landroid/content/Intent;
+	const-string	v3,"items"
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},android/content/Intent/getStringArrayListExtra	; getStringArrayListExtra(Ljava/lang/String;)Ljava/util/ArrayList;
+; v2 : Landroid/content/Intent; , v3 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/util/ArrayList;
+	iput-object	v2,v14,com/fsharemobile/AddToShareActivity.idList Ljava/util/List;
+; v2 : Ljava/util/ArrayList; , v14 : Lcom/fsharemobile/AddToShareActivity;
+.line 151
+	const	v2,2131427365	; 0x7f0b0025
+; v2 : single-length
+	invoke-virtual	{v14,v2},com/fsharemobile/AddToShareActivity/findViewById	; findViewById(I)Landroid/view/View;
+; v14 : Lcom/fsharemobile/AddToShareActivity; , v2 : single-length
+	move-result-object	v2
+; v2 : Landroid/view/View;
+	check-cast	v2,android/widget/TextView
+; v2 : Landroid/widget/TextView;
+	iput-object	v2,v14,com/fsharemobile/AddToShareActivity.txtLabel Landroid/widget/TextView;
+; v2 : Landroid/widget/TextView; , v14 : Lcom/fsharemobile/AddToShareActivity;
+.line 152
+	const	v2,2131427351	; 0x7f0b0017
+; v2 : single-length
+	invoke-virtual	{v14,v2},com/fsharemobile/AddToShareActivity/findViewById	; findViewById(I)Landroid/view/View;
+; v14 : Lcom/fsharemobile/AddToShareActivity; , v2 : single-length
+	move-result-object	v2
+; v2 : Landroid/view/View;
+	check-cast	v2,android/widget/Button
+; v2 : Landroid/widget/Button;
+	iput-object	v2,v14,com/fsharemobile/AddToShareActivity.btnOk Landroid/widget/Button;
+; v2 : Landroid/widget/Button; , v14 : Lcom/fsharemobile/AddToShareActivity;
+.line 153
+	const	v2,2131427352	; 0x7f0b0018
+; v2 : single-length
+	invoke-virtual	{v14,v2},com/fsharemobile/AddToShareActivity/findViewById	; findViewById(I)Landroid/view/View;
+; v14 : Lcom/fsharemobile/AddToShareActivity; , v2 : single-length
+	move-result-object	v2
+; v2 : Landroid/view/View;
+	check-cast	v2,android/widget/Button
+; v2 : Landroid/widget/Button;
+	iput-object	v2,v14,com/fsharemobile/AddToShareActivity.btnCancel Landroid/widget/Button;
+; v2 : Landroid/widget/Button; , v14 : Lcom/fsharemobile/AddToShareActivity;
+.line 154
+	iget-object	v2,v14,com/fsharemobile/AddToShareActivity.btnOk Landroid/widget/Button;
+; v2 : Landroid/widget/Button; , v14 : Lcom/fsharemobile/AddToShareActivity;
+	invoke-virtual	{v2,v14},android/widget/Button/setOnClickListener	; setOnClickListener(Landroid/view/View$OnClickListener;)V
+; v2 : Landroid/widget/Button; , v14 : Lcom/fsharemobile/AddToShareActivity;
+.line 155
+	iget-object	v2,v14,com/fsharemobile/AddToShareActivity.btnCancel Landroid/widget/Button;
+; v2 : Landroid/widget/Button; , v14 : Lcom/fsharemobile/AddToShareActivity;
+	invoke-virtual	{v2,v14},android/widget/Button/setOnClickListener	; setOnClickListener(Landroid/view/View$OnClickListener;)V
+; v2 : Landroid/widget/Button; , v14 : Lcom/fsharemobile/AddToShareActivity;
+.line 156
+	const	v2,2131427370	; 0x7f0b002a
+; v2 : single-length
+	invoke-virtual	{v14,v2},com/fsharemobile/AddToShareActivity/findViewById	; findViewById(I)Landroid/view/View;
+; v14 : Lcom/fsharemobile/AddToShareActivity; , v2 : single-length
+	move-result-object	v2
+; v2 : Landroid/view/View;
+	check-cast	v2,android/widget/ListView
+; v2 : Landroid/widget/ListView;
+	iput-object	v2,v14,com/fsharemobile/AddToShareActivity.lvEx Landroid/widget/ListView;
+; v2 : Landroid/widget/ListView; , v14 : Lcom/fsharemobile/AddToShareActivity;
+.line 157
+	const	v2,2131427396	; 0x7f0b0044
+; v2 : single-length
+	invoke-virtual	{v14,v2},com/fsharemobile/AddToShareActivity/findViewById	; findViewById(I)Landroid/view/View;
+; v14 : Lcom/fsharemobile/AddToShareActivity; , v2 : single-length
+	move-result-object	v2
+; v2 : Landroid/view/View;
+	check-cast	v2,android/widget/TextView
+; v2 : Landroid/widget/TextView;
+	iput-object	v2,v14,com/fsharemobile/AddToShareActivity.txtPath Landroid/widget/TextView;
+; v2 : Landroid/widget/TextView; , v14 : Lcom/fsharemobile/AddToShareActivity;
+.line 158
+	const	v2,2131427395	; 0x7f0b0043
+; v2 : single-length
+	invoke-virtual	{v14,v2},com/fsharemobile/AddToShareActivity/findViewById	; findViewById(I)Landroid/view/View;
+; v14 : Lcom/fsharemobile/AddToShareActivity; , v2 : single-length
+	move-result-object	v2
+; v2 : Landroid/view/View;
+	check-cast	v2,android/widget/ImageView
+; v2 : Landroid/widget/ImageView;
+	iput-object	v2,v14,com/fsharemobile/AddToShareActivity.ivBack Landroid/widget/ImageView;
+; v2 : Landroid/widget/ImageView; , v14 : Lcom/fsharemobile/AddToShareActivity;
+.line 159
+	const	v2,2131427371	; 0x7f0b002b
+; v2 : single-length
+	invoke-virtual	{v14,v2},com/fsharemobile/AddToShareActivity/findViewById	; findViewById(I)Landroid/view/View;
+; v14 : Lcom/fsharemobile/AddToShareActivity; , v2 : single-length
+	move-result-object	v2
+; v2 : Landroid/view/View;
+	check-cast	v2,android/widget/TextView
+; v2 : Landroid/widget/TextView;
+	iput-object	v2,v14,com/fsharemobile/AddToShareActivity.txtStatus Landroid/widget/TextView;
+; v2 : Landroid/widget/TextView; , v14 : Lcom/fsharemobile/AddToShareActivity;
+.line 160
+	const	v2,2131427369	; 0x7f0b0029
+; v2 : single-length
+	invoke-virtual	{v14,v2},com/fsharemobile/AddToShareActivity/findViewById	; findViewById(I)Landroid/view/View;
+; v14 : Lcom/fsharemobile/AddToShareActivity; , v2 : single-length
+	move-result-object	v2
+; v2 : Landroid/view/View;
+	check-cast	v2,android/widget/LinearLayout
+; v2 : Landroid/widget/LinearLayout;
+	iput-object	v2,v14,com/fsharemobile/AddToShareActivity.layoutBack Landroid/widget/LinearLayout;
+; v2 : Landroid/widget/LinearLayout; , v14 : Lcom/fsharemobile/AddToShareActivity;
+.line 161
+	iget-object	v2,v14,com/fsharemobile/AddToShareActivity.layoutBack Landroid/widget/LinearLayout;
+; v2 : Landroid/widget/LinearLayout; , v14 : Lcom/fsharemobile/AddToShareActivity;
+	const/16	v3,8
+; v3 : single-length
+	invoke-virtual	{v2,v3},android/widget/LinearLayout/setVisibility	; setVisibility(I)V
+; v2 : Landroid/widget/LinearLayout; , v3 : single-length
+.line 162
+	new-instance	v2,com/fsharemobile/adapter/ExplorerArrayAdapter
+; v2 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+.line 163
+	const	v3,2130903074	; 0x7f030022
+; v3 : single-length
+	iget-object	v4,v14,com/fsharemobile/AddToShareActivity.fileList Ljava/util/List;
+; v4 : Ljava/util/List; , v14 : Lcom/fsharemobile/AddToShareActivity;
+	invoke-direct	{v2,v14,v3,v4},com/fsharemobile/adapter/ExplorerArrayAdapter/<init>	; <init>(Landroid/content/Context;ILjava/util/List;)V
+; v2 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v14 : Lcom/fsharemobile/AddToShareActivity; , v3 : single-length , v4 : Ljava/util/List;
+.line 162
+	iput-object	v2,v14,com/fsharemobile/AddToShareActivity.explorerAdapter Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+; v2 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v14 : Lcom/fsharemobile/AddToShareActivity;
+.line 164
+	iget-object	v2,v14,com/fsharemobile/AddToShareActivity.explorerAdapter Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+; v2 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v14 : Lcom/fsharemobile/AddToShareActivity;
+	invoke-virtual	{v2,v12},com/fsharemobile/adapter/ExplorerArrayAdapter/setContextMenuEnable	; setContextMenuEnable(Z)V
+; v2 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v12 : I
+.line 165
+	iget-object	v2,v14,com/fsharemobile/AddToShareActivity.lvEx Landroid/widget/ListView;
+; v2 : Landroid/widget/ListView; , v14 : Lcom/fsharemobile/AddToShareActivity;
+	iget-object	v3,v14,com/fsharemobile/AddToShareActivity.explorerAdapter Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+; v3 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v14 : Lcom/fsharemobile/AddToShareActivity;
+	invoke-virtual	{v2,v3},android/widget/ListView/setAdapter	; setAdapter(Landroid/widget/ListAdapter;)V
+; v2 : Landroid/widget/ListView; , v3 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+.line 166
+	iget-object	v2,v14,com/fsharemobile/AddToShareActivity.txtLabel Landroid/widget/TextView;
+; v2 : Landroid/widget/TextView; , v14 : Lcom/fsharemobile/AddToShareActivity;
+	const-string	v3,"Add to Fshare"
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},android/widget/TextView/setText	; setText(Ljava/lang/CharSequence;)V
+; v2 : Landroid/widget/TextView; , v3 : Ljava/lang/String;
+.line 167
+	iget-object	v2,v14,com/fsharemobile/AddToShareActivity.fclient Lcom/fsharemobile/client/FClient;
+; v2 : Lcom/fsharemobile/client/FClient; , v14 : Lcom/fsharemobile/AddToShareActivity;
+	invoke-virtual	{v2},com/fsharemobile/client/FClient/getToken	; getToken()Ljava/lang/String;
+; v2 : Lcom/fsharemobile/client/FClient;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	const-string	v3,""
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/lang/String/equals	; equals(Ljava/lang/Object;)Z
+; v2 : Ljava/lang/String; , v3 : Ljava/lang/String;
+	move-result	v2
+; v2 : single-length
+	if-nez	v2,l8eb86
+; v2 : single-length
+.line 168
+	const-string	v2,"/"
+; v2 : Ljava/lang/String;
+	invoke-direct	{v14,v13,v12,v2},com/fsharemobile/AddToShareActivity/LoadData	; LoadData(IILjava/lang/String;)V
+; v14 : Lcom/fsharemobile/AddToShareActivity; , v13 : single-length , v12 : I , v2 : Ljava/lang/String;
+l8eb1a:
+.line 173
+	iget-object	v2,v14,com/fsharemobile/AddToShareActivity.lvEx Landroid/widget/ListView;
+; v2 : Landroid/widget/ListView; , v14 : Lcom/fsharemobile/AddToShareActivity;
+	new-instance	v3,com/fsharemobile/AddToShareActivity$1
+; v3 : Lcom/fsharemobile/AddToShareActivity$1;
+	invoke-direct	{v3,v14},com/fsharemobile/AddToShareActivity$1/<init>	; <init>(Lcom/fsharemobile/AddToShareActivity;)V
+; v3 : Lcom/fsharemobile/AddToShareActivity$1; , v14 : Lcom/fsharemobile/AddToShareActivity;
+	invoke-virtual	{v2,v3},android/widget/ListView/setOnItemClickListener	; setOnItemClickListener(Landroid/widget/AdapterView$OnItemClickListener;)V
+; v2 : Landroid/widget/ListView; , v3 : Lcom/fsharemobile/AddToShareActivity$1;
+.line 202
+	iget-object	v2,v14,com/fsharemobile/AddToShareActivity.lvEx Landroid/widget/ListView;
+; v2 : Landroid/widget/ListView; , v14 : Lcom/fsharemobile/AddToShareActivity;
+	new-instance	v3,com/fsharemobile/AddToShareActivity$2
+; v3 : Lcom/fsharemobile/AddToShareActivity$2;
+	invoke-direct	{v3,v14},com/fsharemobile/AddToShareActivity$2/<init>	; <init>(Lcom/fsharemobile/AddToShareActivity;)V
+; v3 : Lcom/fsharemobile/AddToShareActivity$2; , v14 : Lcom/fsharemobile/AddToShareActivity;
+	invoke-virtual	{v2,v3},android/widget/ListView/setOnScrollListener	; setOnScrollListener(Landroid/widget/AbsListView$OnScrollListener;)V
+; v2 : Landroid/widget/ListView; , v3 : Lcom/fsharemobile/AddToShareActivity$2;
+.line 223
+	iget-object	v2,v14,com/fsharemobile/AddToShareActivity.ivBack Landroid/widget/ImageView;
+; v2 : Landroid/widget/ImageView; , v14 : Lcom/fsharemobile/AddToShareActivity;
+	invoke-virtual	{v2,v14},android/widget/ImageView/setOnClickListener	; setOnClickListener(Landroid/view/View$OnClickListener;)V
+; v2 : Landroid/widget/ImageView; , v14 : Lcom/fsharemobile/AddToShareActivity;
+.line 224
+	iget-object	v2,v14,com/fsharemobile/AddToShareActivity.layoutBack Landroid/widget/LinearLayout;
+; v2 : Landroid/widget/LinearLayout; , v14 : Lcom/fsharemobile/AddToShareActivity;
+	invoke-virtual	{v2,v14},android/widget/LinearLayout/setOnClickListener	; setOnClickListener(Landroid/view/View$OnClickListener;)V
+; v2 : Landroid/widget/LinearLayout; , v14 : Lcom/fsharemobile/AddToShareActivity;
+.line 226
+	return-void	
+l8eb58:
+.line 126
+	const-string	v2,"file"
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v10,v2},java/lang/String/equals	; equals(Ljava/lang/Object;)Z
+; v10 : Ljava/lang/String; , v2 : Ljava/lang/String;
+	move-result	v2
+; v2 : single-length
+	if-eqz	v2,l8e94c
+; v2 : single-length
+.line 127
+	invoke-virtual	{v1},android/net/Uri/getPath	; getPath()Ljava/lang/String;
+; v1 : Landroid/net/Uri;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	iput-object	v2,v14,com/fsharemobile/AddToShareActivity.fileName Ljava/lang/String;
+; v2 : Ljava/lang/String; , v14 : Lcom/fsharemobile/AddToShareActivity;
+.line 128
+	const-string	v2,"ADD_TO_SHARE_FILE_PATH"
+; v2 : Ljava/lang/String;
+	iget-object	v3,v14,com/fsharemobile/AddToShareActivity.fileName Ljava/lang/String;
+; v3 : Ljava/lang/String; , v14 : Lcom/fsharemobile/AddToShareActivity;
+	invoke-static	{v2,v3},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v2 : Ljava/lang/String; , v3 : Ljava/lang/String;
+	goto/16	l8e94c
+l8eb86:
+.line 170
+	invoke-direct	{v14},com/fsharemobile/AddToShareActivity/checkLogin	; checkLogin()V
+; v14 : Lcom/fsharemobile/AddToShareActivity;
+	goto	l8eb1a
+.end method
+
+.method protected onStart()V
+.limit registers 2
+; this: v1 (Lcom/fsharemobile/AddToShareActivity;)
+.line 474
+	invoke-super	{v1},android/app/Activity/onStart	; onStart()V
+; v1 : Lcom/fsharemobile/AddToShareActivity;
+.line 475
+	const/4	v0,1
+; v0 : single-length
+	sput-boolean	v0,com/fsharemobile/AddToShareActivity.active Z
+; v0 : Z
+.line 476
+	invoke-static	{v1},com/google/analytics/tracking/android/EasyTracker/getInstance	; getInstance(Landroid/content/Context;)Lcom/google/analytics/tracking/android/EasyTracker;
+; v1 : Lcom/fsharemobile/AddToShareActivity;
+	move-result-object	v0
+; v0 : Lcom/google/analytics/tracking/android/EasyTracker;
+	invoke-virtual	{v0,v1},com/google/analytics/tracking/android/EasyTracker/activityStart	; activityStart(Landroid/app/Activity;)V
+; v0 : Lcom/google/analytics/tracking/android/EasyTracker; , v1 : Lcom/fsharemobile/AddToShareActivity;
+.line 477
+	return-void	
+.end method
+
+.method protected onStop()V
+.limit registers 2
+; this: v1 (Lcom/fsharemobile/AddToShareActivity;)
+.line 482
+	invoke-super	{v1},android/app/Activity/onStop	; onStop()V
+; v1 : Lcom/fsharemobile/AddToShareActivity;
+.line 483
+	const/4	v0,0
+; v0 : single-length
+	sput-boolean	v0,com/fsharemobile/AddToShareActivity.active Z
+; v0 : Z
+.line 484
+	invoke-static	{v1},com/google/analytics/tracking/android/EasyTracker/getInstance	; getInstance(Landroid/content/Context;)Lcom/google/analytics/tracking/android/EasyTracker;
+; v1 : Lcom/fsharemobile/AddToShareActivity;
+	move-result-object	v0
+; v0 : Lcom/google/analytics/tracking/android/EasyTracker;
+	invoke-virtual	{v0,v1},com/google/analytics/tracking/android/EasyTracker/activityStart	; activityStart(Landroid/app/Activity;)V
+; v0 : Lcom/google/analytics/tracking/android/EasyTracker; , v1 : Lcom/fsharemobile/AddToShareActivity;
+.line 485
+	return-void	
+.end method
+
+

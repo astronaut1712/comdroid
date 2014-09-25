@@ -1,0 +1,642 @@
+.class final com/squareup/okhttp/internal/spdy/Http20Draft06$Writer
+.super java/lang/Object
+.source Http20Draft06.java
+.implements com/squareup/okhttp/internal/spdy/FrameWriter
+
+.inner class Writer inner com/squareup/okhttp/internal/spdy/Http20Draft06$Writer outer com/squareup/okhttp/internal/spdy/Http20Draft06
+.field private final client Z
+.field private final hpackBuffer Ljava/io/ByteArrayOutputStream;
+.field private final hpackWriter Lcom/squareup/okhttp/internal/spdy/Hpack$Writer;
+.field private final out Ljava/io/DataOutputStream;
+
+.method <init>(Ljava/io/OutputStream;Z)V
+.limit registers 5
+; this: v2 (Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Writer;)
+; parameter[0] : v3 (Ljava/io/OutputStream;)
+; parameter[1] : v4 (Z)
+.line 280
+	invoke-direct	{v2},java/lang/Object/<init>	; <init>()V
+; v2 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Writer;
+.line 281
+	new-instance	v0,java/io/DataOutputStream
+; v0 : Ljava/io/DataOutputStream;
+	invoke-direct	{v0,v3},java/io/DataOutputStream/<init>	; <init>(Ljava/io/OutputStream;)V
+; v0 : Ljava/io/DataOutputStream; , v3 : Ljava/io/OutputStream;
+	iput-object	v0,v2,com/squareup/okhttp/internal/spdy/Http20Draft06$Writer.out Ljava/io/DataOutputStream;
+; v0 : Ljava/io/DataOutputStream; , v2 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Writer;
+.line 282
+	iput-boolean	v4,v2,com/squareup/okhttp/internal/spdy/Http20Draft06$Writer.client Z
+; v4 : single-length , v2 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Writer;
+.line 283
+	new-instance	v0,java/io/ByteArrayOutputStream
+; v0 : Ljava/io/ByteArrayOutputStream;
+	invoke-direct	{v0},java/io/ByteArrayOutputStream/<init>	; <init>()V
+; v0 : Ljava/io/ByteArrayOutputStream;
+	iput-object	v0,v2,com/squareup/okhttp/internal/spdy/Http20Draft06$Writer.hpackBuffer Ljava/io/ByteArrayOutputStream;
+; v0 : Ljava/io/ByteArrayOutputStream; , v2 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Writer;
+.line 284
+	new-instance	v0,com/squareup/okhttp/internal/spdy/Hpack$Writer
+; v0 : Lcom/squareup/okhttp/internal/spdy/Hpack$Writer;
+	iget-object	v1,v2,com/squareup/okhttp/internal/spdy/Http20Draft06$Writer.hpackBuffer Ljava/io/ByteArrayOutputStream;
+; v1 : Ljava/io/ByteArrayOutputStream; , v2 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Writer;
+	invoke-direct	{v0,v1},com/squareup/okhttp/internal/spdy/Hpack$Writer/<init>	; <init>(Ljava/io/OutputStream;)V
+; v0 : Lcom/squareup/okhttp/internal/spdy/Hpack$Writer; , v1 : Ljava/io/ByteArrayOutputStream;
+	iput-object	v0,v2,com/squareup/okhttp/internal/spdy/Http20Draft06$Writer.hpackWriter Lcom/squareup/okhttp/internal/spdy/Hpack$Writer;
+; v0 : Lcom/squareup/okhttp/internal/spdy/Hpack$Writer; , v2 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Writer;
+.line 285
+	return-void	
+.end method
+
+.method private headers(ZIILjava/util/List;)V
+.throws Ljava/io/IOException;
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "(ZII" , "Ljava/util/List" , "<" , "Ljava/lang/String;" , ">;)V" }
+.end annotation
+.limit registers 13
+; this: v8 (Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Writer;)
+; parameter[0] : v9 (Z)
+; parameter[1] : v10 (I)
+; parameter[2] : v11 (I)
+; parameter[3] : v12 (Ljava/util/List;)
+	const	v7,2147483647	; 0x7fffffff
+; v7 : single-length
+	const/4	v6,15
+; v6 : single-length
+.line 315
+	iget-object	v3,v8,com/squareup/okhttp/internal/spdy/Http20Draft06$Writer.hpackBuffer Ljava/io/ByteArrayOutputStream;
+; v3 : Ljava/io/ByteArrayOutputStream; , v8 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Writer;
+	invoke-virtual	{v3},java/io/ByteArrayOutputStream/reset	; reset()V
+; v3 : Ljava/io/ByteArrayOutputStream;
+.line 316
+	iget-object	v3,v8,com/squareup/okhttp/internal/spdy/Http20Draft06$Writer.hpackWriter Lcom/squareup/okhttp/internal/spdy/Hpack$Writer;
+; v3 : Lcom/squareup/okhttp/internal/spdy/Hpack$Writer; , v8 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Writer;
+	invoke-virtual	{v3,v12},com/squareup/okhttp/internal/spdy/Hpack$Writer/writeHeaders	; writeHeaders(Ljava/util/List;)V
+; v3 : Lcom/squareup/okhttp/internal/spdy/Hpack$Writer; , v12 : Ljava/util/List;
+.line 317
+	const/4	v2,1
+; v2 : single-length
+.line 319
+	iget-object	v3,v8,com/squareup/okhttp/internal/spdy/Http20Draft06$Writer.hpackBuffer Ljava/io/ByteArrayOutputStream;
+; v3 : Ljava/io/ByteArrayOutputStream; , v8 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Writer;
+	invoke-virtual	{v3},java/io/ByteArrayOutputStream/size	; size()I
+; v3 : Ljava/io/ByteArrayOutputStream;
+	move-result	v1
+; v1 : single-length
+.line 320
+	const/4	v0,4
+; v0 : single-length
+.line 321
+	if-eqz	v9,lf1f40
+; v9 : single-length
+	or-int/lit8	v0,v0,1
+; v0 : single-length , v0 : single-length
+lf1f40:
+.line 322
+	if-eq	v11,v6,lf1f48
+; v11 : single-length , v6 : single-length
+	or-int/lit8	v0,v0,8
+; v0 : single-length , v0 : single-length
+lf1f48:
+.line 323
+	iget-object	v3,v8,com/squareup/okhttp/internal/spdy/Http20Draft06$Writer.out Ljava/io/DataOutputStream;
+; v3 : Ljava/io/DataOutputStream; , v8 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Writer;
+	const	v4,65535	; 0xffff
+; v4 : single-length
+	and-int/2addr	v4,v1
+; v4 : single-length , v1 : single-length
+	shl-int/lit8	v4,v4,16
+; v4 : single-length , v4 : single-length
+	or-int/lit16	v4,v4,256
+; v4 : single-length , v4 : single-length
+	and-int/lit16	v5,v0,255
+; v5 : single-length , v0 : single-length
+	or-int/2addr	v4,v5
+; v4 : single-length , v5 : single-length
+	invoke-virtual	{v3,v4},java/io/DataOutputStream/writeInt	; writeInt(I)V
+; v3 : Ljava/io/DataOutputStream; , v4 : single-length
+.line 324
+	iget-object	v3,v8,com/squareup/okhttp/internal/spdy/Http20Draft06$Writer.out Ljava/io/DataOutputStream;
+; v3 : Ljava/io/DataOutputStream; , v8 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Writer;
+	and-int	v4,v10,v7
+; v4 : single-length , v10 : single-length , v7 : single-length
+	invoke-virtual	{v3,v4},java/io/DataOutputStream/writeInt	; writeInt(I)V
+; v3 : Ljava/io/DataOutputStream; , v4 : single-length
+.line 325
+	if-eq	v11,v6,lf1f88
+; v11 : single-length , v6 : single-length
+	iget-object	v3,v8,com/squareup/okhttp/internal/spdy/Http20Draft06$Writer.out Ljava/io/DataOutputStream;
+; v3 : Ljava/io/DataOutputStream; , v8 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Writer;
+	and-int	v4,v11,v7
+; v4 : single-length , v11 : single-length , v7 : single-length
+	invoke-virtual	{v3,v4},java/io/DataOutputStream/writeInt	; writeInt(I)V
+; v3 : Ljava/io/DataOutputStream; , v4 : single-length
+lf1f88:
+.line 326
+	iget-object	v3,v8,com/squareup/okhttp/internal/spdy/Http20Draft06$Writer.hpackBuffer Ljava/io/ByteArrayOutputStream;
+; v3 : Ljava/io/ByteArrayOutputStream; , v8 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Writer;
+	iget-object	v4,v8,com/squareup/okhttp/internal/spdy/Http20Draft06$Writer.out Ljava/io/DataOutputStream;
+; v4 : Ljava/io/DataOutputStream; , v8 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Writer;
+	invoke-virtual	{v3,v4},java/io/ByteArrayOutputStream/writeTo	; writeTo(Ljava/io/OutputStream;)V
+; v3 : Ljava/io/ByteArrayOutputStream; , v4 : Ljava/io/DataOutputStream;
+.line 327
+	return-void	
+.end method
+
+.method public close()V
+.throws Ljava/io/IOException;
+.limit registers 2
+; this: v1 (Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Writer;)
+.line 382
+	iget-object	v0,v1,com/squareup/okhttp/internal/spdy/Http20Draft06$Writer.out Ljava/io/DataOutputStream;
+; v0 : Ljava/io/DataOutputStream; , v1 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Writer;
+	invoke-virtual	{v0},java/io/DataOutputStream/close	; close()V
+; v0 : Ljava/io/DataOutputStream;
+.line 383
+	return-void	
+.end method
+
+.method public synchronized connectionHeader()V
+.throws Ljava/io/IOException;
+.limit registers 3
+; this: v2 (Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Writer;)
+.catch java/lang/Exception from lf1fd2 to lf1fe4 using lf1fe6
+.catch java/lang/Exception from lf1fc6 to lf1fca using lf1fe6
+.line 292
+	monitor-enter	v2
+; v2 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Writer;
+lf1fc6:
+	iget-boolean	v0,v2,com/squareup/okhttp/internal/spdy/Http20Draft06$Writer.client Z
+; v0 : single-length , v2 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Writer;
+lf1fca:
+	if-nez	v0,lf1fd2
+; v0 : single-length
+lf1fce:
+.line 294
+	monitor-exit	v2
+; v2 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Writer;
+	return-void	
+lf1fd2:
+.line 293
+	iget-object	v0,v2,com/squareup/okhttp/internal/spdy/Http20Draft06$Writer.out Ljava/io/DataOutputStream;
+; v0 : Ljava/io/DataOutputStream; , v2 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Writer;
+	invoke-static	{},com/squareup/okhttp/internal/spdy/Http20Draft06/access$000	; access$000()[B
+; 
+	nop	
+	move-result-object	v1
+; v1 : [B
+	invoke-virtual	{v0,v1},java/io/DataOutputStream/write	; write([B)V
+; v0 : Ljava/io/DataOutputStream; , v1 : [B
+lf1fe4:
+	goto	lf1fce
+lf1fe6:
+.line 292
+	move-exception	v0
+; v0 : java/lang/Exception
+	monitor-exit	v2
+; v2 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Writer;
+	throw	v0
+; v0 : java/lang/Exception
+.end method
+
+.method public data(ZI[B)V
+.throws Ljava/io/IOException;
+.limit registers 10
+; this: v6 (Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Writer;)
+; parameter[0] : v7 (Z)
+; parameter[1] : v8 (I)
+; parameter[2] : v9 ([B)
+.line 335
+	const/4	v4,0
+; v4 : single-length
+	array-length	v5,v9
+; v5 : single-length , v9 : [B
+	move-object	v0,v6
+; v0 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Writer; , v6 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Writer;
+	move	v1,v7
+; v1 : single-length , v7 : single-length
+	move	v2,v8
+; v2 : single-length , v8 : single-length
+	move-object	v3,v9
+; v3 : [B , v9 : [B
+	invoke-virtual/range	{v0..v5},com/squareup/okhttp/internal/spdy/Http20Draft06$Writer/data;	data(ZI[BII)V
+; v0 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Writer; , v1 : single-length , v2 : single-length , v3 : [B , v4 : single-length , v5 : single-length
+.line 336
+	return-void	
+.end method
+
+.method public synchronized data(ZI[BII)V
+.throws Ljava/io/IOException;
+.limit registers 11
+; this: v5 (Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Writer;)
+; parameter[0] : v6 (Z)
+; parameter[1] : v7 (I)
+; parameter[2] : v8 ([B)
+; parameter[3] : v9 (I)
+; parameter[4] : v10 (I)
+.catch java/lang/Exception from lf2042 to lf207e using lf2082
+.line 340
+	monitor-enter	v5
+; v5 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Writer;
+	const/4	v1,0
+; v1 : single-length
+.line 341
+	const/4	v0,0
+; v0 : single-length
+.line 342
+	if-eqz	v6,lf2042
+; v6 : single-length
+	or-int/lit8	v0,v0,1
+; v0 : single-length , v0 : single-length
+lf2042:
+.line 343
+	iget-object	v2,v5,com/squareup/okhttp/internal/spdy/Http20Draft06$Writer.out Ljava/io/DataOutputStream;
+; v2 : Ljava/io/DataOutputStream; , v5 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Writer;
+	const	v3,65535	; 0xffff
+; v3 : single-length
+	and-int/2addr	v3,v10
+; v3 : single-length , v10 : single-length
+	shl-int/lit8	v3,v3,16
+; v3 : single-length , v3 : single-length
+	or-int/lit8	v3,v3,0
+; v3 : single-length , v3 : single-length
+	and-int/lit16	v4,v0,255
+; v4 : single-length , v0 : single-length
+	or-int/2addr	v3,v4
+; v3 : single-length , v4 : single-length
+	invoke-virtual	{v2,v3},java/io/DataOutputStream/writeInt	; writeInt(I)V
+; v2 : Ljava/io/DataOutputStream; , v3 : single-length
+.line 344
+	iget-object	v2,v5,com/squareup/okhttp/internal/spdy/Http20Draft06$Writer.out Ljava/io/DataOutputStream;
+; v2 : Ljava/io/DataOutputStream; , v5 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Writer;
+	const	v3,2147483647	; 0x7fffffff
+; v3 : single-length
+	and-int/2addr	v3,v7
+; v3 : single-length , v7 : single-length
+	invoke-virtual	{v2,v3},java/io/DataOutputStream/writeInt	; writeInt(I)V
+; v2 : Ljava/io/DataOutputStream; , v3 : single-length
+.line 345
+	iget-object	v2,v5,com/squareup/okhttp/internal/spdy/Http20Draft06$Writer.out Ljava/io/DataOutputStream;
+; v2 : Ljava/io/DataOutputStream; , v5 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Writer;
+	invoke-virtual	{v2,v8,v9,v10},java/io/DataOutputStream/write	; write([BII)V
+; v2 : Ljava/io/DataOutputStream; , v8 : [B , v9 : single-length , v10 : single-length
+lf207e:
+.line 346
+	monitor-exit	v5
+; v5 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Writer;
+	return-void	
+lf2082:
+.line 340
+	move-exception	v2
+; v2 : java/lang/Exception
+	monitor-exit	v5
+; v5 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Writer;
+	throw	v2
+; v2 : java/lang/Exception
+.end method
+
+.method public synchronized flush()V
+.throws Ljava/io/IOException;
+.limit registers 2
+; this: v1 (Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Writer;)
+.catch java/lang/Exception from lf20a6 to lf20b0 using lf20b4
+.line 288
+	monitor-enter	v1
+; v1 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Writer;
+lf20a6:
+	iget-object	v0,v1,com/squareup/okhttp/internal/spdy/Http20Draft06$Writer.out Ljava/io/DataOutputStream;
+; v0 : Ljava/io/DataOutputStream; , v1 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Writer;
+	invoke-virtual	{v0},java/io/DataOutputStream/flush	; flush()V
+; v0 : Ljava/io/DataOutputStream;
+lf20b0:
+.line 289
+	monitor-exit	v1
+; v1 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Writer;
+	return-void	
+lf20b4:
+.line 288
+	move-exception	v0
+; v0 : java/lang/Exception
+	monitor-exit	v1
+; v1 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Writer;
+	throw	v0
+; v0 : java/lang/Exception
+.end method
+
+.method public synchronized goAway(ILcom/squareup/okhttp/internal/spdy/ErrorCode;)V
+.throws Ljava/io/IOException;
+.limit registers 3
+; this: v0 (Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Writer;)
+; parameter[0] : v1 (I)
+; parameter[1] : v2 (Lcom/squareup/okhttp/internal/spdy/ErrorCode;)
+.line 374
+	monitor-enter	v0
+; v0 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Writer;
+	monitor-exit	v0
+; v0 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Writer;
+	return-void	
+.end method
+
+.method public synchronized headers(ILjava/util/List;)V
+.throws Ljava/io/IOException;
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "(ZII" , "Ljava/util/List" , "<" , "Ljava/lang/String;" , ">;)V" }
+.end annotation
+.limit registers 5
+; this: v2 (Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Writer;)
+; parameter[0] : v3 (I)
+; parameter[1] : v4 (Ljava/util/List;)
+.catch java/lang/Exception from lf20f6 to lf20fc using lf2100
+.line 310
+	monitor-enter	v2
+; v2 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Writer;
+	const/4	v0,0
+; v0 : single-length
+	const/4	v1,15
+; v1 : single-length
+lf20f6:
+	invoke-direct	{v2,v0,v3,v1,v4},com/squareup/okhttp/internal/spdy/Http20Draft06$Writer/headers	; headers(ZIILjava/util/List;)V
+; v2 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Writer; , v0 : single-length , v3 : single-length , v1 : single-length , v4 : Ljava/util/List;
+lf20fc:
+.line 311
+	monitor-exit	v2
+; v2 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Writer;
+	return-void	
+lf2100:
+.line 310
+	move-exception	v0
+; v0 : java/lang/Exception
+	monitor-exit	v2
+; v2 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Writer;
+	throw	v0
+; v0 : java/lang/Exception
+.end method
+
+.method public synchronized noop()V
+.throws Ljava/io/IOException;
+.limit registers 2
+; this: v1 (Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Writer;)
+.catch java/lang/Exception from lf2126 to lf2132 using lf2132
+.line 363
+	monitor-enter	v1
+; v1 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Writer;
+lf2126:
+	new-instance	v0,java/lang/UnsupportedOperationException
+; v0 : Ljava/lang/UnsupportedOperationException;
+	invoke-direct	{v0},java/lang/UnsupportedOperationException/<init>	; <init>()V
+; v0 : Ljava/lang/UnsupportedOperationException;
+	throw	v0
+; v0 : Ljava/lang/UnsupportedOperationException;
+lf2132:
+	move-exception	v0
+; v0 : java/lang/Exception
+	monitor-exit	v1
+; v1 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Writer;
+	throw	v0
+; v0 : java/lang/Exception
+.end method
+
+.method public synchronized ping(ZII)V
+.throws Ljava/io/IOException;
+.limit registers 4
+; this: v0 (Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Writer;)
+; parameter[0] : v1 (Z)
+; parameter[1] : v2 (I)
+; parameter[2] : v3 (I)
+.line 369
+	monitor-enter	v0
+; v0 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Writer;
+	monitor-exit	v0
+; v0 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Writer;
+	return-void	
+.end method
+
+.method public synchronized rstStream(ILcom/squareup/okhttp/internal/spdy/ErrorCode;)V
+.throws Ljava/io/IOException;
+.limit registers 5
+; this: v2 (Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Writer;)
+; parameter[0] : v3 (I)
+; parameter[1] : v4 (Lcom/squareup/okhttp/internal/spdy/ErrorCode;)
+.catch java/lang/Exception from lf216e to lf217e using lf217e
+.line 331
+	monitor-enter	v2
+; v2 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Writer;
+lf216e:
+	new-instance	v0,java/lang/UnsupportedOperationException
+; v0 : Ljava/lang/UnsupportedOperationException;
+	const-string	v1,"TODO"
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/UnsupportedOperationException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/UnsupportedOperationException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/UnsupportedOperationException;
+lf217e:
+	move-exception	v0
+; v0 : java/lang/Exception
+	monitor-exit	v2
+; v2 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Writer;
+	throw	v0
+; v0 : java/lang/Exception
+.end method
+
+.method public synchronized settings(Lcom/squareup/okhttp/internal/spdy/Settings;)V
+.throws Ljava/io/IOException;
+.limit registers 9
+; this: v7 (Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Writer;)
+; parameter[0] : v8 (Lcom/squareup/okhttp/internal/spdy/Settings;)
+.catch java/lang/Exception from lf21a4 to lf221e using lf2220
+.var 0 is flags I from lf21b2 to lf2220
+.var 1 is i I from lf21e0 to lf2220
+.var 2 is length I from lf21b0 to lf2220
+.var 3 is streamId I from lf21b4 to lf2220
+.line 349
+	monitor-enter	v7
+; v7 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Writer;
+	const/4	v4,4
+; v4 : single-length
+lf21a4:
+.line 350
+	invoke-virtual	{v8},com/squareup/okhttp/internal/spdy/Settings/size	; size()I
+; v8 : Lcom/squareup/okhttp/internal/spdy/Settings;
+	move-result	v5
+; v5 : single-length
+	mul-int/lit-8	v2,v5,8
+; v2 : single-length , v5 : single-length
+.line 351
+	const/4	v0,0
+; v0 : single-length
+.line 352
+	const/4	v3,0
+; v3 : single-length
+.line 353
+	iget-object	v5,v7,com/squareup/okhttp/internal/spdy/Http20Draft06$Writer.out Ljava/io/DataOutputStream;
+; v5 : Ljava/io/DataOutputStream; , v7 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Writer;
+	const	v6,65535	; 0xffff
+; v6 : single-length
+	and-int/2addr	v6,v2
+; v6 : single-length , v2 : single-length
+	shl-int/lit8	v6,v6,16
+; v6 : single-length , v6 : single-length
+	or-int/lit16	v6,v6,1024
+; v6 : single-length , v6 : single-length
+	or-int/lit8	v6,v6,0
+; v6 : single-length , v6 : single-length
+	invoke-virtual	{v5,v6},java/io/DataOutputStream/writeInt	; writeInt(I)V
+; v5 : Ljava/io/DataOutputStream; , v6 : single-length
+.line 354
+	iget-object	v5,v7,com/squareup/okhttp/internal/spdy/Http20Draft06$Writer.out Ljava/io/DataOutputStream;
+; v5 : Ljava/io/DataOutputStream; , v7 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Writer;
+	const/4	v6,0
+; v6 : single-length
+	invoke-virtual	{v5,v6},java/io/DataOutputStream/writeInt	; writeInt(I)V
+; v5 : Ljava/io/DataOutputStream; , v6 : single-length
+.line 355
+	const/4	v1,0
+; v1 : single-length
+lf21e0:
+	const/16	v5,10
+; v5 : single-length
+	if-ge	v1,v5,lf2226
+; v1 : single-length , v5 : single-length
+.line 356
+	invoke-virtual	{v8,v1},com/squareup/okhttp/internal/spdy/Settings/isSet	; isSet(I)Z
+; v8 : Lcom/squareup/okhttp/internal/spdy/Settings; , v1 : single-length
+	move-result	v5
+; v5 : single-length
+	if-nez	v5,lf21fa
+; v5 : single-length
+lf21f4:
+.line 355
+	add-int/lit8	v1,v1,1
+; v1 : single-length , v1 : single-length
+	goto	lf21e0
+lf21fa:
+.line 357
+	iget-object	v5,v7,com/squareup/okhttp/internal/spdy/Http20Draft06$Writer.out Ljava/io/DataOutputStream;
+; v5 : Ljava/io/DataOutputStream; , v7 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Writer;
+	const	v6,16777215	; 0xffffff
+; v6 : single-length
+	and-int/2addr	v6,v1
+; v6 : single-length , v1 : single-length
+	invoke-virtual	{v5,v6},java/io/DataOutputStream/writeInt	; writeInt(I)V
+; v5 : Ljava/io/DataOutputStream; , v6 : single-length
+.line 358
+	iget-object	v5,v7,com/squareup/okhttp/internal/spdy/Http20Draft06$Writer.out Ljava/io/DataOutputStream;
+; v5 : Ljava/io/DataOutputStream; , v7 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Writer;
+	invoke-virtual	{v8,v1},com/squareup/okhttp/internal/spdy/Settings/get	; get(I)I
+; v8 : Lcom/squareup/okhttp/internal/spdy/Settings; , v1 : single-length
+	move-result	v6
+; v6 : single-length
+	invoke-virtual	{v5,v6},java/io/DataOutputStream/writeInt	; writeInt(I)V
+; v5 : Ljava/io/DataOutputStream; , v6 : single-length
+lf221e:
+	goto	lf21f4
+lf2220:
+.line 349
+	move-exception	v5
+; v5 : java/lang/Exception
+	monitor-exit	v7
+; v7 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Writer;
+	throw	v5
+; v5 : java/lang/Exception
+lf2226:
+.line 360
+	monitor-exit	v7
+; v7 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Writer;
+	return-void	
+.end method
+
+.method public synchronized synReply(ZILjava/util/List;)V
+.throws Ljava/io/IOException;
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "(ZI" , "Ljava/util/List" , "<" , "Ljava/lang/String;" , ">;)V" }
+.end annotation
+.limit registers 5
+; this: v1 (Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Writer;)
+; parameter[0] : v2 (Z)
+; parameter[1] : v3 (I)
+; parameter[2] : v4 (Ljava/util/List;)
+.catch java/lang/Exception from lf224c to lf2252 using lf2256
+.line 305
+	monitor-enter	v1
+; v1 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Writer;
+	const/4	v0,15
+; v0 : single-length
+lf224c:
+	invoke-direct	{v1,v2,v3,v0,v4},com/squareup/okhttp/internal/spdy/Http20Draft06$Writer/headers	; headers(ZIILjava/util/List;)V
+; v1 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Writer; , v2 : single-length , v3 : single-length , v0 : single-length , v4 : Ljava/util/List;
+lf2252:
+.line 306
+	monitor-exit	v1
+; v1 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Writer;
+	return-void	
+lf2256:
+.line 305
+	move-exception	v0
+; v0 : java/lang/Exception
+	monitor-exit	v1
+; v1 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Writer;
+	throw	v0
+; v0 : java/lang/Exception
+.end method
+
+.method public synchronized synStream(ZZIIIILjava/util/List;)V
+.throws Ljava/io/IOException;
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "(ZZIIII" , "Ljava/util/List" , "<" , "Ljava/lang/String;" , ">;)V" }
+.end annotation
+.limit registers 9
+; this: v1 (Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Writer;)
+; parameter[0] : v2 (Z)
+; parameter[1] : v3 (Z)
+; parameter[2] : v4 (I)
+; parameter[3] : v5 (I)
+; parameter[4] : v6 (I)
+; parameter[5] : v7 (I)
+; parameter[6] : v8 (Ljava/util/List;)
+.catch java/lang/Exception from lf2290 to lf2296 using lf228a
+.catch java/lang/Exception from lf227e to lf228a using lf228a
+.line 299
+	monitor-enter	v1
+; v1 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Writer;
+	if-eqz	v3,lf2290
+; v3 : single-length
+lf227e:
+	new-instance	v0,java/lang/UnsupportedOperationException
+; v0 : Ljava/lang/UnsupportedOperationException;
+	invoke-direct	{v0},java/lang/UnsupportedOperationException/<init>	; <init>()V
+; v0 : Ljava/lang/UnsupportedOperationException;
+	throw	v0
+; v0 : Ljava/lang/UnsupportedOperationException;
+lf228a:
+	move-exception	v0
+; v0 : java/lang/Exception
+	monitor-exit	v1
+; v1 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Writer;
+	throw	v0
+; v0 : java/lang/Exception
+lf2290:
+.line 300
+	invoke-direct	{v1,v2,v4,v6,v8},com/squareup/okhttp/internal/spdy/Http20Draft06$Writer/headers	; headers(ZIILjava/util/List;)V
+; v1 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Writer; , v2 : single-length , v4 : single-length , v6 : single-length , v8 : Ljava/util/List;
+lf2296:
+.line 301
+	monitor-exit	v1
+; v1 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Writer;
+	return-void	
+.end method
+
+.method public synchronized windowUpdate(II)V
+.throws Ljava/io/IOException;
+.limit registers 3
+; this: v0 (Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Writer;)
+; parameter[0] : v1 (I)
+; parameter[1] : v2 (I)
+.line 379
+	monitor-enter	v0
+; v0 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Writer;
+	monitor-exit	v0
+; v0 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Writer;
+	return-void	
+.end method
+
+

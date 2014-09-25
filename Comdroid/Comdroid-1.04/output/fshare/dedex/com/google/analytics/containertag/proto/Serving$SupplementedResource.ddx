@@ -1,0 +1,712 @@
+.class public final com/google/analytics/containertag/proto/Serving$SupplementedResource
+.super com/google/tagmanager/protobuf/nano/ExtendableMessageNano
+.source Serving.java
+
+.inner class SupplementedResource inner com/google/analytics/containertag/proto/Serving$SupplementedResource outer com/google/analytics/containertag/proto/Serving
+.field public static final EMPTY_ARRAY [Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+.field public fingerprint Ljava/lang/String;
+.field public resource Lcom/google/analytics/containertag/proto/Serving$Resource;
+.field public supplemental [Lcom/google/analytics/containertag/proto/Serving$Supplemental;
+
+.method static <clinit>()V
+.limit registers 1
+.line 2408
+	const/4	v0,0
+; v0 : single-length
+	new-array	v0,v0,[Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+; v0 : [Lcom/google/analytics/containertag/proto/Serving$SupplementedResource; , v0 : [Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+	sput-object	v0,com/google/analytics/containertag/proto/Serving$SupplementedResource.EMPTY_ARRAY [Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+; v0 : [Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+	return-void	
+.end method
+
+.method public <init>()V
+.limit registers 2
+; this: v1 (Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;)
+.line 2409
+	invoke-direct	{v1},com/google/tagmanager/protobuf/nano/ExtendableMessageNano/<init>	; <init>()V
+; v1 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+.line 2412
+	sget-object	v0,com/google/analytics/containertag/proto/Serving$Supplemental.EMPTY_ARRAY [Lcom/google/analytics/containertag/proto/Serving$Supplemental;
+; v0 : [Lcom/google/analytics/containertag/proto/Serving$Supplemental;
+	iput-object	v0,v1,com/google/analytics/containertag/proto/Serving$SupplementedResource.supplemental [Lcom/google/analytics/containertag/proto/Serving$Supplemental;
+; v0 : [Lcom/google/analytics/containertag/proto/Serving$Supplemental; , v1 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+.line 2415
+	const/4	v0,0
+; v0 : single-length
+	iput-object	v0,v1,com/google/analytics/containertag/proto/Serving$SupplementedResource.resource Lcom/google/analytics/containertag/proto/Serving$Resource;
+; v0 : single-length , v1 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+.line 2418
+	const-string	v0,""
+; v0 : Ljava/lang/String;
+	iput-object	v0,v1,com/google/analytics/containertag/proto/Serving$SupplementedResource.fingerprint Ljava/lang/String;
+; v0 : Ljava/lang/String; , v1 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+.line 2409
+	return-void	
+.end method
+
+.method public static parseFrom(Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+.throws Lcom/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException;
+.limit registers 2
+; parameter[0] : v1 (Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)
+.line 2552
+	new-instance	v0,com/google/analytics/containertag/proto/Serving$SupplementedResource
+; v0 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+	invoke-direct	{v0},com/google/analytics/containertag/proto/Serving$SupplementedResource/<init>	; <init>()V
+; v0 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+	invoke-virtual	{v0,v1},com/google/analytics/containertag/proto/Serving$SupplementedResource/mergeFrom	; mergeFrom(Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+; v0 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource; , v1 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result-object	v0
+; v0 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+	return-object	v0
+; v0 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+.end method
+
+.method public static parseFrom([B)Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+.throws Lcom/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException;
+.limit registers 2
+; parameter[0] : v1 ([B)
+.line 2546
+	new-instance	v0,com/google/analytics/containertag/proto/Serving$SupplementedResource
+; v0 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+	invoke-direct	{v0},com/google/analytics/containertag/proto/Serving$SupplementedResource/<init>	; <init>()V
+; v0 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+	invoke-static	{v0,v1},com/google/tagmanager/protobuf/nano/MessageNano/mergeFrom	; mergeFrom(Lcom/google/tagmanager/protobuf/nano/MessageNano;[B)Lcom/google/tagmanager/protobuf/nano/MessageNano;
+; v0 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource; , v1 : [B
+	move-result-object	v0
+; v0 : Lcom/google/tagmanager/protobuf/nano/MessageNano;
+	check-cast	v0,com/google/analytics/containertag/proto/Serving$SupplementedResource
+; v0 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+	return-object	v0
+; v0 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+.end method
+
+.method public final clear()Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+.limit registers 3
+; this: v2 (Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;)
+	const/4	v1,0
+; v1 : single-length
+.line 2421
+	sget-object	v0,com/google/analytics/containertag/proto/Serving$Supplemental.EMPTY_ARRAY [Lcom/google/analytics/containertag/proto/Serving$Supplemental;
+; v0 : [Lcom/google/analytics/containertag/proto/Serving$Supplemental;
+	iput-object	v0,v2,com/google/analytics/containertag/proto/Serving$SupplementedResource.supplemental [Lcom/google/analytics/containertag/proto/Serving$Supplemental;
+; v0 : [Lcom/google/analytics/containertag/proto/Serving$Supplemental; , v2 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+.line 2422
+	iput-object	v1,v2,com/google/analytics/containertag/proto/Serving$SupplementedResource.resource Lcom/google/analytics/containertag/proto/Serving$Resource;
+; v1 : single-length , v2 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+.line 2423
+	const-string	v0,""
+; v0 : Ljava/lang/String;
+	iput-object	v0,v2,com/google/analytics/containertag/proto/Serving$SupplementedResource.fingerprint Ljava/lang/String;
+; v0 : Ljava/lang/String; , v2 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+.line 2424
+	iput-object	v1,v2,com/google/analytics/containertag/proto/Serving$SupplementedResource.unknownFieldData Ljava/util/List;
+; v1 : single-length , v2 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+.line 2425
+	const/4	v0,15
+; v0 : single-length
+	iput	v0,v2,com/google/analytics/containertag/proto/Serving$SupplementedResource.cachedSize I
+; v0 : single-length , v2 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+.line 2426
+	return-object	v2
+; v2 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+.end method
+
+.method public final equals(Ljava/lang/Object;)Z
+.limit registers 7
+; this: v5 (Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;)
+; parameter[0] : v6 (Ljava/lang/Object;)
+	const/4	v1,1
+; v1 : single-length
+	const/4	v2,0
+; v2 : single-length
+.line 2431
+	if-ne	v6,v5,lfe456
+; v6 : Ljava/lang/Object; , v5 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+lfe454:
+.line 2434
+	return	v1
+; v1 : single-length
+lfe456:
+.line 2432
+	instance-of	v3,v6,com/google/analytics/containertag/proto/Serving$SupplementedResource
+; v3 : single-length , v6 : Ljava/lang/Object;
+	if-nez	v3,lfe462
+; v3 : single-length
+	move	v1,v2
+; v1 : single-length , v2 : single-length
+	goto	lfe454
+lfe462:
+	move-object	v0,v6
+; v0 : Ljava/lang/Object; , v6 : Ljava/lang/Object;
+.line 2433
+	check-cast	v0,com/google/analytics/containertag/proto/Serving$SupplementedResource
+; v0 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+.line 2434
+	iget-object	v3,v5,com/google/analytics/containertag/proto/Serving$SupplementedResource.supplemental [Lcom/google/analytics/containertag/proto/Serving$Supplemental;
+; v3 : [Lcom/google/analytics/containertag/proto/Serving$Supplemental; , v5 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+	iget-object	v4,v0,com/google/analytics/containertag/proto/Serving$SupplementedResource.supplemental [Lcom/google/analytics/containertag/proto/Serving$Supplemental;
+; v4 : [Lcom/google/analytics/containertag/proto/Serving$Supplemental; , v0 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+	invoke-static	{v3,v4},java/util/Arrays/equals	; equals([Ljava/lang/Object;[Ljava/lang/Object;)Z
+; v3 : [Lcom/google/analytics/containertag/proto/Serving$Supplemental; , v4 : [Lcom/google/analytics/containertag/proto/Serving$Supplemental;
+	move-result	v3
+; v3 : single-length
+	if-eqz	v3,lfe4ac
+; v3 : single-length
+	iget-object	v3,v5,com/google/analytics/containertag/proto/Serving$SupplementedResource.resource Lcom/google/analytics/containertag/proto/Serving$Resource;
+; v3 : Lcom/google/analytics/containertag/proto/Serving$Resource; , v5 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+	if-nez	v3,lfe4b0
+; v3 : Lcom/google/analytics/containertag/proto/Serving$Resource;
+	iget-object	v3,v0,com/google/analytics/containertag/proto/Serving$SupplementedResource.resource Lcom/google/analytics/containertag/proto/Serving$Resource;
+; v3 : Lcom/google/analytics/containertag/proto/Serving$Resource; , v0 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+	if-nez	v3,lfe4ac
+; v3 : Lcom/google/analytics/containertag/proto/Serving$Resource;
+lfe48c:
+	iget-object	v3,v5,com/google/analytics/containertag/proto/Serving$SupplementedResource.fingerprint Ljava/lang/String;
+; v3 : Ljava/lang/String; , v5 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+	if-nez	v3,lfe4c6
+; v3 : Ljava/lang/String;
+	iget-object	v3,v0,com/google/analytics/containertag/proto/Serving$SupplementedResource.fingerprint Ljava/lang/String;
+; v3 : Ljava/lang/String; , v0 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+	if-nez	v3,lfe4ac
+; v3 : Ljava/lang/String;
+lfe49c:
+	iget-object	v3,v5,com/google/analytics/containertag/proto/Serving$SupplementedResource.unknownFieldData Ljava/util/List;
+; v3 : Ljava/util/List; , v5 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+	if-nez	v3,lfe4dc
+; v3 : Ljava/util/List;
+	iget-object	v3,v0,com/google/analytics/containertag/proto/Serving$SupplementedResource.unknownFieldData Ljava/util/List;
+; v3 : Ljava/util/List; , v0 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+	if-eqz	v3,lfe454
+; v3 : Ljava/util/List;
+lfe4ac:
+	move	v1,v2
+; v1 : single-length , v2 : single-length
+	goto	lfe454
+lfe4b0:
+	iget-object	v3,v5,com/google/analytics/containertag/proto/Serving$SupplementedResource.resource Lcom/google/analytics/containertag/proto/Serving$Resource;
+; v3 : Lcom/google/analytics/containertag/proto/Serving$Resource; , v5 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+	iget-object	v4,v0,com/google/analytics/containertag/proto/Serving$SupplementedResource.resource Lcom/google/analytics/containertag/proto/Serving$Resource;
+; v4 : Lcom/google/analytics/containertag/proto/Serving$Resource; , v0 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+	invoke-virtual	{v3,v4},com/google/analytics/containertag/proto/Serving$Resource/equals	; equals(Ljava/lang/Object;)Z
+; v3 : Lcom/google/analytics/containertag/proto/Serving$Resource; , v4 : Lcom/google/analytics/containertag/proto/Serving$Resource;
+	move-result	v3
+; v3 : single-length
+	if-eqz	v3,lfe4ac
+; v3 : single-length
+	goto	lfe48c
+lfe4c6:
+	iget-object	v3,v5,com/google/analytics/containertag/proto/Serving$SupplementedResource.fingerprint Ljava/lang/String;
+; v3 : Ljava/lang/String; , v5 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+	iget-object	v4,v0,com/google/analytics/containertag/proto/Serving$SupplementedResource.fingerprint Ljava/lang/String;
+; v4 : Ljava/lang/String; , v0 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+	invoke-virtual	{v3,v4},java/lang/String/equals	; equals(Ljava/lang/Object;)Z
+; v3 : Ljava/lang/String; , v4 : Ljava/lang/String;
+	move-result	v3
+; v3 : single-length
+	if-eqz	v3,lfe4ac
+; v3 : single-length
+	goto	lfe49c
+lfe4dc:
+	iget-object	v3,v5,com/google/analytics/containertag/proto/Serving$SupplementedResource.unknownFieldData Ljava/util/List;
+; v3 : Ljava/util/List; , v5 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+	iget-object	v4,v0,com/google/analytics/containertag/proto/Serving$SupplementedResource.unknownFieldData Ljava/util/List;
+; v4 : Ljava/util/List; , v0 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+	invoke-interface	{v3,v4},java/util/List/equals	; equals(Ljava/lang/Object;)Z
+; v3 : Ljava/util/List; , v4 : Ljava/util/List;
+	move-result	v3
+; v3 : single-length
+	if-eqz	v3,lfe4ac
+; v3 : single-length
+	goto	lfe454
+.end method
+
+.method public getSerializedSize()I
+.limit registers 8
+; this: v7 (Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;)
+.var 0 is arr$ [Lcom/google/analytics/containertag/proto/Serving$Supplemental; from lfe512 to lfe530
+.var 1 is element Lcom/google/analytics/containertag/proto/Serving$Supplemental; from lfe51e to lfe530
+.var 2 is i$ I from lfe516 to lfe530
+.var 3 is len$ I from lfe514 to lfe530
+.line 2473
+	const/4	v4,0
+; v4 : single-length
+.line 2474
+	iget-object	v5,v7,com/google/analytics/containertag/proto/Serving$SupplementedResource.supplemental [Lcom/google/analytics/containertag/proto/Serving$Supplemental;
+; v5 : [Lcom/google/analytics/containertag/proto/Serving$Supplemental; , v7 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+	if-eqz	v5,lfe530
+; v5 : [Lcom/google/analytics/containertag/proto/Serving$Supplemental;
+.line 2475
+	iget-object	v0,v7,com/google/analytics/containertag/proto/Serving$SupplementedResource.supplemental [Lcom/google/analytics/containertag/proto/Serving$Supplemental;
+; v0 : [Lcom/google/analytics/containertag/proto/Serving$Supplemental; , v7 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+lfe512:
+	array-length	v3,v0
+; v3 : single-length , v0 : [Lcom/google/analytics/containertag/proto/Serving$Supplemental;
+lfe514:
+	const/4	v2,0
+; v2 : single-length
+lfe516:
+	if-ge	v2,v3,lfe530
+; v2 : single-length , v3 : single-length
+	aget-object	v1,v0,v2
+; v1 : Lcom/google/analytics/containertag/proto/Serving$Supplemental; , v0 : [Lcom/google/analytics/containertag/proto/Serving$Supplemental; , v2 : single-length
+.line 2476
+	const/4	v5,1
+; v5 : single-length
+	invoke-static	{v5,v1},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/computeMessageSize	; computeMessageSize(ILcom/google/tagmanager/protobuf/nano/MessageNano;)I
+; v5 : single-length , v1 : Lcom/google/analytics/containertag/proto/Serving$Supplemental;
+	move-result	v5
+; v5 : single-length
+	add-int/2addr	v4,v5
+; v4 : single-length , v5 : single-length
+.line 2475
+	add-int/lit8	v2,v2,1
+; v2 : single-length , v2 : single-length
+	goto	lfe516
+lfe530:
+.line 2480
+	iget-object	v5,v7,com/google/analytics/containertag/proto/Serving$SupplementedResource.resource Lcom/google/analytics/containertag/proto/Serving$Resource;
+; v5 : Lcom/google/analytics/containertag/proto/Serving$Resource; , v7 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+	if-eqz	v5,lfe548
+; v5 : Lcom/google/analytics/containertag/proto/Serving$Resource;
+.line 2481
+	const/4	v5,2
+; v5 : single-length
+	iget-object	v6,v7,com/google/analytics/containertag/proto/Serving$SupplementedResource.resource Lcom/google/analytics/containertag/proto/Serving$Resource;
+; v6 : Lcom/google/analytics/containertag/proto/Serving$Resource; , v7 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+	invoke-static	{v5,v6},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/computeMessageSize	; computeMessageSize(ILcom/google/tagmanager/protobuf/nano/MessageNano;)I
+; v5 : single-length , v6 : Lcom/google/analytics/containertag/proto/Serving$Resource;
+	move-result	v5
+; v5 : single-length
+	add-int/2addr	v4,v5
+; v4 : single-length , v5 : single-length
+lfe548:
+.line 2484
+	iget-object	v5,v7,com/google/analytics/containertag/proto/Serving$SupplementedResource.fingerprint Ljava/lang/String;
+; v5 : Ljava/lang/String; , v7 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+	const-string	v6,""
+; v6 : Ljava/lang/String;
+	invoke-virtual	{v5,v6},java/lang/String/equals	; equals(Ljava/lang/Object;)Z
+; v5 : Ljava/lang/String; , v6 : Ljava/lang/String;
+	move-result	v5
+; v5 : single-length
+	if-nez	v5,lfe56c
+; v5 : single-length
+.line 2485
+	const/4	v5,3
+; v5 : single-length
+	iget-object	v6,v7,com/google/analytics/containertag/proto/Serving$SupplementedResource.fingerprint Ljava/lang/String;
+; v6 : Ljava/lang/String; , v7 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+	invoke-static	{v5,v6},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/computeStringSize	; computeStringSize(ILjava/lang/String;)I
+; v5 : single-length , v6 : Ljava/lang/String;
+	move-result	v5
+; v5 : single-length
+	add-int/2addr	v4,v5
+; v4 : single-length , v5 : single-length
+lfe56c:
+.line 2488
+	iget-object	v5,v7,com/google/analytics/containertag/proto/Serving$SupplementedResource.unknownFieldData Ljava/util/List;
+; v5 : Ljava/util/List; , v7 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+	invoke-static	{v5},com/google/tagmanager/protobuf/nano/WireFormatNano/computeWireSize	; computeWireSize(Ljava/util/List;)I
+; v5 : Ljava/util/List;
+	move-result	v5
+; v5 : single-length
+	add-int/2addr	v4,v5
+; v4 : single-length , v5 : single-length
+.line 2489
+	iput	v4,v7,com/google/analytics/containertag/proto/Serving$SupplementedResource.cachedSize I
+; v4 : single-length , v7 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+.line 2490
+	return	v4
+; v4 : single-length
+.end method
+
+.method public hashCode()I
+.limit registers 6
+; this: v5 (Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;)
+.var 0 is i I from lfe5da to lfe612
+	const/4	v3,0
+; v3 : single-length
+.line 2441
+	const/16	v1,17
+; v1 : single-length
+.line 2442
+	iget-object	v2,v5,com/google/analytics/containertag/proto/Serving$SupplementedResource.supplemental [Lcom/google/analytics/containertag/proto/Serving$Supplemental;
+; v2 : [Lcom/google/analytics/containertag/proto/Serving$Supplemental; , v5 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+	if-nez	v2,lfe5d8
+; v2 : [Lcom/google/analytics/containertag/proto/Serving$Supplemental;
+	mul-int/lit-8	v1,v1,31
+; v1 : single-length , v1 : single-length
+lfe5a2:
+.line 2448
+	mul-int/lit-8	v4,v1,31
+; v4 : single-length , v1 : single-length
+	iget-object	v2,v5,com/google/analytics/containertag/proto/Serving$SupplementedResource.resource Lcom/google/analytics/containertag/proto/Serving$Resource;
+; v2 : Lcom/google/analytics/containertag/proto/Serving$Resource; , v5 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+	if-nez	v2,lfe612
+; v2 : Lcom/google/analytics/containertag/proto/Serving$Resource;
+	move	v2,v3
+; v2 : single-length , v3 : single-length
+lfe5b0:
+	add-int	v1,v4,v2
+; v1 : single-length , v4 : single-length , v2 : single-length
+.line 2449
+	mul-int/lit-8	v4,v1,31
+; v4 : single-length , v1 : single-length
+	iget-object	v2,v5,com/google/analytics/containertag/proto/Serving$SupplementedResource.fingerprint Ljava/lang/String;
+; v2 : Ljava/lang/String; , v5 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+	if-nez	v2,lfe620
+; v2 : Ljava/lang/String;
+	move	v2,v3
+; v2 : single-length , v3 : single-length
+lfe5c2:
+	add-int	v1,v4,v2
+; v1 : single-length , v4 : single-length , v2 : single-length
+.line 2450
+	mul-int/lit-8	v2,v1,31
+; v2 : single-length , v1 : single-length
+	iget-object	v4,v5,com/google/analytics/containertag/proto/Serving$SupplementedResource.unknownFieldData Ljava/util/List;
+; v4 : Ljava/util/List; , v5 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+	if-nez	v4,lfe62e
+; v4 : Ljava/util/List;
+lfe5d2:
+	add-int	v1,v2,v3
+; v1 : single-length , v2 : single-length , v3 : single-length
+.line 2451
+	return	v1
+; v1 : single-length
+lfe5d8:
+.line 2444
+	const/4	v0,0
+; v0 : single-length
+lfe5da:
+	iget-object	v2,v5,com/google/analytics/containertag/proto/Serving$SupplementedResource.supplemental [Lcom/google/analytics/containertag/proto/Serving$Supplemental;
+; v2 : [Lcom/google/analytics/containertag/proto/Serving$Supplemental; , v5 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+	array-length	v2,v2
+; v2 : single-length , v2 : single-length
+	if-ge	v0,v2,lfe5a2
+; v0 : single-length , v2 : single-length
+.line 2445
+	mul-int/lit-8	v4,v1,31
+; v4 : single-length , v1 : single-length
+	iget-object	v2,v5,com/google/analytics/containertag/proto/Serving$SupplementedResource.supplemental [Lcom/google/analytics/containertag/proto/Serving$Supplemental;
+; v2 : [Lcom/google/analytics/containertag/proto/Serving$Supplemental; , v5 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+	aget-object	v2,v2,v0
+; v2 : Lcom/google/analytics/containertag/proto/Serving$Supplemental; , v2 : Lcom/google/analytics/containertag/proto/Serving$Supplemental; , v0 : single-length
+	if-nez	v2,lfe600
+; v2 : Lcom/google/analytics/containertag/proto/Serving$Supplemental;
+	move	v2,v3
+; v2 : single-length , v3 : single-length
+lfe5f6:
+	add-int	v1,v4,v2
+; v1 : single-length , v4 : single-length , v2 : single-length
+.line 2444
+	add-int/lit8	v0,v0,1
+; v0 : single-length , v0 : single-length
+	goto	lfe5da
+lfe600:
+.line 2445
+	iget-object	v2,v5,com/google/analytics/containertag/proto/Serving$SupplementedResource.supplemental [Lcom/google/analytics/containertag/proto/Serving$Supplemental;
+; v2 : [Lcom/google/analytics/containertag/proto/Serving$Supplemental; , v5 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+	aget-object	v2,v2,v0
+; v2 : Lcom/google/analytics/containertag/proto/Serving$Supplemental; , v2 : Lcom/google/analytics/containertag/proto/Serving$Supplemental; , v0 : single-length
+	invoke-virtual	{v2},com/google/analytics/containertag/proto/Serving$Supplemental/hashCode	; hashCode()I
+; v2 : Lcom/google/analytics/containertag/proto/Serving$Supplemental;
+	move-result	v2
+; v2 : single-length
+	goto	lfe5f6
+lfe612:
+.line 2448
+	iget-object	v2,v5,com/google/analytics/containertag/proto/Serving$SupplementedResource.resource Lcom/google/analytics/containertag/proto/Serving$Resource;
+; v2 : Lcom/google/analytics/containertag/proto/Serving$Resource; , v5 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+	invoke-virtual	{v2},com/google/analytics/containertag/proto/Serving$Resource/hashCode	; hashCode()I
+; v2 : Lcom/google/analytics/containertag/proto/Serving$Resource;
+	move-result	v2
+; v2 : single-length
+	goto	lfe5b0
+lfe620:
+.line 2449
+	iget-object	v2,v5,com/google/analytics/containertag/proto/Serving$SupplementedResource.fingerprint Ljava/lang/String;
+; v2 : Ljava/lang/String; , v5 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+	invoke-virtual	{v2},java/lang/String/hashCode	; hashCode()I
+; v2 : Ljava/lang/String;
+	move-result	v2
+; v2 : single-length
+	goto	lfe5c2
+lfe62e:
+.line 2450
+	iget-object	v3,v5,com/google/analytics/containertag/proto/Serving$SupplementedResource.unknownFieldData Ljava/util/List;
+; v3 : Ljava/util/List; , v5 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+	invoke-interface	{v3},java/util/List/hashCode	; hashCode()I
+; v3 : Ljava/util/List;
+	move-result	v3
+; v3 : single-length
+	goto	lfe5d2
+.end method
+
+.method public mergeFrom(Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+.throws Ljava/io/IOException;
+.limit registers 9
+; this: v7 (Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;)
+; parameter[0] : v8 (Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)
+.var 1 is i I from lfe69a to lfe6f2
+.var 2 is newArray [Lcom/google/analytics/containertag/proto/Serving$Supplemental; from lfe6a2 to lfe6f2
+.var 0 is arrayLength I from lfe690 to lfe71c
+.var 1 is i I from lfe6fa to lfe71c
+.var 2 is newArray [Lcom/google/analytics/containertag/proto/Serving$Supplemental; from lfe6fa to lfe71c
+	const/4	v4,0
+; v4 : single-length
+lfe64e:
+.line 2498
+	invoke-virtual	{v8},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readTag	; readTag()I
+; v8 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result	v3
+; v3 : single-length
+.line 2499
+	sparse-switch	v3
+		0 : spfe656_fe682
+		10 : spfe656_fe684
+		18 : spfe656_fe71c
+		26 : spfe656_fe736
+		default: spfe656_default
+; v3 : single-length
+spfe656_default:
+.line 2503
+	iget-object	v5,v7,com/google/analytics/containertag/proto/Serving$SupplementedResource.unknownFieldData Ljava/util/List;
+; v5 : Ljava/util/List; , v7 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+	if-nez	v5,lfe672
+; v5 : Ljava/util/List;
+.line 2504
+	new-instance	v5,java/util/ArrayList
+; v5 : Ljava/util/ArrayList;
+	invoke-direct	{v5},java/util/ArrayList/<init>	; <init>()V
+; v5 : Ljava/util/ArrayList;
+	iput-object	v5,v7,com/google/analytics/containertag/proto/Serving$SupplementedResource.unknownFieldData Ljava/util/List;
+; v5 : Ljava/util/ArrayList; , v7 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+lfe672:
+.line 2507
+	iget-object	v5,v7,com/google/analytics/containertag/proto/Serving$SupplementedResource.unknownFieldData Ljava/util/List;
+; v5 : Ljava/util/List; , v7 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+	invoke-static	{v5,v8,v3},com/google/tagmanager/protobuf/nano/WireFormatNano/storeUnknownField	; storeUnknownField(Ljava/util/List;Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;I)Z
+; v5 : Ljava/util/List; , v8 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano; , v3 : single-length
+	move-result	v5
+; v5 : single-length
+	if-nez	v5,lfe64e
+; v5 : single-length
+spfe656_fe682:
+.line 2509
+	return-object	v7
+; v7 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+spfe656_fe684:
+.line 2514
+	const/16	v5,10
+; v5 : single-length
+	invoke-static	{v8,v5},com/google/tagmanager/protobuf/nano/WireFormatNano/getRepeatedFieldArrayLength	; getRepeatedFieldArrayLength(Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;I)I
+; v8 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano; , v5 : single-length
+	move-result	v0
+; v0 : single-length
+.line 2515
+	iget-object	v5,v7,com/google/analytics/containertag/proto/Serving$SupplementedResource.supplemental [Lcom/google/analytics/containertag/proto/Serving$Supplemental;
+; v5 : [Lcom/google/analytics/containertag/proto/Serving$Supplemental; , v7 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+	if-nez	v5,lfe6f2
+; v5 : [Lcom/google/analytics/containertag/proto/Serving$Supplemental;
+	move	v1,v4
+; v1 : single-length , v4 : single-length
+lfe69a:
+.line 2516
+	add-int	v5,v1,v0
+; v5 : single-length , v1 : single-length , v0 : single-length
+	new-array	v2,v5,[Lcom/google/analytics/containertag/proto/Serving$Supplemental;
+; v2 : [Lcom/google/analytics/containertag/proto/Serving$Supplemental; , v5 : single-length
+.line 2517
+	iget-object	v5,v7,com/google/analytics/containertag/proto/Serving$SupplementedResource.supplemental [Lcom/google/analytics/containertag/proto/Serving$Supplemental;
+; v5 : [Lcom/google/analytics/containertag/proto/Serving$Supplemental; , v7 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+	if-eqz	v5,lfe6b4
+; v5 : [Lcom/google/analytics/containertag/proto/Serving$Supplemental;
+.line 2518
+	iget-object	v5,v7,com/google/analytics/containertag/proto/Serving$SupplementedResource.supplemental [Lcom/google/analytics/containertag/proto/Serving$Supplemental;
+; v5 : [Lcom/google/analytics/containertag/proto/Serving$Supplemental; , v7 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+	invoke-static	{v5,v4,v2,v4,v1},java/lang/System/arraycopy	; arraycopy(Ljava/lang/Object;ILjava/lang/Object;II)V
+; v5 : [Lcom/google/analytics/containertag/proto/Serving$Supplemental; , v4 : single-length , v2 : [Lcom/google/analytics/containertag/proto/Serving$Supplemental; , v4 : single-length , v1 : single-length
+lfe6b4:
+.line 2520
+	iput-object	v2,v7,com/google/analytics/containertag/proto/Serving$SupplementedResource.supplemental [Lcom/google/analytics/containertag/proto/Serving$Supplemental;
+; v2 : [Lcom/google/analytics/containertag/proto/Serving$Supplemental; , v7 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+lfe6b8:
+.line 2521
+	iget-object	v5,v7,com/google/analytics/containertag/proto/Serving$SupplementedResource.supplemental [Lcom/google/analytics/containertag/proto/Serving$Supplemental;
+; v5 : [Lcom/google/analytics/containertag/proto/Serving$Supplemental; , v7 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+	array-length	v5,v5
+; v5 : single-length , v5 : single-length
+	add-int/lit8	v5,v5,255
+; v5 : single-length , v5 : single-length
+	if-ge	v1,v5,lfe6fa
+; v1 : single-length , v5 : single-length
+.line 2522
+	iget-object	v5,v7,com/google/analytics/containertag/proto/Serving$SupplementedResource.supplemental [Lcom/google/analytics/containertag/proto/Serving$Supplemental;
+; v5 : [Lcom/google/analytics/containertag/proto/Serving$Supplemental; , v7 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+	new-instance	v6,com/google/analytics/containertag/proto/Serving$Supplemental
+; v6 : Lcom/google/analytics/containertag/proto/Serving$Supplemental;
+	invoke-direct	{v6},com/google/analytics/containertag/proto/Serving$Supplemental/<init>	; <init>()V
+; v6 : Lcom/google/analytics/containertag/proto/Serving$Supplemental;
+	aput-object	v6,v5,v1
+; v6 : Lcom/google/analytics/containertag/proto/Serving$Supplemental; , v5 : [Lcom/google/analytics/containertag/proto/Serving$Supplemental; , v1 : single-length
+.line 2523
+	iget-object	v5,v7,com/google/analytics/containertag/proto/Serving$SupplementedResource.supplemental [Lcom/google/analytics/containertag/proto/Serving$Supplemental;
+; v5 : [Lcom/google/analytics/containertag/proto/Serving$Supplemental; , v7 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+	aget-object	v5,v5,v1
+; v5 : Lcom/google/analytics/containertag/proto/Serving$Supplemental; , v5 : Lcom/google/analytics/containertag/proto/Serving$Supplemental; , v1 : single-length
+	invoke-virtual	{v8,v5},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readMessage	; readMessage(Lcom/google/tagmanager/protobuf/nano/MessageNano;)V
+; v8 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano; , v5 : Lcom/google/analytics/containertag/proto/Serving$Supplemental;
+.line 2524
+	invoke-virtual	{v8},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readTag	; readTag()I
+; v8 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+.line 2521
+	add-int/lit8	v1,v1,1
+; v1 : single-length , v1 : single-length
+	goto	lfe6b8
+lfe6f2:
+.line 2515
+	iget-object	v5,v7,com/google/analytics/containertag/proto/Serving$SupplementedResource.supplemental [Lcom/google/analytics/containertag/proto/Serving$Supplemental;
+; v5 : [Lcom/google/analytics/containertag/proto/Serving$Supplemental; , v7 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+	array-length	v1,v5
+; v1 : single-length , v5 : [Lcom/google/analytics/containertag/proto/Serving$Supplemental;
+	goto	lfe69a
+lfe6fa:
+.line 2527
+	iget-object	v5,v7,com/google/analytics/containertag/proto/Serving$SupplementedResource.supplemental [Lcom/google/analytics/containertag/proto/Serving$Supplemental;
+; v5 : [Lcom/google/analytics/containertag/proto/Serving$Supplemental; , v7 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+	new-instance	v6,com/google/analytics/containertag/proto/Serving$Supplemental
+; v6 : Lcom/google/analytics/containertag/proto/Serving$Supplemental;
+	invoke-direct	{v6},com/google/analytics/containertag/proto/Serving$Supplemental/<init>	; <init>()V
+; v6 : Lcom/google/analytics/containertag/proto/Serving$Supplemental;
+	aput-object	v6,v5,v1
+; v6 : Lcom/google/analytics/containertag/proto/Serving$Supplemental; , v5 : [Lcom/google/analytics/containertag/proto/Serving$Supplemental; , v1 : single-length
+.line 2528
+	iget-object	v5,v7,com/google/analytics/containertag/proto/Serving$SupplementedResource.supplemental [Lcom/google/analytics/containertag/proto/Serving$Supplemental;
+; v5 : [Lcom/google/analytics/containertag/proto/Serving$Supplemental; , v7 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+	aget-object	v5,v5,v1
+; v5 : Lcom/google/analytics/containertag/proto/Serving$Supplemental; , v5 : Lcom/google/analytics/containertag/proto/Serving$Supplemental; , v1 : single-length
+	invoke-virtual	{v8,v5},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readMessage	; readMessage(Lcom/google/tagmanager/protobuf/nano/MessageNano;)V
+; v8 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano; , v5 : Lcom/google/analytics/containertag/proto/Serving$Supplemental;
+	goto	lfe64e
+spfe656_fe71c:
+.line 2532
+	new-instance	v5,com/google/analytics/containertag/proto/Serving$Resource
+; v5 : Lcom/google/analytics/containertag/proto/Serving$Resource;
+	invoke-direct	{v5},com/google/analytics/containertag/proto/Serving$Resource/<init>	; <init>()V
+; v5 : Lcom/google/analytics/containertag/proto/Serving$Resource;
+	iput-object	v5,v7,com/google/analytics/containertag/proto/Serving$SupplementedResource.resource Lcom/google/analytics/containertag/proto/Serving$Resource;
+; v5 : Lcom/google/analytics/containertag/proto/Serving$Resource; , v7 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+.line 2533
+	iget-object	v5,v7,com/google/analytics/containertag/proto/Serving$SupplementedResource.resource Lcom/google/analytics/containertag/proto/Serving$Resource;
+; v5 : Lcom/google/analytics/containertag/proto/Serving$Resource; , v7 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+	invoke-virtual	{v8,v5},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readMessage	; readMessage(Lcom/google/tagmanager/protobuf/nano/MessageNano;)V
+; v8 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano; , v5 : Lcom/google/analytics/containertag/proto/Serving$Resource;
+	goto	lfe64e
+spfe656_fe736:
+.line 2537
+	invoke-virtual	{v8},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readString	; readString()Ljava/lang/String;
+; v8 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result-object	v5
+; v5 : Ljava/lang/String;
+	iput-object	v5,v7,com/google/analytics/containertag/proto/Serving$SupplementedResource.fingerprint Ljava/lang/String;
+; v5 : Ljava/lang/String; , v7 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+	goto	lfe64e
+.line 2499
+.end method
+
+.method public mergeFrom(Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)Lcom/google/tagmanager/protobuf/nano/MessageNano;
+.throws Ljava/io/IOException;
+.limit registers 3
+; this: v1 (Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;)
+; parameter[0] : v2 (Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)
+.line 2405
+	invoke-virtual	{v1,v2},com/google/analytics/containertag/proto/Serving$SupplementedResource/mergeFrom	; mergeFrom(Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+; v1 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource; , v2 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result-object	v0
+; v0 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+	return-object	v0
+; v0 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+.end method
+
+.method public writeTo(Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;)V
+.throws Ljava/io/IOException;
+.limit registers 8
+; this: v6 (Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;)
+; parameter[0] : v7 (Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;)
+.var 0 is arr$ [Lcom/google/analytics/containertag/proto/Serving$Supplemental; from lfe7a0 to lfe7ba
+.var 1 is element Lcom/google/analytics/containertag/proto/Serving$Supplemental; from lfe7ac to lfe7ba
+.var 2 is i$ I from lfe7a4 to lfe7ba
+.var 3 is len$ I from lfe7a2 to lfe7ba
+.line 2456
+	iget-object	v4,v6,com/google/analytics/containertag/proto/Serving$SupplementedResource.supplemental [Lcom/google/analytics/containertag/proto/Serving$Supplemental;
+; v4 : [Lcom/google/analytics/containertag/proto/Serving$Supplemental; , v6 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+	if-eqz	v4,lfe7ba
+; v4 : [Lcom/google/analytics/containertag/proto/Serving$Supplemental;
+.line 2457
+	iget-object	v0,v6,com/google/analytics/containertag/proto/Serving$SupplementedResource.supplemental [Lcom/google/analytics/containertag/proto/Serving$Supplemental;
+; v0 : [Lcom/google/analytics/containertag/proto/Serving$Supplemental; , v6 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+lfe7a0:
+	array-length	v3,v0
+; v3 : single-length , v0 : [Lcom/google/analytics/containertag/proto/Serving$Supplemental;
+lfe7a2:
+	const/4	v2,0
+; v2 : single-length
+lfe7a4:
+	if-ge	v2,v3,lfe7ba
+; v2 : single-length , v3 : single-length
+	aget-object	v1,v0,v2
+; v1 : Lcom/google/analytics/containertag/proto/Serving$Supplemental; , v0 : [Lcom/google/analytics/containertag/proto/Serving$Supplemental; , v2 : single-length
+.line 2458
+	const/4	v4,1
+; v4 : single-length
+	invoke-virtual	{v7,v4,v1},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeMessage	; writeMessage(ILcom/google/tagmanager/protobuf/nano/MessageNano;)V
+; v7 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v4 : single-length , v1 : Lcom/google/analytics/containertag/proto/Serving$Supplemental;
+.line 2457
+	add-int/lit8	v2,v2,1
+; v2 : single-length , v2 : single-length
+	goto	lfe7a4
+lfe7ba:
+.line 2461
+	iget-object	v4,v6,com/google/analytics/containertag/proto/Serving$SupplementedResource.resource Lcom/google/analytics/containertag/proto/Serving$Resource;
+; v4 : Lcom/google/analytics/containertag/proto/Serving$Resource; , v6 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+	if-eqz	v4,lfe7ce
+; v4 : Lcom/google/analytics/containertag/proto/Serving$Resource;
+.line 2462
+	const/4	v4,2
+; v4 : single-length
+	iget-object	v5,v6,com/google/analytics/containertag/proto/Serving$SupplementedResource.resource Lcom/google/analytics/containertag/proto/Serving$Resource;
+; v5 : Lcom/google/analytics/containertag/proto/Serving$Resource; , v6 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+	invoke-virtual	{v7,v4,v5},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeMessage	; writeMessage(ILcom/google/tagmanager/protobuf/nano/MessageNano;)V
+; v7 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v4 : single-length , v5 : Lcom/google/analytics/containertag/proto/Serving$Resource;
+lfe7ce:
+.line 2464
+	iget-object	v4,v6,com/google/analytics/containertag/proto/Serving$SupplementedResource.fingerprint Ljava/lang/String;
+; v4 : Ljava/lang/String; , v6 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+	const-string	v5,""
+; v5 : Ljava/lang/String;
+	invoke-virtual	{v4,v5},java/lang/String/equals	; equals(Ljava/lang/Object;)Z
+; v4 : Ljava/lang/String; , v5 : Ljava/lang/String;
+	move-result	v4
+; v4 : single-length
+	if-nez	v4,lfe7ee
+; v4 : single-length
+.line 2465
+	const/4	v4,3
+; v4 : single-length
+	iget-object	v5,v6,com/google/analytics/containertag/proto/Serving$SupplementedResource.fingerprint Ljava/lang/String;
+; v5 : Ljava/lang/String; , v6 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+	invoke-virtual	{v7,v4,v5},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeString	; writeString(ILjava/lang/String;)V
+; v7 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v4 : single-length , v5 : Ljava/lang/String;
+lfe7ee:
+.line 2467
+	iget-object	v4,v6,com/google/analytics/containertag/proto/Serving$SupplementedResource.unknownFieldData Ljava/util/List;
+; v4 : Ljava/util/List; , v6 : Lcom/google/analytics/containertag/proto/Serving$SupplementedResource;
+	invoke-static	{v4,v7},com/google/tagmanager/protobuf/nano/WireFormatNano/writeUnknownFields	; writeUnknownFields(Ljava/util/List;Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;)V
+; v4 : Ljava/util/List; , v7 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;
+.line 2469
+	return-void	
+.end method
+
+

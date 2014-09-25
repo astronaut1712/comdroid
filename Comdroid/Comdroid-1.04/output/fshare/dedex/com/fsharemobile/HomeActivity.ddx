@@ -1,0 +1,1197 @@
+.class public com/fsharemobile/HomeActivity
+.super android/support/v4/app/FragmentActivity
+.source HomeActivity.java
+.implements android/view/View$OnClickListener
+
+.field private LOG_HOME_ACTIVITY Ljava/lang/String;
+.field private doubleBackToExitPressedOnce Z
+.field private fclient Lcom/fsharemobile/client/FClient;
+.field filter Landroid/content/IntentFilter;
+.field fragManager Landroid/support/v4/app/FragmentManager;
+.field fragTran Landroid/support/v4/app/FragmentTransaction;
+.field isOnline Z
+.field ivExplorer Landroid/widget/ImageView;
+.field ivPicture Landroid/widget/ImageView;
+.field ivSetting Landroid/widget/ImageView;
+.field layOut Landroid/widget/LinearLayout;
+.field private listImageInDevice Ljava/util/ArrayList;
+  .annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "Ljava/util/ArrayList" , "<" , "Lcom/fsharemobile/model/LocalFile;" , ">;" }
+  .end annotation
+.end field
+.field private listImageToDelete Ljava/util/List;
+  .annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "Ljava/util/List" , "<" , "Lcom/fsharemobile/model/LocalFile;" , ">;" }
+  .end annotation
+.end field
+.field myPageIndex I
+.field myServerPhotoList Ljava/util/List;
+  .annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "Ljava/util/List" , "<" , "Lcom/fsharemobile/client/Photo;" , ">;" }
+  .end annotation
+.end field
+.field protected onBackPressedListener Lcom/fsharemobile/listener/OnBackPressedListener;
+.field photoProxy Lcom/fsharemobile/client/PhotoProxy;
+.field receiver Landroid/content/BroadcastReceiver;
+.field service Lcom/fsharemobile/service/UploadService;
+.field private serviceConnection Landroid/content/ServiceConnection;
+.field sessProxy Lcom/fsharemobile/client/SessionProxy;
+.field status Z
+
+.method public <init>()V
+.limit registers 3
+; this: v2 (Lcom/fsharemobile/HomeActivity;)
+	const/4	v1,0
+; v1 : single-length
+.line 50
+	invoke-direct	{v2},android/support/v4/app/FragmentActivity/<init>	; <init>()V
+; v2 : Lcom/fsharemobile/HomeActivity;
+.line 52
+	const-string	v0,"Log_Home_Activity"
+; v0 : Ljava/lang/String;
+	iput-object	v0,v2,com/fsharemobile/HomeActivity.LOG_HOME_ACTIVITY Ljava/lang/String;
+; v0 : Ljava/lang/String; , v2 : Lcom/fsharemobile/HomeActivity;
+.line 59
+	iput-boolean	v1,v2,com/fsharemobile/HomeActivity.doubleBackToExitPressedOnce Z
+; v1 : single-length , v2 : Lcom/fsharemobile/HomeActivity;
+.line 63
+	new-instance	v0,java/util/ArrayList
+; v0 : Ljava/util/ArrayList;
+	invoke-direct	{v0},java/util/ArrayList/<init>	; <init>()V
+; v0 : Ljava/util/ArrayList;
+	iput-object	v0,v2,com/fsharemobile/HomeActivity.listImageInDevice Ljava/util/ArrayList;
+; v0 : Ljava/util/ArrayList; , v2 : Lcom/fsharemobile/HomeActivity;
+.line 68
+	new-instance	v0,java/util/ArrayList
+; v0 : Ljava/util/ArrayList;
+	invoke-direct	{v0},java/util/ArrayList/<init>	; <init>()V
+; v0 : Ljava/util/ArrayList;
+	iput-object	v0,v2,com/fsharemobile/HomeActivity.listImageToDelete Ljava/util/List;
+; v0 : Ljava/util/ArrayList; , v2 : Lcom/fsharemobile/HomeActivity;
+.line 69
+	const/4	v0,0
+; v0 : single-length
+	iput-object	v0,v2,com/fsharemobile/HomeActivity.fclient Lcom/fsharemobile/client/FClient;
+; v0 : single-length , v2 : Lcom/fsharemobile/HomeActivity;
+.line 70
+	new-instance	v0,java/util/ArrayList
+; v0 : Ljava/util/ArrayList;
+	invoke-direct	{v0},java/util/ArrayList/<init>	; <init>()V
+; v0 : Ljava/util/ArrayList;
+	iput-object	v0,v2,com/fsharemobile/HomeActivity.myServerPhotoList Ljava/util/List;
+; v0 : Ljava/util/ArrayList; , v2 : Lcom/fsharemobile/HomeActivity;
+.line 76
+	iput	v1,v2,com/fsharemobile/HomeActivity.myPageIndex I
+; v1 : single-length , v2 : Lcom/fsharemobile/HomeActivity;
+.line 80
+	new-instance	v0,android/content/IntentFilter
+; v0 : Landroid/content/IntentFilter;
+.line 81
+	const-string	v1,"android.hardware.action.NEW_PICTURE"
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},android/content/IntentFilter/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Landroid/content/IntentFilter; , v1 : Ljava/lang/String;
+	iput-object	v0,v2,com/fsharemobile/HomeActivity.filter Landroid/content/IntentFilter;
+; v0 : Landroid/content/IntentFilter; , v2 : Lcom/fsharemobile/HomeActivity;
+.line 125
+	new-instance	v0,com/fsharemobile/HomeActivity$1
+; v0 : Lcom/fsharemobile/HomeActivity$1;
+	invoke-direct	{v0,v2},com/fsharemobile/HomeActivity$1/<init>	; <init>(Lcom/fsharemobile/HomeActivity;)V
+; v0 : Lcom/fsharemobile/HomeActivity$1; , v2 : Lcom/fsharemobile/HomeActivity;
+	iput-object	v0,v2,com/fsharemobile/HomeActivity.receiver Landroid/content/BroadcastReceiver;
+; v0 : Lcom/fsharemobile/HomeActivity$1; , v2 : Lcom/fsharemobile/HomeActivity;
+.line 444
+	new-instance	v0,com/fsharemobile/HomeActivity$2
+; v0 : Lcom/fsharemobile/HomeActivity$2;
+	invoke-direct	{v0,v2},com/fsharemobile/HomeActivity$2/<init>	; <init>(Lcom/fsharemobile/HomeActivity;)V
+; v0 : Lcom/fsharemobile/HomeActivity$2; , v2 : Lcom/fsharemobile/HomeActivity;
+	iput-object	v0,v2,com/fsharemobile/HomeActivity.serviceConnection Landroid/content/ServiceConnection;
+; v0 : Lcom/fsharemobile/HomeActivity$2; , v2 : Lcom/fsharemobile/HomeActivity;
+.line 50
+	return-void	
+.end method
+
+.method private LoadUploadImge(I)V
+.limit registers 6
+; this: v4 (Lcom/fsharemobile/HomeActivity;)
+; parameter[0] : v5 (I)
+.catch java/lang/Exception from ld8848 to ld8860 using ld8862
+.line 142
+	const-string	v1,"Home_Activity"
+; v1 : Ljava/lang/String;
+	new-instance	v2,java/lang/StringBuilder
+; v2 : Ljava/lang/StringBuilder;
+	const-string	v3,"SIZE_OF_List_Image_In_Device_Before"
+; v3 : Ljava/lang/String;
+	invoke-direct	{v2,v3},java/lang/StringBuilder/<init>	; <init>(Ljava/lang/String;)V
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	iget-object	v3,v4,com/fsharemobile/HomeActivity.listImageInDevice Ljava/util/ArrayList;
+; v3 : Ljava/util/ArrayList; , v4 : Lcom/fsharemobile/HomeActivity;
+	invoke-virtual	{v3},java/util/ArrayList/size	; size()I
+; v3 : Ljava/util/ArrayList;
+	move-result	v3
+; v3 : single-length
+	invoke-virtual	{v2,v3},java/lang/StringBuilder/append	; append(I)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v3 : single-length
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v2},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v2 : Ljava/lang/StringBuilder;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-static	{v1,v2},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v1 : Ljava/lang/String; , v2 : Ljava/lang/String;
+ld8848:
+.line 144
+	iget-object	v1,v4,com/fsharemobile/HomeActivity.photoProxy Lcom/fsharemobile/client/PhotoProxy;
+; v1 : Lcom/fsharemobile/client/PhotoProxy; , v4 : Lcom/fsharemobile/HomeActivity;
+	const-string	v2,"/Photos"
+; v2 : Ljava/lang/String;
+	new-instance	v3,com/fsharemobile/HomeActivity$3
+; v3 : Lcom/fsharemobile/HomeActivity$3;
+	invoke-direct	{v3,v4},com/fsharemobile/HomeActivity$3/<init>	; <init>(Lcom/fsharemobile/HomeActivity;)V
+; v3 : Lcom/fsharemobile/HomeActivity$3; , v4 : Lcom/fsharemobile/HomeActivity;
+	invoke-virtual	{v1,v5,v2,v3},com/fsharemobile/client/PhotoProxy/getList	; getList(ILjava/lang/String;Lcom/fsharemobile/client/PhotoProxy$OnGetListCompleted;)V
+; v1 : Lcom/fsharemobile/client/PhotoProxy; , v5 : single-length , v2 : Ljava/lang/String; , v3 : Lcom/fsharemobile/HomeActivity$3;
+ld8860:
+.line 208
+	return-void	
+ld8862:
+.line 205
+	move-exception	v0
+; v0 : java/lang/Exception
+.line 206
+	invoke-virtual	{v0},java/lang/Exception/printStackTrace	; printStackTrace()V
+; v0 : java/lang/Exception
+	goto	ld8860
+.end method
+
+.method private ShowImage()V
+.limit registers 1
+; this: v0 (Lcom/fsharemobile/HomeActivity;)
+.line 123
+	return-void	
+.end method
+
+.method static access$0(Lcom/fsharemobile/HomeActivity;)Ljava/util/List;
+.limit registers 2
+; parameter[0] : v1 (Lcom/fsharemobile/HomeActivity;)
+.line 68
+	iget-object	v0,v1,com/fsharemobile/HomeActivity.listImageToDelete Ljava/util/List;
+; v0 : Ljava/util/List; , v1 : Lcom/fsharemobile/HomeActivity;
+	return-object	v0
+; v0 : Ljava/util/List;
+.end method
+
+.method static access$1(Lcom/fsharemobile/HomeActivity;)Ljava/util/ArrayList;
+.limit registers 2
+; parameter[0] : v1 (Lcom/fsharemobile/HomeActivity;)
+.line 63
+	iget-object	v0,v1,com/fsharemobile/HomeActivity.listImageInDevice Ljava/util/ArrayList;
+; v0 : Ljava/util/ArrayList; , v1 : Lcom/fsharemobile/HomeActivity;
+	return-object	v0
+; v0 : Ljava/util/ArrayList;
+.end method
+
+.method static access$2(Lcom/fsharemobile/HomeActivity;I)V
+.limit registers 2
+; parameter[0] : v0 (Lcom/fsharemobile/HomeActivity;)
+; parameter[1] : v1 (I)
+.line 139
+	invoke-direct	{v0,v1},com/fsharemobile/HomeActivity/LoadUploadImge	; LoadUploadImge(I)V
+; v0 : Lcom/fsharemobile/HomeActivity; , v1 : single-length
+	return-void	
+.end method
+
+.method static access$3(Lcom/fsharemobile/HomeActivity;Z)V
+.limit registers 2
+; parameter[0] : v0 (Lcom/fsharemobile/HomeActivity;)
+; parameter[1] : v1 (Z)
+.line 59
+	iput-boolean	v1,v0,com/fsharemobile/HomeActivity.doubleBackToExitPressedOnce Z
+; v1 : single-length , v0 : Lcom/fsharemobile/HomeActivity;
+	return-void	
+.end method
+
+.method private finishLoadImage(Ljava/util/List;)V
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "(" , "Ljava/util/List" , "<" , "Lcom/fsharemobile/model/LocalFile;" , ">;)V" }
+.end annotation
+.limit registers 13
+; this: v11 (Lcom/fsharemobile/HomeActivity;)
+; parameter[0] : v12 (Ljava/util/List;)
+.catch java/lang/Exception from ld8948 to ld897c using ld8982
+.var 10 is myFile Ljava/io/File; from ld893a to ld8942
+.line 211
+	invoke-interface	{v12},java/util/List/size	; size()I
+; v12 : Ljava/util/List;
+	move-result	v9
+; v9 : single-length
+.line 212
+	const/4	v0,5
+; v0 : single-length
+	if-le	v9,v0,ld8910
+; v9 : single-length , v0 : single-length
+.line 213
+	const/4	v9,5
+; v9 : single-length
+ld8910:
+.line 215
+	const/4	v8,0
+; v8 : single-length
+ld8912:
+	if-lt	v8,v9,ld8918
+; v8 : single-length , v9 : single-length
+.line 239
+	return-void	
+ld8918:
+.line 217
+	invoke-interface	{v12,v8},java/util/List/get	; get(I)Ljava/lang/Object;
+; v12 : Ljava/util/List; , v8 : single-length
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,com/fsharemobile/model/LocalFile
+; v0 : Lcom/fsharemobile/model/LocalFile;
+	invoke-virtual	{v0},com/fsharemobile/model/LocalFile/getPath	; getPath()Ljava/lang/String;
+; v0 : Lcom/fsharemobile/model/LocalFile;
+	move-result-object	v7
+; v7 : Ljava/lang/String;
+.line 218
+	new-instance	v10,java/io/File
+; v10 : Ljava/io/File;
+	const-string	v0,""
+; v0 : Ljava/lang/String;
+	invoke-direct	{v10,v0},java/io/File/<init>	; <init>(Ljava/lang/String;)V
+; v10 : Ljava/io/File; , v0 : Ljava/lang/String;
+.line 219
+	if-eqz	v7,ld8948
+; v7 : Ljava/lang/String;
+.line 220
+	new-instance	v10,java/io/File
+; v10 : Ljava/io/File;
+ld8942:
+	invoke-direct	{v10,v7},java/io/File/<init>	; <init>(Ljava/lang/String;)V
+; v10 : Ljava/io/File; , v7 : Ljava/lang/String;
+ld8948:
+.line 223
+	iget-object	v0,v11,com/fsharemobile/HomeActivity.sessProxy Lcom/fsharemobile/client/SessionProxy;
+; v0 : Lcom/fsharemobile/client/SessionProxy; , v11 : Lcom/fsharemobile/HomeActivity;
+	invoke-interface	{v12,v8},java/util/List/get	; get(I)Ljava/lang/Object;
+; v12 : Ljava/util/List; , v8 : single-length
+	move-result-object	v1
+; v1 : Ljava/lang/Object;
+	check-cast	v1,com/fsharemobile/model/LocalFile
+; v1 : Lcom/fsharemobile/model/LocalFile;
+	invoke-virtual	{v1},com/fsharemobile/model/LocalFile/getName	; getName()Ljava/lang/String;
+; v1 : Lcom/fsharemobile/model/LocalFile;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	const-string	v2,"/Photos"
+; v2 : Ljava/lang/String;
+.line 224
+	invoke-virtual	{v10},java/io/File/length	; length()J
+; v10 : Ljava/io/File;
+	move-result-wide	v3
+; v3 : double-length
+	new-instance	v5,com/fsharemobile/HomeActivity$4
+; v5 : Lcom/fsharemobile/HomeActivity$4;
+	invoke-direct	{v5,v11},com/fsharemobile/HomeActivity$4/<init>	; <init>(Lcom/fsharemobile/HomeActivity;)V
+; v5 : Lcom/fsharemobile/HomeActivity$4; , v11 : Lcom/fsharemobile/HomeActivity;
+.line 223
+	invoke-virtual/range	{v0..v5},com/fsharemobile/client/SessionProxy/createUploadSession;	createUploadSession(Ljava/lang/String;Ljava/lang/String;JLcom/fsharemobile/client/SessionProxy$OnCreateULSessionCompleted;)V
+; v0 : Lcom/fsharemobile/client/SessionProxy; , v1 : Ljava/lang/String; , v2 : Ljava/lang/String; , v3 : double-length , v5 : Lcom/fsharemobile/HomeActivity$4;
+ld897c:
+.line 215
+	add-int/lit8	v8,v8,1
+; v8 : single-length , v8 : single-length
+	goto	ld8912
+ld8982:
+.line 233
+	move-exception	v6
+; v6 : java/lang/Exception
+.line 235
+	invoke-virtual	{v6},java/lang/Exception/printStackTrace	; printStackTrace()V
+; v6 : java/lang/Exception
+	goto	ld897c
+.end method
+
+.method private getLocalImage()Ljava/util/ArrayList;
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "()" , "Ljava/util/ArrayList" , "<" , "Lcom/fsharemobile/model/LocalFile;" , ">;" }
+.end annotation
+.limit registers 16
+; this: v15 (Lcom/fsharemobile/HomeActivity;)
+.var 6 is bucket Ljava/lang/String; from ld8a68 to ld8aa0
+.var 7 is bucketColumn I from ld8a48 to ld8aa0
+.var 9 is data Ljava/lang/String; from ld8a78 to ld8aa0
+.var 10 is dataColum I from ld8a60 to ld8aa0
+.var 11 is date Ljava/lang/String; from ld8a70 to ld8aa0
+.var 12 is dateColumn I from ld8a54 to ld8aa0
+.var 14 is object Lcom/fsharemobile/model/LocalFile; from ld8a82 to ld8aa0
+.line 392
+	new-instance	v13,java/util/ArrayList
+; v13 : Ljava/util/ArrayList;
+	invoke-direct	{v13},java/util/ArrayList/<init>	; <init>()V
+; v13 : Ljava/util/ArrayList;
+.line 393
+	const/4	v0,4
+; v0 : single-length
+	new-array	v2,v0,[Ljava/lang/String;
+; v2 : [Ljava/lang/String; , v0 : single-length
+	const/4	v0,0
+; v0 : single-length
+	const-string	v3,"_id"
+; v3 : Ljava/lang/String;
+	aput-object	v3,v2,v0
+; v3 : Ljava/lang/String; , v2 : [Ljava/lang/String; , v0 : single-length
+	const/4	v0,1
+; v0 : single-length
+.line 394
+	const-string	v3,"_display_name"
+; v3 : Ljava/lang/String;
+	aput-object	v3,v2,v0
+; v3 : Ljava/lang/String; , v2 : [Ljava/lang/String; , v0 : single-length
+	const/4	v0,2
+; v0 : single-length
+.line 395
+	const-string	v3,"datetaken"
+; v3 : Ljava/lang/String;
+	aput-object	v3,v2,v0
+; v3 : Ljava/lang/String; , v2 : [Ljava/lang/String; , v0 : single-length
+	const/4	v0,3
+; v0 : single-length
+.line 396
+	const-string	v3,"_data"
+; v3 : Ljava/lang/String;
+	aput-object	v3,v2,v0
+; v3 : Ljava/lang/String; , v2 : [Ljava/lang/String; , v0 : single-length
+.line 400
+	sget-object	v1,android/provider/MediaStore$Images$Media.EXTERNAL_CONTENT_URI Landroid/net/Uri;
+; v1 : Landroid/net/Uri;
+.line 405
+	const-string	v3,""
+; v3 : Ljava/lang/String;
+.line 406
+	const/4	v4,0
+; v4 : single-length
+.line 407
+	const-string	v5,""
+; v5 : Ljava/lang/String;
+	move-object	v0,v15
+; v0 : Lcom/fsharemobile/HomeActivity; , v15 : Lcom/fsharemobile/HomeActivity;
+.line 404
+	invoke-virtual/range	{v0..v5},com/fsharemobile/HomeActivity/managedQuery;	managedQuery(Landroid/net/Uri;[Ljava/lang/String;Ljava/lang/String;[Ljava/lang/String;Ljava/lang/String;)Landroid/database/Cursor;
+; v0 : Lcom/fsharemobile/HomeActivity; , v1 : Landroid/net/Uri; , v2 : [Ljava/lang/String; , v3 : Ljava/lang/String; , v4 : single-length , v5 : Ljava/lang/String;
+	move-result-object	v8
+; v8 : Landroid/database/Cursor;
+.line 409
+	if-eqz	v8,ld8aa0
+; v8 : Landroid/database/Cursor;
+.line 410
+	const-string	v0,"ListingImages"
+; v0 : Ljava/lang/String;
+	new-instance	v3,java/lang/StringBuilder
+; v3 : Ljava/lang/StringBuilder;
+	const-string	v4," query count="
+; v4 : Ljava/lang/String;
+	invoke-direct	{v3,v4},java/lang/StringBuilder/<init>	; <init>(Ljava/lang/String;)V
+; v3 : Ljava/lang/StringBuilder; , v4 : Ljava/lang/String;
+	invoke-interface	{v8},android/database/Cursor/getCount	; getCount()I
+; v8 : Landroid/database/Cursor;
+	move-result	v4
+; v4 : single-length
+	invoke-virtual	{v3,v4},java/lang/StringBuilder/append	; append(I)Ljava/lang/StringBuilder;
+; v3 : Ljava/lang/StringBuilder; , v4 : single-length
+	move-result-object	v3
+; v3 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v3},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v3 : Ljava/lang/StringBuilder;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-static	{v0,v3},android/util/Log/i	; i(Ljava/lang/String;Ljava/lang/String;)I
+; v0 : Ljava/lang/String; , v3 : Ljava/lang/String;
+.line 411
+	invoke-interface	{v8},android/database/Cursor/moveToFirst	; moveToFirst()Z
+; v8 : Landroid/database/Cursor;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,ld8aa0
+; v0 : single-length
+.line 417
+	const-string	v0,"_display_name"
+; v0 : Ljava/lang/String;
+	invoke-interface	{v8,v0},android/database/Cursor/getColumnIndex	; getColumnIndex(Ljava/lang/String;)I
+; v8 : Landroid/database/Cursor; , v0 : Ljava/lang/String;
+	move-result	v7
+; v7 : single-length
+.line 420
+	const-string	v0,"datetaken"
+; v0 : Ljava/lang/String;
+	invoke-interface	{v8,v0},android/database/Cursor/getColumnIndex	; getColumnIndex(Ljava/lang/String;)I
+; v8 : Landroid/database/Cursor; , v0 : Ljava/lang/String;
+	move-result	v12
+; v12 : single-length
+.line 423
+	const-string	v0,"_data"
+; v0 : Ljava/lang/String;
+	invoke-interface	{v8,v0},android/database/Cursor/getColumnIndex	; getColumnIndex(Ljava/lang/String;)I
+; v8 : Landroid/database/Cursor; , v0 : Ljava/lang/String;
+	move-result	v10
+; v10 : single-length
+ld8a60:
+.line 427
+	invoke-interface	{v8,v7},android/database/Cursor/getString	; getString(I)Ljava/lang/String;
+; v8 : Landroid/database/Cursor; , v7 : single-length
+	move-result-object	v6
+; v6 : Ljava/lang/String;
+.line 428
+	invoke-interface	{v8,v12},android/database/Cursor/getString	; getString(I)Ljava/lang/String;
+; v8 : Landroid/database/Cursor; , v12 : single-length
+	move-result-object	v11
+; v11 : Ljava/lang/String;
+.line 429
+	invoke-interface	{v8,v10},android/database/Cursor/getString	; getString(I)Ljava/lang/String;
+; v8 : Landroid/database/Cursor; , v10 : single-length
+	move-result-object	v9
+; v9 : Ljava/lang/String;
+.line 430
+	new-instance	v14,com/fsharemobile/model/LocalFile
+; v14 : Lcom/fsharemobile/model/LocalFile;
+	invoke-direct	{v14},com/fsharemobile/model/LocalFile/<init>	; <init>()V
+; v14 : Lcom/fsharemobile/model/LocalFile;
+.line 431
+	invoke-virtual	{v14,v6},com/fsharemobile/model/LocalFile/setName	; setName(Ljava/lang/String;)V
+; v14 : Lcom/fsharemobile/model/LocalFile; , v6 : Ljava/lang/String;
+.line 432
+	invoke-virtual	{v14,v9},com/fsharemobile/model/LocalFile/setPath	; setPath(Ljava/lang/String;)V
+; v14 : Lcom/fsharemobile/model/LocalFile; , v9 : Ljava/lang/String;
+.line 433
+	invoke-virtual	{v13,v14},java/util/ArrayList/add	; add(Ljava/lang/Object;)Z
+; v13 : Ljava/util/ArrayList; , v14 : Lcom/fsharemobile/model/LocalFile;
+.line 438
+	invoke-interface	{v8},android/database/Cursor/moveToNext	; moveToNext()Z
+; v8 : Landroid/database/Cursor;
+	move-result	v0
+; v0 : single-length
+	if-nez	v0,ld8a60
+; v0 : single-length
+ld8aa0:
+.line 441
+	return-object	v13
+; v13 : Ljava/util/ArrayList;
+.end method
+
+.method private initBackGround()V
+.limit registers 4
+; this: v3 (Lcom/fsharemobile/HomeActivity;)
+.line 333
+	new-instance	v0,com/fsharemobile/fragments/ExplorerFragment
+; v0 : Lcom/fsharemobile/fragments/ExplorerFragment;
+	invoke-direct	{v0},com/fsharemobile/fragments/ExplorerFragment/<init>	; <init>()V
+; v0 : Lcom/fsharemobile/fragments/ExplorerFragment;
+.line 335
+	iget-object	v1,v3,com/fsharemobile/HomeActivity.fragTran Landroid/support/v4/app/FragmentTransaction;
+; v1 : Landroid/support/v4/app/FragmentTransaction; , v3 : Lcom/fsharemobile/HomeActivity;
+	const	v2,2131427358	; 0x7f0b001e
+; v2 : single-length
+	invoke-virtual	{v1,v2,v0},android/support/v4/app/FragmentTransaction/add	; add(ILandroid/support/v4/app/Fragment;)Landroid/support/v4/app/FragmentTransaction;
+; v1 : Landroid/support/v4/app/FragmentTransaction; , v2 : single-length , v0 : Lcom/fsharemobile/fragments/ExplorerFragment;
+.line 336
+	iget-object	v1,v3,com/fsharemobile/HomeActivity.fragTran Landroid/support/v4/app/FragmentTransaction;
+; v1 : Landroid/support/v4/app/FragmentTransaction; , v3 : Lcom/fsharemobile/HomeActivity;
+	invoke-virtual	{v1},android/support/v4/app/FragmentTransaction/commit	; commit()I
+; v1 : Landroid/support/v4/app/FragmentTransaction;
+.line 338
+	iget-object	v1,v3,com/fsharemobile/HomeActivity.ivPicture Landroid/widget/ImageView;
+; v1 : Landroid/widget/ImageView; , v3 : Lcom/fsharemobile/HomeActivity;
+	const	v2,2130837601	; 0x7f020061
+; v2 : single-length
+	invoke-virtual	{v1,v2},android/widget/ImageView/setImageResource	; setImageResource(I)V
+; v1 : Landroid/widget/ImageView; , v2 : single-length
+.line 339
+	iget-object	v1,v3,com/fsharemobile/HomeActivity.ivSetting Landroid/widget/ImageView;
+; v1 : Landroid/widget/ImageView; , v3 : Lcom/fsharemobile/HomeActivity;
+	const	v2,2130837592	; 0x7f020058
+; v2 : single-length
+	invoke-virtual	{v1,v2},android/widget/ImageView/setImageResource	; setImageResource(I)V
+; v1 : Landroid/widget/ImageView; , v2 : single-length
+.line 340
+	return-void	
+.end method
+
+.method public bindMethod()V
+.limit registers 4
+; this: v3 (Lcom/fsharemobile/HomeActivity;)
+	const/4	v2,1
+; v2 : single-length
+.line 462
+	new-instance	v0,android/content/Intent
+; v0 : Landroid/content/Intent;
+	const-class	v1,com/fsharemobile/service/UploadService
+; v1 : Ljava/lang/Class;
+	invoke-direct	{v0,v3,v1},android/content/Intent/<init>	; <init>(Landroid/content/Context;Ljava/lang/Class;)V
+; v0 : Landroid/content/Intent; , v3 : Lcom/fsharemobile/HomeActivity; , v1 : Ljava/lang/Class;
+.line 463
+	iget-object	v1,v3,com/fsharemobile/HomeActivity.serviceConnection Landroid/content/ServiceConnection;
+; v1 : Landroid/content/ServiceConnection; , v3 : Lcom/fsharemobile/HomeActivity;
+	invoke-virtual	{v3,v0,v1,v2},com/fsharemobile/HomeActivity/bindService	; bindService(Landroid/content/Intent;Landroid/content/ServiceConnection;I)Z
+; v3 : Lcom/fsharemobile/HomeActivity; , v0 : Landroid/content/Intent; , v1 : Landroid/content/ServiceConnection; , v2 : single-length
+.line 464
+	iput-boolean	v2,v3,com/fsharemobile/HomeActivity.status Z
+; v2 : single-length , v3 : Lcom/fsharemobile/HomeActivity;
+.line 465
+	const-string	v1,"Bind_Service"
+; v1 : Ljava/lang/String;
+	const-string	v2,"Service binded Successful"
+; v2 : Ljava/lang/String;
+	invoke-static	{v1,v2},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v1 : Ljava/lang/String; , v2 : Ljava/lang/String;
+.line 466
+	return-void	
+.end method
+
+.method public destroyOnBackPressedListener()V
+.limit registers 2
+; this: v1 (Lcom/fsharemobile/HomeActivity;)
+.line 387
+	const/4	v0,0
+; v0 : single-length
+	iput-object	v0,v1,com/fsharemobile/HomeActivity.onBackPressedListener Lcom/fsharemobile/listener/OnBackPressedListener;
+; v0 : single-length , v1 : Lcom/fsharemobile/HomeActivity;
+.line 388
+	return-void	
+.end method
+
+.method public onBackPressed()V
+.limit registers 7
+; this: v6 (Lcom/fsharemobile/HomeActivity;)
+	const/4	v4,0
+; v4 : single-length
+.line 294
+	sget-object	v0,com/fsharemobile/fragments/ExplorerFragment.currentPath Ljava/lang/String;
+; v0 : Ljava/lang/String;
+.line 295
+	sget-object	v1,com/fsharemobile/fragments/PicturesFragment.currentPicturePath Ljava/lang/String;
+; v1 : Ljava/lang/String;
+.line 298
+	const-string	v2,"/"
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v0,v2},java/lang/String/compareTo	; compareTo(Ljava/lang/String;)I
+; v0 : Ljava/lang/String; , v2 : Ljava/lang/String;
+	move-result	v2
+; v2 : single-length
+	if-eqz	v2,ld8ba2
+; v2 : single-length
+.line 299
+	const-string	v2,""
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v0,v2},java/lang/String/compareTo	; compareTo(Ljava/lang/String;)I
+; v0 : Ljava/lang/String; , v2 : Ljava/lang/String;
+	move-result	v2
+; v2 : single-length
+	if-eqz	v2,ld8ba2
+; v2 : single-length
+.line 300
+	iget-object	v2,v6,com/fsharemobile/HomeActivity.onBackPressedListener Lcom/fsharemobile/listener/OnBackPressedListener;
+; v2 : Lcom/fsharemobile/listener/OnBackPressedListener; , v6 : Lcom/fsharemobile/HomeActivity;
+	if-eqz	v2,ld8ba2
+; v2 : Lcom/fsharemobile/listener/OnBackPressedListener;
+.line 301
+	iget-object	v2,v6,com/fsharemobile/HomeActivity.onBackPressedListener Lcom/fsharemobile/listener/OnBackPressedListener;
+; v2 : Lcom/fsharemobile/listener/OnBackPressedListener; , v6 : Lcom/fsharemobile/HomeActivity;
+	invoke-interface	{v2},com/fsharemobile/listener/OnBackPressedListener/doBack	; doBack()V
+; v2 : Lcom/fsharemobile/listener/OnBackPressedListener;
+ld8ba0:
+.line 329
+	return-void	
+ld8ba2:
+.line 303
+	const-string	v2,"/Photos"
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/String/compareTo	; compareTo(Ljava/lang/String;)I
+; v1 : Ljava/lang/String; , v2 : Ljava/lang/String;
+	move-result	v2
+; v2 : single-length
+	if-eqz	v2,ld8bd6
+; v2 : single-length
+.line 304
+	const-string	v2,""
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/String/compareTo	; compareTo(Ljava/lang/String;)I
+; v1 : Ljava/lang/String; , v2 : Ljava/lang/String;
+	move-result	v2
+; v2 : single-length
+	if-eqz	v2,ld8bd6
+; v2 : single-length
+.line 305
+	iget-object	v2,v6,com/fsharemobile/HomeActivity.onBackPressedListener Lcom/fsharemobile/listener/OnBackPressedListener;
+; v2 : Lcom/fsharemobile/listener/OnBackPressedListener; , v6 : Lcom/fsharemobile/HomeActivity;
+	if-eqz	v2,ld8bd6
+; v2 : Lcom/fsharemobile/listener/OnBackPressedListener;
+.line 306
+	iget-object	v2,v6,com/fsharemobile/HomeActivity.onBackPressedListener Lcom/fsharemobile/listener/OnBackPressedListener;
+; v2 : Lcom/fsharemobile/listener/OnBackPressedListener; , v6 : Lcom/fsharemobile/HomeActivity;
+	invoke-interface	{v2},com/fsharemobile/listener/OnBackPressedListener/doBack	; doBack()V
+; v2 : Lcom/fsharemobile/listener/OnBackPressedListener;
+	goto	ld8ba0
+ld8bd6:
+.line 310
+	iget-boolean	v2,v6,com/fsharemobile/HomeActivity.doubleBackToExitPressedOnce Z
+; v2 : single-length , v6 : Lcom/fsharemobile/HomeActivity;
+	if-eqz	v2,ld8bea
+; v2 : single-length
+.line 311
+	invoke-super	{v6},android/support/v4/app/FragmentActivity/onBackPressed	; onBackPressed()V
+; v6 : Lcom/fsharemobile/HomeActivity;
+.line 312
+	invoke-static	{v4},java/lang/System/exit	; exit(I)V
+; v4 : single-length
+ld8bea:
+.line 316
+	const/4	v2,1
+; v2 : single-length
+	iput-boolean	v2,v6,com/fsharemobile/HomeActivity.doubleBackToExitPressedOnce Z
+; v2 : single-length , v6 : Lcom/fsharemobile/HomeActivity;
+.line 318
+	invoke-virtual	{v6},com/fsharemobile/HomeActivity/getResources	; getResources()Landroid/content/res/Resources;
+; v6 : Lcom/fsharemobile/HomeActivity;
+	move-result-object	v2
+; v2 : Landroid/content/res/Resources;
+	const	v3,2131230825	; 0x7f080069
+; v3 : single-length
+	invoke-virtual	{v2,v3},android/content/res/Resources/getString	; getString(I)Ljava/lang/String;
+; v2 : Landroid/content/res/Resources; , v3 : single-length
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+.line 317
+	invoke-static	{v6,v2,v4},android/widget/Toast/makeText	; makeText(Landroid/content/Context;Ljava/lang/CharSequence;I)Landroid/widget/Toast;
+; v6 : Lcom/fsharemobile/HomeActivity; , v2 : Ljava/lang/String; , v4 : single-length
+	move-result-object	v2
+; v2 : Landroid/widget/Toast;
+.line 319
+	invoke-virtual	{v2},android/widget/Toast/show	; show()V
+; v2 : Landroid/widget/Toast;
+.line 320
+	new-instance	v2,android/os/Handler
+; v2 : Landroid/os/Handler;
+	invoke-direct	{v2},android/os/Handler/<init>	; <init>()V
+; v2 : Landroid/os/Handler;
+	new-instance	v3,com/fsharemobile/HomeActivity$5
+; v3 : Lcom/fsharemobile/HomeActivity$5;
+	invoke-direct	{v3,v6},com/fsharemobile/HomeActivity$5/<init>	; <init>(Lcom/fsharemobile/HomeActivity;)V
+; v3 : Lcom/fsharemobile/HomeActivity$5; , v6 : Lcom/fsharemobile/HomeActivity;
+.line 327
+	const-wide/16	v4,2000
+; v4 : double-length
+.line 320
+	invoke-virtual	{v2,v3,v4,v5},android/os/Handler/postDelayed	; postDelayed(Ljava/lang/Runnable;J)Z
+; v2 : Landroid/os/Handler; , v3 : Lcom/fsharemobile/HomeActivity$5; , v4 : double-length
+	goto	ld8ba0
+.end method
+
+.method public onClick(Landroid/view/View;)V
+.limit registers 9
+; this: v7 (Lcom/fsharemobile/HomeActivity;)
+; parameter[0] : v8 (Landroid/view/View;)
+.var 1 is newFrag Landroid/support/v4/app/Fragment; from ld8c58 to ld8c92
+.var 2 is sentData Landroid/os/Bundle; from ld8ca2 to ld8cf0
+.var 1 is newFrag Landroid/support/v4/app/Fragment; from ld8c98 to ld8d22
+.var 1 is newFrag Landroid/support/v4/app/Fragment; from ld8d28 to ld8d5c
+	const	v6,2130837601	; 0x7f020061
+; v6 : single-length
+	const	v5,2130837592	; 0x7f020058
+; v5 : single-length
+	const	v4,2130837563	; 0x7f02003b
+; v4 : single-length
+.line 252
+	const/4	v1,0
+; v1 : single-length
+.line 253
+	invoke-virtual	{v8},android/view/View/getId	; getId()I
+; v8 : Landroid/view/View;
+	move-result	v0
+; v0 : single-length
+.line 254
+	const	v3,2131427355	; 0x7f0b001b
+; v3 : single-length
+	if-ne	v0,v3,ld8cf0
+; v0 : single-length , v3 : single-length
+.line 255
+	iget-object	v3,v7,com/fsharemobile/HomeActivity.ivExplorer Landroid/widget/ImageView;
+; v3 : Landroid/widget/ImageView; , v7 : Lcom/fsharemobile/HomeActivity;
+	const	v4,2130837565	; 0x7f02003d
+; v4 : single-length
+	invoke-virtual	{v3,v4},android/widget/ImageView/setImageResource	; setImageResource(I)V
+; v3 : Landroid/widget/ImageView; , v4 : single-length
+.line 256
+	iget-object	v3,v7,com/fsharemobile/HomeActivity.ivPicture Landroid/widget/ImageView;
+; v3 : Landroid/widget/ImageView; , v7 : Lcom/fsharemobile/HomeActivity;
+	invoke-virtual	{v3,v6},android/widget/ImageView/setImageResource	; setImageResource(I)V
+; v3 : Landroid/widget/ImageView; , v6 : single-length
+.line 257
+	iget-object	v3,v7,com/fsharemobile/HomeActivity.ivSetting Landroid/widget/ImageView;
+; v3 : Landroid/widget/ImageView; , v7 : Lcom/fsharemobile/HomeActivity;
+	invoke-virtual	{v3,v5},android/widget/ImageView/setImageResource	; setImageResource(I)V
+; v3 : Landroid/widget/ImageView; , v5 : single-length
+.line 258
+	new-instance	v1,com/fsharemobile/fragments/ExplorerFragment
+; v1 : Lcom/fsharemobile/fragments/ExplorerFragment;
+ld8c92:
+	invoke-direct	{v1},com/fsharemobile/fragments/ExplorerFragment/<init>	; <init>()V
+; v1 : Lcom/fsharemobile/fragments/ExplorerFragment;
+ld8c98:
+.line 270
+	new-instance	v2,android/os/Bundle
+; v2 : Landroid/os/Bundle;
+	invoke-direct	{v2},android/os/Bundle/<init>	; <init>()V
+; v2 : Landroid/os/Bundle;
+.line 271
+	const-string	v3,"isOnline"
+; v3 : Ljava/lang/String;
+	iget-boolean	v4,v7,com/fsharemobile/HomeActivity.isOnline Z
+; v4 : single-length , v7 : Lcom/fsharemobile/HomeActivity;
+	invoke-virtual	{v2,v3,v4},android/os/Bundle/putBoolean	; putBoolean(Ljava/lang/String;Z)V
+; v2 : Landroid/os/Bundle; , v3 : Ljava/lang/String; , v4 : single-length
+.line 272
+	invoke-virtual	{v1,v2},android/support/v4/app/Fragment/setArguments	; setArguments(Landroid/os/Bundle;)V
+; v1 : Ljava/lang/Object; , v2 : Landroid/os/Bundle;
+.line 273
+	iget-object	v3,v7,com/fsharemobile/HomeActivity.fragManager Landroid/support/v4/app/FragmentManager;
+; v3 : Landroid/support/v4/app/FragmentManager; , v7 : Lcom/fsharemobile/HomeActivity;
+	invoke-virtual	{v3},android/support/v4/app/FragmentManager/beginTransaction	; beginTransaction()Landroid/support/v4/app/FragmentTransaction;
+; v3 : Landroid/support/v4/app/FragmentManager;
+	move-result-object	v3
+; v3 : Landroid/support/v4/app/FragmentTransaction;
+	iput-object	v3,v7,com/fsharemobile/HomeActivity.fragTran Landroid/support/v4/app/FragmentTransaction;
+; v3 : Landroid/support/v4/app/FragmentTransaction; , v7 : Lcom/fsharemobile/HomeActivity;
+.line 275
+	iget-object	v3,v7,com/fsharemobile/HomeActivity.fragTran Landroid/support/v4/app/FragmentTransaction;
+; v3 : Landroid/support/v4/app/FragmentTransaction; , v7 : Lcom/fsharemobile/HomeActivity;
+	const	v4,2131427358	; 0x7f0b001e
+; v4 : single-length
+	invoke-virtual	{v3,v4,v1},android/support/v4/app/FragmentTransaction/replace	; replace(ILandroid/support/v4/app/Fragment;)Landroid/support/v4/app/FragmentTransaction;
+; v3 : Landroid/support/v4/app/FragmentTransaction; , v4 : single-length , v1 : Ljava/lang/Object;
+.line 277
+	iget-object	v3,v7,com/fsharemobile/HomeActivity.fragTran Landroid/support/v4/app/FragmentTransaction;
+; v3 : Landroid/support/v4/app/FragmentTransaction; , v7 : Lcom/fsharemobile/HomeActivity;
+	const/16	v4,4099
+; v4 : single-length
+	invoke-virtual	{v3,v4},android/support/v4/app/FragmentTransaction/setTransition	; setTransition(I)Landroid/support/v4/app/FragmentTransaction;
+; v3 : Landroid/support/v4/app/FragmentTransaction; , v4 : single-length
+.line 278
+	iget-object	v3,v7,com/fsharemobile/HomeActivity.fragTran Landroid/support/v4/app/FragmentTransaction;
+; v3 : Landroid/support/v4/app/FragmentTransaction; , v7 : Lcom/fsharemobile/HomeActivity;
+	invoke-virtual	{v3},android/support/v4/app/FragmentTransaction/commit	; commit()I
+; v3 : Landroid/support/v4/app/FragmentTransaction;
+.line 283
+	return-void	
+ld8cf0:
+.line 259
+	const	v3,2131427356	; 0x7f0b001c
+; v3 : single-length
+	if-ne	v0,v3,ld8d2a
+; v0 : single-length , v3 : single-length
+.line 260
+	iget-object	v3,v7,com/fsharemobile/HomeActivity.ivExplorer Landroid/widget/ImageView;
+; v3 : Landroid/widget/ImageView; , v7 : Lcom/fsharemobile/HomeActivity;
+	invoke-virtual	{v3,v4},android/widget/ImageView/setImageResource	; setImageResource(I)V
+; v3 : Landroid/widget/ImageView; , v4 : single-length
+.line 261
+	iget-object	v3,v7,com/fsharemobile/HomeActivity.ivPicture Landroid/widget/ImageView;
+; v3 : Landroid/widget/ImageView; , v7 : Lcom/fsharemobile/HomeActivity;
+	const	v4,2130837603	; 0x7f020063
+; v4 : single-length
+	invoke-virtual	{v3,v4},android/widget/ImageView/setImageResource	; setImageResource(I)V
+; v3 : Landroid/widget/ImageView; , v4 : single-length
+.line 262
+	iget-object	v3,v7,com/fsharemobile/HomeActivity.ivSetting Landroid/widget/ImageView;
+; v3 : Landroid/widget/ImageView; , v7 : Lcom/fsharemobile/HomeActivity;
+	invoke-virtual	{v3,v5},android/widget/ImageView/setImageResource	; setImageResource(I)V
+; v3 : Landroid/widget/ImageView; , v5 : single-length
+.line 263
+	new-instance	v1,com/fsharemobile/fragments/PicturesFragment
+; v1 : Lcom/fsharemobile/fragments/PicturesFragment;
+ld8d22:
+	invoke-direct	{v1},com/fsharemobile/fragments/PicturesFragment/<init>	; <init>()V
+; v1 : Lcom/fsharemobile/fragments/PicturesFragment;
+.line 264
+	goto	ld8c98
+ld8d2a:
+	const	v3,2131427357	; 0x7f0b001d
+; v3 : single-length
+	if-ne	v0,v3,ld8c98
+; v0 : single-length , v3 : single-length
+.line 265
+	iget-object	v3,v7,com/fsharemobile/HomeActivity.ivExplorer Landroid/widget/ImageView;
+; v3 : Landroid/widget/ImageView; , v7 : Lcom/fsharemobile/HomeActivity;
+	invoke-virtual	{v3,v4},android/widget/ImageView/setImageResource	; setImageResource(I)V
+; v3 : Landroid/widget/ImageView; , v4 : single-length
+.line 266
+	iget-object	v3,v7,com/fsharemobile/HomeActivity.ivPicture Landroid/widget/ImageView;
+; v3 : Landroid/widget/ImageView; , v7 : Lcom/fsharemobile/HomeActivity;
+	invoke-virtual	{v3,v6},android/widget/ImageView/setImageResource	; setImageResource(I)V
+; v3 : Landroid/widget/ImageView; , v6 : single-length
+.line 267
+	iget-object	v3,v7,com/fsharemobile/HomeActivity.ivSetting Landroid/widget/ImageView;
+; v3 : Landroid/widget/ImageView; , v7 : Lcom/fsharemobile/HomeActivity;
+	const	v4,2130837594	; 0x7f02005a
+; v4 : single-length
+	invoke-virtual	{v3,v4},android/widget/ImageView/setImageResource	; setImageResource(I)V
+; v3 : Landroid/widget/ImageView; , v4 : single-length
+.line 268
+	new-instance	v1,com/fsharemobile/fragments/SettingFragment
+; v1 : Lcom/fsharemobile/fragments/SettingFragment;
+ld8d5c:
+	invoke-direct	{v1},com/fsharemobile/fragments/SettingFragment/<init>	; <init>()V
+; v1 : Lcom/fsharemobile/fragments/SettingFragment;
+	goto	ld8c98
+.end method
+
+.method protected onCreate(Landroid/os/Bundle;)V
+.limit registers 7
+; this: v5 (Lcom/fsharemobile/HomeActivity;)
+; parameter[0] : v6 (Landroid/os/Bundle;)
+.line 85
+	invoke-super	{v5,v6},android/support/v4/app/FragmentActivity/onCreate	; onCreate(Landroid/os/Bundle;)V
+; v5 : Lcom/fsharemobile/HomeActivity; , v6 : Landroid/os/Bundle;
+.line 86
+	iget-object	v3,v5,com/fsharemobile/HomeActivity.LOG_HOME_ACTIVITY Ljava/lang/String;
+; v3 : Ljava/lang/String; , v5 : Lcom/fsharemobile/HomeActivity;
+	const-string	v4,"On Create home activity......"
+; v4 : Ljava/lang/String;
+	invoke-static	{v3,v4},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v3 : Ljava/lang/String; , v4 : Ljava/lang/String;
+.line 88
+	invoke-virtual	{v5},com/fsharemobile/HomeActivity/getIntent	; getIntent()Landroid/content/Intent;
+; v5 : Lcom/fsharemobile/HomeActivity;
+	move-result-object	v1
+; v1 : Landroid/content/Intent;
+.line 89
+	invoke-virtual	{v1},android/content/Intent/getExtras	; getExtras()Landroid/os/Bundle;
+; v1 : Landroid/content/Intent;
+	move-result-object	v0
+; v0 : Landroid/os/Bundle;
+.line 90
+	const-string	v3,"isOnline"
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v0,v3},android/os/Bundle/getBoolean	; getBoolean(Ljava/lang/String;)Z
+; v0 : Landroid/os/Bundle; , v3 : Ljava/lang/String;
+	move-result	v3
+; v3 : single-length
+	iput-boolean	v3,v5,com/fsharemobile/HomeActivity.isOnline Z
+; v3 : single-length , v5 : Lcom/fsharemobile/HomeActivity;
+.line 92
+	const	v3,2130903047	; 0x7f030007
+; v3 : single-length
+	invoke-virtual	{v5,v3},com/fsharemobile/HomeActivity/setContentView	; setContentView(I)V
+; v5 : Lcom/fsharemobile/HomeActivity; , v3 : single-length
+.line 93
+	const	v3,2131427355	; 0x7f0b001b
+; v3 : single-length
+	invoke-virtual	{v5,v3},com/fsharemobile/HomeActivity/findViewById	; findViewById(I)Landroid/view/View;
+; v5 : Lcom/fsharemobile/HomeActivity; , v3 : single-length
+	move-result-object	v3
+; v3 : Landroid/view/View;
+	check-cast	v3,android/widget/ImageView
+; v3 : Landroid/widget/ImageView;
+	iput-object	v3,v5,com/fsharemobile/HomeActivity.ivExplorer Landroid/widget/ImageView;
+; v3 : Landroid/widget/ImageView; , v5 : Lcom/fsharemobile/HomeActivity;
+.line 94
+	const	v3,2131427356	; 0x7f0b001c
+; v3 : single-length
+	invoke-virtual	{v5,v3},com/fsharemobile/HomeActivity/findViewById	; findViewById(I)Landroid/view/View;
+; v5 : Lcom/fsharemobile/HomeActivity; , v3 : single-length
+	move-result-object	v3
+; v3 : Landroid/view/View;
+	check-cast	v3,android/widget/ImageView
+; v3 : Landroid/widget/ImageView;
+	iput-object	v3,v5,com/fsharemobile/HomeActivity.ivPicture Landroid/widget/ImageView;
+; v3 : Landroid/widget/ImageView; , v5 : Lcom/fsharemobile/HomeActivity;
+.line 95
+	const	v3,2131427357	; 0x7f0b001d
+; v3 : single-length
+	invoke-virtual	{v5,v3},com/fsharemobile/HomeActivity/findViewById	; findViewById(I)Landroid/view/View;
+; v5 : Lcom/fsharemobile/HomeActivity; , v3 : single-length
+	move-result-object	v3
+; v3 : Landroid/view/View;
+	check-cast	v3,android/widget/ImageView
+; v3 : Landroid/widget/ImageView;
+	iput-object	v3,v5,com/fsharemobile/HomeActivity.ivSetting Landroid/widget/ImageView;
+; v3 : Landroid/widget/ImageView; , v5 : Lcom/fsharemobile/HomeActivity;
+.line 97
+	const	v3,2131427354	; 0x7f0b001a
+; v3 : single-length
+	invoke-virtual	{v5,v3},com/fsharemobile/HomeActivity/findViewById	; findViewById(I)Landroid/view/View;
+; v5 : Lcom/fsharemobile/HomeActivity; , v3 : single-length
+	move-result-object	v3
+; v3 : Landroid/view/View;
+	check-cast	v3,android/widget/LinearLayout
+; v3 : Landroid/widget/LinearLayout;
+	iput-object	v3,v5,com/fsharemobile/HomeActivity.layOut Landroid/widget/LinearLayout;
+; v3 : Landroid/widget/LinearLayout; , v5 : Lcom/fsharemobile/HomeActivity;
+.line 99
+	invoke-virtual	{v5},com/fsharemobile/HomeActivity/getSupportFragmentManager	; getSupportFragmentManager()Landroid/support/v4/app/FragmentManager;
+; v5 : Lcom/fsharemobile/HomeActivity;
+	move-result-object	v3
+; v3 : Landroid/support/v4/app/FragmentManager;
+	iput-object	v3,v5,com/fsharemobile/HomeActivity.fragManager Landroid/support/v4/app/FragmentManager;
+; v3 : Landroid/support/v4/app/FragmentManager; , v5 : Lcom/fsharemobile/HomeActivity;
+.line 100
+	iget-object	v3,v5,com/fsharemobile/HomeActivity.fragManager Landroid/support/v4/app/FragmentManager;
+; v3 : Landroid/support/v4/app/FragmentManager; , v5 : Lcom/fsharemobile/HomeActivity;
+	invoke-virtual	{v3},android/support/v4/app/FragmentManager/beginTransaction	; beginTransaction()Landroid/support/v4/app/FragmentTransaction;
+; v3 : Landroid/support/v4/app/FragmentManager;
+	move-result-object	v3
+; v3 : Landroid/support/v4/app/FragmentTransaction;
+	iput-object	v3,v5,com/fsharemobile/HomeActivity.fragTran Landroid/support/v4/app/FragmentTransaction;
+; v3 : Landroid/support/v4/app/FragmentTransaction; , v5 : Lcom/fsharemobile/HomeActivity;
+.line 101
+	invoke-direct	{v5},com/fsharemobile/HomeActivity/initBackGround	; initBackGround()V
+; v5 : Lcom/fsharemobile/HomeActivity;
+.line 102
+	iget-object	v3,v5,com/fsharemobile/HomeActivity.ivExplorer Landroid/widget/ImageView;
+; v3 : Landroid/widget/ImageView; , v5 : Lcom/fsharemobile/HomeActivity;
+	invoke-virtual	{v3,v5},android/widget/ImageView/setOnClickListener	; setOnClickListener(Landroid/view/View$OnClickListener;)V
+; v3 : Landroid/widget/ImageView; , v5 : Lcom/fsharemobile/HomeActivity;
+.line 103
+	iget-object	v3,v5,com/fsharemobile/HomeActivity.ivPicture Landroid/widget/ImageView;
+; v3 : Landroid/widget/ImageView; , v5 : Lcom/fsharemobile/HomeActivity;
+	invoke-virtual	{v3,v5},android/widget/ImageView/setOnClickListener	; setOnClickListener(Landroid/view/View$OnClickListener;)V
+; v3 : Landroid/widget/ImageView; , v5 : Lcom/fsharemobile/HomeActivity;
+.line 104
+	iget-object	v3,v5,com/fsharemobile/HomeActivity.ivSetting Landroid/widget/ImageView;
+; v3 : Landroid/widget/ImageView; , v5 : Lcom/fsharemobile/HomeActivity;
+	invoke-virtual	{v3,v5},android/widget/ImageView/setOnClickListener	; setOnClickListener(Landroid/view/View$OnClickListener;)V
+; v3 : Landroid/widget/ImageView; , v5 : Lcom/fsharemobile/HomeActivity;
+.line 106
+	invoke-static	{},com/fsharemobile/model/Share/getInstance	; getInstance()Lcom/fsharemobile/model/Share;
+; 
+	nop	
+	move-result-object	v2
+; v2 : Lcom/fsharemobile/model/Share;
+.line 107
+	invoke-virtual	{v2},com/fsharemobile/model/Share/getFclient	; getFclient()Lcom/fsharemobile/client/FClient;
+; v2 : Lcom/fsharemobile/model/Share;
+	move-result-object	v3
+; v3 : Lcom/fsharemobile/client/FClient;
+	iput-object	v3,v5,com/fsharemobile/HomeActivity.fclient Lcom/fsharemobile/client/FClient;
+; v3 : Lcom/fsharemobile/client/FClient; , v5 : Lcom/fsharemobile/HomeActivity;
+.line 108
+	iget-object	v3,v5,com/fsharemobile/HomeActivity.fclient Lcom/fsharemobile/client/FClient;
+; v3 : Lcom/fsharemobile/client/FClient; , v5 : Lcom/fsharemobile/HomeActivity;
+	invoke-virtual	{v3},com/fsharemobile/client/FClient/getPhotoProxy	; getPhotoProxy()Lcom/fsharemobile/client/PhotoProxy;
+; v3 : Lcom/fsharemobile/client/FClient;
+	move-result-object	v3
+; v3 : Lcom/fsharemobile/client/PhotoProxy;
+	iput-object	v3,v5,com/fsharemobile/HomeActivity.photoProxy Lcom/fsharemobile/client/PhotoProxy;
+; v3 : Lcom/fsharemobile/client/PhotoProxy; , v5 : Lcom/fsharemobile/HomeActivity;
+.line 109
+	iget-object	v3,v5,com/fsharemobile/HomeActivity.fclient Lcom/fsharemobile/client/FClient;
+; v3 : Lcom/fsharemobile/client/FClient; , v5 : Lcom/fsharemobile/HomeActivity;
+	invoke-virtual	{v3},com/fsharemobile/client/FClient/getSesProxy	; getSesProxy()Lcom/fsharemobile/client/SessionProxy;
+; v3 : Lcom/fsharemobile/client/FClient;
+	move-result-object	v3
+; v3 : Lcom/fsharemobile/client/SessionProxy;
+	iput-object	v3,v5,com/fsharemobile/HomeActivity.sessProxy Lcom/fsharemobile/client/SessionProxy;
+; v3 : Lcom/fsharemobile/client/SessionProxy; , v5 : Lcom/fsharemobile/HomeActivity;
+.line 110
+	invoke-direct	{v5},com/fsharemobile/HomeActivity/getLocalImage	; getLocalImage()Ljava/util/ArrayList;
+; v5 : Lcom/fsharemobile/HomeActivity;
+	move-result-object	v3
+; v3 : Ljava/util/ArrayList;
+	iput-object	v3,v5,com/fsharemobile/HomeActivity.listImageInDevice Ljava/util/ArrayList;
+; v3 : Ljava/util/ArrayList; , v5 : Lcom/fsharemobile/HomeActivity;
+.line 112
+	const/4	v3,0
+; v3 : single-length
+	invoke-direct	{v5,v3},com/fsharemobile/HomeActivity/LoadUploadImge	; LoadUploadImge(I)V
+; v5 : Lcom/fsharemobile/HomeActivity; , v3 : single-length
+.line 114
+	invoke-direct	{v5},com/fsharemobile/HomeActivity/ShowImage	; ShowImage()V
+; v5 : Lcom/fsharemobile/HomeActivity;
+.line 118
+	return-void	
+.end method
+
+.method public onCreateOptionsMenu(Landroid/view/Menu;)Z
+.limit registers 3
+; this: v1 (Lcom/fsharemobile/HomeActivity;)
+; parameter[0] : v2 (Landroid/view/Menu;)
+.line 245
+	const/4	v0,1
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method protected onDestroy()V
+.limit registers 3
+; this: v2 (Lcom/fsharemobile/HomeActivity;)
+.line 354
+	invoke-super	{v2},android/support/v4/app/FragmentActivity/onDestroy	; onDestroy()V
+; v2 : Lcom/fsharemobile/HomeActivity;
+.line 355
+	iget-object	v0,v2,com/fsharemobile/HomeActivity.LOG_HOME_ACTIVITY Ljava/lang/String;
+; v0 : Ljava/lang/String; , v2 : Lcom/fsharemobile/HomeActivity;
+	const-string	v1,"On Destroy Home activity......"
+; v1 : Ljava/lang/String;
+	invoke-static	{v0,v1},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v0 : Ljava/lang/String; , v1 : Ljava/lang/String;
+.line 356
+	return-void	
+.end method
+
+.method protected onPause()V
+.limit registers 3
+; this: v2 (Lcom/fsharemobile/HomeActivity;)
+.line 361
+	invoke-super	{v2},android/support/v4/app/FragmentActivity/onPause	; onPause()V
+; v2 : Lcom/fsharemobile/HomeActivity;
+.line 362
+	iget-object	v0,v2,com/fsharemobile/HomeActivity.LOG_HOME_ACTIVITY Ljava/lang/String;
+; v0 : Ljava/lang/String; , v2 : Lcom/fsharemobile/HomeActivity;
+	const-string	v1,"On PAUSE Home activity......"
+; v1 : Ljava/lang/String;
+	invoke-static	{v0,v1},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v0 : Ljava/lang/String; , v1 : Ljava/lang/String;
+.line 363
+	invoke-virtual	{v2},com/fsharemobile/HomeActivity/unBindMethod	; unBindMethod()V
+; v2 : Lcom/fsharemobile/HomeActivity;
+.line 364
+	return-void	
+.end method
+
+.method protected onResume()V
+.limit registers 2
+; this: v1 (Lcom/fsharemobile/HomeActivity;)
+.line 287
+	invoke-super	{v1},android/support/v4/app/FragmentActivity/onResume	; onResume()V
+; v1 : Lcom/fsharemobile/HomeActivity;
+.line 288
+	const/4	v0,0
+; v0 : single-length
+	iput-boolean	v0,v1,com/fsharemobile/HomeActivity.doubleBackToExitPressedOnce Z
+; v0 : single-length , v1 : Lcom/fsharemobile/HomeActivity;
+.line 290
+	return-void	
+.end method
+
+.method protected onResumeFragments()V
+.limit registers 3
+; this: v2 (Lcom/fsharemobile/HomeActivity;)
+.line 369
+	invoke-super	{v2},android/support/v4/app/FragmentActivity/onResumeFragments	; onResumeFragments()V
+; v2 : Lcom/fsharemobile/HomeActivity;
+.line 370
+	iget-object	v0,v2,com/fsharemobile/HomeActivity.LOG_HOME_ACTIVITY Ljava/lang/String;
+; v0 : Ljava/lang/String; , v2 : Lcom/fsharemobile/HomeActivity;
+	const-string	v1,"On Resume this  Home Fragment......"
+; v1 : Ljava/lang/String;
+	invoke-static	{v0,v1},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v0 : Ljava/lang/String; , v1 : Ljava/lang/String;
+.line 371
+	return-void	
+.end method
+
+.method protected onStart()V
+.limit registers 3
+; this: v2 (Lcom/fsharemobile/HomeActivity;)
+.line 345
+	invoke-super	{v2},android/support/v4/app/FragmentActivity/onStart	; onStart()V
+; v2 : Lcom/fsharemobile/HomeActivity;
+.line 346
+	invoke-static	{v2},com/google/analytics/tracking/android/EasyTracker/getInstance	; getInstance(Landroid/content/Context;)Lcom/google/analytics/tracking/android/EasyTracker;
+; v2 : Lcom/fsharemobile/HomeActivity;
+	move-result-object	v0
+; v0 : Lcom/google/analytics/tracking/android/EasyTracker;
+	invoke-virtual	{v0,v2},com/google/analytics/tracking/android/EasyTracker/activityStart	; activityStart(Landroid/app/Activity;)V
+; v0 : Lcom/google/analytics/tracking/android/EasyTracker; , v2 : Lcom/fsharemobile/HomeActivity;
+.line 347
+	iget-object	v0,v2,com/fsharemobile/HomeActivity.LOG_HOME_ACTIVITY Ljava/lang/String;
+; v0 : Ljava/lang/String; , v2 : Lcom/fsharemobile/HomeActivity;
+	const-string	v1,"On Start Home activity......"
+; v1 : Ljava/lang/String;
+	invoke-static	{v0,v1},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v0 : Ljava/lang/String; , v1 : Ljava/lang/String;
+.line 348
+	invoke-virtual	{v2},com/fsharemobile/HomeActivity/bindMethod	; bindMethod()V
+; v2 : Lcom/fsharemobile/HomeActivity;
+.line 349
+	return-void	
+.end method
+
+.method protected onStop()V
+.limit registers 3
+; this: v2 (Lcom/fsharemobile/HomeActivity;)
+.line 376
+	invoke-super	{v2},android/support/v4/app/FragmentActivity/onStop	; onStop()V
+; v2 : Lcom/fsharemobile/HomeActivity;
+.line 377
+	invoke-static	{v2},com/google/analytics/tracking/android/EasyTracker/getInstance	; getInstance(Landroid/content/Context;)Lcom/google/analytics/tracking/android/EasyTracker;
+; v2 : Lcom/fsharemobile/HomeActivity;
+	move-result-object	v0
+; v0 : Lcom/google/analytics/tracking/android/EasyTracker;
+	invoke-virtual	{v0,v2},com/google/analytics/tracking/android/EasyTracker/activityStart	; activityStart(Landroid/app/Activity;)V
+; v0 : Lcom/google/analytics/tracking/android/EasyTracker; , v2 : Lcom/fsharemobile/HomeActivity;
+.line 378
+	iget-object	v0,v2,com/fsharemobile/HomeActivity.LOG_HOME_ACTIVITY Ljava/lang/String;
+; v0 : Ljava/lang/String; , v2 : Lcom/fsharemobile/HomeActivity;
+	const-string	v1,"On Stop home activity......"
+; v1 : Ljava/lang/String;
+	invoke-static	{v0,v1},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v0 : Ljava/lang/String; , v1 : Ljava/lang/String;
+.line 379
+	return-void	
+.end method
+
+.method public setOnBackPressedListener(Lcom/fsharemobile/listener/OnBackPressedListener;)V
+.limit registers 2
+; this: v0 (Lcom/fsharemobile/HomeActivity;)
+; parameter[0] : v1 (Lcom/fsharemobile/listener/OnBackPressedListener;)
+.line 383
+	iput-object	v1,v0,com/fsharemobile/HomeActivity.onBackPressedListener Lcom/fsharemobile/listener/OnBackPressedListener;
+; v1 : Lcom/fsharemobile/listener/OnBackPressedListener; , v0 : Lcom/fsharemobile/HomeActivity;
+.line 384
+	return-void	
+.end method
+
+.method public unBindMethod()V
+.limit registers 3
+; this: v2 (Lcom/fsharemobile/HomeActivity;)
+.line 469
+	iget-boolean	v0,v2,com/fsharemobile/HomeActivity.status Z
+; v0 : single-length , v2 : Lcom/fsharemobile/HomeActivity;
+	if-eqz	v0,ld900c
+; v0 : single-length
+.line 470
+	iget-object	v0,v2,com/fsharemobile/HomeActivity.serviceConnection Landroid/content/ServiceConnection;
+; v0 : Landroid/content/ServiceConnection; , v2 : Lcom/fsharemobile/HomeActivity;
+	invoke-virtual	{v2,v0},com/fsharemobile/HomeActivity/unbindService	; unbindService(Landroid/content/ServiceConnection;)V
+; v2 : Lcom/fsharemobile/HomeActivity; , v0 : Landroid/content/ServiceConnection;
+.line 471
+	const/4	v0,0
+; v0 : single-length
+	iput-boolean	v0,v2,com/fsharemobile/HomeActivity.status Z
+; v0 : single-length , v2 : Lcom/fsharemobile/HomeActivity;
+.line 472
+	const-string	v0,"Bind_Service"
+; v0 : Ljava/lang/String;
+	const-string	v1," Unbinded Service  Successful"
+; v1 : Ljava/lang/String;
+	invoke-static	{v0,v1},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v0 : Ljava/lang/String; , v1 : Ljava/lang/String;
+ld900a:
+.line 476
+	return-void	
+ld900c:
+.line 474
+	const-string	v0,"Bind_Service"
+; v0 : Ljava/lang/String;
+	const-string	v1," Service already unbinded!"
+; v1 : Ljava/lang/String;
+	invoke-static	{v0,v1},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v0 : Ljava/lang/String; , v1 : Ljava/lang/String;
+	goto	ld900a
+.end method
+
+

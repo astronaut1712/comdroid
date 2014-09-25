@@ -1,0 +1,3866 @@
+.class public android/support/v4/widget/DrawerLayout
+.super android/view/ViewGroup
+.source MyApplication
+
+.field private static final ALLOW_EDGE_LOCK Z = false
+.field private static final CHILDREN_DISALLOW_INTERCEPT Z = true
+.field private static final DEFAULT_SCRIM_COLOR I = -1728053248	; 0x99000000
+.field private static final LAYOUT_ATTRS [I = null
+.field public static final LOCK_MODE_LOCKED_CLOSED I = 1	; 0x1
+.field public static final LOCK_MODE_LOCKED_OPEN I = 2	; 0x2
+.field public static final LOCK_MODE_UNLOCKED I = 0	; 0x0
+.field private static final MIN_DRAWER_MARGIN I = 64	; 0x40
+.field private static final MIN_FLING_VELOCITY I = 400	; 0x190
+.field private static final PEEK_DELAY I = 160	; 0xa0
+.field public static final STATE_DRAGGING I = 1	; 0x1
+.field public static final STATE_IDLE I = 0	; 0x0
+.field public static final STATE_SETTLING I = 2	; 0x2
+.field private static final TAG Ljava/lang/String; = "DrawerLayout"
+.field private static final TOUCH_SLOP_SENSITIVITY F = 1.0
+.field private mChildrenCanceledTouch Z
+.field private mDisallowInterceptRequested Z
+.field private mDrawerState I
+.field private mFirstLayout Z
+.field private mInLayout Z
+.field private mInitialMotionX F
+.field private mInitialMotionY F
+.field private final mLeftCallback Landroid/support/v4/widget/DrawerLayout$ViewDragCallback;
+.field private final mLeftDragger Landroid/support/v4/widget/ViewDragHelper;
+.field private mListener Landroid/support/v4/widget/DrawerLayout$DrawerListener;
+.field private mLockModeLeft I
+.field private mLockModeRight I
+.field private mMinDrawerMargin I
+.field private final mRightCallback Landroid/support/v4/widget/DrawerLayout$ViewDragCallback;
+.field private final mRightDragger Landroid/support/v4/widget/ViewDragHelper;
+.field private mScrimColor I
+.field private mScrimOpacity F
+.field private mScrimPaint Landroid/graphics/Paint;
+.field private mShadowLeft Landroid/graphics/drawable/Drawable;
+.field private mShadowRight Landroid/graphics/drawable/Drawable;
+
+.method static <clinit>()V
+.limit registers 3
+.line 129
+	const/4	v0,1
+; v0 : single-length
+	new-array	v0,v0,[I
+; v0 : [I , v0 : [I
+	const/4	v1,0
+; v1 : single-length
+	const	v2,16842931	; 0x10100b3
+; v2 : single-length
+	aput	v2,v0,v1
+; v2 : single-length , v0 : [I , v1 : single-length
+	sput-object	v0,android/support/v4/widget/DrawerLayout.LAYOUT_ATTRS [I
+; v0 : [I
+	return-void	
+.end method
+
+.method public <init>(Landroid/content/Context;)V
+.limit registers 3
+; this: v1 (Landroid/support/v4/widget/DrawerLayout;)
+; parameter[0] : v2 (Landroid/content/Context;)
+.line 217
+	const/4	v0,0
+; v0 : single-length
+	invoke-direct	{v1,v2,v0},android/support/v4/widget/DrawerLayout/<init>	; <init>(Landroid/content/Context;Landroid/util/AttributeSet;)V
+; v1 : Landroid/support/v4/widget/DrawerLayout; , v2 : Landroid/content/Context; , v0 : single-length
+.line 218
+	return-void	
+.end method
+
+.method public <init>(Landroid/content/Context;Landroid/util/AttributeSet;)V
+.limit registers 4
+; this: v1 (Landroid/support/v4/widget/DrawerLayout;)
+; parameter[0] : v2 (Landroid/content/Context;)
+; parameter[1] : v3 (Landroid/util/AttributeSet;)
+.line 221
+	const/4	v0,0
+; v0 : single-length
+	invoke-direct	{v1,v2,v3,v0},android/support/v4/widget/DrawerLayout/<init>	; <init>(Landroid/content/Context;Landroid/util/AttributeSet;I)V
+; v1 : Landroid/support/v4/widget/DrawerLayout; , v2 : Landroid/content/Context; , v3 : Landroid/util/AttributeSet; , v0 : single-length
+.line 222
+	return-void	
+.end method
+
+.method public <init>(Landroid/content/Context;Landroid/util/AttributeSet;I)V
+.limit registers 9
+; this: v5 (Landroid/support/v4/widget/DrawerLayout;)
+; parameter[0] : v6 (Landroid/content/Context;)
+; parameter[1] : v7 (Landroid/util/AttributeSet;)
+; parameter[2] : v8 (I)
+	const/high16	v4,16256
+; v4 : single-length
+	const/4	v3,1
+; v3 : single-length
+.line 225
+	invoke-direct	{v5,v6,v7,v8},android/view/ViewGroup/<init>	; <init>(Landroid/content/Context;Landroid/util/AttributeSet;I)V
+; v5 : Landroid/support/v4/widget/DrawerLayout; , v6 : Landroid/content/Context; , v7 : Landroid/util/AttributeSet; , v8 : single-length
+.line 135
+	const/high16	v0,39168
+; v0 : single-length
+	iput	v0,v5,android/support/v4/widget/DrawerLayout.mScrimColor I
+; v0 : single-length , v5 : Landroid/support/v4/widget/DrawerLayout;
+.line 137
+	new-instance	v0,android/graphics/Paint
+; v0 : Landroid/graphics/Paint;
+	invoke-direct	{v0},android/graphics/Paint/<init>	; <init>()V
+; v0 : Landroid/graphics/Paint;
+	iput-object	v0,v5,android/support/v4/widget/DrawerLayout.mScrimPaint Landroid/graphics/Paint;
+; v0 : Landroid/graphics/Paint; , v5 : Landroid/support/v4/widget/DrawerLayout;
+.line 145
+	iput-boolean	v3,v5,android/support/v4/widget/DrawerLayout.mFirstLayout Z
+; v3 : single-length , v5 : Landroid/support/v4/widget/DrawerLayout;
+.line 227
+	invoke-virtual	{v5},android/support/v4/widget/DrawerLayout/getResources	; getResources()Landroid/content/res/Resources;
+; v5 : Landroid/support/v4/widget/DrawerLayout;
+	move-result-object	v0
+; v0 : Landroid/content/res/Resources;
+	invoke-virtual	{v0},android/content/res/Resources/getDisplayMetrics	; getDisplayMetrics()Landroid/util/DisplayMetrics;
+; v0 : Landroid/content/res/Resources;
+	move-result-object	v0
+; v0 : Landroid/util/DisplayMetrics;
+	iget	v0,v0,android/util/DisplayMetrics.density F
+; v0 : single-length , v0 : single-length
+.line 228
+	const/high16	v1,17024
+; v1 : single-length
+	mul-float/2addr	v1,v0
+; v1 : single-length , v0 : single-length
+	const/high16	v2,16128
+; v2 : single-length
+	add-float/2addr	v1,v2
+; v1 : single-length , v2 : single-length
+	float-to-int	v1,v1
+; v1 : single-length , v1 : single-length
+	iput	v1,v5,android/support/v4/widget/DrawerLayout.mMinDrawerMargin I
+; v1 : single-length , v5 : Landroid/support/v4/widget/DrawerLayout;
+.line 229
+	const/high16	v1,17352
+; v1 : single-length
+	mul-float/2addr	v0,v1
+; v0 : single-length , v1 : single-length
+.line 231
+	new-instance	v1,android/support/v4/widget/DrawerLayout$ViewDragCallback
+; v1 : Landroid/support/v4/widget/DrawerLayout$ViewDragCallback;
+	const/4	v2,3
+; v2 : single-length
+	invoke-direct	{v1,v5,v2},android/support/v4/widget/DrawerLayout$ViewDragCallback/<init>	; <init>(Landroid/support/v4/widget/DrawerLayout;I)V
+; v1 : Landroid/support/v4/widget/DrawerLayout$ViewDragCallback; , v5 : Landroid/support/v4/widget/DrawerLayout; , v2 : single-length
+	iput-object	v1,v5,android/support/v4/widget/DrawerLayout.mLeftCallback Landroid/support/v4/widget/DrawerLayout$ViewDragCallback;
+; v1 : Landroid/support/v4/widget/DrawerLayout$ViewDragCallback; , v5 : Landroid/support/v4/widget/DrawerLayout;
+.line 232
+	new-instance	v1,android/support/v4/widget/DrawerLayout$ViewDragCallback
+; v1 : Landroid/support/v4/widget/DrawerLayout$ViewDragCallback;
+	const/4	v2,5
+; v2 : single-length
+	invoke-direct	{v1,v5,v2},android/support/v4/widget/DrawerLayout$ViewDragCallback/<init>	; <init>(Landroid/support/v4/widget/DrawerLayout;I)V
+; v1 : Landroid/support/v4/widget/DrawerLayout$ViewDragCallback; , v5 : Landroid/support/v4/widget/DrawerLayout; , v2 : single-length
+	iput-object	v1,v5,android/support/v4/widget/DrawerLayout.mRightCallback Landroid/support/v4/widget/DrawerLayout$ViewDragCallback;
+; v1 : Landroid/support/v4/widget/DrawerLayout$ViewDragCallback; , v5 : Landroid/support/v4/widget/DrawerLayout;
+.line 234
+	iget-object	v1,v5,android/support/v4/widget/DrawerLayout.mLeftCallback Landroid/support/v4/widget/DrawerLayout$ViewDragCallback;
+; v1 : Landroid/support/v4/widget/DrawerLayout$ViewDragCallback; , v5 : Landroid/support/v4/widget/DrawerLayout;
+	invoke-static	{v5,v4,v1},android/support/v4/widget/ViewDragHelper/create	; create(Landroid/view/ViewGroup;FLandroid/support/v4/widget/ViewDragHelper$Callback;)Landroid/support/v4/widget/ViewDragHelper;
+; v5 : Landroid/support/v4/widget/DrawerLayout; , v4 : single-length , v1 : Landroid/support/v4/widget/DrawerLayout$ViewDragCallback;
+	move-result-object	v1
+; v1 : Landroid/support/v4/widget/ViewDragHelper;
+	iput-object	v1,v5,android/support/v4/widget/DrawerLayout.mLeftDragger Landroid/support/v4/widget/ViewDragHelper;
+; v1 : Landroid/support/v4/widget/ViewDragHelper; , v5 : Landroid/support/v4/widget/DrawerLayout;
+.line 235
+	iget-object	v1,v5,android/support/v4/widget/DrawerLayout.mLeftDragger Landroid/support/v4/widget/ViewDragHelper;
+; v1 : Landroid/support/v4/widget/ViewDragHelper; , v5 : Landroid/support/v4/widget/DrawerLayout;
+	invoke-virtual	{v1,v3},android/support/v4/widget/ViewDragHelper/setEdgeTrackingEnabled	; setEdgeTrackingEnabled(I)V
+; v1 : Landroid/support/v4/widget/ViewDragHelper; , v3 : single-length
+.line 236
+	iget-object	v1,v5,android/support/v4/widget/DrawerLayout.mLeftDragger Landroid/support/v4/widget/ViewDragHelper;
+; v1 : Landroid/support/v4/widget/ViewDragHelper; , v5 : Landroid/support/v4/widget/DrawerLayout;
+	invoke-virtual	{v1,v0},android/support/v4/widget/ViewDragHelper/setMinVelocity	; setMinVelocity(F)V
+; v1 : Landroid/support/v4/widget/ViewDragHelper; , v0 : single-length
+.line 237
+	iget-object	v1,v5,android/support/v4/widget/DrawerLayout.mLeftCallback Landroid/support/v4/widget/DrawerLayout$ViewDragCallback;
+; v1 : Landroid/support/v4/widget/DrawerLayout$ViewDragCallback; , v5 : Landroid/support/v4/widget/DrawerLayout;
+	iget-object	v2,v5,android/support/v4/widget/DrawerLayout.mLeftDragger Landroid/support/v4/widget/ViewDragHelper;
+; v2 : Landroid/support/v4/widget/ViewDragHelper; , v5 : Landroid/support/v4/widget/DrawerLayout;
+	invoke-virtual	{v1,v2},android/support/v4/widget/DrawerLayout$ViewDragCallback/setDragger	; setDragger(Landroid/support/v4/widget/ViewDragHelper;)V
+; v1 : Landroid/support/v4/widget/DrawerLayout$ViewDragCallback; , v2 : Landroid/support/v4/widget/ViewDragHelper;
+.line 239
+	iget-object	v1,v5,android/support/v4/widget/DrawerLayout.mRightCallback Landroid/support/v4/widget/DrawerLayout$ViewDragCallback;
+; v1 : Landroid/support/v4/widget/DrawerLayout$ViewDragCallback; , v5 : Landroid/support/v4/widget/DrawerLayout;
+	invoke-static	{v5,v4,v1},android/support/v4/widget/ViewDragHelper/create	; create(Landroid/view/ViewGroup;FLandroid/support/v4/widget/ViewDragHelper$Callback;)Landroid/support/v4/widget/ViewDragHelper;
+; v5 : Landroid/support/v4/widget/DrawerLayout; , v4 : single-length , v1 : Landroid/support/v4/widget/DrawerLayout$ViewDragCallback;
+	move-result-object	v1
+; v1 : Landroid/support/v4/widget/ViewDragHelper;
+	iput-object	v1,v5,android/support/v4/widget/DrawerLayout.mRightDragger Landroid/support/v4/widget/ViewDragHelper;
+; v1 : Landroid/support/v4/widget/ViewDragHelper; , v5 : Landroid/support/v4/widget/DrawerLayout;
+.line 240
+	iget-object	v1,v5,android/support/v4/widget/DrawerLayout.mRightDragger Landroid/support/v4/widget/ViewDragHelper;
+; v1 : Landroid/support/v4/widget/ViewDragHelper; , v5 : Landroid/support/v4/widget/DrawerLayout;
+	const/4	v2,2
+; v2 : single-length
+	invoke-virtual	{v1,v2},android/support/v4/widget/ViewDragHelper/setEdgeTrackingEnabled	; setEdgeTrackingEnabled(I)V
+; v1 : Landroid/support/v4/widget/ViewDragHelper; , v2 : single-length
+.line 241
+	iget-object	v1,v5,android/support/v4/widget/DrawerLayout.mRightDragger Landroid/support/v4/widget/ViewDragHelper;
+; v1 : Landroid/support/v4/widget/ViewDragHelper; , v5 : Landroid/support/v4/widget/DrawerLayout;
+	invoke-virtual	{v1,v0},android/support/v4/widget/ViewDragHelper/setMinVelocity	; setMinVelocity(F)V
+; v1 : Landroid/support/v4/widget/ViewDragHelper; , v0 : single-length
+.line 242
+	iget-object	v0,v5,android/support/v4/widget/DrawerLayout.mRightCallback Landroid/support/v4/widget/DrawerLayout$ViewDragCallback;
+; v0 : Landroid/support/v4/widget/DrawerLayout$ViewDragCallback; , v5 : Landroid/support/v4/widget/DrawerLayout;
+	iget-object	v1,v5,android/support/v4/widget/DrawerLayout.mRightDragger Landroid/support/v4/widget/ViewDragHelper;
+; v1 : Landroid/support/v4/widget/ViewDragHelper; , v5 : Landroid/support/v4/widget/DrawerLayout;
+	invoke-virtual	{v0,v1},android/support/v4/widget/DrawerLayout$ViewDragCallback/setDragger	; setDragger(Landroid/support/v4/widget/ViewDragHelper;)V
+; v0 : Landroid/support/v4/widget/DrawerLayout$ViewDragCallback; , v1 : Landroid/support/v4/widget/ViewDragHelper;
+.line 245
+	invoke-virtual	{v5,v3},android/support/v4/widget/DrawerLayout/setFocusableInTouchMode	; setFocusableInTouchMode(Z)V
+; v5 : Landroid/support/v4/widget/DrawerLayout; , v3 : single-length
+.line 247
+	new-instance	v0,android/support/v4/widget/DrawerLayout$AccessibilityDelegate
+; v0 : Landroid/support/v4/widget/DrawerLayout$AccessibilityDelegate;
+	invoke-direct	{v0,v5},android/support/v4/widget/DrawerLayout$AccessibilityDelegate/<init>	; <init>(Landroid/support/v4/widget/DrawerLayout;)V
+; v0 : Landroid/support/v4/widget/DrawerLayout$AccessibilityDelegate; , v5 : Landroid/support/v4/widget/DrawerLayout;
+	invoke-static	{v5,v0},android/support/v4/view/ViewCompat/setAccessibilityDelegate	; setAccessibilityDelegate(Landroid/view/View;Landroid/support/v4/view/AccessibilityDelegateCompat;)V
+; v5 : Landroid/support/v4/widget/DrawerLayout; , v0 : Landroid/support/v4/widget/DrawerLayout$AccessibilityDelegate;
+.line 248
+	const/4	v0,0
+; v0 : single-length
+	invoke-static	{v5,v0},android/support/v4/view/ViewGroupCompat/setMotionEventSplittingEnabled	; setMotionEventSplittingEnabled(Landroid/view/ViewGroup;Z)V
+; v5 : Landroid/support/v4/widget/DrawerLayout; , v0 : single-length
+.line 249
+	return-void	
+.end method
+
+.method static access$100()[I
+.limit registers 1
+.line 71
+	sget-object	v0,android/support/v4/widget/DrawerLayout.LAYOUT_ATTRS [I
+; v0 : [I
+	return-object	v0
+; v0 : [I
+.end method
+
+.method private findVisibleDrawer()Landroid/view/View;
+.limit registers 5
+; this: v4 (Landroid/support/v4/widget/DrawerLayout;)
+.line 1197
+	invoke-virtual	{v4},android/support/v4/widget/DrawerLayout/getChildCount	; getChildCount()I
+; v4 : Landroid/support/v4/widget/DrawerLayout;
+	move-result	v2
+; v2 : single-length
+.line 1198
+	const/4	v0,0
+; v0 : single-length
+	move	v1,v0
+; v1 : single-length , v0 : single-length
+l5d56c:
+	if-ge	v1,v2,l5d59a
+; v1 : single-length , v2 : single-length
+.line 1199
+	invoke-virtual	{v4,v1},android/support/v4/widget/DrawerLayout/getChildAt	; getChildAt(I)Landroid/view/View;
+; v4 : Landroid/support/v4/widget/DrawerLayout; , v1 : single-length
+	move-result-object	v0
+; v0 : Landroid/view/View;
+.line 1200
+	invoke-virtual	{v4,v0},android/support/v4/widget/DrawerLayout/isDrawerView	; isDrawerView(Landroid/view/View;)Z
+; v4 : Landroid/support/v4/widget/DrawerLayout; , v0 : Landroid/view/View;
+	move-result	v3
+; v3 : single-length
+	if-eqz	v3,l5d592
+; v3 : single-length
+	invoke-virtual	{v4,v0},android/support/v4/widget/DrawerLayout/isDrawerVisible	; isDrawerVisible(Landroid/view/View;)Z
+; v4 : Landroid/support/v4/widget/DrawerLayout; , v0 : Landroid/view/View;
+	move-result	v3
+; v3 : single-length
+	if-eqz	v3,l5d592
+; v3 : single-length
+l5d590:
+.line 1204
+	return-object	v0
+; v0 : single-length
+l5d592:
+.line 1198
+	add-int/lit8	v0,v1,1
+; v0 : single-length , v1 : single-length
+	move	v1,v0
+; v1 : single-length , v0 : single-length
+	goto	l5d56c
+l5d59a:
+.line 1204
+	const/4	v0,0
+; v0 : single-length
+	goto	l5d590
+.end method
+
+.method static gravityToString(I)Ljava/lang/String;
+.limit registers 3
+; parameter[0] : v2 (I)
+.line 578
+	and-int/lit8	v0,v2,3
+; v0 : single-length , v2 : single-length
+	const/4	v1,3
+; v1 : single-length
+	if-ne	v0,v1,l5d5c0
+; v0 : single-length , v1 : single-length
+.line 579
+	const-string	v0,"LEFT"
+; v0 : Ljava/lang/String;
+l5d5be:
+.line 584
+	return-object	v0
+; v0 : Ljava/lang/String;
+l5d5c0:
+.line 581
+	and-int/lit8	v0,v2,5
+; v0 : single-length , v2 : single-length
+	const/4	v1,5
+; v1 : single-length
+	if-ne	v0,v1,l5d5d0
+; v0 : single-length , v1 : single-length
+.line 582
+	const-string	v0,"RIGHT"
+; v0 : Ljava/lang/String;
+	goto	l5d5be
+l5d5d0:
+.line 584
+	invoke-static	{v2},java/lang/Integer/toHexString	; toHexString(I)Ljava/lang/String;
+; v2 : single-length
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	goto	l5d5be
+.end method
+
+.method private static hasOpaqueBackground(Landroid/view/View;)Z
+.limit registers 4
+; parameter[0] : v3 (Landroid/view/View;)
+	const/4	v0,0
+; v0 : single-length
+.line 783
+	invoke-virtual	{v3},android/view/View/getBackground	; getBackground()Landroid/graphics/drawable/Drawable;
+; v3 : Landroid/view/View;
+	move-result-object	v1
+; v1 : Landroid/graphics/drawable/Drawable;
+.line 784
+	if-eqz	v1,l5d60a
+; v1 : Landroid/graphics/drawable/Drawable;
+.line 785
+	invoke-virtual	{v1},android/graphics/drawable/Drawable/getOpacity	; getOpacity()I
+; v1 : Landroid/graphics/drawable/Drawable;
+	move-result	v1
+; v1 : single-length
+	const/4	v2,15
+; v2 : single-length
+	if-ne	v1,v2,l5d60a
+; v1 : single-length , v2 : single-length
+	const/4	v0,1
+; v0 : single-length
+l5d60a:
+.line 787
+	return	v0
+; v0 : single-length
+.end method
+
+.method private hasPeekingDrawer()Z
+.limit registers 5
+; this: v4 (Landroid/support/v4/widget/DrawerLayout;)
+	const/4	v1,0
+; v1 : single-length
+.line 1158
+	invoke-virtual	{v4},android/support/v4/widget/DrawerLayout/getChildCount	; getChildCount()I
+; v4 : Landroid/support/v4/widget/DrawerLayout;
+	move-result	v3
+; v3 : single-length
+	move	v2,v1
+; v2 : single-length , v1 : single-length
+l5d628:
+.line 1159
+	if-ge	v2,v3,l5d654
+; v2 : single-length , v3 : single-length
+.line 1160
+	invoke-virtual	{v4,v2},android/support/v4/widget/DrawerLayout/getChildAt	; getChildAt(I)Landroid/view/View;
+; v4 : Landroid/support/v4/widget/DrawerLayout; , v2 : single-length
+	move-result-object	v0
+; v0 : Landroid/view/View;
+	invoke-virtual	{v0},android/view/View/getLayoutParams	; getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
+; v0 : Landroid/view/View;
+	move-result-object	v0
+; v0 : Landroid/view/ViewGroup$LayoutParams;
+	check-cast	v0,android/support/v4/widget/DrawerLayout$LayoutParams
+; v0 : Landroid/support/v4/widget/DrawerLayout$LayoutParams;
+.line 1161
+	iget-boolean	v0,v0,android/support/v4/widget/DrawerLayout$LayoutParams.isPeeking Z
+; v0 : single-length , v0 : single-length
+	if-eqz	v0,l5d64c
+; v0 : single-length
+.line 1162
+	const/4	v0,1
+; v0 : single-length
+l5d64a:
+.line 1165
+	return	v0
+; v0 : single-length
+l5d64c:
+.line 1159
+	add-int/lit8	v0,v2,1
+; v0 : single-length , v2 : single-length
+	move	v2,v0
+; v2 : single-length , v0 : single-length
+	goto	l5d628
+l5d654:
+	move	v0,v1
+; v0 : single-length , v1 : single-length
+.line 1165
+	goto	l5d64a
+.end method
+
+.method private hasVisibleDrawer()Z
+.limit registers 2
+; this: v1 (Landroid/support/v4/widget/DrawerLayout;)
+.line 1193
+	invoke-direct	{v1},android/support/v4/widget/DrawerLayout/findVisibleDrawer	; findVisibleDrawer()Landroid/view/View;
+; v1 : Landroid/support/v4/widget/DrawerLayout;
+	move-result-object	v0
+; v0 : Landroid/view/View;
+	if-eqz	v0,l5d678
+; v0 : Landroid/view/View;
+	const/4	v0,1
+; v0 : single-length
+l5d676:
+	return	v0
+; v0 : single-length
+l5d678:
+	const/4	v0,0
+; v0 : single-length
+	goto	l5d676
+.end method
+
+.method cancelChildViewTouch()V
+.limit registers 9
+; this: v8 (Landroid/support/v4/widget/DrawerLayout;)
+	const/4	v7,0
+; v7 : single-length
+	const/4	v5,0
+; v5 : single-length
+.line 1209
+	iget-boolean	v0,v8,android/support/v4/widget/DrawerLayout.mChildrenCanceledTouch Z
+; v0 : single-length , v8 : Landroid/support/v4/widget/DrawerLayout;
+	if-nez	v0,l5d6da
+; v0 : single-length
+.line 1210
+	invoke-static	{},android/os/SystemClock/uptimeMillis	; uptimeMillis()J
+; 
+	nop	
+	move-result-wide	v0
+; v0 : double-length
+.line 1211
+	const/4	v4,3
+; v4 : single-length
+	move-wide	v2,v0
+; v2 : double-length , v0 : double-length
+	move	v6,v5
+; v6 : single-length , v5 : single-length
+	invoke-static/range	{v0..v7},android/view/MotionEvent/obtain;	obtain(JJIFFI)Landroid/view/MotionEvent;
+; v0 : double-length , v2 : double-length , v4 : single-length , v5 : single-length , v6 : single-length , v7 : single-length
+	move-result-object	v0
+; v0 : Landroid/view/MotionEvent;
+.line 1213
+	invoke-virtual	{v8},android/support/v4/widget/DrawerLayout/getChildCount	; getChildCount()I
+; v8 : Landroid/support/v4/widget/DrawerLayout;
+	move-result	v1
+; v1 : single-length
+l5d6b6:
+.line 1214
+	if-ge	v7,v1,l5d6ce
+; v7 : single-length , v1 : single-length
+.line 1215
+	invoke-virtual	{v8,v7},android/support/v4/widget/DrawerLayout/getChildAt	; getChildAt(I)Landroid/view/View;
+; v8 : Landroid/support/v4/widget/DrawerLayout; , v7 : single-length
+	move-result-object	v2
+; v2 : Landroid/view/View;
+	invoke-virtual	{v2,v0},android/view/View/dispatchTouchEvent	; dispatchTouchEvent(Landroid/view/MotionEvent;)Z
+; v2 : Landroid/view/View; , v0 : Landroid/view/MotionEvent;
+.line 1214
+	add-int/lit8	v7,v7,1
+; v7 : single-length , v7 : single-length
+	goto	l5d6b6
+l5d6ce:
+.line 1217
+	invoke-virtual	{v0},android/view/MotionEvent/recycle	; recycle()V
+; v0 : Landroid/view/MotionEvent;
+.line 1218
+	const/4	v0,1
+; v0 : single-length
+	iput-boolean	v0,v8,android/support/v4/widget/DrawerLayout.mChildrenCanceledTouch Z
+; v0 : single-length , v8 : Landroid/support/v4/widget/DrawerLayout;
+l5d6da:
+.line 1220
+	return-void	
+.end method
+
+.method checkDrawerViewAbsoluteGravity(Landroid/view/View;I)Z
+.limit registers 4
+; this: v1 (Landroid/support/v4/widget/DrawerLayout;)
+; parameter[0] : v2 (Landroid/view/View;)
+; parameter[1] : v3 (I)
+.line 524
+	invoke-virtual	{v1,v2},android/support/v4/widget/DrawerLayout/getDrawerViewAbsoluteGravity	; getDrawerViewAbsoluteGravity(Landroid/view/View;)I
+; v1 : Landroid/support/v4/widget/DrawerLayout; , v2 : Landroid/view/View;
+	move-result	v0
+; v0 : single-length
+.line 525
+	and-int/2addr	v0,v3
+; v0 : single-length , v3 : single-length
+	if-ne	v0,v3,l5d6fe
+; v0 : single-length , v3 : single-length
+	const/4	v0,1
+; v0 : single-length
+l5d6fc:
+	return	v0
+; v0 : single-length
+l5d6fe:
+	const/4	v0,0
+; v0 : single-length
+	goto	l5d6fc
+.end method
+
+.method protected checkLayoutParams(Landroid/view/ViewGroup$LayoutParams;)Z
+.limit registers 3
+; this: v1 (Landroid/support/v4/widget/DrawerLayout;)
+; parameter[0] : v2 (Landroid/view/ViewGroup$LayoutParams;)
+.line 1184
+	instance-of	v0,v2,android/support/v4/widget/DrawerLayout$LayoutParams
+; v0 : single-length , v2 : Landroid/view/ViewGroup$LayoutParams;
+	if-eqz	v0,l5d72c
+; v0 : single-length
+	invoke-super	{v1,v2},android/view/ViewGroup/checkLayoutParams	; checkLayoutParams(Landroid/view/ViewGroup$LayoutParams;)Z
+; v1 : Landroid/support/v4/widget/DrawerLayout; , v2 : Landroid/view/ViewGroup$LayoutParams;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,l5d72c
+; v0 : single-length
+	const/4	v0,1
+; v0 : single-length
+l5d72a:
+	return	v0
+; v0 : single-length
+l5d72c:
+	const/4	v0,0
+; v0 : single-length
+	goto	l5d72a
+.end method
+
+.method public closeDrawer(I)V
+.limit registers 5
+; this: v3 (Landroid/support/v4/widget/DrawerLayout;)
+; parameter[0] : v4 (I)
+.line 1084
+	invoke-virtual	{v3,v4},android/support/v4/widget/DrawerLayout/findDrawerWithGravity	; findDrawerWithGravity(I)Landroid/view/View;
+; v3 : Landroid/support/v4/widget/DrawerLayout; , v4 : single-length
+	move-result-object	v0
+; v0 : Landroid/view/View;
+.line 1085
+	if-nez	v0,l5d786
+; v0 : Landroid/view/View;
+.line 1086
+	new-instance	v0,java/lang/IllegalArgumentException
+; v0 : Ljava/lang/IllegalArgumentException;
+	new-instance	v1,java/lang/StringBuilder
+; v1 : Ljava/lang/StringBuilder;
+	invoke-direct	{v1},java/lang/StringBuilder/<init>	; <init>()V
+; v1 : Ljava/lang/StringBuilder;
+	const-string	v2,"No drawer view found with gravity "
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	invoke-static	{v4},android/support/v4/widget/DrawerLayout/gravityToString	; gravityToString(I)Ljava/lang/String;
+; v4 : single-length
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v1},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v1 : Ljava/lang/StringBuilder;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/IllegalArgumentException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/IllegalArgumentException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/IllegalArgumentException;
+l5d786:
+.line 1089
+	invoke-virtual	{v3,v0},android/support/v4/widget/DrawerLayout/closeDrawer	; closeDrawer(Landroid/view/View;)V
+; v3 : Landroid/support/v4/widget/DrawerLayout; , v0 : Landroid/view/View;
+.line 1090
+	return-void	
+.end method
+
+.method public closeDrawer(Landroid/view/View;)V
+.limit registers 5
+; this: v3 (Landroid/support/v4/widget/DrawerLayout;)
+; parameter[0] : v4 (Landroid/view/View;)
+.line 1058
+	invoke-virtual	{v3,v4},android/support/v4/widget/DrawerLayout/isDrawerView	; isDrawerView(Landroid/view/View;)Z
+; v3 : Landroid/support/v4/widget/DrawerLayout; , v4 : Landroid/view/View;
+	move-result	v0
+; v0 : single-length
+	if-nez	v0,l5d7ea
+; v0 : single-length
+.line 1059
+	new-instance	v0,java/lang/IllegalArgumentException
+; v0 : Ljava/lang/IllegalArgumentException;
+	new-instance	v1,java/lang/StringBuilder
+; v1 : Ljava/lang/StringBuilder;
+	invoke-direct	{v1},java/lang/StringBuilder/<init>	; <init>()V
+; v1 : Ljava/lang/StringBuilder;
+	const-string	v2,"View "
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v1,v4},java/lang/StringBuilder/append	; append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v4 : Landroid/view/View;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	const-string	v2," is not a sliding drawer"
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v1},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v1 : Ljava/lang/StringBuilder;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/IllegalArgumentException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/IllegalArgumentException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/IllegalArgumentException;
+l5d7ea:
+.line 1062
+	iget-boolean	v0,v3,android/support/v4/widget/DrawerLayout.mFirstLayout Z
+; v0 : single-length , v3 : Landroid/support/v4/widget/DrawerLayout;
+	if-eqz	v0,l5d812
+; v0 : single-length
+.line 1063
+	invoke-virtual	{v4},android/view/View/getLayoutParams	; getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
+; v4 : Landroid/view/View;
+	move-result-object	v0
+; v0 : Landroid/view/ViewGroup$LayoutParams;
+	check-cast	v0,android/support/v4/widget/DrawerLayout$LayoutParams
+; v0 : Landroid/support/v4/widget/DrawerLayout$LayoutParams;
+.line 1064
+	const/4	v1,0
+; v1 : single-length
+	iput	v1,v0,android/support/v4/widget/DrawerLayout$LayoutParams.onScreen F
+; v1 : single-length , v0 : Landroid/support/v4/widget/DrawerLayout$LayoutParams;
+.line 1065
+	const/4	v1,0
+; v1 : single-length
+	iput-boolean	v1,v0,android/support/v4/widget/DrawerLayout$LayoutParams.knownOpen Z
+; v1 : single-length , v0 : Landroid/support/v4/widget/DrawerLayout$LayoutParams;
+l5d80a:
+.line 1074
+	invoke-virtual	{v3},android/support/v4/widget/DrawerLayout/invalidate	; invalidate()V
+; v3 : Landroid/support/v4/widget/DrawerLayout;
+.line 1075
+	return-void	
+l5d812:
+.line 1067
+	const/4	v0,3
+; v0 : single-length
+	invoke-virtual	{v3,v4,v0},android/support/v4/widget/DrawerLayout/checkDrawerViewAbsoluteGravity	; checkDrawerViewAbsoluteGravity(Landroid/view/View;I)Z
+; v3 : Landroid/support/v4/widget/DrawerLayout; , v4 : Landroid/view/View; , v0 : single-length
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,l5d83e
+; v0 : single-length
+.line 1068
+	iget-object	v0,v3,android/support/v4/widget/DrawerLayout.mLeftDragger Landroid/support/v4/widget/ViewDragHelper;
+; v0 : Landroid/support/v4/widget/ViewDragHelper; , v3 : Landroid/support/v4/widget/DrawerLayout;
+	invoke-virtual	{v4},android/view/View/getWidth	; getWidth()I
+; v4 : Landroid/view/View;
+	move-result	v1
+; v1 : single-length
+	neg-int	v1,v1
+; v1 : single-length , v1 : single-length
+	invoke-virtual	{v4},android/view/View/getTop	; getTop()I
+; v4 : Landroid/view/View;
+	move-result	v2
+; v2 : single-length
+	invoke-virtual	{v0,v4,v1,v2},android/support/v4/widget/ViewDragHelper/smoothSlideViewTo	; smoothSlideViewTo(Landroid/view/View;II)Z
+; v0 : Landroid/support/v4/widget/ViewDragHelper; , v4 : Landroid/view/View; , v1 : single-length , v2 : single-length
+	goto	l5d80a
+l5d83e:
+.line 1071
+	iget-object	v0,v3,android/support/v4/widget/DrawerLayout.mRightDragger Landroid/support/v4/widget/ViewDragHelper;
+; v0 : Landroid/support/v4/widget/ViewDragHelper; , v3 : Landroid/support/v4/widget/DrawerLayout;
+	invoke-virtual	{v3},android/support/v4/widget/DrawerLayout/getWidth	; getWidth()I
+; v3 : Landroid/support/v4/widget/DrawerLayout;
+	move-result	v1
+; v1 : single-length
+	invoke-virtual	{v4},android/view/View/getTop	; getTop()I
+; v4 : Landroid/view/View;
+	move-result	v2
+; v2 : single-length
+	invoke-virtual	{v0,v4,v1,v2},android/support/v4/widget/ViewDragHelper/smoothSlideViewTo	; smoothSlideViewTo(Landroid/view/View;II)Z
+; v0 : Landroid/support/v4/widget/ViewDragHelper; , v4 : Landroid/view/View; , v1 : single-length , v2 : single-length
+	goto	l5d80a
+.end method
+
+.method public closeDrawers()V
+.limit registers 2
+; this: v1 (Landroid/support/v4/widget/DrawerLayout;)
+.line 977
+	const/4	v0,0
+; v0 : single-length
+	invoke-virtual	{v1,v0},android/support/v4/widget/DrawerLayout/closeDrawers	; closeDrawers(Z)V
+; v1 : Landroid/support/v4/widget/DrawerLayout; , v0 : single-length
+.line 978
+	return-void	
+.end method
+
+.method closeDrawers(Z)V
+.limit registers 11
+; this: v9 (Landroid/support/v4/widget/DrawerLayout;)
+; parameter[0] : v10 (Z)
+	const/4	v3,0
+; v3 : single-length
+.line 981
+.line 982
+	invoke-virtual	{v9},android/support/v4/widget/DrawerLayout/getChildCount	; getChildCount()I
+; v9 : Landroid/support/v4/widget/DrawerLayout;
+	move-result	v4
+; v4 : single-length
+	move	v2,v3
+; v2 : single-length , v3 : single-length
+	move	v1,v3
+; v1 : single-length , v3 : single-length
+l5d896:
+.line 983
+	if-ge	v2,v4,l5d922
+; v2 : single-length , v4 : single-length
+.line 984
+	invoke-virtual	{v9,v2},android/support/v4/widget/DrawerLayout/getChildAt	; getChildAt(I)Landroid/view/View;
+; v9 : Landroid/support/v4/widget/DrawerLayout; , v2 : single-length
+	move-result-object	v5
+; v5 : Landroid/view/View;
+.line 985
+	invoke-virtual	{v5},android/view/View/getLayoutParams	; getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
+; v5 : Landroid/view/View;
+	move-result-object	v0
+; v0 : Landroid/view/ViewGroup$LayoutParams;
+	check-cast	v0,android/support/v4/widget/DrawerLayout$LayoutParams
+; v0 : Landroid/support/v4/widget/DrawerLayout$LayoutParams;
+.line 987
+	invoke-virtual	{v9,v5},android/support/v4/widget/DrawerLayout/isDrawerView	; isDrawerView(Landroid/view/View;)Z
+; v9 : Landroid/support/v4/widget/DrawerLayout; , v5 : Landroid/view/View;
+	move-result	v6
+; v6 : single-length
+	if-eqz	v6,l5d8c6
+; v6 : single-length
+	if-eqz	v10,l5d8ce
+; v10 : single-length
+	iget-boolean	v6,v0,android/support/v4/widget/DrawerLayout$LayoutParams.isPeeking Z
+; v6 : single-length , v0 : Landroid/support/v4/widget/DrawerLayout$LayoutParams;
+	if-nez	v6,l5d8ce
+; v6 : single-length
+l5d8c6:
+.line 983
+	add-int/lit8	v0,v2,1
+; v0 : single-length , v2 : single-length
+	move	v2,v0
+; v2 : single-length , v0 : single-length
+	goto	l5d896
+l5d8ce:
+.line 991
+	invoke-virtual	{v5},android/view/View/getWidth	; getWidth()I
+; v5 : Landroid/view/View;
+	move-result	v6
+; v6 : single-length
+.line 993
+	const/4	v7,3
+; v7 : single-length
+	invoke-virtual	{v9,v5,v7},android/support/v4/widget/DrawerLayout/checkDrawerViewAbsoluteGravity	; checkDrawerViewAbsoluteGravity(Landroid/view/View;I)Z
+; v9 : Landroid/support/v4/widget/DrawerLayout; , v5 : Landroid/view/View; , v7 : single-length
+	move-result	v7
+; v7 : single-length
+	if-eqz	v7,l5d902
+; v7 : single-length
+.line 994
+	iget-object	v7,v9,android/support/v4/widget/DrawerLayout.mLeftDragger Landroid/support/v4/widget/ViewDragHelper;
+; v7 : Landroid/support/v4/widget/ViewDragHelper; , v9 : Landroid/support/v4/widget/DrawerLayout;
+	neg-int	v6,v6
+; v6 : single-length , v6 : single-length
+	invoke-virtual	{v5},android/view/View/getTop	; getTop()I
+; v5 : Landroid/view/View;
+	move-result	v8
+; v8 : single-length
+	invoke-virtual	{v7,v5,v6,v8},android/support/v4/widget/ViewDragHelper/smoothSlideViewTo	; smoothSlideViewTo(Landroid/view/View;II)Z
+; v7 : Landroid/support/v4/widget/ViewDragHelper; , v5 : Landroid/view/View; , v6 : single-length , v8 : single-length
+	move-result	v5
+; v5 : single-length
+	or-int/2addr	v1,v5
+; v1 : single-length , v5 : single-length
+l5d8fc:
+.line 1001
+	iput-boolean	v3,v0,android/support/v4/widget/DrawerLayout$LayoutParams.isPeeking Z
+; v3 : single-length , v0 : Landroid/support/v4/widget/DrawerLayout$LayoutParams;
+	goto	l5d8c6
+l5d902:
+.line 997
+	iget-object	v6,v9,android/support/v4/widget/DrawerLayout.mRightDragger Landroid/support/v4/widget/ViewDragHelper;
+; v6 : Landroid/support/v4/widget/ViewDragHelper; , v9 : Landroid/support/v4/widget/DrawerLayout;
+	invoke-virtual	{v9},android/support/v4/widget/DrawerLayout/getWidth	; getWidth()I
+; v9 : Landroid/support/v4/widget/DrawerLayout;
+	move-result	v7
+; v7 : single-length
+	invoke-virtual	{v5},android/view/View/getTop	; getTop()I
+; v5 : Landroid/view/View;
+	move-result	v8
+; v8 : single-length
+	invoke-virtual	{v6,v5,v7,v8},android/support/v4/widget/ViewDragHelper/smoothSlideViewTo	; smoothSlideViewTo(Landroid/view/View;II)Z
+; v6 : Landroid/support/v4/widget/ViewDragHelper; , v5 : Landroid/view/View; , v7 : single-length , v8 : single-length
+	move-result	v5
+; v5 : single-length
+	or-int/2addr	v1,v5
+; v1 : single-length , v5 : single-length
+	goto	l5d8fc
+l5d922:
+.line 1004
+	iget-object	v0,v9,android/support/v4/widget/DrawerLayout.mLeftCallback Landroid/support/v4/widget/DrawerLayout$ViewDragCallback;
+; v0 : Landroid/support/v4/widget/DrawerLayout$ViewDragCallback; , v9 : Landroid/support/v4/widget/DrawerLayout;
+	invoke-virtual	{v0},android/support/v4/widget/DrawerLayout$ViewDragCallback/removeCallbacks	; removeCallbacks()V
+; v0 : Landroid/support/v4/widget/DrawerLayout$ViewDragCallback;
+.line 1005
+	iget-object	v0,v9,android/support/v4/widget/DrawerLayout.mRightCallback Landroid/support/v4/widget/DrawerLayout$ViewDragCallback;
+; v0 : Landroid/support/v4/widget/DrawerLayout$ViewDragCallback; , v9 : Landroid/support/v4/widget/DrawerLayout;
+	invoke-virtual	{v0},android/support/v4/widget/DrawerLayout$ViewDragCallback/removeCallbacks	; removeCallbacks()V
+; v0 : Landroid/support/v4/widget/DrawerLayout$ViewDragCallback;
+.line 1007
+	if-eqz	v1,l5d940
+; v1 : single-length
+.line 1008
+	invoke-virtual	{v9},android/support/v4/widget/DrawerLayout/invalidate	; invalidate()V
+; v9 : Landroid/support/v4/widget/DrawerLayout;
+l5d940:
+.line 1010
+	return-void	
+.end method
+
+.method public computeScroll()V
+.limit registers 6
+; this: v5 (Landroid/support/v4/widget/DrawerLayout;)
+	const/4	v4,1
+; v4 : single-length
+.line 768
+	invoke-virtual	{v5},android/support/v4/widget/DrawerLayout/getChildCount	; getChildCount()I
+; v5 : Landroid/support/v4/widget/DrawerLayout;
+	move-result	v3
+; v3 : single-length
+.line 769
+	const/4	v1,0
+; v1 : single-length
+.line 770
+	const/4	v0,0
+; v0 : single-length
+	move	v2,v1
+; v2 : single-length , v1 : single-length
+	move	v1,v0
+; v1 : single-length , v0 : single-length
+l5d966:
+	if-ge	v1,v3,l5d992
+; v1 : single-length , v3 : single-length
+.line 771
+	invoke-virtual	{v5,v1},android/support/v4/widget/DrawerLayout/getChildAt	; getChildAt(I)Landroid/view/View;
+; v5 : Landroid/support/v4/widget/DrawerLayout; , v1 : single-length
+	move-result-object	v0
+; v0 : Landroid/view/View;
+	invoke-virtual	{v0},android/view/View/getLayoutParams	; getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
+; v0 : Landroid/view/View;
+	move-result-object	v0
+; v0 : Landroid/view/ViewGroup$LayoutParams;
+	check-cast	v0,android/support/v4/widget/DrawerLayout$LayoutParams
+; v0 : Landroid/support/v4/widget/DrawerLayout$LayoutParams;
+	iget	v0,v0,android/support/v4/widget/DrawerLayout$LayoutParams.onScreen F
+; v0 : single-length , v0 : single-length
+.line 772
+	invoke-static	{v2,v0},java/lang/Math/max	; max(FF)F
+; v2 : single-length , v0 : single-length
+	move-result	v2
+; v2 : single-length
+.line 770
+	add-int/lit8	v0,v1,1
+; v0 : single-length , v1 : single-length
+	move	v1,v0
+; v1 : single-length , v0 : single-length
+	goto	l5d966
+l5d992:
+.line 774
+	iput	v2,v5,android/support/v4/widget/DrawerLayout.mScrimOpacity F
+; v2 : single-length , v5 : Landroid/support/v4/widget/DrawerLayout;
+.line 777
+	iget-object	v0,v5,android/support/v4/widget/DrawerLayout.mLeftDragger Landroid/support/v4/widget/ViewDragHelper;
+; v0 : Landroid/support/v4/widget/ViewDragHelper; , v5 : Landroid/support/v4/widget/DrawerLayout;
+	invoke-virtual	{v0,v4},android/support/v4/widget/ViewDragHelper/continueSettling	; continueSettling(Z)Z
+; v0 : Landroid/support/v4/widget/ViewDragHelper; , v4 : single-length
+	move-result	v0
+; v0 : single-length
+	iget-object	v1,v5,android/support/v4/widget/DrawerLayout.mRightDragger Landroid/support/v4/widget/ViewDragHelper;
+; v1 : Landroid/support/v4/widget/ViewDragHelper; , v5 : Landroid/support/v4/widget/DrawerLayout;
+	invoke-virtual	{v1,v4},android/support/v4/widget/ViewDragHelper/continueSettling	; continueSettling(Z)Z
+; v1 : Landroid/support/v4/widget/ViewDragHelper; , v4 : single-length
+	move-result	v1
+; v1 : single-length
+	or-int/2addr	v0,v1
+; v0 : single-length , v1 : single-length
+	if-eqz	v0,l5d9ba
+; v0 : single-length
+.line 778
+	invoke-static	{v5},android/support/v4/view/ViewCompat/postInvalidateOnAnimation	; postInvalidateOnAnimation(Landroid/view/View;)V
+; v5 : Landroid/support/v4/widget/DrawerLayout;
+l5d9ba:
+.line 780
+	return-void	
+.end method
+
+.method dispatchOnDrawerClosed(Landroid/view/View;)V
+.limit registers 4
+; this: v2 (Landroid/support/v4/widget/DrawerLayout;)
+; parameter[0] : v3 (Landroid/view/View;)
+.line 473
+	invoke-virtual	{v3},android/view/View/getLayoutParams	; getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
+; v3 : Landroid/view/View;
+	move-result-object	v0
+; v0 : Landroid/view/ViewGroup$LayoutParams;
+	check-cast	v0,android/support/v4/widget/DrawerLayout$LayoutParams
+; v0 : Landroid/support/v4/widget/DrawerLayout$LayoutParams;
+.line 474
+	iget-boolean	v1,v0,android/support/v4/widget/DrawerLayout$LayoutParams.knownOpen Z
+; v1 : single-length , v0 : Landroid/support/v4/widget/DrawerLayout$LayoutParams;
+	if-eqz	v1,l5da02
+; v1 : single-length
+.line 475
+	const/4	v1,0
+; v1 : single-length
+	iput-boolean	v1,v0,android/support/v4/widget/DrawerLayout$LayoutParams.knownOpen Z
+; v1 : single-length , v0 : Landroid/support/v4/widget/DrawerLayout$LayoutParams;
+.line 476
+	iget-object	v0,v2,android/support/v4/widget/DrawerLayout.mListener Landroid/support/v4/widget/DrawerLayout$DrawerListener;
+; v0 : Landroid/support/v4/widget/DrawerLayout$DrawerListener; , v2 : Landroid/support/v4/widget/DrawerLayout;
+	if-eqz	v0,l5d9f8
+; v0 : Landroid/support/v4/widget/DrawerLayout$DrawerListener;
+.line 477
+	iget-object	v0,v2,android/support/v4/widget/DrawerLayout.mListener Landroid/support/v4/widget/DrawerLayout$DrawerListener;
+; v0 : Landroid/support/v4/widget/DrawerLayout$DrawerListener; , v2 : Landroid/support/v4/widget/DrawerLayout;
+	invoke-interface	{v0,v3},android/support/v4/widget/DrawerLayout$DrawerListener/onDrawerClosed	; onDrawerClosed(Landroid/view/View;)V
+; v0 : Landroid/support/v4/widget/DrawerLayout$DrawerListener; , v3 : Landroid/view/View;
+l5d9f8:
+.line 479
+	const/16	v0,32
+; v0 : single-length
+	invoke-virtual	{v2,v0},android/support/v4/widget/DrawerLayout/sendAccessibilityEvent	; sendAccessibilityEvent(I)V
+; v2 : Landroid/support/v4/widget/DrawerLayout; , v0 : single-length
+l5da02:
+.line 481
+	return-void	
+.end method
+
+.method dispatchOnDrawerOpened(Landroid/view/View;)V
+.limit registers 4
+; this: v2 (Landroid/support/v4/widget/DrawerLayout;)
+; parameter[0] : v3 (Landroid/view/View;)
+.line 484
+	invoke-virtual	{v3},android/view/View/getLayoutParams	; getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
+; v3 : Landroid/view/View;
+	move-result-object	v0
+; v0 : Landroid/view/ViewGroup$LayoutParams;
+	check-cast	v0,android/support/v4/widget/DrawerLayout$LayoutParams
+; v0 : Landroid/support/v4/widget/DrawerLayout$LayoutParams;
+.line 485
+	iget-boolean	v1,v0,android/support/v4/widget/DrawerLayout$LayoutParams.knownOpen Z
+; v1 : single-length , v0 : Landroid/support/v4/widget/DrawerLayout$LayoutParams;
+	if-nez	v1,l5da4a
+; v1 : single-length
+.line 486
+	const/4	v1,1
+; v1 : single-length
+	iput-boolean	v1,v0,android/support/v4/widget/DrawerLayout$LayoutParams.knownOpen Z
+; v1 : single-length , v0 : Landroid/support/v4/widget/DrawerLayout$LayoutParams;
+.line 487
+	iget-object	v0,v2,android/support/v4/widget/DrawerLayout.mListener Landroid/support/v4/widget/DrawerLayout$DrawerListener;
+; v0 : Landroid/support/v4/widget/DrawerLayout$DrawerListener; , v2 : Landroid/support/v4/widget/DrawerLayout;
+	if-eqz	v0,l5da40
+; v0 : Landroid/support/v4/widget/DrawerLayout$DrawerListener;
+.line 488
+	iget-object	v0,v2,android/support/v4/widget/DrawerLayout.mListener Landroid/support/v4/widget/DrawerLayout$DrawerListener;
+; v0 : Landroid/support/v4/widget/DrawerLayout$DrawerListener; , v2 : Landroid/support/v4/widget/DrawerLayout;
+	invoke-interface	{v0,v3},android/support/v4/widget/DrawerLayout$DrawerListener/onDrawerOpened	; onDrawerOpened(Landroid/view/View;)V
+; v0 : Landroid/support/v4/widget/DrawerLayout$DrawerListener; , v3 : Landroid/view/View;
+l5da40:
+.line 490
+	const/16	v0,32
+; v0 : single-length
+	invoke-virtual	{v3,v0},android/view/View/sendAccessibilityEvent	; sendAccessibilityEvent(I)V
+; v3 : Landroid/view/View; , v0 : single-length
+l5da4a:
+.line 492
+	return-void	
+.end method
+
+.method dispatchOnDrawerSlide(Landroid/view/View;F)V
+.limit registers 4
+; this: v1 (Landroid/support/v4/widget/DrawerLayout;)
+; parameter[0] : v2 (Landroid/view/View;)
+; parameter[1] : v3 (F)
+.line 495
+	iget-object	v0,v1,android/support/v4/widget/DrawerLayout.mListener Landroid/support/v4/widget/DrawerLayout$DrawerListener;
+; v0 : Landroid/support/v4/widget/DrawerLayout$DrawerListener; , v1 : Landroid/support/v4/widget/DrawerLayout;
+	if-eqz	v0,l5da6e
+; v0 : Landroid/support/v4/widget/DrawerLayout$DrawerListener;
+.line 496
+	iget-object	v0,v1,android/support/v4/widget/DrawerLayout.mListener Landroid/support/v4/widget/DrawerLayout$DrawerListener;
+; v0 : Landroid/support/v4/widget/DrawerLayout$DrawerListener; , v1 : Landroid/support/v4/widget/DrawerLayout;
+	invoke-interface	{v0,v2,v3},android/support/v4/widget/DrawerLayout$DrawerListener/onDrawerSlide	; onDrawerSlide(Landroid/view/View;F)V
+; v0 : Landroid/support/v4/widget/DrawerLayout$DrawerListener; , v2 : Landroid/view/View; , v3 : single-length
+l5da6e:
+.line 498
+	return-void	
+.end method
+
+.method protected drawChild(Landroid/graphics/Canvas;Landroid/view/View;J)Z
+.limit registers 14
+; this: v9 (Landroid/support/v4/widget/DrawerLayout;)
+; parameter[0] : v10 (Landroid/graphics/Canvas;)
+; parameter[1] : v11 (Landroid/view/View;)
+; parameter[2] : v12 (J)
+.line 792
+	invoke-virtual	{v9},android/support/v4/widget/DrawerLayout/getHeight	; getHeight()I
+; v9 : Landroid/support/v4/widget/DrawerLayout;
+	move-result	v4
+; v4 : single-length
+.line 793
+	invoke-virtual	{v9,v11},android/support/v4/widget/DrawerLayout/isContentView	; isContentView(Landroid/view/View;)Z
+; v9 : Landroid/support/v4/widget/DrawerLayout; , v11 : Landroid/view/View;
+	move-result	v5
+; v5 : single-length
+.line 794
+	const/4	v1,0
+; v1 : single-length
+	invoke-virtual	{v9},android/support/v4/widget/DrawerLayout/getWidth	; getWidth()I
+; v9 : Landroid/support/v4/widget/DrawerLayout;
+	move-result	v2
+; v2 : single-length
+.line 796
+	invoke-virtual	{v10},android/graphics/Canvas/save	; save()I
+; v10 : Landroid/graphics/Canvas;
+	move-result	v6
+; v6 : single-length
+.line 797
+	if-eqz	v5,l5db3e
+; v5 : single-length
+.line 798
+	invoke-virtual	{v9},android/support/v4/widget/DrawerLayout/getChildCount	; getChildCount()I
+; v9 : Landroid/support/v4/widget/DrawerLayout;
+	move-result	v7
+; v7 : single-length
+.line 799
+	const/4	v0,0
+; v0 : single-length
+	move	v3,v0
+; v3 : single-length , v0 : single-length
+l5dab2:
+	if-ge	v3,v7,l5db2e
+; v3 : single-length , v7 : single-length
+.line 800
+	invoke-virtual	{v9,v3},android/support/v4/widget/DrawerLayout/getChildAt	; getChildAt(I)Landroid/view/View;
+; v9 : Landroid/support/v4/widget/DrawerLayout; , v3 : single-length
+	move-result-object	v0
+; v0 : Landroid/view/View;
+.line 801
+	if-eq	v0,v11,l5db2a
+; v0 : Landroid/view/View; , v11 : Landroid/view/View;
+	invoke-virtual	{v0},android/view/View/getVisibility	; getVisibility()I
+; v0 : Landroid/view/View;
+	move-result	v8
+; v8 : single-length
+	if-nez	v8,l5db2a
+; v8 : single-length
+	invoke-static	{v0},android/support/v4/widget/DrawerLayout/hasOpaqueBackground	; hasOpaqueBackground(Landroid/view/View;)Z
+; v0 : Landroid/view/View;
+	move-result	v8
+; v8 : single-length
+	if-eqz	v8,l5db2a
+; v8 : single-length
+	invoke-virtual	{v9,v0},android/support/v4/widget/DrawerLayout/isDrawerView	; isDrawerView(Landroid/view/View;)Z
+; v9 : Landroid/support/v4/widget/DrawerLayout; , v0 : Landroid/view/View;
+	move-result	v8
+; v8 : single-length
+	if-eqz	v8,l5db2a
+; v8 : single-length
+	invoke-virtual	{v0},android/view/View/getHeight	; getHeight()I
+; v0 : Landroid/view/View;
+	move-result	v8
+; v8 : single-length
+	if-ge	v8,v4,l5dafe
+; v8 : single-length , v4 : single-length
+	move	v0,v2
+; v0 : single-length , v2 : single-length
+l5daf4:
+.line 799
+	add-int/lit8	v2,v3,1
+; v2 : single-length , v3 : single-length
+	move	v3,v2
+; v3 : single-length , v2 : single-length
+	move	v2,v0
+; v2 : single-length , v0 : single-length
+	goto	l5dab2
+l5dafe:
+.line 807
+	const/4	v8,3
+; v8 : single-length
+	invoke-virtual	{v9,v0,v8},android/support/v4/widget/DrawerLayout/checkDrawerViewAbsoluteGravity	; checkDrawerViewAbsoluteGravity(Landroid/view/View;I)Z
+; v9 : Landroid/support/v4/widget/DrawerLayout; , v0 : Landroid/view/View; , v8 : single-length
+	move-result	v8
+; v8 : single-length
+	if-eqz	v8,l5db1e
+; v8 : single-length
+.line 808
+	invoke-virtual	{v0},android/view/View/getRight	; getRight()I
+; v0 : Landroid/view/View;
+	move-result	v0
+; v0 : single-length
+.line 809
+	if-le	v0,v1,l5dcda
+; v0 : single-length , v1 : single-length
+l5db18:
+	move	v1,v0
+; v1 : single-length , v0 : single-length
+	move	v0,v2
+; v0 : single-length , v2 : single-length
+.line 810
+	goto	l5daf4
+l5db1e:
+.line 811
+	invoke-virtual	{v0},android/view/View/getLeft	; getLeft()I
+; v0 : Landroid/view/View;
+	move-result	v0
+; v0 : single-length
+.line 812
+	if-lt	v0,v2,l5daf4
+; v0 : single-length , v2 : single-length
+l5db2a:
+	move	v0,v2
+; v0 : single-length , v2 : single-length
+	goto	l5daf4
+l5db2e:
+.line 815
+	const/4	v0,0
+; v0 : single-length
+	invoke-virtual	{v9},android/support/v4/widget/DrawerLayout/getHeight	; getHeight()I
+; v9 : Landroid/support/v4/widget/DrawerLayout;
+	move-result	v3
+; v3 : single-length
+	invoke-virtual	{v10,v1,v0,v2,v3},android/graphics/Canvas/clipRect	; clipRect(IIII)Z
+; v10 : Landroid/graphics/Canvas; , v1 : single-length , v0 : single-length , v2 : single-length , v3 : single-length
+l5db3e:
+	move	v0,v2
+; v0 : single-length , v2 : single-length
+.line 817
+	invoke-super	{v9,v10,v11,v12,v13},android/view/ViewGroup/drawChild	; drawChild(Landroid/graphics/Canvas;Landroid/view/View;J)Z
+; v9 : Landroid/support/v4/widget/DrawerLayout; , v10 : Landroid/graphics/Canvas; , v11 : Landroid/view/View; , v12 : double-length
+	move-result	v7
+; v7 : single-length
+.line 818
+	invoke-virtual	{v10,v6},android/graphics/Canvas/restoreToCount	; restoreToCount(I)V
+; v10 : Landroid/graphics/Canvas; , v6 : single-length
+.line 820
+	iget	v2,v9,android/support/v4/widget/DrawerLayout.mScrimOpacity F
+; v2 : single-length , v9 : Landroid/support/v4/widget/DrawerLayout;
+	const/4	v3,0
+; v3 : single-length
+	cmpl-float	v2,v2,v3
+; v2 : single-length , v2 : single-length , v3 : single-length
+	if-lez	v2,l5dbb2
+; v2 : single-length
+	if-eqz	v5,l5dbb2
+; v5 : single-length
+.line 821
+	iget	v2,v9,android/support/v4/widget/DrawerLayout.mScrimColor I
+; v2 : single-length , v9 : Landroid/support/v4/widget/DrawerLayout;
+	const/high16	v3,65280
+; v3 : single-length
+	and-int/2addr	v2,v3
+; v2 : single-length , v3 : single-length
+	ushr-int/lit8	v2,v2,24
+; v2 : single-length , v2 : single-length
+.line 822
+	int-to-float	v2,v2
+; v2 : single-length , v2 : single-length
+	iget	v3,v9,android/support/v4/widget/DrawerLayout.mScrimOpacity F
+; v3 : single-length , v9 : Landroid/support/v4/widget/DrawerLayout;
+	mul-float/2addr	v2,v3
+; v2 : single-length , v3 : single-length
+	float-to-int	v2,v2
+; v2 : single-length , v2 : single-length
+.line 823
+	shl-int/lit8	v2,v2,24
+; v2 : single-length , v2 : single-length
+	iget	v3,v9,android/support/v4/widget/DrawerLayout.mScrimColor I
+; v3 : single-length , v9 : Landroid/support/v4/widget/DrawerLayout;
+	const	v4,16777215	; 0xffffff
+; v4 : single-length
+	and-int/2addr	v3,v4
+; v3 : single-length , v4 : single-length
+	or-int/2addr	v2,v3
+; v2 : single-length , v3 : single-length
+.line 824
+	iget-object	v3,v9,android/support/v4/widget/DrawerLayout.mScrimPaint Landroid/graphics/Paint;
+; v3 : Landroid/graphics/Paint; , v9 : Landroid/support/v4/widget/DrawerLayout;
+	invoke-virtual	{v3,v2},android/graphics/Paint/setColor	; setColor(I)V
+; v3 : Landroid/graphics/Paint; , v2 : single-length
+.line 826
+	int-to-float	v1,v1
+; v1 : single-length , v1 : single-length
+	const/4	v2,0
+; v2 : single-length
+	int-to-float	v3,v0
+; v3 : single-length , v0 : single-length
+	invoke-virtual	{v9},android/support/v4/widget/DrawerLayout/getHeight	; getHeight()I
+; v9 : Landroid/support/v4/widget/DrawerLayout;
+	move-result	v0
+; v0 : single-length
+	int-to-float	v4,v0
+; v4 : single-length , v0 : single-length
+	iget-object	v5,v9,android/support/v4/widget/DrawerLayout.mScrimPaint Landroid/graphics/Paint;
+; v5 : Landroid/graphics/Paint; , v9 : Landroid/support/v4/widget/DrawerLayout;
+	move-object	v0,v10
+; v0 : Landroid/graphics/Canvas; , v10 : Landroid/graphics/Canvas;
+	invoke-virtual/range	{v0..v5},android/graphics/Canvas/drawRect;	drawRect(FFFFLandroid/graphics/Paint;)V
+; v0 : Landroid/graphics/Canvas; , v1 : single-length , v2 : single-length , v3 : single-length , v4 : single-length , v5 : Landroid/graphics/Paint;
+l5dbb0:
+.line 849
+	return	v7
+; v7 : single-length
+l5dbb2:
+.line 827
+	iget-object	v0,v9,android/support/v4/widget/DrawerLayout.mShadowLeft Landroid/graphics/drawable/Drawable;
+; v0 : Landroid/graphics/drawable/Drawable; , v9 : Landroid/support/v4/widget/DrawerLayout;
+	if-eqz	v0,l5dc40
+; v0 : Landroid/graphics/drawable/Drawable;
+	const/4	v0,3
+; v0 : single-length
+	invoke-virtual	{v9,v11,v0},android/support/v4/widget/DrawerLayout/checkDrawerViewAbsoluteGravity	; checkDrawerViewAbsoluteGravity(Landroid/view/View;I)Z
+; v9 : Landroid/support/v4/widget/DrawerLayout; , v11 : Landroid/view/View; , v0 : single-length
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,l5dc40
+; v0 : single-length
+.line 828
+	iget-object	v0,v9,android/support/v4/widget/DrawerLayout.mShadowLeft Landroid/graphics/drawable/Drawable;
+; v0 : Landroid/graphics/drawable/Drawable; , v9 : Landroid/support/v4/widget/DrawerLayout;
+	invoke-virtual	{v0},android/graphics/drawable/Drawable/getIntrinsicWidth	; getIntrinsicWidth()I
+; v0 : Landroid/graphics/drawable/Drawable;
+	move-result	v0
+; v0 : single-length
+.line 829
+	invoke-virtual	{v11},android/view/View/getRight	; getRight()I
+; v11 : Landroid/view/View;
+	move-result	v1
+; v1 : single-length
+.line 830
+	iget-object	v2,v9,android/support/v4/widget/DrawerLayout.mLeftDragger Landroid/support/v4/widget/ViewDragHelper;
+; v2 : Landroid/support/v4/widget/ViewDragHelper; , v9 : Landroid/support/v4/widget/DrawerLayout;
+	invoke-virtual	{v2},android/support/v4/widget/ViewDragHelper/getEdgeSize	; getEdgeSize()I
+; v2 : Landroid/support/v4/widget/ViewDragHelper;
+	move-result	v2
+; v2 : single-length
+.line 831
+	const/4	v3,0
+; v3 : single-length
+	int-to-float	v4,v1
+; v4 : single-length , v1 : single-length
+	int-to-float	v2,v2
+; v2 : single-length , v2 : single-length
+	div-float	v2,v4,v2
+; v2 : single-length , v4 : single-length , v2 : single-length
+	const/high16	v4,16256
+; v4 : single-length
+	invoke-static	{v2,v4},java/lang/Math/min	; min(FF)F
+; v2 : single-length , v4 : single-length
+	move-result	v2
+; v2 : single-length
+	invoke-static	{v3,v2},java/lang/Math/max	; max(FF)F
+; v3 : single-length , v2 : single-length
+	move-result	v2
+; v2 : single-length
+.line 833
+	iget-object	v3,v9,android/support/v4/widget/DrawerLayout.mShadowLeft Landroid/graphics/drawable/Drawable;
+; v3 : Landroid/graphics/drawable/Drawable; , v9 : Landroid/support/v4/widget/DrawerLayout;
+	invoke-virtual	{v11},android/view/View/getTop	; getTop()I
+; v11 : Landroid/view/View;
+	move-result	v4
+; v4 : single-length
+	add-int/2addr	v0,v1
+; v0 : single-length , v1 : single-length
+	invoke-virtual	{v11},android/view/View/getBottom	; getBottom()I
+; v11 : Landroid/view/View;
+	move-result	v5
+; v5 : single-length
+	invoke-virtual	{v3,v1,v4,v0,v5},android/graphics/drawable/Drawable/setBounds	; setBounds(IIII)V
+; v3 : Landroid/graphics/drawable/Drawable; , v1 : single-length , v4 : single-length , v0 : single-length , v5 : single-length
+.line 835
+	iget-object	v0,v9,android/support/v4/widget/DrawerLayout.mShadowLeft Landroid/graphics/drawable/Drawable;
+; v0 : Landroid/graphics/drawable/Drawable; , v9 : Landroid/support/v4/widget/DrawerLayout;
+	const/high16	v1,17279
+; v1 : single-length
+	mul-float/2addr	v1,v2
+; v1 : single-length , v2 : single-length
+	float-to-int	v1,v1
+; v1 : single-length , v1 : single-length
+	invoke-virtual	{v0,v1},android/graphics/drawable/Drawable/setAlpha	; setAlpha(I)V
+; v0 : Landroid/graphics/drawable/Drawable; , v1 : single-length
+.line 836
+	iget-object	v0,v9,android/support/v4/widget/DrawerLayout.mShadowLeft Landroid/graphics/drawable/Drawable;
+; v0 : Landroid/graphics/drawable/Drawable; , v9 : Landroid/support/v4/widget/DrawerLayout;
+	invoke-virtual	{v0,v10},android/graphics/drawable/Drawable/draw	; draw(Landroid/graphics/Canvas;)V
+; v0 : Landroid/graphics/drawable/Drawable; , v10 : Landroid/graphics/Canvas;
+	goto	l5dbb0
+l5dc40:
+.line 837
+	iget-object	v0,v9,android/support/v4/widget/DrawerLayout.mShadowRight Landroid/graphics/drawable/Drawable;
+; v0 : Landroid/graphics/drawable/Drawable; , v9 : Landroid/support/v4/widget/DrawerLayout;
+	if-eqz	v0,l5dbb0
+; v0 : Landroid/graphics/drawable/Drawable;
+	const/4	v0,5
+; v0 : single-length
+	invoke-virtual	{v9,v11,v0},android/support/v4/widget/DrawerLayout/checkDrawerViewAbsoluteGravity	; checkDrawerViewAbsoluteGravity(Landroid/view/View;I)Z
+; v9 : Landroid/support/v4/widget/DrawerLayout; , v11 : Landroid/view/View; , v0 : single-length
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,l5dbb0
+; v0 : single-length
+.line 838
+	iget-object	v0,v9,android/support/v4/widget/DrawerLayout.mShadowRight Landroid/graphics/drawable/Drawable;
+; v0 : Landroid/graphics/drawable/Drawable; , v9 : Landroid/support/v4/widget/DrawerLayout;
+	invoke-virtual	{v0},android/graphics/drawable/Drawable/getIntrinsicWidth	; getIntrinsicWidth()I
+; v0 : Landroid/graphics/drawable/Drawable;
+	move-result	v0
+; v0 : single-length
+.line 839
+	invoke-virtual	{v11},android/view/View/getLeft	; getLeft()I
+; v11 : Landroid/view/View;
+	move-result	v1
+; v1 : single-length
+.line 840
+	invoke-virtual	{v9},android/support/v4/widget/DrawerLayout/getWidth	; getWidth()I
+; v9 : Landroid/support/v4/widget/DrawerLayout;
+	move-result	v2
+; v2 : single-length
+	sub-int/2addr	v2,v1
+; v2 : single-length , v1 : single-length
+.line 841
+	iget-object	v3,v9,android/support/v4/widget/DrawerLayout.mRightDragger Landroid/support/v4/widget/ViewDragHelper;
+; v3 : Landroid/support/v4/widget/ViewDragHelper; , v9 : Landroid/support/v4/widget/DrawerLayout;
+	invoke-virtual	{v3},android/support/v4/widget/ViewDragHelper/getEdgeSize	; getEdgeSize()I
+; v3 : Landroid/support/v4/widget/ViewDragHelper;
+	move-result	v3
+; v3 : single-length
+.line 842
+	const/4	v4,0
+; v4 : single-length
+	int-to-float	v2,v2
+; v2 : single-length , v2 : single-length
+	int-to-float	v3,v3
+; v3 : single-length , v3 : single-length
+	div-float/2addr	v2,v3
+; v2 : single-length , v3 : single-length
+	const/high16	v3,16256
+; v3 : single-length
+	invoke-static	{v2,v3},java/lang/Math/min	; min(FF)F
+; v2 : single-length , v3 : single-length
+	move-result	v2
+; v2 : single-length
+	invoke-static	{v4,v2},java/lang/Math/max	; max(FF)F
+; v4 : single-length , v2 : single-length
+	move-result	v2
+; v2 : single-length
+.line 844
+	iget-object	v3,v9,android/support/v4/widget/DrawerLayout.mShadowRight Landroid/graphics/drawable/Drawable;
+; v3 : Landroid/graphics/drawable/Drawable; , v9 : Landroid/support/v4/widget/DrawerLayout;
+	sub-int	v0,v1,v0
+; v0 : single-length , v1 : single-length , v0 : single-length
+	invoke-virtual	{v11},android/view/View/getTop	; getTop()I
+; v11 : Landroid/view/View;
+	move-result	v4
+; v4 : single-length
+	invoke-virtual	{v11},android/view/View/getBottom	; getBottom()I
+; v11 : Landroid/view/View;
+	move-result	v5
+; v5 : single-length
+	invoke-virtual	{v3,v0,v4,v1,v5},android/graphics/drawable/Drawable/setBounds	; setBounds(IIII)V
+; v3 : Landroid/graphics/drawable/Drawable; , v0 : single-length , v4 : single-length , v1 : single-length , v5 : single-length
+.line 846
+	iget-object	v0,v9,android/support/v4/widget/DrawerLayout.mShadowRight Landroid/graphics/drawable/Drawable;
+; v0 : Landroid/graphics/drawable/Drawable; , v9 : Landroid/support/v4/widget/DrawerLayout;
+	const/high16	v1,17279
+; v1 : single-length
+	mul-float/2addr	v1,v2
+; v1 : single-length , v2 : single-length
+	float-to-int	v1,v1
+; v1 : single-length , v1 : single-length
+	invoke-virtual	{v0,v1},android/graphics/drawable/Drawable/setAlpha	; setAlpha(I)V
+; v0 : Landroid/graphics/drawable/Drawable; , v1 : single-length
+.line 847
+	iget-object	v0,v9,android/support/v4/widget/DrawerLayout.mShadowRight Landroid/graphics/drawable/Drawable;
+; v0 : Landroid/graphics/drawable/Drawable; , v9 : Landroid/support/v4/widget/DrawerLayout;
+	invoke-virtual	{v0,v10},android/graphics/drawable/Drawable/draw	; draw(Landroid/graphics/Canvas;)V
+; v0 : Landroid/graphics/drawable/Drawable; , v10 : Landroid/graphics/Canvas;
+	goto/16	l5dbb0
+l5dcda:
+	move	v0,v1
+; v0 : single-length , v1 : single-length
+	goto/16	l5db18
+.end method
+
+.method findDrawerWithGravity(I)Landroid/view/View;
+.limit registers 7
+; this: v5 (Landroid/support/v4/widget/DrawerLayout;)
+; parameter[0] : v6 (I)
+.line 558
+	invoke-static	{v5},android/support/v4/view/ViewCompat/getLayoutDirection	; getLayoutDirection(Landroid/view/View;)I
+; v5 : Landroid/support/v4/widget/DrawerLayout;
+	move-result	v0
+; v0 : single-length
+	invoke-static	{v6,v0},android/support/v4/view/GravityCompat/getAbsoluteGravity	; getAbsoluteGravity(II)I
+; v6 : single-length , v0 : single-length
+	move-result	v0
+; v0 : single-length
+	and-int/lit8	v2,v0,7
+; v2 : single-length , v0 : single-length
+.line 560
+	invoke-virtual	{v5},android/support/v4/widget/DrawerLayout/getChildCount	; getChildCount()I
+; v5 : Landroid/support/v4/widget/DrawerLayout;
+	move-result	v3
+; v3 : single-length
+.line 561
+	const/4	v0,0
+; v0 : single-length
+	move	v1,v0
+; v1 : single-length , v0 : single-length
+l5dd10:
+	if-ge	v1,v3,l5dd36
+; v1 : single-length , v3 : single-length
+.line 562
+	invoke-virtual	{v5,v1},android/support/v4/widget/DrawerLayout/getChildAt	; getChildAt(I)Landroid/view/View;
+; v5 : Landroid/support/v4/widget/DrawerLayout; , v1 : single-length
+	move-result-object	v0
+; v0 : Landroid/view/View;
+.line 563
+	invoke-virtual	{v5,v0},android/support/v4/widget/DrawerLayout/getDrawerViewAbsoluteGravity	; getDrawerViewAbsoluteGravity(Landroid/view/View;)I
+; v5 : Landroid/support/v4/widget/DrawerLayout; , v0 : Landroid/view/View;
+	move-result	v4
+; v4 : single-length
+.line 564
+	and-int/lit8	v4,v4,7
+; v4 : single-length , v4 : single-length
+	if-ne	v4,v2,l5dd2e
+; v4 : single-length , v2 : single-length
+l5dd2c:
+.line 568
+	return-object	v0
+; v0 : single-length
+l5dd2e:
+.line 561
+	add-int/lit8	v0,v1,1
+; v0 : single-length , v1 : single-length
+	move	v1,v0
+; v1 : single-length , v0 : single-length
+	goto	l5dd10
+l5dd36:
+.line 568
+	const/4	v0,0
+; v0 : single-length
+	goto	l5dd2c
+.end method
+
+.method findOpenDrawer()Landroid/view/View;
+.limit registers 5
+; this: v4 (Landroid/support/v4/widget/DrawerLayout;)
+.line 529
+	invoke-virtual	{v4},android/support/v4/widget/DrawerLayout/getChildCount	; getChildCount()I
+; v4 : Landroid/support/v4/widget/DrawerLayout;
+	move-result	v3
+; v3 : single-length
+.line 530
+	const/4	v0,0
+; v0 : single-length
+	move	v2,v0
+; v2 : single-length , v0 : single-length
+l5dd58:
+	if-ge	v2,v3,l5dd84
+; v2 : single-length , v3 : single-length
+.line 531
+	invoke-virtual	{v4,v2},android/support/v4/widget/DrawerLayout/getChildAt	; getChildAt(I)Landroid/view/View;
+; v4 : Landroid/support/v4/widget/DrawerLayout; , v2 : single-length
+	move-result-object	v1
+; v1 : Landroid/view/View;
+.line 532
+	invoke-virtual	{v1},android/view/View/getLayoutParams	; getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
+; v1 : Landroid/view/View;
+	move-result-object	v0
+; v0 : Landroid/view/ViewGroup$LayoutParams;
+	check-cast	v0,android/support/v4/widget/DrawerLayout$LayoutParams
+; v0 : Landroid/support/v4/widget/DrawerLayout$LayoutParams;
+	iget-boolean	v0,v0,android/support/v4/widget/DrawerLayout$LayoutParams.knownOpen Z
+; v0 : single-length , v0 : single-length
+	if-eqz	v0,l5dd7c
+; v0 : single-length
+	move-object	v0,v1
+; v0 : Landroid/view/View; , v1 : Landroid/view/View;
+l5dd7a:
+.line 536
+	return-object	v0
+; v0 : single-length
+l5dd7c:
+.line 530
+	add-int/lit8	v0,v2,1
+; v0 : single-length , v2 : single-length
+	move	v2,v0
+; v2 : single-length , v0 : single-length
+	goto	l5dd58
+l5dd84:
+.line 536
+	const/4	v0,0
+; v0 : single-length
+	goto	l5dd7a
+.end method
+
+.method protected generateDefaultLayoutParams()Landroid/view/ViewGroup$LayoutParams;
+.limit registers 3
+; this: v2 (Landroid/support/v4/widget/DrawerLayout;)
+	const/4	v1,15
+; v1 : single-length
+.line 1170
+	new-instance	v0,android/support/v4/widget/DrawerLayout$LayoutParams
+; v0 : Landroid/support/v4/widget/DrawerLayout$LayoutParams;
+	invoke-direct	{v0,v1,v1},android/support/v4/widget/DrawerLayout$LayoutParams/<init>	; <init>(II)V
+; v0 : Landroid/support/v4/widget/DrawerLayout$LayoutParams; , v1 : single-length , v1 : single-length
+	return-object	v0
+; v0 : Landroid/support/v4/widget/DrawerLayout$LayoutParams;
+.end method
+
+.method public generateLayoutParams(Landroid/util/AttributeSet;)Landroid/view/ViewGroup$LayoutParams;
+.limit registers 4
+; this: v2 (Landroid/support/v4/widget/DrawerLayout;)
+; parameter[0] : v3 (Landroid/util/AttributeSet;)
+.line 1189
+	new-instance	v0,android/support/v4/widget/DrawerLayout$LayoutParams
+; v0 : Landroid/support/v4/widget/DrawerLayout$LayoutParams;
+	invoke-virtual	{v2},android/support/v4/widget/DrawerLayout/getContext	; getContext()Landroid/content/Context;
+; v2 : Landroid/support/v4/widget/DrawerLayout;
+	move-result-object	v1
+; v1 : Landroid/content/Context;
+	invoke-direct	{v0,v1,v3},android/support/v4/widget/DrawerLayout$LayoutParams/<init>	; <init>(Landroid/content/Context;Landroid/util/AttributeSet;)V
+; v0 : Landroid/support/v4/widget/DrawerLayout$LayoutParams; , v1 : Landroid/content/Context; , v3 : Landroid/util/AttributeSet;
+	return-object	v0
+; v0 : Landroid/support/v4/widget/DrawerLayout$LayoutParams;
+.end method
+
+.method protected generateLayoutParams(Landroid/view/ViewGroup$LayoutParams;)Landroid/view/ViewGroup$LayoutParams;
+.limit registers 3
+; this: v1 (Landroid/support/v4/widget/DrawerLayout;)
+; parameter[0] : v2 (Landroid/view/ViewGroup$LayoutParams;)
+.line 1175
+	instance-of	v0,v2,android/support/v4/widget/DrawerLayout$LayoutParams
+; v0 : single-length , v2 : Landroid/view/ViewGroup$LayoutParams;
+	if-eqz	v0,l5ddf4
+; v0 : single-length
+	new-instance	v0,android/support/v4/widget/DrawerLayout$LayoutParams
+; v0 : Landroid/support/v4/widget/DrawerLayout$LayoutParams;
+	check-cast	v2,android/support/v4/widget/DrawerLayout$LayoutParams
+; v2 : Landroid/support/v4/widget/DrawerLayout$LayoutParams;
+	invoke-direct	{v0,v2},android/support/v4/widget/DrawerLayout$LayoutParams/<init>	; <init>(Landroid/support/v4/widget/DrawerLayout$LayoutParams;)V
+; v0 : Landroid/support/v4/widget/DrawerLayout$LayoutParams; , v2 : Landroid/support/v4/widget/DrawerLayout$LayoutParams;
+l5ddf2:
+	return-object	v0
+; v0 : Landroid/support/v4/widget/DrawerLayout$LayoutParams;
+l5ddf4:
+	instance-of	v0,v2,android/view/ViewGroup$MarginLayoutParams
+; v0 : single-length , v2 : Landroid/view/ViewGroup$LayoutParams;
+	if-eqz	v0,l5de0c
+; v0 : single-length
+	new-instance	v0,android/support/v4/widget/DrawerLayout$LayoutParams
+; v0 : Landroid/support/v4/widget/DrawerLayout$LayoutParams;
+	check-cast	v2,android/view/ViewGroup$MarginLayoutParams
+; v2 : Landroid/view/ViewGroup$MarginLayoutParams;
+	invoke-direct	{v0,v2},android/support/v4/widget/DrawerLayout$LayoutParams/<init>	; <init>(Landroid/view/ViewGroup$MarginLayoutParams;)V
+; v0 : Landroid/support/v4/widget/DrawerLayout$LayoutParams; , v2 : Landroid/view/ViewGroup$MarginLayoutParams;
+	goto	l5ddf2
+l5de0c:
+	new-instance	v0,android/support/v4/widget/DrawerLayout$LayoutParams
+; v0 : Landroid/support/v4/widget/DrawerLayout$LayoutParams;
+	invoke-direct	{v0,v2},android/support/v4/widget/DrawerLayout$LayoutParams/<init>	; <init>(Landroid/view/ViewGroup$LayoutParams;)V
+; v0 : Landroid/support/v4/widget/DrawerLayout$LayoutParams; , v2 : Landroid/view/ViewGroup$LayoutParams;
+	goto	l5ddf2
+.end method
+
+.method public getDrawerLockMode(I)I
+.limit registers 4
+; this: v2 (Landroid/support/v4/widget/DrawerLayout;)
+; parameter[0] : v3 (I)
+.line 410
+	invoke-static	{v2},android/support/v4/view/ViewCompat/getLayoutDirection	; getLayoutDirection(Landroid/view/View;)I
+; v2 : Landroid/support/v4/widget/DrawerLayout;
+	move-result	v0
+; v0 : single-length
+	invoke-static	{v3,v0},android/support/v4/view/GravityCompat/getAbsoluteGravity	; getAbsoluteGravity(II)I
+; v3 : single-length , v0 : single-length
+	move-result	v0
+; v0 : single-length
+.line 412
+	const/4	v1,3
+; v1 : single-length
+	if-ne	v0,v1,l5de44
+; v0 : single-length , v1 : single-length
+.line 413
+	iget	v0,v2,android/support/v4/widget/DrawerLayout.mLockModeLeft I
+; v0 : single-length , v2 : Landroid/support/v4/widget/DrawerLayout;
+l5de42:
+.line 417
+	return	v0
+; v0 : single-length
+l5de44:
+.line 414
+	const/4	v1,5
+; v1 : single-length
+	if-ne	v0,v1,l5de50
+; v0 : single-length , v1 : single-length
+.line 415
+	iget	v0,v2,android/support/v4/widget/DrawerLayout.mLockModeRight I
+; v0 : single-length , v2 : Landroid/support/v4/widget/DrawerLayout;
+	goto	l5de42
+l5de50:
+.line 417
+	const/4	v0,0
+; v0 : single-length
+	goto	l5de42
+.end method
+
+.method public getDrawerLockMode(Landroid/view/View;)I
+.limit registers 4
+; this: v2 (Landroid/support/v4/widget/DrawerLayout;)
+; parameter[0] : v3 (Landroid/view/View;)
+.line 428
+	invoke-virtual	{v2,v3},android/support/v4/widget/DrawerLayout/getDrawerViewAbsoluteGravity	; getDrawerViewAbsoluteGravity(Landroid/view/View;)I
+; v2 : Landroid/support/v4/widget/DrawerLayout; , v3 : Landroid/view/View;
+	move-result	v0
+; v0 : single-length
+.line 429
+	const/4	v1,3
+; v1 : single-length
+	if-ne	v0,v1,l5de78
+; v0 : single-length , v1 : single-length
+.line 430
+	iget	v0,v2,android/support/v4/widget/DrawerLayout.mLockModeLeft I
+; v0 : single-length , v2 : Landroid/support/v4/widget/DrawerLayout;
+l5de76:
+.line 434
+	return	v0
+; v0 : single-length
+l5de78:
+.line 431
+	const/4	v1,5
+; v1 : single-length
+	if-ne	v0,v1,l5de84
+; v0 : single-length , v1 : single-length
+.line 432
+	iget	v0,v2,android/support/v4/widget/DrawerLayout.mLockModeRight I
+; v0 : single-length , v2 : Landroid/support/v4/widget/DrawerLayout;
+	goto	l5de76
+l5de84:
+.line 434
+	const/4	v0,0
+; v0 : single-length
+	goto	l5de76
+.end method
+
+.method getDrawerViewAbsoluteGravity(Landroid/view/View;)I
+.limit registers 4
+; this: v2 (Landroid/support/v4/widget/DrawerLayout;)
+; parameter[0] : v3 (Landroid/view/View;)
+.line 519
+	invoke-virtual	{v3},android/view/View/getLayoutParams	; getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
+; v3 : Landroid/view/View;
+	move-result-object	v0
+; v0 : Landroid/view/ViewGroup$LayoutParams;
+	check-cast	v0,android/support/v4/widget/DrawerLayout$LayoutParams
+; v0 : Landroid/support/v4/widget/DrawerLayout$LayoutParams;
+	iget	v0,v0,android/support/v4/widget/DrawerLayout$LayoutParams.gravity I
+; v0 : single-length , v0 : single-length
+.line 520
+	invoke-static	{v2},android/support/v4/view/ViewCompat/getLayoutDirection	; getLayoutDirection(Landroid/view/View;)I
+; v2 : Landroid/support/v4/widget/DrawerLayout;
+	move-result	v1
+; v1 : single-length
+	invoke-static	{v0,v1},android/support/v4/view/GravityCompat/getAbsoluteGravity	; getAbsoluteGravity(II)I
+; v0 : single-length , v1 : single-length
+	move-result	v0
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method getDrawerViewOffset(Landroid/view/View;)F
+.limit registers 3
+; this: v1 (Landroid/support/v4/widget/DrawerLayout;)
+; parameter[0] : v2 (Landroid/view/View;)
+.line 511
+	invoke-virtual	{v2},android/view/View/getLayoutParams	; getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
+; v2 : Landroid/view/View;
+	move-result-object	v0
+; v0 : Landroid/view/ViewGroup$LayoutParams;
+	check-cast	v0,android/support/v4/widget/DrawerLayout$LayoutParams
+; v0 : Landroid/support/v4/widget/DrawerLayout$LayoutParams;
+	iget	v0,v0,android/support/v4/widget/DrawerLayout$LayoutParams.onScreen F
+; v0 : single-length , v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method isContentView(Landroid/view/View;)Z
+.limit registers 3
+; this: v1 (Landroid/support/v4/widget/DrawerLayout;)
+; parameter[0] : v2 (Landroid/view/View;)
+.line 853
+	invoke-virtual	{v2},android/view/View/getLayoutParams	; getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
+; v2 : Landroid/view/View;
+	move-result-object	v0
+; v0 : Landroid/view/ViewGroup$LayoutParams;
+	check-cast	v0,android/support/v4/widget/DrawerLayout$LayoutParams
+; v0 : Landroid/support/v4/widget/DrawerLayout$LayoutParams;
+	iget	v0,v0,android/support/v4/widget/DrawerLayout$LayoutParams.gravity I
+; v0 : single-length , v0 : single-length
+	if-nez	v0,l5df08
+; v0 : single-length
+	const/4	v0,1
+; v0 : single-length
+l5df06:
+	return	v0
+; v0 : single-length
+l5df08:
+	const/4	v0,0
+; v0 : single-length
+	goto	l5df06
+.end method
+
+.method public isDrawerOpen(I)Z
+.limit registers 3
+; this: v1 (Landroid/support/v4/widget/DrawerLayout;)
+; parameter[0] : v2 (I)
+.line 1119
+	invoke-virtual	{v1,v2},android/support/v4/widget/DrawerLayout/findDrawerWithGravity	; findDrawerWithGravity(I)Landroid/view/View;
+; v1 : Landroid/support/v4/widget/DrawerLayout; , v2 : single-length
+	move-result-object	v0
+; v0 : Landroid/view/View;
+.line 1120
+	if-eqz	v0,l5df32
+; v0 : Landroid/view/View;
+.line 1121
+	invoke-virtual	{v1,v0},android/support/v4/widget/DrawerLayout/isDrawerOpen	; isDrawerOpen(Landroid/view/View;)Z
+; v1 : Landroid/support/v4/widget/DrawerLayout; , v0 : Landroid/view/View;
+	move-result	v0
+; v0 : single-length
+l5df30:
+.line 1123
+	return	v0
+; v0 : single-length
+l5df32:
+	const/4	v0,0
+; v0 : single-length
+	goto	l5df30
+.end method
+
+.method public isDrawerOpen(Landroid/view/View;)Z
+.limit registers 5
+; this: v3 (Landroid/support/v4/widget/DrawerLayout;)
+; parameter[0] : v4 (Landroid/view/View;)
+.line 1103
+	invoke-virtual	{v3,v4},android/support/v4/widget/DrawerLayout/isDrawerView	; isDrawerView(Landroid/view/View;)Z
+; v3 : Landroid/support/v4/widget/DrawerLayout; , v4 : Landroid/view/View;
+	move-result	v0
+; v0 : single-length
+	if-nez	v0,l5df92
+; v0 : single-length
+.line 1104
+	new-instance	v0,java/lang/IllegalArgumentException
+; v0 : Ljava/lang/IllegalArgumentException;
+	new-instance	v1,java/lang/StringBuilder
+; v1 : Ljava/lang/StringBuilder;
+	invoke-direct	{v1},java/lang/StringBuilder/<init>	; <init>()V
+; v1 : Ljava/lang/StringBuilder;
+	const-string	v2,"View "
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v1,v4},java/lang/StringBuilder/append	; append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v4 : Landroid/view/View;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	const-string	v2," is not a drawer"
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v1},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v1 : Ljava/lang/StringBuilder;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/IllegalArgumentException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/IllegalArgumentException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/IllegalArgumentException;
+l5df92:
+.line 1106
+	invoke-virtual	{v4},android/view/View/getLayoutParams	; getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
+; v4 : Landroid/view/View;
+	move-result-object	v0
+; v0 : Landroid/view/ViewGroup$LayoutParams;
+	check-cast	v0,android/support/v4/widget/DrawerLayout$LayoutParams
+; v0 : Landroid/support/v4/widget/DrawerLayout$LayoutParams;
+	iget-boolean	v0,v0,android/support/v4/widget/DrawerLayout$LayoutParams.knownOpen Z
+; v0 : single-length , v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method isDrawerView(Landroid/view/View;)Z
+.limit registers 4
+; this: v2 (Landroid/support/v4/widget/DrawerLayout;)
+; parameter[0] : v3 (Landroid/view/View;)
+.line 857
+	invoke-virtual	{v3},android/view/View/getLayoutParams	; getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
+; v3 : Landroid/view/View;
+	move-result-object	v0
+; v0 : Landroid/view/ViewGroup$LayoutParams;
+	check-cast	v0,android/support/v4/widget/DrawerLayout$LayoutParams
+; v0 : Landroid/support/v4/widget/DrawerLayout$LayoutParams;
+	iget	v0,v0,android/support/v4/widget/DrawerLayout$LayoutParams.gravity I
+; v0 : single-length , v0 : single-length
+.line 858
+	invoke-static	{v3},android/support/v4/view/ViewCompat/getLayoutDirection	; getLayoutDirection(Landroid/view/View;)I
+; v3 : Landroid/view/View;
+	move-result	v1
+; v1 : single-length
+	invoke-static	{v0,v1},android/support/v4/view/GravityCompat/getAbsoluteGravity	; getAbsoluteGravity(II)I
+; v0 : single-length , v1 : single-length
+	move-result	v0
+; v0 : single-length
+.line 860
+	and-int/lit8	v0,v0,7
+; v0 : single-length , v0 : single-length
+	if-eqz	v0,l5dfe0
+; v0 : single-length
+	const/4	v0,1
+; v0 : single-length
+l5dfde:
+	return	v0
+; v0 : single-length
+l5dfe0:
+	const/4	v0,0
+; v0 : single-length
+	goto	l5dfde
+.end method
+
+.method public isDrawerVisible(I)Z
+.limit registers 3
+; this: v1 (Landroid/support/v4/widget/DrawerLayout;)
+; parameter[0] : v2 (I)
+.line 1150
+	invoke-virtual	{v1,v2},android/support/v4/widget/DrawerLayout/findDrawerWithGravity	; findDrawerWithGravity(I)Landroid/view/View;
+; v1 : Landroid/support/v4/widget/DrawerLayout; , v2 : single-length
+	move-result-object	v0
+; v0 : Landroid/view/View;
+.line 1151
+	if-eqz	v0,l5e00a
+; v0 : Landroid/view/View;
+.line 1152
+	invoke-virtual	{v1,v0},android/support/v4/widget/DrawerLayout/isDrawerVisible	; isDrawerVisible(Landroid/view/View;)Z
+; v1 : Landroid/support/v4/widget/DrawerLayout; , v0 : Landroid/view/View;
+	move-result	v0
+; v0 : single-length
+l5e008:
+.line 1154
+	return	v0
+; v0 : single-length
+l5e00a:
+	const/4	v0,0
+; v0 : single-length
+	goto	l5e008
+.end method
+
+.method public isDrawerVisible(Landroid/view/View;)Z
+.limit registers 5
+; this: v3 (Landroid/support/v4/widget/DrawerLayout;)
+; parameter[0] : v4 (Landroid/view/View;)
+.line 1135
+	invoke-virtual	{v3,v4},android/support/v4/widget/DrawerLayout/isDrawerView	; isDrawerView(Landroid/view/View;)Z
+; v3 : Landroid/support/v4/widget/DrawerLayout; , v4 : Landroid/view/View;
+	move-result	v0
+; v0 : single-length
+	if-nez	v0,l5e06a
+; v0 : single-length
+.line 1136
+	new-instance	v0,java/lang/IllegalArgumentException
+; v0 : Ljava/lang/IllegalArgumentException;
+	new-instance	v1,java/lang/StringBuilder
+; v1 : Ljava/lang/StringBuilder;
+	invoke-direct	{v1},java/lang/StringBuilder/<init>	; <init>()V
+; v1 : Ljava/lang/StringBuilder;
+	const-string	v2,"View "
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v1,v4},java/lang/StringBuilder/append	; append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v4 : Landroid/view/View;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	const-string	v2," is not a drawer"
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v1},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v1 : Ljava/lang/StringBuilder;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/IllegalArgumentException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/IllegalArgumentException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/IllegalArgumentException;
+l5e06a:
+.line 1138
+	invoke-virtual	{v4},android/view/View/getLayoutParams	; getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
+; v4 : Landroid/view/View;
+	move-result-object	v0
+; v0 : Landroid/view/ViewGroup$LayoutParams;
+	check-cast	v0,android/support/v4/widget/DrawerLayout$LayoutParams
+; v0 : Landroid/support/v4/widget/DrawerLayout$LayoutParams;
+	iget	v0,v0,android/support/v4/widget/DrawerLayout$LayoutParams.onScreen F
+; v0 : single-length , v0 : single-length
+	const/4	v1,0
+; v1 : single-length
+	cmpl-float	v0,v0,v1
+; v0 : single-length , v0 : single-length , v1 : single-length
+	if-lez	v0,l5e088
+; v0 : single-length
+	const/4	v0,1
+; v0 : single-length
+l5e086:
+	return	v0
+; v0 : single-length
+l5e088:
+	const/4	v0,0
+; v0 : single-length
+	goto	l5e086
+.end method
+
+.method moveDrawerToOffset(Landroid/view/View;F)V
+.limit registers 6
+; this: v3 (Landroid/support/v4/widget/DrawerLayout;)
+; parameter[0] : v4 (Landroid/view/View;)
+; parameter[1] : v5 (F)
+.line 540
+	invoke-virtual	{v3,v4},android/support/v4/widget/DrawerLayout/getDrawerViewOffset	; getDrawerViewOffset(Landroid/view/View;)F
+; v3 : Landroid/support/v4/widget/DrawerLayout; , v4 : Landroid/view/View;
+	move-result	v0
+; v0 : single-length
+.line 541
+	invoke-virtual	{v4},android/view/View/getWidth	; getWidth()I
+; v4 : Landroid/view/View;
+	move-result	v1
+; v1 : single-length
+.line 542
+	int-to-float	v2,v1
+; v2 : single-length , v1 : single-length
+	mul-float/2addr	v0,v2
+; v0 : single-length , v2 : single-length
+	float-to-int	v0,v0
+; v0 : single-length , v0 : single-length
+.line 543
+	int-to-float	v1,v1
+; v1 : single-length , v1 : single-length
+	mul-float/2addr	v1,v5
+; v1 : single-length , v5 : single-length
+	float-to-int	v1,v1
+; v1 : single-length , v1 : single-length
+.line 544
+	sub-int	v0,v1,v0
+; v0 : single-length , v1 : single-length , v0 : single-length
+.line 546
+	const/4	v1,3
+; v1 : single-length
+	invoke-virtual	{v3,v4,v1},android/support/v4/widget/DrawerLayout/checkDrawerViewAbsoluteGravity	; checkDrawerViewAbsoluteGravity(Landroid/view/View;I)Z
+; v3 : Landroid/support/v4/widget/DrawerLayout; , v4 : Landroid/view/View; , v1 : single-length
+	move-result	v1
+; v1 : single-length
+	if-eqz	v1,l5e0d8
+; v1 : single-length
+l5e0ca:
+	invoke-virtual	{v4,v0},android/view/View/offsetLeftAndRight	; offsetLeftAndRight(I)V
+; v4 : Landroid/view/View; , v0 : single-length
+.line 548
+	invoke-virtual	{v3,v4,v5},android/support/v4/widget/DrawerLayout/setDrawerViewOffset	; setDrawerViewOffset(Landroid/view/View;F)V
+; v3 : Landroid/support/v4/widget/DrawerLayout; , v4 : Landroid/view/View; , v5 : single-length
+.line 549
+	return-void	
+l5e0d8:
+.line 546
+	neg-int	v0,v0
+; v0 : single-length , v0 : single-length
+	goto	l5e0ca
+.end method
+
+.method protected onAttachedToWindow()V
+.limit registers 2
+; this: v1 (Landroid/support/v4/widget/DrawerLayout;)
+.line 595
+	invoke-super	{v1},android/view/ViewGroup/onAttachedToWindow	; onAttachedToWindow()V
+; v1 : Landroid/support/v4/widget/DrawerLayout;
+.line 596
+	const/4	v0,1
+; v0 : single-length
+	iput-boolean	v0,v1,android/support/v4/widget/DrawerLayout.mFirstLayout Z
+; v0 : single-length , v1 : Landroid/support/v4/widget/DrawerLayout;
+.line 597
+	return-void	
+.end method
+
+.method protected onDetachedFromWindow()V
+.limit registers 2
+; this: v1 (Landroid/support/v4/widget/DrawerLayout;)
+.line 589
+	invoke-super	{v1},android/view/ViewGroup/onDetachedFromWindow	; onDetachedFromWindow()V
+; v1 : Landroid/support/v4/widget/DrawerLayout;
+.line 590
+	const/4	v0,1
+; v0 : single-length
+	iput-boolean	v0,v1,android/support/v4/widget/DrawerLayout.mFirstLayout Z
+; v0 : single-length , v1 : Landroid/support/v4/widget/DrawerLayout;
+.line 591
+	return-void	
+.end method
+
+.method public onInterceptTouchEvent(Landroid/view/MotionEvent;)Z
+.limit registers 9
+; this: v7 (Landroid/support/v4/widget/DrawerLayout;)
+; parameter[0] : v8 (Landroid/view/MotionEvent;)
+	const/4	v1,1
+; v1 : single-length
+	const/4	v2,0
+; v2 : single-length
+.line 865
+	invoke-static	{v8},android/support/v4/view/MotionEventCompat/getActionMasked	; getActionMasked(Landroid/view/MotionEvent;)I
+; v8 : Landroid/view/MotionEvent;
+	move-result	v0
+; v0 : single-length
+.line 868
+	iget-object	v3,v7,android/support/v4/widget/DrawerLayout.mLeftDragger Landroid/support/v4/widget/ViewDragHelper;
+; v3 : Landroid/support/v4/widget/ViewDragHelper; , v7 : Landroid/support/v4/widget/DrawerLayout;
+	invoke-virtual	{v3,v8},android/support/v4/widget/ViewDragHelper/shouldInterceptTouchEvent	; shouldInterceptTouchEvent(Landroid/view/MotionEvent;)Z
+; v3 : Landroid/support/v4/widget/ViewDragHelper; , v8 : Landroid/view/MotionEvent;
+	move-result	v3
+; v3 : single-length
+	iget-object	v4,v7,android/support/v4/widget/DrawerLayout.mRightDragger Landroid/support/v4/widget/ViewDragHelper;
+; v4 : Landroid/support/v4/widget/ViewDragHelper; , v7 : Landroid/support/v4/widget/DrawerLayout;
+	invoke-virtual	{v4,v8},android/support/v4/widget/ViewDragHelper/shouldInterceptTouchEvent	; shouldInterceptTouchEvent(Landroid/view/MotionEvent;)Z
+; v4 : Landroid/support/v4/widget/ViewDragHelper; , v8 : Landroid/view/MotionEvent;
+	move-result	v4
+; v4 : single-length
+	or-int/2addr	v3,v4
+; v3 : single-length , v4 : single-length
+.line 873
+	packed-switch	v0,0
+		ps5e152_5e17a	; case 0
+		ps5e152_5e1f2	; case 1
+		ps5e152_5e1c8	; case 2
+		ps5e152_5e1f2	; case 3
+		default: ps5e152_default
+; v0 : single-length
+l5e158:
+	move	v0,v2
+; v0 : single-length , v2 : single-length
+l5e15a:
+.line 905
+	if-nez	v3,l5e176
+; v3 : single-length
+	if-nez	v0,l5e176
+; v0 : single-length
+	invoke-direct	{v7},android/support/v4/widget/DrawerLayout/hasPeekingDrawer	; hasPeekingDrawer()Z
+; v7 : Landroid/support/v4/widget/DrawerLayout;
+	move-result	v0
+; v0 : single-length
+	if-nez	v0,l5e176
+; v0 : single-length
+	iget-boolean	v0,v7,android/support/v4/widget/DrawerLayout.mChildrenCanceledTouch Z
+; v0 : single-length , v7 : Landroid/support/v4/widget/DrawerLayout;
+	if-eqz	v0,l5e178
+; v0 : single-length
+l5e176:
+	move	v2,v1
+; v2 : single-length , v1 : single-length
+l5e178:
+	return	v2
+; v2 : single-length
+ps5e152_5e17a:
+.line 875
+	invoke-virtual	{v8},android/view/MotionEvent/getX	; getX()F
+; v8 : Landroid/view/MotionEvent;
+	move-result	v0
+; v0 : single-length
+.line 876
+	invoke-virtual	{v8},android/view/MotionEvent/getY	; getY()F
+; v8 : Landroid/view/MotionEvent;
+	move-result	v4
+; v4 : single-length
+.line 877
+	iput	v0,v7,android/support/v4/widget/DrawerLayout.mInitialMotionX F
+; v0 : single-length , v7 : Landroid/support/v4/widget/DrawerLayout;
+.line 878
+	iput	v4,v7,android/support/v4/widget/DrawerLayout.mInitialMotionY F
+; v4 : single-length , v7 : Landroid/support/v4/widget/DrawerLayout;
+.line 879
+	iget	v5,v7,android/support/v4/widget/DrawerLayout.mScrimOpacity F
+; v5 : single-length , v7 : Landroid/support/v4/widget/DrawerLayout;
+	const/4	v6,0
+; v6 : single-length
+	cmpl-float	v5,v5,v6
+; v5 : single-length , v5 : single-length , v6 : single-length
+	if-lez	v5,l5e202
+; v5 : single-length
+	iget-object	v5,v7,android/support/v4/widget/DrawerLayout.mLeftDragger Landroid/support/v4/widget/ViewDragHelper;
+; v5 : Landroid/support/v4/widget/ViewDragHelper; , v7 : Landroid/support/v4/widget/DrawerLayout;
+	float-to-int	v0,v0
+; v0 : single-length , v0 : single-length
+	float-to-int	v4,v4
+; v4 : single-length , v4 : single-length
+	invoke-virtual	{v5,v0,v4},android/support/v4/widget/ViewDragHelper/findTopChildUnder	; findTopChildUnder(II)Landroid/view/View;
+; v5 : Landroid/support/v4/widget/ViewDragHelper; , v0 : single-length , v4 : single-length
+	move-result-object	v0
+; v0 : Landroid/view/View;
+	invoke-virtual	{v7,v0},android/support/v4/widget/DrawerLayout/isContentView	; isContentView(Landroid/view/View;)Z
+; v7 : Landroid/support/v4/widget/DrawerLayout; , v0 : Landroid/view/View;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,l5e202
+; v0 : single-length
+	move	v0,v1
+; v0 : single-length , v1 : single-length
+l5e1be:
+.line 883
+	iput-boolean	v2,v7,android/support/v4/widget/DrawerLayout.mDisallowInterceptRequested Z
+; v2 : single-length , v7 : Landroid/support/v4/widget/DrawerLayout;
+.line 884
+	iput-boolean	v2,v7,android/support/v4/widget/DrawerLayout.mChildrenCanceledTouch Z
+; v2 : single-length , v7 : Landroid/support/v4/widget/DrawerLayout;
+	goto	l5e15a
+ps5e152_5e1c8:
+.line 890
+	iget-object	v0,v7,android/support/v4/widget/DrawerLayout.mLeftDragger Landroid/support/v4/widget/ViewDragHelper;
+; v0 : Landroid/support/v4/widget/ViewDragHelper; , v7 : Landroid/support/v4/widget/DrawerLayout;
+	const/4	v4,3
+; v4 : single-length
+	invoke-virtual	{v0,v4},android/support/v4/widget/ViewDragHelper/checkTouchSlop	; checkTouchSlop(I)Z
+; v0 : Landroid/support/v4/widget/ViewDragHelper; , v4 : single-length
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,l5e158
+; v0 : single-length
+.line 891
+	iget-object	v0,v7,android/support/v4/widget/DrawerLayout.mLeftCallback Landroid/support/v4/widget/DrawerLayout$ViewDragCallback;
+; v0 : Landroid/support/v4/widget/DrawerLayout$ViewDragCallback; , v7 : Landroid/support/v4/widget/DrawerLayout;
+	invoke-virtual	{v0},android/support/v4/widget/DrawerLayout$ViewDragCallback/removeCallbacks	; removeCallbacks()V
+; v0 : Landroid/support/v4/widget/DrawerLayout$ViewDragCallback;
+.line 892
+	iget-object	v0,v7,android/support/v4/widget/DrawerLayout.mRightCallback Landroid/support/v4/widget/DrawerLayout$ViewDragCallback;
+; v0 : Landroid/support/v4/widget/DrawerLayout$ViewDragCallback; , v7 : Landroid/support/v4/widget/DrawerLayout;
+	invoke-virtual	{v0},android/support/v4/widget/DrawerLayout$ViewDragCallback/removeCallbacks	; removeCallbacks()V
+; v0 : Landroid/support/v4/widget/DrawerLayout$ViewDragCallback;
+	move	v0,v2
+; v0 : single-length , v2 : single-length
+	goto	l5e15a
+ps5e152_5e1f2:
+.line 899
+	invoke-virtual	{v7,v1},android/support/v4/widget/DrawerLayout/closeDrawers	; closeDrawers(Z)V
+; v7 : Landroid/support/v4/widget/DrawerLayout; , v1 : single-length
+.line 900
+	iput-boolean	v2,v7,android/support/v4/widget/DrawerLayout.mDisallowInterceptRequested Z
+; v2 : single-length , v7 : Landroid/support/v4/widget/DrawerLayout;
+.line 901
+	iput-boolean	v2,v7,android/support/v4/widget/DrawerLayout.mChildrenCanceledTouch Z
+; v2 : single-length , v7 : Landroid/support/v4/widget/DrawerLayout;
+	goto	l5e158
+l5e202:
+	move	v0,v2
+; v0 : single-length , v2 : single-length
+	goto	l5e1be
+.line 873
+l5e206:	data-array
+		0x00, 0x00
+	end data-array
+.end method
+
+.method public onKeyDown(ILandroid/view/KeyEvent;)Z
+.limit registers 4
+; this: v1 (Landroid/support/v4/widget/DrawerLayout;)
+; parameter[0] : v2 (I)
+; parameter[1] : v3 (Landroid/view/KeyEvent;)
+.line 1224
+	const/4	v0,4
+; v0 : single-length
+	if-ne	v2,v0,l5e24c
+; v2 : single-length , v0 : single-length
+	invoke-direct	{v1},android/support/v4/widget/DrawerLayout/hasVisibleDrawer	; hasVisibleDrawer()Z
+; v1 : Landroid/support/v4/widget/DrawerLayout;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,l5e24c
+; v0 : single-length
+.line 1225
+	invoke-static	{v3},android/support/v4/view/KeyEventCompat/startTracking	; startTracking(Landroid/view/KeyEvent;)V
+; v3 : Landroid/view/KeyEvent;
+.line 1226
+	const/4	v0,1
+; v0 : single-length
+l5e24a:
+.line 1228
+	return	v0
+; v0 : single-length
+l5e24c:
+	invoke-super	{v1,v2,v3},android/view/ViewGroup/onKeyDown	; onKeyDown(ILandroid/view/KeyEvent;)Z
+; v1 : Landroid/support/v4/widget/DrawerLayout; , v2 : single-length , v3 : Landroid/view/KeyEvent;
+	move-result	v0
+; v0 : single-length
+	goto	l5e24a
+.end method
+
+.method public onKeyUp(ILandroid/view/KeyEvent;)Z
+.limit registers 5
+; this: v2 (Landroid/support/v4/widget/DrawerLayout;)
+; parameter[0] : v3 (I)
+; parameter[1] : v4 (Landroid/view/KeyEvent;)
+.line 1233
+	const/4	v0,4
+; v0 : single-length
+	if-ne	v3,v0,l5e298
+; v3 : single-length , v0 : single-length
+.line 1234
+	invoke-direct	{v2},android/support/v4/widget/DrawerLayout/findVisibleDrawer	; findVisibleDrawer()Landroid/view/View;
+; v2 : Landroid/support/v4/widget/DrawerLayout;
+	move-result-object	v0
+; v0 : Landroid/view/View;
+.line 1235
+	if-eqz	v0,l5e28c
+; v0 : Landroid/view/View;
+	invoke-virtual	{v2,v0},android/support/v4/widget/DrawerLayout/getDrawerLockMode	; getDrawerLockMode(Landroid/view/View;)I
+; v2 : Landroid/support/v4/widget/DrawerLayout; , v0 : Landroid/view/View;
+	move-result	v1
+; v1 : single-length
+	if-nez	v1,l5e28c
+; v1 : single-length
+.line 1236
+	invoke-virtual	{v2},android/support/v4/widget/DrawerLayout/closeDrawers	; closeDrawers()V
+; v2 : Landroid/support/v4/widget/DrawerLayout;
+l5e28c:
+.line 1238
+	if-eqz	v0,l5e294
+; v0 : Landroid/view/View;
+	const/4	v0,1
+; v0 : single-length
+l5e292:
+.line 1240
+	return	v0
+; v0 : single-length
+l5e294:
+.line 1238
+	const/4	v0,0
+; v0 : single-length
+	goto	l5e292
+l5e298:
+.line 1240
+	invoke-super	{v2,v3,v4},android/view/ViewGroup/onKeyUp	; onKeyUp(ILandroid/view/KeyEvent;)Z
+; v2 : Landroid/support/v4/widget/DrawerLayout; , v3 : single-length , v4 : Landroid/view/KeyEvent;
+	move-result	v0
+; v0 : single-length
+	goto	l5e292
+.end method
+
+.method protected onLayout(ZIIII)V
+.limit registers 20
+; this: v14 (Landroid/support/v4/widget/DrawerLayout;)
+; parameter[0] : v15 (Z)
+; parameter[1] : v16 (I)
+; parameter[2] : v17 (I)
+; parameter[3] : v18 (I)
+; parameter[4] : v19 (I)
+.line 677
+	const/4	v0,1
+; v0 : single-length
+	iput-boolean	v0,v14,android/support/v4/widget/DrawerLayout.mInLayout Z
+; v0 : single-length , v14 : Landroid/support/v4/widget/DrawerLayout;
+.line 678
+	sub-int	v6,v18,v16
+; v6 : single-length , v18 : single-length , v16 : single-length
+.line 679
+	invoke-virtual	{v14},android/support/v4/widget/DrawerLayout/getChildCount	; getChildCount()I
+; v14 : Landroid/support/v4/widget/DrawerLayout;
+	move-result	v7
+; v7 : single-length
+.line 680
+	const/4	v0,0
+; v0 : single-length
+	move	v5,v0
+; v5 : single-length , v0 : single-length
+l5e2ca:
+	if-ge	v5,v7,l5e44c
+; v5 : single-length , v7 : single-length
+.line 681
+	invoke-virtual	{v14,v5},android/support/v4/widget/DrawerLayout/getChildAt	; getChildAt(I)Landroid/view/View;
+; v14 : Landroid/support/v4/widget/DrawerLayout; , v5 : single-length
+	move-result-object	v8
+; v8 : Landroid/view/View;
+.line 683
+	invoke-virtual	{v8},android/view/View/getVisibility	; getVisibility()I
+; v8 : Landroid/view/View;
+	move-result	v0
+; v0 : single-length
+	const/16	v1,8
+; v1 : single-length
+	if-ne	v0,v1,l5e2ee
+; v0 : single-length , v1 : single-length
+l5e2e6:
+.line 680
+	add-int/lit8	v0,v5,1
+; v0 : single-length , v5 : single-length
+	move	v5,v0
+; v5 : single-length , v0 : single-length
+	goto	l5e2ca
+l5e2ee:
+.line 687
+	invoke-virtual	{v8},android/view/View/getLayoutParams	; getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
+; v8 : Landroid/view/View;
+	move-result-object	v0
+; v0 : Landroid/view/ViewGroup$LayoutParams;
+	check-cast	v0,android/support/v4/widget/DrawerLayout$LayoutParams
+; v0 : Landroid/support/v4/widget/DrawerLayout$LayoutParams;
+.line 689
+	invoke-virtual	{v14,v8},android/support/v4/widget/DrawerLayout/isContentView	; isContentView(Landroid/view/View;)Z
+; v14 : Landroid/support/v4/widget/DrawerLayout; , v8 : Landroid/view/View;
+	move-result	v1
+; v1 : single-length
+	if-eqz	v1,l5e332
+; v1 : single-length
+.line 690
+	iget	v1,v0,android/support/v4/widget/DrawerLayout$LayoutParams.leftMargin I
+; v1 : single-length , v0 : Landroid/support/v4/widget/DrawerLayout$LayoutParams;
+	iget	v2,v0,android/support/v4/widget/DrawerLayout$LayoutParams.topMargin I
+; v2 : single-length , v0 : Landroid/support/v4/widget/DrawerLayout$LayoutParams;
+	iget	v3,v0,android/support/v4/widget/DrawerLayout$LayoutParams.leftMargin I
+; v3 : single-length , v0 : Landroid/support/v4/widget/DrawerLayout$LayoutParams;
+	invoke-virtual	{v8},android/view/View/getMeasuredWidth	; getMeasuredWidth()I
+; v8 : Landroid/view/View;
+	move-result	v4
+; v4 : single-length
+	add-int/2addr	v3,v4
+; v3 : single-length , v4 : single-length
+	iget	v0,v0,android/support/v4/widget/DrawerLayout$LayoutParams.topMargin I
+; v0 : single-length , v0 : single-length
+	invoke-virtual	{v8},android/view/View/getMeasuredHeight	; getMeasuredHeight()I
+; v8 : Landroid/view/View;
+	move-result	v4
+; v4 : single-length
+	add-int/2addr	v0,v4
+; v0 : single-length , v4 : single-length
+	invoke-virtual	{v8,v1,v2,v3,v0},android/view/View/layout	; layout(IIII)V
+; v8 : Landroid/view/View; , v1 : single-length , v2 : single-length , v3 : single-length , v0 : single-length
+	goto	l5e2e6
+l5e332:
+.line 694
+	invoke-virtual	{v8},android/view/View/getMeasuredWidth	; getMeasuredWidth()I
+; v8 : Landroid/view/View;
+	move-result	v9
+; v9 : single-length
+.line 695
+	invoke-virtual	{v8},android/view/View/getMeasuredHeight	; getMeasuredHeight()I
+; v8 : Landroid/view/View;
+	move-result	v10
+; v10 : single-length
+.line 699
+	const/4	v1,3
+; v1 : single-length
+	invoke-virtual	{v14,v8,v1},android/support/v4/widget/DrawerLayout/checkDrawerViewAbsoluteGravity	; checkDrawerViewAbsoluteGravity(Landroid/view/View;I)Z
+; v14 : Landroid/support/v4/widget/DrawerLayout; , v8 : Landroid/view/View; , v1 : single-length
+	move-result	v1
+; v1 : single-length
+	if-eqz	v1,l5e3c4
+; v1 : single-length
+.line 700
+	neg-int	v1,v9
+; v1 : single-length , v9 : single-length
+	int-to-float	v2,v9
+; v2 : single-length , v9 : single-length
+	iget	v3,v0,android/support/v4/widget/DrawerLayout$LayoutParams.onScreen F
+; v3 : single-length , v0 : Landroid/support/v4/widget/DrawerLayout$LayoutParams;
+	mul-float/2addr	v2,v3
+; v2 : single-length , v3 : single-length
+	float-to-int	v2,v2
+; v2 : single-length , v2 : single-length
+	add-int/2addr	v2,v1
+; v2 : single-length , v1 : single-length
+.line 701
+	add-int	v1,v9,v2
+; v1 : single-length , v9 : single-length , v2 : single-length
+	int-to-float	v1,v1
+; v1 : single-length , v1 : single-length
+	int-to-float	v3,v9
+; v3 : single-length , v9 : single-length
+	div-float/2addr	v1,v3
+; v1 : single-length , v3 : single-length
+l5e368:
+.line 707
+	iget	v3,v0,android/support/v4/widget/DrawerLayout$LayoutParams.onScreen F
+; v3 : single-length , v0 : Landroid/support/v4/widget/DrawerLayout$LayoutParams;
+	cmpl-float	v3,v1,v3
+; v3 : single-length , v1 : single-length , v3 : single-length
+	if-eqz	v3,l5e3de
+; v3 : single-length
+	const/4	v3,1
+; v3 : single-length
+l5e376:
+.line 709
+	iget	v4,v0,android/support/v4/widget/DrawerLayout$LayoutParams.gravity I
+; v4 : single-length , v0 : Landroid/support/v4/widget/DrawerLayout$LayoutParams;
+	and-int/lit8	v4,v4,112
+; v4 : single-length , v4 : single-length
+.line 711
+	sparse-switch	v4
+		16 : sp5e37e_5e408
+		80 : sp5e37e_5e3e2
+		default: sp5e37e_default
+; v4 : single-length
+sp5e37e_default:
+.line 714
+	iget	v4,v0,android/support/v4/widget/DrawerLayout$LayoutParams.topMargin I
+; v4 : single-length , v0 : Landroid/support/v4/widget/DrawerLayout$LayoutParams;
+	add-int/2addr	v9,v2
+; v9 : single-length , v2 : single-length
+	iget	v11,v0,android/support/v4/widget/DrawerLayout$LayoutParams.topMargin I
+; v11 : single-length , v0 : Landroid/support/v4/widget/DrawerLayout$LayoutParams;
+	add-int/2addr	v10,v11
+; v10 : single-length , v11 : single-length
+	invoke-virtual	{v8,v2,v4,v9,v10},android/view/View/layout	; layout(IIII)V
+; v8 : Landroid/view/View; , v2 : single-length , v4 : single-length , v9 : single-length , v10 : single-length
+l5e396:
+.line 745
+	if-eqz	v3,l5e3a0
+; v3 : single-length
+.line 746
+	invoke-virtual	{v14,v8,v1},android/support/v4/widget/DrawerLayout/setDrawerViewOffset	; setDrawerViewOffset(Landroid/view/View;F)V
+; v14 : Landroid/support/v4/widget/DrawerLayout; , v8 : Landroid/view/View; , v1 : single-length
+l5e3a0:
+.line 749
+	iget	v0,v0,android/support/v4/widget/DrawerLayout$LayoutParams.onScreen F
+; v0 : single-length , v0 : single-length
+	const/4	v1,0
+; v1 : single-length
+	cmpl-float	v0,v0,v1
+; v0 : single-length , v0 : single-length , v1 : single-length
+	if-lez	v0,l5e448
+; v0 : single-length
+	const/4	v0,0
+; v0 : single-length
+l5e3b0:
+.line 750
+	invoke-virtual	{v8},android/view/View/getVisibility	; getVisibility()I
+; v8 : Landroid/view/View;
+	move-result	v1
+; v1 : single-length
+	if-eq	v1,v0,l5e2e6
+; v1 : single-length , v0 : single-length
+.line 751
+	invoke-virtual	{v8,v0},android/view/View/setVisibility	; setVisibility(I)V
+; v8 : Landroid/view/View; , v0 : single-length
+	goto	l5e2e6
+l5e3c4:
+.line 703
+	int-to-float	v1,v9
+; v1 : single-length , v9 : single-length
+	iget	v2,v0,android/support/v4/widget/DrawerLayout$LayoutParams.onScreen F
+; v2 : single-length , v0 : Landroid/support/v4/widget/DrawerLayout$LayoutParams;
+	mul-float/2addr	v1,v2
+; v1 : single-length , v2 : single-length
+	float-to-int	v1,v1
+; v1 : single-length , v1 : single-length
+	sub-int	v2,v6,v1
+; v2 : single-length , v6 : single-length , v1 : single-length
+.line 704
+	sub-int	v1,v6,v2
+; v1 : single-length , v6 : single-length , v2 : single-length
+	int-to-float	v1,v1
+; v1 : single-length , v1 : single-length
+	int-to-float	v3,v9
+; v3 : single-length , v9 : single-length
+	div-float/2addr	v1,v3
+; v1 : single-length , v3 : single-length
+	goto	l5e368
+l5e3de:
+.line 707
+	const/4	v3,0
+; v3 : single-length
+	goto	l5e376
+sp5e37e_5e3e2:
+.line 720
+	sub-int	v4,v19,v17
+; v4 : single-length , v19 : single-length , v17 : single-length
+.line 721
+	iget	v10,v0,android/support/v4/widget/DrawerLayout$LayoutParams.bottomMargin I
+; v10 : single-length , v0 : Landroid/support/v4/widget/DrawerLayout$LayoutParams;
+	sub-int	v10,v4,v10
+; v10 : single-length , v4 : single-length , v10 : single-length
+	invoke-virtual	{v8},android/view/View/getMeasuredHeight	; getMeasuredHeight()I
+; v8 : Landroid/view/View;
+	move-result	v11
+; v11 : single-length
+	sub-int/2addr	v10,v11
+; v10 : single-length , v11 : single-length
+	add-int/2addr	v9,v2
+; v9 : single-length , v2 : single-length
+	iget	v11,v0,android/support/v4/widget/DrawerLayout$LayoutParams.bottomMargin I
+; v11 : single-length , v0 : Landroid/support/v4/widget/DrawerLayout$LayoutParams;
+	sub-int/2addr	v4,v11
+; v4 : single-length , v11 : single-length
+	invoke-virtual	{v8,v2,v10,v9,v4},android/view/View/layout	; layout(IIII)V
+; v8 : Landroid/view/View; , v2 : single-length , v10 : single-length , v9 : single-length , v4 : single-length
+	goto	l5e396
+sp5e37e_5e408:
+.line 729
+	sub-int	v11,v19,v17
+; v11 : single-length , v19 : single-length , v17 : single-length
+.line 730
+	sub-int	v4,v11,v10
+; v4 : single-length , v11 : single-length , v10 : single-length
+	div-int/lit8	v4,v4,2
+; v4 : single-length , v4 : single-length
+.line 734
+	iget	v12,v0,android/support/v4/widget/DrawerLayout$LayoutParams.topMargin I
+; v12 : single-length , v0 : Landroid/support/v4/widget/DrawerLayout$LayoutParams;
+	if-ge	v4,v12,l5e42c
+; v4 : single-length , v12 : single-length
+.line 735
+	iget	v4,v0,android/support/v4/widget/DrawerLayout$LayoutParams.topMargin I
+; v4 : single-length , v0 : Landroid/support/v4/widget/DrawerLayout$LayoutParams;
+l5e420:
+.line 739
+	add-int/2addr	v9,v2
+; v9 : single-length , v2 : single-length
+	add-int/2addr	v10,v4
+; v10 : single-length , v4 : single-length
+	invoke-virtual	{v8,v2,v4,v9,v10},android/view/View/layout	; layout(IIII)V
+; v8 : Landroid/view/View; , v2 : single-length , v4 : single-length , v9 : single-length , v10 : single-length
+	goto	l5e396
+l5e42c:
+.line 736
+	add-int	v12,v4,v10
+; v12 : single-length , v4 : single-length , v10 : single-length
+	iget	v13,v0,android/support/v4/widget/DrawerLayout$LayoutParams.bottomMargin I
+; v13 : single-length , v0 : Landroid/support/v4/widget/DrawerLayout$LayoutParams;
+	sub-int	v13,v11,v13
+; v13 : single-length , v11 : single-length , v13 : single-length
+	if-le	v12,v13,l5e420
+; v12 : single-length , v13 : single-length
+.line 737
+	iget	v4,v0,android/support/v4/widget/DrawerLayout$LayoutParams.bottomMargin I
+; v4 : single-length , v0 : Landroid/support/v4/widget/DrawerLayout$LayoutParams;
+	sub-int	v4,v11,v4
+; v4 : single-length , v11 : single-length , v4 : single-length
+	sub-int/2addr	v4,v10
+; v4 : single-length , v10 : single-length
+	goto	l5e420
+l5e448:
+.line 749
+	const/4	v0,4
+; v0 : single-length
+	goto	l5e3b0
+l5e44c:
+.line 755
+	const/4	v0,0
+; v0 : single-length
+	iput-boolean	v0,v14,android/support/v4/widget/DrawerLayout.mInLayout Z
+; v0 : single-length , v14 : Landroid/support/v4/widget/DrawerLayout;
+.line 756
+	const/4	v0,0
+; v0 : single-length
+	iput-boolean	v0,v14,android/support/v4/widget/DrawerLayout.mFirstLayout Z
+; v0 : single-length , v14 : Landroid/support/v4/widget/DrawerLayout;
+.line 757
+	return-void	
+.line 711
+l5e45a:	data-array
+		0x00, 0x00
+	end data-array
+.end method
+
+.method protected onMeasure(II)V
+.limit registers 14
+; this: v11 (Landroid/support/v4/widget/DrawerLayout;)
+; parameter[0] : v12 (I)
+; parameter[1] : v13 (I)
+	const/16	v1,300
+; v1 : single-length
+	const/4	v4,0
+; v4 : single-length
+	const/high16	v7,32768
+; v7 : single-length
+	const/high16	v10,16384
+; v10 : single-length
+.line 601
+	invoke-static	{v12},android/view/View$MeasureSpec/getMode	; getMode(I)I
+; v12 : single-length
+	move-result	v3
+; v3 : single-length
+.line 602
+	invoke-static	{v13},android/view/View$MeasureSpec/getMode	; getMode(I)I
+; v13 : single-length
+	move-result	v5
+; v5 : single-length
+.line 603
+	invoke-static	{v12},android/view/View$MeasureSpec/getSize	; getSize(I)I
+; v12 : single-length
+	move-result	v2
+; v2 : single-length
+.line 604
+	invoke-static	{v13},android/view/View$MeasureSpec/getSize	; getSize(I)I
+; v13 : single-length
+	move-result	v0
+; v0 : single-length
+.line 606
+	if-ne	v3,v10,l5e4b6
+; v3 : single-length , v10 : single-length
+	if-eq	v5,v10,l5e50c
+; v5 : single-length , v10 : single-length
+l5e4b6:
+.line 607
+	invoke-virtual	{v11},android/support/v4/widget/DrawerLayout/isInEditMode	; isInEditMode()Z
+; v11 : Landroid/support/v4/widget/DrawerLayout;
+	move-result	v6
+; v6 : single-length
+	if-eqz	v6,l5e510
+; v6 : single-length
+.line 612
+	if-ne	v3,v7,l5e500
+; v3 : single-length , v7 : single-length
+l5e4c6:
+.line 618
+	if-ne	v5,v7,l5e508
+; v5 : single-length , v7 : single-length
+	move	v1,v0
+; v1 : single-length , v0 : single-length
+l5e4cc:
+.line 631
+	invoke-virtual	{v11,v2,v1},android/support/v4/widget/DrawerLayout/setMeasuredDimension	; setMeasuredDimension(II)V
+; v11 : Landroid/support/v4/widget/DrawerLayout; , v2 : single-length , v1 : single-length
+.line 635
+	invoke-virtual	{v11},android/support/v4/widget/DrawerLayout/getChildCount	; getChildCount()I
+; v11 : Landroid/support/v4/widget/DrawerLayout;
+	move-result	v5
+; v5 : single-length
+	move	v3,v4
+; v3 : single-length , v4 : single-length
+l5e4dc:
+.line 636
+	if-ge	v3,v5,l5e692
+; v3 : single-length , v5 : single-length
+.line 637
+	invoke-virtual	{v11,v3},android/support/v4/widget/DrawerLayout/getChildAt	; getChildAt(I)Landroid/view/View;
+; v11 : Landroid/support/v4/widget/DrawerLayout; , v3 : single-length
+	move-result-object	v6
+; v6 : Landroid/view/View;
+.line 639
+	invoke-virtual	{v6},android/view/View/getVisibility	; getVisibility()I
+; v6 : Landroid/view/View;
+	move-result	v0
+; v0 : single-length
+	const/16	v7,8
+; v7 : single-length
+	if-ne	v0,v7,l5e520
+; v0 : single-length , v7 : single-length
+l5e4f8:
+.line 636
+	add-int/lit8	v0,v3,1
+; v0 : single-length , v3 : single-length
+	move	v3,v0
+; v3 : single-length , v0 : single-length
+	goto	l5e4dc
+l5e500:
+.line 614
+	if-nez	v3,l5e4c6
+; v3 : single-length
+	move	v2,v1
+; v2 : single-length , v1 : single-length
+.line 616
+	goto	l5e4c6
+l5e508:
+.line 621
+	if-eqz	v5,l5e4cc
+; v5 : single-length
+l5e50c:
+	move	v1,v0
+; v1 : single-length , v0 : single-length
+	goto	l5e4cc
+l5e510:
+.line 626
+	new-instance	v0,java/lang/IllegalArgumentException
+; v0 : Ljava/lang/IllegalArgumentException;
+	const-string	v1,"DrawerLayout must be measured with MeasureSpec.EXACTLY."
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/IllegalArgumentException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/IllegalArgumentException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/IllegalArgumentException;
+l5e520:
+.line 643
+	invoke-virtual	{v6},android/view/View/getLayoutParams	; getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
+; v6 : Landroid/view/View;
+	move-result-object	v0
+; v0 : Landroid/view/ViewGroup$LayoutParams;
+	check-cast	v0,android/support/v4/widget/DrawerLayout$LayoutParams
+; v0 : Landroid/support/v4/widget/DrawerLayout$LayoutParams;
+.line 645
+	invoke-virtual	{v11,v6},android/support/v4/widget/DrawerLayout/isContentView	; isContentView(Landroid/view/View;)Z
+; v11 : Landroid/support/v4/widget/DrawerLayout; , v6 : Landroid/view/View;
+	move-result	v7
+; v7 : single-length
+	if-eqz	v7,l5e56e
+; v7 : single-length
+.line 647
+	iget	v7,v0,android/support/v4/widget/DrawerLayout$LayoutParams.leftMargin I
+; v7 : single-length , v0 : Landroid/support/v4/widget/DrawerLayout$LayoutParams;
+	sub-int	v7,v2,v7
+; v7 : single-length , v2 : single-length , v7 : single-length
+	iget	v8,v0,android/support/v4/widget/DrawerLayout$LayoutParams.rightMargin I
+; v8 : single-length , v0 : Landroid/support/v4/widget/DrawerLayout$LayoutParams;
+	sub-int/2addr	v7,v8
+; v7 : single-length , v8 : single-length
+	invoke-static	{v7,v10},android/view/View$MeasureSpec/makeMeasureSpec	; makeMeasureSpec(II)I
+; v7 : single-length , v10 : single-length
+	move-result	v7
+; v7 : single-length
+.line 649
+	iget	v8,v0,android/support/v4/widget/DrawerLayout$LayoutParams.topMargin I
+; v8 : single-length , v0 : Landroid/support/v4/widget/DrawerLayout$LayoutParams;
+	sub-int	v8,v1,v8
+; v8 : single-length , v1 : single-length , v8 : single-length
+	iget	v0,v0,android/support/v4/widget/DrawerLayout$LayoutParams.bottomMargin I
+; v0 : single-length , v0 : single-length
+	sub-int	v0,v8,v0
+; v0 : single-length , v8 : single-length , v0 : single-length
+	invoke-static	{v0,v10},android/view/View$MeasureSpec/makeMeasureSpec	; makeMeasureSpec(II)I
+; v0 : single-length , v10 : single-length
+	move-result	v0
+; v0 : single-length
+.line 651
+	invoke-virtual	{v6,v7,v0},android/view/View/measure	; measure(II)V
+; v6 : Landroid/view/View; , v7 : single-length , v0 : single-length
+	goto	l5e4f8
+l5e56e:
+.line 652
+	invoke-virtual	{v11,v6},android/support/v4/widget/DrawerLayout/isDrawerView	; isDrawerView(Landroid/view/View;)Z
+; v11 : Landroid/support/v4/widget/DrawerLayout; , v6 : Landroid/view/View;
+	move-result	v7
+; v7 : single-length
+	if-eqz	v7,l5e634
+; v7 : single-length
+.line 653
+	invoke-virtual	{v11,v6},android/support/v4/widget/DrawerLayout/getDrawerViewAbsoluteGravity	; getDrawerViewAbsoluteGravity(Landroid/view/View;)I
+; v11 : Landroid/support/v4/widget/DrawerLayout; , v6 : Landroid/view/View;
+	move-result	v7
+; v7 : single-length
+	and-int/lit8	v7,v7,7
+; v7 : single-length , v7 : single-length
+.line 655
+	and-int	v8,v4,v7
+; v8 : single-length , v4 : single-length , v7 : single-length
+	if-eqz	v8,l5e5f8
+; v8 : single-length
+.line 656
+	new-instance	v0,java/lang/IllegalStateException
+; v0 : Ljava/lang/IllegalStateException;
+	new-instance	v1,java/lang/StringBuilder
+; v1 : Ljava/lang/StringBuilder;
+	invoke-direct	{v1},java/lang/StringBuilder/<init>	; <init>()V
+; v1 : Ljava/lang/StringBuilder;
+	const-string	v2,"Child drawer has absolute gravity "
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	invoke-static	{v7},android/support/v4/widget/DrawerLayout/gravityToString	; gravityToString(I)Ljava/lang/String;
+; v7 : single-length
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	const-string	v2," but this "
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	const-string	v2,"DrawerLayout"
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	const-string	v2," already has a "
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	const-string	v2,"drawer view along that edge"
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v1},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v1 : Ljava/lang/StringBuilder;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/IllegalStateException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/IllegalStateException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/IllegalStateException;
+l5e5f8:
+.line 660
+	iget	v7,v11,android/support/v4/widget/DrawerLayout.mMinDrawerMargin I
+; v7 : single-length , v11 : Landroid/support/v4/widget/DrawerLayout;
+	iget	v8,v0,android/support/v4/widget/DrawerLayout$LayoutParams.leftMargin I
+; v8 : single-length , v0 : Landroid/support/v4/widget/DrawerLayout$LayoutParams;
+	add-int/2addr	v7,v8
+; v7 : single-length , v8 : single-length
+	iget	v8,v0,android/support/v4/widget/DrawerLayout$LayoutParams.rightMargin I
+; v8 : single-length , v0 : Landroid/support/v4/widget/DrawerLayout$LayoutParams;
+	add-int/2addr	v7,v8
+; v7 : single-length , v8 : single-length
+	iget	v8,v0,android/support/v4/widget/DrawerLayout$LayoutParams.width I
+; v8 : single-length , v0 : Landroid/support/v4/widget/DrawerLayout$LayoutParams;
+	invoke-static	{v12,v7,v8},android/support/v4/widget/DrawerLayout/getChildMeasureSpec	; getChildMeasureSpec(III)I
+; v12 : single-length , v7 : single-length , v8 : single-length
+	move-result	v7
+; v7 : single-length
+.line 663
+	iget	v8,v0,android/support/v4/widget/DrawerLayout$LayoutParams.topMargin I
+; v8 : single-length , v0 : Landroid/support/v4/widget/DrawerLayout$LayoutParams;
+	iget	v9,v0,android/support/v4/widget/DrawerLayout$LayoutParams.bottomMargin I
+; v9 : single-length , v0 : Landroid/support/v4/widget/DrawerLayout$LayoutParams;
+	add-int/2addr	v8,v9
+; v8 : single-length , v9 : single-length
+	iget	v0,v0,android/support/v4/widget/DrawerLayout$LayoutParams.height I
+; v0 : single-length , v0 : single-length
+	invoke-static	{v13,v8,v0},android/support/v4/widget/DrawerLayout/getChildMeasureSpec	; getChildMeasureSpec(III)I
+; v13 : single-length , v8 : single-length , v0 : single-length
+	move-result	v0
+; v0 : single-length
+.line 666
+	invoke-virtual	{v6,v7,v0},android/view/View/measure	; measure(II)V
+; v6 : Landroid/view/View; , v7 : single-length , v0 : single-length
+	goto/16	l5e4f8
+l5e634:
+.line 668
+	new-instance	v0,java/lang/IllegalStateException
+; v0 : Ljava/lang/IllegalStateException;
+	new-instance	v1,java/lang/StringBuilder
+; v1 : Ljava/lang/StringBuilder;
+	invoke-direct	{v1},java/lang/StringBuilder/<init>	; <init>()V
+; v1 : Ljava/lang/StringBuilder;
+	const-string	v2,"Child "
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v1,v6},java/lang/StringBuilder/append	; append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v6 : Landroid/view/View;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	const-string	v2," at index "
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v1,v3},java/lang/StringBuilder/append	; append(I)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v3 : single-length
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	const-string	v2," does not have a valid layout_gravity - must be Gravity.LEFT, "
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	const-string	v2,"Gravity.RIGHT or Gravity.NO_GRAVITY"
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v1},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v1 : Ljava/lang/StringBuilder;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/IllegalStateException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/IllegalStateException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/IllegalStateException;
+l5e692:
+.line 673
+	return-void	
+.end method
+
+.method protected onRestoreInstanceState(Landroid/os/Parcelable;)V
+.limit registers 4
+; this: v2 (Landroid/support/v4/widget/DrawerLayout;)
+; parameter[0] : v3 (Landroid/os/Parcelable;)
+.line 1245
+	check-cast	v3,android/support/v4/widget/DrawerLayout$SavedState
+; v3 : Landroid/support/v4/widget/DrawerLayout$SavedState;
+.line 1246
+	invoke-virtual	{v3},android/support/v4/widget/DrawerLayout$SavedState/getSuperState	; getSuperState()Landroid/os/Parcelable;
+; v3 : Landroid/support/v4/widget/DrawerLayout$SavedState;
+	move-result-object	v0
+; v0 : Landroid/os/Parcelable;
+	invoke-super	{v2,v0},android/view/ViewGroup/onRestoreInstanceState	; onRestoreInstanceState(Landroid/os/Parcelable;)V
+; v2 : Landroid/support/v4/widget/DrawerLayout; , v0 : Landroid/os/Parcelable;
+.line 1248
+	iget	v0,v3,android/support/v4/widget/DrawerLayout$SavedState.openDrawerGravity I
+; v0 : single-length , v3 : Landroid/support/v4/widget/DrawerLayout$SavedState;
+	if-eqz	v0,l5e6d4
+; v0 : single-length
+.line 1249
+	iget	v0,v3,android/support/v4/widget/DrawerLayout$SavedState.openDrawerGravity I
+; v0 : single-length , v3 : Landroid/support/v4/widget/DrawerLayout$SavedState;
+	invoke-virtual	{v2,v0},android/support/v4/widget/DrawerLayout/findDrawerWithGravity	; findDrawerWithGravity(I)Landroid/view/View;
+; v2 : Landroid/support/v4/widget/DrawerLayout; , v0 : single-length
+	move-result-object	v0
+; v0 : Landroid/view/View;
+.line 1250
+	if-eqz	v0,l5e6d4
+; v0 : Landroid/view/View;
+.line 1251
+	invoke-virtual	{v2,v0},android/support/v4/widget/DrawerLayout/openDrawer	; openDrawer(Landroid/view/View;)V
+; v2 : Landroid/support/v4/widget/DrawerLayout; , v0 : Landroid/view/View;
+l5e6d4:
+.line 1255
+	iget	v0,v3,android/support/v4/widget/DrawerLayout$SavedState.lockModeLeft I
+; v0 : single-length , v3 : Landroid/support/v4/widget/DrawerLayout$SavedState;
+	const/4	v1,3
+; v1 : single-length
+	invoke-virtual	{v2,v0,v1},android/support/v4/widget/DrawerLayout/setDrawerLockMode	; setDrawerLockMode(II)V
+; v2 : Landroid/support/v4/widget/DrawerLayout; , v0 : single-length , v1 : single-length
+.line 1256
+	iget	v0,v3,android/support/v4/widget/DrawerLayout$SavedState.lockModeRight I
+; v0 : single-length , v3 : Landroid/support/v4/widget/DrawerLayout$SavedState;
+	const/4	v1,5
+; v1 : single-length
+	invoke-virtual	{v2,v0,v1},android/support/v4/widget/DrawerLayout/setDrawerLockMode	; setDrawerLockMode(II)V
+; v2 : Landroid/support/v4/widget/DrawerLayout; , v0 : single-length , v1 : single-length
+.line 1257
+	return-void	
+.end method
+
+.method protected onSaveInstanceState()Landroid/os/Parcelable;
+.limit registers 6
+; this: v5 (Landroid/support/v4/widget/DrawerLayout;)
+.line 1261
+	invoke-super	{v5},android/view/ViewGroup/onSaveInstanceState	; onSaveInstanceState()Landroid/os/Parcelable;
+; v5 : Landroid/support/v4/widget/DrawerLayout;
+	move-result-object	v0
+; v0 : Landroid/os/Parcelable;
+.line 1263
+	new-instance	v2,android/support/v4/widget/DrawerLayout$SavedState
+; v2 : Landroid/support/v4/widget/DrawerLayout$SavedState;
+	invoke-direct	{v2,v0},android/support/v4/widget/DrawerLayout$SavedState/<init>	; <init>(Landroid/os/Parcelable;)V
+; v2 : Landroid/support/v4/widget/DrawerLayout$SavedState; , v0 : Landroid/os/Parcelable;
+.line 1265
+	invoke-virtual	{v5},android/support/v4/widget/DrawerLayout/getChildCount	; getChildCount()I
+; v5 : Landroid/support/v4/widget/DrawerLayout;
+	move-result	v3
+; v3 : single-length
+.line 1266
+	const/4	v0,0
+; v0 : single-length
+	move	v1,v0
+; v1 : single-length , v0 : single-length
+l5e71e:
+	if-ge	v1,v3,l5e75a
+; v1 : single-length , v3 : single-length
+.line 1267
+	invoke-virtual	{v5,v1},android/support/v4/widget/DrawerLayout/getChildAt	; getChildAt(I)Landroid/view/View;
+; v5 : Landroid/support/v4/widget/DrawerLayout; , v1 : single-length
+	move-result-object	v0
+; v0 : Landroid/view/View;
+.line 1268
+	invoke-virtual	{v5,v0},android/support/v4/widget/DrawerLayout/isDrawerView	; isDrawerView(Landroid/view/View;)Z
+; v5 : Landroid/support/v4/widget/DrawerLayout; , v0 : Landroid/view/View;
+	move-result	v4
+; v4 : single-length
+	if-nez	v4,l5e73e
+; v4 : single-length
+l5e736:
+.line 1266
+	add-int/lit8	v0,v1,1
+; v0 : single-length , v1 : single-length
+	move	v1,v0
+; v1 : single-length , v0 : single-length
+	goto	l5e71e
+l5e73e:
+.line 1272
+	invoke-virtual	{v0},android/view/View/getLayoutParams	; getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
+; v0 : Landroid/view/View;
+	move-result-object	v0
+; v0 : Landroid/view/ViewGroup$LayoutParams;
+	check-cast	v0,android/support/v4/widget/DrawerLayout$LayoutParams
+; v0 : Landroid/support/v4/widget/DrawerLayout$LayoutParams;
+.line 1273
+	iget-boolean	v4,v0,android/support/v4/widget/DrawerLayout$LayoutParams.knownOpen Z
+; v4 : single-length , v0 : Landroid/support/v4/widget/DrawerLayout$LayoutParams;
+	if-eqz	v4,l5e736
+; v4 : single-length
+.line 1274
+	iget	v0,v0,android/support/v4/widget/DrawerLayout$LayoutParams.gravity I
+; v0 : single-length , v0 : single-length
+	iput	v0,v2,android/support/v4/widget/DrawerLayout$SavedState.openDrawerGravity I
+; v0 : single-length , v2 : Landroid/support/v4/widget/DrawerLayout$SavedState;
+l5e75a:
+.line 1280
+	iget	v0,v5,android/support/v4/widget/DrawerLayout.mLockModeLeft I
+; v0 : single-length , v5 : Landroid/support/v4/widget/DrawerLayout;
+	iput	v0,v2,android/support/v4/widget/DrawerLayout$SavedState.lockModeLeft I
+; v0 : single-length , v2 : Landroid/support/v4/widget/DrawerLayout$SavedState;
+.line 1281
+	iget	v0,v5,android/support/v4/widget/DrawerLayout.mLockModeRight I
+; v0 : single-length , v5 : Landroid/support/v4/widget/DrawerLayout;
+	iput	v0,v2,android/support/v4/widget/DrawerLayout$SavedState.lockModeRight I
+; v0 : single-length , v2 : Landroid/support/v4/widget/DrawerLayout$SavedState;
+.line 1283
+	return-object	v2
+; v2 : Landroid/support/v4/widget/DrawerLayout$SavedState;
+.end method
+
+.method public onTouchEvent(Landroid/view/MotionEvent;)Z
+.limit registers 9
+; this: v7 (Landroid/support/v4/widget/DrawerLayout;)
+; parameter[0] : v8 (Landroid/view/MotionEvent;)
+	const/4	v1,1
+; v1 : single-length
+	const/4	v2,0
+; v2 : single-length
+.line 910
+	iget-object	v0,v7,android/support/v4/widget/DrawerLayout.mLeftDragger Landroid/support/v4/widget/ViewDragHelper;
+; v0 : Landroid/support/v4/widget/ViewDragHelper; , v7 : Landroid/support/v4/widget/DrawerLayout;
+	invoke-virtual	{v0,v8},android/support/v4/widget/ViewDragHelper/processTouchEvent	; processTouchEvent(Landroid/view/MotionEvent;)V
+; v0 : Landroid/support/v4/widget/ViewDragHelper; , v8 : Landroid/view/MotionEvent;
+.line 911
+	iget-object	v0,v7,android/support/v4/widget/DrawerLayout.mRightDragger Landroid/support/v4/widget/ViewDragHelper;
+; v0 : Landroid/support/v4/widget/ViewDragHelper; , v7 : Landroid/support/v4/widget/DrawerLayout;
+	invoke-virtual	{v0,v8},android/support/v4/widget/ViewDragHelper/processTouchEvent	; processTouchEvent(Landroid/view/MotionEvent;)V
+; v0 : Landroid/support/v4/widget/ViewDragHelper; , v8 : Landroid/view/MotionEvent;
+.line 913
+	invoke-virtual	{v8},android/view/MotionEvent/getAction	; getAction()I
+; v8 : Landroid/view/MotionEvent;
+	move-result	v0
+; v0 : single-length
+.line 916
+	and-int/lit16	v0,v0,255
+; v0 : single-length , v0 : single-length
+	packed-switch	v0,0
+		ps5e7a0_5e7a8	; case 0
+		ps5e7a0_5e7ca	; case 1
+		ps5e7a0_5e7a6	; case 2
+		ps5e7a0_5e852	; case 3
+		default: ps5e7a0_default
+; v0 : single-length
+l5e7a6:
+.line 957
+	return	v1
+; v1 : single-length
+ps5e7a0_5e7a8:
+.line 918
+	invoke-virtual	{v8},android/view/MotionEvent/getX	; getX()F
+; v8 : Landroid/view/MotionEvent;
+	move-result	v0
+; v0 : single-length
+.line 919
+	invoke-virtual	{v8},android/view/MotionEvent/getY	; getY()F
+; v8 : Landroid/view/MotionEvent;
+	move-result	v3
+; v3 : single-length
+.line 920
+	iput	v0,v7,android/support/v4/widget/DrawerLayout.mInitialMotionX F
+; v0 : single-length , v7 : Landroid/support/v4/widget/DrawerLayout;
+.line 921
+	iput	v3,v7,android/support/v4/widget/DrawerLayout.mInitialMotionY F
+; v3 : single-length , v7 : Landroid/support/v4/widget/DrawerLayout;
+.line 922
+	iput-boolean	v2,v7,android/support/v4/widget/DrawerLayout.mDisallowInterceptRequested Z
+; v2 : single-length , v7 : Landroid/support/v4/widget/DrawerLayout;
+.line 923
+	iput-boolean	v2,v7,android/support/v4/widget/DrawerLayout.mChildrenCanceledTouch Z
+; v2 : single-length , v7 : Landroid/support/v4/widget/DrawerLayout;
+	goto	l5e7a6
+ps5e7a0_5e7ca:
+.line 928
+	invoke-virtual	{v8},android/view/MotionEvent/getX	; getX()F
+; v8 : Landroid/view/MotionEvent;
+	move-result	v0
+; v0 : single-length
+.line 929
+	invoke-virtual	{v8},android/view/MotionEvent/getY	; getY()F
+; v8 : Landroid/view/MotionEvent;
+	move-result	v3
+; v3 : single-length
+.line 931
+	iget-object	v4,v7,android/support/v4/widget/DrawerLayout.mLeftDragger Landroid/support/v4/widget/ViewDragHelper;
+; v4 : Landroid/support/v4/widget/ViewDragHelper; , v7 : Landroid/support/v4/widget/DrawerLayout;
+	float-to-int	v5,v0
+; v5 : single-length , v0 : single-length
+	float-to-int	v6,v3
+; v6 : single-length , v3 : single-length
+	invoke-virtual	{v4,v5,v6},android/support/v4/widget/ViewDragHelper/findTopChildUnder	; findTopChildUnder(II)Landroid/view/View;
+; v4 : Landroid/support/v4/widget/ViewDragHelper; , v5 : single-length , v6 : single-length
+	move-result-object	v4
+; v4 : Landroid/view/View;
+.line 932
+	if-eqz	v4,l5e862
+; v4 : Landroid/view/View;
+	invoke-virtual	{v7,v4},android/support/v4/widget/DrawerLayout/isContentView	; isContentView(Landroid/view/View;)Z
+; v7 : Landroid/support/v4/widget/DrawerLayout; , v4 : Landroid/view/View;
+	move-result	v4
+; v4 : single-length
+	if-eqz	v4,l5e862
+; v4 : single-length
+.line 933
+	iget	v4,v7,android/support/v4/widget/DrawerLayout.mInitialMotionX F
+; v4 : single-length , v7 : Landroid/support/v4/widget/DrawerLayout;
+	sub-float/2addr	v0,v4
+; v0 : single-length , v4 : single-length
+.line 934
+	iget	v4,v7,android/support/v4/widget/DrawerLayout.mInitialMotionY F
+; v4 : single-length , v7 : Landroid/support/v4/widget/DrawerLayout;
+	sub-float/2addr	v3,v4
+; v3 : single-length , v4 : single-length
+.line 935
+	iget-object	v4,v7,android/support/v4/widget/DrawerLayout.mLeftDragger Landroid/support/v4/widget/ViewDragHelper;
+; v4 : Landroid/support/v4/widget/ViewDragHelper; , v7 : Landroid/support/v4/widget/DrawerLayout;
+	invoke-virtual	{v4},android/support/v4/widget/ViewDragHelper/getTouchSlop	; getTouchSlop()I
+; v4 : Landroid/support/v4/widget/ViewDragHelper;
+	move-result	v4
+; v4 : single-length
+.line 936
+	mul-float/2addr	v0,v0
+; v0 : single-length , v0 : single-length
+	mul-float/2addr	v3,v3
+; v3 : single-length , v3 : single-length
+	add-float/2addr	v0,v3
+; v0 : single-length , v3 : single-length
+	mul-int	v3,v4,v4
+; v3 : single-length , v4 : single-length , v4 : single-length
+	int-to-float	v3,v3
+; v3 : single-length , v3 : single-length
+	cmpg-float	v0,v0,v3
+; v0 : single-length , v0 : single-length , v3 : single-length
+	if-gez	v0,l5e862
+; v0 : single-length
+.line 938
+	invoke-virtual	{v7},android/support/v4/widget/DrawerLayout/findOpenDrawer	; findOpenDrawer()Landroid/view/View;
+; v7 : Landroid/support/v4/widget/DrawerLayout;
+	move-result-object	v0
+; v0 : Landroid/view/View;
+.line 939
+	if-eqz	v0,l5e862
+; v0 : Landroid/view/View;
+.line 940
+	invoke-virtual	{v7,v0},android/support/v4/widget/DrawerLayout/getDrawerLockMode	; getDrawerLockMode(Landroid/view/View;)I
+; v7 : Landroid/support/v4/widget/DrawerLayout; , v0 : Landroid/view/View;
+	move-result	v0
+; v0 : single-length
+	const/4	v3,2
+; v3 : single-length
+	if-ne	v0,v3,l5e84e
+; v0 : single-length , v3 : single-length
+	move	v0,v1
+; v0 : single-length , v1 : single-length
+l5e842:
+.line 944
+	invoke-virtual	{v7,v0},android/support/v4/widget/DrawerLayout/closeDrawers	; closeDrawers(Z)V
+; v7 : Landroid/support/v4/widget/DrawerLayout; , v0 : single-length
+.line 945
+	iput-boolean	v2,v7,android/support/v4/widget/DrawerLayout.mDisallowInterceptRequested Z
+; v2 : single-length , v7 : Landroid/support/v4/widget/DrawerLayout;
+	goto	l5e7a6
+l5e84e:
+	move	v0,v2
+; v0 : single-length , v2 : single-length
+.line 940
+	goto	l5e842
+ps5e7a0_5e852:
+.line 950
+	invoke-virtual	{v7,v1},android/support/v4/widget/DrawerLayout/closeDrawers	; closeDrawers(Z)V
+; v7 : Landroid/support/v4/widget/DrawerLayout; , v1 : single-length
+.line 951
+	iput-boolean	v2,v7,android/support/v4/widget/DrawerLayout.mDisallowInterceptRequested Z
+; v2 : single-length , v7 : Landroid/support/v4/widget/DrawerLayout;
+.line 952
+	iput-boolean	v2,v7,android/support/v4/widget/DrawerLayout.mChildrenCanceledTouch Z
+; v2 : single-length , v7 : Landroid/support/v4/widget/DrawerLayout;
+	goto	l5e7a6
+l5e862:
+	move	v0,v1
+; v0 : single-length , v1 : single-length
+	goto	l5e842
+.line 916
+l5e866:	data-array
+		0x00, 0x00
+	end data-array
+.end method
+
+.method public openDrawer(I)V
+.limit registers 5
+; this: v3 (Landroid/support/v4/widget/DrawerLayout;)
+; parameter[0] : v4 (I)
+.line 1044
+	invoke-virtual	{v3,v4},android/support/v4/widget/DrawerLayout/findDrawerWithGravity	; findDrawerWithGravity(I)Landroid/view/View;
+; v3 : Landroid/support/v4/widget/DrawerLayout; , v4 : single-length
+	move-result-object	v0
+; v0 : Landroid/view/View;
+.line 1045
+	if-nez	v0,l5e8d6
+; v0 : Landroid/view/View;
+.line 1046
+	new-instance	v0,java/lang/IllegalArgumentException
+; v0 : Ljava/lang/IllegalArgumentException;
+	new-instance	v1,java/lang/StringBuilder
+; v1 : Ljava/lang/StringBuilder;
+	invoke-direct	{v1},java/lang/StringBuilder/<init>	; <init>()V
+; v1 : Ljava/lang/StringBuilder;
+	const-string	v2,"No drawer view found with gravity "
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	invoke-static	{v4},android/support/v4/widget/DrawerLayout/gravityToString	; gravityToString(I)Ljava/lang/String;
+; v4 : single-length
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v1},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v1 : Ljava/lang/StringBuilder;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/IllegalArgumentException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/IllegalArgumentException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/IllegalArgumentException;
+l5e8d6:
+.line 1049
+	invoke-virtual	{v3,v0},android/support/v4/widget/DrawerLayout/openDrawer	; openDrawer(Landroid/view/View;)V
+; v3 : Landroid/support/v4/widget/DrawerLayout; , v0 : Landroid/view/View;
+.line 1050
+	return-void	
+.end method
+
+.method public openDrawer(Landroid/view/View;)V
+.limit registers 5
+; this: v3 (Landroid/support/v4/widget/DrawerLayout;)
+; parameter[0] : v4 (Landroid/view/View;)
+.line 1018
+	invoke-virtual	{v3,v4},android/support/v4/widget/DrawerLayout/isDrawerView	; isDrawerView(Landroid/view/View;)Z
+; v3 : Landroid/support/v4/widget/DrawerLayout; , v4 : Landroid/view/View;
+	move-result	v0
+; v0 : single-length
+	if-nez	v0,l5e93a
+; v0 : single-length
+.line 1019
+	new-instance	v0,java/lang/IllegalArgumentException
+; v0 : Ljava/lang/IllegalArgumentException;
+	new-instance	v1,java/lang/StringBuilder
+; v1 : Ljava/lang/StringBuilder;
+	invoke-direct	{v1},java/lang/StringBuilder/<init>	; <init>()V
+; v1 : Ljava/lang/StringBuilder;
+	const-string	v2,"View "
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v1,v4},java/lang/StringBuilder/append	; append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v4 : Landroid/view/View;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	const-string	v2," is not a sliding drawer"
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v1},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v1 : Ljava/lang/StringBuilder;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/IllegalArgumentException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/IllegalArgumentException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/IllegalArgumentException;
+l5e93a:
+.line 1022
+	iget-boolean	v0,v3,android/support/v4/widget/DrawerLayout.mFirstLayout Z
+; v0 : single-length , v3 : Landroid/support/v4/widget/DrawerLayout;
+	if-eqz	v0,l5e964
+; v0 : single-length
+.line 1023
+	invoke-virtual	{v4},android/view/View/getLayoutParams	; getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
+; v4 : Landroid/view/View;
+	move-result-object	v0
+; v0 : Landroid/view/ViewGroup$LayoutParams;
+	check-cast	v0,android/support/v4/widget/DrawerLayout$LayoutParams
+; v0 : Landroid/support/v4/widget/DrawerLayout$LayoutParams;
+.line 1024
+	const/high16	v1,16256
+; v1 : single-length
+	iput	v1,v0,android/support/v4/widget/DrawerLayout$LayoutParams.onScreen F
+; v1 : single-length , v0 : Landroid/support/v4/widget/DrawerLayout$LayoutParams;
+.line 1025
+	const/4	v1,1
+; v1 : single-length
+	iput-boolean	v1,v0,android/support/v4/widget/DrawerLayout$LayoutParams.knownOpen Z
+; v1 : single-length , v0 : Landroid/support/v4/widget/DrawerLayout$LayoutParams;
+l5e95c:
+.line 1034
+	invoke-virtual	{v3},android/support/v4/widget/DrawerLayout/invalidate	; invalidate()V
+; v3 : Landroid/support/v4/widget/DrawerLayout;
+.line 1035
+	return-void	
+l5e964:
+.line 1027
+	const/4	v0,3
+; v0 : single-length
+	invoke-virtual	{v3,v4,v0},android/support/v4/widget/DrawerLayout/checkDrawerViewAbsoluteGravity	; checkDrawerViewAbsoluteGravity(Landroid/view/View;I)Z
+; v3 : Landroid/support/v4/widget/DrawerLayout; , v4 : Landroid/view/View; , v0 : single-length
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,l5e988
+; v0 : single-length
+.line 1028
+	iget-object	v0,v3,android/support/v4/widget/DrawerLayout.mLeftDragger Landroid/support/v4/widget/ViewDragHelper;
+; v0 : Landroid/support/v4/widget/ViewDragHelper; , v3 : Landroid/support/v4/widget/DrawerLayout;
+	const/4	v1,0
+; v1 : single-length
+	invoke-virtual	{v4},android/view/View/getTop	; getTop()I
+; v4 : Landroid/view/View;
+	move-result	v2
+; v2 : single-length
+	invoke-virtual	{v0,v4,v1,v2},android/support/v4/widget/ViewDragHelper/smoothSlideViewTo	; smoothSlideViewTo(Landroid/view/View;II)Z
+; v0 : Landroid/support/v4/widget/ViewDragHelper; , v4 : Landroid/view/View; , v1 : single-length , v2 : single-length
+	goto	l5e95c
+l5e988:
+.line 1030
+	iget-object	v0,v3,android/support/v4/widget/DrawerLayout.mRightDragger Landroid/support/v4/widget/ViewDragHelper;
+; v0 : Landroid/support/v4/widget/ViewDragHelper; , v3 : Landroid/support/v4/widget/DrawerLayout;
+	invoke-virtual	{v3},android/support/v4/widget/DrawerLayout/getWidth	; getWidth()I
+; v3 : Landroid/support/v4/widget/DrawerLayout;
+	move-result	v1
+; v1 : single-length
+	invoke-virtual	{v4},android/view/View/getWidth	; getWidth()I
+; v4 : Landroid/view/View;
+	move-result	v2
+; v2 : single-length
+	sub-int/2addr	v1,v2
+; v1 : single-length , v2 : single-length
+	invoke-virtual	{v4},android/view/View/getTop	; getTop()I
+; v4 : Landroid/view/View;
+	move-result	v2
+; v2 : single-length
+	invoke-virtual	{v0,v4,v1,v2},android/support/v4/widget/ViewDragHelper/smoothSlideViewTo	; smoothSlideViewTo(Landroid/view/View;II)Z
+; v0 : Landroid/support/v4/widget/ViewDragHelper; , v4 : Landroid/view/View; , v1 : single-length , v2 : single-length
+	goto	l5e95c
+.end method
+
+.method public requestDisallowInterceptTouchEvent(Z)V
+.limit registers 3
+; this: v1 (Landroid/support/v4/widget/DrawerLayout;)
+; parameter[0] : v2 (Z)
+.line 965
+	invoke-super	{v1,v2},android/view/ViewGroup/requestDisallowInterceptTouchEvent	; requestDisallowInterceptTouchEvent(Z)V
+; v1 : Landroid/support/v4/widget/DrawerLayout; , v2 : single-length
+.line 967
+	iput-boolean	v2,v1,android/support/v4/widget/DrawerLayout.mDisallowInterceptRequested Z
+; v2 : single-length , v1 : Landroid/support/v4/widget/DrawerLayout;
+.line 968
+	if-eqz	v2,l5e9d6
+; v2 : single-length
+.line 969
+	const/4	v0,1
+; v0 : single-length
+	invoke-virtual	{v1,v0},android/support/v4/widget/DrawerLayout/closeDrawers	; closeDrawers(Z)V
+; v1 : Landroid/support/v4/widget/DrawerLayout; , v0 : single-length
+l5e9d6:
+.line 971
+	return-void	
+.end method
+
+.method public requestLayout()V
+.limit registers 2
+; this: v1 (Landroid/support/v4/widget/DrawerLayout;)
+.line 761
+	iget-boolean	v0,v1,android/support/v4/widget/DrawerLayout.mInLayout Z
+; v0 : single-length , v1 : Landroid/support/v4/widget/DrawerLayout;
+	if-nez	v0,l5e9f6
+; v0 : single-length
+.line 762
+	invoke-super	{v1},android/view/ViewGroup/requestLayout	; requestLayout()V
+; v1 : Landroid/support/v4/widget/DrawerLayout;
+l5e9f6:
+.line 764
+	return-void	
+.end method
+
+.method public setDrawerListener(Landroid/support/v4/widget/DrawerLayout$DrawerListener;)V
+.limit registers 2
+; this: v0 (Landroid/support/v4/widget/DrawerLayout;)
+; parameter[0] : v1 (Landroid/support/v4/widget/DrawerLayout$DrawerListener;)
+.line 305
+	iput-object	v1,v0,android/support/v4/widget/DrawerLayout.mListener Landroid/support/v4/widget/DrawerLayout$DrawerListener;
+; v1 : Landroid/support/v4/widget/DrawerLayout$DrawerListener; , v0 : Landroid/support/v4/widget/DrawerLayout;
+.line 306
+	return-void	
+.end method
+
+.method public setDrawerLockMode(I)V
+.limit registers 3
+; this: v1 (Landroid/support/v4/widget/DrawerLayout;)
+; parameter[0] : v2 (I)
+.line 322
+	const/4	v0,3
+; v0 : single-length
+	invoke-virtual	{v1,v2,v0},android/support/v4/widget/DrawerLayout/setDrawerLockMode	; setDrawerLockMode(II)V
+; v1 : Landroid/support/v4/widget/DrawerLayout; , v2 : single-length , v0 : single-length
+.line 323
+	const/4	v0,5
+; v0 : single-length
+	invoke-virtual	{v1,v2,v0},android/support/v4/widget/DrawerLayout/setDrawerLockMode	; setDrawerLockMode(II)V
+; v1 : Landroid/support/v4/widget/DrawerLayout; , v2 : single-length , v0 : single-length
+.line 324
+	return-void	
+.end method
+
+.method public setDrawerLockMode(II)V
+.limit registers 6
+; this: v3 (Landroid/support/v4/widget/DrawerLayout;)
+; parameter[0] : v4 (I)
+; parameter[1] : v5 (I)
+	const/4	v2,3
+; v2 : single-length
+.line 346
+	invoke-static	{v3},android/support/v4/view/ViewCompat/getLayoutDirection	; getLayoutDirection(Landroid/view/View;)I
+; v3 : Landroid/support/v4/widget/DrawerLayout;
+	move-result	v0
+; v0 : single-length
+	invoke-static	{v5,v0},android/support/v4/view/GravityCompat/getAbsoluteGravity	; getAbsoluteGravity(II)I
+; v5 : single-length , v0 : single-length
+	move-result	v1
+; v1 : single-length
+.line 348
+	if-ne	v1,v2,l5ea78
+; v1 : single-length , v2 : single-length
+.line 349
+	iput	v4,v3,android/support/v4/widget/DrawerLayout.mLockModeLeft I
+; v4 : single-length , v3 : Landroid/support/v4/widget/DrawerLayout;
+l5ea5e:
+.line 353
+	if-eqz	v4,l5ea70
+; v4 : single-length
+.line 355
+	if-ne	v1,v2,l5ea84
+; v1 : single-length , v2 : single-length
+	iget-object	v0,v3,android/support/v4/widget/DrawerLayout.mLeftDragger Landroid/support/v4/widget/ViewDragHelper;
+; v0 : Landroid/support/v4/widget/ViewDragHelper; , v3 : Landroid/support/v4/widget/DrawerLayout;
+l5ea6a:
+.line 356
+	invoke-virtual	{v0},android/support/v4/widget/ViewDragHelper/cancel	; cancel()V
+; v0 : Landroid/support/v4/widget/ViewDragHelper;
+l5ea70:
+.line 358
+	packed-switch	v4,1
+		ps5ea70_5ea9e	; case 1
+		ps5ea70_5ea8a	; case 2
+		default: ps5ea70_default
+; v4 : single-length
+l5ea76:
+.line 373
+	return-void	
+l5ea78:
+.line 350
+	const/4	v0,5
+; v0 : single-length
+	if-ne	v1,v0,l5ea5e
+; v1 : single-length , v0 : single-length
+.line 351
+	iput	v4,v3,android/support/v4/widget/DrawerLayout.mLockModeRight I
+; v4 : single-length , v3 : Landroid/support/v4/widget/DrawerLayout;
+	goto	l5ea5e
+l5ea84:
+.line 355
+	iget-object	v0,v3,android/support/v4/widget/DrawerLayout.mRightDragger Landroid/support/v4/widget/ViewDragHelper;
+; v0 : Landroid/support/v4/widget/ViewDragHelper; , v3 : Landroid/support/v4/widget/DrawerLayout;
+	goto	l5ea6a
+ps5ea70_5ea8a:
+.line 360
+	invoke-virtual	{v3,v1},android/support/v4/widget/DrawerLayout/findDrawerWithGravity	; findDrawerWithGravity(I)Landroid/view/View;
+; v3 : Landroid/support/v4/widget/DrawerLayout; , v1 : single-length
+	move-result-object	v0
+; v0 : Landroid/view/View;
+.line 361
+	if-eqz	v0,l5ea76
+; v0 : Landroid/view/View;
+.line 362
+	invoke-virtual	{v3,v0},android/support/v4/widget/DrawerLayout/openDrawer	; openDrawer(Landroid/view/View;)V
+; v3 : Landroid/support/v4/widget/DrawerLayout; , v0 : Landroid/view/View;
+	goto	l5ea76
+ps5ea70_5ea9e:
+.line 366
+	invoke-virtual	{v3,v1},android/support/v4/widget/DrawerLayout/findDrawerWithGravity	; findDrawerWithGravity(I)Landroid/view/View;
+; v3 : Landroid/support/v4/widget/DrawerLayout; , v1 : single-length
+	move-result-object	v0
+; v0 : Landroid/view/View;
+.line 367
+	if-eqz	v0,l5ea76
+; v0 : Landroid/view/View;
+.line 368
+	invoke-virtual	{v3,v0},android/support/v4/widget/DrawerLayout/closeDrawer	; closeDrawer(Landroid/view/View;)V
+; v3 : Landroid/support/v4/widget/DrawerLayout; , v0 : Landroid/view/View;
+	goto	l5ea76
+.line 358
+l5eab2:	data-array
+		0x00, 0x00
+	end data-array
+.end method
+
+.method public setDrawerLockMode(ILandroid/view/View;)V
+.limit registers 6
+; this: v3 (Landroid/support/v4/widget/DrawerLayout;)
+; parameter[0] : v4 (I)
+; parameter[1] : v5 (Landroid/view/View;)
+.line 394
+	invoke-virtual	{v3,v5},android/support/v4/widget/DrawerLayout/isDrawerView	; isDrawerView(Landroid/view/View;)Z
+; v3 : Landroid/support/v4/widget/DrawerLayout; , v5 : Landroid/view/View;
+	move-result	v0
+; v0 : single-length
+	if-nez	v0,l5eb2a
+; v0 : single-length
+.line 395
+	new-instance	v0,java/lang/IllegalArgumentException
+; v0 : Ljava/lang/IllegalArgumentException;
+	new-instance	v1,java/lang/StringBuilder
+; v1 : Ljava/lang/StringBuilder;
+	invoke-direct	{v1},java/lang/StringBuilder/<init>	; <init>()V
+; v1 : Ljava/lang/StringBuilder;
+	const-string	v2,"View "
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v1,v5},java/lang/StringBuilder/append	; append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v5 : Landroid/view/View;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	const-string	v2," is not a "
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	const-string	v2,"drawer with appropriate layout_gravity"
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v1},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v1 : Ljava/lang/StringBuilder;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/IllegalArgumentException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/IllegalArgumentException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/IllegalArgumentException;
+l5eb2a:
+.line 398
+	invoke-virtual	{v5},android/view/View/getLayoutParams	; getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
+; v5 : Landroid/view/View;
+	move-result-object	v0
+; v0 : Landroid/view/ViewGroup$LayoutParams;
+	check-cast	v0,android/support/v4/widget/DrawerLayout$LayoutParams
+; v0 : Landroid/support/v4/widget/DrawerLayout$LayoutParams;
+	iget	v0,v0,android/support/v4/widget/DrawerLayout$LayoutParams.gravity I
+; v0 : single-length , v0 : single-length
+.line 399
+	invoke-virtual	{v3,v4,v0},android/support/v4/widget/DrawerLayout/setDrawerLockMode	; setDrawerLockMode(II)V
+; v3 : Landroid/support/v4/widget/DrawerLayout; , v4 : single-length , v0 : single-length
+.line 400
+	return-void	
+.end method
+
+.method public setDrawerShadow(II)V
+.limit registers 4
+; this: v1 (Landroid/support/v4/widget/DrawerLayout;)
+; parameter[0] : v2 (I)
+; parameter[1] : v3 (I)
+.line 285
+	invoke-virtual	{v1},android/support/v4/widget/DrawerLayout/getResources	; getResources()Landroid/content/res/Resources;
+; v1 : Landroid/support/v4/widget/DrawerLayout;
+	move-result-object	v0
+; v0 : Landroid/content/res/Resources;
+	invoke-virtual	{v0,v2},android/content/res/Resources/getDrawable	; getDrawable(I)Landroid/graphics/drawable/Drawable;
+; v0 : Landroid/content/res/Resources; , v2 : single-length
+	move-result-object	v0
+; v0 : Landroid/graphics/drawable/Drawable;
+	invoke-virtual	{v1,v0,v3},android/support/v4/widget/DrawerLayout/setDrawerShadow	; setDrawerShadow(Landroid/graphics/drawable/Drawable;I)V
+; v1 : Landroid/support/v4/widget/DrawerLayout; , v0 : Landroid/graphics/drawable/Drawable; , v3 : single-length
+.line 286
+	return-void	
+.end method
+
+.method public setDrawerShadow(Landroid/graphics/drawable/Drawable;I)V
+.limit registers 6
+; this: v3 (Landroid/support/v4/widget/DrawerLayout;)
+; parameter[0] : v4 (Landroid/graphics/drawable/Drawable;)
+; parameter[1] : v5 (I)
+.line 265
+	invoke-static	{v3},android/support/v4/view/ViewCompat/getLayoutDirection	; getLayoutDirection(Landroid/view/View;)I
+; v3 : Landroid/support/v4/widget/DrawerLayout;
+	move-result	v0
+; v0 : single-length
+	invoke-static	{v5,v0},android/support/v4/view/GravityCompat/getAbsoluteGravity	; getAbsoluteGravity(II)I
+; v5 : single-length , v0 : single-length
+	move-result	v0
+; v0 : single-length
+.line 267
+	and-int/lit8	v1,v0,3
+; v1 : single-length , v0 : single-length
+	const/4	v2,3
+; v2 : single-length
+	if-ne	v1,v2,l5eba0
+; v1 : single-length , v2 : single-length
+.line 268
+	iput-object	v4,v3,android/support/v4/widget/DrawerLayout.mShadowLeft Landroid/graphics/drawable/Drawable;
+; v4 : Landroid/graphics/drawable/Drawable; , v3 : Landroid/support/v4/widget/DrawerLayout;
+.line 269
+	invoke-virtual	{v3},android/support/v4/widget/DrawerLayout/invalidate	; invalidate()V
+; v3 : Landroid/support/v4/widget/DrawerLayout;
+l5eba0:
+.line 271
+	and-int/lit8	v0,v0,5
+; v0 : single-length , v0 : single-length
+	const/4	v1,5
+; v1 : single-length
+	if-ne	v0,v1,l5ebb4
+; v0 : single-length , v1 : single-length
+.line 272
+	iput-object	v4,v3,android/support/v4/widget/DrawerLayout.mShadowRight Landroid/graphics/drawable/Drawable;
+; v4 : Landroid/graphics/drawable/Drawable; , v3 : Landroid/support/v4/widget/DrawerLayout;
+.line 273
+	invoke-virtual	{v3},android/support/v4/widget/DrawerLayout/invalidate	; invalidate()V
+; v3 : Landroid/support/v4/widget/DrawerLayout;
+l5ebb4:
+.line 275
+	return-void	
+.end method
+
+.method setDrawerViewOffset(Landroid/view/View;F)V
+.limit registers 5
+; this: v2 (Landroid/support/v4/widget/DrawerLayout;)
+; parameter[0] : v3 (Landroid/view/View;)
+; parameter[1] : v4 (F)
+.line 501
+	invoke-virtual	{v3},android/view/View/getLayoutParams	; getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
+; v3 : Landroid/view/View;
+	move-result-object	v0
+; v0 : Landroid/view/ViewGroup$LayoutParams;
+	check-cast	v0,android/support/v4/widget/DrawerLayout$LayoutParams
+; v0 : Landroid/support/v4/widget/DrawerLayout$LayoutParams;
+.line 502
+	iget	v1,v0,android/support/v4/widget/DrawerLayout$LayoutParams.onScreen F
+; v1 : single-length , v0 : Landroid/support/v4/widget/DrawerLayout$LayoutParams;
+	cmpl-float	v1,v4,v1
+; v1 : single-length , v4 : single-length , v1 : single-length
+	if-nez	v1,l5ebe2
+; v1 : single-length
+l5ebe0:
+.line 508
+	return-void	
+l5ebe2:
+.line 506
+	iput	v4,v0,android/support/v4/widget/DrawerLayout$LayoutParams.onScreen F
+; v4 : single-length , v0 : Landroid/support/v4/widget/DrawerLayout$LayoutParams;
+.line 507
+	invoke-virtual	{v2,v3,v4},android/support/v4/widget/DrawerLayout/dispatchOnDrawerSlide	; dispatchOnDrawerSlide(Landroid/view/View;F)V
+; v2 : Landroid/support/v4/widget/DrawerLayout; , v3 : Landroid/view/View; , v4 : single-length
+	goto	l5ebe0
+.end method
+
+.method public setScrimColor(I)V
+.limit registers 2
+; this: v0 (Landroid/support/v4/widget/DrawerLayout;)
+; parameter[0] : v1 (I)
+.line 294
+	iput	v1,v0,android/support/v4/widget/DrawerLayout.mScrimColor I
+; v1 : single-length , v0 : Landroid/support/v4/widget/DrawerLayout;
+.line 295
+	invoke-virtual	{v0},android/support/v4/widget/DrawerLayout/invalidate	; invalidate()V
+; v0 : Landroid/support/v4/widget/DrawerLayout;
+.line 296
+	return-void	
+.end method
+
+.method updateDrawerState(IILandroid/view/View;)V
+.limit registers 8
+; this: v4 (Landroid/support/v4/widget/DrawerLayout;)
+; parameter[0] : v5 (I)
+; parameter[1] : v6 (I)
+; parameter[2] : v7 (Landroid/view/View;)
+	const/4	v0,2
+; v0 : single-length
+	const/4	v1,1
+; v1 : single-length
+.line 442
+	iget-object	v2,v4,android/support/v4/widget/DrawerLayout.mLeftDragger Landroid/support/v4/widget/ViewDragHelper;
+; v2 : Landroid/support/v4/widget/ViewDragHelper; , v4 : Landroid/support/v4/widget/DrawerLayout;
+	invoke-virtual	{v2},android/support/v4/widget/ViewDragHelper/getViewDragState	; getViewDragState()I
+; v2 : Landroid/support/v4/widget/ViewDragHelper;
+	move-result	v2
+; v2 : single-length
+.line 443
+	iget-object	v3,v4,android/support/v4/widget/DrawerLayout.mRightDragger Landroid/support/v4/widget/ViewDragHelper;
+; v3 : Landroid/support/v4/widget/ViewDragHelper; , v4 : Landroid/support/v4/widget/DrawerLayout;
+	invoke-virtual	{v3},android/support/v4/widget/ViewDragHelper/getViewDragState	; getViewDragState()I
+; v3 : Landroid/support/v4/widget/ViewDragHelper;
+	move-result	v3
+; v3 : single-length
+.line 446
+	if-eq	v2,v1,l5ec40
+; v2 : single-length , v1 : single-length
+	if-ne	v3,v1,l5ec88
+; v3 : single-length , v1 : single-length
+l5ec40:
+.line 454
+	if-eqz	v7,l5ec68
+; v7 : Landroid/view/View;
+	if-nez	v6,l5ec68
+; v6 : single-length
+.line 455
+	invoke-virtual	{v7},android/view/View/getLayoutParams	; getLayoutParams()Landroid/view/ViewGroup$LayoutParams;
+; v7 : Landroid/view/View;
+	move-result-object	v0
+; v0 : Landroid/view/ViewGroup$LayoutParams;
+	check-cast	v0,android/support/v4/widget/DrawerLayout$LayoutParams
+; v0 : Landroid/support/v4/widget/DrawerLayout$LayoutParams;
+.line 456
+	iget	v2,v0,android/support/v4/widget/DrawerLayout$LayoutParams.onScreen F
+; v2 : single-length , v0 : Landroid/support/v4/widget/DrawerLayout$LayoutParams;
+	const/4	v3,0
+; v3 : single-length
+	cmpl-float	v2,v2,v3
+; v2 : single-length , v2 : single-length , v3 : single-length
+	if-nez	v2,l5ec9a
+; v2 : single-length
+.line 457
+	invoke-virtual	{v4,v7},android/support/v4/widget/DrawerLayout/dispatchOnDrawerClosed	; dispatchOnDrawerClosed(Landroid/view/View;)V
+; v4 : Landroid/support/v4/widget/DrawerLayout; , v7 : Landroid/view/View;
+l5ec68:
+.line 463
+	iget	v0,v4,android/support/v4/widget/DrawerLayout.mDrawerState I
+; v0 : single-length , v4 : Landroid/support/v4/widget/DrawerLayout;
+	if-eq	v1,v0,l5ec86
+; v1 : single-length , v0 : single-length
+.line 464
+	iput	v1,v4,android/support/v4/widget/DrawerLayout.mDrawerState I
+; v1 : single-length , v4 : Landroid/support/v4/widget/DrawerLayout;
+.line 466
+	iget-object	v0,v4,android/support/v4/widget/DrawerLayout.mListener Landroid/support/v4/widget/DrawerLayout$DrawerListener;
+; v0 : Landroid/support/v4/widget/DrawerLayout$DrawerListener; , v4 : Landroid/support/v4/widget/DrawerLayout;
+	if-eqz	v0,l5ec86
+; v0 : Landroid/support/v4/widget/DrawerLayout$DrawerListener;
+.line 467
+	iget-object	v0,v4,android/support/v4/widget/DrawerLayout.mListener Landroid/support/v4/widget/DrawerLayout$DrawerListener;
+; v0 : Landroid/support/v4/widget/DrawerLayout$DrawerListener; , v4 : Landroid/support/v4/widget/DrawerLayout;
+	invoke-interface	{v0,v1},android/support/v4/widget/DrawerLayout$DrawerListener/onDrawerStateChanged	; onDrawerStateChanged(I)V
+; v0 : Landroid/support/v4/widget/DrawerLayout$DrawerListener; , v1 : single-length
+l5ec86:
+.line 470
+	return-void	
+l5ec88:
+.line 448
+	if-eq	v2,v0,l5ec90
+; v2 : single-length , v0 : single-length
+	if-ne	v3,v0,l5ec94
+; v3 : single-length , v0 : single-length
+l5ec90:
+	move	v1,v0
+; v1 : single-length , v0 : single-length
+.line 449
+	goto	l5ec40
+l5ec94:
+.line 451
+	const/4	v0,0
+; v0 : single-length
+	move	v1,v0
+; v1 : single-length , v0 : single-length
+	goto	l5ec40
+l5ec9a:
+.line 458
+	iget	v0,v0,android/support/v4/widget/DrawerLayout$LayoutParams.onScreen F
+; v0 : single-length , v0 : single-length
+	const/high16	v2,16256
+; v2 : single-length
+	cmpl-float	v0,v0,v2
+; v0 : single-length , v0 : single-length , v2 : single-length
+	if-nez	v0,l5ec68
+; v0 : single-length
+.line 459
+	invoke-virtual	{v4,v7},android/support/v4/widget/DrawerLayout/dispatchOnDrawerOpened	; dispatchOnDrawerOpened(Landroid/view/View;)V
+; v4 : Landroid/support/v4/widget/DrawerLayout; , v7 : Landroid/view/View;
+	goto	l5ec68
+.end method
+
+

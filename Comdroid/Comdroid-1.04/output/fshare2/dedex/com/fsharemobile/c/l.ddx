@@ -1,0 +1,542 @@
+.class com/fsharemobile/c/l
+.super java/lang/Object
+.source MyApplication
+.implements android/widget/AdapterView$OnItemClickListener
+
+.field final a Lcom/fsharemobile/c/a;
+
+.method <init>(Lcom/fsharemobile/c/a;)V
+.limit registers 2
+; this: v0 (Lcom/fsharemobile/c/l;)
+; parameter[0] : v1 (Lcom/fsharemobile/c/a;)
+.line 1
+	iput-object	v1,v0,com/fsharemobile/c/l.a Lcom/fsharemobile/c/a;
+; v1 : Lcom/fsharemobile/c/a; , v0 : Lcom/fsharemobile/c/l;
+.line 390
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Lcom/fsharemobile/c/l;
+	return-void	
+.end method
+
+.method static a(Lcom/fsharemobile/c/l;)Lcom/fsharemobile/c/a;
+.limit registers 2
+; parameter[0] : v1 (Lcom/fsharemobile/c/l;)
+.line 390
+	iget-object	v0,v1,com/fsharemobile/c/l.a Lcom/fsharemobile/c/a;
+; v0 : Lcom/fsharemobile/c/a; , v1 : Lcom/fsharemobile/c/l;
+	return-object	v0
+; v0 : Lcom/fsharemobile/c/a;
+.end method
+
+.method public onItemClick(Landroid/widget/AdapterView;Landroid/view/View;IJ)V
+.annotation buildVisibility Landroid/annotation/SuppressLint;
+    value [Ljava/lang/String; = { "DefaultLocale" }
+.end annotation
+.limit registers 13
+; this: v7 (Lcom/fsharemobile/c/l;)
+; parameter[0] : v8 (Landroid/widget/AdapterView;)
+; parameter[1] : v9 (Landroid/view/View;)
+; parameter[2] : v10 (I)
+; parameter[3] : v11 (J)
+.catch java/lang/Exception from l8eea4 to l8eebe using l8eec2
+.catch java/lang/Exception from l8ee30 to l8ee56 using l8eece
+.catch java/lang/Exception from l8ed2c to l8edc4 using l8ee0a
+	const/4	v1,1
+; v1 : single-length
+	const/4	v2,0
+; v2 : single-length
+.line 397
+	invoke-virtual	{v8,v1},android/widget/AdapterView/setSelected	; setSelected(Z)V
+; v8 : Landroid/widget/AdapterView; , v1 : single-length
+.line 401
+	iget-object	v0,v7,com/fsharemobile/c/l.a Lcom/fsharemobile/c/a;
+; v0 : Lcom/fsharemobile/c/a; , v7 : Lcom/fsharemobile/c/l;
+	iget-boolean	v0,v0,com/fsharemobile/c/a.A Z
+; v0 : single-length , v0 : single-length
+	if-eqz	v0,l8ecce
+; v0 : single-length
+.line 402
+	const-string	v0,"Is clicked"
+; v0 : Ljava/lang/String;
+	const-string	v3,"trure"
+; v3 : Ljava/lang/String;
+	invoke-static	{v0,v3},android/util/Log/i	; i(Ljava/lang/String;Ljava/lang/String;)I
+; v0 : Ljava/lang/String; , v3 : Ljava/lang/String;
+l8eb8c:
+.line 407
+	iget-object	v0,v7,com/fsharemobile/c/l.a Lcom/fsharemobile/c/a;
+; v0 : Lcom/fsharemobile/c/a; , v7 : Lcom/fsharemobile/c/l;
+	iget-object	v0,v0,com/fsharemobile/c/a.f Lcom/fsharemobile/adapter/a;
+; v0 : Lcom/fsharemobile/adapter/a; , v0 : Lcom/fsharemobile/adapter/a;
+	invoke-virtual	{v0,v10},com/fsharemobile/adapter/a/a	; a(I)Lcom/fsharemobile/model/File;
+; v0 : Lcom/fsharemobile/adapter/a; , v10 : single-length
+	move-result-object	v0
+; v0 : Lcom/fsharemobile/model/File;
+	invoke-virtual	{v0},com/fsharemobile/model/File/d	; d()Ljava/lang/String;
+; v0 : Lcom/fsharemobile/model/File;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	const-string	v3,"0"
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v0,v3},java/lang/String/compareTo	; compareTo(Ljava/lang/String;)I
+; v0 : Ljava/lang/String; , v3 : Ljava/lang/String;
+	move-result	v0
+; v0 : single-length
+	if-nez	v0,l8ee14
+; v0 : single-length
+.line 410
+	iget-object	v0,v7,com/fsharemobile/c/l.a Lcom/fsharemobile/c/a;
+; v0 : Lcom/fsharemobile/c/a; , v7 : Lcom/fsharemobile/c/l;
+	iget-object	v0,v0,com/fsharemobile/c/a.f Lcom/fsharemobile/adapter/a;
+; v0 : Lcom/fsharemobile/adapter/a; , v0 : Lcom/fsharemobile/adapter/a;
+	invoke-virtual	{v0,v10},com/fsharemobile/adapter/a/a	; a(I)Lcom/fsharemobile/model/File;
+; v0 : Lcom/fsharemobile/adapter/a; , v10 : single-length
+	move-result-object	v0
+; v0 : Lcom/fsharemobile/model/File;
+	invoke-virtual	{v0},com/fsharemobile/model/File/b	; b()Ljava/lang/String;
+; v0 : Lcom/fsharemobile/model/File;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	invoke-static	{v0},com/fsharemobile/c/a/a	; a(Ljava/lang/String;)V
+; v0 : Ljava/lang/String;
+.line 411
+	const-string	v0,""
+; v0 : Ljava/lang/String;
+.line 412
+	iget-object	v0,v7,com/fsharemobile/c/l.a Lcom/fsharemobile/c/a;
+; v0 : Lcom/fsharemobile/c/a; , v7 : Lcom/fsharemobile/c/l;
+	sget-object	v3,com/fsharemobile/c/a.h Ljava/lang/String;
+; v3 : Ljava/lang/String;
+	invoke-static	{v0,v3},com/fsharemobile/c/a/a	; a(Lcom/fsharemobile/c/a;Ljava/lang/String;)Z
+; v0 : Lcom/fsharemobile/c/a; , v3 : Ljava/lang/String;
+	move-result	v0
+; v0 : single-length
+	if-nez	v0,l8ece0
+; v0 : single-length
+.line 413
+	new-instance	v0,java/lang/StringBuilder
+; v0 : Ljava/lang/StringBuilder;
+	sget-object	v3,com/fsharemobile/c/a.h Ljava/lang/String;
+; v3 : Ljava/lang/String;
+	invoke-static	{v3},java/lang/String/valueOf	; valueOf(Ljava/lang/Object;)Ljava/lang/String;
+; v3 : Ljava/lang/String;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-direct	{v0,v3},java/lang/StringBuilder/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	const-string	v3,"/"
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v0,v3},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	invoke-static	{},com/fsharemobile/c/a/b	; b()Ljava/lang/String;
+; 
+	nop	
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v0,v3},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v0},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v0 : Ljava/lang/StringBuilder;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+l8ec24:
+.line 417
+	iget-object	v3,v7,com/fsharemobile/c/l.a Lcom/fsharemobile/c/a;
+; v3 : Lcom/fsharemobile/c/a; , v7 : Lcom/fsharemobile/c/l;
+	iget-object	v4,v7,com/fsharemobile/c/l.a Lcom/fsharemobile/c/a;
+; v4 : Lcom/fsharemobile/c/a; , v7 : Lcom/fsharemobile/c/l;
+	iget-object	v4,v4,com/fsharemobile/c/a.f Lcom/fsharemobile/adapter/a;
+; v4 : Lcom/fsharemobile/adapter/a; , v4 : Lcom/fsharemobile/adapter/a;
+	invoke-virtual	{v4,v10},com/fsharemobile/adapter/a/a	; a(I)Lcom/fsharemobile/model/File;
+; v4 : Lcom/fsharemobile/adapter/a; , v10 : single-length
+	move-result-object	v4
+; v4 : Lcom/fsharemobile/model/File;
+	invoke-virtual	{v4},com/fsharemobile/model/File/c	; c()Ljava/lang/String;
+; v4 : Lcom/fsharemobile/model/File;
+	move-result-object	v4
+; v4 : Ljava/lang/String;
+	invoke-static	{v3,v4},com/fsharemobile/c/a/b	; b(Lcom/fsharemobile/c/a;Ljava/lang/String;)V
+; v3 : Lcom/fsharemobile/c/a; , v4 : Ljava/lang/String;
+.line 418
+	const-string	v3,"Current_ID_File"
+; v3 : Ljava/lang/String;
+	iget-object	v4,v7,com/fsharemobile/c/l.a Lcom/fsharemobile/c/a;
+; v4 : Lcom/fsharemobile/c/a; , v7 : Lcom/fsharemobile/c/l;
+	invoke-static	{v4},com/fsharemobile/c/a/b	; b(Lcom/fsharemobile/c/a;)Ljava/lang/String;
+; v4 : Lcom/fsharemobile/c/a;
+	move-result-object	v4
+; v4 : Ljava/lang/String;
+	invoke-static	{v3,v4},android/util/Log/i	; i(Ljava/lang/String;Ljava/lang/String;)I
+; v3 : Ljava/lang/String; , v4 : Ljava/lang/String;
+.line 420
+	iget-object	v3,v7,com/fsharemobile/c/l.a Lcom/fsharemobile/c/a;
+; v3 : Lcom/fsharemobile/c/a; , v7 : Lcom/fsharemobile/c/l;
+	iget-object	v3,v3,com/fsharemobile/c/a.n Ljava/util/Stack;
+; v3 : Ljava/util/Stack; , v3 : Ljava/util/Stack;
+	iget-object	v4,v7,com/fsharemobile/c/l.a Lcom/fsharemobile/c/a;
+; v4 : Lcom/fsharemobile/c/a; , v7 : Lcom/fsharemobile/c/l;
+	iget-object	v4,v4,com/fsharemobile/c/a.f Lcom/fsharemobile/adapter/a;
+; v4 : Lcom/fsharemobile/adapter/a; , v4 : Lcom/fsharemobile/adapter/a;
+	invoke-virtual	{v4,v10},com/fsharemobile/adapter/a/a	; a(I)Lcom/fsharemobile/model/File;
+; v4 : Lcom/fsharemobile/adapter/a; , v10 : single-length
+	move-result-object	v4
+; v4 : Lcom/fsharemobile/model/File;
+	invoke-virtual	{v3,v4},java/util/Stack/push	; push(Ljava/lang/Object;)Ljava/lang/Object;
+; v3 : Ljava/util/Stack; , v4 : Lcom/fsharemobile/model/File;
+.line 423
+	iget-object	v3,v7,com/fsharemobile/c/l.a Lcom/fsharemobile/c/a;
+; v3 : Lcom/fsharemobile/c/a; , v7 : Lcom/fsharemobile/c/l;
+	iget-object	v3,v3,com/fsharemobile/c/a.f Lcom/fsharemobile/adapter/a;
+; v3 : Lcom/fsharemobile/adapter/a; , v3 : Lcom/fsharemobile/adapter/a;
+	invoke-virtual	{v3},com/fsharemobile/adapter/a/clear	; clear()V
+; v3 : Lcom/fsharemobile/adapter/a;
+.line 424
+	iget-object	v3,v7,com/fsharemobile/c/l.a Lcom/fsharemobile/c/a;
+; v3 : Lcom/fsharemobile/c/a; , v7 : Lcom/fsharemobile/c/l;
+	invoke-static	{v3,v2},com/fsharemobile/c/a/a	; a(Lcom/fsharemobile/c/a;Z)V
+; v3 : Lcom/fsharemobile/c/a; , v2 : single-length
+.line 427
+	iget-object	v3,v7,com/fsharemobile/c/l.a Lcom/fsharemobile/c/a;
+; v3 : Lcom/fsharemobile/c/a; , v7 : Lcom/fsharemobile/c/l;
+	iget-object	v3,v3,com/fsharemobile/c/a.C Lcom/fsharemobile/f/a;
+; v3 : Lcom/fsharemobile/f/a; , v3 : Lcom/fsharemobile/f/a;
+	invoke-virtual	{v3},com/fsharemobile/f/a/c	; c()Z
+; v3 : Lcom/fsharemobile/f/a;
+	move-result	v3
+; v3 : single-length
+	if-eqz	v3,l8ed10
+; v3 : single-length
+.line 428
+	iget-object	v1,v7,com/fsharemobile/c/l.a Lcom/fsharemobile/c/a;
+; v1 : Lcom/fsharemobile/c/a; , v7 : Lcom/fsharemobile/c/l;
+	invoke-static	{v1,v2,v2,v0},com/fsharemobile/c/a/a	; a(Lcom/fsharemobile/c/a;IILjava/lang/String;)V
+; v1 : Lcom/fsharemobile/c/a; , v2 : single-length , v2 : single-length , v0 : Ljava/lang/String;
+l8ecb0:
+.line 454
+	sput-object	v0,com/fsharemobile/c/a.h Ljava/lang/String;
+; v0 : Ljava/lang/String;
+.line 456
+	invoke-static	{v2},com/fsharemobile/c/a/a	; a(I)V
+; v2 : single-length
+.line 457
+	iget-object	v0,v7,com/fsharemobile/c/l.a Lcom/fsharemobile/c/a;
+; v0 : Lcom/fsharemobile/c/a; , v7 : Lcom/fsharemobile/c/l;
+	invoke-static	{v0,v2},com/fsharemobile/c/a/a	; a(Lcom/fsharemobile/c/a;I)V
+; v0 : Lcom/fsharemobile/c/a; , v2 : single-length
+.line 458
+	iget-object	v0,v7,com/fsharemobile/c/l.a Lcom/fsharemobile/c/a;
+; v0 : Lcom/fsharemobile/c/a; , v7 : Lcom/fsharemobile/c/l;
+	iput-boolean	v2,v0,com/fsharemobile/c/a.A Z
+; v2 : single-length , v0 : Lcom/fsharemobile/c/a;
+l8eccc:
+.line 529
+	return-void	
+l8ecce:
+.line 404
+	const-string	v0,"Is clicked"
+; v0 : Ljava/lang/String;
+	const-string	v3,"false"
+; v3 : Ljava/lang/String;
+	invoke-static	{v0,v3},android/util/Log/i	; i(Ljava/lang/String;Ljava/lang/String;)I
+; v0 : Ljava/lang/String; , v3 : Ljava/lang/String;
+	goto/16	l8eb8c
+l8ece0:
+.line 415
+	new-instance	v0,java/lang/StringBuilder
+; v0 : Ljava/lang/StringBuilder;
+	sget-object	v3,com/fsharemobile/c/a.h Ljava/lang/String;
+; v3 : Ljava/lang/String;
+	invoke-static	{v3},java/lang/String/valueOf	; valueOf(Ljava/lang/Object;)Ljava/lang/String;
+; v3 : Ljava/lang/String;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-direct	{v0,v3},java/lang/StringBuilder/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	invoke-static	{},com/fsharemobile/c/a/b	; b()Ljava/lang/String;
+; 
+	nop	
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v0,v3},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v0},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v0 : Ljava/lang/StringBuilder;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	goto	l8ec24
+l8ed10:
+.line 430
+	iget-object	v3,v7,com/fsharemobile/c/l.a Lcom/fsharemobile/c/a;
+; v3 : Lcom/fsharemobile/c/a; , v7 : Lcom/fsharemobile/c/l;
+	iget-object	v3,v3,com/fsharemobile/c/a.B Lcom/fsharemobile/b/b;
+; v3 : Lcom/fsharemobile/b/b; , v3 : Lcom/fsharemobile/b/b;
+	invoke-virtual	{v3},com/fsharemobile/b/b/a	; a()Lcom/fsharemobile/b/b;
+; v3 : Lcom/fsharemobile/b/b;
+.line 431
+	iget-object	v3,v7,com/fsharemobile/c/l.a Lcom/fsharemobile/c/a;
+; v3 : Lcom/fsharemobile/c/a; , v7 : Lcom/fsharemobile/c/l;
+	iget-object	v3,v3,com/fsharemobile/c/a.j Ljava/util/List;
+; v3 : Ljava/util/List; , v3 : Ljava/util/List;
+	invoke-interface	{v3},java/util/List/clear	; clear()V
+; v3 : Ljava/util/List;
+l8ed2c:
+.line 433
+	const-string	v3,"Current_Path"
+; v3 : Ljava/lang/String;
+	invoke-static	{v3,v0},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v3 : Ljava/lang/String; , v0 : Ljava/lang/String;
+.line 434
+	const-string	v3,"IsRoot"
+; v3 : Ljava/lang/String;
+	new-instance	v4,java/lang/StringBuilder
+; v4 : Ljava/lang/StringBuilder;
+	iget-object	v5,v7,com/fsharemobile/c/l.a Lcom/fsharemobile/c/a;
+; v5 : Lcom/fsharemobile/c/a; , v7 : Lcom/fsharemobile/c/l;
+	invoke-static	{v5,v0},com/fsharemobile/c/a/a	; a(Lcom/fsharemobile/c/a;Ljava/lang/String;)Z
+; v5 : Lcom/fsharemobile/c/a; , v0 : Ljava/lang/String;
+	move-result	v5
+; v5 : single-length
+	invoke-static	{v5},java/lang/String/valueOf	; valueOf(Z)Ljava/lang/String;
+; v5 : single-length
+	move-result-object	v5
+; v5 : Ljava/lang/String;
+	invoke-direct	{v4,v5},java/lang/StringBuilder/<init>	; <init>(Ljava/lang/String;)V
+; v4 : Ljava/lang/StringBuilder; , v5 : Ljava/lang/String;
+	invoke-virtual	{v4},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v4 : Ljava/lang/StringBuilder;
+	move-result-object	v4
+; v4 : Ljava/lang/String;
+	invoke-static	{v3,v4},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v3 : Ljava/lang/String; , v4 : Ljava/lang/String;
+.line 435
+	const-string	v3,"User ID now"
+; v3 : Ljava/lang/String;
+	iget-object	v4,v7,com/fsharemobile/c/l.a Lcom/fsharemobile/c/a;
+; v4 : Lcom/fsharemobile/c/a; , v7 : Lcom/fsharemobile/c/l;
+	iget-object	v4,v4,com/fsharemobile/c/a.C Lcom/fsharemobile/f/a;
+; v4 : Lcom/fsharemobile/f/a; , v4 : Lcom/fsharemobile/f/a;
+	invoke-virtual	{v4},com/fsharemobile/f/a/e	; e()Ljava/lang/String;
+; v4 : Lcom/fsharemobile/f/a;
+	move-result-object	v4
+; v4 : Ljava/lang/String;
+	invoke-static	{v3,v4},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v3 : Ljava/lang/String; , v4 : Ljava/lang/String;
+.line 436
+	iget-object	v3,v7,com/fsharemobile/c/l.a Lcom/fsharemobile/c/a;
+; v3 : Lcom/fsharemobile/c/a; , v7 : Lcom/fsharemobile/c/l;
+	iget-object	v4,v7,com/fsharemobile/c/l.a Lcom/fsharemobile/c/a;
+; v4 : Lcom/fsharemobile/c/a; , v7 : Lcom/fsharemobile/c/l;
+	iget-object	v4,v4,com/fsharemobile/c/a.C Lcom/fsharemobile/f/a;
+; v4 : Lcom/fsharemobile/f/a; , v4 : Lcom/fsharemobile/f/a;
+	invoke-virtual	{v4},com/fsharemobile/f/a/e	; e()Ljava/lang/String;
+; v4 : Lcom/fsharemobile/f/a;
+	move-result-object	v4
+; v4 : Ljava/lang/String;
+	iput-object	v4,v3,com/fsharemobile/c/a.D Ljava/lang/String;
+; v4 : Ljava/lang/String; , v3 : Lcom/fsharemobile/c/a;
+.line 437
+	iget-object	v3,v7,com/fsharemobile/c/l.a Lcom/fsharemobile/c/a;
+; v3 : Lcom/fsharemobile/c/a; , v7 : Lcom/fsharemobile/c/l;
+	iget-object	v4,v7,com/fsharemobile/c/l.a Lcom/fsharemobile/c/a;
+; v4 : Lcom/fsharemobile/c/a; , v7 : Lcom/fsharemobile/c/l;
+	iget-object	v4,v4,com/fsharemobile/c/a.B Lcom/fsharemobile/b/b;
+; v4 : Lcom/fsharemobile/b/b; , v4 : Lcom/fsharemobile/b/b;
+.line 438
+	iget-object	v5,v7,com/fsharemobile/c/l.a Lcom/fsharemobile/c/a;
+; v5 : Lcom/fsharemobile/c/a; , v7 : Lcom/fsharemobile/c/l;
+	iget-object	v5,v5,com/fsharemobile/c/a.D Ljava/lang/String;
+; v5 : Ljava/lang/String; , v5 : Ljava/lang/String;
+	iget-object	v6,v7,com/fsharemobile/c/l.a Lcom/fsharemobile/c/a;
+; v6 : Lcom/fsharemobile/c/a; , v7 : Lcom/fsharemobile/c/l;
+	invoke-static	{v6,v0},com/fsharemobile/c/a/a	; a(Lcom/fsharemobile/c/a;Ljava/lang/String;)Z
+; v6 : Lcom/fsharemobile/c/a; , v0 : Ljava/lang/String;
+	move-result	v6
+; v6 : single-length
+.line 437
+	invoke-virtual	{v4,v0,v5,v6},com/fsharemobile/b/b/a	; a(Ljava/lang/String;Ljava/lang/String;Z)Ljava/util/List;
+; v4 : Lcom/fsharemobile/b/b; , v0 : Ljava/lang/String; , v5 : Ljava/lang/String; , v6 : single-length
+	move-result-object	v4
+; v4 : Ljava/util/List;
+	iput-object	v4,v3,com/fsharemobile/c/a.j Ljava/util/List;
+; v4 : Ljava/util/List; , v3 : Lcom/fsharemobile/c/a;
+l8edc4:
+.line 444
+	iget-object	v3,v7,com/fsharemobile/c/l.a Lcom/fsharemobile/c/a;
+; v3 : Lcom/fsharemobile/c/a; , v7 : Lcom/fsharemobile/c/l;
+	iget-object	v3,v3,com/fsharemobile/c/a.B Lcom/fsharemobile/b/b;
+; v3 : Lcom/fsharemobile/b/b; , v3 : Lcom/fsharemobile/b/b;
+	invoke-virtual	{v3},com/fsharemobile/b/b/b	; b()V
+; v3 : Lcom/fsharemobile/b/b;
+.line 446
+	iget-object	v3,v7,com/fsharemobile/c/l.a Lcom/fsharemobile/c/a;
+; v3 : Lcom/fsharemobile/c/a; , v7 : Lcom/fsharemobile/c/l;
+	iget-object	v3,v3,com/fsharemobile/c/a.j Ljava/util/List;
+; v3 : Ljava/util/List; , v3 : Ljava/util/List;
+	invoke-interface	{v3},java/util/List/size	; size()I
+; v3 : Ljava/util/List;
+	move-result	v3
+; v3 : single-length
+	if-eqz	v3,l8eed8
+; v3 : single-length
+l8ede6:
+.line 449
+	iget-object	v3,v7,com/fsharemobile/c/l.a Lcom/fsharemobile/c/a;
+; v3 : Lcom/fsharemobile/c/a; , v7 : Lcom/fsharemobile/c/l;
+	iget-object	v3,v3,com/fsharemobile/c/a.f Lcom/fsharemobile/adapter/a;
+; v3 : Lcom/fsharemobile/adapter/a; , v3 : Lcom/fsharemobile/adapter/a;
+	iget-object	v4,v7,com/fsharemobile/c/l.a Lcom/fsharemobile/c/a;
+; v4 : Lcom/fsharemobile/c/a; , v7 : Lcom/fsharemobile/c/l;
+	iget-object	v4,v4,com/fsharemobile/c/a.j Ljava/util/List;
+; v4 : Ljava/util/List; , v4 : Ljava/util/List;
+	invoke-virtual	{v3,v4},com/fsharemobile/adapter/a/addAll	; addAll(Ljava/util/Collection;)V
+; v3 : Lcom/fsharemobile/adapter/a; , v4 : Ljava/util/List;
+.line 450
+	iget-object	v3,v7,com/fsharemobile/c/l.a Lcom/fsharemobile/c/a;
+; v3 : Lcom/fsharemobile/c/a; , v7 : Lcom/fsharemobile/c/l;
+	invoke-static	{v3,v1,v0},com/fsharemobile/c/a/a	; a(Lcom/fsharemobile/c/a;ZLjava/lang/String;)V
+; v3 : Lcom/fsharemobile/c/a; , v1 : single-length , v0 : Ljava/lang/String;
+	goto/16	l8ecb0
+l8ee0a:
+.line 440
+	move-exception	v3
+; v3 : java/lang/Exception
+.line 442
+	invoke-virtual	{v3},java/lang/Exception/printStackTrace	; printStackTrace()V
+; v3 : java/lang/Exception
+	goto	l8edc4
+l8ee14:
+.line 462
+	iget-object	v0,v7,com/fsharemobile/c/l.a Lcom/fsharemobile/c/a;
+; v0 : Lcom/fsharemobile/c/a; , v7 : Lcom/fsharemobile/c/l;
+	iget-object	v0,v0,com/fsharemobile/c/a.f Lcom/fsharemobile/adapter/a;
+; v0 : Lcom/fsharemobile/adapter/a; , v0 : Lcom/fsharemobile/adapter/a;
+	invoke-virtual	{v0,v10},com/fsharemobile/adapter/a/a	; a(I)Lcom/fsharemobile/model/File;
+; v0 : Lcom/fsharemobile/adapter/a; , v10 : single-length
+	move-result-object	v0
+; v0 : Lcom/fsharemobile/model/File;
+.line 463
+	invoke-virtual	{v0},com/fsharemobile/model/File/b	; b()Ljava/lang/String;
+; v0 : Lcom/fsharemobile/model/File;
+	move-result-object	v4
+; v4 : Ljava/lang/String;
+.line 464
+	const-string	v2,""
+; v2 : Ljava/lang/String;
+l8ee30:
+.line 467
+	iget-object	v0,v7,com/fsharemobile/c/l.a Lcom/fsharemobile/c/a;
+; v0 : Lcom/fsharemobile/c/a; , v7 : Lcom/fsharemobile/c/l;
+	iget-object	v0,v0,com/fsharemobile/c/a.f Lcom/fsharemobile/adapter/a;
+; v0 : Lcom/fsharemobile/adapter/a; , v0 : Lcom/fsharemobile/adapter/a;
+	iget-object	v3,v7,com/fsharemobile/c/l.a Lcom/fsharemobile/c/a;
+; v3 : Lcom/fsharemobile/c/a; , v7 : Lcom/fsharemobile/c/l;
+	iget-object	v3,v3,com/fsharemobile/c/a.f Lcom/fsharemobile/adapter/a;
+; v3 : Lcom/fsharemobile/adapter/a; , v3 : Lcom/fsharemobile/adapter/a;
+.line 468
+	invoke-virtual	{v3,v4},com/fsharemobile/adapter/a/b	; b(Ljava/lang/String;)Ljava/lang/String;
+; v3 : Lcom/fsharemobile/adapter/a; , v4 : Ljava/lang/String;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v3},java/lang/String/toLowerCase	; toLowerCase()Ljava/lang/String;
+; v3 : Ljava/lang/String;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+.line 467
+	invoke-virtual	{v0,v3},com/fsharemobile/adapter/a/c	; c(Ljava/lang/String;)Ljava/lang/String;
+; v0 : Lcom/fsharemobile/adapter/a; , v3 : Ljava/lang/String;
+l8ee56:
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+l8ee58:
+.line 476
+	iget-object	v0,v7,com/fsharemobile/c/l.a Lcom/fsharemobile/c/a;
+; v0 : Lcom/fsharemobile/c/a; , v7 : Lcom/fsharemobile/c/l;
+	iget-object	v0,v0,com/fsharemobile/c/a.f Lcom/fsharemobile/adapter/a;
+; v0 : Lcom/fsharemobile/adapter/a; , v0 : Lcom/fsharemobile/adapter/a;
+	invoke-virtual	{v0,v10},com/fsharemobile/adapter/a/a	; a(I)Lcom/fsharemobile/model/File;
+; v0 : Lcom/fsharemobile/adapter/a; , v10 : single-length
+	move-result-object	v0
+; v0 : Lcom/fsharemobile/model/File;
+.line 477
+	invoke-virtual	{v0},com/fsharemobile/model/File/c	; c()Ljava/lang/String;
+; v0 : Lcom/fsharemobile/model/File;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+.line 478
+	iget-object	v0,v7,com/fsharemobile/c/l.a Lcom/fsharemobile/c/a;
+; v0 : Lcom/fsharemobile/c/a; , v7 : Lcom/fsharemobile/c/l;
+	iget-object	v0,v0,com/fsharemobile/c/a.f Lcom/fsharemobile/adapter/a;
+; v0 : Lcom/fsharemobile/adapter/a; , v0 : Lcom/fsharemobile/adapter/a;
+	invoke-virtual	{v0,v10},com/fsharemobile/adapter/a/a	; a(I)Lcom/fsharemobile/model/File;
+; v0 : Lcom/fsharemobile/adapter/a; , v10 : single-length
+	move-result-object	v0
+; v0 : Lcom/fsharemobile/model/File;
+.line 479
+	invoke-virtual	{v0},com/fsharemobile/model/File/a	; a()Ljava/lang/String;
+; v0 : Lcom/fsharemobile/model/File;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+.line 478
+	invoke-static	{v0},java/lang/Integer/parseInt	; parseInt(Ljava/lang/String;)I
+; v0 : Ljava/lang/String;
+	move-result	v5
+; v5 : single-length
+.line 480
+	iget-object	v0,v7,com/fsharemobile/c/l.a Lcom/fsharemobile/c/a;
+; v0 : Lcom/fsharemobile/c/a; , v7 : Lcom/fsharemobile/c/l;
+	iget-boolean	v0,v0,com/fsharemobile/c/a.A Z
+; v0 : single-length , v0 : single-length
+	if-nez	v0,l8eccc
+; v0 : single-length
+.line 481
+	iget-object	v0,v7,com/fsharemobile/c/l.a Lcom/fsharemobile/c/a;
+; v0 : Lcom/fsharemobile/c/a; , v7 : Lcom/fsharemobile/c/l;
+	iput-boolean	v1,v0,com/fsharemobile/c/a.A Z
+; v1 : single-length , v0 : Lcom/fsharemobile/c/a;
+l8eea4:
+.line 483
+	iget-object	v0,v7,com/fsharemobile/c/l.a Lcom/fsharemobile/c/a;
+; v0 : Lcom/fsharemobile/c/a; , v7 : Lcom/fsharemobile/c/l;
+	iget-object	v6,v0,com/fsharemobile/c/a.o Lcom/fsharemobile/a/af;
+; v6 : Lcom/fsharemobile/a/af; , v0 : Lcom/fsharemobile/c/a;
+.line 484
+	new-instance	v0,com/fsharemobile/c/m
+; v0 : Lcom/fsharemobile/c/m;
+	move-object	v1,v7
+; v1 : Lcom/fsharemobile/c/l; , v7 : Lcom/fsharemobile/c/l;
+	invoke-direct/range	{v0..v5},com/fsharemobile/c/m/<init>;	<init>(Lcom/fsharemobile/c/l;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;I)V
+; v0 : Lcom/fsharemobile/c/m; , v1 : Lcom/fsharemobile/c/l; , v2 : Ljava/lang/String; , v3 : Ljava/lang/String; , v4 : Ljava/lang/String; , v5 : single-length
+.line 483
+	invoke-virtual	{v6,v3,v0},com/fsharemobile/a/af/a	; a(Ljava/lang/String;Lcom/fsharemobile/a/ai;)V
+; v6 : Lcom/fsharemobile/a/af; , v3 : Ljava/lang/String; , v0 : Lcom/fsharemobile/c/m;
+l8eebe:
+	goto/16	l8eccc
+l8eec2:
+.line 524
+	move-exception	v0
+; v0 : java/lang/Exception
+.line 525
+	invoke-virtual	{v0},java/lang/Exception/printStackTrace	; printStackTrace()V
+; v0 : java/lang/Exception
+	goto/16	l8eccc
+l8eece:
+.line 469
+	move-exception	v0
+; v0 : java/lang/Exception
+.line 471
+	invoke-virtual	{v0},java/lang/Exception/printStackTrace	; printStackTrace()V
+; v0 : java/lang/Exception
+	goto	l8ee58
+l8eed8:
+	move	v1,v2
+; v1 : single-length , v2 : single-length
+	goto	l8ede6
+.end method
+
+

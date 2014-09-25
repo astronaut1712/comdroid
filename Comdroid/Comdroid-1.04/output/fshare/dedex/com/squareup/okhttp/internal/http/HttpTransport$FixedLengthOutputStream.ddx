@@ -1,0 +1,178 @@
+.class final com/squareup/okhttp/internal/http/HttpTransport$FixedLengthOutputStream
+.super com/squareup/okhttp/internal/AbstractOutputStream
+.source HttpTransport.java
+
+.inner class FixedLengthOutputStream inner com/squareup/okhttp/internal/http/HttpTransport$FixedLengthOutputStream outer com/squareup/okhttp/internal/http/HttpTransport
+.field private bytesRemaining J
+.field private final socketOut Ljava/io/OutputStream;
+
+.method private <init>(Ljava/io/OutputStream;J)V
+.limit registers 4
+; this: v0 (Lcom/squareup/okhttp/internal/http/HttpTransport$FixedLengthOutputStream;)
+; parameter[0] : v1 (Ljava/io/OutputStream;)
+; parameter[1] : v2 (J)
+.line 229
+	invoke-direct	{v0},com/squareup/okhttp/internal/AbstractOutputStream/<init>	; <init>()V
+; v0 : Lcom/squareup/okhttp/internal/http/HttpTransport$FixedLengthOutputStream;
+.line 230
+	iput-object	v1,v0,com/squareup/okhttp/internal/http/HttpTransport$FixedLengthOutputStream.socketOut Ljava/io/OutputStream;
+; v1 : Ljava/io/OutputStream; , v0 : Lcom/squareup/okhttp/internal/http/HttpTransport$FixedLengthOutputStream;
+.line 231
+	iput-wide	v2,v0,com/squareup/okhttp/internal/http/HttpTransport$FixedLengthOutputStream.bytesRemaining J
+; v2 : double-length , v0 : Lcom/squareup/okhttp/internal/http/HttpTransport$FixedLengthOutputStream;
+.line 232
+	return-void	
+.end method
+
+.method <init>(Ljava/io/OutputStream;JLcom/squareup/okhttp/internal/http/HttpTransport$1;)V
+.limit registers 5
+; this: v0 (Lcom/squareup/okhttp/internal/http/HttpTransport$FixedLengthOutputStream;)
+; parameter[0] : v1 (Ljava/io/OutputStream;)
+; parameter[1] : v2 (J)
+; parameter[2] : v4 (Lcom/squareup/okhttp/internal/http/HttpTransport$1;)
+.line 225
+	invoke-direct	{v0,v1,v2,v3},com/squareup/okhttp/internal/http/HttpTransport$FixedLengthOutputStream/<init>	; <init>(Ljava/io/OutputStream;J)V
+; v0 : Lcom/squareup/okhttp/internal/http/HttpTransport$FixedLengthOutputStream; , v1 : Ljava/io/OutputStream; , v2 : double-length
+	return-void	
+.end method
+
+.method public close()V
+.throws Ljava/io/IOException;
+.limit registers 5
+; this: v4 (Lcom/squareup/okhttp/internal/http/HttpTransport$FixedLengthOutputStream;)
+.line 252
+	iget-boolean	v0,v4,com/squareup/okhttp/internal/http/HttpTransport$FixedLengthOutputStream.closed Z
+; v0 : single-length , v4 : Lcom/squareup/okhttp/internal/http/HttpTransport$FixedLengthOutputStream;
+	if-eqz	v0,lefc4a
+; v0 : single-length
+lefc48:
+.line 259
+	return-void	
+lefc4a:
+.line 255
+	const/4	v0,1
+; v0 : single-length
+	iput-boolean	v0,v4,com/squareup/okhttp/internal/http/HttpTransport$FixedLengthOutputStream.closed Z
+; v0 : single-length , v4 : Lcom/squareup/okhttp/internal/http/HttpTransport$FixedLengthOutputStream;
+.line 256
+	iget-wide	v0,v4,com/squareup/okhttp/internal/http/HttpTransport$FixedLengthOutputStream.bytesRemaining J
+; v0 : double-length , v4 : Lcom/squareup/okhttp/internal/http/HttpTransport$FixedLengthOutputStream;
+	const-wide/16	v2,0
+; v2 : double-length
+	cmp-long	v0,v0,v2
+; v0 : single-length , v0 : single-length , v2 : double-length
+	if-lez	v0,lefc48
+; v0 : single-length
+.line 257
+	new-instance	v0,java/net/ProtocolException
+; v0 : Ljava/net/ProtocolException;
+	const-string	v1,"unexpected end of stream"
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/net/ProtocolException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/net/ProtocolException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/net/ProtocolException;
+.end method
+
+.method public flush()V
+.throws Ljava/io/IOException;
+.limit registers 2
+; this: v1 (Lcom/squareup/okhttp/internal/http/HttpTransport$FixedLengthOutputStream;)
+.line 245
+	iget-boolean	v0,v1,com/squareup/okhttp/internal/http/HttpTransport$FixedLengthOutputStream.closed Z
+; v0 : single-length , v1 : Lcom/squareup/okhttp/internal/http/HttpTransport$FixedLengthOutputStream;
+	if-eqz	v0,lefc8a
+; v0 : single-length
+lefc88:
+.line 249
+	return-void	
+lefc8a:
+.line 248
+	iget-object	v0,v1,com/squareup/okhttp/internal/http/HttpTransport$FixedLengthOutputStream.socketOut Ljava/io/OutputStream;
+; v0 : Ljava/io/OutputStream; , v1 : Lcom/squareup/okhttp/internal/http/HttpTransport$FixedLengthOutputStream;
+	invoke-virtual	{v0},java/io/OutputStream/flush	; flush()V
+; v0 : Ljava/io/OutputStream;
+	goto	lefc88
+.end method
+
+.method public write([BII)V
+.throws Ljava/io/IOException;
+.limit registers 8
+; this: v4 (Lcom/squareup/okhttp/internal/http/HttpTransport$FixedLengthOutputStream;)
+; parameter[0] : v5 ([B)
+; parameter[1] : v6 (I)
+; parameter[2] : v7 (I)
+.line 235
+	invoke-virtual	{v4},com/squareup/okhttp/internal/http/HttpTransport$FixedLengthOutputStream/checkNotClosed	; checkNotClosed()V
+; v4 : Lcom/squareup/okhttp/internal/http/HttpTransport$FixedLengthOutputStream;
+.line 236
+	array-length	v0,v5
+; v0 : single-length , v5 : [B
+	invoke-static	{v0,v6,v7},com/squareup/okhttp/internal/Util/checkOffsetAndCount	; checkOffsetAndCount(III)V
+; v0 : single-length , v6 : single-length , v7 : single-length
+.line 237
+	int-to-long	v0,v7
+; v0 : double-length , v7 : single-length
+	iget-wide	v2,v4,com/squareup/okhttp/internal/http/HttpTransport$FixedLengthOutputStream.bytesRemaining J
+; v2 : double-length , v4 : Lcom/squareup/okhttp/internal/http/HttpTransport$FixedLengthOutputStream;
+	cmp-long	v0,v0,v2
+; v0 : single-length , v0 : single-length , v2 : double-length
+	if-lez	v0,lefd0e
+; v0 : single-length
+.line 238
+	new-instance	v0,java/net/ProtocolException
+; v0 : Ljava/net/ProtocolException;
+	new-instance	v1,java/lang/StringBuilder
+; v1 : Ljava/lang/StringBuilder;
+	invoke-direct	{v1},java/lang/StringBuilder/<init>	; <init>()V
+; v1 : Ljava/lang/StringBuilder;
+	const-string	v2,"expected "
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	iget-wide	v2,v4,com/squareup/okhttp/internal/http/HttpTransport$FixedLengthOutputStream.bytesRemaining J
+; v2 : double-length , v4 : Lcom/squareup/okhttp/internal/http/HttpTransport$FixedLengthOutputStream;
+	invoke-virtual	{v1,v2,v3},java/lang/StringBuilder/append	; append(J)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : double-length
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	const-string	v2," bytes but received "
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v1,v7},java/lang/StringBuilder/append	; append(I)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v7 : single-length
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v1},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v1 : Ljava/lang/StringBuilder;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/net/ProtocolException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/net/ProtocolException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/net/ProtocolException;
+lefd0e:
+.line 240
+	iget-object	v0,v4,com/squareup/okhttp/internal/http/HttpTransport$FixedLengthOutputStream.socketOut Ljava/io/OutputStream;
+; v0 : Ljava/io/OutputStream; , v4 : Lcom/squareup/okhttp/internal/http/HttpTransport$FixedLengthOutputStream;
+	invoke-virtual	{v0,v5,v6,v7},java/io/OutputStream/write	; write([BII)V
+; v0 : Ljava/io/OutputStream; , v5 : [B , v6 : single-length , v7 : single-length
+.line 241
+	iget-wide	v0,v4,com/squareup/okhttp/internal/http/HttpTransport$FixedLengthOutputStream.bytesRemaining J
+; v0 : double-length , v4 : Lcom/squareup/okhttp/internal/http/HttpTransport$FixedLengthOutputStream;
+	int-to-long	v2,v7
+; v2 : double-length , v7 : single-length
+	sub-long/2addr	v0,v2
+; v0 : double-length , v2 : double-length
+	iput-wide	v0,v4,com/squareup/okhttp/internal/http/HttpTransport$FixedLengthOutputStream.bytesRemaining J
+; v0 : double-length , v4 : Lcom/squareup/okhttp/internal/http/HttpTransport$FixedLengthOutputStream;
+.line 242
+	return-void	
+.end method
+
+

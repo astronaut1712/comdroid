@@ -1,0 +1,387 @@
+.class public com/google/tagmanager/be
+.super java/lang/Object
+.source MyApplication
+
+.field private static f Lcom/google/tagmanager/be;
+.field private final a Lcom/google/tagmanager/bi;
+.field private final b Landroid/content/Context;
+.field private final c Lcom/google/tagmanager/f;
+.field private volatile d Lcom/google/tagmanager/bj;
+.field private final e Ljava/util/concurrent/ConcurrentMap;
+
+.method <init>(Landroid/content/Context;Lcom/google/tagmanager/bi;Lcom/google/tagmanager/f;)V
+.limit registers 7
+; this: v3 (Lcom/google/tagmanager/be;)
+; parameter[0] : v4 (Landroid/content/Context;)
+; parameter[1] : v5 (Lcom/google/tagmanager/bi;)
+; parameter[2] : v6 (Lcom/google/tagmanager/f;)
+.line 137
+	invoke-direct	{v3},java/lang/Object/<init>	; <init>()V
+; v3 : Lcom/google/tagmanager/be;
+.line 138
+	if-nez	v4,la204e
+; v4 : Landroid/content/Context;
+.line 139
+	new-instance	v0,java/lang/NullPointerException
+; v0 : Ljava/lang/NullPointerException;
+	const-string	v1,"context cannot be null"
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/NullPointerException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/NullPointerException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/NullPointerException;
+la204e:
+.line 141
+	invoke-virtual	{v4},android/content/Context/getApplicationContext	; getApplicationContext()Landroid/content/Context;
+; v4 : Landroid/content/Context;
+	move-result-object	v0
+; v0 : Landroid/content/Context;
+	iput-object	v0,v3,com/google/tagmanager/be.b Landroid/content/Context;
+; v0 : Landroid/content/Context; , v3 : Lcom/google/tagmanager/be;
+.line 143
+	iput-object	v5,v3,com/google/tagmanager/be.a Lcom/google/tagmanager/bi;
+; v5 : Lcom/google/tagmanager/bi; , v3 : Lcom/google/tagmanager/be;
+.line 144
+	sget-object	v0,com/google/tagmanager/bj.a Lcom/google/tagmanager/bj;
+; v0 : Lcom/google/tagmanager/bj;
+	iput-object	v0,v3,com/google/tagmanager/be.d Lcom/google/tagmanager/bj;
+; v0 : Lcom/google/tagmanager/bj; , v3 : Lcom/google/tagmanager/be;
+.line 145
+	new-instance	v0,java/util/concurrent/ConcurrentHashMap
+; v0 : Ljava/util/concurrent/ConcurrentHashMap;
+	invoke-direct	{v0},java/util/concurrent/ConcurrentHashMap/<init>	; <init>()V
+; v0 : Ljava/util/concurrent/ConcurrentHashMap;
+	iput-object	v0,v3,com/google/tagmanager/be.e Ljava/util/concurrent/ConcurrentMap;
+; v0 : Ljava/util/concurrent/ConcurrentHashMap; , v3 : Lcom/google/tagmanager/be;
+.line 146
+	iput-object	v6,v3,com/google/tagmanager/be.c Lcom/google/tagmanager/f;
+; v6 : Lcom/google/tagmanager/f; , v3 : Lcom/google/tagmanager/be;
+.line 147
+	iget-object	v0,v3,com/google/tagmanager/be.c Lcom/google/tagmanager/f;
+; v0 : Lcom/google/tagmanager/f; , v3 : Lcom/google/tagmanager/be;
+	new-instance	v1,com/google/tagmanager/bf
+; v1 : Lcom/google/tagmanager/bf;
+	invoke-direct	{v1,v3},com/google/tagmanager/bf/<init>	; <init>(Lcom/google/tagmanager/be;)V
+; v1 : Lcom/google/tagmanager/bf; , v3 : Lcom/google/tagmanager/be;
+	invoke-virtual	{v0,v1},com/google/tagmanager/f/a	; a(Lcom/google/tagmanager/j;)V
+; v0 : Lcom/google/tagmanager/f; , v1 : Lcom/google/tagmanager/bf;
+.line 157
+	iget-object	v0,v3,com/google/tagmanager/be.c Lcom/google/tagmanager/f;
+; v0 : Lcom/google/tagmanager/f; , v3 : Lcom/google/tagmanager/be;
+	new-instance	v1,com/google/tagmanager/a
+; v1 : Lcom/google/tagmanager/a;
+	iget-object	v2,v3,com/google/tagmanager/be.b Landroid/content/Context;
+; v2 : Landroid/content/Context; , v3 : Lcom/google/tagmanager/be;
+	invoke-direct	{v1,v2},com/google/tagmanager/a/<init>	; <init>(Landroid/content/Context;)V
+; v1 : Lcom/google/tagmanager/a; , v2 : Landroid/content/Context;
+	invoke-virtual	{v0,v1},com/google/tagmanager/f/a	; a(Lcom/google/tagmanager/j;)V
+; v0 : Lcom/google/tagmanager/f; , v1 : Lcom/google/tagmanager/a;
+.line 158
+	return-void	
+.end method
+
+.method public static a(Landroid/content/Context;)Lcom/google/tagmanager/be;
+.limit registers 6
+; parameter[0] : v5 (Landroid/content/Context;)
+.catch java/lang/Exception from la20e6 to la2118 using la20e0
+.catch java/lang/Exception from la20be to la20e4 using la20e0
+.line 166
+	const-class	v1,com/google/tagmanager/be
+; v1 : Ljava/lang/Class;
+	monitor-enter	v1
+; v1 : Ljava/lang/Class;
+la20be:
+.line 167
+	sget-object	v0,com/google/tagmanager/be.f Lcom/google/tagmanager/be;
+; v0 : Lcom/google/tagmanager/be;
+	if-nez	v0,la2112
+; v0 : Lcom/google/tagmanager/be;
+.line 168
+	if-nez	v5,la20e6
+; v5 : Landroid/content/Context;
+.line 169
+	const-string	v0,"TagManager.getInstance requires non-null context."
+; v0 : Ljava/lang/String;
+	invoke-static	{v0},com/google/tagmanager/z/a	; a(Ljava/lang/String;)V
+; v0 : Ljava/lang/String;
+.line 170
+	new-instance	v0,java/lang/NullPointerException
+; v0 : Ljava/lang/NullPointerException;
+	invoke-direct	{v0},java/lang/NullPointerException/<init>	; <init>()V
+; v0 : Ljava/lang/NullPointerException;
+	throw	v0
+; v0 : Ljava/lang/NullPointerException;
+la20e0:
+.line 183
+	move-exception	v0
+; v0 : java/lang/Exception
+	monitor-exit	v1
+; v1 : Ljava/lang/Class;
+la20e4:
+	throw	v0
+; v0 : java/lang/Exception
+la20e6:
+.line 172
+	new-instance	v0,com/google/tagmanager/bg
+; v0 : Lcom/google/tagmanager/bg;
+	invoke-direct	{v0},com/google/tagmanager/bg/<init>	; <init>()V
+; v0 : Lcom/google/tagmanager/bg;
+.line 179
+	new-instance	v2,com/google/tagmanager/n
+; v2 : Lcom/google/tagmanager/n;
+	invoke-direct	{v2,v5},com/google/tagmanager/n/<init>	; <init>(Landroid/content/Context;)V
+; v2 : Lcom/google/tagmanager/n; , v5 : Landroid/content/Context;
+.line 180
+	new-instance	v3,com/google/tagmanager/be
+; v3 : Lcom/google/tagmanager/be;
+	new-instance	v4,com/google/tagmanager/f
+; v4 : Lcom/google/tagmanager/f;
+	invoke-direct	{v4,v2},com/google/tagmanager/f/<init>	; <init>(Lcom/google/tagmanager/k;)V
+; v4 : Lcom/google/tagmanager/f; , v2 : Lcom/google/tagmanager/n;
+	invoke-direct	{v3,v5,v0,v4},com/google/tagmanager/be/<init>	; <init>(Landroid/content/Context;Lcom/google/tagmanager/bi;Lcom/google/tagmanager/f;)V
+; v3 : Lcom/google/tagmanager/be; , v5 : Landroid/content/Context; , v0 : Lcom/google/tagmanager/bg; , v4 : Lcom/google/tagmanager/f;
+	sput-object	v3,com/google/tagmanager/be.f Lcom/google/tagmanager/be;
+; v3 : Lcom/google/tagmanager/be;
+la2112:
+.line 182
+	sget-object	v0,com/google/tagmanager/be.f Lcom/google/tagmanager/be;
+; v0 : Lcom/google/tagmanager/be;
+	monitor-exit	v1
+; v1 : Ljava/lang/Class;
+la2118:
+	return-object	v0
+; v0 : Lcom/google/tagmanager/be;
+.end method
+
+.method static a(Lcom/google/tagmanager/be;Ljava/lang/String;)V
+.limit registers 2
+; parameter[0] : v0 (Lcom/google/tagmanager/be;)
+; parameter[1] : v1 (Ljava/lang/String;)
+.line 67
+	invoke-direct	{v0,v1},com/google/tagmanager/be/a	; a(Ljava/lang/String;)V
+; v0 : Lcom/google/tagmanager/be; , v1 : Ljava/lang/String;
+	return-void	
+.end method
+
+.method private a(Ljava/lang/String;)V
+.limit registers 4
+; this: v2 (Lcom/google/tagmanager/be;)
+; parameter[0] : v3 (Ljava/lang/String;)
+.line 314
+	iget-object	v0,v2,com/google/tagmanager/be.e Ljava/util/concurrent/ConcurrentMap;
+; v0 : Ljava/util/concurrent/ConcurrentMap; , v2 : Lcom/google/tagmanager/be;
+	invoke-interface	{v0},java/util/concurrent/ConcurrentMap/values	; values()Ljava/util/Collection;
+; v0 : Ljava/util/concurrent/ConcurrentMap;
+	move-result-object	v0
+; v0 : Ljava/util/Collection;
+	invoke-interface	{v0},java/util/Collection/iterator	; iterator()Ljava/util/Iterator;
+; v0 : Ljava/util/Collection;
+	move-result-object	v1
+; v1 : Ljava/util/Iterator;
+la216c:
+	invoke-interface	{v1},java/util/Iterator/hasNext	; hasNext()Z
+; v1 : Ljava/util/Iterator;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,la218c
+; v0 : single-length
+	invoke-interface	{v1},java/util/Iterator/next	; next()Ljava/lang/Object;
+; v1 : Ljava/util/Iterator;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,com/google/tagmanager/d
+; v0 : Lcom/google/tagmanager/d;
+.line 315
+	invoke-virtual	{v0,v3},com/google/tagmanager/d/a	; a(Ljava/lang/String;)V
+; v0 : Lcom/google/tagmanager/d; , v3 : Ljava/lang/String;
+	goto	la216c
+la218c:
+.line 317
+	return-void	
+.end method
+
+.method public a()Lcom/google/tagmanager/bj;
+.limit registers 2
+; this: v1 (Lcom/google/tagmanager/be;)
+.line 259
+	iget-object	v0,v1,com/google/tagmanager/be.d Lcom/google/tagmanager/bj;
+; v0 : Lcom/google/tagmanager/bj; , v1 : Lcom/google/tagmanager/be;
+	return-object	v0
+; v0 : Lcom/google/tagmanager/bj;
+.end method
+
+.method synchronized a(Landroid/net/Uri;)Z
+.limit registers 7
+; this: v5 (Lcom/google/tagmanager/be;)
+; parameter[0] : v6 (Landroid/net/Uri;)
+.catch java/lang/Exception from la2224 to la22a4 using la221e
+.catch java/lang/Exception from la21fa to la221c using la221e
+.catch java/lang/Exception from la21ba to la21ee using la221e
+.line 271
+	monitor-enter	v5
+; v5 : Lcom/google/tagmanager/be;
+la21ba:
+	invoke-static	{},com/google/tagmanager/am/a	; a()Lcom/google/tagmanager/am;
+; 
+	nop	
+	move-result-object	v2
+; v2 : Lcom/google/tagmanager/am;
+.line 272
+	invoke-virtual	{v2,v6},com/google/tagmanager/am/a	; a(Landroid/net/Uri;)Z
+; v2 : Lcom/google/tagmanager/am; , v6 : Landroid/net/Uri;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,la22a6
+; v0 : single-length
+.line 273
+	invoke-virtual	{v2},com/google/tagmanager/am/d	; d()Ljava/lang/String;
+; v2 : Lcom/google/tagmanager/am;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+.line 274
+	sget-object	v0,com/google/tagmanager/bh.a [I
+; v0 : [I
+	invoke-virtual	{v2},com/google/tagmanager/am/b	; b()Lcom/google/tagmanager/an;
+; v2 : Lcom/google/tagmanager/am;
+	move-result-object	v1
+; v1 : Lcom/google/tagmanager/an;
+	invoke-virtual	{v1},com/google/tagmanager/an/ordinal	; ordinal()I
+; v1 : Lcom/google/tagmanager/an;
+	move-result	v1
+; v1 : single-length
+	aget	v0,v0,v1
+; v0 : single-length , v0 : single-length , v1 : single-length
+la21ee:
+	packed-switch	v0,1
+		psa21ee_a21fa	; case 1
+		psa21ee_a2224	; case 2
+		psa21ee_a2224	; case 3
+		default: psa21ee_default
+; v0 : single-length
+la21f4:
+.line 297
+	const/4	v0,1
+; v0 : single-length
+la21f6:
+.line 299
+	monitor-exit	v5
+; v5 : Lcom/google/tagmanager/be;
+	return	v0
+; v0 : single-length
+la21fa:
+.line 276
+	iget-object	v0,v5,com/google/tagmanager/be.e Ljava/util/concurrent/ConcurrentMap;
+; v0 : Ljava/util/concurrent/ConcurrentMap; , v5 : Lcom/google/tagmanager/be;
+	invoke-interface	{v0,v3},java/util/concurrent/ConcurrentMap/get	; get(Ljava/lang/Object;)Ljava/lang/Object;
+; v0 : Ljava/util/concurrent/ConcurrentMap; , v3 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,com/google/tagmanager/d
+; v0 : Lcom/google/tagmanager/d;
+.line 277
+	if-eqz	v0,la21f4
+; v0 : Lcom/google/tagmanager/d;
+.line 278
+	const/4	v1,0
+; v1 : single-length
+	invoke-virtual	{v0,v1},com/google/tagmanager/d/b	; b(Ljava/lang/String;)V
+; v0 : Lcom/google/tagmanager/d; , v1 : single-length
+.line 279
+	invoke-virtual	{v0},com/google/tagmanager/d/a	; a()V
+; v0 : Lcom/google/tagmanager/d;
+la221c:
+	goto	la21f4
+la221e:
+.line 271
+	move-exception	v0
+; v0 : java/lang/Exception
+	monitor-exit	v5
+; v5 : Lcom/google/tagmanager/be;
+	throw	v0
+; v0 : java/lang/Exception
+la2224:
+.line 284
+	iget-object	v0,v5,com/google/tagmanager/be.e Ljava/util/concurrent/ConcurrentMap;
+; v0 : Ljava/util/concurrent/ConcurrentMap; , v5 : Lcom/google/tagmanager/be;
+	invoke-interface	{v0},java/util/concurrent/ConcurrentMap/entrySet	; entrySet()Ljava/util/Set;
+; v0 : Ljava/util/concurrent/ConcurrentMap;
+	move-result-object	v0
+; v0 : Ljava/util/Set;
+	invoke-interface	{v0},java/util/Set/iterator	; iterator()Ljava/util/Iterator;
+; v0 : Ljava/util/Set;
+	move-result-object	v4
+; v4 : Ljava/util/Iterator;
+la2238:
+	invoke-interface	{v4},java/util/Iterator/hasNext	; hasNext()Z
+; v4 : Ljava/util/Iterator;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,la21f4
+; v0 : single-length
+	invoke-interface	{v4},java/util/Iterator/next	; next()Ljava/lang/Object;
+; v4 : Ljava/util/Iterator;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,java/util/Map$Entry
+; v0 : Ljava/util/Map$Entry;
+.line 285
+	invoke-interface	{v0},java/util/Map$Entry/getValue	; getValue()Ljava/lang/Object;
+; v0 : Ljava/util/Map$Entry;
+	move-result-object	v1
+; v1 : Ljava/lang/Object;
+	check-cast	v1,com/google/tagmanager/d
+; v1 : Lcom/google/tagmanager/d;
+.line 286
+	invoke-interface	{v0},java/util/Map$Entry/getKey	; getKey()Ljava/lang/Object;
+; v0 : Ljava/util/Map$Entry;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,java/lang/String
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v0,v3},java/lang/String/equals	; equals(Ljava/lang/Object;)Z
+; v0 : Ljava/lang/String; , v3 : Ljava/lang/String;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,la228a
+; v0 : single-length
+.line 287
+	invoke-virtual	{v2},com/google/tagmanager/am/c	; c()Ljava/lang/String;
+; v2 : Lcom/google/tagmanager/am;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v1,v0},com/google/tagmanager/d/b	; b(Ljava/lang/String;)V
+; v1 : Lcom/google/tagmanager/d; , v0 : Ljava/lang/String;
+.line 288
+	invoke-virtual	{v1},com/google/tagmanager/d/a	; a()V
+; v1 : Lcom/google/tagmanager/d;
+	goto	la2238
+la228a:
+.line 289
+	invoke-virtual	{v1},com/google/tagmanager/d/b	; b()Ljava/lang/String;
+; v1 : Lcom/google/tagmanager/d;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	if-eqz	v0,la2238
+; v0 : Ljava/lang/String;
+.line 291
+	const/4	v0,0
+; v0 : single-length
+	invoke-virtual	{v1,v0},com/google/tagmanager/d/b	; b(Ljava/lang/String;)V
+; v1 : Lcom/google/tagmanager/d; , v0 : single-length
+.line 292
+	invoke-virtual	{v1},com/google/tagmanager/d/a	; a()V
+; v1 : Lcom/google/tagmanager/d;
+la22a4:
+	goto	la2238
+la22a6:
+.line 299
+	const/4	v0,0
+; v0 : single-length
+	goto	la21f6
+.line 274
+la22aa:	data-array
+		0x00, 0x00
+	end data-array
+.end method
+
+

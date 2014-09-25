@@ -1,0 +1,356 @@
+.class public com/squareup/picasso/Picasso$Builder
+.super java/lang/Object
+.source Picasso.java
+
+.inner class Builder inner com/squareup/picasso/Picasso$Builder outer com/squareup/picasso/Picasso
+.field private cache Lcom/squareup/picasso/Cache;
+.field private final context Landroid/content/Context;
+.field private debugging Z
+.field private downloader Lcom/squareup/picasso/Downloader;
+.field private listener Lcom/squareup/picasso/Picasso$Listener;
+.field private service Ljava/util/concurrent/ExecutorService;
+.field private transformer Lcom/squareup/picasso/Picasso$RequestTransformer;
+
+.method public <init>(Landroid/content/Context;)V
+.limit registers 4
+; this: v2 (Lcom/squareup/picasso/Picasso$Builder;)
+; parameter[0] : v3 (Landroid/content/Context;)
+.line 407
+	invoke-direct	{v2},java/lang/Object/<init>	; <init>()V
+; v2 : Lcom/squareup/picasso/Picasso$Builder;
+.line 408
+	if-nez	v3,lc405e
+; v3 : Landroid/content/Context;
+.line 409
+	new-instance	v0,java/lang/IllegalArgumentException
+; v0 : Ljava/lang/IllegalArgumentException;
+	const-string	v1,"Context must not be null."
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/IllegalArgumentException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/IllegalArgumentException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/IllegalArgumentException;
+lc405e:
+.line 411
+	invoke-virtual	{v3},android/content/Context/getApplicationContext	; getApplicationContext()Landroid/content/Context;
+; v3 : Landroid/content/Context;
+	move-result-object	v0
+; v0 : Landroid/content/Context;
+	iput-object	v0,v2,com/squareup/picasso/Picasso$Builder.context Landroid/content/Context;
+; v0 : Landroid/content/Context; , v2 : Lcom/squareup/picasso/Picasso$Builder;
+.line 412
+	return-void	
+.end method
+
+.method public build()Lcom/squareup/picasso/Picasso;
+.limit registers 16
+; this: v15 (Lcom/squareup/picasso/Picasso$Builder;)
+.line 487
+	iget-object	v1,v15,com/squareup/picasso/Picasso$Builder.context Landroid/content/Context;
+; v1 : Landroid/content/Context; , v15 : Lcom/squareup/picasso/Picasso$Builder;
+.line 489
+	iget-object	v2,v15,com/squareup/picasso/Picasso$Builder.downloader Lcom/squareup/picasso/Downloader;
+; v2 : Lcom/squareup/picasso/Downloader; , v15 : Lcom/squareup/picasso/Picasso$Builder;
+	if-nez	v2,lc4094
+; v2 : Lcom/squareup/picasso/Downloader;
+.line 490
+	invoke-static	{v1},com/squareup/picasso/Utils/createDefaultDownloader	; createDefaultDownloader(Landroid/content/Context;)Lcom/squareup/picasso/Downloader;
+; v1 : Landroid/content/Context;
+	move-result-object	v2
+; v2 : Lcom/squareup/picasso/Downloader;
+	iput-object	v2,v15,com/squareup/picasso/Picasso$Builder.downloader Lcom/squareup/picasso/Downloader;
+; v2 : Lcom/squareup/picasso/Downloader; , v15 : Lcom/squareup/picasso/Picasso$Builder;
+lc4094:
+.line 492
+	iget-object	v2,v15,com/squareup/picasso/Picasso$Builder.cache Lcom/squareup/picasso/Cache;
+; v2 : Lcom/squareup/picasso/Cache; , v15 : Lcom/squareup/picasso/Picasso$Builder;
+	if-nez	v2,lc40aa
+; v2 : Lcom/squareup/picasso/Cache;
+.line 493
+	new-instance	v2,com/squareup/picasso/LruCache
+; v2 : Lcom/squareup/picasso/LruCache;
+	invoke-direct	{v2,v1},com/squareup/picasso/LruCache/<init>	; <init>(Landroid/content/Context;)V
+; v2 : Lcom/squareup/picasso/LruCache; , v1 : Landroid/content/Context;
+	iput-object	v2,v15,com/squareup/picasso/Picasso$Builder.cache Lcom/squareup/picasso/Cache;
+; v2 : Lcom/squareup/picasso/LruCache; , v15 : Lcom/squareup/picasso/Picasso$Builder;
+lc40aa:
+.line 495
+	iget-object	v2,v15,com/squareup/picasso/Picasso$Builder.service Ljava/util/concurrent/ExecutorService;
+; v2 : Ljava/util/concurrent/ExecutorService; , v15 : Lcom/squareup/picasso/Picasso$Builder;
+	if-nez	v2,lc40c0
+; v2 : Ljava/util/concurrent/ExecutorService;
+.line 496
+	new-instance	v2,com/squareup/picasso/PicassoExecutorService
+; v2 : Lcom/squareup/picasso/PicassoExecutorService;
+	invoke-direct	{v2},com/squareup/picasso/PicassoExecutorService/<init>	; <init>()V
+; v2 : Lcom/squareup/picasso/PicassoExecutorService;
+	iput-object	v2,v15,com/squareup/picasso/Picasso$Builder.service Ljava/util/concurrent/ExecutorService;
+; v2 : Lcom/squareup/picasso/PicassoExecutorService; , v15 : Lcom/squareup/picasso/Picasso$Builder;
+lc40c0:
+.line 498
+	iget-object	v2,v15,com/squareup/picasso/Picasso$Builder.transformer Lcom/squareup/picasso/Picasso$RequestTransformer;
+; v2 : Lcom/squareup/picasso/Picasso$RequestTransformer; , v15 : Lcom/squareup/picasso/Picasso$Builder;
+	if-nez	v2,lc40d0
+; v2 : Lcom/squareup/picasso/Picasso$RequestTransformer;
+.line 499
+	sget-object	v2,com/squareup/picasso/Picasso$RequestTransformer.IDENTITY Lcom/squareup/picasso/Picasso$RequestTransformer;
+; v2 : Lcom/squareup/picasso/Picasso$RequestTransformer;
+	iput-object	v2,v15,com/squareup/picasso/Picasso$Builder.transformer Lcom/squareup/picasso/Picasso$RequestTransformer;
+; v2 : Lcom/squareup/picasso/Picasso$RequestTransformer; , v15 : Lcom/squareup/picasso/Picasso$Builder;
+lc40d0:
+.line 502
+	new-instance	v6,com/squareup/picasso/Stats
+; v6 : Lcom/squareup/picasso/Stats;
+	iget-object	v2,v15,com/squareup/picasso/Picasso$Builder.cache Lcom/squareup/picasso/Cache;
+; v2 : Lcom/squareup/picasso/Cache; , v15 : Lcom/squareup/picasso/Picasso$Builder;
+	invoke-direct	{v6,v2},com/squareup/picasso/Stats/<init>	; <init>(Lcom/squareup/picasso/Cache;)V
+; v6 : Lcom/squareup/picasso/Stats; , v2 : Lcom/squareup/picasso/Cache;
+.line 504
+	new-instance	v0,com/squareup/picasso/Dispatcher
+; v0 : Lcom/squareup/picasso/Dispatcher;
+	iget-object	v2,v15,com/squareup/picasso/Picasso$Builder.service Ljava/util/concurrent/ExecutorService;
+; v2 : Ljava/util/concurrent/ExecutorService; , v15 : Lcom/squareup/picasso/Picasso$Builder;
+	sget-object	v3,com/squareup/picasso/Picasso.HANDLER Landroid/os/Handler;
+; v3 : Landroid/os/Handler;
+	iget-object	v4,v15,com/squareup/picasso/Picasso$Builder.downloader Lcom/squareup/picasso/Downloader;
+; v4 : Lcom/squareup/picasso/Downloader; , v15 : Lcom/squareup/picasso/Picasso$Builder;
+	iget-object	v5,v15,com/squareup/picasso/Picasso$Builder.cache Lcom/squareup/picasso/Cache;
+; v5 : Lcom/squareup/picasso/Cache; , v15 : Lcom/squareup/picasso/Picasso$Builder;
+	invoke-direct/range	{v0..v6},com/squareup/picasso/Dispatcher/<init>;	<init>(Landroid/content/Context;Ljava/util/concurrent/ExecutorService;Landroid/os/Handler;Lcom/squareup/picasso/Downloader;Lcom/squareup/picasso/Cache;Lcom/squareup/picasso/Stats;)V
+; v0 : Lcom/squareup/picasso/Dispatcher; , v1 : Landroid/content/Context; , v2 : Ljava/util/concurrent/ExecutorService; , v3 : Landroid/os/Handler; , v4 : Lcom/squareup/picasso/Downloader; , v5 : Lcom/squareup/picasso/Cache; , v6 : Lcom/squareup/picasso/Stats;
+.line 506
+	new-instance	v7,com/squareup/picasso/Picasso
+; v7 : Lcom/squareup/picasso/Picasso;
+	iget-object	v10,v15,com/squareup/picasso/Picasso$Builder.cache Lcom/squareup/picasso/Cache;
+; v10 : Lcom/squareup/picasso/Cache; , v15 : Lcom/squareup/picasso/Picasso$Builder;
+	iget-object	v11,v15,com/squareup/picasso/Picasso$Builder.listener Lcom/squareup/picasso/Picasso$Listener;
+; v11 : Lcom/squareup/picasso/Picasso$Listener; , v15 : Lcom/squareup/picasso/Picasso$Builder;
+	iget-object	v12,v15,com/squareup/picasso/Picasso$Builder.transformer Lcom/squareup/picasso/Picasso$RequestTransformer;
+; v12 : Lcom/squareup/picasso/Picasso$RequestTransformer; , v15 : Lcom/squareup/picasso/Picasso$Builder;
+	iget-boolean	v14,v15,com/squareup/picasso/Picasso$Builder.debugging Z
+; v14 : single-length , v15 : Lcom/squareup/picasso/Picasso$Builder;
+	move-object	v8,v1
+; v8 : Landroid/content/Context; , v1 : Landroid/content/Context;
+	move-object	v9,v0
+; v9 : Lcom/squareup/picasso/Dispatcher; , v0 : Lcom/squareup/picasso/Dispatcher;
+	move-object	v13,v6
+; v13 : Lcom/squareup/picasso/Stats; , v6 : Lcom/squareup/picasso/Stats;
+	invoke-direct/range	{v7..v14},com/squareup/picasso/Picasso/<init>;	<init>(Landroid/content/Context;Lcom/squareup/picasso/Dispatcher;Lcom/squareup/picasso/Cache;Lcom/squareup/picasso/Picasso$Listener;Lcom/squareup/picasso/Picasso$RequestTransformer;Lcom/squareup/picasso/Stats;Z)V
+; v7 : Lcom/squareup/picasso/Picasso; , v8 : Landroid/content/Context; , v9 : Lcom/squareup/picasso/Dispatcher; , v10 : Lcom/squareup/picasso/Cache; , v11 : Lcom/squareup/picasso/Picasso$Listener; , v12 : Lcom/squareup/picasso/Picasso$RequestTransformer; , v13 : Lcom/squareup/picasso/Stats; , v14 : single-length
+	return-object	v7
+; v7 : Lcom/squareup/picasso/Picasso;
+.end method
+
+.method public debugging(Z)Lcom/squareup/picasso/Picasso$Builder;
+.limit registers 2
+; this: v0 (Lcom/squareup/picasso/Picasso$Builder;)
+; parameter[0] : v1 (Z)
+.line 481
+	iput-boolean	v1,v0,com/squareup/picasso/Picasso$Builder.debugging Z
+; v1 : single-length , v0 : Lcom/squareup/picasso/Picasso$Builder;
+.line 482
+	return-object	v0
+; v0 : Lcom/squareup/picasso/Picasso$Builder;
+.end method
+
+.method public downloader(Lcom/squareup/picasso/Downloader;)Lcom/squareup/picasso/Picasso$Builder;
+.limit registers 4
+; this: v2 (Lcom/squareup/picasso/Picasso$Builder;)
+; parameter[0] : v3 (Lcom/squareup/picasso/Downloader;)
+.line 416
+	if-nez	v3,lc4158
+; v3 : Lcom/squareup/picasso/Downloader;
+.line 417
+	new-instance	v0,java/lang/IllegalArgumentException
+; v0 : Ljava/lang/IllegalArgumentException;
+	const-string	v1,"Downloader must not be null."
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/IllegalArgumentException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/IllegalArgumentException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/IllegalArgumentException;
+lc4158:
+.line 419
+	iget-object	v0,v2,com/squareup/picasso/Picasso$Builder.downloader Lcom/squareup/picasso/Downloader;
+; v0 : Lcom/squareup/picasso/Downloader; , v2 : Lcom/squareup/picasso/Picasso$Builder;
+	if-eqz	v0,lc4170
+; v0 : Lcom/squareup/picasso/Downloader;
+.line 420
+	new-instance	v0,java/lang/IllegalStateException
+; v0 : Ljava/lang/IllegalStateException;
+	const-string	v1,"Downloader already set."
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/IllegalStateException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/IllegalStateException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/IllegalStateException;
+lc4170:
+.line 422
+	iput-object	v3,v2,com/squareup/picasso/Picasso$Builder.downloader Lcom/squareup/picasso/Downloader;
+; v3 : Lcom/squareup/picasso/Downloader; , v2 : Lcom/squareup/picasso/Picasso$Builder;
+.line 423
+	return-object	v2
+; v2 : Lcom/squareup/picasso/Picasso$Builder;
+.end method
+
+.method public executor(Ljava/util/concurrent/ExecutorService;)Lcom/squareup/picasso/Picasso$Builder;
+.limit registers 4
+; this: v2 (Lcom/squareup/picasso/Picasso$Builder;)
+; parameter[0] : v3 (Ljava/util/concurrent/ExecutorService;)
+.line 428
+	if-nez	v3,lc419c
+; v3 : Ljava/util/concurrent/ExecutorService;
+.line 429
+	new-instance	v0,java/lang/IllegalArgumentException
+; v0 : Ljava/lang/IllegalArgumentException;
+	const-string	v1,"Executor service must not be null."
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/IllegalArgumentException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/IllegalArgumentException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/IllegalArgumentException;
+lc419c:
+.line 431
+	iget-object	v0,v2,com/squareup/picasso/Picasso$Builder.service Ljava/util/concurrent/ExecutorService;
+; v0 : Ljava/util/concurrent/ExecutorService; , v2 : Lcom/squareup/picasso/Picasso$Builder;
+	if-eqz	v0,lc41b4
+; v0 : Ljava/util/concurrent/ExecutorService;
+.line 432
+	new-instance	v0,java/lang/IllegalStateException
+; v0 : Ljava/lang/IllegalStateException;
+	const-string	v1,"Executor service already set."
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/IllegalStateException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/IllegalStateException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/IllegalStateException;
+lc41b4:
+.line 434
+	iput-object	v3,v2,com/squareup/picasso/Picasso$Builder.service Ljava/util/concurrent/ExecutorService;
+; v3 : Ljava/util/concurrent/ExecutorService; , v2 : Lcom/squareup/picasso/Picasso$Builder;
+.line 435
+	return-object	v2
+; v2 : Lcom/squareup/picasso/Picasso$Builder;
+.end method
+
+.method public listener(Lcom/squareup/picasso/Picasso$Listener;)Lcom/squareup/picasso/Picasso$Builder;
+.limit registers 4
+; this: v2 (Lcom/squareup/picasso/Picasso$Builder;)
+; parameter[0] : v3 (Lcom/squareup/picasso/Picasso$Listener;)
+.line 452
+	if-nez	v3,lc41e0
+; v3 : Lcom/squareup/picasso/Picasso$Listener;
+.line 453
+	new-instance	v0,java/lang/IllegalArgumentException
+; v0 : Ljava/lang/IllegalArgumentException;
+	const-string	v1,"Listener must not be null."
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/IllegalArgumentException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/IllegalArgumentException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/IllegalArgumentException;
+lc41e0:
+.line 455
+	iget-object	v0,v2,com/squareup/picasso/Picasso$Builder.listener Lcom/squareup/picasso/Picasso$Listener;
+; v0 : Lcom/squareup/picasso/Picasso$Listener; , v2 : Lcom/squareup/picasso/Picasso$Builder;
+	if-eqz	v0,lc41f8
+; v0 : Lcom/squareup/picasso/Picasso$Listener;
+.line 456
+	new-instance	v0,java/lang/IllegalStateException
+; v0 : Ljava/lang/IllegalStateException;
+	const-string	v1,"Listener already set."
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/IllegalStateException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/IllegalStateException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/IllegalStateException;
+lc41f8:
+.line 458
+	iput-object	v3,v2,com/squareup/picasso/Picasso$Builder.listener Lcom/squareup/picasso/Picasso$Listener;
+; v3 : Lcom/squareup/picasso/Picasso$Listener; , v2 : Lcom/squareup/picasso/Picasso$Builder;
+.line 459
+	return-object	v2
+; v2 : Lcom/squareup/picasso/Picasso$Builder;
+.end method
+
+.method public memoryCache(Lcom/squareup/picasso/Cache;)Lcom/squareup/picasso/Picasso$Builder;
+.limit registers 4
+; this: v2 (Lcom/squareup/picasso/Picasso$Builder;)
+; parameter[0] : v3 (Lcom/squareup/picasso/Cache;)
+.line 440
+	if-nez	v3,lc4224
+; v3 : Lcom/squareup/picasso/Cache;
+.line 441
+	new-instance	v0,java/lang/IllegalArgumentException
+; v0 : Ljava/lang/IllegalArgumentException;
+	const-string	v1,"Memory cache must not be null."
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/IllegalArgumentException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/IllegalArgumentException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/IllegalArgumentException;
+lc4224:
+.line 443
+	iget-object	v0,v2,com/squareup/picasso/Picasso$Builder.cache Lcom/squareup/picasso/Cache;
+; v0 : Lcom/squareup/picasso/Cache; , v2 : Lcom/squareup/picasso/Picasso$Builder;
+	if-eqz	v0,lc423c
+; v0 : Lcom/squareup/picasso/Cache;
+.line 444
+	new-instance	v0,java/lang/IllegalStateException
+; v0 : Ljava/lang/IllegalStateException;
+	const-string	v1,"Memory cache already set."
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/IllegalStateException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/IllegalStateException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/IllegalStateException;
+lc423c:
+.line 446
+	iput-object	v3,v2,com/squareup/picasso/Picasso$Builder.cache Lcom/squareup/picasso/Cache;
+; v3 : Lcom/squareup/picasso/Cache; , v2 : Lcom/squareup/picasso/Picasso$Builder;
+.line 447
+	return-object	v2
+; v2 : Lcom/squareup/picasso/Picasso$Builder;
+.end method
+
+.method public requestTransformer(Lcom/squareup/picasso/Picasso$RequestTransformer;)Lcom/squareup/picasso/Picasso$Builder;
+.limit registers 4
+; this: v2 (Lcom/squareup/picasso/Picasso$Builder;)
+; parameter[0] : v3 (Lcom/squareup/picasso/Picasso$RequestTransformer;)
+.line 469
+	if-nez	v3,lc4268
+; v3 : Lcom/squareup/picasso/Picasso$RequestTransformer;
+.line 470
+	new-instance	v0,java/lang/IllegalArgumentException
+; v0 : Ljava/lang/IllegalArgumentException;
+	const-string	v1,"Transformer must not be null."
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/IllegalArgumentException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/IllegalArgumentException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/IllegalArgumentException;
+lc4268:
+.line 472
+	iget-object	v0,v2,com/squareup/picasso/Picasso$Builder.transformer Lcom/squareup/picasso/Picasso$RequestTransformer;
+; v0 : Lcom/squareup/picasso/Picasso$RequestTransformer; , v2 : Lcom/squareup/picasso/Picasso$Builder;
+	if-eqz	v0,lc4280
+; v0 : Lcom/squareup/picasso/Picasso$RequestTransformer;
+.line 473
+	new-instance	v0,java/lang/IllegalStateException
+; v0 : Ljava/lang/IllegalStateException;
+	const-string	v1,"Transformer already set."
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/IllegalStateException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/IllegalStateException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/IllegalStateException;
+lc4280:
+.line 475
+	iput-object	v3,v2,com/squareup/picasso/Picasso$Builder.transformer Lcom/squareup/picasso/Picasso$RequestTransformer;
+; v3 : Lcom/squareup/picasso/Picasso$RequestTransformer; , v2 : Lcom/squareup/picasso/Picasso$Builder;
+.line 476
+	return-object	v2
+; v2 : Lcom/squareup/picasso/Picasso$Builder;
+.end method
+
+

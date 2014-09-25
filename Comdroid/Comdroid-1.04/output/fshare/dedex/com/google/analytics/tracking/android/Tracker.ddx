@@ -1,0 +1,485 @@
+.class public com/google/analytics/tracking/android/Tracker
+.super java/lang/Object
+.source Tracker.java
+
+.field private final mAppFieldsDefaultProvider Lcom/google/analytics/tracking/android/AppFieldsDefaultProvider;
+.field private final mClientIdDefaultProvider Lcom/google/analytics/tracking/android/ClientIdDefaultProvider;
+.field private final mHandler Lcom/google/analytics/tracking/android/TrackerHandler;
+.field private final mName Ljava/lang/String;
+.field private final mParams Ljava/util/Map;
+  .annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "Ljava/util/Map" , "<" , "Ljava/lang/String;" , "Ljava/lang/String;" , ">;" }
+  .end annotation
+.end field
+.field private mRateLimiter Lcom/google/analytics/tracking/android/RateLimiter;
+.field private final mScreenResolutionDefaultProvider Lcom/google/analytics/tracking/android/ScreenResolutionDefaultProvider;
+
+.method <init>(Ljava/lang/String;Ljava/lang/String;Lcom/google/analytics/tracking/android/TrackerHandler;)V
+.annotation buildVisibility Lcom/google/android/gms/common/util/VisibleForTesting;
+.end annotation
+.limit registers 12
+; this: v8 (Lcom/google/analytics/tracking/android/Tracker;)
+; parameter[0] : v9 (Ljava/lang/String;)
+; parameter[1] : v10 (Ljava/lang/String;)
+; parameter[2] : v11 (Lcom/google/analytics/tracking/android/TrackerHandler;)
+.line 54
+	invoke-static	{},com/google/analytics/tracking/android/ClientIdDefaultProvider/getProvider	; getProvider()Lcom/google/analytics/tracking/android/ClientIdDefaultProvider;
+; 
+	nop	
+	move-result-object	v4
+; v4 : Lcom/google/analytics/tracking/android/ClientIdDefaultProvider;
+	invoke-static	{},com/google/analytics/tracking/android/ScreenResolutionDefaultProvider/getProvider	; getProvider()Lcom/google/analytics/tracking/android/ScreenResolutionDefaultProvider;
+; 
+	nop	
+	move-result-object	v5
+; v5 : Lcom/google/analytics/tracking/android/ScreenResolutionDefaultProvider;
+	invoke-static	{},com/google/analytics/tracking/android/AppFieldsDefaultProvider/getProvider	; getProvider()Lcom/google/analytics/tracking/android/AppFieldsDefaultProvider;
+; 
+	nop	
+	move-result-object	v6
+; v6 : Lcom/google/analytics/tracking/android/AppFieldsDefaultProvider;
+	new-instance	v7,com/google/analytics/tracking/android/SendHitRateLimiter
+; v7 : Lcom/google/analytics/tracking/android/SendHitRateLimiter;
+	invoke-direct	{v7},com/google/analytics/tracking/android/SendHitRateLimiter/<init>	; <init>()V
+; v7 : Lcom/google/analytics/tracking/android/SendHitRateLimiter;
+	move-object	v0,v8
+; v0 : Lcom/google/analytics/tracking/android/Tracker; , v8 : Lcom/google/analytics/tracking/android/Tracker;
+	move-object	v1,v9
+; v1 : Ljava/lang/String; , v9 : Ljava/lang/String;
+	move-object	v2,v10
+; v2 : Ljava/lang/String; , v10 : Ljava/lang/String;
+	move-object	v3,v11
+; v3 : Lcom/google/analytics/tracking/android/TrackerHandler; , v11 : Lcom/google/analytics/tracking/android/TrackerHandler;
+	invoke-direct/range	{v0..v7},com/google/analytics/tracking/android/Tracker/<init>;	<init>(Ljava/lang/String;Ljava/lang/String;Lcom/google/analytics/tracking/android/TrackerHandler;Lcom/google/analytics/tracking/android/ClientIdDefaultProvider;Lcom/google/analytics/tracking/android/ScreenResolutionDefaultProvider;Lcom/google/analytics/tracking/android/AppFieldsDefaultProvider;Lcom/google/analytics/tracking/android/RateLimiter;)V
+; v0 : Lcom/google/analytics/tracking/android/Tracker; , v1 : Ljava/lang/String; , v2 : Ljava/lang/String; , v3 : Lcom/google/analytics/tracking/android/TrackerHandler; , v4 : Lcom/google/analytics/tracking/android/ClientIdDefaultProvider; , v5 : Lcom/google/analytics/tracking/android/ScreenResolutionDefaultProvider; , v6 : Lcom/google/analytics/tracking/android/AppFieldsDefaultProvider; , v7 : Lcom/google/analytics/tracking/android/SendHitRateLimiter;
+.line 57
+	return-void	
+.end method
+
+.method <init>(Ljava/lang/String;Ljava/lang/String;Lcom/google/analytics/tracking/android/TrackerHandler;Lcom/google/analytics/tracking/android/ClientIdDefaultProvider;Lcom/google/analytics/tracking/android/ScreenResolutionDefaultProvider;Lcom/google/analytics/tracking/android/AppFieldsDefaultProvider;Lcom/google/analytics/tracking/android/RateLimiter;)V
+.annotation buildVisibility Lcom/google/android/gms/common/util/VisibleForTesting;
+.end annotation
+.limit registers 11
+; this: v3 (Lcom/google/analytics/tracking/android/Tracker;)
+; parameter[0] : v4 (Ljava/lang/String;)
+; parameter[1] : v5 (Ljava/lang/String;)
+; parameter[2] : v6 (Lcom/google/analytics/tracking/android/TrackerHandler;)
+; parameter[3] : v7 (Lcom/google/analytics/tracking/android/ClientIdDefaultProvider;)
+; parameter[4] : v8 (Lcom/google/analytics/tracking/android/ScreenResolutionDefaultProvider;)
+; parameter[5] : v9 (Lcom/google/analytics/tracking/android/AppFieldsDefaultProvider;)
+; parameter[6] : v10 (Lcom/google/analytics/tracking/android/RateLimiter;)
+.line 63
+	invoke-direct	{v3},java/lang/Object/<init>	; <init>()V
+; v3 : Lcom/google/analytics/tracking/android/Tracker;
+.line 45
+	new-instance	v0,java/util/HashMap
+; v0 : Ljava/util/HashMap;
+	invoke-direct	{v0},java/util/HashMap/<init>	; <init>()V
+; v0 : Ljava/util/HashMap;
+	iput-object	v0,v3,com/google/analytics/tracking/android/Tracker.mParams Ljava/util/Map;
+; v0 : Ljava/util/HashMap; , v3 : Lcom/google/analytics/tracking/android/Tracker;
+.line 64
+	invoke-static	{v4},android/text/TextUtils/isEmpty	; isEmpty(Ljava/lang/CharSequence;)Z
+; v4 : Ljava/lang/String;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,la2e2c
+; v0 : single-length
+.line 65
+	new-instance	v0,java/lang/IllegalArgumentException
+; v0 : Ljava/lang/IllegalArgumentException;
+	const-string	v1,"Tracker name cannot be empty."
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/IllegalArgumentException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/IllegalArgumentException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/IllegalArgumentException;
+la2e2c:
+.line 67
+	iput-object	v4,v3,com/google/analytics/tracking/android/Tracker.mName Ljava/lang/String;
+; v4 : Ljava/lang/String; , v3 : Lcom/google/analytics/tracking/android/Tracker;
+.line 68
+	iput-object	v6,v3,com/google/analytics/tracking/android/Tracker.mHandler Lcom/google/analytics/tracking/android/TrackerHandler;
+; v6 : Lcom/google/analytics/tracking/android/TrackerHandler; , v3 : Lcom/google/analytics/tracking/android/Tracker;
+.line 69
+	iget-object	v0,v3,com/google/analytics/tracking/android/Tracker.mParams Ljava/util/Map;
+; v0 : Ljava/util/Map; , v3 : Lcom/google/analytics/tracking/android/Tracker;
+	const-string	v1,"&tid"
+; v1 : Ljava/lang/String;
+	invoke-interface	{v0,v1,v5},java/util/Map/put	; put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+; v0 : Ljava/util/Map; , v1 : Ljava/lang/String; , v5 : Ljava/lang/String;
+.line 72
+	iget-object	v0,v3,com/google/analytics/tracking/android/Tracker.mParams Ljava/util/Map;
+; v0 : Ljava/util/Map; , v3 : Lcom/google/analytics/tracking/android/Tracker;
+	const-string	v1,"useSecure"
+; v1 : Ljava/lang/String;
+	const-string	v2,"1"
+; v2 : Ljava/lang/String;
+	invoke-interface	{v0,v1,v2},java/util/Map/put	; put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+; v0 : Ljava/util/Map; , v1 : Ljava/lang/String; , v2 : Ljava/lang/String;
+.line 74
+	iput-object	v7,v3,com/google/analytics/tracking/android/Tracker.mClientIdDefaultProvider Lcom/google/analytics/tracking/android/ClientIdDefaultProvider;
+; v7 : Lcom/google/analytics/tracking/android/ClientIdDefaultProvider; , v3 : Lcom/google/analytics/tracking/android/Tracker;
+.line 75
+	iput-object	v8,v3,com/google/analytics/tracking/android/Tracker.mScreenResolutionDefaultProvider Lcom/google/analytics/tracking/android/ScreenResolutionDefaultProvider;
+; v8 : Lcom/google/analytics/tracking/android/ScreenResolutionDefaultProvider; , v3 : Lcom/google/analytics/tracking/android/Tracker;
+.line 76
+	iput-object	v9,v3,com/google/analytics/tracking/android/Tracker.mAppFieldsDefaultProvider Lcom/google/analytics/tracking/android/AppFieldsDefaultProvider;
+; v9 : Lcom/google/analytics/tracking/android/AppFieldsDefaultProvider; , v3 : Lcom/google/analytics/tracking/android/Tracker;
+.line 78
+	iput-object	v10,v3,com/google/analytics/tracking/android/Tracker.mRateLimiter Lcom/google/analytics/tracking/android/RateLimiter;
+; v10 : Lcom/google/analytics/tracking/android/RateLimiter; , v3 : Lcom/google/analytics/tracking/android/Tracker;
+.line 79
+	return-void	
+.end method
+
+.method public get(Ljava/lang/String;)Ljava/lang/String;
+.limit registers 5
+; this: v3 (Lcom/google/analytics/tracking/android/Tracker;)
+; parameter[0] : v4 (Ljava/lang/String;)
+	const/4	v0,0
+; v0 : single-length
+.line 136
+	invoke-static	{},com/google/analytics/tracking/android/GAUsage/getInstance	; getInstance()Lcom/google/analytics/tracking/android/GAUsage;
+; 
+	nop	
+	move-result-object	v1
+; v1 : Lcom/google/analytics/tracking/android/GAUsage;
+	sget-object	v2,com/google/analytics/tracking/android/GAUsage$Field.GET Lcom/google/analytics/tracking/android/GAUsage$Field;
+; v2 : Lcom/google/analytics/tracking/android/GAUsage$Field;
+	invoke-virtual	{v1,v2},com/google/analytics/tracking/android/GAUsage/setUsage	; setUsage(Lcom/google/analytics/tracking/android/GAUsage$Field;)V
+; v1 : Lcom/google/analytics/tracking/android/GAUsage; , v2 : Lcom/google/analytics/tracking/android/GAUsage$Field;
+.line 137
+	invoke-static	{v4},android/text/TextUtils/isEmpty	; isEmpty(Ljava/lang/CharSequence;)Z
+; v4 : Ljava/lang/String;
+	move-result	v1
+; v1 : single-length
+	if-eqz	v1,la2e9a
+; v1 : single-length
+la2e98:
+.line 157
+	return-object	v0
+; v0 : Ljava/lang/String;
+la2e9a:
+.line 143
+	iget-object	v1,v3,com/google/analytics/tracking/android/Tracker.mParams Ljava/util/Map;
+; v1 : Ljava/util/Map; , v3 : Lcom/google/analytics/tracking/android/Tracker;
+	invoke-interface	{v1,v4},java/util/Map/containsKey	; containsKey(Ljava/lang/Object;)Z
+; v1 : Ljava/util/Map; , v4 : Ljava/lang/String;
+	move-result	v1
+; v1 : single-length
+	if-eqz	v1,la2ebc
+; v1 : single-length
+.line 144
+	iget-object	v0,v3,com/google/analytics/tracking/android/Tracker.mParams Ljava/util/Map;
+; v0 : Ljava/util/Map; , v3 : Lcom/google/analytics/tracking/android/Tracker;
+	invoke-interface	{v0,v4},java/util/Map/get	; get(Ljava/lang/Object;)Ljava/lang/Object;
+; v0 : Ljava/util/Map; , v4 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,java/lang/String
+; v0 : Ljava/lang/String;
+	goto	la2e98
+la2ebc:
+.line 145
+	const-string	v1,"&ul"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v4,v1},java/lang/String/equals	; equals(Ljava/lang/Object;)Z
+; v4 : Ljava/lang/String; , v1 : Ljava/lang/String;
+	move-result	v1
+; v1 : single-length
+	if-eqz	v1,la2ede
+; v1 : single-length
+.line 146
+	invoke-static	{},java/util/Locale/getDefault	; getDefault()Ljava/util/Locale;
+; 
+	nop	
+	move-result-object	v0
+; v0 : Ljava/util/Locale;
+	invoke-static	{v0},com/google/analytics/tracking/android/Utils/getLanguage	; getLanguage(Ljava/util/Locale;)Ljava/lang/String;
+; v0 : Ljava/util/Locale;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	goto	la2e98
+la2ede:
+.line 147
+	iget-object	v1,v3,com/google/analytics/tracking/android/Tracker.mClientIdDefaultProvider Lcom/google/analytics/tracking/android/ClientIdDefaultProvider;
+; v1 : Lcom/google/analytics/tracking/android/ClientIdDefaultProvider; , v3 : Lcom/google/analytics/tracking/android/Tracker;
+	if-eqz	v1,la2f04
+; v1 : Lcom/google/analytics/tracking/android/ClientIdDefaultProvider;
+	iget-object	v1,v3,com/google/analytics/tracking/android/Tracker.mClientIdDefaultProvider Lcom/google/analytics/tracking/android/ClientIdDefaultProvider;
+; v1 : Lcom/google/analytics/tracking/android/ClientIdDefaultProvider; , v3 : Lcom/google/analytics/tracking/android/Tracker;
+	invoke-virtual	{v1,v4},com/google/analytics/tracking/android/ClientIdDefaultProvider/providesField	; providesField(Ljava/lang/String;)Z
+; v1 : Lcom/google/analytics/tracking/android/ClientIdDefaultProvider; , v4 : Ljava/lang/String;
+	move-result	v1
+; v1 : single-length
+	if-eqz	v1,la2f04
+; v1 : single-length
+.line 149
+	iget-object	v0,v3,com/google/analytics/tracking/android/Tracker.mClientIdDefaultProvider Lcom/google/analytics/tracking/android/ClientIdDefaultProvider;
+; v0 : Lcom/google/analytics/tracking/android/ClientIdDefaultProvider; , v3 : Lcom/google/analytics/tracking/android/Tracker;
+	invoke-virtual	{v0,v4},com/google/analytics/tracking/android/ClientIdDefaultProvider/getValue	; getValue(Ljava/lang/String;)Ljava/lang/String;
+; v0 : Lcom/google/analytics/tracking/android/ClientIdDefaultProvider; , v4 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	goto	la2e98
+la2f04:
+.line 150
+	iget-object	v1,v3,com/google/analytics/tracking/android/Tracker.mScreenResolutionDefaultProvider Lcom/google/analytics/tracking/android/ScreenResolutionDefaultProvider;
+; v1 : Lcom/google/analytics/tracking/android/ScreenResolutionDefaultProvider; , v3 : Lcom/google/analytics/tracking/android/Tracker;
+	if-eqz	v1,la2f2a
+; v1 : Lcom/google/analytics/tracking/android/ScreenResolutionDefaultProvider;
+	iget-object	v1,v3,com/google/analytics/tracking/android/Tracker.mScreenResolutionDefaultProvider Lcom/google/analytics/tracking/android/ScreenResolutionDefaultProvider;
+; v1 : Lcom/google/analytics/tracking/android/ScreenResolutionDefaultProvider; , v3 : Lcom/google/analytics/tracking/android/Tracker;
+	invoke-virtual	{v1,v4},com/google/analytics/tracking/android/ScreenResolutionDefaultProvider/providesField	; providesField(Ljava/lang/String;)Z
+; v1 : Lcom/google/analytics/tracking/android/ScreenResolutionDefaultProvider; , v4 : Ljava/lang/String;
+	move-result	v1
+; v1 : single-length
+	if-eqz	v1,la2f2a
+; v1 : single-length
+.line 152
+	iget-object	v0,v3,com/google/analytics/tracking/android/Tracker.mScreenResolutionDefaultProvider Lcom/google/analytics/tracking/android/ScreenResolutionDefaultProvider;
+; v0 : Lcom/google/analytics/tracking/android/ScreenResolutionDefaultProvider; , v3 : Lcom/google/analytics/tracking/android/Tracker;
+	invoke-virtual	{v0,v4},com/google/analytics/tracking/android/ScreenResolutionDefaultProvider/getValue	; getValue(Ljava/lang/String;)Ljava/lang/String;
+; v0 : Lcom/google/analytics/tracking/android/ScreenResolutionDefaultProvider; , v4 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	goto	la2e98
+la2f2a:
+.line 153
+	iget-object	v1,v3,com/google/analytics/tracking/android/Tracker.mAppFieldsDefaultProvider Lcom/google/analytics/tracking/android/AppFieldsDefaultProvider;
+; v1 : Lcom/google/analytics/tracking/android/AppFieldsDefaultProvider; , v3 : Lcom/google/analytics/tracking/android/Tracker;
+	if-eqz	v1,la2e98
+; v1 : Lcom/google/analytics/tracking/android/AppFieldsDefaultProvider;
+	iget-object	v1,v3,com/google/analytics/tracking/android/Tracker.mAppFieldsDefaultProvider Lcom/google/analytics/tracking/android/AppFieldsDefaultProvider;
+; v1 : Lcom/google/analytics/tracking/android/AppFieldsDefaultProvider; , v3 : Lcom/google/analytics/tracking/android/Tracker;
+	invoke-virtual	{v1,v4},com/google/analytics/tracking/android/AppFieldsDefaultProvider/providesField	; providesField(Ljava/lang/String;)Z
+; v1 : Lcom/google/analytics/tracking/android/AppFieldsDefaultProvider; , v4 : Ljava/lang/String;
+	move-result	v1
+; v1 : single-length
+	if-eqz	v1,la2e98
+; v1 : single-length
+.line 155
+	iget-object	v0,v3,com/google/analytics/tracking/android/Tracker.mAppFieldsDefaultProvider Lcom/google/analytics/tracking/android/AppFieldsDefaultProvider;
+; v0 : Lcom/google/analytics/tracking/android/AppFieldsDefaultProvider; , v3 : Lcom/google/analytics/tracking/android/Tracker;
+	invoke-virtual	{v0,v4},com/google/analytics/tracking/android/AppFieldsDefaultProvider/getValue	; getValue(Ljava/lang/String;)Ljava/lang/String;
+; v0 : Lcom/google/analytics/tracking/android/AppFieldsDefaultProvider; , v4 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	goto	la2e98
+.end method
+
+.method public getName()Ljava/lang/String;
+.limit registers 3
+; this: v2 (Lcom/google/analytics/tracking/android/Tracker;)
+.line 85
+	invoke-static	{},com/google/analytics/tracking/android/GAUsage/getInstance	; getInstance()Lcom/google/analytics/tracking/android/GAUsage;
+; 
+	nop	
+	move-result-object	v0
+; v0 : Lcom/google/analytics/tracking/android/GAUsage;
+	sget-object	v1,com/google/analytics/tracking/android/GAUsage$Field.GET_TRACKER_NAME Lcom/google/analytics/tracking/android/GAUsage$Field;
+; v1 : Lcom/google/analytics/tracking/android/GAUsage$Field;
+	invoke-virtual	{v0,v1},com/google/analytics/tracking/android/GAUsage/setUsage	; setUsage(Lcom/google/analytics/tracking/android/GAUsage$Field;)V
+; v0 : Lcom/google/analytics/tracking/android/GAUsage; , v1 : Lcom/google/analytics/tracking/android/GAUsage$Field;
+.line 86
+	iget-object	v0,v2,com/google/analytics/tracking/android/Tracker.mName Ljava/lang/String;
+; v0 : Ljava/lang/String; , v2 : Lcom/google/analytics/tracking/android/Tracker;
+	return-object	v0
+; v0 : Ljava/lang/String;
+.end method
+
+.method getRateLimiter()Lcom/google/analytics/tracking/android/RateLimiter;
+.annotation buildVisibility Lcom/google/android/gms/common/util/VisibleForTesting;
+.end annotation
+.limit registers 2
+; this: v1 (Lcom/google/analytics/tracking/android/Tracker;)
+.line 91
+	iget-object	v0,v1,com/google/analytics/tracking/android/Tracker.mRateLimiter Lcom/google/analytics/tracking/android/RateLimiter;
+; v0 : Lcom/google/analytics/tracking/android/RateLimiter; , v1 : Lcom/google/analytics/tracking/android/Tracker;
+	return-object	v0
+; v0 : Lcom/google/analytics/tracking/android/RateLimiter;
+.end method
+
+.method public send(Ljava/util/Map;)V
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "(" , "Ljava/util/Map" , "<" , "Ljava/lang/String;" , "Ljava/lang/String;" , ">;)V" }
+.end annotation
+.limit registers 9
+; this: v7 (Lcom/google/analytics/tracking/android/Tracker;)
+; parameter[0] : v8 (Ljava/util/Map;)
+	const/4	v6,1
+; v6 : single-length
+	const/4	v5,0
+; v5 : single-length
+.line 105
+	invoke-static	{},com/google/analytics/tracking/android/GAUsage/getInstance	; getInstance()Lcom/google/analytics/tracking/android/GAUsage;
+; 
+	nop	
+	move-result-object	v2
+; v2 : Lcom/google/analytics/tracking/android/GAUsage;
+	sget-object	v3,com/google/analytics/tracking/android/GAUsage$Field.SEND Lcom/google/analytics/tracking/android/GAUsage$Field;
+; v3 : Lcom/google/analytics/tracking/android/GAUsage$Field;
+	invoke-virtual	{v2,v3},com/google/analytics/tracking/android/GAUsage/setUsage	; setUsage(Lcom/google/analytics/tracking/android/GAUsage$Field;)V
+; v2 : Lcom/google/analytics/tracking/android/GAUsage; , v3 : Lcom/google/analytics/tracking/android/GAUsage$Field;
+.line 106
+	new-instance	v1,java/util/HashMap
+; v1 : Ljava/util/HashMap;
+	invoke-direct	{v1},java/util/HashMap/<init>	; <init>()V
+; v1 : Ljava/util/HashMap;
+.line 107
+	iget-object	v2,v7,com/google/analytics/tracking/android/Tracker.mParams Ljava/util/Map;
+; v2 : Ljava/util/Map; , v7 : Lcom/google/analytics/tracking/android/Tracker;
+	invoke-interface	{v1,v2},java/util/Map/putAll	; putAll(Ljava/util/Map;)V
+; v1 : Ljava/util/HashMap; , v2 : Ljava/util/Map;
+.line 108
+	if-eqz	v8,la2fd4
+; v8 : Ljava/util/Map;
+.line 109
+	invoke-interface	{v1,v8},java/util/Map/putAll	; putAll(Ljava/util/Map;)V
+; v1 : Ljava/util/HashMap; , v8 : Ljava/util/Map;
+la2fd4:
+.line 112
+	const-string	v2,"&tid"
+; v2 : Ljava/lang/String;
+	invoke-interface	{v1,v2},java/util/Map/get	; get(Ljava/lang/Object;)Ljava/lang/Object;
+; v1 : Ljava/util/HashMap; , v2 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/Object;
+	check-cast	v2,java/lang/CharSequence
+; v2 : Ljava/lang/CharSequence;
+	invoke-static	{v2},android/text/TextUtils/isEmpty	; isEmpty(Ljava/lang/CharSequence;)Z
+; v2 : Ljava/lang/CharSequence;
+	move-result	v2
+; v2 : single-length
+	if-eqz	v2,la300e
+; v2 : single-length
+.line 113
+	const-string	v2,"Missing tracking id (%s) parameter."
+; v2 : Ljava/lang/String;
+	new-array	v3,v6,[Ljava/lang/Object;
+; v3 : [Ljava/lang/Object; , v6 : single-length
+	const-string	v4,"&tid"
+; v4 : Ljava/lang/String;
+	aput-object	v4,v3,v5
+; v4 : Ljava/lang/String; , v3 : [Ljava/lang/Object; , v5 : single-length
+	invoke-static	{v2,v3},java/lang/String/format	; format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+; v2 : Ljava/lang/String; , v3 : [Ljava/lang/Object;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-static	{v2},com/google/analytics/tracking/android/Log/w	; w(Ljava/lang/String;)V
+; v2 : Ljava/lang/String;
+la300e:
+.line 116
+	const-string	v2,"&t"
+; v2 : Ljava/lang/String;
+	invoke-interface	{v1,v2},java/util/Map/get	; get(Ljava/lang/Object;)Ljava/lang/Object;
+; v1 : Ljava/util/HashMap; , v2 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,java/lang/String
+; v0 : Ljava/lang/String;
+.line 117
+	invoke-static	{v0},android/text/TextUtils/isEmpty	; isEmpty(Ljava/lang/CharSequence;)Z
+; v0 : Ljava/lang/String;
+	move-result	v2
+; v2 : single-length
+	if-eqz	v2,la304c
+; v2 : single-length
+.line 118
+	const-string	v2,"Missing hit type (%s) parameter."
+; v2 : Ljava/lang/String;
+	new-array	v3,v6,[Ljava/lang/Object;
+; v3 : [Ljava/lang/Object; , v6 : single-length
+	const-string	v4,"&t"
+; v4 : Ljava/lang/String;
+	aput-object	v4,v3,v5
+; v4 : Ljava/lang/String; , v3 : [Ljava/lang/Object; , v5 : single-length
+	invoke-static	{v2,v3},java/lang/String/format	; format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+; v2 : Ljava/lang/String; , v3 : [Ljava/lang/Object;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-static	{v2},com/google/analytics/tracking/android/Log/w	; w(Ljava/lang/String;)V
+; v2 : Ljava/lang/String;
+.line 119
+	const-string	v0,""
+; v0 : Ljava/lang/String;
+la304c:
+.line 123
+	const-string	v2,"transaction"
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v0,v2},java/lang/String/equals	; equals(Ljava/lang/Object;)Z
+; v0 : Ljava/lang/String; , v2 : Ljava/lang/String;
+	move-result	v2
+; v2 : single-length
+	if-nez	v2,la3088
+; v2 : single-length
+	const-string	v2,"item"
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v0,v2},java/lang/String/equals	; equals(Ljava/lang/Object;)Z
+; v0 : Ljava/lang/String; , v2 : Ljava/lang/String;
+	move-result	v2
+; v2 : single-length
+	if-nez	v2,la3088
+; v2 : single-length
+	iget-object	v2,v7,com/google/analytics/tracking/android/Tracker.mRateLimiter Lcom/google/analytics/tracking/android/RateLimiter;
+; v2 : Lcom/google/analytics/tracking/android/RateLimiter; , v7 : Lcom/google/analytics/tracking/android/Tracker;
+	invoke-interface	{v2},com/google/analytics/tracking/android/RateLimiter/tokenAvailable	; tokenAvailable()Z
+; v2 : Lcom/google/analytics/tracking/android/RateLimiter;
+	move-result	v2
+; v2 : single-length
+	if-nez	v2,la3088
+; v2 : single-length
+.line 126
+	const-string	v2,"Too many hits sent too quickly, rate limiting invoked."
+; v2 : Ljava/lang/String;
+	invoke-static	{v2},com/google/analytics/tracking/android/Log/w	; w(Ljava/lang/String;)V
+; v2 : Ljava/lang/String;
+la3086:
+.line 130
+	return-void	
+la3088:
+.line 128
+	iget-object	v2,v7,com/google/analytics/tracking/android/Tracker.mHandler Lcom/google/analytics/tracking/android/TrackerHandler;
+; v2 : Lcom/google/analytics/tracking/android/TrackerHandler; , v7 : Lcom/google/analytics/tracking/android/Tracker;
+	invoke-virtual	{v2,v1},com/google/analytics/tracking/android/TrackerHandler/sendHit	; sendHit(Ljava/util/Map;)V
+; v2 : Lcom/google/analytics/tracking/android/TrackerHandler; , v1 : Ljava/util/HashMap;
+	goto	la3086
+.end method
+
+.method public set(Ljava/lang/String;Ljava/lang/String;)V
+.limit registers 5
+; this: v2 (Lcom/google/analytics/tracking/android/Tracker;)
+; parameter[0] : v3 (Ljava/lang/String;)
+; parameter[1] : v4 (Ljava/lang/String;)
+.line 166
+	invoke-static	{},com/google/analytics/tracking/android/GAUsage/getInstance	; getInstance()Lcom/google/analytics/tracking/android/GAUsage;
+; 
+	nop	
+	move-result-object	v0
+; v0 : Lcom/google/analytics/tracking/android/GAUsage;
+	sget-object	v1,com/google/analytics/tracking/android/GAUsage$Field.SET Lcom/google/analytics/tracking/android/GAUsage$Field;
+; v1 : Lcom/google/analytics/tracking/android/GAUsage$Field;
+	invoke-virtual	{v0,v1},com/google/analytics/tracking/android/GAUsage/setUsage	; setUsage(Lcom/google/analytics/tracking/android/GAUsage$Field;)V
+; v0 : Lcom/google/analytics/tracking/android/GAUsage; , v1 : Lcom/google/analytics/tracking/android/GAUsage$Field;
+.line 167
+	if-nez	v4,la30c6
+; v4 : Ljava/lang/String;
+.line 168
+	iget-object	v0,v2,com/google/analytics/tracking/android/Tracker.mParams Ljava/util/Map;
+; v0 : Ljava/util/Map; , v2 : Lcom/google/analytics/tracking/android/Tracker;
+	invoke-interface	{v0,v3},java/util/Map/remove	; remove(Ljava/lang/Object;)Ljava/lang/Object;
+; v0 : Ljava/util/Map; , v3 : Ljava/lang/String;
+la30c4:
+.line 172
+	return-void	
+la30c6:
+.line 170
+	iget-object	v0,v2,com/google/analytics/tracking/android/Tracker.mParams Ljava/util/Map;
+; v0 : Ljava/util/Map; , v2 : Lcom/google/analytics/tracking/android/Tracker;
+	invoke-interface	{v0,v3,v4},java/util/Map/put	; put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+; v0 : Ljava/util/Map; , v3 : Ljava/lang/String; , v4 : Ljava/lang/String;
+	goto	la30c4
+.end method
+
+

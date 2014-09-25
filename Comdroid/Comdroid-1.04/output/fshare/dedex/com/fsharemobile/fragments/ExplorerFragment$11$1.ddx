@@ -1,0 +1,158 @@
+.class com/fsharemobile/fragments/ExplorerFragment$11$1
+.super java/lang/Object
+.source ExplorerFragment.java
+.implements java/lang/Runnable
+
+.enclosing method com/run()V
+.field final this$1 Lcom/fsharemobile/fragments/ExplorerFragment$11;
+.field private final val$name Ljava/lang/String;
+
+.method <init>(Lcom/fsharemobile/fragments/ExplorerFragment$11;Ljava/lang/String;)V
+.limit registers 3
+; this: v0 (Lcom/fsharemobile/fragments/ExplorerFragment$11$1;)
+; parameter[0] : v1 (Lcom/fsharemobile/fragments/ExplorerFragment$11;)
+; parameter[1] : v2 (Ljava/lang/String;)
+.line 1
+	iput-object	v1,v0,com/fsharemobile/fragments/ExplorerFragment$11$1.this$1 Lcom/fsharemobile/fragments/ExplorerFragment$11;
+; v1 : Lcom/fsharemobile/fragments/ExplorerFragment$11; , v0 : Lcom/fsharemobile/fragments/ExplorerFragment$11$1;
+	iput-object	v2,v0,com/fsharemobile/fragments/ExplorerFragment$11$1.val$name Ljava/lang/String;
+; v2 : Ljava/lang/String; , v0 : Lcom/fsharemobile/fragments/ExplorerFragment$11$1;
+.line 1549
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Lcom/fsharemobile/fragments/ExplorerFragment$11$1;
+	return-void	
+.end method
+
+.method public run()V
+.limit registers 5
+; this: v4 (Lcom/fsharemobile/fragments/ExplorerFragment$11$1;)
+.line 1553
+	iget-object	v0,v4,com/fsharemobile/fragments/ExplorerFragment$11$1.this$1 Lcom/fsharemobile/fragments/ExplorerFragment$11;
+; v0 : Lcom/fsharemobile/fragments/ExplorerFragment$11; , v4 : Lcom/fsharemobile/fragments/ExplorerFragment$11$1;
+	invoke-static	{v0},com/fsharemobile/fragments/ExplorerFragment$11/access$0	; access$0(Lcom/fsharemobile/fragments/ExplorerFragment$11;)Lcom/fsharemobile/fragments/ExplorerFragment;
+; v0 : Lcom/fsharemobile/fragments/ExplorerFragment$11;
+	move-result-object	v0
+; v0 : Lcom/fsharemobile/fragments/ExplorerFragment;
+	iget-object	v0,v0,com/fsharemobile/fragments/ExplorerFragment.dialogDownload Landroid/app/Dialog;
+; v0 : Landroid/app/Dialog; , v0 : Landroid/app/Dialog;
+	new-instance	v1,java/lang/StringBuilder
+; v1 : Ljava/lang/StringBuilder;
+	iget-object	v2,v4,com/fsharemobile/fragments/ExplorerFragment$11$1.this$1 Lcom/fsharemobile/fragments/ExplorerFragment$11;
+; v2 : Lcom/fsharemobile/fragments/ExplorerFragment$11; , v4 : Lcom/fsharemobile/fragments/ExplorerFragment$11$1;
+	invoke-static	{v2},com/fsharemobile/fragments/ExplorerFragment$11/access$0	; access$0(Lcom/fsharemobile/fragments/ExplorerFragment$11;)Lcom/fsharemobile/fragments/ExplorerFragment;
+; v2 : Lcom/fsharemobile/fragments/ExplorerFragment$11;
+	move-result-object	v2
+; v2 : Lcom/fsharemobile/fragments/ExplorerFragment;
+	invoke-virtual	{v2},com/fsharemobile/fragments/ExplorerFragment/getActivity	; getActivity()Landroid/support/v4/app/FragmentActivity;
+; v2 : Lcom/fsharemobile/fragments/ExplorerFragment;
+	move-result-object	v2
+; v2 : Landroid/support/v4/app/FragmentActivity;
+	invoke-virtual	{v2},android/support/v4/app/FragmentActivity/getResources	; getResources()Landroid/content/res/Resources;
+; v2 : Landroid/support/v4/app/FragmentActivity;
+	move-result-object	v2
+; v2 : Landroid/content/res/Resources;
+.line 1554
+	const	v3,2131230793	; 0x7f080049
+; v3 : single-length
+	invoke-virtual	{v2,v3},android/content/res/Resources/getString	; getString(I)Ljava/lang/String;
+; v2 : Landroid/content/res/Resources; , v3 : single-length
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-static	{v2},java/lang/String/valueOf	; valueOf(Ljava/lang/Object;)Ljava/lang/String;
+; v2 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-direct	{v1,v2},java/lang/StringBuilder/<init>	; <init>(Ljava/lang/String;)V
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	const-string	v2,"..."
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v1},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v1 : Ljava/lang/StringBuilder;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+.line 1553
+	invoke-virtual	{v0,v1},android/app/Dialog/setTitle	; setTitle(Ljava/lang/CharSequence;)V
+; v0 : Landroid/app/Dialog; , v1 : Ljava/lang/String;
+.line 1555
+	iget-object	v0,v4,com/fsharemobile/fragments/ExplorerFragment$11$1.this$1 Lcom/fsharemobile/fragments/ExplorerFragment$11;
+; v0 : Lcom/fsharemobile/fragments/ExplorerFragment$11; , v4 : Lcom/fsharemobile/fragments/ExplorerFragment$11$1;
+	invoke-static	{v0},com/fsharemobile/fragments/ExplorerFragment$11/access$0	; access$0(Lcom/fsharemobile/fragments/ExplorerFragment$11;)Lcom/fsharemobile/fragments/ExplorerFragment;
+; v0 : Lcom/fsharemobile/fragments/ExplorerFragment$11;
+	move-result-object	v0
+; v0 : Lcom/fsharemobile/fragments/ExplorerFragment;
+	iget-object	v0,v0,com/fsharemobile/fragments/ExplorerFragment.dialogDownload Landroid/app/Dialog;
+; v0 : Landroid/app/Dialog; , v0 : Landroid/app/Dialog;
+	invoke-virtual	{v0},android/app/Dialog/show	; show()V
+; v0 : Landroid/app/Dialog;
+.line 1556
+	iget-object	v0,v4,com/fsharemobile/fragments/ExplorerFragment$11$1.this$1 Lcom/fsharemobile/fragments/ExplorerFragment$11;
+; v0 : Lcom/fsharemobile/fragments/ExplorerFragment$11; , v4 : Lcom/fsharemobile/fragments/ExplorerFragment$11$1;
+	invoke-static	{v0},com/fsharemobile/fragments/ExplorerFragment$11/access$0	; access$0(Lcom/fsharemobile/fragments/ExplorerFragment$11;)Lcom/fsharemobile/fragments/ExplorerFragment;
+; v0 : Lcom/fsharemobile/fragments/ExplorerFragment$11;
+	move-result-object	v0
+; v0 : Lcom/fsharemobile/fragments/ExplorerFragment;
+	iget-object	v0,v0,com/fsharemobile/fragments/ExplorerFragment.txtDownloadProgressFileName Landroid/widget/TextView;
+; v0 : Landroid/widget/TextView; , v0 : Landroid/widget/TextView;
+	new-instance	v1,java/lang/StringBuilder
+; v1 : Ljava/lang/StringBuilder;
+	const-string	v2,"'"
+; v2 : Ljava/lang/String;
+	invoke-direct	{v1,v2},java/lang/StringBuilder/<init>	; <init>(Ljava/lang/String;)V
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+.line 1557
+	iget-object	v2,v4,com/fsharemobile/fragments/ExplorerFragment$11$1.val$name Ljava/lang/String;
+; v2 : Ljava/lang/String; , v4 : Lcom/fsharemobile/fragments/ExplorerFragment$11$1;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+.line 1558
+	const-string	v2,"' "
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+.line 1559
+	iget-object	v2,v4,com/fsharemobile/fragments/ExplorerFragment$11$1.this$1 Lcom/fsharemobile/fragments/ExplorerFragment$11;
+; v2 : Lcom/fsharemobile/fragments/ExplorerFragment$11; , v4 : Lcom/fsharemobile/fragments/ExplorerFragment$11$1;
+	invoke-static	{v2},com/fsharemobile/fragments/ExplorerFragment$11/access$0	; access$0(Lcom/fsharemobile/fragments/ExplorerFragment$11;)Lcom/fsharemobile/fragments/ExplorerFragment;
+; v2 : Lcom/fsharemobile/fragments/ExplorerFragment$11;
+	move-result-object	v2
+; v2 : Lcom/fsharemobile/fragments/ExplorerFragment;
+	invoke-virtual	{v2},com/fsharemobile/fragments/ExplorerFragment/getActivity	; getActivity()Landroid/support/v4/app/FragmentActivity;
+; v2 : Lcom/fsharemobile/fragments/ExplorerFragment;
+	move-result-object	v2
+; v2 : Landroid/support/v4/app/FragmentActivity;
+	invoke-virtual	{v2},android/support/v4/app/FragmentActivity/getResources	; getResources()Landroid/content/res/Resources;
+; v2 : Landroid/support/v4/app/FragmentActivity;
+	move-result-object	v2
+; v2 : Landroid/content/res/Resources;
+.line 1560
+	const	v3,2131230869	; 0x7f080095
+; v3 : single-length
+.line 1559
+	invoke-virtual	{v2,v3},android/content/res/Resources/getString	; getString(I)Ljava/lang/String;
+; v2 : Landroid/content/res/Resources; , v3 : single-length
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v1},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v1 : Ljava/lang/StringBuilder;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+.line 1556
+	invoke-virtual	{v0,v1},android/widget/TextView/setText	; setText(Ljava/lang/CharSequence;)V
+; v0 : Landroid/widget/TextView; , v1 : Ljava/lang/String;
+.line 1561
+	return-void	
+.end method
+
+

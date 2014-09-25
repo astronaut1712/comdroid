@@ -1,0 +1,299 @@
+.class public a/b
+.super a/f
+.source MyApplication
+
+.field private static final b [C
+
+.method static <clinit>()V
+.limit registers 1
+.line 65
+	const/16	v0,64
+; v0 : single-length
+	new-array	v0,v0,[C
+; v0 : [C , v0 : [C
+	fill-array-data	v0,l33b7c
+; v0 : [C
+.line 64
+	sput-object	v0,a/b.b [C
+; v0 : [C
+.line 45
+	return-void	
+.line 65
+l33b7c:	data-array
+		0x41, 0x00	; #0
+		0x42, 0x00	; #1
+		0x43, 0x00	; #2
+		0x44, 0x00	; #3
+		0x45, 0x00	; #4
+		0x46, 0x00	; #5
+		0x47, 0x00	; #6
+		0x48, 0x00	; #7
+		0x49, 0x00	; #8
+		0x4A, 0x00	; #9
+		0x4B, 0x00	; #10
+		0x4C, 0x00	; #11
+		0x4D, 0x00	; #12
+		0x4E, 0x00	; #13
+		0x4F, 0x00	; #14
+		0x50, 0x00	; #15
+		0x51, 0x00	; #16
+		0x52, 0x00	; #17
+		0x53, 0x00	; #18
+		0x54, 0x00	; #19
+		0x55, 0x00	; #20
+		0x56, 0x00	; #21
+		0x57, 0x00	; #22
+		0x58, 0x00	; #23
+		0x59, 0x00	; #24
+		0x5A, 0x00	; #25
+		0x61, 0x00	; #26
+		0x62, 0x00	; #27
+		0x63, 0x00	; #28
+		0x64, 0x00	; #29
+		0x65, 0x00	; #30
+		0x66, 0x00	; #31
+		0x67, 0x00	; #32
+		0x68, 0x00	; #33
+		0x69, 0x00	; #34
+		0x6A, 0x00	; #35
+		0x6B, 0x00	; #36
+		0x6C, 0x00	; #37
+		0x6D, 0x00	; #38
+		0x6E, 0x00	; #39
+		0x6F, 0x00	; #40
+		0x70, 0x00	; #41
+		0x71, 0x00	; #42
+		0x72, 0x00	; #43
+		0x73, 0x00	; #44
+		0x74, 0x00	; #45
+		0x75, 0x00	; #46
+		0x76, 0x00	; #47
+		0x77, 0x00	; #48
+		0x78, 0x00	; #49
+		0x79, 0x00	; #50
+		0x7A, 0x00	; #51
+		0x30, 0x00	; #52
+		0x31, 0x00	; #53
+		0x32, 0x00	; #54
+		0x33, 0x00	; #55
+		0x34, 0x00	; #56
+		0x35, 0x00	; #57
+		0x36, 0x00	; #58
+		0x37, 0x00	; #59
+		0x38, 0x00	; #60
+		0x39, 0x00	; #61
+		0x2B, 0x00	; #62
+		0x2F, 0x00	; #63
+	end data-array
+.end method
+
+.method public <init>()V
+.limit registers 1
+; this: v0 (La/b;)
+.line 45
+	invoke-direct	{v0},a/f/<init>	; <init>()V
+; v0 : La/b;
+	return-void	
+.end method
+
+.method protected a()I
+.limit registers 2
+; this: v1 (La/b;)
+.line 51
+	const/4	v0,3
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method protected a(Ljava/io/OutputStream;[BII)V
+.limit registers 10
+; this: v5 (La/b;)
+; parameter[0] : v6 (Ljava/io/OutputStream;)
+; parameter[1] : v7 ([B)
+; parameter[2] : v8 (I)
+; parameter[3] : v9 (I)
+	const/16	v4,61
+; v4 : single-length
+.line 86
+	const/4	v0,1
+; v0 : single-length
+	if-ne	v9,v0,l33c8c
+; v9 : single-length , v0 : single-length
+.line 88
+	aget-byte	v0,v7,v8
+; v0 : single-length , v7 : [B , v8 : single-length
+.line 91
+	sget-object	v1,a/b.b [C
+; v1 : [C
+	ushr-int/lit8	v2,v0,2
+; v2 : single-length , v0 : single-length
+	and-int/lit8	v2,v2,63
+; v2 : single-length , v2 : single-length
+	aget-char	v1,v1,v2
+; v1 : single-length , v1 : single-length , v2 : single-length
+	invoke-virtual	{v6,v1},java/io/OutputStream/write	; write(I)V
+; v6 : Ljava/io/OutputStream; , v1 : single-length
+.line 92
+	sget-object	v1,a/b.b [C
+; v1 : [C
+	shl-int/lit8	v0,v0,4
+; v0 : single-length , v0 : single-length
+	and-int/lit8	v0,v0,48
+; v0 : single-length , v0 : single-length
+	add-int/lit8	v0,v0,0
+; v0 : single-length , v0 : single-length
+	aget-char	v0,v1,v0
+; v0 : single-length , v1 : [C , v0 : single-length
+	invoke-virtual	{v6,v0},java/io/OutputStream/write	; write(I)V
+; v6 : Ljava/io/OutputStream; , v0 : single-length
+.line 93
+	invoke-virtual	{v6,v4},java/io/OutputStream/write	; write(I)V
+; v6 : Ljava/io/OutputStream; , v4 : single-length
+.line 94
+	invoke-virtual	{v6,v4},java/io/OutputStream/write	; write(I)V
+; v6 : Ljava/io/OutputStream; , v4 : single-length
+l33c8a:
+.line 114
+	return-void	
+l33c8c:
+.line 95
+	const/4	v0,2
+; v0 : single-length
+	if-ne	v9,v0,l33cf6
+; v9 : single-length , v0 : single-length
+.line 97
+	aget-byte	v0,v7,v8
+; v0 : single-length , v7 : [B , v8 : single-length
+.line 98
+	add-int/lit8	v1,v8,1
+; v1 : single-length , v8 : single-length
+	aget-byte	v1,v7,v1
+; v1 : single-length , v7 : [B , v1 : single-length
+.line 100
+	sget-object	v2,a/b.b [C
+; v2 : [C
+	ushr-int/lit8	v3,v0,2
+; v3 : single-length , v0 : single-length
+	and-int/lit8	v3,v3,63
+; v3 : single-length , v3 : single-length
+	aget-char	v2,v2,v3
+; v2 : single-length , v2 : single-length , v3 : single-length
+	invoke-virtual	{v6,v2},java/io/OutputStream/write	; write(I)V
+; v6 : Ljava/io/OutputStream; , v2 : single-length
+.line 101
+	sget-object	v2,a/b.b [C
+; v2 : [C
+	shl-int/lit8	v0,v0,4
+; v0 : single-length , v0 : single-length
+	and-int/lit8	v0,v0,48
+; v0 : single-length , v0 : single-length
+	ushr-int/lit8	v3,v1,4
+; v3 : single-length , v1 : single-length
+	and-int/lit8	v3,v3,15
+; v3 : single-length , v3 : single-length
+	add-int/2addr	v0,v3
+; v0 : single-length , v3 : single-length
+	aget-char	v0,v2,v0
+; v0 : single-length , v2 : [C , v0 : single-length
+	invoke-virtual	{v6,v0},java/io/OutputStream/write	; write(I)V
+; v6 : Ljava/io/OutputStream; , v0 : single-length
+.line 102
+	sget-object	v0,a/b.b [C
+; v0 : [C
+	shl-int/lit8	v1,v1,2
+; v1 : single-length , v1 : single-length
+	and-int/lit8	v1,v1,60
+; v1 : single-length , v1 : single-length
+	add-int/lit8	v1,v1,0
+; v1 : single-length , v1 : single-length
+	aget-char	v0,v0,v1
+; v0 : single-length , v0 : single-length , v1 : single-length
+	invoke-virtual	{v6,v0},java/io/OutputStream/write	; write(I)V
+; v6 : Ljava/io/OutputStream; , v0 : single-length
+.line 103
+	invoke-virtual	{v6,v4},java/io/OutputStream/write	; write(I)V
+; v6 : Ljava/io/OutputStream; , v4 : single-length
+	goto	l33c8a
+l33cf6:
+.line 106
+	aget-byte	v0,v7,v8
+; v0 : single-length , v7 : [B , v8 : single-length
+.line 107
+	add-int/lit8	v1,v8,1
+; v1 : single-length , v8 : single-length
+	aget-byte	v1,v7,v1
+; v1 : single-length , v7 : [B , v1 : single-length
+.line 108
+	add-int/lit8	v2,v8,2
+; v2 : single-length , v8 : single-length
+	aget-byte	v2,v7,v2
+; v2 : single-length , v7 : [B , v2 : single-length
+.line 109
+	sget-object	v3,a/b.b [C
+; v3 : [C
+	ushr-int/lit8	v4,v0,2
+; v4 : single-length , v0 : single-length
+	and-int/lit8	v4,v4,63
+; v4 : single-length , v4 : single-length
+	aget-char	v3,v3,v4
+; v3 : single-length , v3 : single-length , v4 : single-length
+	invoke-virtual	{v6,v3},java/io/OutputStream/write	; write(I)V
+; v6 : Ljava/io/OutputStream; , v3 : single-length
+.line 110
+	sget-object	v3,a/b.b [C
+; v3 : [C
+	shl-int/lit8	v0,v0,4
+; v0 : single-length , v0 : single-length
+	and-int/lit8	v0,v0,48
+; v0 : single-length , v0 : single-length
+	ushr-int/lit8	v4,v1,4
+; v4 : single-length , v1 : single-length
+	and-int/lit8	v4,v4,15
+; v4 : single-length , v4 : single-length
+	add-int/2addr	v0,v4
+; v0 : single-length , v4 : single-length
+	aget-char	v0,v3,v0
+; v0 : single-length , v3 : [C , v0 : single-length
+	invoke-virtual	{v6,v0},java/io/OutputStream/write	; write(I)V
+; v6 : Ljava/io/OutputStream; , v0 : single-length
+.line 111
+	sget-object	v0,a/b.b [C
+; v0 : [C
+	shl-int/lit8	v1,v1,2
+; v1 : single-length , v1 : single-length
+	and-int/lit8	v1,v1,60
+; v1 : single-length , v1 : single-length
+	ushr-int/lit8	v3,v2,6
+; v3 : single-length , v2 : single-length
+	and-int/lit8	v3,v3,3
+; v3 : single-length , v3 : single-length
+	add-int/2addr	v1,v3
+; v1 : single-length , v3 : single-length
+	aget-char	v0,v0,v1
+; v0 : single-length , v0 : single-length , v1 : single-length
+	invoke-virtual	{v6,v0},java/io/OutputStream/write	; write(I)V
+; v6 : Ljava/io/OutputStream; , v0 : single-length
+.line 112
+	sget-object	v0,a/b.b [C
+; v0 : [C
+	and-int/lit8	v1,v2,63
+; v1 : single-length , v2 : single-length
+	aget-char	v0,v0,v1
+; v0 : single-length , v0 : single-length , v1 : single-length
+	invoke-virtual	{v6,v0},java/io/OutputStream/write	; write(I)V
+; v6 : Ljava/io/OutputStream; , v0 : single-length
+	goto	l33c8a
+.end method
+
+.method protected b()I
+.limit registers 2
+; this: v1 (La/b;)
+.line 60
+	const/16	v0,57
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+

@@ -1,0 +1,216 @@
+.class final com/google/tagmanager/Log
+.super java/lang/Object
+.source Log.java
+
+.field static sLogger Lcom/google/tagmanager/Logger;
+  .annotation buildVisibility Lcom/google/android/gms/common/util/VisibleForTesting;
+  .end annotation
+.end field
+
+.method static <clinit>()V
+.limit registers 1
+.line 12
+	new-instance	v0,com/google/tagmanager/DefaultLogger
+; v0 : Lcom/google/tagmanager/DefaultLogger;
+	invoke-direct	{v0},com/google/tagmanager/DefaultLogger/<init>	; <init>()V
+; v0 : Lcom/google/tagmanager/DefaultLogger;
+	sput-object	v0,com/google/tagmanager/Log.sLogger Lcom/google/tagmanager/Logger;
+; v0 : Lcom/google/tagmanager/Logger;
+	return-void	
+.end method
+
+.method <init>()V
+.limit registers 1
+; this: v0 (Lcom/google/tagmanager/Log;)
+.line 10
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Lcom/google/tagmanager/Log;
+	return-void	
+.end method
+
+.method public static d(Ljava/lang/String;)V
+.limit registers 2
+; parameter[0] : v1 (Ljava/lang/String;)
+.line 51
+	sget-object	v0,com/google/tagmanager/Log.sLogger Lcom/google/tagmanager/Logger;
+; v0 : Lcom/google/tagmanager/Logger;
+	invoke-interface	{v0,v1},com/google/tagmanager/Logger/d	; d(Ljava/lang/String;)V
+; v0 : Lcom/google/tagmanager/Logger; , v1 : Ljava/lang/String;
+.line 52
+	return-void	
+.end method
+
+.method public static d(Ljava/lang/String;Ljava/lang/Throwable;)V
+.limit registers 3
+; parameter[0] : v1 (Ljava/lang/String;)
+; parameter[1] : v2 (Ljava/lang/Throwable;)
+.line 55
+	sget-object	v0,com/google/tagmanager/Log.sLogger Lcom/google/tagmanager/Logger;
+; v0 : Lcom/google/tagmanager/Logger;
+	invoke-interface	{v0,v1,v2},com/google/tagmanager/Logger/d	; d(Ljava/lang/String;Ljava/lang/Throwable;)V
+; v0 : Lcom/google/tagmanager/Logger; , v1 : Ljava/lang/String; , v2 : Ljava/lang/Throwable;
+.line 56
+	return-void	
+.end method
+
+.method public static e(Ljava/lang/String;)V
+.limit registers 2
+; parameter[0] : v1 (Ljava/lang/String;)
+.line 27
+	sget-object	v0,com/google/tagmanager/Log.sLogger Lcom/google/tagmanager/Logger;
+; v0 : Lcom/google/tagmanager/Logger;
+	invoke-interface	{v0,v1},com/google/tagmanager/Logger/e	; e(Ljava/lang/String;)V
+; v0 : Lcom/google/tagmanager/Logger; , v1 : Ljava/lang/String;
+.line 28
+	return-void	
+.end method
+
+.method public static e(Ljava/lang/String;Ljava/lang/Throwable;)V
+.limit registers 3
+; parameter[0] : v1 (Ljava/lang/String;)
+; parameter[1] : v2 (Ljava/lang/Throwable;)
+.line 31
+	sget-object	v0,com/google/tagmanager/Log.sLogger Lcom/google/tagmanager/Logger;
+; v0 : Lcom/google/tagmanager/Logger;
+	invoke-interface	{v0,v1,v2},com/google/tagmanager/Logger/e	; e(Ljava/lang/String;Ljava/lang/Throwable;)V
+; v0 : Lcom/google/tagmanager/Logger; , v1 : Ljava/lang/String; , v2 : Ljava/lang/Throwable;
+.line 32
+	return-void	
+.end method
+
+.method public static getLogLevel()Lcom/google/tagmanager/Logger$LogLevel;
+.limit registers 1
+.line 67
+	sget-object	v0,com/google/tagmanager/Log.sLogger Lcom/google/tagmanager/Logger;
+; v0 : Lcom/google/tagmanager/Logger;
+	invoke-interface	{v0},com/google/tagmanager/Logger/getLogLevel	; getLogLevel()Lcom/google/tagmanager/Logger$LogLevel;
+; v0 : Lcom/google/tagmanager/Logger;
+	move-result-object	v0
+; v0 : Lcom/google/tagmanager/Logger$LogLevel;
+	return-object	v0
+; v0 : Lcom/google/tagmanager/Logger$LogLevel;
+.end method
+
+.method public static getLogger()Lcom/google/tagmanager/Logger;
+.limit registers 2
+.line 23
+	sget-object	v0,com/google/tagmanager/Log.sLogger Lcom/google/tagmanager/Logger;
+; v0 : Lcom/google/tagmanager/Logger;
+	invoke-virtual	{v0},java/lang/Object/getClass	; getClass()Ljava/lang/Class;
+; v0 : Lcom/google/tagmanager/Logger;
+	move-result-object	v0
+; v0 : Ljava/lang/Class;
+	const-class	v1,com/google/tagmanager/NoOpLogger
+; v1 : Ljava/lang/Class;
+	if-ne	v0,v1,la7a1c
+; v0 : Ljava/lang/Class; , v1 : Ljava/lang/Class;
+	const/4	v0,0
+; v0 : single-length
+la7a1a:
+	return-object	v0
+; v0 : Lcom/google/tagmanager/Logger;
+la7a1c:
+	sget-object	v0,com/google/tagmanager/Log.sLogger Lcom/google/tagmanager/Logger;
+; v0 : Lcom/google/tagmanager/Logger;
+	goto	la7a1a
+.end method
+
+.method public static i(Ljava/lang/String;)V
+.limit registers 2
+; parameter[0] : v1 (Ljava/lang/String;)
+.line 43
+	sget-object	v0,com/google/tagmanager/Log.sLogger Lcom/google/tagmanager/Logger;
+; v0 : Lcom/google/tagmanager/Logger;
+	invoke-interface	{v0,v1},com/google/tagmanager/Logger/i	; i(Ljava/lang/String;)V
+; v0 : Lcom/google/tagmanager/Logger; , v1 : Ljava/lang/String;
+.line 44
+	return-void	
+.end method
+
+.method public static i(Ljava/lang/String;Ljava/lang/Throwable;)V
+.limit registers 3
+; parameter[0] : v1 (Ljava/lang/String;)
+; parameter[1] : v2 (Ljava/lang/Throwable;)
+.line 47
+	sget-object	v0,com/google/tagmanager/Log.sLogger Lcom/google/tagmanager/Logger;
+; v0 : Lcom/google/tagmanager/Logger;
+	invoke-interface	{v0,v1,v2},com/google/tagmanager/Logger/i	; i(Ljava/lang/String;Ljava/lang/Throwable;)V
+; v0 : Lcom/google/tagmanager/Logger; , v1 : Ljava/lang/String; , v2 : Ljava/lang/Throwable;
+.line 48
+	return-void	
+.end method
+
+.method public static setLogger(Lcom/google/tagmanager/Logger;)V
+.limit registers 2
+; parameter[0] : v1 (Lcom/google/tagmanager/Logger;)
+.line 15
+	if-nez	v1,la7a80
+; v1 : Lcom/google/tagmanager/Logger;
+.line 16
+	new-instance	v0,com/google/tagmanager/NoOpLogger
+; v0 : Lcom/google/tagmanager/NoOpLogger;
+	invoke-direct	{v0},com/google/tagmanager/NoOpLogger/<init>	; <init>()V
+; v0 : Lcom/google/tagmanager/NoOpLogger;
+	sput-object	v0,com/google/tagmanager/Log.sLogger Lcom/google/tagmanager/Logger;
+; v0 : Lcom/google/tagmanager/Logger;
+la7a7e:
+.line 20
+	return-void	
+la7a80:
+.line 18
+	sput-object	v1,com/google/tagmanager/Log.sLogger Lcom/google/tagmanager/Logger;
+; v1 : Lcom/google/tagmanager/Logger;
+	goto	la7a7e
+.end method
+
+.method public static v(Ljava/lang/String;)V
+.limit registers 2
+; parameter[0] : v1 (Ljava/lang/String;)
+.line 59
+	sget-object	v0,com/google/tagmanager/Log.sLogger Lcom/google/tagmanager/Logger;
+; v0 : Lcom/google/tagmanager/Logger;
+	invoke-interface	{v0,v1},com/google/tagmanager/Logger/v	; v(Ljava/lang/String;)V
+; v0 : Lcom/google/tagmanager/Logger; , v1 : Ljava/lang/String;
+.line 60
+	return-void	
+.end method
+
+.method public static v(Ljava/lang/String;Ljava/lang/Throwable;)V
+.limit registers 3
+; parameter[0] : v1 (Ljava/lang/String;)
+; parameter[1] : v2 (Ljava/lang/Throwable;)
+.line 63
+	sget-object	v0,com/google/tagmanager/Log.sLogger Lcom/google/tagmanager/Logger;
+; v0 : Lcom/google/tagmanager/Logger;
+	invoke-interface	{v0,v1,v2},com/google/tagmanager/Logger/v	; v(Ljava/lang/String;Ljava/lang/Throwable;)V
+; v0 : Lcom/google/tagmanager/Logger; , v1 : Ljava/lang/String; , v2 : Ljava/lang/Throwable;
+.line 64
+	return-void	
+.end method
+
+.method public static w(Ljava/lang/String;)V
+.limit registers 2
+; parameter[0] : v1 (Ljava/lang/String;)
+.line 35
+	sget-object	v0,com/google/tagmanager/Log.sLogger Lcom/google/tagmanager/Logger;
+; v0 : Lcom/google/tagmanager/Logger;
+	invoke-interface	{v0,v1},com/google/tagmanager/Logger/w	; w(Ljava/lang/String;)V
+; v0 : Lcom/google/tagmanager/Logger; , v1 : Ljava/lang/String;
+.line 36
+	return-void	
+.end method
+
+.method public static w(Ljava/lang/String;Ljava/lang/Throwable;)V
+.limit registers 3
+; parameter[0] : v1 (Ljava/lang/String;)
+; parameter[1] : v2 (Ljava/lang/Throwable;)
+.line 39
+	sget-object	v0,com/google/tagmanager/Log.sLogger Lcom/google/tagmanager/Logger;
+; v0 : Lcom/google/tagmanager/Logger;
+	invoke-interface	{v0,v1,v2},com/google/tagmanager/Logger/w	; w(Ljava/lang/String;Ljava/lang/Throwable;)V
+; v0 : Lcom/google/tagmanager/Logger; , v1 : Ljava/lang/String; , v2 : Ljava/lang/Throwable;
+.line 40
+	return-void	
+.end method
+
+

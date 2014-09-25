@@ -1,0 +1,233 @@
+.class com/fsharemobile/customview/TouchImageView$ScaleListener
+.super android/view/ScaleGestureDetector$SimpleOnScaleGestureListener
+.source TouchImageView.java
+
+.inner class ScaleListener inner com/fsharemobile/customview/TouchImageView$ScaleListener outer com/fsharemobile/customview/TouchImageView
+.field final this$0 Lcom/fsharemobile/customview/TouchImageView;
+
+.method private <init>(Lcom/fsharemobile/customview/TouchImageView;)V
+.limit registers 2
+; this: v0 (Lcom/fsharemobile/customview/TouchImageView$ScaleListener;)
+; parameter[0] : v1 (Lcom/fsharemobile/customview/TouchImageView;)
+.line 113
+	iput-object	v1,v0,com/fsharemobile/customview/TouchImageView$ScaleListener.this$0 Lcom/fsharemobile/customview/TouchImageView;
+; v1 : Lcom/fsharemobile/customview/TouchImageView; , v0 : Lcom/fsharemobile/customview/TouchImageView$ScaleListener;
+	invoke-direct	{v0},android/view/ScaleGestureDetector$SimpleOnScaleGestureListener/<init>	; <init>()V
+; v0 : Lcom/fsharemobile/customview/TouchImageView$ScaleListener;
+	return-void	
+.end method
+
+.method <init>(Lcom/fsharemobile/customview/TouchImageView;Lcom/fsharemobile/customview/TouchImageView$ScaleListener;)V
+.limit registers 3
+; this: v0 (Lcom/fsharemobile/customview/TouchImageView$ScaleListener;)
+; parameter[0] : v1 (Lcom/fsharemobile/customview/TouchImageView;)
+; parameter[1] : v2 (Lcom/fsharemobile/customview/TouchImageView$ScaleListener;)
+.line 113
+	invoke-direct	{v0,v1},com/fsharemobile/customview/TouchImageView$ScaleListener/<init>	; <init>(Lcom/fsharemobile/customview/TouchImageView;)V
+; v0 : Lcom/fsharemobile/customview/TouchImageView$ScaleListener; , v1 : Lcom/fsharemobile/customview/TouchImageView;
+	return-void	
+.end method
+
+.method public onScale(Landroid/view/ScaleGestureDetector;)Z
+.limit registers 7
+; this: v5 (Lcom/fsharemobile/customview/TouchImageView$ScaleListener;)
+; parameter[0] : v6 (Landroid/view/ScaleGestureDetector;)
+.line 123
+	invoke-virtual	{v6},android/view/ScaleGestureDetector/getScaleFactor	; getScaleFactor()F
+; v6 : Landroid/view/ScaleGestureDetector;
+	move-result	v0
+; v0 : single-length
+.line 124
+	iget-object	v2,v5,com/fsharemobile/customview/TouchImageView$ScaleListener.this$0 Lcom/fsharemobile/customview/TouchImageView;
+; v2 : Lcom/fsharemobile/customview/TouchImageView; , v5 : Lcom/fsharemobile/customview/TouchImageView$ScaleListener;
+	iget	v1,v2,com/fsharemobile/customview/TouchImageView.saveScale F
+; v1 : single-length , v2 : Lcom/fsharemobile/customview/TouchImageView;
+.line 125
+	iget-object	v2,v5,com/fsharemobile/customview/TouchImageView$ScaleListener.this$0 Lcom/fsharemobile/customview/TouchImageView;
+; v2 : Lcom/fsharemobile/customview/TouchImageView; , v5 : Lcom/fsharemobile/customview/TouchImageView$ScaleListener;
+	iget	v3,v2,com/fsharemobile/customview/TouchImageView.saveScale F
+; v3 : single-length , v2 : Lcom/fsharemobile/customview/TouchImageView;
+	mul-float/2addr	v3,v0
+; v3 : single-length , v0 : single-length
+	iput	v3,v2,com/fsharemobile/customview/TouchImageView.saveScale F
+; v3 : single-length , v2 : Lcom/fsharemobile/customview/TouchImageView;
+.line 126
+	iget-object	v2,v5,com/fsharemobile/customview/TouchImageView$ScaleListener.this$0 Lcom/fsharemobile/customview/TouchImageView;
+; v2 : Lcom/fsharemobile/customview/TouchImageView; , v5 : Lcom/fsharemobile/customview/TouchImageView$ScaleListener;
+	iget	v2,v2,com/fsharemobile/customview/TouchImageView.saveScale F
+; v2 : single-length , v2 : single-length
+	iget-object	v3,v5,com/fsharemobile/customview/TouchImageView$ScaleListener.this$0 Lcom/fsharemobile/customview/TouchImageView;
+; v3 : Lcom/fsharemobile/customview/TouchImageView; , v5 : Lcom/fsharemobile/customview/TouchImageView$ScaleListener;
+	iget	v3,v3,com/fsharemobile/customview/TouchImageView.maxScale F
+; v3 : single-length , v3 : single-length
+	cmpl-float	v2,v2,v3
+; v2 : single-length , v2 : single-length , v3 : single-length
+	if-lez	v2,l97816
+; v2 : single-length
+.line 127
+	iget-object	v2,v5,com/fsharemobile/customview/TouchImageView$ScaleListener.this$0 Lcom/fsharemobile/customview/TouchImageView;
+; v2 : Lcom/fsharemobile/customview/TouchImageView; , v5 : Lcom/fsharemobile/customview/TouchImageView$ScaleListener;
+	iget-object	v3,v5,com/fsharemobile/customview/TouchImageView$ScaleListener.this$0 Lcom/fsharemobile/customview/TouchImageView;
+; v3 : Lcom/fsharemobile/customview/TouchImageView; , v5 : Lcom/fsharemobile/customview/TouchImageView$ScaleListener;
+	iget	v3,v3,com/fsharemobile/customview/TouchImageView.maxScale F
+; v3 : single-length , v3 : single-length
+	iput	v3,v2,com/fsharemobile/customview/TouchImageView.saveScale F
+; v3 : single-length , v2 : Lcom/fsharemobile/customview/TouchImageView;
+.line 128
+	iget-object	v2,v5,com/fsharemobile/customview/TouchImageView$ScaleListener.this$0 Lcom/fsharemobile/customview/TouchImageView;
+; v2 : Lcom/fsharemobile/customview/TouchImageView; , v5 : Lcom/fsharemobile/customview/TouchImageView$ScaleListener;
+	iget	v2,v2,com/fsharemobile/customview/TouchImageView.maxScale F
+; v2 : single-length , v2 : single-length
+	div-float	v0,v2,v1
+; v0 : single-length , v2 : single-length , v1 : single-length
+l97796:
+.line 134
+	iget-object	v2,v5,com/fsharemobile/customview/TouchImageView$ScaleListener.this$0 Lcom/fsharemobile/customview/TouchImageView;
+; v2 : Lcom/fsharemobile/customview/TouchImageView; , v5 : Lcom/fsharemobile/customview/TouchImageView$ScaleListener;
+	iget	v2,v2,com/fsharemobile/customview/TouchImageView.origWidth F
+; v2 : single-length , v2 : single-length
+	iget-object	v3,v5,com/fsharemobile/customview/TouchImageView$ScaleListener.this$0 Lcom/fsharemobile/customview/TouchImageView;
+; v3 : Lcom/fsharemobile/customview/TouchImageView; , v5 : Lcom/fsharemobile/customview/TouchImageView$ScaleListener;
+	iget	v3,v3,com/fsharemobile/customview/TouchImageView.saveScale F
+; v3 : single-length , v3 : single-length
+	mul-float/2addr	v2,v3
+; v2 : single-length , v3 : single-length
+	iget-object	v3,v5,com/fsharemobile/customview/TouchImageView$ScaleListener.this$0 Lcom/fsharemobile/customview/TouchImageView;
+; v3 : Lcom/fsharemobile/customview/TouchImageView; , v5 : Lcom/fsharemobile/customview/TouchImageView$ScaleListener;
+	iget	v3,v3,com/fsharemobile/customview/TouchImageView.viewWidth I
+; v3 : single-length , v3 : single-length
+	int-to-float	v3,v3
+; v3 : single-length , v3 : single-length
+	cmpg-float	v2,v2,v3
+; v2 : single-length , v2 : single-length , v3 : single-length
+	if-lez	v2,l977de
+; v2 : single-length
+.line 135
+	iget-object	v2,v5,com/fsharemobile/customview/TouchImageView$ScaleListener.this$0 Lcom/fsharemobile/customview/TouchImageView;
+; v2 : Lcom/fsharemobile/customview/TouchImageView; , v5 : Lcom/fsharemobile/customview/TouchImageView$ScaleListener;
+	iget	v2,v2,com/fsharemobile/customview/TouchImageView.origHeight F
+; v2 : single-length , v2 : single-length
+	iget-object	v3,v5,com/fsharemobile/customview/TouchImageView$ScaleListener.this$0 Lcom/fsharemobile/customview/TouchImageView;
+; v3 : Lcom/fsharemobile/customview/TouchImageView; , v5 : Lcom/fsharemobile/customview/TouchImageView$ScaleListener;
+	iget	v3,v3,com/fsharemobile/customview/TouchImageView.saveScale F
+; v3 : single-length , v3 : single-length
+	mul-float/2addr	v2,v3
+; v2 : single-length , v3 : single-length
+	iget-object	v3,v5,com/fsharemobile/customview/TouchImageView$ScaleListener.this$0 Lcom/fsharemobile/customview/TouchImageView;
+; v3 : Lcom/fsharemobile/customview/TouchImageView; , v5 : Lcom/fsharemobile/customview/TouchImageView$ScaleListener;
+	iget	v3,v3,com/fsharemobile/customview/TouchImageView.viewHeight I
+; v3 : single-length , v3 : single-length
+	int-to-float	v3,v3
+; v3 : single-length , v3 : single-length
+	cmpg-float	v2,v2,v3
+; v2 : single-length , v2 : single-length , v3 : single-length
+	if-gtz	v2,l9784c
+; v2 : single-length
+l977de:
+.line 136
+	iget-object	v2,v5,com/fsharemobile/customview/TouchImageView$ScaleListener.this$0 Lcom/fsharemobile/customview/TouchImageView;
+; v2 : Lcom/fsharemobile/customview/TouchImageView; , v5 : Lcom/fsharemobile/customview/TouchImageView$ScaleListener;
+	iget-object	v2,v2,com/fsharemobile/customview/TouchImageView.matrix Landroid/graphics/Matrix;
+; v2 : Landroid/graphics/Matrix; , v2 : Landroid/graphics/Matrix;
+	iget-object	v3,v5,com/fsharemobile/customview/TouchImageView$ScaleListener.this$0 Lcom/fsharemobile/customview/TouchImageView;
+; v3 : Lcom/fsharemobile/customview/TouchImageView; , v5 : Lcom/fsharemobile/customview/TouchImageView$ScaleListener;
+	iget	v3,v3,com/fsharemobile/customview/TouchImageView.viewWidth I
+; v3 : single-length , v3 : single-length
+	div-int/lit8	v3,v3,2
+; v3 : single-length , v3 : single-length
+	int-to-float	v3,v3
+; v3 : single-length , v3 : single-length
+.line 137
+	iget-object	v4,v5,com/fsharemobile/customview/TouchImageView$ScaleListener.this$0 Lcom/fsharemobile/customview/TouchImageView;
+; v4 : Lcom/fsharemobile/customview/TouchImageView; , v5 : Lcom/fsharemobile/customview/TouchImageView$ScaleListener;
+	iget	v4,v4,com/fsharemobile/customview/TouchImageView.viewHeight I
+; v4 : single-length , v4 : single-length
+	div-int/lit8	v4,v4,2
+; v4 : single-length , v4 : single-length
+	int-to-float	v4,v4
+; v4 : single-length , v4 : single-length
+.line 136
+	invoke-virtual	{v2,v0,v0,v3,v4},android/graphics/Matrix/postScale	; postScale(FFFF)Z
+; v2 : Landroid/graphics/Matrix; , v0 : single-length , v0 : single-length , v3 : single-length , v4 : single-length
+l97808:
+.line 142
+	iget-object	v2,v5,com/fsharemobile/customview/TouchImageView$ScaleListener.this$0 Lcom/fsharemobile/customview/TouchImageView;
+; v2 : Lcom/fsharemobile/customview/TouchImageView; , v5 : Lcom/fsharemobile/customview/TouchImageView$ScaleListener;
+	invoke-virtual	{v2},com/fsharemobile/customview/TouchImageView/fixTrans	; fixTrans()V
+; v2 : Lcom/fsharemobile/customview/TouchImageView;
+.line 143
+	const/4	v2,1
+; v2 : single-length
+	return	v2
+; v2 : single-length
+l97816:
+.line 129
+	iget-object	v2,v5,com/fsharemobile/customview/TouchImageView$ScaleListener.this$0 Lcom/fsharemobile/customview/TouchImageView;
+; v2 : Lcom/fsharemobile/customview/TouchImageView; , v5 : Lcom/fsharemobile/customview/TouchImageView$ScaleListener;
+	iget	v2,v2,com/fsharemobile/customview/TouchImageView.saveScale F
+; v2 : single-length , v2 : single-length
+	iget-object	v3,v5,com/fsharemobile/customview/TouchImageView$ScaleListener.this$0 Lcom/fsharemobile/customview/TouchImageView;
+; v3 : Lcom/fsharemobile/customview/TouchImageView; , v5 : Lcom/fsharemobile/customview/TouchImageView$ScaleListener;
+	iget	v3,v3,com/fsharemobile/customview/TouchImageView.minScale F
+; v3 : single-length , v3 : single-length
+	cmpg-float	v2,v2,v3
+; v2 : single-length , v2 : single-length , v3 : single-length
+	if-gez	v2,l97796
+; v2 : single-length
+.line 130
+	iget-object	v2,v5,com/fsharemobile/customview/TouchImageView$ScaleListener.this$0 Lcom/fsharemobile/customview/TouchImageView;
+; v2 : Lcom/fsharemobile/customview/TouchImageView; , v5 : Lcom/fsharemobile/customview/TouchImageView$ScaleListener;
+	iget-object	v3,v5,com/fsharemobile/customview/TouchImageView$ScaleListener.this$0 Lcom/fsharemobile/customview/TouchImageView;
+; v3 : Lcom/fsharemobile/customview/TouchImageView; , v5 : Lcom/fsharemobile/customview/TouchImageView$ScaleListener;
+	iget	v3,v3,com/fsharemobile/customview/TouchImageView.minScale F
+; v3 : single-length , v3 : single-length
+	iput	v3,v2,com/fsharemobile/customview/TouchImageView.saveScale F
+; v3 : single-length , v2 : Lcom/fsharemobile/customview/TouchImageView;
+.line 131
+	iget-object	v2,v5,com/fsharemobile/customview/TouchImageView$ScaleListener.this$0 Lcom/fsharemobile/customview/TouchImageView;
+; v2 : Lcom/fsharemobile/customview/TouchImageView; , v5 : Lcom/fsharemobile/customview/TouchImageView$ScaleListener;
+	iget	v2,v2,com/fsharemobile/customview/TouchImageView.minScale F
+; v2 : single-length , v2 : single-length
+	div-float	v0,v2,v1
+; v0 : single-length , v2 : single-length , v1 : single-length
+	goto	l97796
+l9784c:
+.line 139
+	iget-object	v2,v5,com/fsharemobile/customview/TouchImageView$ScaleListener.this$0 Lcom/fsharemobile/customview/TouchImageView;
+; v2 : Lcom/fsharemobile/customview/TouchImageView; , v5 : Lcom/fsharemobile/customview/TouchImageView$ScaleListener;
+	iget-object	v2,v2,com/fsharemobile/customview/TouchImageView.matrix Landroid/graphics/Matrix;
+; v2 : Landroid/graphics/Matrix; , v2 : Landroid/graphics/Matrix;
+.line 140
+	invoke-virtual	{v6},android/view/ScaleGestureDetector/getFocusX	; getFocusX()F
+; v6 : Landroid/view/ScaleGestureDetector;
+	move-result	v3
+; v3 : single-length
+	invoke-virtual	{v6},android/view/ScaleGestureDetector/getFocusY	; getFocusY()F
+; v6 : Landroid/view/ScaleGestureDetector;
+	move-result	v4
+; v4 : single-length
+.line 139
+	invoke-virtual	{v2,v0,v0,v3,v4},android/graphics/Matrix/postScale	; postScale(FFFF)Z
+; v2 : Landroid/graphics/Matrix; , v0 : single-length , v0 : single-length , v3 : single-length , v4 : single-length
+	goto	l97808
+.end method
+
+.method public onScaleBegin(Landroid/view/ScaleGestureDetector;)Z
+.limit registers 4
+; this: v2 (Lcom/fsharemobile/customview/TouchImageView$ScaleListener;)
+; parameter[0] : v3 (Landroid/view/ScaleGestureDetector;)
+.line 117
+	iget-object	v0,v2,com/fsharemobile/customview/TouchImageView$ScaleListener.this$0 Lcom/fsharemobile/customview/TouchImageView;
+; v0 : Lcom/fsharemobile/customview/TouchImageView; , v2 : Lcom/fsharemobile/customview/TouchImageView$ScaleListener;
+	const/4	v1,2
+; v1 : single-length
+	iput	v1,v0,com/fsharemobile/customview/TouchImageView.mode I
+; v1 : single-length , v0 : Lcom/fsharemobile/customview/TouchImageView;
+.line 118
+	const/4	v0,1
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+

@@ -1,0 +1,781 @@
+.class public final com/squareup/okhttp/internal/http/RouteSelector
+.super java/lang/Object
+.source RouteSelector.java
+
+.field private static final TLS_MODE_COMPATIBLE I = 0	; 0x0
+.field private static final TLS_MODE_MODERN I = 1	; 0x1
+.field private static final TLS_MODE_NULL I = -1	; 0xffffffff
+.field private final address Lcom/squareup/okhttp/Address;
+.field private final dns Lcom/squareup/okhttp/internal/Dns;
+.field private hasNextProxy Z
+.field private lastInetSocketAddress Ljava/net/InetSocketAddress;
+.field private lastProxy Ljava/net/Proxy;
+.field private nextSocketAddressIndex I
+.field private nextTlsMode I
+.field private final pool Lcom/squareup/okhttp/ConnectionPool;
+.field private final postponedRoutes Ljava/util/List;
+  .annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "Ljava/util/List" , "<" , "Lcom/squareup/okhttp/Route;" , ">;" }
+  .end annotation
+.end field
+.field private final proxySelector Ljava/net/ProxySelector;
+.field private proxySelectorProxies Ljava/util/Iterator;
+  .annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "Ljava/util/Iterator" , "<" , "Ljava/net/Proxy;" , ">;" }
+  .end annotation
+.end field
+.field private final routeDatabase Lcom/squareup/okhttp/RouteDatabase;
+.field private socketAddresses [Ljava/net/InetAddress;
+.field private socketPort I
+.field private final uri Ljava/net/URI;
+.field private userSpecifiedProxy Ljava/net/Proxy;
+
+.method public <init>(Lcom/squareup/okhttp/Address;Ljava/net/URI;Ljava/net/ProxySelector;Lcom/squareup/okhttp/ConnectionPool;Lcom/squareup/okhttp/internal/Dns;Lcom/squareup/okhttp/RouteDatabase;)V
+.limit registers 8
+; this: v1 (Lcom/squareup/okhttp/internal/http/RouteSelector;)
+; parameter[0] : v2 (Lcom/squareup/okhttp/Address;)
+; parameter[1] : v3 (Ljava/net/URI;)
+; parameter[2] : v4 (Ljava/net/ProxySelector;)
+; parameter[3] : v5 (Lcom/squareup/okhttp/ConnectionPool;)
+; parameter[4] : v6 (Lcom/squareup/okhttp/internal/Dns;)
+; parameter[5] : v7 (Lcom/squareup/okhttp/RouteDatabase;)
+.line 80
+	invoke-direct	{v1},java/lang/Object/<init>	; <init>()V
+; v1 : Lcom/squareup/okhttp/internal/http/RouteSelector;
+.line 74
+	const/4	v0,15
+; v0 : single-length
+	iput	v0,v1,com/squareup/okhttp/internal/http/RouteSelector.nextTlsMode I
+; v0 : single-length , v1 : Lcom/squareup/okhttp/internal/http/RouteSelector;
+.line 81
+	iput-object	v2,v1,com/squareup/okhttp/internal/http/RouteSelector.address Lcom/squareup/okhttp/Address;
+; v2 : Lcom/squareup/okhttp/Address; , v1 : Lcom/squareup/okhttp/internal/http/RouteSelector;
+.line 82
+	iput-object	v3,v1,com/squareup/okhttp/internal/http/RouteSelector.uri Ljava/net/URI;
+; v3 : Ljava/net/URI; , v1 : Lcom/squareup/okhttp/internal/http/RouteSelector;
+.line 83
+	iput-object	v4,v1,com/squareup/okhttp/internal/http/RouteSelector.proxySelector Ljava/net/ProxySelector;
+; v4 : Ljava/net/ProxySelector; , v1 : Lcom/squareup/okhttp/internal/http/RouteSelector;
+.line 84
+	iput-object	v5,v1,com/squareup/okhttp/internal/http/RouteSelector.pool Lcom/squareup/okhttp/ConnectionPool;
+; v5 : Lcom/squareup/okhttp/ConnectionPool; , v1 : Lcom/squareup/okhttp/internal/http/RouteSelector;
+.line 85
+	iput-object	v6,v1,com/squareup/okhttp/internal/http/RouteSelector.dns Lcom/squareup/okhttp/internal/Dns;
+; v6 : Lcom/squareup/okhttp/internal/Dns; , v1 : Lcom/squareup/okhttp/internal/http/RouteSelector;
+.line 86
+	iput-object	v7,v1,com/squareup/okhttp/internal/http/RouteSelector.routeDatabase Lcom/squareup/okhttp/RouteDatabase;
+; v7 : Lcom/squareup/okhttp/RouteDatabase; , v1 : Lcom/squareup/okhttp/internal/http/RouteSelector;
+.line 87
+	new-instance	v0,java/util/LinkedList
+; v0 : Ljava/util/LinkedList;
+	invoke-direct	{v0},java/util/LinkedList/<init>	; <init>()V
+; v0 : Ljava/util/LinkedList;
+	iput-object	v0,v1,com/squareup/okhttp/internal/http/RouteSelector.postponedRoutes Ljava/util/List;
+; v0 : Ljava/util/LinkedList; , v1 : Lcom/squareup/okhttp/internal/http/RouteSelector;
+.line 89
+	invoke-virtual	{v2},com/squareup/okhttp/Address/getProxy	; getProxy()Ljava/net/Proxy;
+; v2 : Lcom/squareup/okhttp/Address;
+	move-result-object	v0
+; v0 : Ljava/net/Proxy;
+	invoke-direct	{v1,v3,v0},com/squareup/okhttp/internal/http/RouteSelector/resetNextProxy	; resetNextProxy(Ljava/net/URI;Ljava/net/Proxy;)V
+; v1 : Lcom/squareup/okhttp/internal/http/RouteSelector; , v3 : Ljava/net/URI; , v0 : Ljava/net/Proxy;
+.line 90
+	return-void	
+.end method
+
+.method private hasNextInetSocketAddress()Z
+.limit registers 2
+; this: v1 (Lcom/squareup/okhttp/internal/http/RouteSelector;)
+.line 222
+	iget-object	v0,v1,com/squareup/okhttp/internal/http/RouteSelector.socketAddresses [Ljava/net/InetAddress;
+; v0 : [Ljava/net/InetAddress; , v1 : Lcom/squareup/okhttp/internal/http/RouteSelector;
+	if-eqz	v0,lbd57c
+; v0 : [Ljava/net/InetAddress;
+	const/4	v0,1
+; v0 : single-length
+lbd57a:
+	return	v0
+; v0 : single-length
+lbd57c:
+	const/4	v0,0
+; v0 : single-length
+	goto	lbd57a
+.end method
+
+.method private hasNextPostponed()Z
+.limit registers 2
+; this: v1 (Lcom/squareup/okhttp/internal/http/RouteSelector;)
+.line 262
+	iget-object	v0,v1,com/squareup/okhttp/internal/http/RouteSelector.postponedRoutes Ljava/util/List;
+; v0 : Ljava/util/List; , v1 : Lcom/squareup/okhttp/internal/http/RouteSelector;
+	invoke-interface	{v0},java/util/List/isEmpty	; isEmpty()Z
+; v0 : Ljava/util/List;
+	move-result	v0
+; v0 : single-length
+	if-nez	v0,lbd5a4
+; v0 : single-length
+	const/4	v0,1
+; v0 : single-length
+lbd5a2:
+	return	v0
+; v0 : single-length
+lbd5a4:
+	const/4	v0,0
+; v0 : single-length
+	goto	lbd5a2
+.end method
+
+.method private hasNextProxy()Z
+.limit registers 2
+; this: v1 (Lcom/squareup/okhttp/internal/http/RouteSelector;)
+.line 169
+	iget-boolean	v0,v1,com/squareup/okhttp/internal/http/RouteSelector.hasNextProxy Z
+; v0 : single-length , v1 : Lcom/squareup/okhttp/internal/http/RouteSelector;
+	return	v0
+; v0 : single-length
+.end method
+
+.method private hasNextTlsMode()Z
+.limit registers 3
+; this: v2 (Lcom/squareup/okhttp/internal/http/RouteSelector;)
+.line 244
+	iget	v0,v2,com/squareup/okhttp/internal/http/RouteSelector.nextTlsMode I
+; v0 : single-length , v2 : Lcom/squareup/okhttp/internal/http/RouteSelector;
+	const/4	v1,15
+; v1 : single-length
+	if-eq	v0,v1,lbd5de
+; v0 : single-length , v1 : single-length
+	const/4	v0,1
+; v0 : single-length
+lbd5dc:
+	return	v0
+; v0 : single-length
+lbd5de:
+	const/4	v0,0
+; v0 : single-length
+	goto	lbd5dc
+.end method
+
+.method private nextInetSocketAddress()Ljava/net/InetSocketAddress;
+.throws Ljava/net/UnknownHostException;
+.limit registers 5
+; this: v4 (Lcom/squareup/okhttp/internal/http/RouteSelector;)
+.line 227
+	new-instance	v0,java/net/InetSocketAddress
+; v0 : Ljava/net/InetSocketAddress;
+	iget-object	v1,v4,com/squareup/okhttp/internal/http/RouteSelector.socketAddresses [Ljava/net/InetAddress;
+; v1 : [Ljava/net/InetAddress; , v4 : Lcom/squareup/okhttp/internal/http/RouteSelector;
+	iget	v2,v4,com/squareup/okhttp/internal/http/RouteSelector.nextSocketAddressIndex I
+; v2 : single-length , v4 : Lcom/squareup/okhttp/internal/http/RouteSelector;
+	add-int/lit8	v3,v2,1
+; v3 : single-length , v2 : single-length
+	iput	v3,v4,com/squareup/okhttp/internal/http/RouteSelector.nextSocketAddressIndex I
+; v3 : single-length , v4 : Lcom/squareup/okhttp/internal/http/RouteSelector;
+	aget-object	v1,v1,v2
+; v1 : Ljava/net/InetAddress; , v1 : Ljava/net/InetAddress; , v2 : single-length
+	iget	v2,v4,com/squareup/okhttp/internal/http/RouteSelector.socketPort I
+; v2 : single-length , v4 : Lcom/squareup/okhttp/internal/http/RouteSelector;
+	invoke-direct	{v0,v1,v2},java/net/InetSocketAddress/<init>	; <init>(Ljava/net/InetAddress;I)V
+; v0 : Ljava/net/InetSocketAddress; , v1 : Ljava/net/InetAddress; , v2 : single-length
+.line 229
+	iget	v1,v4,com/squareup/okhttp/internal/http/RouteSelector.nextSocketAddressIndex I
+; v1 : single-length , v4 : Lcom/squareup/okhttp/internal/http/RouteSelector;
+	iget-object	v2,v4,com/squareup/okhttp/internal/http/RouteSelector.socketAddresses [Ljava/net/InetAddress;
+; v2 : [Ljava/net/InetAddress; , v4 : Lcom/squareup/okhttp/internal/http/RouteSelector;
+	array-length	v2,v2
+; v2 : single-length , v2 : single-length
+	if-ne	v1,v2,lbd630
+; v1 : single-length , v2 : single-length
+.line 230
+	const/4	v1,0
+; v1 : single-length
+	iput-object	v1,v4,com/squareup/okhttp/internal/http/RouteSelector.socketAddresses [Ljava/net/InetAddress;
+; v1 : single-length , v4 : Lcom/squareup/okhttp/internal/http/RouteSelector;
+.line 231
+	const/4	v1,0
+; v1 : single-length
+	iput	v1,v4,com/squareup/okhttp/internal/http/RouteSelector.nextSocketAddressIndex I
+; v1 : single-length , v4 : Lcom/squareup/okhttp/internal/http/RouteSelector;
+lbd630:
+.line 234
+	return-object	v0
+; v0 : Ljava/net/InetSocketAddress;
+.end method
+
+.method private nextPostponed()Lcom/squareup/okhttp/Route;
+.limit registers 3
+; this: v2 (Lcom/squareup/okhttp/internal/http/RouteSelector;)
+.line 267
+	iget-object	v0,v2,com/squareup/okhttp/internal/http/RouteSelector.postponedRoutes Ljava/util/List;
+; v0 : Ljava/util/List; , v2 : Lcom/squareup/okhttp/internal/http/RouteSelector;
+	const/4	v1,0
+; v1 : single-length
+	invoke-interface	{v0,v1},java/util/List/remove	; remove(I)Ljava/lang/Object;
+; v0 : Ljava/util/List; , v1 : single-length
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,com/squareup/okhttp/Route
+; v0 : Lcom/squareup/okhttp/Route;
+	return-object	v0
+; v0 : Lcom/squareup/okhttp/Route;
+.end method
+
+.method private nextProxy()Ljava/net/Proxy;
+.limit registers 5
+; this: v4 (Lcom/squareup/okhttp/internal/http/RouteSelector;)
+.var 0 is candidate Ljava/net/Proxy; from lbd6a4 to lbd6b6
+	const/4	v3,0
+; v3 : single-length
+.line 175
+	iget-object	v1,v4,com/squareup/okhttp/internal/http/RouteSelector.userSpecifiedProxy Ljava/net/Proxy;
+; v1 : Ljava/net/Proxy; , v4 : Lcom/squareup/okhttp/internal/http/RouteSelector;
+	if-eqz	v1,lbd67c
+; v1 : Ljava/net/Proxy;
+.line 176
+	iput-boolean	v3,v4,com/squareup/okhttp/internal/http/RouteSelector.hasNextProxy Z
+; v3 : single-length , v4 : Lcom/squareup/okhttp/internal/http/RouteSelector;
+.line 177
+	iget-object	v0,v4,com/squareup/okhttp/internal/http/RouteSelector.userSpecifiedProxy Ljava/net/Proxy;
+; v0 : Ljava/net/Proxy; , v4 : Lcom/squareup/okhttp/internal/http/RouteSelector;
+lbd67a:
+.line 193
+	return-object	v0
+; v0 : Ljava/net/Proxy;
+lbd67c:
+.line 182
+	iget-object	v1,v4,com/squareup/okhttp/internal/http/RouteSelector.proxySelectorProxies Ljava/util/Iterator;
+; v1 : Ljava/util/Iterator; , v4 : Lcom/squareup/okhttp/internal/http/RouteSelector;
+	if-eqz	v1,lbd6b6
+; v1 : Ljava/util/Iterator;
+lbd684:
+.line 183
+	iget-object	v1,v4,com/squareup/okhttp/internal/http/RouteSelector.proxySelectorProxies Ljava/util/Iterator;
+; v1 : Ljava/util/Iterator; , v4 : Lcom/squareup/okhttp/internal/http/RouteSelector;
+	invoke-interface	{v1},java/util/Iterator/hasNext	; hasNext()Z
+; v1 : Ljava/util/Iterator;
+	move-result	v1
+; v1 : single-length
+	if-eqz	v1,lbd6b6
+; v1 : single-length
+.line 184
+	iget-object	v1,v4,com/squareup/okhttp/internal/http/RouteSelector.proxySelectorProxies Ljava/util/Iterator;
+; v1 : Ljava/util/Iterator; , v4 : Lcom/squareup/okhttp/internal/http/RouteSelector;
+	invoke-interface	{v1},java/util/Iterator/next	; next()Ljava/lang/Object;
+; v1 : Ljava/util/Iterator;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,java/net/Proxy
+; v0 : Ljava/net/Proxy;
+.line 185
+	invoke-virtual	{v0},java/net/Proxy/type	; type()Ljava/net/Proxy$Type;
+; v0 : Ljava/net/Proxy;
+	move-result-object	v1
+; v1 : Ljava/net/Proxy$Type;
+	sget-object	v2,java/net/Proxy$Type.DIRECT Ljava/net/Proxy$Type;
+; v2 : Ljava/net/Proxy$Type;
+	if-eq	v1,v2,lbd684
+; v1 : Ljava/net/Proxy$Type; , v2 : Ljava/net/Proxy$Type;
+	goto	lbd67a
+lbd6b6:
+.line 192
+	iput-boolean	v3,v4,com/squareup/okhttp/internal/http/RouteSelector.hasNextProxy Z
+; v3 : single-length , v4 : Lcom/squareup/okhttp/internal/http/RouteSelector;
+.line 193
+	sget-object	v0,java/net/Proxy.NO_PROXY Ljava/net/Proxy;
+; v0 : Ljava/net/Proxy;
+	goto	lbd67a
+.end method
+
+.method private nextTlsMode()I
+.limit registers 4
+; this: v3 (Lcom/squareup/okhttp/internal/http/RouteSelector;)
+	const/4	v0,1
+; v0 : single-length
+	const/4	v1,0
+; v1 : single-length
+.line 249
+	iget	v2,v3,com/squareup/okhttp/internal/http/RouteSelector.nextTlsMode I
+; v2 : single-length , v3 : Lcom/squareup/okhttp/internal/http/RouteSelector;
+	if-ne	v2,v0,lbd6e2
+; v2 : single-length , v0 : single-length
+.line 250
+	iput	v1,v3,com/squareup/okhttp/internal/http/RouteSelector.nextTlsMode I
+; v1 : single-length , v3 : Lcom/squareup/okhttp/internal/http/RouteSelector;
+lbd6e0:
+.line 254
+	return	v0
+; v0 : single-length
+lbd6e2:
+.line 252
+	iget	v0,v3,com/squareup/okhttp/internal/http/RouteSelector.nextTlsMode I
+; v0 : single-length , v3 : Lcom/squareup/okhttp/internal/http/RouteSelector;
+	if-nez	v0,lbd6f4
+; v0 : single-length
+.line 253
+	const/4	v0,15
+; v0 : single-length
+	iput	v0,v3,com/squareup/okhttp/internal/http/RouteSelector.nextTlsMode I
+; v0 : single-length , v3 : Lcom/squareup/okhttp/internal/http/RouteSelector;
+	move	v0,v1
+; v0 : single-length , v1 : single-length
+.line 254
+	goto	lbd6e0
+lbd6f4:
+.line 256
+	new-instance	v0,java/lang/AssertionError
+; v0 : Ljava/lang/AssertionError;
+	invoke-direct	{v0},java/lang/AssertionError/<init>	; <init>()V
+; v0 : Ljava/lang/AssertionError;
+	throw	v0
+; v0 : Ljava/lang/AssertionError;
+.end method
+
+.method private resetNextInetSocketAddress(Ljava/net/Proxy;)V
+.throws Ljava/net/UnknownHostException;
+.limit registers 8
+; this: v6 (Lcom/squareup/okhttp/internal/http/RouteSelector;)
+; parameter[0] : v7 (Ljava/net/Proxy;)
+.var 2 is socketHost Ljava/lang/String; from lbd732 to lbd75a
+.line 198
+	const/4	v3,0
+; v3 : single-length
+	iput-object	v3,v6,com/squareup/okhttp/internal/http/RouteSelector.socketAddresses [Ljava/net/InetAddress;
+; v3 : single-length , v6 : Lcom/squareup/okhttp/internal/http/RouteSelector;
+.line 201
+	invoke-virtual	{v7},java/net/Proxy/type	; type()Ljava/net/Proxy$Type;
+; v7 : Ljava/net/Proxy;
+	move-result-object	v3
+; v3 : Ljava/net/Proxy$Type;
+	sget-object	v4,java/net/Proxy$Type.DIRECT Ljava/net/Proxy$Type;
+; v4 : Ljava/net/Proxy$Type;
+	if-ne	v3,v4,lbd75a
+; v3 : Ljava/net/Proxy$Type; , v4 : Ljava/net/Proxy$Type;
+.line 202
+	iget-object	v3,v6,com/squareup/okhttp/internal/http/RouteSelector.uri Ljava/net/URI;
+; v3 : Ljava/net/URI; , v6 : Lcom/squareup/okhttp/internal/http/RouteSelector;
+	invoke-virtual	{v3},java/net/URI/getHost	; getHost()Ljava/lang/String;
+; v3 : Ljava/net/URI;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+.line 203
+	iget-object	v3,v6,com/squareup/okhttp/internal/http/RouteSelector.uri Ljava/net/URI;
+; v3 : Ljava/net/URI; , v6 : Lcom/squareup/okhttp/internal/http/RouteSelector;
+	invoke-static	{v3},com/squareup/okhttp/internal/Util/getEffectivePort	; getEffectivePort(Ljava/net/URI;)I
+; v3 : Ljava/net/URI;
+	move-result	v3
+; v3 : single-length
+	iput	v3,v6,com/squareup/okhttp/internal/http/RouteSelector.socketPort I
+; v3 : single-length , v6 : Lcom/squareup/okhttp/internal/http/RouteSelector;
+lbd742:
+.line 216
+	iget-object	v3,v6,com/squareup/okhttp/internal/http/RouteSelector.dns Lcom/squareup/okhttp/internal/Dns;
+; v3 : Lcom/squareup/okhttp/internal/Dns; , v6 : Lcom/squareup/okhttp/internal/http/RouteSelector;
+	invoke-interface	{v3,v2},com/squareup/okhttp/internal/Dns/getAllByName	; getAllByName(Ljava/lang/String;)[Ljava/net/InetAddress;
+; v3 : Lcom/squareup/okhttp/internal/Dns; , v2 : Ljava/lang/String;
+	move-result-object	v3
+; v3 : [Ljava/net/InetAddress;
+	iput-object	v3,v6,com/squareup/okhttp/internal/http/RouteSelector.socketAddresses [Ljava/net/InetAddress;
+; v3 : [Ljava/net/InetAddress; , v6 : Lcom/squareup/okhttp/internal/http/RouteSelector;
+.line 217
+	const/4	v3,0
+; v3 : single-length
+	iput	v3,v6,com/squareup/okhttp/internal/http/RouteSelector.nextSocketAddressIndex I
+; v3 : single-length , v6 : Lcom/squareup/okhttp/internal/http/RouteSelector;
+.line 218
+	return-void	
+lbd75a:
+.line 205
+	invoke-virtual	{v7},java/net/Proxy/address	; address()Ljava/net/SocketAddress;
+; v7 : Ljava/net/Proxy;
+	move-result-object	v0
+; v0 : Ljava/net/SocketAddress;
+.line 206
+	instance-of	v3,v0,java/net/InetSocketAddress
+; v3 : single-length , v0 : Ljava/net/SocketAddress;
+	if-nez	v3,lbd7a4
+; v3 : single-length
+.line 207
+	new-instance	v3,java/lang/IllegalArgumentException
+; v3 : Ljava/lang/IllegalArgumentException;
+	new-instance	v4,java/lang/StringBuilder
+; v4 : Ljava/lang/StringBuilder;
+	invoke-direct	{v4},java/lang/StringBuilder/<init>	; <init>()V
+; v4 : Ljava/lang/StringBuilder;
+	const-string	v5,"Proxy.address() is not an InetSocketAddress: "
+; v5 : Ljava/lang/String;
+	invoke-virtual	{v4,v5},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v4 : Ljava/lang/StringBuilder; , v5 : Ljava/lang/String;
+	move-result-object	v4
+; v4 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v0},java/lang/Object/getClass	; getClass()Ljava/lang/Class;
+; v0 : Ljava/net/SocketAddress;
+	move-result-object	v5
+; v5 : Ljava/lang/Class;
+	invoke-virtual	{v4,v5},java/lang/StringBuilder/append	; append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+; v4 : Ljava/lang/StringBuilder; , v5 : Ljava/lang/Class;
+	move-result-object	v4
+; v4 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v4},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v4 : Ljava/lang/StringBuilder;
+	move-result-object	v4
+; v4 : Ljava/lang/String;
+	invoke-direct	{v3,v4},java/lang/IllegalArgumentException/<init>	; <init>(Ljava/lang/String;)V
+; v3 : Ljava/lang/IllegalArgumentException; , v4 : Ljava/lang/String;
+	throw	v3
+; v3 : Ljava/lang/IllegalArgumentException;
+lbd7a4:
+	move-object	v1,v0
+; v1 : Ljava/net/SocketAddress; , v0 : Ljava/net/SocketAddress;
+.line 210
+	check-cast	v1,java/net/InetSocketAddress
+; v1 : Ljava/net/InetSocketAddress;
+.line 211
+	invoke-virtual	{v1},java/net/InetSocketAddress/getHostName	; getHostName()Ljava/lang/String;
+; v1 : Ljava/net/InetSocketAddress;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+.line 212
+	invoke-virtual	{v1},java/net/InetSocketAddress/getPort	; getPort()I
+; v1 : Ljava/net/InetSocketAddress;
+	move-result	v3
+; v3 : single-length
+	iput	v3,v6,com/squareup/okhttp/internal/http/RouteSelector.socketPort I
+; v3 : single-length , v6 : Lcom/squareup/okhttp/internal/http/RouteSelector;
+	goto	lbd742
+.end method
+
+.method private resetNextProxy(Ljava/net/URI;Ljava/net/Proxy;)V
+.limit registers 5
+; this: v2 (Lcom/squareup/okhttp/internal/http/RouteSelector;)
+; parameter[0] : v3 (Ljava/net/URI;)
+; parameter[1] : v4 (Ljava/net/Proxy;)
+.line 156
+	const/4	v1,1
+; v1 : single-length
+	iput-boolean	v1,v2,com/squareup/okhttp/internal/http/RouteSelector.hasNextProxy Z
+; v1 : single-length , v2 : Lcom/squareup/okhttp/internal/http/RouteSelector;
+.line 157
+	if-eqz	v4,lbd7e0
+; v4 : Ljava/net/Proxy;
+.line 158
+	iput-object	v4,v2,com/squareup/okhttp/internal/http/RouteSelector.userSpecifiedProxy Ljava/net/Proxy;
+; v4 : Ljava/net/Proxy; , v2 : Lcom/squareup/okhttp/internal/http/RouteSelector;
+lbd7de:
+.line 165
+	return-void	
+lbd7e0:
+.line 160
+	iget-object	v1,v2,com/squareup/okhttp/internal/http/RouteSelector.proxySelector Ljava/net/ProxySelector;
+; v1 : Ljava/net/ProxySelector; , v2 : Lcom/squareup/okhttp/internal/http/RouteSelector;
+	invoke-virtual	{v1,v3},java/net/ProxySelector/select	; select(Ljava/net/URI;)Ljava/util/List;
+; v1 : Ljava/net/ProxySelector; , v3 : Ljava/net/URI;
+	move-result-object	v0
+; v0 : Ljava/util/List;
+.line 161
+	if-eqz	v0,lbd7de
+; v0 : Ljava/util/List;
+.line 162
+	invoke-interface	{v0},java/util/List/iterator	; iterator()Ljava/util/Iterator;
+; v0 : Ljava/util/List;
+	move-result-object	v1
+; v1 : Ljava/util/Iterator;
+	iput-object	v1,v2,com/squareup/okhttp/internal/http/RouteSelector.proxySelectorProxies Ljava/util/Iterator;
+; v1 : Ljava/util/Iterator; , v2 : Lcom/squareup/okhttp/internal/http/RouteSelector;
+	goto	lbd7de
+.end method
+
+.method private resetNextTlsMode()V
+.limit registers 2
+; this: v1 (Lcom/squareup/okhttp/internal/http/RouteSelector;)
+.line 239
+	iget-object	v0,v1,com/squareup/okhttp/internal/http/RouteSelector.address Lcom/squareup/okhttp/Address;
+; v0 : Lcom/squareup/okhttp/Address; , v1 : Lcom/squareup/okhttp/internal/http/RouteSelector;
+	invoke-virtual	{v0},com/squareup/okhttp/Address/getSslSocketFactory	; getSslSocketFactory()Ljavax/net/ssl/SSLSocketFactory;
+; v0 : Lcom/squareup/okhttp/Address;
+	move-result-object	v0
+; v0 : Ljavax/net/ssl/SSLSocketFactory;
+	if-eqz	v0,lbd828
+; v0 : Ljavax/net/ssl/SSLSocketFactory;
+	const/4	v0,1
+; v0 : single-length
+lbd822:
+	iput	v0,v1,com/squareup/okhttp/internal/http/RouteSelector.nextTlsMode I
+; v0 : single-length , v1 : Lcom/squareup/okhttp/internal/http/RouteSelector;
+.line 240
+	return-void	
+lbd828:
+.line 239
+	const/4	v0,0
+; v0 : single-length
+	goto	lbd822
+.end method
+
+.method public connectFailed(Lcom/squareup/okhttp/Connection;Ljava/io/IOException;)V
+.limit registers 7
+; this: v4 (Lcom/squareup/okhttp/internal/http/RouteSelector;)
+; parameter[0] : v5 (Lcom/squareup/okhttp/Connection;)
+; parameter[1] : v6 (Ljava/io/IOException;)
+.line 145
+	invoke-virtual	{v5},com/squareup/okhttp/Connection/getRoute	; getRoute()Lcom/squareup/okhttp/Route;
+; v5 : Lcom/squareup/okhttp/Connection;
+	move-result-object	v0
+; v0 : Lcom/squareup/okhttp/Route;
+.line 146
+	invoke-virtual	{v0},com/squareup/okhttp/Route/getProxy	; getProxy()Ljava/net/Proxy;
+; v0 : Lcom/squareup/okhttp/Route;
+	move-result-object	v1
+; v1 : Ljava/net/Proxy;
+	invoke-virtual	{v1},java/net/Proxy/type	; type()Ljava/net/Proxy$Type;
+; v1 : Ljava/net/Proxy;
+	move-result-object	v1
+; v1 : Ljava/net/Proxy$Type;
+	sget-object	v2,java/net/Proxy$Type.DIRECT Ljava/net/Proxy$Type;
+; v2 : Ljava/net/Proxy$Type;
+	if-eq	v1,v2,lbd882
+; v1 : Ljava/net/Proxy$Type; , v2 : Ljava/net/Proxy$Type;
+	iget-object	v1,v4,com/squareup/okhttp/internal/http/RouteSelector.proxySelector Ljava/net/ProxySelector;
+; v1 : Ljava/net/ProxySelector; , v4 : Lcom/squareup/okhttp/internal/http/RouteSelector;
+	if-eqz	v1,lbd882
+; v1 : Ljava/net/ProxySelector;
+.line 148
+	iget-object	v1,v4,com/squareup/okhttp/internal/http/RouteSelector.proxySelector Ljava/net/ProxySelector;
+; v1 : Ljava/net/ProxySelector; , v4 : Lcom/squareup/okhttp/internal/http/RouteSelector;
+	iget-object	v2,v4,com/squareup/okhttp/internal/http/RouteSelector.uri Ljava/net/URI;
+; v2 : Ljava/net/URI; , v4 : Lcom/squareup/okhttp/internal/http/RouteSelector;
+	invoke-virtual	{v0},com/squareup/okhttp/Route/getProxy	; getProxy()Ljava/net/Proxy;
+; v0 : Lcom/squareup/okhttp/Route;
+	move-result-object	v3
+; v3 : Ljava/net/Proxy;
+	invoke-virtual	{v3},java/net/Proxy/address	; address()Ljava/net/SocketAddress;
+; v3 : Ljava/net/Proxy;
+	move-result-object	v3
+; v3 : Ljava/net/SocketAddress;
+	invoke-virtual	{v1,v2,v3,v6},java/net/ProxySelector/connectFailed	; connectFailed(Ljava/net/URI;Ljava/net/SocketAddress;Ljava/io/IOException;)V
+; v1 : Ljava/net/ProxySelector; , v2 : Ljava/net/URI; , v3 : Ljava/net/SocketAddress; , v6 : Ljava/io/IOException;
+lbd882:
+.line 151
+	iget-object	v1,v4,com/squareup/okhttp/internal/http/RouteSelector.routeDatabase Lcom/squareup/okhttp/RouteDatabase;
+; v1 : Lcom/squareup/okhttp/RouteDatabase; , v4 : Lcom/squareup/okhttp/internal/http/RouteSelector;
+	invoke-virtual	{v1,v0,v6},com/squareup/okhttp/RouteDatabase/failed	; failed(Lcom/squareup/okhttp/Route;Ljava/io/IOException;)V
+; v1 : Lcom/squareup/okhttp/RouteDatabase; , v0 : Lcom/squareup/okhttp/Route; , v6 : Ljava/io/IOException;
+.line 152
+	return-void	
+.end method
+
+.method public hasNext()Z
+.limit registers 2
+; this: v1 (Lcom/squareup/okhttp/internal/http/RouteSelector;)
+.line 97
+	invoke-direct	{v1},com/squareup/okhttp/internal/http/RouteSelector/hasNextTlsMode	; hasNextTlsMode()Z
+; v1 : Lcom/squareup/okhttp/internal/http/RouteSelector;
+	move-result	v0
+; v0 : single-length
+	if-nez	v0,lbd8d0
+; v0 : single-length
+	invoke-direct	{v1},com/squareup/okhttp/internal/http/RouteSelector/hasNextInetSocketAddress	; hasNextInetSocketAddress()Z
+; v1 : Lcom/squareup/okhttp/internal/http/RouteSelector;
+	move-result	v0
+; v0 : single-length
+	if-nez	v0,lbd8d0
+; v0 : single-length
+	invoke-direct	{v1},com/squareup/okhttp/internal/http/RouteSelector/hasNextProxy	; hasNextProxy()Z
+; v1 : Lcom/squareup/okhttp/internal/http/RouteSelector;
+	move-result	v0
+; v0 : single-length
+	if-nez	v0,lbd8d0
+; v0 : single-length
+	invoke-direct	{v1},com/squareup/okhttp/internal/http/RouteSelector/hasNextPostponed	; hasNextPostponed()Z
+; v1 : Lcom/squareup/okhttp/internal/http/RouteSelector;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,lbd8d4
+; v0 : single-length
+lbd8d0:
+	const/4	v0,1
+; v0 : single-length
+lbd8d2:
+	return	v0
+; v0 : single-length
+lbd8d4:
+	const/4	v0,0
+; v0 : single-length
+	goto	lbd8d2
+.end method
+
+.method public next(Ljava/lang/String;)Lcom/squareup/okhttp/Connection;
+.throws Ljava/io/IOException;
+.limit registers 8
+; this: v6 (Lcom/squareup/okhttp/internal/http/RouteSelector;)
+; parameter[0] : v7 (Ljava/lang/String;)
+.var 1 is pooled Lcom/squareup/okhttp/Connection; from lbd8fa to lbd91a
+.var 1 is pooled Lcom/squareup/okhttp/Connection; from lbd91c to lbd964
+.var 0 is modernTls Z from lbd9a8 to lbd9e2
+.var 2 is route Lcom/squareup/okhttp/Route; from lbd9be to lbd9e2
+.var 1 is pooled Lcom/squareup/okhttp/Connection; from lbd974 to lbd9ea
+	const/4	v0,1
+; v0 : single-length
+lbd8ea:
+.line 107
+	iget-object	v3,v6,com/squareup/okhttp/internal/http/RouteSelector.pool Lcom/squareup/okhttp/ConnectionPool;
+; v3 : Lcom/squareup/okhttp/ConnectionPool; , v6 : Lcom/squareup/okhttp/internal/http/RouteSelector;
+	iget-object	v4,v6,com/squareup/okhttp/internal/http/RouteSelector.address Lcom/squareup/okhttp/Address;
+; v4 : Lcom/squareup/okhttp/Address; , v6 : Lcom/squareup/okhttp/internal/http/RouteSelector;
+	invoke-virtual	{v3,v4},com/squareup/okhttp/ConnectionPool/get	; get(Lcom/squareup/okhttp/Address;)Lcom/squareup/okhttp/Connection;
+; v3 : Lcom/squareup/okhttp/ConnectionPool; , v4 : Lcom/squareup/okhttp/Address;
+	move-result-object	v1
+; v1 : Lcom/squareup/okhttp/Connection;
+lbd8fa:
+	if-eqz	v1,lbd924
+; v1 : Lcom/squareup/okhttp/Connection;
+.line 108
+	const-string	v3,"GET"
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v7,v3},java/lang/String/equals	; equals(Ljava/lang/Object;)Z
+; v7 : Ljava/lang/String; , v3 : Ljava/lang/String;
+	move-result	v3
+; v3 : single-length
+	if-nez	v3,lbd91a
+; v3 : single-length
+	invoke-virtual	{v1},com/squareup/okhttp/Connection/isReadable	; isReadable()Z
+; v1 : Lcom/squareup/okhttp/Connection;
+	move-result	v3
+; v3 : single-length
+	if-eqz	v3,lbd91c
+; v3 : single-length
+lbd91a:
+.line 137
+	return-object	v1
+; v1 : Lcom/squareup/okhttp/Connection;
+lbd91c:
+.line 109
+	invoke-virtual	{v1},com/squareup/okhttp/Connection/close	; close()V
+; v1 : Lcom/squareup/okhttp/Connection;
+	goto	lbd8ea
+lbd924:
+.line 113
+	invoke-direct	{v6},com/squareup/okhttp/internal/http/RouteSelector/hasNextTlsMode	; hasNextTlsMode()Z
+; v6 : Lcom/squareup/okhttp/internal/http/RouteSelector;
+	move-result	v3
+; v3 : single-length
+	if-nez	v3,lbd99c
+; v3 : single-length
+.line 114
+	invoke-direct	{v6},com/squareup/okhttp/internal/http/RouteSelector/hasNextInetSocketAddress	; hasNextInetSocketAddress()Z
+; v6 : Lcom/squareup/okhttp/internal/http/RouteSelector;
+	move-result	v3
+; v3 : single-length
+	if-nez	v3,lbd98a
+; v3 : single-length
+.line 115
+	invoke-direct	{v6},com/squareup/okhttp/internal/http/RouteSelector/hasNextProxy	; hasNextProxy()Z
+; v6 : Lcom/squareup/okhttp/internal/http/RouteSelector;
+	move-result	v3
+; v3 : single-length
+	if-nez	v3,lbd974
+; v3 : single-length
+.line 116
+	invoke-direct	{v6},com/squareup/okhttp/internal/http/RouteSelector/hasNextPostponed	; hasNextPostponed()Z
+; v6 : Lcom/squareup/okhttp/internal/http/RouteSelector;
+	move-result	v3
+; v3 : single-length
+	if-nez	v3,lbd960
+; v3 : single-length
+.line 117
+	new-instance	v3,java/util/NoSuchElementException
+; v3 : Ljava/util/NoSuchElementException;
+	invoke-direct	{v3},java/util/NoSuchElementException/<init>	; <init>()V
+; v3 : Ljava/util/NoSuchElementException;
+	throw	v3
+; v3 : Ljava/util/NoSuchElementException;
+lbd960:
+.line 119
+	new-instance	v1,com/squareup/okhttp/Connection
+; v1 : Lcom/squareup/okhttp/Connection;
+lbd964:
+	invoke-direct	{v6},com/squareup/okhttp/internal/http/RouteSelector/nextPostponed	; nextPostponed()Lcom/squareup/okhttp/Route;
+; v6 : Lcom/squareup/okhttp/internal/http/RouteSelector;
+	move-result-object	v3
+; v3 : Lcom/squareup/okhttp/Route;
+	invoke-direct	{v1,v3},com/squareup/okhttp/Connection/<init>	; <init>(Lcom/squareup/okhttp/Route;)V
+; v1 : Lcom/squareup/okhttp/Connection; , v3 : Lcom/squareup/okhttp/Route;
+	goto	lbd91a
+lbd974:
+.line 121
+	invoke-direct	{v6},com/squareup/okhttp/internal/http/RouteSelector/nextProxy	; nextProxy()Ljava/net/Proxy;
+; v6 : Lcom/squareup/okhttp/internal/http/RouteSelector;
+	move-result-object	v3
+; v3 : Ljava/net/Proxy;
+	iput-object	v3,v6,com/squareup/okhttp/internal/http/RouteSelector.lastProxy Ljava/net/Proxy;
+; v3 : Ljava/net/Proxy; , v6 : Lcom/squareup/okhttp/internal/http/RouteSelector;
+.line 122
+	iget-object	v3,v6,com/squareup/okhttp/internal/http/RouteSelector.lastProxy Ljava/net/Proxy;
+; v3 : Ljava/net/Proxy; , v6 : Lcom/squareup/okhttp/internal/http/RouteSelector;
+	invoke-direct	{v6,v3},com/squareup/okhttp/internal/http/RouteSelector/resetNextInetSocketAddress	; resetNextInetSocketAddress(Ljava/net/Proxy;)V
+; v6 : Lcom/squareup/okhttp/internal/http/RouteSelector; , v3 : Ljava/net/Proxy;
+lbd98a:
+.line 124
+	invoke-direct	{v6},com/squareup/okhttp/internal/http/RouteSelector/nextInetSocketAddress	; nextInetSocketAddress()Ljava/net/InetSocketAddress;
+; v6 : Lcom/squareup/okhttp/internal/http/RouteSelector;
+	move-result-object	v3
+; v3 : Ljava/net/InetSocketAddress;
+	iput-object	v3,v6,com/squareup/okhttp/internal/http/RouteSelector.lastInetSocketAddress Ljava/net/InetSocketAddress;
+; v3 : Ljava/net/InetSocketAddress; , v6 : Lcom/squareup/okhttp/internal/http/RouteSelector;
+.line 125
+	invoke-direct	{v6},com/squareup/okhttp/internal/http/RouteSelector/resetNextTlsMode	; resetNextTlsMode()V
+; v6 : Lcom/squareup/okhttp/internal/http/RouteSelector;
+lbd99c:
+.line 128
+	invoke-direct	{v6},com/squareup/okhttp/internal/http/RouteSelector/nextTlsMode	; nextTlsMode()I
+; v6 : Lcom/squareup/okhttp/internal/http/RouteSelector;
+	move-result	v3
+; v3 : single-length
+	if-ne	v3,v0,lbd9e2
+; v3 : single-length , v0 : single-length
+lbd9a8:
+.line 129
+	new-instance	v2,com/squareup/okhttp/Route
+; v2 : Lcom/squareup/okhttp/Route;
+	iget-object	v3,v6,com/squareup/okhttp/internal/http/RouteSelector.address Lcom/squareup/okhttp/Address;
+; v3 : Lcom/squareup/okhttp/Address; , v6 : Lcom/squareup/okhttp/internal/http/RouteSelector;
+	iget-object	v4,v6,com/squareup/okhttp/internal/http/RouteSelector.lastProxy Ljava/net/Proxy;
+; v4 : Ljava/net/Proxy; , v6 : Lcom/squareup/okhttp/internal/http/RouteSelector;
+	iget-object	v5,v6,com/squareup/okhttp/internal/http/RouteSelector.lastInetSocketAddress Ljava/net/InetSocketAddress;
+; v5 : Ljava/net/InetSocketAddress; , v6 : Lcom/squareup/okhttp/internal/http/RouteSelector;
+	invoke-direct	{v2,v3,v4,v5,v0},com/squareup/okhttp/Route/<init>	; <init>(Lcom/squareup/okhttp/Address;Ljava/net/Proxy;Ljava/net/InetSocketAddress;Z)V
+; v2 : Lcom/squareup/okhttp/Route; , v3 : Lcom/squareup/okhttp/Address; , v4 : Ljava/net/Proxy; , v5 : Ljava/net/InetSocketAddress; , v0 : single-length
+.line 130
+	iget-object	v3,v6,com/squareup/okhttp/internal/http/RouteSelector.routeDatabase Lcom/squareup/okhttp/RouteDatabase;
+; v3 : Lcom/squareup/okhttp/RouteDatabase; , v6 : Lcom/squareup/okhttp/internal/http/RouteSelector;
+	invoke-virtual	{v3,v2},com/squareup/okhttp/RouteDatabase/shouldPostpone	; shouldPostpone(Lcom/squareup/okhttp/Route;)Z
+; v3 : Lcom/squareup/okhttp/RouteDatabase; , v2 : Lcom/squareup/okhttp/Route;
+	move-result	v3
+; v3 : single-length
+	if-eqz	v3,lbd9e6
+; v3 : single-length
+.line 131
+	iget-object	v3,v6,com/squareup/okhttp/internal/http/RouteSelector.postponedRoutes Ljava/util/List;
+; v3 : Ljava/util/List; , v6 : Lcom/squareup/okhttp/internal/http/RouteSelector;
+	invoke-interface	{v3,v2},java/util/List/add	; add(Ljava/lang/Object;)Z
+; v3 : Ljava/util/List; , v2 : Lcom/squareup/okhttp/Route;
+.line 134
+	invoke-virtual	{v6,v7},com/squareup/okhttp/internal/http/RouteSelector/next	; next(Ljava/lang/String;)Lcom/squareup/okhttp/Connection;
+; v6 : Lcom/squareup/okhttp/internal/http/RouteSelector; , v7 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Lcom/squareup/okhttp/Connection;
+	goto	lbd91a
+lbd9e2:
+.line 128
+	const/4	v0,0
+; v0 : single-length
+	goto	lbd9a8
+lbd9e6:
+.line 137
+	new-instance	v1,com/squareup/okhttp/Connection
+; v1 : Lcom/squareup/okhttp/Connection;
+lbd9ea:
+	invoke-direct	{v1,v2},com/squareup/okhttp/Connection/<init>	; <init>(Lcom/squareup/okhttp/Route;)V
+; v1 : Lcom/squareup/okhttp/Connection; , v2 : Lcom/squareup/okhttp/Route;
+	goto	lbd91a
+.end method
+
+

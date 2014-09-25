@@ -1,0 +1,409 @@
+.class android/support/v4/print/PrintHelperKitkat$2
+.super android/print/PrintDocumentAdapter
+.source PrintHelperKitkat.java
+
+.enclosing method android/printBitmap(Ljava/lang/String;Landroid/net/Uri;)V
+.field loadBitmap Landroid/os/AsyncTask;
+  .annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "Landroid/os/AsyncTask" , "<" , "Landroid/net/Uri;" , "Ljava/lang/Boolean;" , "Landroid/graphics/Bitmap;" , ">;" }
+  .end annotation
+.end field
+.field private mAttributes Landroid/print/PrintAttributes;
+.field mBitmap Landroid/graphics/Bitmap;
+.field final this$0 Landroid/support/v4/print/PrintHelperKitkat;
+.field final val$fittingMode I
+.field final val$imageFile Landroid/net/Uri;
+.field final val$jobName Ljava/lang/String;
+
+.method <init>(Landroid/support/v4/print/PrintHelperKitkat;Ljava/lang/String;Landroid/net/Uri;I)V
+.limit registers 6
+; this: v1 (Landroid/support/v4/print/PrintHelperKitkat$2;)
+; parameter[0] : v2 (Landroid/support/v4/print/PrintHelperKitkat;)
+; parameter[1] : v3 (Ljava/lang/String;)
+; parameter[2] : v4 (Landroid/net/Uri;)
+; parameter[3] : v5 (I)
+.line 289
+	iput-object	v2,v1,android/support/v4/print/PrintHelperKitkat$2.this$0 Landroid/support/v4/print/PrintHelperKitkat;
+; v2 : Landroid/support/v4/print/PrintHelperKitkat; , v1 : Landroid/support/v4/print/PrintHelperKitkat$2;
+	iput-object	v3,v1,android/support/v4/print/PrintHelperKitkat$2.val$jobName Ljava/lang/String;
+; v3 : Ljava/lang/String; , v1 : Landroid/support/v4/print/PrintHelperKitkat$2;
+	iput-object	v4,v1,android/support/v4/print/PrintHelperKitkat$2.val$imageFile Landroid/net/Uri;
+; v4 : Landroid/net/Uri; , v1 : Landroid/support/v4/print/PrintHelperKitkat$2;
+	iput	v5,v1,android/support/v4/print/PrintHelperKitkat$2.val$fittingMode I
+; v5 : single-length , v1 : Landroid/support/v4/print/PrintHelperKitkat$2;
+	invoke-direct	{v1},android/print/PrintDocumentAdapter/<init>	; <init>()V
+; v1 : Landroid/support/v4/print/PrintHelperKitkat$2;
+.line 292
+	const/4	v0,0
+; v0 : single-length
+	iput-object	v0,v1,android/support/v4/print/PrintHelperKitkat$2.mBitmap Landroid/graphics/Bitmap;
+; v0 : single-length , v1 : Landroid/support/v4/print/PrintHelperKitkat$2;
+	return-void	
+.end method
+
+.method static access$100(Landroid/support/v4/print/PrintHelperKitkat$2;)V
+.limit registers 1
+; parameter[0] : v0 (Landroid/support/v4/print/PrintHelperKitkat$2;)
+.line 289
+	invoke-direct	{v0},android/support/v4/print/PrintHelperKitkat$2/cancelLoad	; cancelLoad()V
+; v0 : Landroid/support/v4/print/PrintHelperKitkat$2;
+	return-void	
+.end method
+
+.method private cancelLoad()V
+.limit registers 4
+; this: v3 (Landroid/support/v4/print/PrintHelperKitkat$2;)
+.catch java/lang/Exception from l77c3a to l77c66 using l77c62
+.line 371
+	iget-object	v0,v3,android/support/v4/print/PrintHelperKitkat$2.this$0 Landroid/support/v4/print/PrintHelperKitkat;
+; v0 : Landroid/support/v4/print/PrintHelperKitkat; , v3 : Landroid/support/v4/print/PrintHelperKitkat$2;
+	invoke-static	{v0},android/support/v4/print/PrintHelperKitkat/access$300	; access$300(Landroid/support/v4/print/PrintHelperKitkat;)Ljava/lang/Object;
+; v0 : Landroid/support/v4/print/PrintHelperKitkat;
+	move-result-object	v1
+; v1 : Ljava/lang/Object;
+	monitor-enter	v1
+; v1 : Ljava/lang/Object;
+l77c3a:
+.line 372
+	iget-object	v0,v3,android/support/v4/print/PrintHelperKitkat$2.this$0 Landroid/support/v4/print/PrintHelperKitkat;
+; v0 : Landroid/support/v4/print/PrintHelperKitkat; , v3 : Landroid/support/v4/print/PrintHelperKitkat$2;
+	iget-object	v0,v0,android/support/v4/print/PrintHelperKitkat.mDecodeOptions Landroid/graphics/BitmapFactory$Options;
+; v0 : Landroid/graphics/BitmapFactory$Options; , v0 : Landroid/graphics/BitmapFactory$Options;
+	if-eqz	v0,l77c5e
+; v0 : Landroid/graphics/BitmapFactory$Options;
+.line 373
+	iget-object	v0,v3,android/support/v4/print/PrintHelperKitkat$2.this$0 Landroid/support/v4/print/PrintHelperKitkat;
+; v0 : Landroid/support/v4/print/PrintHelperKitkat; , v3 : Landroid/support/v4/print/PrintHelperKitkat$2;
+	iget-object	v0,v0,android/support/v4/print/PrintHelperKitkat.mDecodeOptions Landroid/graphics/BitmapFactory$Options;
+; v0 : Landroid/graphics/BitmapFactory$Options; , v0 : Landroid/graphics/BitmapFactory$Options;
+	invoke-virtual	{v0},android/graphics/BitmapFactory$Options/requestCancelDecode	; requestCancelDecode()V
+; v0 : Landroid/graphics/BitmapFactory$Options;
+.line 374
+	iget-object	v0,v3,android/support/v4/print/PrintHelperKitkat$2.this$0 Landroid/support/v4/print/PrintHelperKitkat;
+; v0 : Landroid/support/v4/print/PrintHelperKitkat; , v3 : Landroid/support/v4/print/PrintHelperKitkat$2;
+	const/4	v2,0
+; v2 : single-length
+	iput-object	v2,v0,android/support/v4/print/PrintHelperKitkat.mDecodeOptions Landroid/graphics/BitmapFactory$Options;
+; v2 : single-length , v0 : Landroid/support/v4/print/PrintHelperKitkat;
+l77c5e:
+.line 376
+	monitor-exit	v1
+; v1 : Ljava/lang/Object;
+.line 377
+	return-void	
+l77c62:
+.line 376
+	move-exception	v0
+; v0 : java/lang/Exception
+	monitor-exit	v1
+; v1 : Ljava/lang/Object;
+l77c66:
+	throw	v0
+; v0 : java/lang/Exception
+.end method
+
+.method public onFinish()V
+.limit registers 3
+; this: v2 (Landroid/support/v4/print/PrintHelperKitkat$2;)
+.line 381
+	invoke-super	{v2},android/print/PrintDocumentAdapter/onFinish	; onFinish()V
+; v2 : Landroid/support/v4/print/PrintHelperKitkat$2;
+.line 382
+	invoke-direct	{v2},android/support/v4/print/PrintHelperKitkat$2/cancelLoad	; cancelLoad()V
+; v2 : Landroid/support/v4/print/PrintHelperKitkat$2;
+.line 383
+	iget-object	v0,v2,android/support/v4/print/PrintHelperKitkat$2.loadBitmap Landroid/os/AsyncTask;
+; v0 : Landroid/os/AsyncTask; , v2 : Landroid/support/v4/print/PrintHelperKitkat$2;
+	const/4	v1,1
+; v1 : single-length
+	invoke-virtual	{v0,v1},android/os/AsyncTask/cancel	; cancel(Z)Z
+; v0 : Landroid/os/AsyncTask; , v1 : single-length
+.line 384
+	return-void	
+.end method
+
+.method public onLayout(Landroid/print/PrintAttributes;Landroid/print/PrintAttributes;Landroid/os/CancellationSignal;Landroid/print/PrintDocumentAdapter$LayoutResultCallback;Landroid/os/Bundle;)V
+.limit registers 15
+; this: v9 (Landroid/support/v4/print/PrintHelperKitkat$2;)
+; parameter[0] : v10 (Landroid/print/PrintAttributes;)
+; parameter[1] : v11 (Landroid/print/PrintAttributes;)
+; parameter[2] : v12 (Landroid/os/CancellationSignal;)
+; parameter[3] : v13 (Landroid/print/PrintDocumentAdapter$LayoutResultCallback;)
+; parameter[4] : v14 (Landroid/os/Bundle;)
+.var 6 is changed Z from l77d06 to l77d0e
+.var 7 is info Landroid/print/PrintDocumentInfo; from l77cfa to l77d12
+	const/4	v8,0
+; v8 : single-length
+	const/4	v6,1
+; v6 : single-length
+.line 300
+	invoke-virtual	{v12},android/os/CancellationSignal/isCanceled	; isCanceled()Z
+; v12 : Landroid/os/CancellationSignal;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,l77ccc
+; v0 : single-length
+.line 301
+	invoke-virtual	{v13},android/print/PrintDocumentAdapter$LayoutResultCallback/onLayoutCancelled	; onLayoutCancelled()V
+; v13 : Landroid/print/PrintDocumentAdapter$LayoutResultCallback;
+.line 302
+	iput-object	v11,v9,android/support/v4/print/PrintHelperKitkat$2.mAttributes Landroid/print/PrintAttributes;
+; v11 : Landroid/print/PrintAttributes; , v9 : Landroid/support/v4/print/PrintHelperKitkat$2;
+l77cca:
+.line 368
+	return-void	
+l77ccc:
+.line 306
+	iget-object	v0,v9,android/support/v4/print/PrintHelperKitkat$2.mBitmap Landroid/graphics/Bitmap;
+; v0 : Landroid/graphics/Bitmap; , v9 : Landroid/support/v4/print/PrintHelperKitkat$2;
+	if-eqz	v0,l77d12
+; v0 : Landroid/graphics/Bitmap;
+.line 307
+	new-instance	v0,android/print/PrintDocumentInfo$Builder
+; v0 : Landroid/print/PrintDocumentInfo$Builder;
+	iget-object	v1,v9,android/support/v4/print/PrintHelperKitkat$2.val$jobName Ljava/lang/String;
+; v1 : Ljava/lang/String; , v9 : Landroid/support/v4/print/PrintHelperKitkat$2;
+	invoke-direct	{v0,v1},android/print/PrintDocumentInfo$Builder/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Landroid/print/PrintDocumentInfo$Builder; , v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v6},android/print/PrintDocumentInfo$Builder/setContentType	; setContentType(I)Landroid/print/PrintDocumentInfo$Builder;
+; v0 : Landroid/print/PrintDocumentInfo$Builder; , v6 : single-length
+	move-result-object	v0
+; v0 : Landroid/print/PrintDocumentInfo$Builder;
+	invoke-virtual	{v0,v6},android/print/PrintDocumentInfo$Builder/setPageCount	; setPageCount(I)Landroid/print/PrintDocumentInfo$Builder;
+; v0 : Landroid/print/PrintDocumentInfo$Builder; , v6 : single-length
+	move-result-object	v0
+; v0 : Landroid/print/PrintDocumentInfo$Builder;
+	invoke-virtual	{v0},android/print/PrintDocumentInfo$Builder/build	; build()Landroid/print/PrintDocumentInfo;
+; v0 : Landroid/print/PrintDocumentInfo$Builder;
+	move-result-object	v7
+; v7 : Landroid/print/PrintDocumentInfo;
+.line 311
+	invoke-virtual	{v11,v10},android/print/PrintAttributes/equals	; equals(Ljava/lang/Object;)Z
+; v11 : Landroid/print/PrintAttributes; , v10 : Landroid/print/PrintAttributes;
+	move-result	v0
+; v0 : single-length
+	if-nez	v0,l77d0e
+; v0 : single-length
+l77d06:
+.line 312
+	invoke-virtual	{v13,v7,v6},android/print/PrintDocumentAdapter$LayoutResultCallback/onLayoutFinished	; onLayoutFinished(Landroid/print/PrintDocumentInfo;Z)V
+; v13 : Landroid/print/PrintDocumentAdapter$LayoutResultCallback; , v7 : Landroid/print/PrintDocumentInfo; , v6 : single-length
+	goto	l77cca
+l77d0e:
+	move	v6,v8
+; v6 : single-length , v8 : single-length
+.line 311
+	goto	l77d06
+l77d12:
+.line 316
+	new-instance	v0,android/support/v4/print/PrintHelperKitkat$2$1
+; v0 : Landroid/support/v4/print/PrintHelperKitkat$2$1;
+	move-object	v1,v9
+; v1 : Landroid/support/v4/print/PrintHelperKitkat$2; , v9 : Landroid/support/v4/print/PrintHelperKitkat$2;
+	move-object	v2,v12
+; v2 : Landroid/os/CancellationSignal; , v12 : Landroid/os/CancellationSignal;
+	move-object	v3,v11
+; v3 : Landroid/print/PrintAttributes; , v11 : Landroid/print/PrintAttributes;
+	move-object	v4,v10
+; v4 : Landroid/print/PrintAttributes; , v10 : Landroid/print/PrintAttributes;
+	move-object	v5,v13
+; v5 : Landroid/print/PrintDocumentAdapter$LayoutResultCallback; , v13 : Landroid/print/PrintDocumentAdapter$LayoutResultCallback;
+	invoke-direct/range	{v0..v5},android/support/v4/print/PrintHelperKitkat$2$1/<init>;	<init>(Landroid/support/v4/print/PrintHelperKitkat$2;Landroid/os/CancellationSignal;Landroid/print/PrintAttributes;Landroid/print/PrintAttributes;Landroid/print/PrintDocumentAdapter$LayoutResultCallback;)V
+; v0 : Landroid/support/v4/print/PrintHelperKitkat$2$1; , v1 : Landroid/support/v4/print/PrintHelperKitkat$2; , v2 : Landroid/os/CancellationSignal; , v3 : Landroid/print/PrintAttributes; , v4 : Landroid/print/PrintAttributes; , v5 : Landroid/print/PrintDocumentAdapter$LayoutResultCallback;
+	iput-object	v0,v9,android/support/v4/print/PrintHelperKitkat$2.loadBitmap Landroid/os/AsyncTask;
+; v0 : Landroid/support/v4/print/PrintHelperKitkat$2$1; , v9 : Landroid/support/v4/print/PrintHelperKitkat$2;
+.line 365
+	iget-object	v0,v9,android/support/v4/print/PrintHelperKitkat$2.loadBitmap Landroid/os/AsyncTask;
+; v0 : Landroid/os/AsyncTask; , v9 : Landroid/support/v4/print/PrintHelperKitkat$2;
+	new-array	v1,v8,[Landroid/net/Uri;
+; v1 : [Landroid/net/Uri; , v8 : single-length
+	invoke-virtual	{v0,v1},android/os/AsyncTask/execute	; execute([Ljava/lang/Object;)Landroid/os/AsyncTask;
+; v0 : Landroid/os/AsyncTask; , v1 : [Landroid/net/Uri;
+.line 367
+	iput-object	v11,v9,android/support/v4/print/PrintHelperKitkat$2.mAttributes Landroid/print/PrintAttributes;
+; v11 : Landroid/print/PrintAttributes; , v9 : Landroid/support/v4/print/PrintHelperKitkat$2;
+	goto	l77cca
+.end method
+
+.method public onWrite([Landroid/print/PageRange;Landroid/os/ParcelFileDescriptor;Landroid/os/CancellationSignal;Landroid/print/PrintDocumentAdapter$WriteResultCallback;)V
+.limit registers 14
+; this: v9 (Landroid/support/v4/print/PrintHelperKitkat$2;)
+; parameter[0] : v10 ([Landroid/print/PageRange;)
+; parameter[1] : v11 (Landroid/os/ParcelFileDescriptor;)
+; parameter[2] : v12 (Landroid/os/CancellationSignal;)
+; parameter[3] : v13 (Landroid/print/PrintDocumentAdapter$WriteResultCallback;)
+.catch java/io/IOException from l77e3a to l77e40 using l77e46
+.catch java/lang/Exception from l77e12 to l77e28 using l77e2a
+.catch java/io/IOException from l77e08 to l77e0e using l77e42
+.catch java/io/IOException from l77dcc to l77dfa using l77e10
+.catch java/lang/Exception from l77dcc to l77dfa using l77e2a
+.catch java/lang/Exception from l77d68 to l77dcc using l77e2a
+.var 0 is content Landroid/graphics/RectF; from l77d8a to l77e2a
+.var 1 is ioe Ljava/io/IOException; from l77e12 to l77e2a
+.var 2 is matrix Landroid/graphics/Matrix; from l77db2 to l77e2a
+.var 3 is page Landroid/graphics/pdf/PdfDocument$Page; from l77d70 to l77e2a
+.var 0 is content Landroid/graphics/RectF; from l77e42 to l77e46
+.var 2 is matrix Landroid/graphics/Matrix; from l77e42 to l77e46
+.var 3 is page Landroid/graphics/pdf/PdfDocument$Page; from l77e42 to l77e46
+.line 390
+	new-instance	v4,android/print/pdf/PrintedPdfDocument
+; v4 : Landroid/print/pdf/PrintedPdfDocument;
+	iget-object	v5,v9,android/support/v4/print/PrintHelperKitkat$2.this$0 Landroid/support/v4/print/PrintHelperKitkat;
+; v5 : Landroid/support/v4/print/PrintHelperKitkat; , v9 : Landroid/support/v4/print/PrintHelperKitkat$2;
+	iget-object	v5,v5,android/support/v4/print/PrintHelperKitkat.mContext Landroid/content/Context;
+; v5 : Landroid/content/Context; , v5 : Landroid/content/Context;
+	iget-object	v6,v9,android/support/v4/print/PrintHelperKitkat$2.mAttributes Landroid/print/PrintAttributes;
+; v6 : Landroid/print/PrintAttributes; , v9 : Landroid/support/v4/print/PrintHelperKitkat$2;
+	invoke-direct	{v4,v5,v6},android/print/pdf/PrintedPdfDocument/<init>	; <init>(Landroid/content/Context;Landroid/print/PrintAttributes;)V
+; v4 : Landroid/print/pdf/PrintedPdfDocument; , v5 : Landroid/content/Context; , v6 : Landroid/print/PrintAttributes;
+.line 394
+	const/4	v5,1
+; v5 : single-length
+l77d68:
+	invoke-virtual	{v4,v5},android/print/pdf/PrintedPdfDocument/startPage	; startPage(I)Landroid/graphics/pdf/PdfDocument$Page;
+; v4 : Landroid/print/pdf/PrintedPdfDocument; , v5 : single-length
+	move-result-object	v3
+; v3 : Landroid/graphics/pdf/PdfDocument$Page;
+.line 395
+	new-instance	v0,android/graphics/RectF
+; v0 : Landroid/graphics/RectF;
+	invoke-virtual	{v3},android/graphics/pdf/PdfDocument$Page/getInfo	; getInfo()Landroid/graphics/pdf/PdfDocument$PageInfo;
+; v3 : Landroid/graphics/pdf/PdfDocument$Page;
+	move-result-object	v5
+; v5 : Landroid/graphics/pdf/PdfDocument$PageInfo;
+	invoke-virtual	{v5},android/graphics/pdf/PdfDocument$PageInfo/getContentRect	; getContentRect()Landroid/graphics/Rect;
+; v5 : Landroid/graphics/pdf/PdfDocument$PageInfo;
+	move-result-object	v5
+; v5 : Landroid/graphics/Rect;
+	invoke-direct	{v0,v5},android/graphics/RectF/<init>	; <init>(Landroid/graphics/Rect;)V
+; v0 : Landroid/graphics/RectF; , v5 : Landroid/graphics/Rect;
+.line 398
+	iget-object	v5,v9,android/support/v4/print/PrintHelperKitkat$2.this$0 Landroid/support/v4/print/PrintHelperKitkat;
+; v5 : Landroid/support/v4/print/PrintHelperKitkat; , v9 : Landroid/support/v4/print/PrintHelperKitkat$2;
+	iget-object	v6,v9,android/support/v4/print/PrintHelperKitkat$2.mBitmap Landroid/graphics/Bitmap;
+; v6 : Landroid/graphics/Bitmap; , v9 : Landroid/support/v4/print/PrintHelperKitkat$2;
+	invoke-virtual	{v6},android/graphics/Bitmap/getWidth	; getWidth()I
+; v6 : Landroid/graphics/Bitmap;
+	move-result	v6
+; v6 : single-length
+	iget-object	v7,v9,android/support/v4/print/PrintHelperKitkat$2.mBitmap Landroid/graphics/Bitmap;
+; v7 : Landroid/graphics/Bitmap; , v9 : Landroid/support/v4/print/PrintHelperKitkat$2;
+	invoke-virtual	{v7},android/graphics/Bitmap/getHeight	; getHeight()I
+; v7 : Landroid/graphics/Bitmap;
+	move-result	v7
+; v7 : single-length
+	iget	v8,v9,android/support/v4/print/PrintHelperKitkat$2.val$fittingMode I
+; v8 : single-length , v9 : Landroid/support/v4/print/PrintHelperKitkat$2;
+	invoke-static	{v5,v6,v7,v0,v8},android/support/v4/print/PrintHelperKitkat/access$000	; access$000(Landroid/support/v4/print/PrintHelperKitkat;IILandroid/graphics/RectF;I)Landroid/graphics/Matrix;
+; v5 : Landroid/support/v4/print/PrintHelperKitkat; , v6 : single-length , v7 : single-length , v0 : Landroid/graphics/RectF; , v8 : single-length
+	move-result-object	v2
+; v2 : Landroid/graphics/Matrix;
+.line 402
+	invoke-virtual	{v3},android/graphics/pdf/PdfDocument$Page/getCanvas	; getCanvas()Landroid/graphics/Canvas;
+; v3 : Landroid/graphics/pdf/PdfDocument$Page;
+	move-result-object	v5
+; v5 : Landroid/graphics/Canvas;
+	iget-object	v6,v9,android/support/v4/print/PrintHelperKitkat$2.mBitmap Landroid/graphics/Bitmap;
+; v6 : Landroid/graphics/Bitmap; , v9 : Landroid/support/v4/print/PrintHelperKitkat$2;
+	const/4	v7,0
+; v7 : single-length
+	invoke-virtual	{v5,v6,v2,v7},android/graphics/Canvas/drawBitmap	; drawBitmap(Landroid/graphics/Bitmap;Landroid/graphics/Matrix;Landroid/graphics/Paint;)V
+; v5 : Landroid/graphics/Canvas; , v6 : Landroid/graphics/Bitmap; , v2 : Landroid/graphics/Matrix; , v7 : single-length
+.line 405
+	invoke-virtual	{v4,v3},android/print/pdf/PrintedPdfDocument/finishPage	; finishPage(Landroid/graphics/pdf/PdfDocument$Page;)V
+; v4 : Landroid/print/pdf/PrintedPdfDocument; , v3 : Landroid/graphics/pdf/PdfDocument$Page;
+l77dcc:
+.line 409
+	new-instance	v5,java/io/FileOutputStream
+; v5 : Ljava/io/FileOutputStream;
+	invoke-virtual	{v11},android/os/ParcelFileDescriptor/getFileDescriptor	; getFileDescriptor()Ljava/io/FileDescriptor;
+; v11 : Landroid/os/ParcelFileDescriptor;
+	move-result-object	v6
+; v6 : Ljava/io/FileDescriptor;
+	invoke-direct	{v5,v6},java/io/FileOutputStream/<init>	; <init>(Ljava/io/FileDescriptor;)V
+; v5 : Ljava/io/FileOutputStream; , v6 : Ljava/io/FileDescriptor;
+	invoke-virtual	{v4,v5},android/print/pdf/PrintedPdfDocument/writeTo	; writeTo(Ljava/io/OutputStream;)V
+; v4 : Landroid/print/pdf/PrintedPdfDocument; , v5 : Ljava/io/FileOutputStream;
+.line 412
+	const/4	v5,1
+; v5 : single-length
+	new-array	v5,v5,[Landroid/print/PageRange;
+; v5 : [Landroid/print/PageRange; , v5 : [Landroid/print/PageRange;
+	const/4	v6,0
+; v6 : single-length
+	sget-object	v7,android/print/PageRange.ALL_PAGES Landroid/print/PageRange;
+; v7 : Landroid/print/PageRange;
+	aput-object	v7,v5,v6
+; v7 : Landroid/print/PageRange; , v5 : [Landroid/print/PageRange; , v6 : single-length
+	invoke-virtual	{v13,v5},android/print/PrintDocumentAdapter$WriteResultCallback/onWriteFinished	; onWriteFinished([Landroid/print/PageRange;)V
+; v13 : Landroid/print/PrintDocumentAdapter$WriteResultCallback; , v5 : [Landroid/print/PageRange;
+l77dfa:
+.line 420
+	if-eqz	v4,l77e04
+; v4 : Landroid/print/pdf/PrintedPdfDocument;
+.line 421
+	invoke-virtual	{v4},android/print/pdf/PrintedPdfDocument/close	; close()V
+; v4 : Landroid/print/pdf/PrintedPdfDocument;
+l77e04:
+.line 423
+	if-eqz	v11,l77e0e
+; v11 : Landroid/os/ParcelFileDescriptor;
+l77e08:
+.line 425
+	invoke-virtual	{v11},android/os/ParcelFileDescriptor/close	; close()V
+; v11 : Landroid/os/ParcelFileDescriptor;
+l77e0e:
+.line 431
+	return-void	
+l77e10:
+.line 414
+	move-exception	v1
+; v1 : java/io/IOException
+l77e12:
+.line 416
+	const-string	v5,"PrintHelperKitkat"
+; v5 : Ljava/lang/String;
+	const-string	v6,"Error writing printed content"
+; v6 : Ljava/lang/String;
+	invoke-static	{v5,v6,v1},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
+; v5 : Ljava/lang/String; , v6 : Ljava/lang/String; , v1 : java/io/IOException
+.line 417
+	const/4	v5,0
+; v5 : single-length
+	invoke-virtual	{v13,v5},android/print/PrintDocumentAdapter$WriteResultCallback/onWriteFailed	; onWriteFailed(Ljava/lang/CharSequence;)V
+; v13 : Landroid/print/PrintDocumentAdapter$WriteResultCallback; , v5 : single-length
+l77e28:
+	goto	l77dfa
+l77e2a:
+.line 420
+	move-exception	v5
+; v5 : java/lang/Exception
+	if-eqz	v4,l77e36
+; v4 : Landroid/print/pdf/PrintedPdfDocument;
+.line 421
+	invoke-virtual	{v4},android/print/pdf/PrintedPdfDocument/close	; close()V
+; v4 : Landroid/print/pdf/PrintedPdfDocument;
+l77e36:
+.line 423
+	if-eqz	v11,l77e40
+; v11 : Landroid/os/ParcelFileDescriptor;
+l77e3a:
+.line 425
+	invoke-virtual	{v11},android/os/ParcelFileDescriptor/close	; close()V
+; v11 : Landroid/os/ParcelFileDescriptor;
+l77e40:
+.line 428
+	throw	v5
+; v5 : java/lang/Exception
+l77e42:
+.line 426
+	move-exception	v5
+; v5 : java/io/IOException
+	goto	l77e0e
+l77e46:
+	move-exception	v6
+; v6 : java/io/IOException
+	goto	l77e40
+.end method
+
+

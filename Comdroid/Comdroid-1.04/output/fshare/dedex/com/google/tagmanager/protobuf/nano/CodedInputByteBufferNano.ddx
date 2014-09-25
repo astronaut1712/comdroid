@@ -1,0 +1,1685 @@
+.class public final com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano
+.super java/lang/Object
+.source CodedInputByteBufferNano.java
+
+.field private static final DEFAULT_RECURSION_LIMIT I = 64	; 0x40
+.field private static final DEFAULT_SIZE_LIMIT I = 67108864	; 0x4000000
+.field private final buffer [B
+.field private bufferPos I
+.field private bufferSize I
+.field private bufferSizeAfterLimit I
+.field private bufferStart I
+.field private currentLimit I
+.field private lastTag I
+.field private recursionDepth I
+.field private recursionLimit I
+.field private sizeLimit I
+
+.method private <init>([BII)V
+.limit registers 5
+; this: v1 (Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)
+; parameter[0] : v2 ([B)
+; parameter[1] : v3 (I)
+; parameter[2] : v4 (I)
+.line 415
+	invoke-direct	{v1},java/lang/Object/<init>	; <init>()V
+; v1 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+.line 403
+	const	v0,2147483647	; 0x7fffffff
+; v0 : single-length
+	iput	v0,v1,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.currentLimit I
+; v0 : single-length , v1 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+.line 407
+	const/16	v0,64
+; v0 : single-length
+	iput	v0,v1,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.recursionLimit I
+; v0 : single-length , v1 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+.line 410
+	const/high16	v0,1024
+; v0 : single-length
+	iput	v0,v1,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.sizeLimit I
+; v0 : single-length , v1 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+.line 416
+	iput-object	v2,v1,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.buffer [B
+; v2 : [B , v1 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+.line 417
+	iput	v3,v1,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.bufferStart I
+; v3 : single-length , v1 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+.line 418
+	add-int	v0,v3,v4
+; v0 : single-length , v3 : single-length , v4 : single-length
+	iput	v0,v1,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.bufferSize I
+; v0 : single-length , v1 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+.line 419
+	iput	v3,v1,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.bufferPos I
+; v3 : single-length , v1 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+.line 420
+	return-void	
+.end method
+
+.method public static decodeZigZag32(I)I
+.limit registers 3
+; parameter[0] : v2 (I)
+.line 376
+	ushr-int/lit8	v0,v2,1
+; v0 : single-length , v2 : single-length
+	and-int/lit8	v1,v2,1
+; v1 : single-length , v2 : single-length
+	neg-int	v1,v1
+; v1 : single-length , v1 : single-length
+	xor-int/2addr	v0,v1
+; v0 : single-length , v1 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public static decodeZigZag64(J)J
+.limit registers 6
+; parameter[0] : v4 (J)
+.line 390
+	const/4	v0,1
+; v0 : single-length
+	ushr-long	v0,v4,v0
+; v0 : double-length , v4 : double-length , v0 : double-length
+	const-wide/16	v2,1
+; v2 : double-length
+	and-long/2addr	v2,v4
+; v2 : double-length , v4 : double-length
+	neg-long	v2,v2
+; v2 : double-length , v2 : double-length
+	xor-long/2addr	v0,v2
+; v0 : double-length , v2 : double-length
+	return-wide	v0
+; v0 : double-length
+.end method
+
+.method public static newInstance([B)Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+.limit registers 3
+; parameter[0] : v2 ([B)
+.line 52
+	const/4	v0,0
+; v0 : single-length
+	array-length	v1,v2
+; v1 : single-length , v2 : [B
+	invoke-static	{v2,v0,v1},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/newInstance	; newInstance([BII)Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+; v2 : [B , v0 : single-length , v1 : single-length
+	move-result-object	v0
+; v0 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	return-object	v0
+; v0 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+.end method
+
+.method public static newInstance([BII)Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+.limit registers 4
+; parameter[0] : v1 ([B)
+; parameter[1] : v2 (I)
+; parameter[2] : v3 (I)
+.line 60
+	new-instance	v0,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano
+; v0 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	invoke-direct	{v0,v1,v2,v3},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/<init>	; <init>([BII)V
+; v0 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano; , v1 : [B , v2 : single-length , v3 : single-length
+	return-object	v0
+; v0 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+.end method
+
+.method private recomputeBufferSizeAfterLimit()V
+.limit registers 4
+; this: v3 (Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)
+.line 493
+	iget	v1,v3,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.bufferSize I
+; v1 : single-length , v3 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	iget	v2,v3,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.bufferSizeAfterLimit I
+; v2 : single-length , v3 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	add-int/2addr	v1,v2
+; v1 : single-length , v2 : single-length
+	iput	v1,v3,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.bufferSize I
+; v1 : single-length , v3 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+.line 494
+	iget	v0,v3,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.bufferSize I
+; v0 : single-length , v3 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+.line 495
+	iget	v1,v3,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.currentLimit I
+; v1 : single-length , v3 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	if-le	v0,v1,lad37a
+; v0 : single-length , v1 : single-length
+.line 497
+	iget	v1,v3,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.currentLimit I
+; v1 : single-length , v3 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	sub-int	v1,v0,v1
+; v1 : single-length , v0 : single-length , v1 : single-length
+	iput	v1,v3,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.bufferSizeAfterLimit I
+; v1 : single-length , v3 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+.line 498
+	iget	v1,v3,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.bufferSize I
+; v1 : single-length , v3 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	iget	v2,v3,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.bufferSizeAfterLimit I
+; v2 : single-length , v3 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	sub-int/2addr	v1,v2
+; v1 : single-length , v2 : single-length
+	iput	v1,v3,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.bufferSize I
+; v1 : single-length , v3 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+lad378:
+.line 502
+	return-void	
+lad37a:
+.line 500
+	const/4	v1,0
+; v1 : single-length
+	iput	v1,v3,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.bufferSizeAfterLimit I
+; v1 : single-length , v3 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	goto	lad378
+.end method
+
+.method public checkLastTagWas(I)V
+.throws Lcom/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException;
+.limit registers 3
+; this: v1 (Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)
+; parameter[0] : v2 (I)
+.line 94
+	iget	v0,v1,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.lastTag I
+; v0 : single-length , v1 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	if-eq	v0,v2,lad3a6
+; v0 : single-length , v2 : single-length
+.line 95
+	invoke-static	{},com/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException/invalidEndTag	; invalidEndTag()Lcom/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException;
+; 
+	nop	
+	move-result-object	v0
+; v0 : Lcom/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException;
+	throw	v0
+; v0 : Lcom/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException;
+lad3a6:
+.line 97
+	return-void	
+.end method
+
+.method public getBytesUntilLimit()I
+.limit registers 4
+; this: v3 (Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)
+.line 519
+	iget	v1,v3,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.currentLimit I
+; v1 : single-length , v3 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	const	v2,2147483647	; 0x7fffffff
+; v2 : single-length
+	if-ne	v1,v2,lad3ca
+; v1 : single-length , v2 : single-length
+.line 520
+	const/4	v1,15
+; v1 : single-length
+lad3c8:
+.line 524
+	return	v1
+; v1 : single-length
+lad3ca:
+.line 523
+	iget	v0,v3,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.bufferPos I
+; v0 : single-length , v3 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+.line 524
+	iget	v1,v3,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.currentLimit I
+; v1 : single-length , v3 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	sub-int/2addr	v1,v0
+; v1 : single-length , v0 : single-length
+	goto	lad3c8
+.end method
+
+.method public getData(II)[B
+.limit registers 7
+; this: v4 (Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)
+; parameter[0] : v5 (I)
+; parameter[1] : v6 (I)
+.line 551
+	if-nez	v6,lad3f2
+; v6 : single-length
+.line 552
+	sget-object	v0,com/google/tagmanager/protobuf/nano/WireFormatNano.EMPTY_BYTES [B
+; v0 : [B
+lad3f0:
+.line 557
+	return-object	v0
+; v0 : [B
+lad3f2:
+.line 554
+	new-array	v0,v6,[B
+; v0 : [B , v6 : single-length
+.line 555
+	iget	v2,v4,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.bufferStart I
+; v2 : single-length , v4 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	add-int	v1,v2,v5
+; v1 : single-length , v2 : single-length , v5 : single-length
+.line 556
+	iget-object	v2,v4,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.buffer [B
+; v2 : [B , v4 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	const/4	v3,0
+; v3 : single-length
+	invoke-static	{v2,v1,v0,v3,v6},java/lang/System/arraycopy	; arraycopy(Ljava/lang/Object;ILjava/lang/Object;II)V
+; v2 : [B , v1 : single-length , v0 : [B , v3 : single-length , v6 : single-length
+	goto	lad3f0
+.end method
+
+.method public getPosition()I
+.limit registers 3
+; this: v2 (Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)
+.line 540
+	iget	v0,v2,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.bufferPos I
+; v0 : single-length , v2 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	iget	v1,v2,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.bufferStart I
+; v1 : single-length , v2 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	sub-int/2addr	v0,v1
+; v0 : single-length , v1 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public isAtEnd()Z
+.limit registers 3
+; this: v2 (Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)
+.line 533
+	iget	v0,v2,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.bufferPos I
+; v0 : single-length , v2 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	iget	v1,v2,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.bufferSize I
+; v1 : single-length , v2 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	if-ne	v0,v1,lad448
+; v0 : single-length , v1 : single-length
+	const/4	v0,1
+; v0 : single-length
+lad446:
+	return	v0
+; v0 : single-length
+lad448:
+	const/4	v0,0
+; v0 : single-length
+	goto	lad446
+.end method
+
+.method public popLimit(I)V
+.limit registers 2
+; this: v0 (Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)
+; parameter[0] : v1 (I)
+.line 510
+	iput	v1,v0,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.currentLimit I
+; v1 : single-length , v0 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+.line 511
+	invoke-direct	{v0},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/recomputeBufferSizeAfterLimit	; recomputeBufferSizeAfterLimit()V
+; v0 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+.line 512
+	return-void	
+.end method
+
+.method public pushLimit(I)I
+.throws Lcom/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException;
+.limit registers 4
+; this: v2 (Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)
+; parameter[0] : v3 (I)
+.line 477
+	if-gez	v3,lad486
+; v3 : single-length
+.line 478
+	invoke-static	{},com/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException/negativeSize	; negativeSize()Lcom/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException;
+; 
+	nop	
+	move-result-object	v1
+; v1 : Lcom/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException;
+	throw	v1
+; v1 : Lcom/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException;
+lad486:
+.line 480
+	iget	v1,v2,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.bufferPos I
+; v1 : single-length , v2 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	add-int/2addr	v3,v1
+; v3 : single-length , v1 : single-length
+.line 481
+	iget	v0,v2,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.currentLimit I
+; v0 : single-length , v2 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+.line 482
+	if-le	v3,v0,lad49e
+; v3 : single-length , v0 : single-length
+.line 483
+	invoke-static	{},com/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException/truncatedMessage	; truncatedMessage()Lcom/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException;
+; 
+	nop	
+	move-result-object	v1
+; v1 : Lcom/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException;
+	throw	v1
+; v1 : Lcom/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException;
+lad49e:
+.line 485
+	iput	v3,v2,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.currentLimit I
+; v3 : single-length , v2 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+.line 487
+	invoke-direct	{v2},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/recomputeBufferSizeAfterLimit	; recomputeBufferSizeAfterLimit()V
+; v2 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+.line 489
+	return	v0
+; v0 : single-length
+.end method
+
+.method public readBool()Z
+.throws Ljava/io/IOException;
+.limit registers 2
+; this: v1 (Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)
+.line 184
+	invoke-virtual	{v1},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readRawVarint32	; readRawVarint32()I
+; v1 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,lad4cc
+; v0 : single-length
+	const/4	v0,1
+; v0 : single-length
+lad4ca:
+	return	v0
+; v0 : single-length
+lad4cc:
+	const/4	v0,0
+; v0 : single-length
+	goto	lad4ca
+.end method
+
+.method public readBytes()[B
+.throws Ljava/io/IOException;
+.limit registers 6
+; this: v5 (Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)
+.var 0 is result [B from lad4fe to lad518
+.line 231
+	invoke-virtual	{v5},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readRawVarint32	; readRawVarint32()I
+; v5 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result	v1
+; v1 : single-length
+.line 232
+	iget	v2,v5,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.bufferSize I
+; v2 : single-length , v5 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	iget	v3,v5,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.bufferPos I
+; v3 : single-length , v5 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	sub-int/2addr	v2,v3
+; v2 : single-length , v3 : single-length
+	if-gt	v1,v2,lad51a
+; v1 : single-length , v2 : single-length
+	if-lez	v1,lad51a
+; v1 : single-length
+.line 235
+	new-array	v0,v1,[B
+; v0 : [B , v1 : single-length
+.line 236
+	iget-object	v2,v5,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.buffer [B
+; v2 : [B , v5 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	iget	v3,v5,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.bufferPos I
+; v3 : single-length , v5 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	const/4	v4,0
+; v4 : single-length
+	invoke-static	{v2,v3,v0,v4,v1},java/lang/System/arraycopy	; arraycopy(Ljava/lang/Object;ILjava/lang/Object;II)V
+; v2 : [B , v3 : single-length , v0 : [B , v4 : single-length , v1 : single-length
+.line 237
+	iget	v2,v5,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.bufferPos I
+; v2 : single-length , v5 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	add-int/2addr	v2,v1
+; v2 : single-length , v1 : single-length
+	iput	v2,v5,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.bufferPos I
+; v2 : single-length , v5 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+lad518:
+.line 241
+	return-object	v0
+; v0 : [B
+lad51a:
+	invoke-virtual	{v5,v1},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readRawBytes	; readRawBytes(I)[B
+; v5 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano; , v1 : single-length
+	move-result-object	v0
+; v0 : [B
+	goto	lad518
+.end method
+
+.method public readDouble()D
+.throws Ljava/io/IOException;
+.limit registers 3
+; this: v2 (Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)
+.line 149
+	invoke-virtual	{v2},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readRawLittleEndian64	; readRawLittleEndian64()J
+; v2 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result-wide	v0
+; v0 : double-length
+	invoke-static	{v0,v1},java/lang/Double/longBitsToDouble	; longBitsToDouble(J)D
+; v0 : double-length
+	move-result-wide	v0
+; v0 : double-length
+	return-wide	v0
+; v0 : double-length
+.end method
+
+.method public readEnum()I
+.throws Ljava/io/IOException;
+.limit registers 2
+; this: v1 (Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)
+.line 255
+	invoke-virtual	{v1},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readRawVarint32	; readRawVarint32()I
+; v1 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result	v0
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public readFixed32()I
+.throws Ljava/io/IOException;
+.limit registers 2
+; this: v1 (Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)
+.line 179
+	invoke-virtual	{v1},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readRawLittleEndian32	; readRawLittleEndian32()I
+; v1 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result	v0
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public readFixed64()J
+.throws Ljava/io/IOException;
+.limit registers 3
+; this: v2 (Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)
+.line 174
+	invoke-virtual	{v2},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readRawLittleEndian64	; readRawLittleEndian64()J
+; v2 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result-wide	v0
+; v0 : double-length
+	return-wide	v0
+; v0 : double-length
+.end method
+
+.method public readFloat()F
+.throws Ljava/io/IOException;
+.limit registers 2
+; this: v1 (Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)
+.line 154
+	invoke-virtual	{v1},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readRawLittleEndian32	; readRawLittleEndian32()I
+; v1 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result	v0
+; v0 : single-length
+	invoke-static	{v0},java/lang/Float/intBitsToFloat	; intBitsToFloat(I)F
+; v0 : single-length
+	move-result	v0
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public readGroup(Lcom/google/tagmanager/protobuf/nano/MessageNano;I)V
+.throws Ljava/io/IOException;
+.limit registers 5
+; this: v2 (Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)
+; parameter[0] : v3 (Lcom/google/tagmanager/protobuf/nano/MessageNano;)
+; parameter[1] : v4 (I)
+.line 205
+	iget	v0,v2,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.recursionDepth I
+; v0 : single-length , v2 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	iget	v1,v2,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.recursionLimit I
+; v1 : single-length , v2 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	if-lt	v0,v1,lad5e6
+; v0 : single-length , v1 : single-length
+.line 206
+	invoke-static	{},com/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException/recursionLimitExceeded	; recursionLimitExceeded()Lcom/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException;
+; 
+	nop	
+	move-result-object	v0
+; v0 : Lcom/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException;
+	throw	v0
+; v0 : Lcom/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException;
+lad5e6:
+.line 208
+	iget	v0,v2,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.recursionDepth I
+; v0 : single-length , v2 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	add-int/lit8	v0,v0,1
+; v0 : single-length , v0 : single-length
+	iput	v0,v2,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.recursionDepth I
+; v0 : single-length , v2 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+.line 209
+	invoke-virtual	{v3,v2},com/google/tagmanager/protobuf/nano/MessageNano/mergeFrom	; mergeFrom(Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)Lcom/google/tagmanager/protobuf/nano/MessageNano;
+; v3 : Lcom/google/tagmanager/protobuf/nano/MessageNano; , v2 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+.line 210
+	const/4	v0,4
+; v0 : single-length
+	invoke-static	{v4,v0},com/google/tagmanager/protobuf/nano/WireFormatNano/makeTag	; makeTag(II)I
+; v4 : single-length , v0 : single-length
+	move-result	v0
+; v0 : single-length
+	invoke-virtual	{v2,v0},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/checkLastTagWas	; checkLastTagWas(I)V
+; v2 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano; , v0 : single-length
+.line 212
+	iget	v0,v2,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.recursionDepth I
+; v0 : single-length , v2 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	add-int/lit8	v0,v0,255
+; v0 : single-length , v0 : single-length
+	iput	v0,v2,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.recursionDepth I
+; v0 : single-length , v2 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+.line 213
+	return-void	
+.end method
+
+.method public readInt32()I
+.throws Ljava/io/IOException;
+.limit registers 2
+; this: v1 (Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)
+.line 169
+	invoke-virtual	{v1},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readRawVarint32	; readRawVarint32()I
+; v1 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result	v0
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public readInt64()J
+.throws Ljava/io/IOException;
+.limit registers 3
+; this: v2 (Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)
+.line 164
+	invoke-virtual	{v2},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readRawVarint64	; readRawVarint64()J
+; v2 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result-wide	v0
+; v0 : double-length
+	return-wide	v0
+; v0 : double-length
+.end method
+
+.method public readMessage(Lcom/google/tagmanager/protobuf/nano/MessageNano;)V
+.throws Ljava/io/IOException;
+.limit registers 6
+; this: v4 (Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)
+; parameter[0] : v5 (Lcom/google/tagmanager/protobuf/nano/MessageNano;)
+.line 217
+	invoke-virtual	{v4},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readRawVarint32	; readRawVarint32()I
+; v4 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result	v0
+; v0 : single-length
+.line 218
+	iget	v2,v4,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.recursionDepth I
+; v2 : single-length , v4 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	iget	v3,v4,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.recursionLimit I
+; v3 : single-length , v4 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	if-lt	v2,v3,lad67e
+; v2 : single-length , v3 : single-length
+.line 219
+	invoke-static	{},com/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException/recursionLimitExceeded	; recursionLimitExceeded()Lcom/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException;
+; 
+	nop	
+	move-result-object	v2
+; v2 : Lcom/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException;
+	throw	v2
+; v2 : Lcom/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException;
+lad67e:
+.line 221
+	invoke-virtual	{v4,v0},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/pushLimit	; pushLimit(I)I
+; v4 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano; , v0 : single-length
+	move-result	v1
+; v1 : single-length
+.line 222
+	iget	v2,v4,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.recursionDepth I
+; v2 : single-length , v4 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	add-int/lit8	v2,v2,1
+; v2 : single-length , v2 : single-length
+	iput	v2,v4,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.recursionDepth I
+; v2 : single-length , v4 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+.line 223
+	invoke-virtual	{v5,v4},com/google/tagmanager/protobuf/nano/MessageNano/mergeFrom	; mergeFrom(Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)Lcom/google/tagmanager/protobuf/nano/MessageNano;
+; v5 : Lcom/google/tagmanager/protobuf/nano/MessageNano; , v4 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+.line 224
+	const/4	v2,0
+; v2 : single-length
+	invoke-virtual	{v4,v2},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/checkLastTagWas	; checkLastTagWas(I)V
+; v4 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano; , v2 : single-length
+.line 225
+	iget	v2,v4,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.recursionDepth I
+; v2 : single-length , v4 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	add-int/lit8	v2,v2,255
+; v2 : single-length , v2 : single-length
+	iput	v2,v4,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.recursionDepth I
+; v2 : single-length , v4 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+.line 226
+	invoke-virtual	{v4,v1},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/popLimit	; popLimit(I)V
+; v4 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano; , v1 : single-length
+.line 227
+	return-void	
+.end method
+
+.method public readRawByte()B
+.throws Ljava/io/IOException;
+.limit registers 4
+; this: v3 (Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)
+.line 581
+	iget	v0,v3,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.bufferPos I
+; v0 : single-length , v3 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	iget	v1,v3,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.bufferSize I
+; v1 : single-length , v3 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	if-ne	v0,v1,lad6da
+; v0 : single-length , v1 : single-length
+.line 582
+	invoke-static	{},com/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException/truncatedMessage	; truncatedMessage()Lcom/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException;
+; 
+	nop	
+	move-result-object	v0
+; v0 : Lcom/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException;
+	throw	v0
+; v0 : Lcom/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException;
+lad6da:
+.line 584
+	iget-object	v0,v3,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.buffer [B
+; v0 : [B , v3 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	iget	v1,v3,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.bufferPos I
+; v1 : single-length , v3 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	add-int/lit8	v2,v1,1
+; v2 : single-length , v1 : single-length
+	iput	v2,v3,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.bufferPos I
+; v2 : single-length , v3 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	aget-byte	v0,v0,v1
+; v0 : single-length , v0 : single-length , v1 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public readRawBytes(I)[B
+.throws Ljava/io/IOException;
+.limit registers 6
+; this: v4 (Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)
+; parameter[0] : v5 (I)
+.var 0 is bytes [B from lad748 to lad764
+.line 594
+	if-gez	v5,lad70e
+; v5 : single-length
+.line 595
+	invoke-static	{},com/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException/negativeSize	; negativeSize()Lcom/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException;
+; 
+	nop	
+	move-result-object	v1
+; v1 : Lcom/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException;
+	throw	v1
+; v1 : Lcom/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException;
+lad70e:
+.line 598
+	iget	v1,v4,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.bufferPos I
+; v1 : single-length , v4 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	add-int/2addr	v1,v5
+; v1 : single-length , v5 : single-length
+	iget	v2,v4,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.currentLimit I
+; v2 : single-length , v4 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	if-le	v1,v2,lad736
+; v1 : single-length , v2 : single-length
+.line 600
+	iget	v1,v4,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.currentLimit I
+; v1 : single-length , v4 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	iget	v2,v4,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.bufferPos I
+; v2 : single-length , v4 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	sub-int/2addr	v1,v2
+; v1 : single-length , v2 : single-length
+	invoke-virtual	{v4,v1},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/skipRawBytes	; skipRawBytes(I)V
+; v4 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano; , v1 : single-length
+.line 602
+	invoke-static	{},com/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException/truncatedMessage	; truncatedMessage()Lcom/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException;
+; 
+	nop	
+	move-result-object	v1
+; v1 : Lcom/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException;
+	throw	v1
+; v1 : Lcom/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException;
+lad736:
+.line 605
+	iget	v1,v4,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.bufferSize I
+; v1 : single-length , v4 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	iget	v2,v4,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.bufferPos I
+; v2 : single-length , v4 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	sub-int/2addr	v1,v2
+; v1 : single-length , v2 : single-length
+	if-gt	v5,v1,lad764
+; v5 : single-length , v1 : single-length
+.line 607
+	new-array	v0,v5,[B
+; v0 : [B , v5 : single-length
+.line 608
+	iget-object	v1,v4,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.buffer [B
+; v1 : [B , v4 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	iget	v2,v4,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.bufferPos I
+; v2 : single-length , v4 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	const/4	v3,0
+; v3 : single-length
+	invoke-static	{v1,v2,v0,v3,v5},java/lang/System/arraycopy	; arraycopy(Ljava/lang/Object;ILjava/lang/Object;II)V
+; v1 : [B , v2 : single-length , v0 : [B , v3 : single-length , v5 : single-length
+.line 609
+	iget	v1,v4,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.bufferPos I
+; v1 : single-length , v4 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	add-int/2addr	v1,v5
+; v1 : single-length , v5 : single-length
+	iput	v1,v4,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.bufferPos I
+; v1 : single-length , v4 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+.line 610
+	return-object	v0
+; v0 : [B
+lad764:
+.line 612
+	invoke-static	{},com/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException/truncatedMessage	; truncatedMessage()Lcom/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException;
+; 
+	nop	
+	move-result-object	v1
+; v1 : Lcom/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException;
+	throw	v1
+; v1 : Lcom/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException;
+.end method
+
+.method public readRawLittleEndian32()I
+.throws Ljava/io/IOException;
+.limit registers 7
+; this: v6 (Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)
+.line 335
+	invoke-virtual	{v6},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readRawByte	; readRawByte()B
+; v6 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result	v0
+; v0 : single-length
+.line 336
+	invoke-virtual	{v6},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readRawByte	; readRawByte()B
+; v6 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result	v1
+; v1 : single-length
+.line 337
+	invoke-virtual	{v6},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readRawByte	; readRawByte()B
+; v6 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result	v2
+; v2 : single-length
+.line 338
+	invoke-virtual	{v6},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readRawByte	; readRawByte()B
+; v6 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result	v3
+; v3 : single-length
+.line 339
+	and-int/lit16	v4,v0,255
+; v4 : single-length , v0 : single-length
+	and-int/lit16	v5,v1,255
+; v5 : single-length , v1 : single-length
+	shl-int/lit8	v5,v5,8
+; v5 : single-length , v5 : single-length
+	or-int/2addr	v4,v5
+; v4 : single-length , v5 : single-length
+	and-int/lit16	v5,v2,255
+; v5 : single-length , v2 : single-length
+	shl-int/lit8	v5,v5,16
+; v5 : single-length , v5 : single-length
+	or-int/2addr	v4,v5
+; v4 : single-length , v5 : single-length
+	and-int/lit16	v5,v3,255
+; v5 : single-length , v3 : single-length
+	shl-int/lit8	v5,v5,24
+; v5 : single-length , v5 : single-length
+	or-int/2addr	v4,v5
+; v4 : single-length , v5 : single-length
+	return	v4
+; v4 : single-length
+.end method
+
+.method public readRawLittleEndian64()J
+.throws Ljava/io/IOException;
+.limit registers 16
+; this: v15 (Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)
+	const-wide/16	v13,255
+; v13 : double-length
+.line 347
+	invoke-virtual	{v15},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readRawByte	; readRawByte()B
+; v15 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result	v0
+; v0 : single-length
+.line 348
+	invoke-virtual	{v15},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readRawByte	; readRawByte()B
+; v15 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result	v1
+; v1 : single-length
+.line 349
+	invoke-virtual	{v15},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readRawByte	; readRawByte()B
+; v15 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result	v2
+; v2 : single-length
+.line 350
+	invoke-virtual	{v15},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readRawByte	; readRawByte()B
+; v15 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result	v3
+; v3 : single-length
+.line 351
+	invoke-virtual	{v15},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readRawByte	; readRawByte()B
+; v15 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result	v4
+; v4 : single-length
+.line 352
+	invoke-virtual	{v15},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readRawByte	; readRawByte()B
+; v15 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result	v5
+; v5 : single-length
+.line 353
+	invoke-virtual	{v15},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readRawByte	; readRawByte()B
+; v15 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result	v6
+; v6 : single-length
+.line 354
+	invoke-virtual	{v15},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readRawByte	; readRawByte()B
+; v15 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result	v7
+; v7 : single-length
+.line 355
+	int-to-long	v8,v0
+; v8 : double-length , v0 : single-length
+	and-long/2addr	v8,v13
+; v8 : double-length , v13 : double-length
+	int-to-long	v10,v1
+; v10 : double-length , v1 : single-length
+	and-long/2addr	v10,v13
+; v10 : double-length , v13 : double-length
+	const/16	v12,8
+; v12 : single-length
+	shl-long/2addr	v10,v12
+; v10 : double-length , v12 : single-length
+	or-long/2addr	v8,v10
+; v8 : double-length , v10 : double-length
+	int-to-long	v10,v2
+; v10 : double-length , v2 : single-length
+	and-long/2addr	v10,v13
+; v10 : double-length , v13 : double-length
+	const/16	v12,16
+; v12 : single-length
+	shl-long/2addr	v10,v12
+; v10 : double-length , v12 : single-length
+	or-long/2addr	v8,v10
+; v8 : double-length , v10 : double-length
+	int-to-long	v10,v3
+; v10 : double-length , v3 : single-length
+	and-long/2addr	v10,v13
+; v10 : double-length , v13 : double-length
+	const/16	v12,24
+; v12 : single-length
+	shl-long/2addr	v10,v12
+; v10 : double-length , v12 : single-length
+	or-long/2addr	v8,v10
+; v8 : double-length , v10 : double-length
+	int-to-long	v10,v4
+; v10 : double-length , v4 : single-length
+	and-long/2addr	v10,v13
+; v10 : double-length , v13 : double-length
+	const/16	v12,32
+; v12 : single-length
+	shl-long/2addr	v10,v12
+; v10 : double-length , v12 : single-length
+	or-long/2addr	v8,v10
+; v8 : double-length , v10 : double-length
+	int-to-long	v10,v5
+; v10 : double-length , v5 : single-length
+	and-long/2addr	v10,v13
+; v10 : double-length , v13 : double-length
+	const/16	v12,40
+; v12 : single-length
+	shl-long/2addr	v10,v12
+; v10 : double-length , v12 : single-length
+	or-long/2addr	v8,v10
+; v8 : double-length , v10 : double-length
+	int-to-long	v10,v6
+; v10 : double-length , v6 : single-length
+	and-long/2addr	v10,v13
+; v10 : double-length , v13 : double-length
+	const/16	v12,48
+; v12 : single-length
+	shl-long/2addr	v10,v12
+; v10 : double-length , v12 : single-length
+	or-long/2addr	v8,v10
+; v8 : double-length , v10 : double-length
+	int-to-long	v10,v7
+; v10 : double-length , v7 : single-length
+	and-long/2addr	v10,v13
+; v10 : double-length , v13 : double-length
+	const/16	v12,56
+; v12 : single-length
+	shl-long/2addr	v10,v12
+; v10 : double-length , v12 : single-length
+	or-long/2addr	v8,v10
+; v8 : double-length , v10 : double-length
+	return-wide	v8
+; v8 : double-length
+.end method
+
+.method public readRawVarint32()I
+.throws Ljava/io/IOException;
+.limit registers 5
+; this: v4 (Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)
+.line 285
+	invoke-virtual	{v4},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readRawByte	; readRawByte()B
+; v4 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result	v2
+; v2 : single-length
+.line 286
+	if-ltz	v2,lad894
+; v2 : single-length
+	move	v1,v2
+; v1 : single-length , v2 : single-length
+lad892:
+.line 315
+	return	v1
+; v1 : single-length
+lad894:
+.line 289
+	and-int/lit8	v1,v2,127
+; v1 : single-length , v2 : single-length
+.line 290
+	invoke-virtual	{v4},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readRawByte	; readRawByte()B
+; v4 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result	v2
+; v2 : single-length
+	if-ltz	v2,lad8ac
+; v2 : single-length
+.line 291
+	shl-int/lit8	v3,v2,7
+; v3 : single-length , v2 : single-length
+	or-int/2addr	v1,v3
+; v1 : single-length , v3 : single-length
+	goto	lad892
+lad8ac:
+.line 293
+	and-int/lit8	v3,v2,127
+; v3 : single-length , v2 : single-length
+	shl-int/lit8	v3,v3,7
+; v3 : single-length , v3 : single-length
+	or-int/2addr	v1,v3
+; v1 : single-length , v3 : single-length
+.line 294
+	invoke-virtual	{v4},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readRawByte	; readRawByte()B
+; v4 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result	v2
+; v2 : single-length
+	if-ltz	v2,lad8ca
+; v2 : single-length
+.line 295
+	shl-int/lit8	v3,v2,14
+; v3 : single-length , v2 : single-length
+	or-int/2addr	v1,v3
+; v1 : single-length , v3 : single-length
+	goto	lad892
+lad8ca:
+.line 297
+	and-int/lit8	v3,v2,127
+; v3 : single-length , v2 : single-length
+	shl-int/lit8	v3,v3,14
+; v3 : single-length , v3 : single-length
+	or-int/2addr	v1,v3
+; v1 : single-length , v3 : single-length
+.line 298
+	invoke-virtual	{v4},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readRawByte	; readRawByte()B
+; v4 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result	v2
+; v2 : single-length
+	if-ltz	v2,lad8e8
+; v2 : single-length
+.line 299
+	shl-int/lit8	v3,v2,21
+; v3 : single-length , v2 : single-length
+	or-int/2addr	v1,v3
+; v1 : single-length , v3 : single-length
+	goto	lad892
+lad8e8:
+.line 301
+	and-int/lit8	v3,v2,127
+; v3 : single-length , v2 : single-length
+	shl-int/lit8	v3,v3,21
+; v3 : single-length , v3 : single-length
+	or-int/2addr	v1,v3
+; v1 : single-length , v3 : single-length
+.line 302
+	invoke-virtual	{v4},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readRawByte	; readRawByte()B
+; v4 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result	v2
+; v2 : single-length
+	shl-int/lit8	v3,v2,28
+; v3 : single-length , v2 : single-length
+	or-int/2addr	v1,v3
+; v1 : single-length , v3 : single-length
+.line 303
+	if-gez	v2,lad892
+; v2 : single-length
+.line 305
+	const/4	v0,0
+; v0 : single-length
+lad906:
+	const/4	v3,5
+; v3 : single-length
+	if-ge	v0,v3,lad91e
+; v0 : single-length , v3 : single-length
+.line 306
+	invoke-virtual	{v4},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readRawByte	; readRawByte()B
+; v4 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result	v3
+; v3 : single-length
+	if-gez	v3,lad892
+; v3 : single-length
+.line 305
+	add-int/lit8	v0,v0,1
+; v0 : single-length , v0 : single-length
+	goto	lad906
+lad91e:
+.line 310
+	invoke-static	{},com/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException/malformedVarint	; malformedVarint()Lcom/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException;
+; 
+	nop	
+	move-result-object	v3
+; v3 : Lcom/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException;
+	throw	v3
+; v3 : Lcom/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException;
+.end method
+
+.method public readRawVarint64()J
+.throws Ljava/io/IOException;
+.limit registers 7
+; this: v6 (Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)
+.var 0 is b B from lad94e to lad968
+.line 320
+	const/4	v3,0
+; v3 : single-length
+.line 321
+	const-wide/16	v1,0
+; v1 : double-length
+lad93e:
+.line 322
+	const/16	v4,64
+; v4 : single-length
+	if-ge	v3,v4,lad968
+; v3 : single-length , v4 : single-length
+.line 323
+	invoke-virtual	{v6},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readRawByte	; readRawByte()B
+; v6 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result	v0
+; v0 : single-length
+.line 324
+	and-int/lit8	v4,v0,127
+; v4 : single-length , v0 : single-length
+	int-to-long	v4,v4
+; v4 : double-length , v4 : double-length
+	shl-long/2addr	v4,v3
+; v4 : double-length , v3 : single-length
+	or-long/2addr	v1,v4
+; v1 : double-length , v4 : double-length
+.line 325
+	and-int/lit16	v4,v0,128
+; v4 : single-length , v0 : single-length
+	if-nez	v4,lad962
+; v4 : single-length
+.line 326
+	return-wide	v1
+; v1 : double-length
+lad962:
+.line 328
+	add-int/lit8	v3,v3,7
+; v3 : single-length , v3 : single-length
+.line 329
+	goto	lad93e
+lad968:
+.line 330
+	invoke-static	{},com/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException/malformedVarint	; malformedVarint()Lcom/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException;
+; 
+	nop	
+	move-result-object	v4
+; v4 : Lcom/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException;
+	throw	v4
+; v4 : Lcom/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException;
+.end method
+
+.method public readSFixed32()I
+.throws Ljava/io/IOException;
+.limit registers 2
+; this: v1 (Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)
+.line 260
+	invoke-virtual	{v1},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readRawLittleEndian32	; readRawLittleEndian32()I
+; v1 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result	v0
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public readSFixed64()J
+.throws Ljava/io/IOException;
+.limit registers 3
+; this: v2 (Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)
+.line 265
+	invoke-virtual	{v2},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readRawLittleEndian64	; readRawLittleEndian64()J
+; v2 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result-wide	v0
+; v0 : double-length
+	return-wide	v0
+; v0 : double-length
+.end method
+
+.method public readSInt32()I
+.throws Ljava/io/IOException;
+.limit registers 2
+; this: v1 (Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)
+.line 270
+	invoke-virtual	{v1},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readRawVarint32	; readRawVarint32()I
+; v1 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result	v0
+; v0 : single-length
+	invoke-static	{v0},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/decodeZigZag32	; decodeZigZag32(I)I
+; v0 : single-length
+	move-result	v0
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public readSInt64()J
+.throws Ljava/io/IOException;
+.limit registers 3
+; this: v2 (Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)
+.line 275
+	invoke-virtual	{v2},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readRawVarint64	; readRawVarint64()J
+; v2 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result-wide	v0
+; v0 : double-length
+	invoke-static	{v0,v1},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/decodeZigZag64	; decodeZigZag64(J)J
+; v0 : double-length
+	move-result-wide	v0
+; v0 : double-length
+	return-wide	v0
+; v0 : double-length
+.end method
+
+.method public readString()Ljava/lang/String;
+.throws Ljava/io/IOException;
+.limit registers 6
+; this: v5 (Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)
+.var 0 is result Ljava/lang/String; from lada34 to lada3e
+.line 189
+	invoke-virtual	{v5},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readRawVarint32	; readRawVarint32()I
+; v5 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result	v1
+; v1 : single-length
+.line 190
+	iget	v2,v5,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.bufferSize I
+; v2 : single-length , v5 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	iget	v3,v5,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.bufferPos I
+; v3 : single-length , v5 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	sub-int/2addr	v2,v3
+; v2 : single-length , v3 : single-length
+	if-gt	v1,v2,lada40
+; v1 : single-length , v2 : single-length
+	if-lez	v1,lada40
+; v1 : single-length
+.line 193
+	new-instance	v0,java/lang/String
+; v0 : Ljava/lang/String;
+	iget-object	v2,v5,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.buffer [B
+; v2 : [B , v5 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	iget	v3,v5,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.bufferPos I
+; v3 : single-length , v5 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	const-string	v4,"UTF-8"
+; v4 : Ljava/lang/String;
+	invoke-direct	{v0,v2,v3,v1,v4},java/lang/String/<init>	; <init>([BIILjava/lang/String;)V
+; v0 : Ljava/lang/String; , v2 : [B , v3 : single-length , v1 : single-length , v4 : Ljava/lang/String;
+.line 194
+	iget	v2,v5,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.bufferPos I
+; v2 : single-length , v5 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	add-int/2addr	v2,v1
+; v2 : single-length , v1 : single-length
+	iput	v2,v5,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.bufferPos I
+; v2 : single-length , v5 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+lada3e:
+.line 198
+	return-object	v0
+; v0 : Ljava/lang/String;
+lada40:
+	new-instance	v0,java/lang/String
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v5,v1},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readRawBytes	; readRawBytes(I)[B
+; v5 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano; , v1 : single-length
+	move-result-object	v2
+; v2 : [B
+	const-string	v3,"UTF-8"
+; v3 : Ljava/lang/String;
+	invoke-direct	{v0,v2,v3},java/lang/String/<init>	; <init>([BLjava/lang/String;)V
+; v0 : Ljava/lang/String; , v2 : [B , v3 : Ljava/lang/String;
+	goto	lada3e
+.end method
+
+.method public readTag()I
+.throws Ljava/io/IOException;
+.limit registers 3
+; this: v2 (Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)
+	const/4	v0,0
+; v0 : single-length
+.line 71
+	invoke-virtual	{v2},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/isAtEnd	; isAtEnd()Z
+; v2 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result	v1
+; v1 : single-length
+	if-eqz	v1,lada7c
+; v1 : single-length
+.line 72
+	iput	v0,v2,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.lastTag I
+; v0 : single-length , v2 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+lada7a:
+.line 81
+	return	v0
+; v0 : single-length
+lada7c:
+.line 76
+	invoke-virtual	{v2},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readRawVarint32	; readRawVarint32()I
+; v2 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result	v0
+; v0 : single-length
+	iput	v0,v2,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.lastTag I
+; v0 : single-length , v2 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+.line 77
+	iget	v0,v2,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.lastTag I
+; v0 : single-length , v2 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	if-nez	v0,lada9a
+; v0 : single-length
+.line 79
+	invoke-static	{},com/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException/invalidTag	; invalidTag()Lcom/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException;
+; 
+	nop	
+	move-result-object	v0
+; v0 : Lcom/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException;
+	throw	v0
+; v0 : Lcom/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException;
+lada9a:
+.line 81
+	iget	v0,v2,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.lastTag I
+; v0 : single-length , v2 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	goto	lada7a
+.end method
+
+.method public readUInt32()I
+.throws Ljava/io/IOException;
+.limit registers 2
+; this: v1 (Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)
+.line 247
+	invoke-virtual	{v1},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readRawVarint32	; readRawVarint32()I
+; v1 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result	v0
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public readUInt64()J
+.throws Ljava/io/IOException;
+.limit registers 3
+; this: v2 (Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)
+.line 159
+	invoke-virtual	{v2},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readRawVarint64	; readRawVarint64()J
+; v2 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result-wide	v0
+; v0 : double-length
+	return-wide	v0
+; v0 : double-length
+.end method
+
+.method public resetSizeCounter()V
+.limit registers 1
+; this: v0 (Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)
+.line 468
+	return-void	
+.end method
+
+.method public rewindToPosition(I)V
+.limit registers 6
+; this: v4 (Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)
+; parameter[0] : v5 (I)
+.line 564
+	iget	v0,v4,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.bufferPos I
+; v0 : single-length , v4 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	iget	v1,v4,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.bufferStart I
+; v1 : single-length , v4 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	sub-int/2addr	v0,v1
+; v0 : single-length , v1 : single-length
+	if-le	v5,v0,ladb5a
+; v5 : single-length , v0 : single-length
+.line 565
+	new-instance	v0,java/lang/IllegalArgumentException
+; v0 : Ljava/lang/IllegalArgumentException;
+	new-instance	v1,java/lang/StringBuilder
+; v1 : Ljava/lang/StringBuilder;
+	invoke-direct	{v1},java/lang/StringBuilder/<init>	; <init>()V
+; v1 : Ljava/lang/StringBuilder;
+	const-string	v2,"Position "
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v1,v5},java/lang/StringBuilder/append	; append(I)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v5 : single-length
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	const-string	v2," is beyond current "
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	iget	v2,v4,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.bufferPos I
+; v2 : single-length , v4 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	iget	v3,v4,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.bufferStart I
+; v3 : single-length , v4 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	sub-int/2addr	v2,v3
+; v2 : single-length , v3 : single-length
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(I)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : single-length
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v1},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v1 : Ljava/lang/StringBuilder;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/IllegalArgumentException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/IllegalArgumentException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/IllegalArgumentException;
+ladb5a:
+.line 568
+	if-gez	v5,ladb90
+; v5 : single-length
+.line 569
+	new-instance	v0,java/lang/IllegalArgumentException
+; v0 : Ljava/lang/IllegalArgumentException;
+	new-instance	v1,java/lang/StringBuilder
+; v1 : Ljava/lang/StringBuilder;
+	invoke-direct	{v1},java/lang/StringBuilder/<init>	; <init>()V
+; v1 : Ljava/lang/StringBuilder;
+	const-string	v2,"Bad position "
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v1,v5},java/lang/StringBuilder/append	; append(I)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v5 : single-length
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v1},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v1 : Ljava/lang/StringBuilder;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/IllegalArgumentException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/IllegalArgumentException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/IllegalArgumentException;
+ladb90:
+.line 571
+	iget	v0,v4,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.bufferStart I
+; v0 : single-length , v4 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	add-int/2addr	v0,v5
+; v0 : single-length , v5 : single-length
+	iput	v0,v4,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.bufferPos I
+; v0 : single-length , v4 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+.line 572
+	return-void	
+.end method
+
+.method public setRecursionLimit(I)I
+.limit registers 6
+; this: v4 (Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)
+; parameter[0] : v5 (I)
+.line 430
+	if-gez	v5,ladbe2
+; v5 : single-length
+.line 431
+	new-instance	v1,java/lang/IllegalArgumentException
+; v1 : Ljava/lang/IllegalArgumentException;
+	new-instance	v2,java/lang/StringBuilder
+; v2 : Ljava/lang/StringBuilder;
+	invoke-direct	{v2},java/lang/StringBuilder/<init>	; <init>()V
+; v2 : Ljava/lang/StringBuilder;
+	const-string	v3,"Recursion limit cannot be negative: "
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v2,v5},java/lang/StringBuilder/append	; append(I)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v5 : single-length
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v2},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v2 : Ljava/lang/StringBuilder;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-direct	{v1,v2},java/lang/IllegalArgumentException/<init>	; <init>(Ljava/lang/String;)V
+; v1 : Ljava/lang/IllegalArgumentException; , v2 : Ljava/lang/String;
+	throw	v1
+; v1 : Ljava/lang/IllegalArgumentException;
+ladbe2:
+.line 434
+	iget	v0,v4,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.recursionLimit I
+; v0 : single-length , v4 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+.line 435
+	iput	v5,v4,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.recursionLimit I
+; v5 : single-length , v4 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+.line 436
+	return	v0
+; v0 : single-length
+.end method
+
+.method public setSizeLimit(I)I
+.limit registers 6
+; this: v4 (Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)
+; parameter[0] : v5 (I)
+.line 455
+	if-gez	v5,ladc32
+; v5 : single-length
+.line 456
+	new-instance	v1,java/lang/IllegalArgumentException
+; v1 : Ljava/lang/IllegalArgumentException;
+	new-instance	v2,java/lang/StringBuilder
+; v2 : Ljava/lang/StringBuilder;
+	invoke-direct	{v2},java/lang/StringBuilder/<init>	; <init>()V
+; v2 : Ljava/lang/StringBuilder;
+	const-string	v3,"Size limit cannot be negative: "
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v2,v5},java/lang/StringBuilder/append	; append(I)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v5 : single-length
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v2},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v2 : Ljava/lang/StringBuilder;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-direct	{v1,v2},java/lang/IllegalArgumentException/<init>	; <init>(Ljava/lang/String;)V
+; v1 : Ljava/lang/IllegalArgumentException; , v2 : Ljava/lang/String;
+	throw	v1
+; v1 : Ljava/lang/IllegalArgumentException;
+ladc32:
+.line 459
+	iget	v0,v4,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.sizeLimit I
+; v0 : single-length , v4 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+.line 460
+	iput	v5,v4,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.sizeLimit I
+; v5 : single-length , v4 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+.line 461
+	return	v0
+; v0 : single-length
+.end method
+
+.method public skipField(I)Z
+.throws Ljava/io/IOException;
+.limit registers 5
+; this: v3 (Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)
+; parameter[0] : v4 (I)
+	const/4	v0,1
+; v0 : single-length
+.line 106
+	invoke-static	{v4},com/google/tagmanager/protobuf/nano/WireFormatNano/getTagWireType	; getTagWireType(I)I
+; v4 : single-length
+	move-result	v1
+; v1 : single-length
+	packed-switch	v1,0
+		psadc56_adc66	; case 0
+		psadc56_adc6e	; case 1
+		psadc56_adc76	; case 2
+		psadc56_adc86	; case 3
+		psadc56_adca6	; case 4
+		psadc56_adcaa	; case 5
+		default: psadc56_default
+; v1 : single-length
+psadc56_default:
+.line 128
+	invoke-static	{},com/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException/invalidWireType	; invalidWireType()Lcom/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException;
+; 
+	nop	
+	move-result-object	v0
+; v0 : Lcom/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException;
+	throw	v0
+; v0 : Lcom/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException;
+psadc56_adc66:
+.line 108
+	invoke-virtual	{v3},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readInt32	; readInt32()I
+; v3 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+ladc6c:
+.line 126
+	return	v0
+; v0 : single-length
+psadc56_adc6e:
+.line 111
+	invoke-virtual	{v3},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readRawLittleEndian64	; readRawLittleEndian64()J
+; v3 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	goto	ladc6c
+psadc56_adc76:
+.line 114
+	invoke-virtual	{v3},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readRawVarint32	; readRawVarint32()I
+; v3 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result	v1
+; v1 : single-length
+	invoke-virtual	{v3,v1},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/skipRawBytes	; skipRawBytes(I)V
+; v3 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano; , v1 : single-length
+	goto	ladc6c
+psadc56_adc86:
+.line 117
+	invoke-virtual	{v3},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/skipMessage	; skipMessage()V
+; v3 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+.line 118
+	invoke-static	{v4},com/google/tagmanager/protobuf/nano/WireFormatNano/getTagFieldNumber	; getTagFieldNumber(I)I
+; v4 : single-length
+	move-result	v1
+; v1 : single-length
+	const/4	v2,4
+; v2 : single-length
+	invoke-static	{v1,v2},com/google/tagmanager/protobuf/nano/WireFormatNano/makeTag	; makeTag(II)I
+; v1 : single-length , v2 : single-length
+	move-result	v1
+; v1 : single-length
+	invoke-virtual	{v3,v1},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/checkLastTagWas	; checkLastTagWas(I)V
+; v3 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano; , v1 : single-length
+	goto	ladc6c
+psadc56_adca6:
+.line 123
+	const/4	v0,0
+; v0 : single-length
+	goto	ladc6c
+psadc56_adcaa:
+.line 125
+	invoke-virtual	{v3},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readRawLittleEndian32	; readRawLittleEndian32()I
+; v3 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	goto	ladc6c
+.line 106
+ladcb2:	data-array
+		0x00, 0x00
+	end data-array
+.end method
+
+.method public skipMessage()V
+.throws Ljava/io/IOException;
+.limit registers 3
+; this: v2 (Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)
+ladce4:
+.line 138
+	invoke-virtual	{v2},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readTag	; readTag()I
+; v2 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result	v0
+; v0 : single-length
+.line 139
+	if-eqz	v0,ladcfc
+; v0 : single-length
+	invoke-virtual	{v2,v0},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/skipField	; skipField(I)Z
+; v2 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano; , v0 : single-length
+	move-result	v1
+; v1 : single-length
+	if-nez	v1,ladce4
+; v1 : single-length
+ladcfc:
+.line 140
+	return-void	
+.end method
+
+.method public skipRawBytes(I)V
+.throws Ljava/io/IOException;
+.limit registers 4
+; this: v2 (Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)
+; parameter[0] : v3 (I)
+.line 623
+	if-gez	v3,ladd1e
+; v3 : single-length
+.line 624
+	invoke-static	{},com/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException/negativeSize	; negativeSize()Lcom/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException;
+; 
+	nop	
+	move-result-object	v0
+; v0 : Lcom/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException;
+	throw	v0
+; v0 : Lcom/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException;
+ladd1e:
+.line 627
+	iget	v0,v2,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.bufferPos I
+; v0 : single-length , v2 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	add-int/2addr	v0,v3
+; v0 : single-length , v3 : single-length
+	iget	v1,v2,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.currentLimit I
+; v1 : single-length , v2 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	if-le	v0,v1,ladd46
+; v0 : single-length , v1 : single-length
+.line 629
+	iget	v0,v2,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.currentLimit I
+; v0 : single-length , v2 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	iget	v1,v2,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.bufferPos I
+; v1 : single-length , v2 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	sub-int/2addr	v0,v1
+; v0 : single-length , v1 : single-length
+	invoke-virtual	{v2,v0},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/skipRawBytes	; skipRawBytes(I)V
+; v2 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano; , v0 : single-length
+.line 631
+	invoke-static	{},com/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException/truncatedMessage	; truncatedMessage()Lcom/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException;
+; 
+	nop	
+	move-result-object	v0
+; v0 : Lcom/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException;
+	throw	v0
+; v0 : Lcom/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException;
+ladd46:
+.line 634
+	iget	v0,v2,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.bufferSize I
+; v0 : single-length , v2 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	iget	v1,v2,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.bufferPos I
+; v1 : single-length , v2 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	sub-int/2addr	v0,v1
+; v0 : single-length , v1 : single-length
+	if-gt	v3,v0,ladd60
+; v3 : single-length , v0 : single-length
+.line 636
+	iget	v0,v2,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.bufferPos I
+; v0 : single-length , v2 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	add-int/2addr	v0,v3
+; v0 : single-length , v3 : single-length
+	iput	v0,v2,com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano.bufferPos I
+; v0 : single-length , v2 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+.line 640
+	return-void	
+ladd60:
+.line 638
+	invoke-static	{},com/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException/truncatedMessage	; truncatedMessage()Lcom/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException;
+; 
+	nop	
+	move-result-object	v0
+; v0 : Lcom/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException;
+	throw	v0
+; v0 : Lcom/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException;
+.end method
+
+

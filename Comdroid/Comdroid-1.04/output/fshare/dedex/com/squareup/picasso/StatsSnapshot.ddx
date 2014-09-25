@@ -1,0 +1,421 @@
+.class public com/squareup/picasso/StatsSnapshot
+.super java/lang/Object
+.source StatsSnapshot.java
+
+.field private static final TAG Ljava/lang/String; = "Picasso"
+.field public final averageOriginalBitmapSize J
+.field public final averageTransformedBitmapSize J
+.field public final cacheHits J
+.field public final cacheMisses J
+.field public final maxSize I
+.field public final originalBitmapCount I
+.field public final size I
+.field public final timeStamp J
+.field public final totalOriginalBitmapSize J
+.field public final totalTransformedBitmapSize J
+.field public final transformedBitmapCount I
+
+.method public <init>(IIJJJJJJIIJ)V
+.limit registers 21
+; this: v2 (Lcom/squareup/picasso/StatsSnapshot;)
+; parameter[0] : v3 (I)
+; parameter[1] : v4 (I)
+; parameter[2] : v5 (J)
+; parameter[3] : v7 (J)
+; parameter[4] : v9 (J)
+; parameter[5] : v11 (J)
+; parameter[6] : v13 (J)
+; parameter[7] : v15 (J)
+; parameter[8] : v17 (I)
+; parameter[9] : v18 (I)
+; parameter[10] : v19 (J)
+.line 42
+	invoke-direct	{v2},java/lang/Object/<init>	; <init>()V
+; v2 : Lcom/squareup/picasso/StatsSnapshot;
+.line 43
+	iput	v3,v2,com/squareup/picasso/StatsSnapshot.maxSize I
+; v3 : single-length , v2 : Lcom/squareup/picasso/StatsSnapshot;
+.line 44
+	iput	v4,v2,com/squareup/picasso/StatsSnapshot.size I
+; v4 : single-length , v2 : Lcom/squareup/picasso/StatsSnapshot;
+.line 45
+	iput-wide	v5,v2,com/squareup/picasso/StatsSnapshot.cacheHits J
+; v5 : double-length , v2 : Lcom/squareup/picasso/StatsSnapshot;
+.line 46
+	iput-wide	v7,v2,com/squareup/picasso/StatsSnapshot.cacheMisses J
+; v7 : double-length , v2 : Lcom/squareup/picasso/StatsSnapshot;
+.line 47
+	iput-wide	v9,v2,com/squareup/picasso/StatsSnapshot.totalOriginalBitmapSize J
+; v9 : double-length , v2 : Lcom/squareup/picasso/StatsSnapshot;
+.line 48
+	iput-wide	v11,v2,com/squareup/picasso/StatsSnapshot.totalTransformedBitmapSize J
+; v11 : double-length , v2 : Lcom/squareup/picasso/StatsSnapshot;
+.line 49
+	iput-wide	v13,v2,com/squareup/picasso/StatsSnapshot.averageOriginalBitmapSize J
+; v13 : double-length , v2 : Lcom/squareup/picasso/StatsSnapshot;
+.line 50
+	iput-wide	v15,v2,com/squareup/picasso/StatsSnapshot.averageTransformedBitmapSize J
+; v15 : double-length , v2 : Lcom/squareup/picasso/StatsSnapshot;
+.line 51
+	move/from16	v0,v17
+; v0 : single-length , v17 : single-length
+	iput	v0,v2,com/squareup/picasso/StatsSnapshot.originalBitmapCount I
+; v0 : single-length , v2 : Lcom/squareup/picasso/StatsSnapshot;
+.line 52
+	move/from16	v0,v18
+; v0 : single-length , v18 : single-length
+	iput	v0,v2,com/squareup/picasso/StatsSnapshot.transformedBitmapCount I
+; v0 : single-length , v2 : Lcom/squareup/picasso/StatsSnapshot;
+.line 53
+	move-wide/from16	v0,v19
+; v0 : double-length , v19 : double-length
+	iput-wide	v0,v2,com/squareup/picasso/StatsSnapshot.timeStamp J
+; v0 : double-length , v2 : Lcom/squareup/picasso/StatsSnapshot;
+.line 54
+	return-void	
+.end method
+
+.method public dump()V
+.limit registers 4
+; this: v3 (Lcom/squareup/picasso/StatsSnapshot;)
+.line 58
+	new-instance	v0,java/io/StringWriter
+; v0 : Ljava/io/StringWriter;
+	invoke-direct	{v0},java/io/StringWriter/<init>	; <init>()V
+; v0 : Ljava/io/StringWriter;
+.line 59
+	new-instance	v1,java/io/PrintWriter
+; v1 : Ljava/io/PrintWriter;
+	invoke-direct	{v1,v0},java/io/PrintWriter/<init>	; <init>(Ljava/io/Writer;)V
+; v1 : Ljava/io/PrintWriter; , v0 : Ljava/io/StringWriter;
+	invoke-virtual	{v3,v1},com/squareup/picasso/StatsSnapshot/dump	; dump(Ljava/io/PrintWriter;)V
+; v3 : Lcom/squareup/picasso/StatsSnapshot; , v1 : Ljava/io/PrintWriter;
+.line 60
+	const-string	v1,"Picasso"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0},java/io/StringWriter/toString	; toString()Ljava/lang/String;
+; v0 : Ljava/io/StringWriter;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-static	{v1,v2},android/util/Log/i	; i(Ljava/lang/String;Ljava/lang/String;)I
+; v1 : Ljava/lang/String; , v2 : Ljava/lang/String;
+.line 61
+	return-void	
+.end method
+
+.method public dump(Ljava/io/PrintWriter;)V
+.limit registers 4
+; this: v2 (Lcom/squareup/picasso/StatsSnapshot;)
+; parameter[0] : v3 (Ljava/io/PrintWriter;)
+.line 65
+	const-string	v0,"===============BEGIN PICASSO STATS ==============="
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v3,v0},java/io/PrintWriter/println	; println(Ljava/lang/String;)V
+; v3 : Ljava/io/PrintWriter; , v0 : Ljava/lang/String;
+.line 66
+	const-string	v0,"Memory Cache Stats"
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v3,v0},java/io/PrintWriter/println	; println(Ljava/lang/String;)V
+; v3 : Ljava/io/PrintWriter; , v0 : Ljava/lang/String;
+.line 67
+	const-string	v0,"  Max Cache Size: "
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v3,v0},java/io/PrintWriter/print	; print(Ljava/lang/String;)V
+; v3 : Ljava/io/PrintWriter; , v0 : Ljava/lang/String;
+.line 68
+	iget	v0,v2,com/squareup/picasso/StatsSnapshot.maxSize I
+; v0 : single-length , v2 : Lcom/squareup/picasso/StatsSnapshot;
+	invoke-virtual	{v3,v0},java/io/PrintWriter/println	; println(I)V
+; v3 : Ljava/io/PrintWriter; , v0 : single-length
+.line 69
+	const-string	v0,"  Cache Size: "
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v3,v0},java/io/PrintWriter/print	; print(Ljava/lang/String;)V
+; v3 : Ljava/io/PrintWriter; , v0 : Ljava/lang/String;
+.line 70
+	iget	v0,v2,com/squareup/picasso/StatsSnapshot.size I
+; v0 : single-length , v2 : Lcom/squareup/picasso/StatsSnapshot;
+	invoke-virtual	{v3,v0},java/io/PrintWriter/println	; println(I)V
+; v3 : Ljava/io/PrintWriter; , v0 : single-length
+.line 71
+	const-string	v0,"  Cache % Full: "
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v3,v0},java/io/PrintWriter/print	; print(Ljava/lang/String;)V
+; v3 : Ljava/io/PrintWriter; , v0 : Ljava/lang/String;
+.line 72
+	iget	v0,v2,com/squareup/picasso/StatsSnapshot.size I
+; v0 : single-length , v2 : Lcom/squareup/picasso/StatsSnapshot;
+	int-to-float	v0,v0
+; v0 : single-length , v0 : single-length
+	iget	v1,v2,com/squareup/picasso/StatsSnapshot.maxSize I
+; v1 : single-length , v2 : Lcom/squareup/picasso/StatsSnapshot;
+	int-to-float	v1,v1
+; v1 : single-length , v1 : single-length
+	div-float/2addr	v0,v1
+; v0 : single-length , v1 : single-length
+	const/high16	v1,17096
+; v1 : single-length
+	mul-float/2addr	v0,v1
+; v0 : single-length , v1 : single-length
+	float-to-double	v0,v0
+; v0 : double-length , v0 : double-length
+	invoke-static	{v0,v1},java/lang/Math/ceil	; ceil(D)D
+; v0 : double-length
+	move-result-wide	v0
+; v0 : double-length
+	double-to-int	v0,v0
+; v0 : single-length , v0 : single-length
+	invoke-virtual	{v3,v0},java/io/PrintWriter/println	; println(I)V
+; v3 : Ljava/io/PrintWriter; , v0 : single-length
+.line 73
+	const-string	v0,"  Cache Hits: "
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v3,v0},java/io/PrintWriter/print	; print(Ljava/lang/String;)V
+; v3 : Ljava/io/PrintWriter; , v0 : Ljava/lang/String;
+.line 74
+	iget-wide	v0,v2,com/squareup/picasso/StatsSnapshot.cacheHits J
+; v0 : double-length , v2 : Lcom/squareup/picasso/StatsSnapshot;
+	invoke-virtual	{v3,v0,v1},java/io/PrintWriter/println	; println(J)V
+; v3 : Ljava/io/PrintWriter; , v0 : double-length
+.line 75
+	const-string	v0,"  Cache Misses: "
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v3,v0},java/io/PrintWriter/print	; print(Ljava/lang/String;)V
+; v3 : Ljava/io/PrintWriter; , v0 : Ljava/lang/String;
+.line 76
+	iget-wide	v0,v2,com/squareup/picasso/StatsSnapshot.cacheMisses J
+; v0 : double-length , v2 : Lcom/squareup/picasso/StatsSnapshot;
+	invoke-virtual	{v3,v0,v1},java/io/PrintWriter/println	; println(J)V
+; v3 : Ljava/io/PrintWriter; , v0 : double-length
+.line 77
+	const-string	v0,"Bitmap Stats"
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v3,v0},java/io/PrintWriter/println	; println(Ljava/lang/String;)V
+; v3 : Ljava/io/PrintWriter; , v0 : Ljava/lang/String;
+.line 78
+	const-string	v0,"  Total Bitmaps Decoded: "
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v3,v0},java/io/PrintWriter/print	; print(Ljava/lang/String;)V
+; v3 : Ljava/io/PrintWriter; , v0 : Ljava/lang/String;
+.line 79
+	iget	v0,v2,com/squareup/picasso/StatsSnapshot.originalBitmapCount I
+; v0 : single-length , v2 : Lcom/squareup/picasso/StatsSnapshot;
+	invoke-virtual	{v3,v0},java/io/PrintWriter/println	; println(I)V
+; v3 : Ljava/io/PrintWriter; , v0 : single-length
+.line 80
+	const-string	v0,"  Total Bitmap Size: "
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v3,v0},java/io/PrintWriter/print	; print(Ljava/lang/String;)V
+; v3 : Ljava/io/PrintWriter; , v0 : Ljava/lang/String;
+.line 81
+	iget-wide	v0,v2,com/squareup/picasso/StatsSnapshot.totalOriginalBitmapSize J
+; v0 : double-length , v2 : Lcom/squareup/picasso/StatsSnapshot;
+	invoke-virtual	{v3,v0,v1},java/io/PrintWriter/println	; println(J)V
+; v3 : Ljava/io/PrintWriter; , v0 : double-length
+.line 82
+	const-string	v0,"  Total Transformed Bitmaps: "
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v3,v0},java/io/PrintWriter/print	; print(Ljava/lang/String;)V
+; v3 : Ljava/io/PrintWriter; , v0 : Ljava/lang/String;
+.line 83
+	iget	v0,v2,com/squareup/picasso/StatsSnapshot.transformedBitmapCount I
+; v0 : single-length , v2 : Lcom/squareup/picasso/StatsSnapshot;
+	invoke-virtual	{v3,v0},java/io/PrintWriter/println	; println(I)V
+; v3 : Ljava/io/PrintWriter; , v0 : single-length
+.line 84
+	const-string	v0,"  Total Transformed Bitmap Size: "
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v3,v0},java/io/PrintWriter/print	; print(Ljava/lang/String;)V
+; v3 : Ljava/io/PrintWriter; , v0 : Ljava/lang/String;
+.line 85
+	iget-wide	v0,v2,com/squareup/picasso/StatsSnapshot.totalTransformedBitmapSize J
+; v0 : double-length , v2 : Lcom/squareup/picasso/StatsSnapshot;
+	invoke-virtual	{v3,v0,v1},java/io/PrintWriter/println	; println(J)V
+; v3 : Ljava/io/PrintWriter; , v0 : double-length
+.line 86
+	const-string	v0,"  Average Bitmap Size: "
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v3,v0},java/io/PrintWriter/print	; print(Ljava/lang/String;)V
+; v3 : Ljava/io/PrintWriter; , v0 : Ljava/lang/String;
+.line 87
+	iget-wide	v0,v2,com/squareup/picasso/StatsSnapshot.averageOriginalBitmapSize J
+; v0 : double-length , v2 : Lcom/squareup/picasso/StatsSnapshot;
+	invoke-virtual	{v3,v0,v1},java/io/PrintWriter/println	; println(J)V
+; v3 : Ljava/io/PrintWriter; , v0 : double-length
+.line 88
+	const-string	v0,"  Average Transformed Bitmap Size: "
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v3,v0},java/io/PrintWriter/print	; print(Ljava/lang/String;)V
+; v3 : Ljava/io/PrintWriter; , v0 : Ljava/lang/String;
+.line 89
+	iget-wide	v0,v2,com/squareup/picasso/StatsSnapshot.averageTransformedBitmapSize J
+; v0 : double-length , v2 : Lcom/squareup/picasso/StatsSnapshot;
+	invoke-virtual	{v3,v0,v1},java/io/PrintWriter/println	; println(J)V
+; v3 : Ljava/io/PrintWriter; , v0 : double-length
+.line 90
+	const-string	v0,"===============END PICASSO STATS ==============="
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v3,v0},java/io/PrintWriter/println	; println(Ljava/lang/String;)V
+; v3 : Ljava/io/PrintWriter; , v0 : Ljava/lang/String;
+.line 91
+	invoke-virtual	{v3},java/io/PrintWriter/flush	; flush()V
+; v3 : Ljava/io/PrintWriter;
+.line 92
+	return-void	
+.end method
+
+.method public toString()Ljava/lang/String;
+.limit registers 4
+; this: v3 (Lcom/squareup/picasso/StatsSnapshot;)
+.line 95
+	new-instance	v0,java/lang/StringBuilder
+; v0 : Ljava/lang/StringBuilder;
+	invoke-direct	{v0},java/lang/StringBuilder/<init>	; <init>()V
+; v0 : Ljava/lang/StringBuilder;
+	const-string	v1,"StatsSnapshot{maxSize="
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v1 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	iget	v1,v3,com/squareup/picasso/StatsSnapshot.maxSize I
+; v1 : single-length , v3 : Lcom/squareup/picasso/StatsSnapshot;
+	invoke-virtual	{v0,v1},java/lang/StringBuilder/append	; append(I)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v1 : single-length
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	const-string	v1,", size="
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v1 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	iget	v1,v3,com/squareup/picasso/StatsSnapshot.size I
+; v1 : single-length , v3 : Lcom/squareup/picasso/StatsSnapshot;
+	invoke-virtual	{v0,v1},java/lang/StringBuilder/append	; append(I)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v1 : single-length
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	const-string	v1,", cacheHits="
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v1 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	iget-wide	v1,v3,com/squareup/picasso/StatsSnapshot.cacheHits J
+; v1 : double-length , v3 : Lcom/squareup/picasso/StatsSnapshot;
+	invoke-virtual	{v0,v1,v2},java/lang/StringBuilder/append	; append(J)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v1 : double-length
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	const-string	v1,", cacheMisses="
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v1 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	iget-wide	v1,v3,com/squareup/picasso/StatsSnapshot.cacheMisses J
+; v1 : double-length , v3 : Lcom/squareup/picasso/StatsSnapshot;
+	invoke-virtual	{v0,v1,v2},java/lang/StringBuilder/append	; append(J)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v1 : double-length
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	const-string	v1,", totalOriginalBitmapSize="
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v1 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	iget-wide	v1,v3,com/squareup/picasso/StatsSnapshot.totalOriginalBitmapSize J
+; v1 : double-length , v3 : Lcom/squareup/picasso/StatsSnapshot;
+	invoke-virtual	{v0,v1,v2},java/lang/StringBuilder/append	; append(J)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v1 : double-length
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	const-string	v1,", totalTransformedBitmapSize="
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v1 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	iget-wide	v1,v3,com/squareup/picasso/StatsSnapshot.totalTransformedBitmapSize J
+; v1 : double-length , v3 : Lcom/squareup/picasso/StatsSnapshot;
+	invoke-virtual	{v0,v1,v2},java/lang/StringBuilder/append	; append(J)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v1 : double-length
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	const-string	v1,", averageOriginalBitmapSize="
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v1 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	iget-wide	v1,v3,com/squareup/picasso/StatsSnapshot.averageOriginalBitmapSize J
+; v1 : double-length , v3 : Lcom/squareup/picasso/StatsSnapshot;
+	invoke-virtual	{v0,v1,v2},java/lang/StringBuilder/append	; append(J)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v1 : double-length
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	const-string	v1,", averageTransformedBitmapSize="
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v1 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	iget-wide	v1,v3,com/squareup/picasso/StatsSnapshot.averageTransformedBitmapSize J
+; v1 : double-length , v3 : Lcom/squareup/picasso/StatsSnapshot;
+	invoke-virtual	{v0,v1,v2},java/lang/StringBuilder/append	; append(J)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v1 : double-length
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	const-string	v1,", originalBitmapCount="
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v1 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	iget	v1,v3,com/squareup/picasso/StatsSnapshot.originalBitmapCount I
+; v1 : single-length , v3 : Lcom/squareup/picasso/StatsSnapshot;
+	invoke-virtual	{v0,v1},java/lang/StringBuilder/append	; append(I)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v1 : single-length
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	const-string	v1,", transformedBitmapCount="
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v1 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	iget	v1,v3,com/squareup/picasso/StatsSnapshot.transformedBitmapCount I
+; v1 : single-length , v3 : Lcom/squareup/picasso/StatsSnapshot;
+	invoke-virtual	{v0,v1},java/lang/StringBuilder/append	; append(I)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v1 : single-length
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	const-string	v1,", timeStamp="
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v1 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	iget-wide	v1,v3,com/squareup/picasso/StatsSnapshot.timeStamp J
+; v1 : double-length , v3 : Lcom/squareup/picasso/StatsSnapshot;
+	invoke-virtual	{v0,v1,v2},java/lang/StringBuilder/append	; append(J)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v1 : double-length
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	const/16	v1,125
+; v1 : single-length
+	invoke-virtual	{v0,v1},java/lang/StringBuilder/append	; append(C)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v1 : single-length
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v0},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v0 : Ljava/lang/StringBuilder;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	return-object	v0
+; v0 : Ljava/lang/String;
+.end method
+
+

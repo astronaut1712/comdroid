@@ -1,0 +1,50 @@
+.class com/fsharemobile/x
+.super java/lang/Object
+.source MyApplication
+.implements com/fsharemobile/a/v
+
+.field final a Lcom/fsharemobile/ExplorerSearchResultsActivity;
+
+.method <init>(Lcom/fsharemobile/ExplorerSearchResultsActivity;)V
+.limit registers 2
+; this: v0 (Lcom/fsharemobile/x;)
+; parameter[0] : v1 (Lcom/fsharemobile/ExplorerSearchResultsActivity;)
+.line 1
+	iput-object	v1,v0,com/fsharemobile/x.a Lcom/fsharemobile/ExplorerSearchResultsActivity;
+; v1 : Lcom/fsharemobile/ExplorerSearchResultsActivity; , v0 : Lcom/fsharemobile/x;
+.line 600
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Lcom/fsharemobile/x;
+	return-void	
+.end method
+
+.method static a(Lcom/fsharemobile/x;)Lcom/fsharemobile/ExplorerSearchResultsActivity;
+.limit registers 2
+; parameter[0] : v1 (Lcom/fsharemobile/x;)
+.line 600
+	iget-object	v0,v1,com/fsharemobile/x.a Lcom/fsharemobile/ExplorerSearchResultsActivity;
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity; , v1 : Lcom/fsharemobile/x;
+	return-object	v0
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity;
+.end method
+
+.method public a(ILjava/util/List;)V
+.limit registers 5
+; this: v2 (Lcom/fsharemobile/x;)
+; parameter[0] : v3 (I)
+; parameter[1] : v4 (Ljava/util/List;)
+.line 605
+	iget-object	v0,v2,com/fsharemobile/x.a Lcom/fsharemobile/ExplorerSearchResultsActivity;
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity; , v2 : Lcom/fsharemobile/x;
+.line 606
+	new-instance	v1,com/fsharemobile/y
+; v1 : Lcom/fsharemobile/y;
+	invoke-direct	{v1,v2,v3,v4},com/fsharemobile/y/<init>	; <init>(Lcom/fsharemobile/x;ILjava/util/List;)V
+; v1 : Lcom/fsharemobile/y; , v2 : Lcom/fsharemobile/x; , v3 : single-length , v4 : Ljava/util/List;
+	invoke-virtual	{v0,v1},com/fsharemobile/ExplorerSearchResultsActivity/runOnUiThread	; runOnUiThread(Ljava/lang/Runnable;)V
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity; , v1 : Lcom/fsharemobile/y;
+.line 635
+	return-void	
+.end method
+
+

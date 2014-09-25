@@ -1,0 +1,79 @@
+.class com/google/tagmanager/Runtime$4
+.super java/lang/Object
+.source Runtime.java
+.implements com/google/tagmanager/Runtime$AddRemoveSetPopulator
+
+.enclosing method com/calculateTagsToRun(Ljava/util/Set;Lcom/google/tagmanager/RuleEvaluationStepInfoBuilder;)Lcom/google/tagmanager/ObjectAndStatic;
+.field final this$0 Lcom/google/tagmanager/Runtime;
+
+.method <init>(Lcom/google/tagmanager/Runtime;)V
+.limit registers 2
+; this: v0 (Lcom/google/tagmanager/Runtime$4;)
+; parameter[0] : v1 (Lcom/google/tagmanager/Runtime;)
+.line 445
+	iput-object	v1,v0,com/google/tagmanager/Runtime$4.this$0 Lcom/google/tagmanager/Runtime;
+; v1 : Lcom/google/tagmanager/Runtime; , v0 : Lcom/google/tagmanager/Runtime$4;
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Lcom/google/tagmanager/Runtime$4;
+	return-void	
+.end method
+
+.method public rulePassed(Lcom/google/tagmanager/ResourceUtil$ExpandedRule;Ljava/util/Set;Ljava/util/Set;Lcom/google/tagmanager/ResolvedRuleBuilder;)V
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "(" , "Lcom/google/tagmanager/ResourceUtil$ExpandedRule;" , "Ljava/util/Set" , "<" , "Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;" , ">;" , "Ljava/util/Set" , "<" , "Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;" , ">;" , "Lcom/google/tagmanager/ResolvedRuleBuilder;" , ")V" }
+.end annotation
+.limit registers 8
+; this: v3 (Lcom/google/tagmanager/Runtime$4;)
+; parameter[0] : v4 (Lcom/google/tagmanager/ResourceUtil$ExpandedRule;)
+; parameter[1] : v5 (Ljava/util/Set;)
+; parameter[2] : v6 (Ljava/util/Set;)
+; parameter[3] : v7 (Lcom/google/tagmanager/ResolvedRuleBuilder;)
+.line 450
+	invoke-virtual	{v4},com/google/tagmanager/ResourceUtil$ExpandedRule/getAddTags	; getAddTags()Ljava/util/List;
+; v4 : Lcom/google/tagmanager/ResourceUtil$ExpandedRule;
+	move-result-object	v0
+; v0 : Ljava/util/List;
+	invoke-interface	{v5,v0},java/util/Set/addAll	; addAll(Ljava/util/Collection;)Z
+; v5 : Ljava/util/Set; , v0 : Ljava/util/List;
+.line 451
+	invoke-virtual	{v4},com/google/tagmanager/ResourceUtil$ExpandedRule/getRemoveTags	; getRemoveTags()Ljava/util/List;
+; v4 : Lcom/google/tagmanager/ResourceUtil$ExpandedRule;
+	move-result-object	v0
+; v0 : Ljava/util/List;
+	invoke-interface	{v6,v0},java/util/Set/addAll	; addAll(Ljava/util/Collection;)Z
+; v6 : Ljava/util/Set; , v0 : Ljava/util/List;
+.line 454
+	invoke-interface	{v7},com/google/tagmanager/ResolvedRuleBuilder/getAddedTagFunctions	; getAddedTagFunctions()Lcom/google/tagmanager/ResolvedFunctionCallTranslatorList;
+; v7 : Lcom/google/tagmanager/ResolvedRuleBuilder;
+	move-result-object	v0
+; v0 : Lcom/google/tagmanager/ResolvedFunctionCallTranslatorList;
+	invoke-virtual	{v4},com/google/tagmanager/ResourceUtil$ExpandedRule/getAddTags	; getAddTags()Ljava/util/List;
+; v4 : Lcom/google/tagmanager/ResourceUtil$ExpandedRule;
+	move-result-object	v1
+; v1 : Ljava/util/List;
+	invoke-virtual	{v4},com/google/tagmanager/ResourceUtil$ExpandedRule/getAddTagRuleNames	; getAddTagRuleNames()Ljava/util/List;
+; v4 : Lcom/google/tagmanager/ResourceUtil$ExpandedRule;
+	move-result-object	v2
+; v2 : Ljava/util/List;
+	invoke-interface	{v0,v1,v2},com/google/tagmanager/ResolvedFunctionCallTranslatorList/translateAndAddAll	; translateAndAddAll(Ljava/util/List;Ljava/util/List;)V
+; v0 : Lcom/google/tagmanager/ResolvedFunctionCallTranslatorList; , v1 : Ljava/util/List; , v2 : Ljava/util/List;
+.line 456
+	invoke-interface	{v7},com/google/tagmanager/ResolvedRuleBuilder/getRemovedTagFunctions	; getRemovedTagFunctions()Lcom/google/tagmanager/ResolvedFunctionCallTranslatorList;
+; v7 : Lcom/google/tagmanager/ResolvedRuleBuilder;
+	move-result-object	v0
+; v0 : Lcom/google/tagmanager/ResolvedFunctionCallTranslatorList;
+	invoke-virtual	{v4},com/google/tagmanager/ResourceUtil$ExpandedRule/getRemoveTags	; getRemoveTags()Ljava/util/List;
+; v4 : Lcom/google/tagmanager/ResourceUtil$ExpandedRule;
+	move-result-object	v1
+; v1 : Ljava/util/List;
+	invoke-virtual	{v4},com/google/tagmanager/ResourceUtil$ExpandedRule/getRemoveTagRuleNames	; getRemoveTagRuleNames()Ljava/util/List;
+; v4 : Lcom/google/tagmanager/ResourceUtil$ExpandedRule;
+	move-result-object	v2
+; v2 : Ljava/util/List;
+	invoke-interface	{v0,v1,v2},com/google/tagmanager/ResolvedFunctionCallTranslatorList/translateAndAddAll	; translateAndAddAll(Ljava/util/List;Ljava/util/List;)V
+; v0 : Lcom/google/tagmanager/ResolvedFunctionCallTranslatorList; , v1 : Ljava/util/List; , v2 : Ljava/util/List;
+.line 458
+	return-void	
+.end method
+
+

@@ -1,0 +1,332 @@
+.class com/fsharemobile/a/h
+.super java/lang/Object
+.source MyApplication
+.implements com/fsharemobile/a/b
+
+.field final a Lcom/fsharemobile/a/d;
+.field private final b Lcom/fsharemobile/a/s;
+.field private final c Landroid/content/Context;
+.field private final d Ljava/lang/String;
+
+.method <init>(Lcom/fsharemobile/a/d;Lcom/fsharemobile/a/s;Landroid/content/Context;Ljava/lang/String;)V
+.limit registers 5
+; this: v0 (Lcom/fsharemobile/a/h;)
+; parameter[0] : v1 (Lcom/fsharemobile/a/d;)
+; parameter[1] : v2 (Lcom/fsharemobile/a/s;)
+; parameter[2] : v3 (Landroid/content/Context;)
+; parameter[3] : v4 (Ljava/lang/String;)
+.line 1
+	iput-object	v1,v0,com/fsharemobile/a/h.a Lcom/fsharemobile/a/d;
+; v1 : Lcom/fsharemobile/a/d; , v0 : Lcom/fsharemobile/a/h;
+	iput-object	v2,v0,com/fsharemobile/a/h.b Lcom/fsharemobile/a/s;
+; v2 : Lcom/fsharemobile/a/s; , v0 : Lcom/fsharemobile/a/h;
+	iput-object	v3,v0,com/fsharemobile/a/h.c Landroid/content/Context;
+; v3 : Landroid/content/Context; , v0 : Lcom/fsharemobile/a/h;
+	iput-object	v4,v0,com/fsharemobile/a/h.d Ljava/lang/String;
+; v4 : Ljava/lang/String; , v0 : Lcom/fsharemobile/a/h;
+.line 166
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Lcom/fsharemobile/a/h;
+	return-void	
+.end method
+
+.method public a(Lcom/fsharemobile/a/y;)V
+.limit registers 11
+; this: v9 (Lcom/fsharemobile/a/h;)
+; parameter[0] : v10 (Lcom/fsharemobile/a/y;)
+.catch java/lang/Exception from l82f1e to l83058 using l83090
+.catch java/lang/Exception from l82ef2 to l82f0c using l83090
+.catch java/lang/Exception from l82e90 to l82ef2 using l83060
+	const/4	v2,0
+; v2 : single-length
+	const/4	v1,0
+; v1 : single-length
+l82e90:
+.line 170
+.line 175
+	const-string	v0,"IS_GETTING_LIST_ITEM"
+; v0 : Ljava/lang/String;
+	const-string	v3,"hsdfhsjkdhdlsafhsd"
+; v3 : Ljava/lang/String;
+	invoke-static	{v0,v3},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v0 : Ljava/lang/String; , v3 : Ljava/lang/String;
+.line 176
+	invoke-virtual	{v10},com/fsharemobile/a/y/c	; c()I
+; v10 : Lcom/fsharemobile/a/y;
+	move-result	v0
+; v0 : single-length
+.line 177
+	const-string	v3,"GetList_errCode"
+; v3 : Ljava/lang/String;
+	new-instance	v4,java/lang/StringBuilder
+; v4 : Ljava/lang/StringBuilder;
+	invoke-static	{v0},java/lang/String/valueOf	; valueOf(I)Ljava/lang/String;
+; v0 : single-length
+	move-result-object	v5
+; v5 : Ljava/lang/String;
+	invoke-direct	{v4,v5},java/lang/StringBuilder/<init>	; <init>(Ljava/lang/String;)V
+; v4 : Ljava/lang/StringBuilder; , v5 : Ljava/lang/String;
+	invoke-virtual	{v4},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v4 : Ljava/lang/StringBuilder;
+	move-result-object	v4
+; v4 : Ljava/lang/String;
+	invoke-static	{v3,v4},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v3 : Ljava/lang/String; , v4 : Ljava/lang/String;
+.line 178
+	invoke-virtual	{v10},com/fsharemobile/a/y/c	; c()I
+; v10 : Lcom/fsharemobile/a/y;
+	move-result	v3
+; v3 : single-length
+	const/16	v4,200
+; v4 : single-length
+	if-eq	v3,v4,l82ee8
+; v3 : single-length , v4 : single-length
+.line 179
+	iget-object	v1,v9,com/fsharemobile/a/h.b Lcom/fsharemobile/a/s;
+; v1 : Lcom/fsharemobile/a/s; , v9 : Lcom/fsharemobile/a/h;
+	const/4	v3,0
+; v3 : single-length
+	invoke-interface	{v1,v0,v3},com/fsharemobile/a/s/a	; a(ILjava/util/List;)V
+; v1 : Lcom/fsharemobile/a/s; , v0 : single-length , v3 : single-length
+l82ee6:
+.line 219
+	return-void	
+l82ee8:
+.line 183
+	new-instance	v0,java/util/ArrayList
+; v0 : Ljava/util/ArrayList;
+	invoke-direct	{v0},java/util/ArrayList/<init>	; <init>()V
+; v0 : Ljava/util/ArrayList;
+l82ef2:
+.line 185
+	new-instance	v3,org/json/JSONArray
+; v3 : Lorg/json/JSONArray;
+	invoke-virtual	{v10},com/fsharemobile/a/y/b	; b()Ljava/lang/String;
+; v10 : Lcom/fsharemobile/a/y;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-direct	{v3,v2},org/json/JSONArray/<init>	; <init>(Ljava/lang/String;)V
+; v3 : Lorg/json/JSONArray; , v2 : Ljava/lang/String;
+	move	v2,v1
+; v2 : single-length , v1 : single-length
+l82f06:
+.line 189
+	invoke-virtual	{v3},org/json/JSONArray/length	; length()I
+; v3 : Lorg/json/JSONArray;
+l82f0c:
+	move-result	v4
+; v4 : single-length
+	if-lt	v2,v4,l82f1e
+; v2 : single-length , v4 : single-length
+l82f12:
+.line 218
+	iget-object	v2,v9,com/fsharemobile/a/h.b Lcom/fsharemobile/a/s;
+; v2 : Lcom/fsharemobile/a/s; , v9 : Lcom/fsharemobile/a/h;
+	invoke-interface	{v2,v1,v0},com/fsharemobile/a/s/a	; a(ILjava/util/List;)V
+; v2 : Lcom/fsharemobile/a/s; , v1 : single-length , v0 : Ljava/lang/Object;
+	goto	l82ee6
+l82f1e:
+.line 190
+	invoke-virtual	{v3,v2},org/json/JSONArray/getJSONObject	; getJSONObject(I)Lorg/json/JSONObject;
+; v3 : Lorg/json/JSONArray; , v2 : single-length
+	move-result-object	v4
+; v4 : Lorg/json/JSONObject;
+.line 191
+	new-instance	v5,com/fsharemobile/model/File
+; v5 : Lcom/fsharemobile/model/File;
+	invoke-direct	{v5},com/fsharemobile/model/File/<init>	; <init>()V
+; v5 : Lcom/fsharemobile/model/File;
+.line 192
+	iget-object	v6,v9,com/fsharemobile/a/h.a Lcom/fsharemobile/a/d;
+; v6 : Lcom/fsharemobile/a/d; , v9 : Lcom/fsharemobile/a/h;
+	new-instance	v7,com/fsharemobile/f/a
+; v7 : Lcom/fsharemobile/f/a;
+	iget-object	v8,v9,com/fsharemobile/a/h.c Landroid/content/Context;
+; v8 : Landroid/content/Context; , v9 : Lcom/fsharemobile/a/h;
+	invoke-direct	{v7,v8},com/fsharemobile/f/a/<init>	; <init>(Landroid/content/Context;)V
+; v7 : Lcom/fsharemobile/f/a; , v8 : Landroid/content/Context;
+	invoke-static	{v6,v7},com/fsharemobile/a/d/a	; a(Lcom/fsharemobile/a/d;Lcom/fsharemobile/f/a;)V
+; v6 : Lcom/fsharemobile/a/d; , v7 : Lcom/fsharemobile/f/a;
+.line 193
+	const-string	v6,"id"
+; v6 : Ljava/lang/String;
+	invoke-virtual	{v4,v6},org/json/JSONObject/getString	; getString(Ljava/lang/String;)Ljava/lang/String;
+; v4 : Lorg/json/JSONObject; , v6 : Ljava/lang/String;
+	move-result-object	v6
+; v6 : Ljava/lang/String;
+	invoke-virtual	{v5,v6},com/fsharemobile/model/File/a	; a(Ljava/lang/String;)V
+; v5 : Lcom/fsharemobile/model/File; , v6 : Ljava/lang/String;
+.line 194
+	const-string	v6,"name"
+; v6 : Ljava/lang/String;
+	invoke-virtual	{v4,v6},org/json/JSONObject/getString	; getString(Ljava/lang/String;)Ljava/lang/String;
+; v4 : Lorg/json/JSONObject; , v6 : Ljava/lang/String;
+	move-result-object	v6
+; v6 : Ljava/lang/String;
+	invoke-virtual	{v5,v6},com/fsharemobile/model/File/b	; b(Ljava/lang/String;)V
+; v5 : Lcom/fsharemobile/model/File; , v6 : Ljava/lang/String;
+.line 195
+	const-string	v6,"linkcode"
+; v6 : Ljava/lang/String;
+	invoke-virtual	{v4,v6},org/json/JSONObject/getString	; getString(Ljava/lang/String;)Ljava/lang/String;
+; v4 : Lorg/json/JSONObject; , v6 : Ljava/lang/String;
+	move-result-object	v6
+; v6 : Ljava/lang/String;
+	invoke-virtual	{v5,v6},com/fsharemobile/model/File/c	; c(Ljava/lang/String;)V
+; v5 : Lcom/fsharemobile/model/File; , v6 : Ljava/lang/String;
+.line 196
+	const-string	v6,"type"
+; v6 : Ljava/lang/String;
+	invoke-virtual	{v4,v6},org/json/JSONObject/getString	; getString(Ljava/lang/String;)Ljava/lang/String;
+; v4 : Lorg/json/JSONObject; , v6 : Ljava/lang/String;
+	move-result-object	v6
+; v6 : Ljava/lang/String;
+	invoke-virtual	{v5,v6},com/fsharemobile/model/File/d	; d(Ljava/lang/String;)V
+; v5 : Lcom/fsharemobile/model/File; , v6 : Ljava/lang/String;
+.line 197
+	const-string	v6,"path"
+; v6 : Ljava/lang/String;
+	invoke-virtual	{v4,v6},org/json/JSONObject/getString	; getString(Ljava/lang/String;)Ljava/lang/String;
+; v4 : Lorg/json/JSONObject; , v6 : Ljava/lang/String;
+	move-result-object	v6
+; v6 : Ljava/lang/String;
+	invoke-virtual	{v5,v6},com/fsharemobile/model/File/e	; e(Ljava/lang/String;)V
+; v5 : Lcom/fsharemobile/model/File; , v6 : Ljava/lang/String;
+.line 198
+	const-string	v6,"size"
+; v6 : Ljava/lang/String;
+	invoke-virtual	{v4,v6},org/json/JSONObject/getString	; getString(Ljava/lang/String;)Ljava/lang/String;
+; v4 : Lorg/json/JSONObject; , v6 : Ljava/lang/String;
+	move-result-object	v6
+; v6 : Ljava/lang/String;
+	invoke-virtual	{v5,v6},com/fsharemobile/model/File/f	; f(Ljava/lang/String;)V
+; v5 : Lcom/fsharemobile/model/File; , v6 : Ljava/lang/String;
+.line 199
+	const-string	v6,"created"
+; v6 : Ljava/lang/String;
+	invoke-virtual	{v4,v6},org/json/JSONObject/getString	; getString(Ljava/lang/String;)Ljava/lang/String;
+; v4 : Lorg/json/JSONObject; , v6 : Ljava/lang/String;
+	move-result-object	v6
+; v6 : Ljava/lang/String;
+	invoke-virtual	{v5,v6},com/fsharemobile/model/File/g	; g(Ljava/lang/String;)V
+; v5 : Lcom/fsharemobile/model/File; , v6 : Ljava/lang/String;
+.line 200
+	const-string	v6,"owner_id"
+; v6 : Ljava/lang/String;
+	invoke-virtual	{v4,v6},org/json/JSONObject/getString	; getString(Ljava/lang/String;)Ljava/lang/String;
+; v4 : Lorg/json/JSONObject; , v6 : Ljava/lang/String;
+	move-result-object	v6
+; v6 : Ljava/lang/String;
+	invoke-virtual	{v5,v6},com/fsharemobile/model/File/h	; h(Ljava/lang/String;)V
+; v5 : Lcom/fsharemobile/model/File; , v6 : Ljava/lang/String;
+.line 201
+	iget-object	v6,v9,com/fsharemobile/a/h.a Lcom/fsharemobile/a/d;
+; v6 : Lcom/fsharemobile/a/d; , v9 : Lcom/fsharemobile/a/h;
+	invoke-static	{v6},com/fsharemobile/a/d/a	; a(Lcom/fsharemobile/a/d;)Lcom/fsharemobile/f/a;
+; v6 : Lcom/fsharemobile/a/d;
+	move-result-object	v6
+; v6 : Lcom/fsharemobile/f/a;
+	iget-object	v7,v9,com/fsharemobile/a/h.d Ljava/lang/String;
+; v7 : Ljava/lang/String; , v9 : Lcom/fsharemobile/a/h;
+	invoke-virtual	{v6,v7},com/fsharemobile/f/a/a	; a(Ljava/lang/String;)Ljava/lang/String;
+; v6 : Lcom/fsharemobile/f/a; , v7 : Ljava/lang/String;
+	move-result-object	v6
+; v6 : Ljava/lang/String;
+	invoke-virtual	{v5,v6},com/fsharemobile/model/File/i	; i(Ljava/lang/String;)V
+; v5 : Lcom/fsharemobile/model/File; , v6 : Ljava/lang/String;
+.line 202
+	const-string	v6,"mimetype"
+; v6 : Ljava/lang/String;
+	invoke-virtual	{v4,v6},org/json/JSONObject/getString	; getString(Ljava/lang/String;)Ljava/lang/String;
+; v4 : Lorg/json/JSONObject; , v6 : Ljava/lang/String;
+	move-result-object	v6
+; v6 : Ljava/lang/String;
+	invoke-virtual	{v5,v6},com/fsharemobile/model/File/j	; j(Ljava/lang/String;)V
+; v5 : Lcom/fsharemobile/model/File; , v6 : Ljava/lang/String;
+.line 203
+	const-string	v6,"mimetype"
+; v6 : Ljava/lang/String;
+	invoke-virtual	{v4,v6},org/json/JSONObject/getString	; getString(Ljava/lang/String;)Ljava/lang/String;
+; v4 : Lorg/json/JSONObject; , v6 : Ljava/lang/String;
+	move-result-object	v6
+; v6 : Ljava/lang/String;
+	const-string	v7,"image/jpeg"
+; v7 : Ljava/lang/String;
+	invoke-virtual	{v6,v7},java/lang/String/compareTo	; compareTo(Ljava/lang/String;)I
+; v6 : Ljava/lang/String; , v7 : Ljava/lang/String;
+	move-result	v6
+; v6 : single-length
+	if-eqz	v6,l83040
+; v6 : single-length
+	const-string	v6,"mimetype"
+; v6 : Ljava/lang/String;
+	invoke-virtual	{v4,v6},org/json/JSONObject/getString	; getString(Ljava/lang/String;)Ljava/lang/String;
+; v4 : Lorg/json/JSONObject; , v6 : Ljava/lang/String;
+	move-result-object	v6
+; v6 : Ljava/lang/String;
+	const-string	v7,"image/png"
+; v7 : Ljava/lang/String;
+	invoke-virtual	{v6,v7},java/lang/String/compareTo	; compareTo(Ljava/lang/String;)I
+; v6 : Ljava/lang/String; , v7 : Ljava/lang/String;
+	move-result	v6
+; v6 : single-length
+	if-nez	v6,l83052
+; v6 : single-length
+l83040:
+.line 204
+	const-string	v6,"xs"
+; v6 : Ljava/lang/String;
+	invoke-virtual	{v4,v6},org/json/JSONObject/getString	; getString(Ljava/lang/String;)Ljava/lang/String;
+; v4 : Lorg/json/JSONObject; , v6 : Ljava/lang/String;
+	move-result-object	v4
+; v4 : Ljava/lang/String;
+	invoke-virtual	{v5,v4},com/fsharemobile/model/File/k	; k(Ljava/lang/String;)V
+; v5 : Lcom/fsharemobile/model/File; , v4 : Ljava/lang/String;
+l83052:
+.line 207
+	invoke-interface	{v0,v5},java/util/List/add	; add(Ljava/lang/Object;)Z
+; v0 : Ljava/util/ArrayList; , v5 : Lcom/fsharemobile/model/File;
+l83058:
+.line 189
+	add-int/lit8	v2,v2,1
+; v2 : single-length , v2 : single-length
+	goto/16	l82f06
+l83060:
+.line 213
+	move-exception	v0
+; v0 : java/lang/Exception
+	move-object	v1,v0
+; v1 : java/lang/Exception , v0 : java/lang/Exception
+	move-object	v0,v2
+; v0 : Lcom/fsharemobile/a/s; , v2 : Lcom/fsharemobile/a/s;
+l83066:
+.line 214
+	sget-object	v2,java/lang/System.out Ljava/io/PrintStream;
+; v2 : Ljava/io/PrintStream;
+	invoke-virtual	{v1},java/lang/Exception/toString	; toString()Ljava/lang/String;
+; v1 : java/lang/Exception
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/io/PrintStream/println	; println(Ljava/lang/String;)V
+; v2 : Ljava/io/PrintStream; , v3 : Ljava/lang/String;
+.line 215
+	const-string	v2,"FileProxy_EX"
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1},java/lang/Exception/toString	; toString()Ljava/lang/String;
+; v1 : java/lang/Exception
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-static	{v2,v1},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v2 : Ljava/lang/String; , v1 : Ljava/lang/String;
+.line 216
+	const/4	v1,1
+; v1 : single-length
+	goto/16	l82f12
+l83090:
+.line 213
+	move-exception	v1
+; v1 : java/lang/Exception
+	goto	l83066
+.end method
+
+

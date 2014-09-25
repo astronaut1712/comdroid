@@ -1,0 +1,251 @@
+.class public com/fsharemobile/adapter/v
+.super android/support/v4/view/PagerAdapter
+.source MyApplication
+
+.field private a Landroid/app/Activity;
+.field private b Ljava/util/ArrayList;
+.field private c Ljava/util/ArrayList;
+.field private d Landroid/view/LayoutInflater;
+
+.method public <init>(Landroid/app/Activity;Ljava/util/ArrayList;Ljava/util/ArrayList;)V
+.limit registers 4
+; this: v0 (Lcom/fsharemobile/adapter/v;)
+; parameter[0] : v1 (Landroid/app/Activity;)
+; parameter[1] : v2 (Ljava/util/ArrayList;)
+; parameter[2] : v3 (Ljava/util/ArrayList;)
+.line 34
+	invoke-direct	{v0},android/support/v4/view/PagerAdapter/<init>	; <init>()V
+; v0 : Lcom/fsharemobile/adapter/v;
+.line 36
+	iput-object	v1,v0,com/fsharemobile/adapter/v.a Landroid/app/Activity;
+; v1 : Landroid/app/Activity; , v0 : Lcom/fsharemobile/adapter/v;
+.line 37
+	iput-object	v2,v0,com/fsharemobile/adapter/v.b Ljava/util/ArrayList;
+; v2 : Ljava/util/ArrayList; , v0 : Lcom/fsharemobile/adapter/v;
+.line 38
+	iput-object	v3,v0,com/fsharemobile/adapter/v.c Ljava/util/ArrayList;
+; v3 : Ljava/util/ArrayList; , v0 : Lcom/fsharemobile/adapter/v;
+.line 40
+	return-void	
+.end method
+
+.method static a(Lcom/fsharemobile/adapter/v;)Landroid/app/Activity;
+.limit registers 2
+; parameter[0] : v1 (Lcom/fsharemobile/adapter/v;)
+.line 29
+	iget-object	v0,v1,com/fsharemobile/adapter/v.a Landroid/app/Activity;
+; v0 : Landroid/app/Activity; , v1 : Lcom/fsharemobile/adapter/v;
+	return-object	v0
+; v0 : Landroid/app/Activity;
+.end method
+
+.method public destroyItem(Landroid/view/ViewGroup;ILjava/lang/Object;)V
+.limit registers 4
+; this: v0 (Lcom/fsharemobile/adapter/v;)
+; parameter[0] : v1 (Landroid/view/ViewGroup;)
+; parameter[1] : v2 (I)
+; parameter[2] : v3 (Ljava/lang/Object;)
+.line 98
+	check-cast	v1,android/support/v4/view/ViewPager
+; v1 : Landroid/support/v4/view/ViewPager;
+	check-cast	v3,android/widget/RelativeLayout
+; v3 : Landroid/widget/RelativeLayout;
+	invoke-virtual	{v1,v3},android/support/v4/view/ViewPager/removeView	; removeView(Landroid/view/View;)V
+; v1 : Landroid/support/v4/view/ViewPager; , v3 : Landroid/widget/RelativeLayout;
+.line 99
+	return-void	
+.end method
+
+.method public getCount()I
+.limit registers 2
+; this: v1 (Lcom/fsharemobile/adapter/v;)
+.line 45
+	iget-object	v0,v1,com/fsharemobile/adapter/v.b Ljava/util/ArrayList;
+; v0 : Ljava/util/ArrayList; , v1 : Lcom/fsharemobile/adapter/v;
+	invoke-virtual	{v0},java/util/ArrayList/size	; size()I
+; v0 : Ljava/util/ArrayList;
+	move-result	v0
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public instantiateItem(Landroid/view/ViewGroup;I)Ljava/lang/Object;
+.limit registers 9
+; this: v6 (Lcom/fsharemobile/adapter/v;)
+; parameter[0] : v7 (Landroid/view/ViewGroup;)
+; parameter[1] : v8 (I)
+.line 61
+	iget-object	v0,v6,com/fsharemobile/adapter/v.a Landroid/app/Activity;
+; v0 : Landroid/app/Activity; , v6 : Lcom/fsharemobile/adapter/v;
+.line 62
+	const-string	v1,"layout_inflater"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},android/app/Activity/getSystemService	; getSystemService(Ljava/lang/String;)Ljava/lang/Object;
+; v0 : Landroid/app/Activity; , v1 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,android/view/LayoutInflater
+; v0 : Landroid/view/LayoutInflater;
+.line 61
+	iput-object	v0,v6,com/fsharemobile/adapter/v.d Landroid/view/LayoutInflater;
+; v0 : Landroid/view/LayoutInflater; , v6 : Lcom/fsharemobile/adapter/v;
+.line 63
+	iget-object	v0,v6,com/fsharemobile/adapter/v.d Landroid/view/LayoutInflater;
+; v0 : Landroid/view/LayoutInflater; , v6 : Lcom/fsharemobile/adapter/v;
+	const	v1,2130903069	; 0x7f03001d
+; v1 : single-length
+.line 64
+	const/4	v2,0
+; v2 : single-length
+.line 63
+	invoke-virtual	{v0,v1,v7,v2},android/view/LayoutInflater/inflate	; inflate(ILandroid/view/ViewGroup;Z)Landroid/view/View;
+; v0 : Landroid/view/LayoutInflater; , v1 : single-length , v7 : Landroid/view/ViewGroup; , v2 : single-length
+	move-result-object	v5
+; v5 : Landroid/view/View;
+.line 66
+	const	v0,2131427451	; 0x7f0b007b
+; v0 : single-length
+	invoke-virtual	{v5,v0},android/view/View/findViewById	; findViewById(I)Landroid/view/View;
+; v5 : Landroid/view/View; , v0 : single-length
+	move-result-object	v0
+; v0 : Landroid/view/View;
+	check-cast	v0,com/fsharemobile/customview/TouchImageView
+; v0 : Lcom/fsharemobile/customview/TouchImageView;
+.line 67
+	const	v1,2131427453	; 0x7f0b007d
+; v1 : single-length
+	invoke-virtual	{v5,v1},android/view/View/findViewById	; findViewById(I)Landroid/view/View;
+; v5 : Landroid/view/View; , v1 : single-length
+	move-result-object	v1
+; v1 : Landroid/view/View;
+	check-cast	v1,android/widget/Button
+; v1 : Landroid/widget/Button;
+.line 68
+	const	v2,2131427454	; 0x7f0b007e
+; v2 : single-length
+	invoke-virtual	{v5,v2},android/view/View/findViewById	; findViewById(I)Landroid/view/View;
+; v5 : Landroid/view/View; , v2 : single-length
+	move-result-object	v2
+; v2 : Landroid/view/View;
+	check-cast	v2,android/widget/TextView
+; v2 : Landroid/widget/TextView;
+.line 69
+	const	v3,2131427452	; 0x7f0b007c
+; v3 : single-length
+	invoke-virtual	{v5,v3},android/view/View/findViewById	; findViewById(I)Landroid/view/View;
+; v5 : Landroid/view/View; , v3 : single-length
+	move-result-object	v3
+; v3 : Landroid/view/View;
+	check-cast	v3,android/widget/TextView
+; v3 : Landroid/widget/TextView;
+.line 70
+	const/16	v4,8
+; v4 : single-length
+	invoke-virtual	{v1,v4},android/widget/Button/setVisibility	; setVisibility(I)V
+; v1 : Landroid/widget/Button; , v4 : single-length
+.line 77
+	iget-object	v4,v6,com/fsharemobile/adapter/v.c Ljava/util/ArrayList;
+; v4 : Ljava/util/ArrayList; , v6 : Lcom/fsharemobile/adapter/v;
+	invoke-virtual	{v4,v8},java/util/ArrayList/get	; get(I)Ljava/lang/Object;
+; v4 : Ljava/util/ArrayList; , v8 : single-length
+	move-result-object	v4
+; v4 : Ljava/lang/Object;
+	check-cast	v4,java/lang/CharSequence
+; v4 : Ljava/lang/CharSequence;
+	invoke-virtual	{v3,v4},android/widget/TextView/setText	; setText(Ljava/lang/CharSequence;)V
+; v3 : Landroid/widget/TextView; , v4 : Ljava/lang/CharSequence;
+.line 78
+	new-instance	v3,java/lang/StringBuilder
+; v3 : Ljava/lang/StringBuilder;
+	add-int/lit8	v4,v8,1
+; v4 : single-length , v8 : single-length
+	invoke-static	{v4},java/lang/String/valueOf	; valueOf(I)Ljava/lang/String;
+; v4 : single-length
+	move-result-object	v4
+; v4 : Ljava/lang/String;
+	invoke-direct	{v3,v4},java/lang/StringBuilder/<init>	; <init>(Ljava/lang/String;)V
+; v3 : Ljava/lang/StringBuilder; , v4 : Ljava/lang/String;
+	const-string	v4,"/"
+; v4 : Ljava/lang/String;
+	invoke-virtual	{v3,v4},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v3 : Ljava/lang/StringBuilder; , v4 : Ljava/lang/String;
+	move-result-object	v3
+; v3 : Ljava/lang/StringBuilder;
+	iget-object	v4,v6,com/fsharemobile/adapter/v.b Ljava/util/ArrayList;
+; v4 : Ljava/util/ArrayList; , v6 : Lcom/fsharemobile/adapter/v;
+	invoke-virtual	{v4},java/util/ArrayList/size	; size()I
+; v4 : Ljava/util/ArrayList;
+	move-result	v4
+; v4 : single-length
+	invoke-virtual	{v3,v4},java/lang/StringBuilder/append	; append(I)Ljava/lang/StringBuilder;
+; v3 : Ljava/lang/StringBuilder; , v4 : single-length
+	move-result-object	v3
+; v3 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v3},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v3 : Ljava/lang/StringBuilder;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},android/widget/TextView/setText	; setText(Ljava/lang/CharSequence;)V
+; v2 : Landroid/widget/TextView; , v3 : Ljava/lang/String;
+.line 79
+	iget-object	v2,v6,com/fsharemobile/adapter/v.a Landroid/app/Activity;
+; v2 : Landroid/app/Activity; , v6 : Lcom/fsharemobile/adapter/v;
+	invoke-static	{v2},com/a/b/ae/a	; a(Landroid/content/Context;)Lcom/a/b/ae;
+; v2 : Landroid/app/Activity;
+	move-result-object	v3
+; v3 : Lcom/a/b/ae;
+	iget-object	v2,v6,com/fsharemobile/adapter/v.b Ljava/util/ArrayList;
+; v2 : Ljava/util/ArrayList; , v6 : Lcom/fsharemobile/adapter/v;
+	invoke-virtual	{v2,v8},java/util/ArrayList/get	; get(I)Ljava/lang/Object;
+; v2 : Ljava/util/ArrayList; , v8 : single-length
+	move-result-object	v2
+; v2 : Ljava/lang/Object;
+	check-cast	v2,java/lang/String
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v3,v2},com/a/b/ae/a	; a(Ljava/lang/String;)Lcom/a/b/as;
+; v3 : Lcom/a/b/ae; , v2 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Lcom/a/b/as;
+.line 80
+	invoke-virtual	{v2,v0},com/a/b/as/a	; a(Landroid/widget/ImageView;)V
+; v2 : Lcom/a/b/as; , v0 : Lcom/fsharemobile/customview/TouchImageView;
+.line 83
+	new-instance	v0,com/fsharemobile/adapter/w
+; v0 : Lcom/fsharemobile/adapter/w;
+	invoke-direct	{v0,v6},com/fsharemobile/adapter/w/<init>	; <init>(Lcom/fsharemobile/adapter/v;)V
+; v0 : Lcom/fsharemobile/adapter/w; , v6 : Lcom/fsharemobile/adapter/v;
+	invoke-virtual	{v1,v0},android/widget/Button/setOnClickListener	; setOnClickListener(Landroid/view/View$OnClickListener;)V
+; v1 : Landroid/widget/Button; , v0 : Lcom/fsharemobile/adapter/w;
+.line 90
+	check-cast	v7,android/support/v4/view/ViewPager
+; v7 : Landroid/support/v4/view/ViewPager;
+	invoke-virtual	{v7,v5},android/support/v4/view/ViewPager/addView	; addView(Landroid/view/View;)V
+; v7 : Landroid/support/v4/view/ViewPager; , v5 : Landroid/view/View;
+.line 92
+	return-object	v5
+; v5 : Landroid/view/View;
+.end method
+
+.method public isViewFromObject(Landroid/view/View;Ljava/lang/Object;)Z
+.limit registers 4
+; this: v1 (Lcom/fsharemobile/adapter/v;)
+; parameter[0] : v2 (Landroid/view/View;)
+; parameter[1] : v3 (Ljava/lang/Object;)
+.line 51
+	check-cast	v3,android/widget/RelativeLayout
+; v3 : Landroid/widget/RelativeLayout;
+	if-ne	v2,v3,l87378
+; v2 : Landroid/view/View; , v3 : Landroid/widget/RelativeLayout;
+	const/4	v0,1
+; v0 : single-length
+l87376:
+	return	v0
+; v0 : single-length
+l87378:
+	const/4	v0,0
+; v0 : single-length
+	goto	l87376
+.end method
+
+

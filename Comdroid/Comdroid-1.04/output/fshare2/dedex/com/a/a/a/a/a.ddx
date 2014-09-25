@@ -1,0 +1,162 @@
+.class abstract com/a/a/a/a/a
+.super java/io/InputStream
+.source MyApplication
+
+.field protected final a Ljava/io/InputStream;
+.field protected final b Lcom/a/a/a/a/h;
+.field protected c Z
+.field private final d Ljava/net/CacheRequest;
+.field private final e Ljava/io/OutputStream;
+
+.method <init>(Ljava/io/InputStream;Lcom/a/a/a/a/h;Ljava/net/CacheRequest;)V
+.limit registers 6
+; this: v2 (Lcom/a/a/a/a/a;)
+; parameter[0] : v3 (Ljava/io/InputStream;)
+; parameter[1] : v4 (Lcom/a/a/a/a/h;)
+; parameter[2] : v5 (Ljava/net/CacheRequest;)
+	const/4	v0,0
+; v0 : single-length
+.line 43
+	invoke-direct	{v2},java/io/InputStream/<init>	; <init>()V
+; v2 : Lcom/a/a/a/a/a;
+.line 44
+	iput-object	v3,v2,com/a/a/a/a/a.a Ljava/io/InputStream;
+; v3 : Ljava/io/InputStream; , v2 : Lcom/a/a/a/a/a;
+.line 45
+	iput-object	v4,v2,com/a/a/a/a/a.b Lcom/a/a/a/a/h;
+; v4 : Lcom/a/a/a/a/h; , v2 : Lcom/a/a/a/a/a;
+.line 47
+	if-eqz	v5,l64c40
+; v5 : Ljava/net/CacheRequest;
+	invoke-virtual	{v5},java/net/CacheRequest/getBody	; getBody()Ljava/io/OutputStream;
+; v5 : Ljava/net/CacheRequest;
+	move-result-object	v1
+; v1 : Ljava/io/OutputStream;
+l64c30:
+.line 50
+	if-nez	v1,l64c36
+; v1 : single-length
+	move-object	v5,v0
+; v5 : single-length , v0 : single-length
+l64c36:
+.line 54
+	iput-object	v1,v2,com/a/a/a/a/a.e Ljava/io/OutputStream;
+; v1 : Ljava/io/OutputStream; , v2 : Lcom/a/a/a/a/a;
+.line 55
+	iput-object	v5,v2,com/a/a/a/a/a.d Ljava/net/CacheRequest;
+; v5 : Ljava/net/CacheRequest; , v2 : Lcom/a/a/a/a/a;
+.line 56
+	return-void	
+l64c40:
+	move-object	v1,v0
+; v1 : single-length , v0 : single-length
+.line 47
+	goto	l64c30
+.end method
+
+.method protected final a()V
+.limit registers 3
+; this: v2 (Lcom/a/a/a/a/a;)
+.line 67
+	iget-boolean	v0,v2,com/a/a/a/a/a.c Z
+; v0 : single-length , v2 : Lcom/a/a/a/a/a;
+	if-eqz	v0,l64c6c
+; v0 : single-length
+.line 68
+	new-instance	v0,java/io/IOException
+; v0 : Ljava/io/IOException;
+	const-string	v1,"stream closed"
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/io/IOException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/io/IOException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/io/IOException;
+l64c6c:
+.line 70
+	return-void	
+.end method
+
+.method protected final a([BII)V
+.limit registers 5
+; this: v1 (Lcom/a/a/a/a/a;)
+; parameter[0] : v2 ([B)
+; parameter[1] : v3 (I)
+; parameter[2] : v4 (I)
+.line 73
+	iget-object	v0,v1,com/a/a/a/a/a.e Ljava/io/OutputStream;
+; v0 : Ljava/io/OutputStream; , v1 : Lcom/a/a/a/a/a;
+	if-eqz	v0,l64c92
+; v0 : Ljava/io/OutputStream;
+.line 74
+	iget-object	v0,v1,com/a/a/a/a/a.e Ljava/io/OutputStream;
+; v0 : Ljava/io/OutputStream; , v1 : Lcom/a/a/a/a/a;
+	invoke-virtual	{v0,v2,v3,v4},java/io/OutputStream/write	; write([BII)V
+; v0 : Ljava/io/OutputStream; , v2 : [B , v3 : single-length , v4 : single-length
+l64c92:
+.line 76
+	return-void	
+.end method
+
+.method protected final b()V
+.limit registers 3
+; this: v2 (Lcom/a/a/a/a/a;)
+.line 83
+	iget-object	v0,v2,com/a/a/a/a/a.d Ljava/net/CacheRequest;
+; v0 : Ljava/net/CacheRequest; , v2 : Lcom/a/a/a/a/a;
+	if-eqz	v0,l64cb6
+; v0 : Ljava/net/CacheRequest;
+.line 84
+	iget-object	v0,v2,com/a/a/a/a/a.e Ljava/io/OutputStream;
+; v0 : Ljava/io/OutputStream; , v2 : Lcom/a/a/a/a/a;
+	invoke-virtual	{v0},java/io/OutputStream/close	; close()V
+; v0 : Ljava/io/OutputStream;
+l64cb6:
+.line 86
+	iget-object	v0,v2,com/a/a/a/a/a.b Lcom/a/a/a/a/h;
+; v0 : Lcom/a/a/a/a/h; , v2 : Lcom/a/a/a/a/a;
+	const/4	v1,0
+; v1 : single-length
+	invoke-virtual	{v0,v1},com/a/a/a/a/h/a	; a(Z)V
+; v0 : Lcom/a/a/a/a/h; , v1 : single-length
+.line 87
+	return-void	
+.end method
+
+.method protected final c()V
+.limit registers 3
+; this: v2 (Lcom/a/a/a/a/a;)
+.line 102
+	iget-object	v0,v2,com/a/a/a/a/a.d Ljava/net/CacheRequest;
+; v0 : Ljava/net/CacheRequest; , v2 : Lcom/a/a/a/a/a;
+	if-eqz	v0,l64ce6
+; v0 : Ljava/net/CacheRequest;
+.line 103
+	iget-object	v0,v2,com/a/a/a/a/a.d Ljava/net/CacheRequest;
+; v0 : Ljava/net/CacheRequest; , v2 : Lcom/a/a/a/a/a;
+	invoke-virtual	{v0},java/net/CacheRequest/abort	; abort()V
+; v0 : Ljava/net/CacheRequest;
+l64ce6:
+.line 105
+	iget-object	v0,v2,com/a/a/a/a/a.b Lcom/a/a/a/a/h;
+; v0 : Lcom/a/a/a/a/h; , v2 : Lcom/a/a/a/a/a;
+	const/4	v1,1
+; v1 : single-length
+	invoke-virtual	{v0,v1},com/a/a/a/a/h/a	; a(Z)V
+; v0 : Lcom/a/a/a/a/h; , v1 : single-length
+.line 106
+	return-void	
+.end method
+
+.method public final read()I
+.limit registers 2
+; this: v1 (Lcom/a/a/a/a/a;)
+.line 63
+	invoke-static	{v1},com/a/a/a/u/a	; a(Ljava/io/InputStream;)I
+; v1 : Lcom/a/a/a/a/a;
+	move-result	v0
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+

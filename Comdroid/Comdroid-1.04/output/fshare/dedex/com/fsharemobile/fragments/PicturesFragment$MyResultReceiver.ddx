@@ -1,0 +1,68 @@
+.class com/fsharemobile/fragments/PicturesFragment$MyResultReceiver
+.super android/content/BroadcastReceiver
+.source PicturesFragment.java
+
+.inner class MyResultReceiver inner com/fsharemobile/fragments/PicturesFragment$MyResultReceiver outer com/fsharemobile/fragments/PicturesFragment
+.field final this$0 Lcom/fsharemobile/fragments/PicturesFragment;
+
+.method private <init>(Lcom/fsharemobile/fragments/PicturesFragment;)V
+.limit registers 2
+; this: v0 (Lcom/fsharemobile/fragments/PicturesFragment$MyResultReceiver;)
+; parameter[0] : v1 (Lcom/fsharemobile/fragments/PicturesFragment;)
+.line 968
+	iput-object	v1,v0,com/fsharemobile/fragments/PicturesFragment$MyResultReceiver.this$0 Lcom/fsharemobile/fragments/PicturesFragment;
+; v1 : Lcom/fsharemobile/fragments/PicturesFragment; , v0 : Lcom/fsharemobile/fragments/PicturesFragment$MyResultReceiver;
+	invoke-direct	{v0},android/content/BroadcastReceiver/<init>	; <init>()V
+; v0 : Lcom/fsharemobile/fragments/PicturesFragment$MyResultReceiver;
+	return-void	
+.end method
+
+.method <init>(Lcom/fsharemobile/fragments/PicturesFragment;Lcom/fsharemobile/fragments/PicturesFragment$MyResultReceiver;)V
+.limit registers 3
+; this: v0 (Lcom/fsharemobile/fragments/PicturesFragment$MyResultReceiver;)
+; parameter[0] : v1 (Lcom/fsharemobile/fragments/PicturesFragment;)
+; parameter[1] : v2 (Lcom/fsharemobile/fragments/PicturesFragment$MyResultReceiver;)
+.line 968
+	invoke-direct	{v0,v1},com/fsharemobile/fragments/PicturesFragment$MyResultReceiver/<init>	; <init>(Lcom/fsharemobile/fragments/PicturesFragment;)V
+; v0 : Lcom/fsharemobile/fragments/PicturesFragment$MyResultReceiver; , v1 : Lcom/fsharemobile/fragments/PicturesFragment;
+	return-void	
+.end method
+
+.method public onReceive(Landroid/content/Context;Landroid/content/Intent;)V
+.limit registers 8
+; this: v5 (Lcom/fsharemobile/fragments/PicturesFragment$MyResultReceiver;)
+; parameter[0] : v6 (Landroid/content/Context;)
+; parameter[1] : v7 (Landroid/content/Intent;)
+.line 973
+	const-string	v3,"DATAPASSED"
+; v3 : Ljava/lang/String;
+	const/4	v4,0
+; v4 : single-length
+	invoke-virtual	{v7,v3,v4},android/content/Intent/getIntExtra	; getIntExtra(Ljava/lang/String;I)I
+; v7 : Landroid/content/Intent; , v3 : Ljava/lang/String; , v4 : single-length
+	move-result	v0
+; v0 : single-length
+.line 974
+	const-string	v3,"UPLOAD_FILE_NAME"
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v7,v3},android/content/Intent/getStringExtra	; getStringExtra(Ljava/lang/String;)Ljava/lang/String;
+; v7 : Landroid/content/Intent; , v3 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+.line 975
+	const-string	v3,"UPLOAD_FILE_PATH"
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v7,v3},android/content/Intent/getStringExtra	; getStringExtra(Ljava/lang/String;)Ljava/lang/String;
+; v7 : Landroid/content/Intent; , v3 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+.line 976
+	iget-object	v3,v5,com/fsharemobile/fragments/PicturesFragment$MyResultReceiver.this$0 Lcom/fsharemobile/fragments/PicturesFragment;
+; v3 : Lcom/fsharemobile/fragments/PicturesFragment; , v5 : Lcom/fsharemobile/fragments/PicturesFragment$MyResultReceiver;
+	invoke-static	{v3,v0,v1,v2},com/fsharemobile/fragments/PicturesFragment/access$1	; access$1(Lcom/fsharemobile/fragments/PicturesFragment;ILjava/lang/String;Ljava/lang/String;)V
+; v3 : Lcom/fsharemobile/fragments/PicturesFragment; , v0 : single-length , v1 : Ljava/lang/String; , v2 : Ljava/lang/String;
+.line 982
+	return-void	
+.end method
+
+

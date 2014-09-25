@@ -1,0 +1,363 @@
+.class final android/support/v4/util/MapCollections$ValuesCollection
+.super java/lang/Object
+.source MyApplication
+.implements java/util/Collection
+
+.field final this$0 Landroid/support/v4/util/MapCollections;
+
+.method <init>(Landroid/support/v4/util/MapCollections;)V
+.limit registers 2
+; this: v0 (Landroid/support/v4/util/MapCollections$ValuesCollection;)
+; parameter[0] : v1 (Landroid/support/v4/util/MapCollections;)
+.line 353
+	iput-object	v1,v0,android/support/v4/util/MapCollections$ValuesCollection.this$0 Landroid/support/v4/util/MapCollections;
+; v1 : Landroid/support/v4/util/MapCollections; , v0 : Landroid/support/v4/util/MapCollections$ValuesCollection;
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Landroid/support/v4/util/MapCollections$ValuesCollection;
+	return-void	
+.end method
+
+.method public add(Ljava/lang/Object;)Z
+.limit registers 3
+; this: v1 (Landroid/support/v4/util/MapCollections$ValuesCollection;)
+; parameter[0] : v2 (Ljava/lang/Object;)
+.line 357
+	new-instance	v0,java/lang/UnsupportedOperationException
+; v0 : Ljava/lang/UnsupportedOperationException;
+	invoke-direct	{v0},java/lang/UnsupportedOperationException/<init>	; <init>()V
+; v0 : Ljava/lang/UnsupportedOperationException;
+	throw	v0
+; v0 : Ljava/lang/UnsupportedOperationException;
+.end method
+
+.method public addAll(Ljava/util/Collection;)Z
+.limit registers 3
+; this: v1 (Landroid/support/v4/util/MapCollections$ValuesCollection;)
+; parameter[0] : v2 (Ljava/util/Collection;)
+.line 362
+	new-instance	v0,java/lang/UnsupportedOperationException
+; v0 : Ljava/lang/UnsupportedOperationException;
+	invoke-direct	{v0},java/lang/UnsupportedOperationException/<init>	; <init>()V
+; v0 : Ljava/lang/UnsupportedOperationException;
+	throw	v0
+; v0 : Ljava/lang/UnsupportedOperationException;
+.end method
+
+.method public clear()V
+.limit registers 2
+; this: v1 (Landroid/support/v4/util/MapCollections$ValuesCollection;)
+.line 367
+	iget-object	v0,v1,android/support/v4/util/MapCollections$ValuesCollection.this$0 Landroid/support/v4/util/MapCollections;
+; v0 : Landroid/support/v4/util/MapCollections; , v1 : Landroid/support/v4/util/MapCollections$ValuesCollection;
+	invoke-virtual	{v0},android/support/v4/util/MapCollections/colClear	; colClear()V
+; v0 : Landroid/support/v4/util/MapCollections;
+.line 368
+	return-void	
+.end method
+
+.method public contains(Ljava/lang/Object;)Z
+.limit registers 3
+; this: v1 (Landroid/support/v4/util/MapCollections$ValuesCollection;)
+; parameter[0] : v2 (Ljava/lang/Object;)
+.line 372
+	iget-object	v0,v1,android/support/v4/util/MapCollections$ValuesCollection.this$0 Landroid/support/v4/util/MapCollections;
+; v0 : Landroid/support/v4/util/MapCollections; , v1 : Landroid/support/v4/util/MapCollections$ValuesCollection;
+	invoke-virtual	{v0,v2},android/support/v4/util/MapCollections/colIndexOfValue	; colIndexOfValue(Ljava/lang/Object;)I
+; v0 : Landroid/support/v4/util/MapCollections; , v2 : Ljava/lang/Object;
+	move-result	v0
+; v0 : single-length
+	if-ltz	v0,l4c9f4
+; v0 : single-length
+	const/4	v0,1
+; v0 : single-length
+l4c9f2:
+	return	v0
+; v0 : single-length
+l4c9f4:
+	const/4	v0,0
+; v0 : single-length
+	goto	l4c9f2
+.end method
+
+.method public containsAll(Ljava/util/Collection;)Z
+.limit registers 4
+; this: v2 (Landroid/support/v4/util/MapCollections$ValuesCollection;)
+; parameter[0] : v3 (Ljava/util/Collection;)
+.line 377
+	invoke-interface	{v3},java/util/Collection/iterator	; iterator()Ljava/util/Iterator;
+; v3 : Ljava/util/Collection;
+	move-result-object	v0
+; v0 : Ljava/util/Iterator;
+l4ca10:
+.line 378
+	invoke-interface	{v0},java/util/Iterator/hasNext	; hasNext()Z
+; v0 : Ljava/util/Iterator;
+	move-result	v1
+; v1 : single-length
+	if-eqz	v1,l4ca34
+; v1 : single-length
+.line 379
+	invoke-interface	{v0},java/util/Iterator/next	; next()Ljava/lang/Object;
+; v0 : Ljava/util/Iterator;
+	move-result-object	v1
+; v1 : Ljava/lang/Object;
+	invoke-virtual	{v2,v1},android/support/v4/util/MapCollections$ValuesCollection/contains	; contains(Ljava/lang/Object;)Z
+; v2 : Landroid/support/v4/util/MapCollections$ValuesCollection; , v1 : Ljava/lang/Object;
+	move-result	v1
+; v1 : single-length
+	if-nez	v1,l4ca10
+; v1 : single-length
+.line 380
+	const/4	v0,0
+; v0 : single-length
+l4ca32:
+.line 383
+	return	v0
+; v0 : single-length
+l4ca34:
+	const/4	v0,1
+; v0 : single-length
+	goto	l4ca32
+.end method
+
+.method public isEmpty()Z
+.limit registers 2
+; this: v1 (Landroid/support/v4/util/MapCollections$ValuesCollection;)
+.line 388
+	iget-object	v0,v1,android/support/v4/util/MapCollections$ValuesCollection.this$0 Landroid/support/v4/util/MapCollections;
+; v0 : Landroid/support/v4/util/MapCollections; , v1 : Landroid/support/v4/util/MapCollections$ValuesCollection;
+	invoke-virtual	{v0},android/support/v4/util/MapCollections/colGetSize	; colGetSize()I
+; v0 : Landroid/support/v4/util/MapCollections;
+	move-result	v0
+; v0 : single-length
+	if-nez	v0,l4ca5c
+; v0 : single-length
+	const/4	v0,1
+; v0 : single-length
+l4ca5a:
+	return	v0
+; v0 : single-length
+l4ca5c:
+	const/4	v0,0
+; v0 : single-length
+	goto	l4ca5a
+.end method
+
+.method public iterator()Ljava/util/Iterator;
+.limit registers 4
+; this: v3 (Landroid/support/v4/util/MapCollections$ValuesCollection;)
+.line 393
+	new-instance	v0,android/support/v4/util/MapCollections$ArrayIterator
+; v0 : Landroid/support/v4/util/MapCollections$ArrayIterator;
+	iget-object	v1,v3,android/support/v4/util/MapCollections$ValuesCollection.this$0 Landroid/support/v4/util/MapCollections;
+; v1 : Landroid/support/v4/util/MapCollections; , v3 : Landroid/support/v4/util/MapCollections$ValuesCollection;
+	const/4	v2,1
+; v2 : single-length
+	invoke-direct	{v0,v1,v2},android/support/v4/util/MapCollections$ArrayIterator/<init>	; <init>(Landroid/support/v4/util/MapCollections;I)V
+; v0 : Landroid/support/v4/util/MapCollections$ArrayIterator; , v1 : Landroid/support/v4/util/MapCollections; , v2 : single-length
+	return-object	v0
+; v0 : Landroid/support/v4/util/MapCollections$ArrayIterator;
+.end method
+
+.method public remove(Ljava/lang/Object;)Z
+.limit registers 4
+; this: v2 (Landroid/support/v4/util/MapCollections$ValuesCollection;)
+; parameter[0] : v3 (Ljava/lang/Object;)
+.line 398
+	iget-object	v0,v2,android/support/v4/util/MapCollections$ValuesCollection.this$0 Landroid/support/v4/util/MapCollections;
+; v0 : Landroid/support/v4/util/MapCollections; , v2 : Landroid/support/v4/util/MapCollections$ValuesCollection;
+	invoke-virtual	{v0,v3},android/support/v4/util/MapCollections/colIndexOfValue	; colIndexOfValue(Ljava/lang/Object;)I
+; v0 : Landroid/support/v4/util/MapCollections; , v3 : Ljava/lang/Object;
+	move-result	v0
+; v0 : single-length
+.line 399
+	if-ltz	v0,l4cab2
+; v0 : single-length
+.line 400
+	iget-object	v1,v2,android/support/v4/util/MapCollections$ValuesCollection.this$0 Landroid/support/v4/util/MapCollections;
+; v1 : Landroid/support/v4/util/MapCollections; , v2 : Landroid/support/v4/util/MapCollections$ValuesCollection;
+	invoke-virtual	{v1,v0},android/support/v4/util/MapCollections/colRemoveAt	; colRemoveAt(I)V
+; v1 : Landroid/support/v4/util/MapCollections; , v0 : single-length
+.line 401
+	const/4	v0,1
+; v0 : single-length
+l4cab0:
+.line 403
+	return	v0
+; v0 : single-length
+l4cab2:
+	const/4	v0,0
+; v0 : single-length
+	goto	l4cab0
+.end method
+
+.method public removeAll(Ljava/util/Collection;)Z
+.limit registers 7
+; this: v5 (Landroid/support/v4/util/MapCollections$ValuesCollection;)
+; parameter[0] : v6 (Ljava/util/Collection;)
+	const/4	v2,1
+; v2 : single-length
+	const/4	v0,0
+; v0 : single-length
+.line 408
+	iget-object	v1,v5,android/support/v4/util/MapCollections$ValuesCollection.this$0 Landroid/support/v4/util/MapCollections;
+; v1 : Landroid/support/v4/util/MapCollections; , v5 : Landroid/support/v4/util/MapCollections$ValuesCollection;
+	invoke-virtual	{v1},android/support/v4/util/MapCollections/colGetSize	; colGetSize()I
+; v1 : Landroid/support/v4/util/MapCollections;
+	move-result	v3
+; v3 : single-length
+	move	v1,v0
+; v1 : single-length , v0 : single-length
+l4cada:
+.line 410
+	if-ge	v0,v3,l4cb12
+; v0 : single-length , v3 : single-length
+.line 411
+	iget-object	v4,v5,android/support/v4/util/MapCollections$ValuesCollection.this$0 Landroid/support/v4/util/MapCollections;
+; v4 : Landroid/support/v4/util/MapCollections; , v5 : Landroid/support/v4/util/MapCollections$ValuesCollection;
+	invoke-virtual	{v4,v0,v2},android/support/v4/util/MapCollections/colGetEntry	; colGetEntry(II)Ljava/lang/Object;
+; v4 : Landroid/support/v4/util/MapCollections; , v0 : single-length , v2 : single-length
+	move-result-object	v4
+; v4 : Ljava/lang/Object;
+.line 412
+	invoke-interface	{v6,v4},java/util/Collection/contains	; contains(Ljava/lang/Object;)Z
+; v6 : Ljava/util/Collection; , v4 : Ljava/lang/Object;
+	move-result	v4
+; v4 : single-length
+	if-eqz	v4,l4cb0c
+; v4 : single-length
+.line 413
+	iget-object	v1,v5,android/support/v4/util/MapCollections$ValuesCollection.this$0 Landroid/support/v4/util/MapCollections;
+; v1 : Landroid/support/v4/util/MapCollections; , v5 : Landroid/support/v4/util/MapCollections$ValuesCollection;
+	invoke-virtual	{v1,v0},android/support/v4/util/MapCollections/colRemoveAt	; colRemoveAt(I)V
+; v1 : Landroid/support/v4/util/MapCollections; , v0 : single-length
+.line 414
+	add-int/lit8	v0,v0,255
+; v0 : single-length , v0 : single-length
+.line 415
+	add-int/lit8	v1,v3,255
+; v1 : single-length , v3 : single-length
+	move	v3,v1
+; v3 : single-length , v1 : single-length
+	move	v1,v2
+; v1 : single-length , v2 : single-length
+l4cb0c:
+.line 410
+	add-int/lit8	v0,v0,1
+; v0 : single-length , v0 : single-length
+	goto	l4cada
+l4cb12:
+.line 419
+	return	v1
+; v1 : single-length
+.end method
+
+.method public retainAll(Ljava/util/Collection;)Z
+.limit registers 7
+; this: v5 (Landroid/support/v4/util/MapCollections$ValuesCollection;)
+; parameter[0] : v6 (Ljava/util/Collection;)
+	const/4	v2,1
+; v2 : single-length
+	const/4	v0,0
+; v0 : single-length
+.line 424
+	iget-object	v1,v5,android/support/v4/util/MapCollections$ValuesCollection.this$0 Landroid/support/v4/util/MapCollections;
+; v1 : Landroid/support/v4/util/MapCollections; , v5 : Landroid/support/v4/util/MapCollections$ValuesCollection;
+	invoke-virtual	{v1},android/support/v4/util/MapCollections/colGetSize	; colGetSize()I
+; v1 : Landroid/support/v4/util/MapCollections;
+	move-result	v3
+; v3 : single-length
+	move	v1,v0
+; v1 : single-length , v0 : single-length
+l4cb36:
+.line 426
+	if-ge	v0,v3,l4cb6e
+; v0 : single-length , v3 : single-length
+.line 427
+	iget-object	v4,v5,android/support/v4/util/MapCollections$ValuesCollection.this$0 Landroid/support/v4/util/MapCollections;
+; v4 : Landroid/support/v4/util/MapCollections; , v5 : Landroid/support/v4/util/MapCollections$ValuesCollection;
+	invoke-virtual	{v4,v0,v2},android/support/v4/util/MapCollections/colGetEntry	; colGetEntry(II)Ljava/lang/Object;
+; v4 : Landroid/support/v4/util/MapCollections; , v0 : single-length , v2 : single-length
+	move-result-object	v4
+; v4 : Ljava/lang/Object;
+.line 428
+	invoke-interface	{v6,v4},java/util/Collection/contains	; contains(Ljava/lang/Object;)Z
+; v6 : Ljava/util/Collection; , v4 : Ljava/lang/Object;
+	move-result	v4
+; v4 : single-length
+	if-nez	v4,l4cb68
+; v4 : single-length
+.line 429
+	iget-object	v1,v5,android/support/v4/util/MapCollections$ValuesCollection.this$0 Landroid/support/v4/util/MapCollections;
+; v1 : Landroid/support/v4/util/MapCollections; , v5 : Landroid/support/v4/util/MapCollections$ValuesCollection;
+	invoke-virtual	{v1,v0},android/support/v4/util/MapCollections/colRemoveAt	; colRemoveAt(I)V
+; v1 : Landroid/support/v4/util/MapCollections; , v0 : single-length
+.line 430
+	add-int/lit8	v0,v0,255
+; v0 : single-length , v0 : single-length
+.line 431
+	add-int/lit8	v1,v3,255
+; v1 : single-length , v3 : single-length
+	move	v3,v1
+; v3 : single-length , v1 : single-length
+	move	v1,v2
+; v1 : single-length , v2 : single-length
+l4cb68:
+.line 426
+	add-int/lit8	v0,v0,1
+; v0 : single-length , v0 : single-length
+	goto	l4cb36
+l4cb6e:
+.line 435
+	return	v1
+; v1 : single-length
+.end method
+
+.method public size()I
+.limit registers 2
+; this: v1 (Landroid/support/v4/util/MapCollections$ValuesCollection;)
+.line 440
+	iget-object	v0,v1,android/support/v4/util/MapCollections$ValuesCollection.this$0 Landroid/support/v4/util/MapCollections;
+; v0 : Landroid/support/v4/util/MapCollections; , v1 : Landroid/support/v4/util/MapCollections$ValuesCollection;
+	invoke-virtual	{v0},android/support/v4/util/MapCollections/colGetSize	; colGetSize()I
+; v0 : Landroid/support/v4/util/MapCollections;
+	move-result	v0
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public toArray()[Ljava/lang/Object;
+.limit registers 3
+; this: v2 (Landroid/support/v4/util/MapCollections$ValuesCollection;)
+.line 445
+	iget-object	v0,v2,android/support/v4/util/MapCollections$ValuesCollection.this$0 Landroid/support/v4/util/MapCollections;
+; v0 : Landroid/support/v4/util/MapCollections; , v2 : Landroid/support/v4/util/MapCollections$ValuesCollection;
+	const/4	v1,1
+; v1 : single-length
+	invoke-virtual	{v0,v1},android/support/v4/util/MapCollections/toArrayHelper	; toArrayHelper(I)[Ljava/lang/Object;
+; v0 : Landroid/support/v4/util/MapCollections; , v1 : single-length
+	move-result-object	v0
+; v0 : [Ljava/lang/Object;
+	return-object	v0
+; v0 : [Ljava/lang/Object;
+.end method
+
+.method public toArray([Ljava/lang/Object;)[Ljava/lang/Object;
+.limit registers 4
+; this: v2 (Landroid/support/v4/util/MapCollections$ValuesCollection;)
+; parameter[0] : v3 ([Ljava/lang/Object;)
+.line 450
+	iget-object	v0,v2,android/support/v4/util/MapCollections$ValuesCollection.this$0 Landroid/support/v4/util/MapCollections;
+; v0 : Landroid/support/v4/util/MapCollections; , v2 : Landroid/support/v4/util/MapCollections$ValuesCollection;
+	const/4	v1,1
+; v1 : single-length
+	invoke-virtual	{v0,v3,v1},android/support/v4/util/MapCollections/toArrayHelper	; toArrayHelper([Ljava/lang/Object;I)[Ljava/lang/Object;
+; v0 : Landroid/support/v4/util/MapCollections; , v3 : [Ljava/lang/Object; , v1 : single-length
+	move-result-object	v0
+; v0 : [Ljava/lang/Object;
+	return-object	v0
+; v0 : [Ljava/lang/Object;
+.end method
+
+

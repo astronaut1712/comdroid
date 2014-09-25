@@ -1,0 +1,1604 @@
+.class com/google/tagmanager/ResourceUtil
+.super java/lang/Object
+.source ResourceUtil.java
+
+.inner class 1 inner com/google/tagmanager/ResourceUtil$1 outer com/google/tagmanager/ResourceUtil
+.inner class ExpandedResource inner com/google/tagmanager/ResourceUtil$ExpandedResource outer com/google/tagmanager/ResourceUtil
+.inner class ExpandedResourceBuilder inner com/google/tagmanager/ResourceUtil$ExpandedResourceBuilder outer com/google/tagmanager/ResourceUtil
+.inner class ExpandedRule inner com/google/tagmanager/ResourceUtil$ExpandedRule outer com/google/tagmanager/ResourceUtil
+.inner class ExpandedRuleBuilder inner com/google/tagmanager/ResourceUtil$ExpandedRuleBuilder outer com/google/tagmanager/ResourceUtil
+.inner class ExpandedFunctionCall inner com/google/tagmanager/ResourceUtil$ExpandedFunctionCall outer com/google/tagmanager/ResourceUtil
+.inner class ExpandedFunctionCallBuilder inner com/google/tagmanager/ResourceUtil$ExpandedFunctionCallBuilder outer com/google/tagmanager/ResourceUtil
+.inner class InvalidResourceException inner com/google/tagmanager/ResourceUtil$InvalidResourceException outer com/google/tagmanager/ResourceUtil
+.field private static final BUFFER_SIZE I = 1024	; 0x400
+
+.method private <init>()V
+.limit registers 1
+; this: v0 (Lcom/google/tagmanager/ResourceUtil;)
+.line 29
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Lcom/google/tagmanager/ResourceUtil;
+.line 30
+	return-void	
+.end method
+
+.method public static copyStream(Ljava/io/InputStream;Ljava/io/OutputStream;)V
+.throws Ljava/io/IOException;
+.limit registers 5
+; parameter[0] : v3 (Ljava/io/InputStream;)
+; parameter[1] : v4 (Ljava/io/OutputStream;)
+.line 715
+	const/16	v2,1024
+; v2 : single-length
+	new-array	v0,v2,[B
+; v0 : [B , v2 : single-length
+la9620:
+.line 717
+	invoke-virtual	{v3,v0},java/io/InputStream/read	; read([B)I
+; v3 : Ljava/io/InputStream; , v0 : [B
+	move-result	v1
+; v1 : single-length
+.line 718
+	const/4	v2,15
+; v2 : single-length
+	if-ne	v1,v2,la9630
+; v1 : single-length , v2 : single-length
+.line 719
+	return-void	
+la9630:
+.line 721
+	const/4	v2,0
+; v2 : single-length
+	invoke-virtual	{v4,v0,v2,v1},java/io/OutputStream/write	; write([BII)V
+; v4 : Ljava/io/OutputStream; , v0 : [B , v2 : single-length , v1 : single-length
+	goto	la9620
+.end method
+
+.method private static expandFunctionCall(Lcom/google/analytics/containertag/proto/Serving$FunctionCall;Lcom/google/analytics/containertag/proto/Serving$Resource;[Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;I)Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;
+.throws Lcom/google/tagmanager/ResourceUtil$InvalidResourceException;
+.limit registers 15
+; parameter[0] : v11 (Lcom/google/analytics/containertag/proto/Serving$FunctionCall;)
+; parameter[1] : v12 (Lcom/google/analytics/containertag/proto/Serving$Resource;)
+; parameter[2] : v13 ([Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;)
+; parameter[3] : v14 (I)
+.var 2 is i Ljava/lang/Integer; from la966c to la96e0
+.var 4 is key Ljava/lang/String; from la96a0 to la96e0
+.var 6 is p Lcom/google/analytics/containertag/proto/Serving$Property; from la9688 to la96e0
+.var 7 is value Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; from la96b4 to la96e0
+.line 640
+	invoke-static	{},com/google/tagmanager/ResourceUtil$ExpandedFunctionCall/newBuilder	; newBuilder()Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCallBuilder;
+; 
+	nop	
+	move-result-object	v1
+; v1 : Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCallBuilder;
+.line 642
+	iget-object	v0,v11,com/google/analytics/containertag/proto/Serving$FunctionCall.property [I
+; v0 : [I , v11 : Lcom/google/analytics/containertag/proto/Serving$FunctionCall;
+	array-length	v5,v0
+; v5 : single-length , v0 : [I
+	const/4	v3,0
+; v3 : single-length
+la965c:
+	if-ge	v3,v5,la96e0
+; v3 : single-length , v5 : single-length
+	aget	v8,v0,v3
+; v8 : single-length , v0 : [I , v3 : single-length
+	invoke-static	{v8},java/lang/Integer/valueOf	; valueOf(I)Ljava/lang/Integer;
+; v8 : single-length
+	move-result-object	v2
+; v2 : Ljava/lang/Integer;
+.line 643
+	iget-object	v8,v12,com/google/analytics/containertag/proto/Serving$Resource.property [Lcom/google/analytics/containertag/proto/Serving$Property;
+; v8 : [Lcom/google/analytics/containertag/proto/Serving$Property; , v12 : Lcom/google/analytics/containertag/proto/Serving$Resource;
+	invoke-virtual	{v2},java/lang/Integer/intValue	; intValue()I
+; v2 : Ljava/lang/Integer;
+	move-result	v9
+; v9 : single-length
+	const-string	v10,"properties"
+; v10 : Ljava/lang/String;
+	invoke-static	{v8,v9,v10},com/google/tagmanager/ResourceUtil/getWithBoundsCheck	; getWithBoundsCheck([Ljava/lang/Object;ILjava/lang/String;)Ljava/lang/Object;
+; v8 : [Lcom/google/analytics/containertag/proto/Serving$Property; , v9 : single-length , v10 : Ljava/lang/String;
+	move-result-object	v6
+; v6 : Ljava/lang/Object;
+	check-cast	v6,com/google/analytics/containertag/proto/Serving$Property
+; v6 : Lcom/google/analytics/containertag/proto/Serving$Property;
+.line 644
+	iget-object	v8,v12,com/google/analytics/containertag/proto/Serving$Resource.key [Ljava/lang/String;
+; v8 : [Ljava/lang/String; , v12 : Lcom/google/analytics/containertag/proto/Serving$Resource;
+	iget	v9,v6,com/google/analytics/containertag/proto/Serving$Property.key I
+; v9 : single-length , v6 : Lcom/google/analytics/containertag/proto/Serving$Property;
+	const-string	v10,"keys"
+; v10 : Ljava/lang/String;
+	invoke-static	{v8,v9,v10},com/google/tagmanager/ResourceUtil/getWithBoundsCheck	; getWithBoundsCheck([Ljava/lang/Object;ILjava/lang/String;)Ljava/lang/Object;
+; v8 : [Ljava/lang/String; , v9 : single-length , v10 : Ljava/lang/String;
+	move-result-object	v4
+; v4 : Ljava/lang/Object;
+	check-cast	v4,java/lang/String
+; v4 : Ljava/lang/String;
+.line 645
+	iget	v8,v6,com/google/analytics/containertag/proto/Serving$Property.value I
+; v8 : single-length , v6 : Lcom/google/analytics/containertag/proto/Serving$Property;
+	const-string	v9,"values"
+; v9 : Ljava/lang/String;
+	invoke-static	{v13,v8,v9},com/google/tagmanager/ResourceUtil/getWithBoundsCheck	; getWithBoundsCheck([Ljava/lang/Object;ILjava/lang/String;)Ljava/lang/Object;
+; v13 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v8 : single-length , v9 : Ljava/lang/String;
+	move-result-object	v7
+; v7 : Ljava/lang/Object;
+	check-cast	v7,com/google/analytics/midtier/proto/containertag/TypeSystem$Value
+; v7 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+.line 647
+	sget-object	v8,com/google/analytics/containertag/common/Key.PUSH_AFTER_EVALUATE Lcom/google/analytics/containertag/common/Key;
+; v8 : Lcom/google/analytics/containertag/common/Key;
+	invoke-virtual	{v8},com/google/analytics/containertag/common/Key/toString	; toString()Ljava/lang/String;
+; v8 : Lcom/google/analytics/containertag/common/Key;
+	move-result-object	v8
+; v8 : Ljava/lang/String;
+	invoke-virtual	{v8,v4},java/lang/String/equals	; equals(Ljava/lang/Object;)Z
+; v8 : Ljava/lang/String; , v4 : Ljava/lang/String;
+	move-result	v8
+; v8 : single-length
+	if-eqz	v8,la96d8
+; v8 : single-length
+.line 648
+	invoke-virtual	{v1,v7},com/google/tagmanager/ResourceUtil$ExpandedFunctionCallBuilder/setPushAfterEvaluate	; setPushAfterEvaluate(Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;)Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCallBuilder;
+; v1 : Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCallBuilder; , v7 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+la96d2:
+.line 642
+	add-int/lit8	v3,v3,1
+; v3 : single-length , v3 : single-length
+	goto	la965c
+la96d8:
+.line 650
+	invoke-virtual	{v1,v4,v7},com/google/tagmanager/ResourceUtil$ExpandedFunctionCallBuilder/addProperty	; addProperty(Ljava/lang/String;Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;)Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCallBuilder;
+; v1 : Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCallBuilder; , v4 : Ljava/lang/String; , v7 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	goto	la96d2
+la96e0:
+.line 654
+	invoke-virtual	{v1},com/google/tagmanager/ResourceUtil$ExpandedFunctionCallBuilder/build	; build()Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;
+; v1 : Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCallBuilder;
+	move-result-object	v8
+; v8 : Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;
+	return-object	v8
+; v8 : Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;
+.end method
+
+.method private static expandRule(Lcom/google/analytics/containertag/proto/Serving$Rule;Ljava/util/List;Ljava/util/List;Ljava/util/List;Lcom/google/analytics/containertag/proto/Serving$Resource;)Lcom/google/tagmanager/ResourceUtil$ExpandedRule;
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "(" , "Lcom/google/analytics/containertag/proto/Serving$Rule;" , "Ljava/util/List" , "<" , "Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;" , ">;" , "Ljava/util/List" , "<" , "Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;" , ">;" , "Ljava/util/List" , "<" , "Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;" , ">;" , "Lcom/google/analytics/containertag/proto/Serving$Resource;" , ")" , "Lcom/google/tagmanager/ResourceUtil$ExpandedRule;" }
+.end annotation
+.limit registers 15
+; parameter[0] : v10 (Lcom/google/analytics/containertag/proto/Serving$Rule;)
+; parameter[1] : v11 (Ljava/util/List;)
+; parameter[2] : v12 (Ljava/util/List;)
+; parameter[3] : v13 (Ljava/util/List;)
+; parameter[4] : v14 (Lcom/google/analytics/containertag/proto/Serving$Resource;)
+.var 1 is i Ljava/lang/Integer; from la971c to la973c
+.var 1 is i Ljava/lang/Integer; from la9754 to la9774
+.var 7 is tagIndex Ljava/lang/Integer; from la978c to la97ac
+.var 6 is ruleNameIndex Ljava/lang/Integer; from la97c4 to la97e4
+.var 7 is tagIndex Ljava/lang/Integer; from la97fc to la981c
+.var 6 is ruleNameIndex Ljava/lang/Integer; from la9834 to la9854
+.var 4 is macroIndex Ljava/lang/Integer; from la986c to la988c
+.var 6 is ruleNameIndex Ljava/lang/Integer; from la98a4 to la98c4
+.var 4 is macroIndex Ljava/lang/Integer; from la98dc to la98fc
+.var 6 is ruleNameIndex Ljava/lang/Integer; from la9914 to la9934
+.line 670
+	invoke-static	{},com/google/tagmanager/ResourceUtil$ExpandedRule/newBuilder	; newBuilder()Lcom/google/tagmanager/ResourceUtil$ExpandedRuleBuilder;
+; 
+	nop	
+	move-result-object	v5
+; v5 : Lcom/google/tagmanager/ResourceUtil$ExpandedRuleBuilder;
+.line 672
+	iget-object	v0,v10,com/google/analytics/containertag/proto/Serving$Rule.positivePredicate [I
+; v0 : [I , v10 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	array-length	v3,v0
+; v3 : single-length , v0 : [I
+	const/4	v2,0
+; v2 : single-length
+la970c:
+	if-ge	v2,v3,la973c
+; v2 : single-length , v3 : single-length
+	aget	v8,v0,v2
+; v8 : single-length , v0 : [I , v2 : single-length
+	invoke-static	{v8},java/lang/Integer/valueOf	; valueOf(I)Ljava/lang/Integer;
+; v8 : single-length
+	move-result-object	v1
+; v1 : Ljava/lang/Integer;
+.line 673
+	invoke-virtual	{v1},java/lang/Integer/intValue	; intValue()I
+; v1 : Ljava/lang/Integer;
+	move-result	v8
+; v8 : single-length
+	invoke-interface	{v13,v8},java/util/List/get	; get(I)Ljava/lang/Object;
+; v13 : Ljava/util/List; , v8 : single-length
+	move-result-object	v8
+; v8 : Ljava/lang/Object;
+	check-cast	v8,com/google/tagmanager/ResourceUtil$ExpandedFunctionCall
+; v8 : Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;
+	invoke-virtual	{v5,v8},com/google/tagmanager/ResourceUtil$ExpandedRuleBuilder/addPositivePredicate	; addPositivePredicate(Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;)Lcom/google/tagmanager/ResourceUtil$ExpandedRuleBuilder;
+; v5 : Lcom/google/tagmanager/ResourceUtil$ExpandedRuleBuilder; , v8 : Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;
+.line 672
+	add-int/lit8	v2,v2,1
+; v2 : single-length , v2 : single-length
+	goto	la970c
+la973c:
+.line 675
+	iget-object	v0,v10,com/google/analytics/containertag/proto/Serving$Rule.negativePredicate [I
+; v0 : [I , v10 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	array-length	v3,v0
+; v3 : single-length , v0 : [I
+	const/4	v2,0
+; v2 : single-length
+la9744:
+	if-ge	v2,v3,la9774
+; v2 : single-length , v3 : single-length
+	aget	v8,v0,v2
+; v8 : single-length , v0 : [I , v2 : single-length
+	invoke-static	{v8},java/lang/Integer/valueOf	; valueOf(I)Ljava/lang/Integer;
+; v8 : single-length
+	move-result-object	v1
+; v1 : Ljava/lang/Integer;
+.line 676
+	invoke-virtual	{v1},java/lang/Integer/intValue	; intValue()I
+; v1 : Ljava/lang/Integer;
+	move-result	v8
+; v8 : single-length
+	invoke-interface	{v13,v8},java/util/List/get	; get(I)Ljava/lang/Object;
+; v13 : Ljava/util/List; , v8 : single-length
+	move-result-object	v8
+; v8 : Ljava/lang/Object;
+	check-cast	v8,com/google/tagmanager/ResourceUtil$ExpandedFunctionCall
+; v8 : Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;
+	invoke-virtual	{v5,v8},com/google/tagmanager/ResourceUtil$ExpandedRuleBuilder/addNegativePredicate	; addNegativePredicate(Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;)Lcom/google/tagmanager/ResourceUtil$ExpandedRuleBuilder;
+; v5 : Lcom/google/tagmanager/ResourceUtil$ExpandedRuleBuilder; , v8 : Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;
+.line 675
+	add-int/lit8	v2,v2,1
+; v2 : single-length , v2 : single-length
+	goto	la9744
+la9774:
+.line 679
+	iget-object	v0,v10,com/google/analytics/containertag/proto/Serving$Rule.addTag [I
+; v0 : [I , v10 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	array-length	v3,v0
+; v3 : single-length , v0 : [I
+	const/4	v2,0
+; v2 : single-length
+la977c:
+	if-ge	v2,v3,la97ac
+; v2 : single-length , v3 : single-length
+	aget	v8,v0,v2
+; v8 : single-length , v0 : [I , v2 : single-length
+	invoke-static	{v8},java/lang/Integer/valueOf	; valueOf(I)Ljava/lang/Integer;
+; v8 : single-length
+	move-result-object	v7
+; v7 : Ljava/lang/Integer;
+.line 680
+	invoke-virtual	{v7},java/lang/Integer/intValue	; intValue()I
+; v7 : Ljava/lang/Integer;
+	move-result	v8
+; v8 : single-length
+	invoke-interface	{v11,v8},java/util/List/get	; get(I)Ljava/lang/Object;
+; v11 : Ljava/util/List; , v8 : single-length
+	move-result-object	v8
+; v8 : Ljava/lang/Object;
+	check-cast	v8,com/google/tagmanager/ResourceUtil$ExpandedFunctionCall
+; v8 : Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;
+	invoke-virtual	{v5,v8},com/google/tagmanager/ResourceUtil$ExpandedRuleBuilder/addAddTag	; addAddTag(Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;)Lcom/google/tagmanager/ResourceUtil$ExpandedRuleBuilder;
+; v5 : Lcom/google/tagmanager/ResourceUtil$ExpandedRuleBuilder; , v8 : Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;
+.line 679
+	add-int/lit8	v2,v2,1
+; v2 : single-length , v2 : single-length
+	goto	la977c
+la97ac:
+.line 683
+	iget-object	v0,v10,com/google/analytics/containertag/proto/Serving$Rule.addTagRuleName [I
+; v0 : [I , v10 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	array-length	v3,v0
+; v3 : single-length , v0 : [I
+	const/4	v2,0
+; v2 : single-length
+la97b4:
+	if-ge	v2,v3,la97e4
+; v2 : single-length , v3 : single-length
+	aget	v8,v0,v2
+; v8 : single-length , v0 : [I , v2 : single-length
+	invoke-static	{v8},java/lang/Integer/valueOf	; valueOf(I)Ljava/lang/Integer;
+; v8 : single-length
+	move-result-object	v6
+; v6 : Ljava/lang/Integer;
+.line 684
+	iget-object	v8,v14,com/google/analytics/containertag/proto/Serving$Resource.value [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+; v8 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v14 : Lcom/google/analytics/containertag/proto/Serving$Resource;
+	invoke-virtual	{v6},java/lang/Integer/intValue	; intValue()I
+; v6 : Ljava/lang/Integer;
+	move-result	v9
+; v9 : single-length
+	aget-object	v8,v8,v9
+; v8 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v8 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v9 : single-length
+	iget-object	v8,v8,com/google/analytics/midtier/proto/containertag/TypeSystem$Value.string Ljava/lang/String;
+; v8 : Ljava/lang/String; , v8 : Ljava/lang/String;
+	invoke-virtual	{v5,v8},com/google/tagmanager/ResourceUtil$ExpandedRuleBuilder/addAddTagRuleName	; addAddTagRuleName(Ljava/lang/String;)Lcom/google/tagmanager/ResourceUtil$ExpandedRuleBuilder;
+; v5 : Lcom/google/tagmanager/ResourceUtil$ExpandedRuleBuilder; , v8 : Ljava/lang/String;
+.line 683
+	add-int/lit8	v2,v2,1
+; v2 : single-length , v2 : single-length
+	goto	la97b4
+la97e4:
+.line 687
+	iget-object	v0,v10,com/google/analytics/containertag/proto/Serving$Rule.removeTag [I
+; v0 : [I , v10 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	array-length	v3,v0
+; v3 : single-length , v0 : [I
+	const/4	v2,0
+; v2 : single-length
+la97ec:
+	if-ge	v2,v3,la981c
+; v2 : single-length , v3 : single-length
+	aget	v8,v0,v2
+; v8 : single-length , v0 : [I , v2 : single-length
+	invoke-static	{v8},java/lang/Integer/valueOf	; valueOf(I)Ljava/lang/Integer;
+; v8 : single-length
+	move-result-object	v7
+; v7 : Ljava/lang/Integer;
+.line 688
+	invoke-virtual	{v7},java/lang/Integer/intValue	; intValue()I
+; v7 : Ljava/lang/Integer;
+	move-result	v8
+; v8 : single-length
+	invoke-interface	{v11,v8},java/util/List/get	; get(I)Ljava/lang/Object;
+; v11 : Ljava/util/List; , v8 : single-length
+	move-result-object	v8
+; v8 : Ljava/lang/Object;
+	check-cast	v8,com/google/tagmanager/ResourceUtil$ExpandedFunctionCall
+; v8 : Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;
+	invoke-virtual	{v5,v8},com/google/tagmanager/ResourceUtil$ExpandedRuleBuilder/addRemoveTag	; addRemoveTag(Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;)Lcom/google/tagmanager/ResourceUtil$ExpandedRuleBuilder;
+; v5 : Lcom/google/tagmanager/ResourceUtil$ExpandedRuleBuilder; , v8 : Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;
+.line 687
+	add-int/lit8	v2,v2,1
+; v2 : single-length , v2 : single-length
+	goto	la97ec
+la981c:
+.line 691
+	iget-object	v0,v10,com/google/analytics/containertag/proto/Serving$Rule.removeTagRuleName [I
+; v0 : [I , v10 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	array-length	v3,v0
+; v3 : single-length , v0 : [I
+	const/4	v2,0
+; v2 : single-length
+la9824:
+	if-ge	v2,v3,la9854
+; v2 : single-length , v3 : single-length
+	aget	v8,v0,v2
+; v8 : single-length , v0 : [I , v2 : single-length
+	invoke-static	{v8},java/lang/Integer/valueOf	; valueOf(I)Ljava/lang/Integer;
+; v8 : single-length
+	move-result-object	v6
+; v6 : Ljava/lang/Integer;
+.line 692
+	iget-object	v8,v14,com/google/analytics/containertag/proto/Serving$Resource.value [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+; v8 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v14 : Lcom/google/analytics/containertag/proto/Serving$Resource;
+	invoke-virtual	{v6},java/lang/Integer/intValue	; intValue()I
+; v6 : Ljava/lang/Integer;
+	move-result	v9
+; v9 : single-length
+	aget-object	v8,v8,v9
+; v8 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v8 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v9 : single-length
+	iget-object	v8,v8,com/google/analytics/midtier/proto/containertag/TypeSystem$Value.string Ljava/lang/String;
+; v8 : Ljava/lang/String; , v8 : Ljava/lang/String;
+	invoke-virtual	{v5,v8},com/google/tagmanager/ResourceUtil$ExpandedRuleBuilder/addRemoveTagRuleName	; addRemoveTagRuleName(Ljava/lang/String;)Lcom/google/tagmanager/ResourceUtil$ExpandedRuleBuilder;
+; v5 : Lcom/google/tagmanager/ResourceUtil$ExpandedRuleBuilder; , v8 : Ljava/lang/String;
+.line 691
+	add-int/lit8	v2,v2,1
+; v2 : single-length , v2 : single-length
+	goto	la9824
+la9854:
+.line 695
+	iget-object	v0,v10,com/google/analytics/containertag/proto/Serving$Rule.addMacro [I
+; v0 : [I , v10 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	array-length	v3,v0
+; v3 : single-length , v0 : [I
+	const/4	v2,0
+; v2 : single-length
+la985c:
+	if-ge	v2,v3,la988c
+; v2 : single-length , v3 : single-length
+	aget	v8,v0,v2
+; v8 : single-length , v0 : [I , v2 : single-length
+	invoke-static	{v8},java/lang/Integer/valueOf	; valueOf(I)Ljava/lang/Integer;
+; v8 : single-length
+	move-result-object	v4
+; v4 : Ljava/lang/Integer;
+.line 696
+	invoke-virtual	{v4},java/lang/Integer/intValue	; intValue()I
+; v4 : Ljava/lang/Integer;
+	move-result	v8
+; v8 : single-length
+	invoke-interface	{v12,v8},java/util/List/get	; get(I)Ljava/lang/Object;
+; v12 : Ljava/util/List; , v8 : single-length
+	move-result-object	v8
+; v8 : Ljava/lang/Object;
+	check-cast	v8,com/google/tagmanager/ResourceUtil$ExpandedFunctionCall
+; v8 : Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;
+	invoke-virtual	{v5,v8},com/google/tagmanager/ResourceUtil$ExpandedRuleBuilder/addAddMacro	; addAddMacro(Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;)Lcom/google/tagmanager/ResourceUtil$ExpandedRuleBuilder;
+; v5 : Lcom/google/tagmanager/ResourceUtil$ExpandedRuleBuilder; , v8 : Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;
+.line 695
+	add-int/lit8	v2,v2,1
+; v2 : single-length , v2 : single-length
+	goto	la985c
+la988c:
+.line 699
+	iget-object	v0,v10,com/google/analytics/containertag/proto/Serving$Rule.addMacroRuleName [I
+; v0 : [I , v10 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	array-length	v3,v0
+; v3 : single-length , v0 : [I
+	const/4	v2,0
+; v2 : single-length
+la9894:
+	if-ge	v2,v3,la98c4
+; v2 : single-length , v3 : single-length
+	aget	v8,v0,v2
+; v8 : single-length , v0 : [I , v2 : single-length
+	invoke-static	{v8},java/lang/Integer/valueOf	; valueOf(I)Ljava/lang/Integer;
+; v8 : single-length
+	move-result-object	v6
+; v6 : Ljava/lang/Integer;
+.line 700
+	iget-object	v8,v14,com/google/analytics/containertag/proto/Serving$Resource.value [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+; v8 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v14 : Lcom/google/analytics/containertag/proto/Serving$Resource;
+	invoke-virtual	{v6},java/lang/Integer/intValue	; intValue()I
+; v6 : Ljava/lang/Integer;
+	move-result	v9
+; v9 : single-length
+	aget-object	v8,v8,v9
+; v8 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v8 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v9 : single-length
+	iget-object	v8,v8,com/google/analytics/midtier/proto/containertag/TypeSystem$Value.string Ljava/lang/String;
+; v8 : Ljava/lang/String; , v8 : Ljava/lang/String;
+	invoke-virtual	{v5,v8},com/google/tagmanager/ResourceUtil$ExpandedRuleBuilder/addAddMacroRuleName	; addAddMacroRuleName(Ljava/lang/String;)Lcom/google/tagmanager/ResourceUtil$ExpandedRuleBuilder;
+; v5 : Lcom/google/tagmanager/ResourceUtil$ExpandedRuleBuilder; , v8 : Ljava/lang/String;
+.line 699
+	add-int/lit8	v2,v2,1
+; v2 : single-length , v2 : single-length
+	goto	la9894
+la98c4:
+.line 703
+	iget-object	v0,v10,com/google/analytics/containertag/proto/Serving$Rule.removeMacro [I
+; v0 : [I , v10 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	array-length	v3,v0
+; v3 : single-length , v0 : [I
+	const/4	v2,0
+; v2 : single-length
+la98cc:
+	if-ge	v2,v3,la98fc
+; v2 : single-length , v3 : single-length
+	aget	v8,v0,v2
+; v8 : single-length , v0 : [I , v2 : single-length
+	invoke-static	{v8},java/lang/Integer/valueOf	; valueOf(I)Ljava/lang/Integer;
+; v8 : single-length
+	move-result-object	v4
+; v4 : Ljava/lang/Integer;
+.line 704
+	invoke-virtual	{v4},java/lang/Integer/intValue	; intValue()I
+; v4 : Ljava/lang/Integer;
+	move-result	v8
+; v8 : single-length
+	invoke-interface	{v12,v8},java/util/List/get	; get(I)Ljava/lang/Object;
+; v12 : Ljava/util/List; , v8 : single-length
+	move-result-object	v8
+; v8 : Ljava/lang/Object;
+	check-cast	v8,com/google/tagmanager/ResourceUtil$ExpandedFunctionCall
+; v8 : Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;
+	invoke-virtual	{v5,v8},com/google/tagmanager/ResourceUtil$ExpandedRuleBuilder/addRemoveMacro	; addRemoveMacro(Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;)Lcom/google/tagmanager/ResourceUtil$ExpandedRuleBuilder;
+; v5 : Lcom/google/tagmanager/ResourceUtil$ExpandedRuleBuilder; , v8 : Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;
+.line 703
+	add-int/lit8	v2,v2,1
+; v2 : single-length , v2 : single-length
+	goto	la98cc
+la98fc:
+.line 707
+	iget-object	v0,v10,com/google/analytics/containertag/proto/Serving$Rule.removeMacroRuleName [I
+; v0 : [I , v10 : Lcom/google/analytics/containertag/proto/Serving$Rule;
+	array-length	v3,v0
+; v3 : single-length , v0 : [I
+	const/4	v2,0
+; v2 : single-length
+la9904:
+	if-ge	v2,v3,la9934
+; v2 : single-length , v3 : single-length
+	aget	v8,v0,v2
+; v8 : single-length , v0 : [I , v2 : single-length
+	invoke-static	{v8},java/lang/Integer/valueOf	; valueOf(I)Ljava/lang/Integer;
+; v8 : single-length
+	move-result-object	v6
+; v6 : Ljava/lang/Integer;
+.line 708
+	iget-object	v8,v14,com/google/analytics/containertag/proto/Serving$Resource.value [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+; v8 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v14 : Lcom/google/analytics/containertag/proto/Serving$Resource;
+	invoke-virtual	{v6},java/lang/Integer/intValue	; intValue()I
+; v6 : Ljava/lang/Integer;
+	move-result	v9
+; v9 : single-length
+	aget-object	v8,v8,v9
+; v8 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v8 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v9 : single-length
+	iget-object	v8,v8,com/google/analytics/midtier/proto/containertag/TypeSystem$Value.string Ljava/lang/String;
+; v8 : Ljava/lang/String; , v8 : Ljava/lang/String;
+	invoke-virtual	{v5,v8},com/google/tagmanager/ResourceUtil$ExpandedRuleBuilder/addRemoveMacroRuleName	; addRemoveMacroRuleName(Ljava/lang/String;)Lcom/google/tagmanager/ResourceUtil$ExpandedRuleBuilder;
+; v5 : Lcom/google/tagmanager/ResourceUtil$ExpandedRuleBuilder; , v8 : Ljava/lang/String;
+.line 707
+	add-int/lit8	v2,v2,1
+; v2 : single-length , v2 : single-length
+	goto	la9904
+la9934:
+.line 711
+	invoke-virtual	{v5},com/google/tagmanager/ResourceUtil$ExpandedRuleBuilder/build	; build()Lcom/google/tagmanager/ResourceUtil$ExpandedRule;
+; v5 : Lcom/google/tagmanager/ResourceUtil$ExpandedRuleBuilder;
+	move-result-object	v8
+; v8 : Lcom/google/tagmanager/ResourceUtil$ExpandedRule;
+	return-object	v8
+; v8 : Lcom/google/tagmanager/ResourceUtil$ExpandedRule;
+.end method
+
+.method private static expandValue(ILcom/google/analytics/containertag/proto/Serving$Resource;[Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;Ljava/util/Set;)Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+.throws Lcom/google/tagmanager/ResourceUtil$InvalidResourceException;
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "(I" , "Lcom/google/analytics/containertag/proto/Serving$Resource;" , "[" , "Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;" , "Ljava/util/Set" , "<" , "Ljava/lang/Integer;" , ">;)" , "Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;" }
+.end annotation
+.limit registers 24
+; parameter[0] : v20 (I)
+; parameter[1] : v21 (Lcom/google/analytics/containertag/proto/Serving$Resource;)
+; parameter[2] : v22 ([Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;)
+; parameter[3] : v23 (Ljava/util/Set;)
+.var 6 is index I from la9ac0 to la9aca
+.var 7 is index I from la9aca to la9ade
+.var 6 is index I from la9ade to la9afc
+.var 4 is arr$ [I from la9ac4 to la9afe
+.var 5 is i$ I from la9ac8 to la9afe
+.var 7 is index I from la9afc to la9afe
+.var 9 is len$ I from la9ac6 to la9afe
+.var 10 is listIndex I from la9ad2 to la9afe
+.var 13 is servingValue Lcom/google/analytics/containertag/proto/Serving$ServingValue; from la9a90 to la9afe
+.var 6 is index I from la9bfc to la9c06
+.var 7 is index I from la9c06 to la9c1a
+.var 6 is index I from la9c1a to la9c38
+.var 8 is keyIndex I from la9c0e to la9c3a
+.var 7 is index I from la9c38 to la9c3c
+.var 6 is index I from la9c3c to la9c46
+.var 7 is index I from la9c46 to la9c5a
+.var 6 is index I from la9c5a to la9c7c
+.var 4 is arr$ [I from la9c00 to la9c7e
+.var 5 is i$ I from la9c04 to la9c7e
+.var 7 is index I from la9c7c to la9c7e
+.var 9 is len$ I from la9c02 to la9c7e
+.var 13 is servingValue Lcom/google/analytics/containertag/proto/Serving$ServingValue; from la9b0e to la9c7e
+.var 17 is valueIndex I from la9c4e to la9c7e
+.var 11 is macroName Ljava/lang/String; from la9cb6 to la9cbe
+.var 12 is macroNameValue Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; from la9cae to la9cbe
+.var 13 is servingValue Lcom/google/analytics/containertag/proto/Serving$ServingValue; from la9c8e to la9cbe
+.var 6 is index I from la9cf6 to la9d00
+.var 7 is index I from la9d00 to la9d14
+.var 6 is index I from la9d14 to la9d32
+.var 4 is arr$ [I from la9cfa to la9d34
+.var 5 is i$ I from la9cfe to la9d34
+.var 7 is index I from la9d32 to la9d34
+.var 9 is len$ I from la9cfc to la9d34
+.var 13 is servingValue Lcom/google/analytics/containertag/proto/Serving$ServingValue; from la9cce to la9d34
+.var 14 is templateIndex I from la9d08 to la9d34
+.line 490
+	invoke-static/range	{v20},java/lang/Integer/valueOf;	valueOf(I)Ljava/lang/Integer;
+; v20 : single-length
+	move-result-object	v18
+; v18 : Ljava/lang/Integer;
+	move-object/from16	v0,v23
+; v0 : Ljava/util/Set; , v23 : Ljava/util/Set;
+	move-object/from16	v1,v18
+; v1 : Ljava/lang/Integer; , v18 : Ljava/lang/Integer;
+	invoke-interface	{v0,v1},java/util/Set/contains	; contains(Ljava/lang/Object;)Z
+; v0 : Ljava/util/Set; , v1 : Ljava/lang/Integer;
+	move-result	v18
+; v18 : single-length
+	if-eqz	v18,la99d4
+; v18 : single-length
+.line 491
+	new-instance	v18,java/lang/StringBuilder
+; v18 : Ljava/lang/StringBuilder;
+	invoke-direct/range	{v18},java/lang/StringBuilder/<init>;	<init>()V
+; v18 : Ljava/lang/StringBuilder;
+	const-string	v19,"Value cycle detected.  Current value reference: "
+; v19 : Ljava/lang/String;
+	invoke-virtual/range	{v18..v19},java/lang/StringBuilder/append;	append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v18 : Ljava/lang/StringBuilder; , v19 : Ljava/lang/String;
+	move-result-object	v18
+; v18 : Ljava/lang/StringBuilder;
+	move-object/from16	v0,v18
+; v0 : Ljava/lang/StringBuilder; , v18 : Ljava/lang/StringBuilder;
+	move/from16	v1,v20
+; v1 : single-length , v20 : single-length
+	invoke-virtual	{v0,v1},java/lang/StringBuilder/append	; append(I)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v1 : single-length
+	move-result-object	v18
+; v18 : Ljava/lang/StringBuilder;
+	const-string	v19,"."
+; v19 : Ljava/lang/String;
+	invoke-virtual/range	{v18..v19},java/lang/StringBuilder/append;	append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v18 : Ljava/lang/StringBuilder; , v19 : Ljava/lang/String;
+	move-result-object	v18
+; v18 : Ljava/lang/StringBuilder;
+	const-string	v19,"  Previous value references: "
+; v19 : Ljava/lang/String;
+	invoke-virtual/range	{v18..v19},java/lang/StringBuilder/append;	append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v18 : Ljava/lang/StringBuilder; , v19 : Ljava/lang/String;
+	move-result-object	v18
+; v18 : Ljava/lang/StringBuilder;
+	move-object/from16	v0,v18
+; v0 : Ljava/lang/StringBuilder; , v18 : Ljava/lang/StringBuilder;
+	move-object/from16	v1,v23
+; v1 : Ljava/util/Set; , v23 : Ljava/util/Set;
+	invoke-virtual	{v0,v1},java/lang/StringBuilder/append	; append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v1 : Ljava/util/Set;
+	move-result-object	v18
+; v18 : Ljava/lang/StringBuilder;
+	const-string	v19,"."
+; v19 : Ljava/lang/String;
+	invoke-virtual/range	{v18..v19},java/lang/StringBuilder/append;	append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v18 : Ljava/lang/StringBuilder; , v19 : Ljava/lang/String;
+	move-result-object	v18
+; v18 : Ljava/lang/StringBuilder;
+	invoke-virtual/range	{v18},java/lang/StringBuilder/toString;	toString()Ljava/lang/String;
+; v18 : Ljava/lang/StringBuilder;
+	move-result-object	v18
+; v18 : Ljava/lang/String;
+	invoke-static/range	{v18},com/google/tagmanager/ResourceUtil/logAndThrow;	logAndThrow(Ljava/lang/String;)V
+; v18 : Ljava/lang/String;
+la99d4:
+.line 497
+	move-object/from16	v0,v21
+; v0 : Lcom/google/analytics/containertag/proto/Serving$Resource; , v21 : Lcom/google/analytics/containertag/proto/Serving$Resource;
+	iget-object	v0,v0,com/google/analytics/containertag/proto/Serving$Resource.value [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+; v0 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v0 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	move-object/from16	v18,v0
+; v18 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v0 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	const-string	v19,"values"
+; v19 : Ljava/lang/String;
+	move-object/from16	v0,v18
+; v0 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v18 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	move/from16	v1,v20
+; v1 : single-length , v20 : single-length
+	move-object/from16	v2,v19
+; v2 : Ljava/lang/String; , v19 : Ljava/lang/String;
+	invoke-static	{v0,v1,v2},com/google/tagmanager/ResourceUtil/getWithBoundsCheck	; getWithBoundsCheck([Ljava/lang/Object;ILjava/lang/String;)Ljava/lang/Object;
+; v0 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v1 : single-length , v2 : Ljava/lang/String;
+	move-result-object	v16
+; v16 : Ljava/lang/Object;
+	check-cast	v16,com/google/analytics/midtier/proto/containertag/TypeSystem$Value
+; v16 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+.line 498
+	aget-object	v18,v22,v20
+; v18 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v22 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v20 : single-length
+	if-eqz	v18,la9a0a
+; v18 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+.line 500
+	aget-object	v15,v22,v20
+; v15 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v22 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v20 : single-length
+la9a08:
+.line 582
+	return-object	v15
+; v15 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+la9a0a:
+.line 503
+	const/4	v15,0
+; v15 : single-length
+.line 504
+	invoke-static/range	{v20},java/lang/Integer/valueOf;	valueOf(I)Ljava/lang/Integer;
+; v20 : single-length
+	move-result-object	v18
+; v18 : Ljava/lang/Integer;
+	move-object/from16	v0,v23
+; v0 : Ljava/util/Set; , v23 : Ljava/util/Set;
+	move-object/from16	v1,v18
+; v1 : Ljava/lang/Integer; , v18 : Ljava/lang/Integer;
+	invoke-interface	{v0,v1},java/util/Set/add	; add(Ljava/lang/Object;)Z
+; v0 : Ljava/util/Set; , v1 : Ljava/lang/Integer;
+.line 506
+	move-object/from16	v0,v16
+; v0 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v16 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	iget	v0,v0,com/google/analytics/midtier/proto/containertag/TypeSystem$Value.type I
+; v0 : single-length , v0 : single-length
+	move/from16	v18,v0
+; v18 : single-length , v0 : single-length
+	packed-switch	v18,1
+		psa9a2e_a9d34	; case 1
+		psa9a2e_a9a88	; case 2
+		psa9a2e_a9afe	; case 3
+		psa9a2e_a9c7e	; case 4
+		psa9a2e_a9d34	; case 5
+		psa9a2e_a9d34	; case 6
+		psa9a2e_a9cbe	; case 7
+		psa9a2e_a9d34	; case 8
+		default: psa9a2e_default
+; v18 : single-length
+la9a34:
+.line 577
+	if-nez	v15,la9a6c
+; v15 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+.line 578
+	new-instance	v18,java/lang/StringBuilder
+; v18 : Ljava/lang/StringBuilder;
+	invoke-direct/range	{v18},java/lang/StringBuilder/<init>;	<init>()V
+; v18 : Ljava/lang/StringBuilder;
+	const-string	v19,"Invalid value: "
+; v19 : Ljava/lang/String;
+	invoke-virtual/range	{v18..v19},java/lang/StringBuilder/append;	append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v18 : Ljava/lang/StringBuilder; , v19 : Ljava/lang/String;
+	move-result-object	v18
+; v18 : Ljava/lang/StringBuilder;
+	move-object/from16	v0,v18
+; v0 : Ljava/lang/StringBuilder; , v18 : Ljava/lang/StringBuilder;
+	move-object/from16	v1,v16
+; v1 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v16 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	invoke-virtual	{v0,v1},java/lang/StringBuilder/append	; append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v1 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	move-result-object	v18
+; v18 : Ljava/lang/StringBuilder;
+	invoke-virtual/range	{v18},java/lang/StringBuilder/toString;	toString()Ljava/lang/String;
+; v18 : Ljava/lang/StringBuilder;
+	move-result-object	v18
+; v18 : Ljava/lang/String;
+	invoke-static/range	{v18},com/google/tagmanager/ResourceUtil/logAndThrow;	logAndThrow(Ljava/lang/String;)V
+; v18 : Ljava/lang/String;
+la9a6c:
+.line 580
+	aput-object	v15,v22,v20
+; v15 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v22 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v20 : single-length
+.line 581
+	invoke-static/range	{v20},java/lang/Integer/valueOf;	valueOf(I)Ljava/lang/Integer;
+; v20 : single-length
+	move-result-object	v18
+; v18 : Ljava/lang/Integer;
+	move-object/from16	v0,v23
+; v0 : Ljava/util/Set; , v23 : Ljava/util/Set;
+	move-object/from16	v1,v18
+; v1 : Ljava/lang/Integer; , v18 : Ljava/lang/Integer;
+	invoke-interface	{v0,v1},java/util/Set/remove	; remove(Ljava/lang/Object;)Z
+; v0 : Ljava/util/Set; , v1 : Ljava/lang/Integer;
+	goto	la9a08
+psa9a2e_a9a88:
+.line 508
+	invoke-static/range	{v16},com/google/tagmanager/ResourceUtil/getServingValue;	getServingValue(Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;)Lcom/google/analytics/containertag/proto/Serving$ServingValue;
+; v16 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	move-result-object	v13
+; v13 : Lcom/google/analytics/containertag/proto/Serving$ServingValue;
+.line 509
+	invoke-static/range	{v16},com/google/tagmanager/ResourceUtil/newValueBasedOnValue;	newValueBasedOnValue(Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;)Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+; v16 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	move-result-object	v15
+; v15 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+.line 510
+	iget-object	v0,v13,com/google/analytics/containertag/proto/Serving$ServingValue.listItem [I
+; v0 : [I , v13 : Lcom/google/analytics/containertag/proto/Serving$ServingValue;
+	move-object/from16	v18,v0
+; v18 : [I , v0 : [I
+	move-object/from16	v0,v18
+; v0 : [I , v18 : [I
+	array-length	v0,v0
+; v0 : single-length , v0 : single-length
+	move/from16	v18,v0
+; v18 : single-length , v0 : single-length
+	move/from16	v0,v18
+; v0 : single-length , v18 : single-length
+	new-array	v0,v0,[Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+; v0 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v0 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	move-object/from16	v18,v0
+; v18 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v0 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	move-object/from16	v0,v18
+; v0 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v18 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	iput-object	v0,v15,com/google/analytics/midtier/proto/containertag/TypeSystem$Value.listItem [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+; v0 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v15 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+.line 511
+	const/4	v6,0
+; v6 : single-length
+.line 512
+	iget-object	v4,v13,com/google/analytics/containertag/proto/Serving$ServingValue.listItem [I
+; v4 : [I , v13 : Lcom/google/analytics/containertag/proto/Serving$ServingValue;
+la9ac4:
+	array-length	v9,v4
+; v9 : single-length , v4 : [I
+la9ac6:
+	const/4	v5,0
+; v5 : single-length
+la9ac8:
+	move	v7,v6
+; v7 : single-length , v6 : single-length
+la9aca:
+	if-ge	v5,v9,la9a34
+; v5 : single-length , v9 : single-length
+	aget	v10,v4,v5
+; v10 : single-length , v4 : [I , v5 : single-length
+.line 513
+	iget-object	v0,v15,com/google/analytics/midtier/proto/containertag/TypeSystem$Value.listItem [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+; v0 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v15 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	move-object/from16	v18,v0
+; v18 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v0 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	add-int/lit8	v6,v7,1
+; v6 : single-length , v7 : single-length
+la9ade:
+	move-object/from16	v0,v21
+; v0 : Lcom/google/analytics/containertag/proto/Serving$Resource; , v21 : Lcom/google/analytics/containertag/proto/Serving$Resource;
+	move-object/from16	v1,v22
+; v1 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v22 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	move-object/from16	v2,v23
+; v2 : Ljava/util/Set; , v23 : Ljava/util/Set;
+	invoke-static	{v10,v0,v1,v2},com/google/tagmanager/ResourceUtil/expandValue	; expandValue(ILcom/google/analytics/containertag/proto/Serving$Resource;[Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;Ljava/util/Set;)Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+; v10 : single-length , v0 : Lcom/google/analytics/containertag/proto/Serving$Resource; , v1 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v2 : Ljava/util/Set;
+	move-result-object	v19
+; v19 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	aput-object	v19,v18,v7
+; v19 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v18 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v7 : single-length
+.line 512
+	add-int/lit8	v5,v5,1
+; v5 : single-length , v5 : single-length
+	move	v7,v6
+; v7 : single-length , v6 : single-length
+la9afc:
+	goto	la9aca
+psa9a2e_a9afe:
+.line 520
+	invoke-static/range	{v16},com/google/tagmanager/ResourceUtil/newValueBasedOnValue;	newValueBasedOnValue(Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;)Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+; v16 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	move-result-object	v15
+; v15 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+.line 521
+	invoke-static/range	{v16},com/google/tagmanager/ResourceUtil/getServingValue;	getServingValue(Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;)Lcom/google/analytics/containertag/proto/Serving$ServingValue;
+; v16 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	move-result-object	v13
+; v13 : Lcom/google/analytics/containertag/proto/Serving$ServingValue;
+.line 522
+	iget-object	v0,v13,com/google/analytics/containertag/proto/Serving$ServingValue.mapKey [I
+; v0 : [I , v13 : Lcom/google/analytics/containertag/proto/Serving$ServingValue;
+	move-object/from16	v18,v0
+; v18 : [I , v0 : [I
+	move-object/from16	v0,v18
+; v0 : [I , v18 : [I
+	array-length	v0,v0
+; v0 : single-length , v0 : single-length
+	move/from16	v18,v0
+; v18 : single-length , v0 : single-length
+	iget-object	v0,v13,com/google/analytics/containertag/proto/Serving$ServingValue.mapValue [I
+; v0 : [I , v13 : Lcom/google/analytics/containertag/proto/Serving$ServingValue;
+	move-object/from16	v19,v0
+; v19 : [I , v0 : [I
+	move-object/from16	v0,v19
+; v0 : [I , v19 : [I
+	array-length	v0,v0
+; v0 : single-length , v0 : single-length
+	move/from16	v19,v0
+; v19 : single-length , v0 : single-length
+	move/from16	v0,v18
+; v0 : single-length , v18 : single-length
+	move/from16	v1,v19
+; v1 : single-length , v19 : single-length
+	if-eq	v0,v1,la9bae
+; v0 : single-length , v1 : single-length
+.line 523
+	new-instance	v18,java/lang/StringBuilder
+; v18 : Ljava/lang/StringBuilder;
+	invoke-direct/range	{v18},java/lang/StringBuilder/<init>;	<init>()V
+; v18 : Ljava/lang/StringBuilder;
+	const-string	v19,"Uneven map keys ("
+; v19 : Ljava/lang/String;
+	invoke-virtual/range	{v18..v19},java/lang/StringBuilder/append;	append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v18 : Ljava/lang/StringBuilder; , v19 : Ljava/lang/String;
+	move-result-object	v18
+; v18 : Ljava/lang/StringBuilder;
+	iget-object	v0,v13,com/google/analytics/containertag/proto/Serving$ServingValue.mapKey [I
+; v0 : [I , v13 : Lcom/google/analytics/containertag/proto/Serving$ServingValue;
+	move-object/from16	v19,v0
+; v19 : [I , v0 : [I
+	move-object/from16	v0,v19
+; v0 : [I , v19 : [I
+	array-length	v0,v0
+; v0 : single-length , v0 : single-length
+	move/from16	v19,v0
+; v19 : single-length , v0 : single-length
+	invoke-virtual/range	{v18..v19},java/lang/StringBuilder/append;	append(I)Ljava/lang/StringBuilder;
+; v18 : Ljava/lang/StringBuilder; , v19 : single-length
+	move-result-object	v18
+; v18 : Ljava/lang/StringBuilder;
+	const-string	v19,") and map values ("
+; v19 : Ljava/lang/String;
+	invoke-virtual/range	{v18..v19},java/lang/StringBuilder/append;	append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v18 : Ljava/lang/StringBuilder; , v19 : Ljava/lang/String;
+	move-result-object	v18
+; v18 : Ljava/lang/StringBuilder;
+	iget-object	v0,v13,com/google/analytics/containertag/proto/Serving$ServingValue.mapValue [I
+; v0 : [I , v13 : Lcom/google/analytics/containertag/proto/Serving$ServingValue;
+	move-object/from16	v19,v0
+; v19 : [I , v0 : [I
+	move-object/from16	v0,v19
+; v0 : [I , v19 : [I
+	array-length	v0,v0
+; v0 : single-length , v0 : single-length
+	move/from16	v19,v0
+; v19 : single-length , v0 : single-length
+	invoke-virtual/range	{v18..v19},java/lang/StringBuilder/append;	append(I)Ljava/lang/StringBuilder;
+; v18 : Ljava/lang/StringBuilder; , v19 : single-length
+	move-result-object	v18
+; v18 : Ljava/lang/StringBuilder;
+	const-string	v19,")"
+; v19 : Ljava/lang/String;
+	invoke-virtual/range	{v18..v19},java/lang/StringBuilder/append;	append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v18 : Ljava/lang/StringBuilder; , v19 : Ljava/lang/String;
+	move-result-object	v18
+; v18 : Ljava/lang/StringBuilder;
+	invoke-virtual/range	{v18},java/lang/StringBuilder/toString;	toString()Ljava/lang/String;
+; v18 : Ljava/lang/StringBuilder;
+	move-result-object	v18
+; v18 : Ljava/lang/String;
+	invoke-static/range	{v18},com/google/tagmanager/ResourceUtil/logAndThrow;	logAndThrow(Ljava/lang/String;)V
+; v18 : Ljava/lang/String;
+la9bae:
+.line 527
+	iget-object	v0,v13,com/google/analytics/containertag/proto/Serving$ServingValue.mapKey [I
+; v0 : [I , v13 : Lcom/google/analytics/containertag/proto/Serving$ServingValue;
+	move-object/from16	v18,v0
+; v18 : [I , v0 : [I
+	move-object/from16	v0,v18
+; v0 : [I , v18 : [I
+	array-length	v0,v0
+; v0 : single-length , v0 : single-length
+	move/from16	v18,v0
+; v18 : single-length , v0 : single-length
+	move/from16	v0,v18
+; v0 : single-length , v18 : single-length
+	new-array	v0,v0,[Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+; v0 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v0 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	move-object/from16	v18,v0
+; v18 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v0 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	move-object/from16	v0,v18
+; v0 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v18 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	iput-object	v0,v15,com/google/analytics/midtier/proto/containertag/TypeSystem$Value.mapKey [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+; v0 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v15 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+.line 528
+	iget-object	v0,v13,com/google/analytics/containertag/proto/Serving$ServingValue.mapKey [I
+; v0 : [I , v13 : Lcom/google/analytics/containertag/proto/Serving$ServingValue;
+	move-object/from16	v18,v0
+; v18 : [I , v0 : [I
+	move-object/from16	v0,v18
+; v0 : [I , v18 : [I
+	array-length	v0,v0
+; v0 : single-length , v0 : single-length
+	move/from16	v18,v0
+; v18 : single-length , v0 : single-length
+	move/from16	v0,v18
+; v0 : single-length , v18 : single-length
+	new-array	v0,v0,[Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+; v0 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v0 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	move-object/from16	v18,v0
+; v18 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v0 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	move-object/from16	v0,v18
+; v0 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v18 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	iput-object	v0,v15,com/google/analytics/midtier/proto/containertag/TypeSystem$Value.mapValue [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+; v0 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v15 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+.line 529
+	const/4	v6,0
+; v6 : single-length
+.line 530
+	iget-object	v4,v13,com/google/analytics/containertag/proto/Serving$ServingValue.mapKey [I
+; v4 : [I , v13 : Lcom/google/analytics/containertag/proto/Serving$ServingValue;
+la9c00:
+	array-length	v9,v4
+; v9 : single-length , v4 : [I
+la9c02:
+	const/4	v5,0
+; v5 : single-length
+la9c04:
+	move	v7,v6
+; v7 : single-length , v6 : single-length
+la9c06:
+	if-ge	v5,v9,la9c3a
+; v5 : single-length , v9 : single-length
+	aget	v8,v4,v5
+; v8 : single-length , v4 : [I , v5 : single-length
+.line 531
+	iget-object	v0,v15,com/google/analytics/midtier/proto/containertag/TypeSystem$Value.mapKey [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+; v0 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v15 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	move-object/from16	v18,v0
+; v18 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v0 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	add-int/lit8	v6,v7,1
+; v6 : single-length , v7 : single-length
+la9c1a:
+	move-object/from16	v0,v21
+; v0 : Lcom/google/analytics/containertag/proto/Serving$Resource; , v21 : Lcom/google/analytics/containertag/proto/Serving$Resource;
+	move-object/from16	v1,v22
+; v1 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v22 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	move-object/from16	v2,v23
+; v2 : Ljava/util/Set; , v23 : Ljava/util/Set;
+	invoke-static	{v8,v0,v1,v2},com/google/tagmanager/ResourceUtil/expandValue	; expandValue(ILcom/google/analytics/containertag/proto/Serving$Resource;[Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;Ljava/util/Set;)Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+; v8 : single-length , v0 : Lcom/google/analytics/containertag/proto/Serving$Resource; , v1 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v2 : Ljava/util/Set;
+	move-result-object	v19
+; v19 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	aput-object	v19,v18,v7
+; v19 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v18 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v7 : single-length
+.line 530
+	add-int/lit8	v5,v5,1
+; v5 : single-length , v5 : single-length
+	move	v7,v6
+; v7 : single-length , v6 : single-length
+la9c38:
+	goto	la9c06
+la9c3a:
+.line 534
+	const/4	v6,0
+; v6 : single-length
+.line 535
+	iget-object	v4,v13,com/google/analytics/containertag/proto/Serving$ServingValue.mapValue [I
+; v4 : [I , v13 : Lcom/google/analytics/containertag/proto/Serving$ServingValue;
+	array-length	v9,v4
+; v9 : single-length , v4 : [I
+	const/4	v5,0
+; v5 : single-length
+	move	v7,v6
+; v7 : single-length , v6 : single-length
+la9c46:
+	if-ge	v5,v9,la9a34
+; v5 : single-length , v9 : single-length
+	aget	v17,v4,v5
+; v17 : single-length , v4 : [I , v5 : single-length
+.line 536
+	iget-object	v0,v15,com/google/analytics/midtier/proto/containertag/TypeSystem$Value.mapValue [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+; v0 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v15 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	move-object/from16	v18,v0
+; v18 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v0 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	add-int/lit8	v6,v7,1
+; v6 : single-length , v7 : single-length
+la9c5a:
+	move/from16	v0,v17
+; v0 : single-length , v17 : single-length
+	move-object/from16	v1,v21
+; v1 : Lcom/google/analytics/containertag/proto/Serving$Resource; , v21 : Lcom/google/analytics/containertag/proto/Serving$Resource;
+	move-object/from16	v2,v22
+; v2 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v22 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	move-object/from16	v3,v23
+; v3 : Ljava/util/Set; , v23 : Ljava/util/Set;
+	invoke-static	{v0,v1,v2,v3},com/google/tagmanager/ResourceUtil/expandValue	; expandValue(ILcom/google/analytics/containertag/proto/Serving$Resource;[Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;Ljava/util/Set;)Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+; v0 : single-length , v1 : Lcom/google/analytics/containertag/proto/Serving$Resource; , v2 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v3 : Ljava/util/Set;
+	move-result-object	v19
+; v19 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	aput-object	v19,v18,v7
+; v19 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v18 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v7 : single-length
+.line 535
+	add-int/lit8	v5,v5,1
+; v5 : single-length , v5 : single-length
+	move	v7,v6
+; v7 : single-length , v6 : single-length
+la9c7c:
+	goto	la9c46
+psa9a2e_a9c7e:
+.line 543
+	invoke-static/range	{v16},com/google/tagmanager/ResourceUtil/newValueBasedOnValue;	newValueBasedOnValue(Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;)Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+; v16 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	move-result-object	v15
+; v15 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+.line 544
+	invoke-static/range	{v16},com/google/tagmanager/ResourceUtil/getServingValue;	getServingValue(Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;)Lcom/google/analytics/containertag/proto/Serving$ServingValue;
+; v16 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	move-result-object	v13
+; v13 : Lcom/google/analytics/containertag/proto/Serving$ServingValue;
+.line 547
+	iget	v0,v13,com/google/analytics/containertag/proto/Serving$ServingValue.macroNameReference I
+; v0 : single-length , v13 : Lcom/google/analytics/containertag/proto/Serving$ServingValue;
+	move/from16	v18,v0
+; v18 : single-length , v0 : single-length
+	move/from16	v0,v18
+; v0 : single-length , v18 : single-length
+	move-object/from16	v1,v21
+; v1 : Lcom/google/analytics/containertag/proto/Serving$Resource; , v21 : Lcom/google/analytics/containertag/proto/Serving$Resource;
+	move-object/from16	v2,v22
+; v2 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v22 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	move-object/from16	v3,v23
+; v3 : Ljava/util/Set; , v23 : Ljava/util/Set;
+	invoke-static	{v0,v1,v2,v3},com/google/tagmanager/ResourceUtil/expandValue	; expandValue(ILcom/google/analytics/containertag/proto/Serving$Resource;[Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;Ljava/util/Set;)Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+; v0 : single-length , v1 : Lcom/google/analytics/containertag/proto/Serving$Resource; , v2 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v3 : Ljava/util/Set;
+	move-result-object	v12
+; v12 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+.line 549
+	invoke-static	{v12},com/google/tagmanager/Types/valueToString	; valueToString(Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;)Ljava/lang/String;
+; v12 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	move-result-object	v11
+; v11 : Ljava/lang/String;
+.line 551
+	iput-object	v11,v15,com/google/analytics/midtier/proto/containertag/TypeSystem$Value.macroReference Ljava/lang/String;
+; v11 : Ljava/lang/String; , v15 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	goto/16	la9a34
+psa9a2e_a9cbe:
+.line 556
+	invoke-static/range	{v16},com/google/tagmanager/ResourceUtil/newValueBasedOnValue;	newValueBasedOnValue(Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;)Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+; v16 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	move-result-object	v15
+; v15 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+.line 557
+	invoke-static/range	{v16},com/google/tagmanager/ResourceUtil/getServingValue;	getServingValue(Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;)Lcom/google/analytics/containertag/proto/Serving$ServingValue;
+; v16 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	move-result-object	v13
+; v13 : Lcom/google/analytics/containertag/proto/Serving$ServingValue;
+.line 558
+	iget-object	v0,v13,com/google/analytics/containertag/proto/Serving$ServingValue.templateToken [I
+; v0 : [I , v13 : Lcom/google/analytics/containertag/proto/Serving$ServingValue;
+	move-object/from16	v18,v0
+; v18 : [I , v0 : [I
+	move-object/from16	v0,v18
+; v0 : [I , v18 : [I
+	array-length	v0,v0
+; v0 : single-length , v0 : single-length
+	move/from16	v18,v0
+; v18 : single-length , v0 : single-length
+	move/from16	v0,v18
+; v0 : single-length , v18 : single-length
+	new-array	v0,v0,[Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+; v0 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v0 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	move-object/from16	v18,v0
+; v18 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v0 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	move-object/from16	v0,v18
+; v0 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v18 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	iput-object	v0,v15,com/google/analytics/midtier/proto/containertag/TypeSystem$Value.templateToken [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+; v0 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v15 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+.line 559
+	const/4	v6,0
+; v6 : single-length
+.line 560
+	iget-object	v4,v13,com/google/analytics/containertag/proto/Serving$ServingValue.templateToken [I
+; v4 : [I , v13 : Lcom/google/analytics/containertag/proto/Serving$ServingValue;
+la9cfa:
+	array-length	v9,v4
+; v9 : single-length , v4 : [I
+la9cfc:
+	const/4	v5,0
+; v5 : single-length
+la9cfe:
+	move	v7,v6
+; v7 : single-length , v6 : single-length
+la9d00:
+	if-ge	v5,v9,la9a34
+; v5 : single-length , v9 : single-length
+	aget	v14,v4,v5
+; v14 : single-length , v4 : [I , v5 : single-length
+.line 561
+	iget-object	v0,v15,com/google/analytics/midtier/proto/containertag/TypeSystem$Value.templateToken [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+; v0 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v15 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	move-object/from16	v18,v0
+; v18 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v0 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	add-int/lit8	v6,v7,1
+; v6 : single-length , v7 : single-length
+la9d14:
+	move-object/from16	v0,v21
+; v0 : Lcom/google/analytics/containertag/proto/Serving$Resource; , v21 : Lcom/google/analytics/containertag/proto/Serving$Resource;
+	move-object/from16	v1,v22
+; v1 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v22 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	move-object/from16	v2,v23
+; v2 : Ljava/util/Set; , v23 : Ljava/util/Set;
+	invoke-static	{v14,v0,v1,v2},com/google/tagmanager/ResourceUtil/expandValue	; expandValue(ILcom/google/analytics/containertag/proto/Serving$Resource;[Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;Ljava/util/Set;)Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+; v14 : single-length , v0 : Lcom/google/analytics/containertag/proto/Serving$Resource; , v1 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v2 : Ljava/util/Set;
+	move-result-object	v19
+; v19 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	aput-object	v19,v18,v7
+; v19 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v18 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v7 : single-length
+.line 560
+	add-int/lit8	v5,v5,1
+; v5 : single-length , v5 : single-length
+	move	v7,v6
+; v7 : single-length , v6 : single-length
+la9d32:
+	goto	la9d00
+psa9a2e_a9d34:
+.line 573
+	move-object/from16	v15,v16
+; v15 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v16 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	goto/16	la9a34
+.line 506
+.end method
+
+.method public static getExpandedResource(Lcom/google/analytics/containertag/proto/Serving$Resource;)Lcom/google/tagmanager/ResourceUtil$ExpandedResource;
+.throws Lcom/google/tagmanager/ResourceUtil$InvalidResourceException;
+.limit registers 14
+; parameter[0] : v13 (Lcom/google/analytics/containertag/proto/Serving$Resource;)
+.var 10 is thisMacro Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall; from la9e34 to la9e46
+.var 8 is r Lcom/google/analytics/containertag/proto/Serving$Rule; from la9e56 to la9e6a
+.line 423
+	iget-object	v11,v13,com/google/analytics/containertag/proto/Serving$Resource.value [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+; v11 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v13 : Lcom/google/analytics/containertag/proto/Serving$Resource;
+	array-length	v11,v11
+; v11 : single-length , v11 : single-length
+	new-array	v2,v11,[Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+; v2 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v11 : single-length
+.line 424
+	const/4	v3,0
+; v3 : single-length
+la9d80:
+	iget-object	v11,v13,com/google/analytics/containertag/proto/Serving$Resource.value [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+; v11 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v13 : Lcom/google/analytics/containertag/proto/Serving$Resource;
+	array-length	v11,v11
+; v11 : single-length , v11 : single-length
+	if-ge	v3,v11,la9da2
+; v3 : single-length , v11 : single-length
+.line 425
+	new-instance	v11,java/util/HashSet
+; v11 : Ljava/util/HashSet;
+	const/4	v12,0
+; v12 : single-length
+	invoke-direct	{v11,v12},java/util/HashSet/<init>	; <init>(I)V
+; v11 : Ljava/util/HashSet; , v12 : single-length
+	invoke-static	{v3,v13,v2,v11},com/google/tagmanager/ResourceUtil/expandValue	; expandValue(ILcom/google/analytics/containertag/proto/Serving$Resource;[Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;Ljava/util/Set;)Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+; v3 : single-length , v13 : Lcom/google/analytics/containertag/proto/Serving$Resource; , v2 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v11 : Ljava/util/HashSet;
+.line 424
+	add-int/lit8	v3,v3,1
+; v3 : single-length , v3 : single-length
+	goto	la9d80
+la9da2:
+.line 428
+	invoke-static	{},com/google/tagmanager/ResourceUtil$ExpandedResource/newBuilder	; newBuilder()Lcom/google/tagmanager/ResourceUtil$ExpandedResourceBuilder;
+; 
+	nop	
+	move-result-object	v1
+; v1 : Lcom/google/tagmanager/ResourceUtil$ExpandedResourceBuilder;
+.line 431
+	new-instance	v9,java/util/ArrayList
+; v9 : Ljava/util/ArrayList;
+	invoke-direct	{v9},java/util/ArrayList/<init>	; <init>()V
+; v9 : Ljava/util/ArrayList;
+.line 432
+	const/4	v3,0
+; v3 : single-length
+la9db6:
+	iget-object	v11,v13,com/google/analytics/containertag/proto/Serving$Resource.tag [Lcom/google/analytics/containertag/proto/Serving$FunctionCall;
+; v11 : [Lcom/google/analytics/containertag/proto/Serving$FunctionCall; , v13 : Lcom/google/analytics/containertag/proto/Serving$Resource;
+	array-length	v11,v11
+; v11 : single-length , v11 : single-length
+	if-ge	v3,v11,la9ddc
+; v3 : single-length , v11 : single-length
+.line 433
+	iget-object	v11,v13,com/google/analytics/containertag/proto/Serving$Resource.tag [Lcom/google/analytics/containertag/proto/Serving$FunctionCall;
+; v11 : [Lcom/google/analytics/containertag/proto/Serving$FunctionCall; , v13 : Lcom/google/analytics/containertag/proto/Serving$Resource;
+	aget-object	v11,v11,v3
+; v11 : Lcom/google/analytics/containertag/proto/Serving$FunctionCall; , v11 : Lcom/google/analytics/containertag/proto/Serving$FunctionCall; , v3 : single-length
+	invoke-static	{v11,v13,v2,v3},com/google/tagmanager/ResourceUtil/expandFunctionCall	; expandFunctionCall(Lcom/google/analytics/containertag/proto/Serving$FunctionCall;Lcom/google/analytics/containertag/proto/Serving$Resource;[Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;I)Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;
+; v11 : Lcom/google/analytics/containertag/proto/Serving$FunctionCall; , v13 : Lcom/google/analytics/containertag/proto/Serving$Resource; , v2 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v3 : single-length
+	move-result-object	v11
+; v11 : Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;
+	invoke-interface	{v9,v11},java/util/List/add	; add(Ljava/lang/Object;)Z
+; v9 : Ljava/util/ArrayList; , v11 : Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;
+.line 432
+	add-int/lit8	v3,v3,1
+; v3 : single-length , v3 : single-length
+	goto	la9db6
+la9ddc:
+.line 435
+	new-instance	v7,java/util/ArrayList
+; v7 : Ljava/util/ArrayList;
+	invoke-direct	{v7},java/util/ArrayList/<init>	; <init>()V
+; v7 : Ljava/util/ArrayList;
+.line 436
+	const/4	v3,0
+; v3 : single-length
+la9de8:
+	iget-object	v11,v13,com/google/analytics/containertag/proto/Serving$Resource.predicate [Lcom/google/analytics/containertag/proto/Serving$FunctionCall;
+; v11 : [Lcom/google/analytics/containertag/proto/Serving$FunctionCall; , v13 : Lcom/google/analytics/containertag/proto/Serving$Resource;
+	array-length	v11,v11
+; v11 : single-length , v11 : single-length
+	if-ge	v3,v11,la9e0e
+; v3 : single-length , v11 : single-length
+.line 437
+	iget-object	v11,v13,com/google/analytics/containertag/proto/Serving$Resource.predicate [Lcom/google/analytics/containertag/proto/Serving$FunctionCall;
+; v11 : [Lcom/google/analytics/containertag/proto/Serving$FunctionCall; , v13 : Lcom/google/analytics/containertag/proto/Serving$Resource;
+	aget-object	v11,v11,v3
+; v11 : Lcom/google/analytics/containertag/proto/Serving$FunctionCall; , v11 : Lcom/google/analytics/containertag/proto/Serving$FunctionCall; , v3 : single-length
+	invoke-static	{v11,v13,v2,v3},com/google/tagmanager/ResourceUtil/expandFunctionCall	; expandFunctionCall(Lcom/google/analytics/containertag/proto/Serving$FunctionCall;Lcom/google/analytics/containertag/proto/Serving$Resource;[Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;I)Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;
+; v11 : Lcom/google/analytics/containertag/proto/Serving$FunctionCall; , v13 : Lcom/google/analytics/containertag/proto/Serving$Resource; , v2 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v3 : single-length
+	move-result-object	v11
+; v11 : Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;
+	invoke-interface	{v7,v11},java/util/List/add	; add(Ljava/lang/Object;)Z
+; v7 : Ljava/util/ArrayList; , v11 : Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;
+.line 436
+	add-int/lit8	v3,v3,1
+; v3 : single-length , v3 : single-length
+	goto	la9de8
+la9e0e:
+.line 439
+	new-instance	v6,java/util/ArrayList
+; v6 : Ljava/util/ArrayList;
+	invoke-direct	{v6},java/util/ArrayList/<init>	; <init>()V
+; v6 : Ljava/util/ArrayList;
+.line 440
+	const/4	v3,0
+; v3 : single-length
+la9e1a:
+	iget-object	v11,v13,com/google/analytics/containertag/proto/Serving$Resource.macro [Lcom/google/analytics/containertag/proto/Serving$FunctionCall;
+; v11 : [Lcom/google/analytics/containertag/proto/Serving$FunctionCall; , v13 : Lcom/google/analytics/containertag/proto/Serving$Resource;
+	array-length	v11,v11
+; v11 : single-length , v11 : single-length
+	if-ge	v3,v11,la9e46
+; v3 : single-length , v11 : single-length
+.line 441
+	iget-object	v11,v13,com/google/analytics/containertag/proto/Serving$Resource.macro [Lcom/google/analytics/containertag/proto/Serving$FunctionCall;
+; v11 : [Lcom/google/analytics/containertag/proto/Serving$FunctionCall; , v13 : Lcom/google/analytics/containertag/proto/Serving$Resource;
+	aget-object	v11,v11,v3
+; v11 : Lcom/google/analytics/containertag/proto/Serving$FunctionCall; , v11 : Lcom/google/analytics/containertag/proto/Serving$FunctionCall; , v3 : single-length
+	invoke-static	{v11,v13,v2,v3},com/google/tagmanager/ResourceUtil/expandFunctionCall	; expandFunctionCall(Lcom/google/analytics/containertag/proto/Serving$FunctionCall;Lcom/google/analytics/containertag/proto/Serving$Resource;[Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;I)Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;
+; v11 : Lcom/google/analytics/containertag/proto/Serving$FunctionCall; , v13 : Lcom/google/analytics/containertag/proto/Serving$Resource; , v2 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v3 : single-length
+	move-result-object	v10
+; v10 : Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;
+.line 443
+	invoke-virtual	{v1,v10},com/google/tagmanager/ResourceUtil$ExpandedResourceBuilder/addMacro	; addMacro(Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;)Lcom/google/tagmanager/ResourceUtil$ExpandedResourceBuilder;
+; v1 : Lcom/google/tagmanager/ResourceUtil$ExpandedResourceBuilder; , v10 : Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;
+.line 444
+	invoke-interface	{v6,v10},java/util/List/add	; add(Ljava/lang/Object;)Z
+; v6 : Ljava/util/ArrayList; , v10 : Lcom/google/tagmanager/ResourceUtil$ExpandedFunctionCall;
+.line 440
+	add-int/lit8	v3,v3,1
+; v3 : single-length , v3 : single-length
+	goto	la9e1a
+la9e46:
+.line 448
+	iget-object	v0,v13,com/google/analytics/containertag/proto/Serving$Resource.rule [Lcom/google/analytics/containertag/proto/Serving$Rule;
+; v0 : [Lcom/google/analytics/containertag/proto/Serving$Rule; , v13 : Lcom/google/analytics/containertag/proto/Serving$Resource;
+	array-length	v5,v0
+; v5 : single-length , v0 : [Lcom/google/analytics/containertag/proto/Serving$Rule;
+	const/4	v4,0
+; v4 : single-length
+la9e4e:
+	if-ge	v4,v5,la9e6a
+; v4 : single-length , v5 : single-length
+	aget-object	v8,v0,v4
+; v8 : Lcom/google/analytics/containertag/proto/Serving$Rule; , v0 : [Lcom/google/analytics/containertag/proto/Serving$Rule; , v4 : single-length
+.line 449
+	invoke-static	{v8,v9,v6,v7,v13},com/google/tagmanager/ResourceUtil/expandRule	; expandRule(Lcom/google/analytics/containertag/proto/Serving$Rule;Ljava/util/List;Ljava/util/List;Ljava/util/List;Lcom/google/analytics/containertag/proto/Serving$Resource;)Lcom/google/tagmanager/ResourceUtil$ExpandedRule;
+; v8 : Lcom/google/analytics/containertag/proto/Serving$Rule; , v9 : Ljava/util/ArrayList; , v6 : Ljava/util/ArrayList; , v7 : Ljava/util/ArrayList; , v13 : Lcom/google/analytics/containertag/proto/Serving$Resource;
+	move-result-object	v11
+; v11 : Lcom/google/tagmanager/ResourceUtil$ExpandedRule;
+	invoke-virtual	{v1,v11},com/google/tagmanager/ResourceUtil$ExpandedResourceBuilder/addRule	; addRule(Lcom/google/tagmanager/ResourceUtil$ExpandedRule;)Lcom/google/tagmanager/ResourceUtil$ExpandedResourceBuilder;
+; v1 : Lcom/google/tagmanager/ResourceUtil$ExpandedResourceBuilder; , v11 : Lcom/google/tagmanager/ResourceUtil$ExpandedRule;
+.line 448
+	add-int/lit8	v4,v4,1
+; v4 : single-length , v4 : single-length
+	goto	la9e4e
+la9e6a:
+.line 453
+	iget-object	v11,v13,com/google/analytics/containertag/proto/Serving$Resource.version Ljava/lang/String;
+; v11 : Ljava/lang/String; , v13 : Lcom/google/analytics/containertag/proto/Serving$Resource;
+	invoke-virtual	{v1,v11},com/google/tagmanager/ResourceUtil$ExpandedResourceBuilder/setVersion	; setVersion(Ljava/lang/String;)Lcom/google/tagmanager/ResourceUtil$ExpandedResourceBuilder;
+; v1 : Lcom/google/tagmanager/ResourceUtil$ExpandedResourceBuilder; , v11 : Ljava/lang/String;
+.line 454
+	iget	v11,v13,com/google/analytics/containertag/proto/Serving$Resource.resourceFormatVersion I
+; v11 : single-length , v13 : Lcom/google/analytics/containertag/proto/Serving$Resource;
+	invoke-virtual	{v1,v11},com/google/tagmanager/ResourceUtil$ExpandedResourceBuilder/setResourceFormatVersion	; setResourceFormatVersion(I)Lcom/google/tagmanager/ResourceUtil$ExpandedResourceBuilder;
+; v1 : Lcom/google/tagmanager/ResourceUtil$ExpandedResourceBuilder; , v11 : single-length
+.line 456
+	invoke-virtual	{v1},com/google/tagmanager/ResourceUtil$ExpandedResourceBuilder/build	; build()Lcom/google/tagmanager/ResourceUtil$ExpandedResource;
+; v1 : Lcom/google/tagmanager/ResourceUtil$ExpandedResourceBuilder;
+	move-result-object	v11
+; v11 : Lcom/google/tagmanager/ResourceUtil$ExpandedResource;
+	return-object	v11
+; v11 : Lcom/google/tagmanager/ResourceUtil$ExpandedResource;
+.end method
+
+.method private static getServingValue(Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;)Lcom/google/analytics/containertag/proto/Serving$ServingValue;
+.throws Lcom/google/tagmanager/ResourceUtil$InvalidResourceException;
+.limit registers 4
+; parameter[0] : v3 (Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;)
+.line 590
+	sget-object	v1,com/google/analytics/containertag/proto/Serving$ServingValue.ext Lcom/google/tagmanager/protobuf/nano/Extension;
+; v1 : Lcom/google/tagmanager/protobuf/nano/Extension;
+	invoke-virtual	{v3,v1},com/google/analytics/midtier/proto/containertag/TypeSystem$Value/getExtension	; getExtension(Lcom/google/tagmanager/protobuf/nano/Extension;)Ljava/lang/Object;
+; v3 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v1 : Lcom/google/tagmanager/protobuf/nano/Extension;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,com/google/analytics/containertag/proto/Serving$ServingValue
+; v0 : Lcom/google/analytics/containertag/proto/Serving$ServingValue;
+.line 591
+	if-nez	v0,la9ed8
+; v0 : Lcom/google/analytics/containertag/proto/Serving$ServingValue;
+.line 592
+	new-instance	v1,java/lang/StringBuilder
+; v1 : Ljava/lang/StringBuilder;
+	invoke-direct	{v1},java/lang/StringBuilder/<init>	; <init>()V
+; v1 : Ljava/lang/StringBuilder;
+	const-string	v2,"Expected a ServingValue and didn't get one. Value is: "
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v1,v3},java/lang/StringBuilder/append	; append(Ljava/lang/Object;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v3 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v1},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v1 : Ljava/lang/StringBuilder;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-static	{v1},com/google/tagmanager/ResourceUtil/logAndThrow	; logAndThrow(Ljava/lang/String;)V
+; v1 : Ljava/lang/String;
+la9ed8:
+.line 594
+	sget-object	v1,com/google/analytics/containertag/proto/Serving$ServingValue.ext Lcom/google/tagmanager/protobuf/nano/Extension;
+; v1 : Lcom/google/tagmanager/protobuf/nano/Extension;
+	invoke-virtual	{v3,v1},com/google/analytics/midtier/proto/containertag/TypeSystem$Value/getExtension	; getExtension(Lcom/google/tagmanager/protobuf/nano/Extension;)Ljava/lang/Object;
+; v3 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v1 : Lcom/google/tagmanager/protobuf/nano/Extension;
+	move-result-object	v1
+; v1 : Ljava/lang/Object;
+	check-cast	v1,com/google/analytics/containertag/proto/Serving$ServingValue
+; v1 : Lcom/google/analytics/containertag/proto/Serving$ServingValue;
+	return-object	v1
+; v1 : Lcom/google/analytics/containertag/proto/Serving$ServingValue;
+.end method
+
+.method private static getWithBoundsCheck(Ljava/util/List;ILjava/lang/String;)Ljava/lang/Object;
+.throws Lcom/google/tagmanager/ResourceUtil$InvalidResourceException;
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "<T:" , "Ljava/lang/Object;" , ">([TT;I" , "Ljava/lang/String;" , ")TT;" }
+.end annotation
+.limit registers 5
+; parameter[0] : v2 (Ljava/util/List;)
+; parameter[1] : v3 (I)
+; parameter[2] : v4 (Ljava/lang/String;)
+.line 623
+	if-ltz	v3,la9f0c
+; v3 : single-length
+	invoke-interface	{v2},java/util/List/size	; size()I
+; v2 : Ljava/util/List;
+	move-result	v0
+; v0 : single-length
+	if-lt	v3,v0,la9f4c
+; v3 : single-length , v0 : single-length
+la9f0c:
+.line 624
+	new-instance	v0,java/lang/StringBuilder
+; v0 : Ljava/lang/StringBuilder;
+	invoke-direct	{v0},java/lang/StringBuilder/<init>	; <init>()V
+; v0 : Ljava/lang/StringBuilder;
+	const-string	v1,"Index out of bounds detected: "
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v1 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v0,v3},java/lang/StringBuilder/append	; append(I)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v3 : single-length
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	const-string	v1," in "
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v1 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v0,v4},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v4 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v0},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v0 : Ljava/lang/StringBuilder;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	invoke-static	{v0},com/google/tagmanager/ResourceUtil/logAndThrow	; logAndThrow(Ljava/lang/String;)V
+; v0 : Ljava/lang/String;
+la9f4c:
+.line 626
+	invoke-interface	{v2,v3},java/util/List/get	; get(I)Ljava/lang/Object;
+; v2 : Ljava/util/List; , v3 : single-length
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	return-object	v0
+; v0 : Ljava/lang/Object;
+.end method
+
+.method private static getWithBoundsCheck([Ljava/lang/Object;ILjava/lang/String;)Ljava/lang/Object;
+.throws Lcom/google/tagmanager/ResourceUtil$InvalidResourceException;
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "<T:" , "Ljava/lang/Object;" , ">([TT;I" , "Ljava/lang/String;" , ")TT;" }
+.end annotation
+.limit registers 5
+; parameter[0] : v2 ([Ljava/lang/Object;)
+; parameter[1] : v3 (I)
+; parameter[2] : v4 (Ljava/lang/String;)
+.line 611
+	if-ltz	v3,la9f72
+; v3 : single-length
+	array-length	v0,v2
+; v0 : single-length , v2 : [Ljava/lang/Object;
+	if-lt	v3,v0,la9fb2
+; v3 : single-length , v0 : single-length
+la9f72:
+.line 612
+	new-instance	v0,java/lang/StringBuilder
+; v0 : Ljava/lang/StringBuilder;
+	invoke-direct	{v0},java/lang/StringBuilder/<init>	; <init>()V
+; v0 : Ljava/lang/StringBuilder;
+	const-string	v1,"Index out of bounds detected: "
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v1 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v0,v3},java/lang/StringBuilder/append	; append(I)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v3 : single-length
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	const-string	v1," in "
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v1 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v0,v4},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v4 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v0},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v0 : Ljava/lang/StringBuilder;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	invoke-static	{v0},com/google/tagmanager/ResourceUtil/logAndThrow	; logAndThrow(Ljava/lang/String;)V
+; v0 : Ljava/lang/String;
+la9fb2:
+.line 614
+	aget-object	v0,v2,v3
+; v0 : Ljava/lang/Object; , v2 : [Ljava/lang/Object; , v3 : single-length
+	return-object	v0
+; v0 : Ljava/lang/Object;
+.end method
+
+.method private static logAndThrow(Ljava/lang/String;)V
+.throws Lcom/google/tagmanager/ResourceUtil$InvalidResourceException;
+.limit registers 2
+; parameter[0] : v1 (Ljava/lang/String;)
+.line 601
+	invoke-static	{v1},com/google/tagmanager/Log/e	; e(Ljava/lang/String;)V
+; v1 : Ljava/lang/String;
+.line 602
+	new-instance	v0,com/google/tagmanager/ResourceUtil$InvalidResourceException
+; v0 : Lcom/google/tagmanager/ResourceUtil$InvalidResourceException;
+	invoke-direct	{v0,v1},com/google/tagmanager/ResourceUtil$InvalidResourceException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Lcom/google/tagmanager/ResourceUtil$InvalidResourceException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Lcom/google/tagmanager/ResourceUtil$InvalidResourceException;
+.end method
+
+.method public static newValueBasedOnValue(Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;)Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+.limit registers 3
+; parameter[0] : v2 (Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;)
+.line 465
+	new-instance	v0,com/google/analytics/midtier/proto/containertag/TypeSystem$Value
+; v0 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	invoke-direct	{v0},com/google/analytics/midtier/proto/containertag/TypeSystem$Value/<init>	; <init>()V
+; v0 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+.line 466
+	iget	v1,v2,com/google/analytics/midtier/proto/containertag/TypeSystem$Value.type I
+; v1 : single-length , v2 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	iput	v1,v0,com/google/analytics/midtier/proto/containertag/TypeSystem$Value.type I
+; v1 : single-length , v0 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+.line 467
+	iget-object	v1,v2,com/google/analytics/midtier/proto/containertag/TypeSystem$Value.escaping [I
+; v1 : [I , v2 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	invoke-virtual	{v1},[I/clone	; clone()Ljava/lang/Object;
+; v1 : [I
+	move-result-object	v1
+; v1 : Ljava/lang/Object;
+	check-cast	v1,[I
+; v1 : [I
+	iput-object	v1,v0,com/google/analytics/midtier/proto/containertag/TypeSystem$Value.escaping [I
+; v1 : [I , v0 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+.line 468
+	iget-boolean	v1,v2,com/google/analytics/midtier/proto/containertag/TypeSystem$Value.containsReferences Z
+; v1 : single-length , v2 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	if-eqz	v1,laa022
+; v1 : single-length
+.line 469
+	iget-boolean	v1,v2,com/google/analytics/midtier/proto/containertag/TypeSystem$Value.containsReferences Z
+; v1 : single-length , v2 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	iput-boolean	v1,v0,com/google/analytics/midtier/proto/containertag/TypeSystem$Value.containsReferences Z
+; v1 : single-length , v0 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+laa022:
+.line 471
+	return-object	v0
+; v0 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+.end method
+
+

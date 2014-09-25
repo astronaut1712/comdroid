@@ -1,0 +1,93 @@
+.class com/fsharemobile/c/ax
+.super java/lang/Object
+.source MyApplication
+.implements android/content/ServiceConnection
+
+.field final a Lcom/fsharemobile/c/aw;
+
+.method <init>(Lcom/fsharemobile/c/aw;)V
+.limit registers 2
+; this: v0 (Lcom/fsharemobile/c/ax;)
+; parameter[0] : v1 (Lcom/fsharemobile/c/aw;)
+.line 1
+	iput-object	v1,v0,com/fsharemobile/c/ax.a Lcom/fsharemobile/c/aw;
+; v1 : Lcom/fsharemobile/c/aw; , v0 : Lcom/fsharemobile/c/ax;
+.line 484
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Lcom/fsharemobile/c/ax;
+	return-void	
+.end method
+
+.method public onServiceConnected(Landroid/content/ComponentName;Landroid/os/IBinder;)V
+.limit registers 6
+; this: v3 (Lcom/fsharemobile/c/ax;)
+; parameter[0] : v4 (Landroid/content/ComponentName;)
+; parameter[1] : v5 (Landroid/os/IBinder;)
+.line 495
+	check-cast	v5,com/fsharemobile/service/f
+; v5 : Lcom/fsharemobile/service/f;
+.line 496
+	iget-object	v0,v3,com/fsharemobile/c/ax.a Lcom/fsharemobile/c/aw;
+; v0 : Lcom/fsharemobile/c/aw; , v3 : Lcom/fsharemobile/c/ax;
+	invoke-virtual	{v5},com/fsharemobile/service/f/a	; a()Lcom/fsharemobile/service/UploadService;
+; v5 : Lcom/fsharemobile/service/f;
+	move-result-object	v1
+; v1 : Lcom/fsharemobile/service/UploadService;
+	invoke-static	{v0,v1},com/fsharemobile/c/aw/a	; a(Lcom/fsharemobile/c/aw;Lcom/fsharemobile/service/UploadService;)V
+; v0 : Lcom/fsharemobile/c/aw; , v1 : Lcom/fsharemobile/service/UploadService;
+.line 497
+	iget-object	v0,v3,com/fsharemobile/c/ax.a Lcom/fsharemobile/c/aw;
+; v0 : Lcom/fsharemobile/c/aw; , v3 : Lcom/fsharemobile/c/ax;
+	invoke-virtual	{v0},com/fsharemobile/c/aw/getActivity	; getActivity()Landroid/support/v4/app/FragmentActivity;
+; v0 : Lcom/fsharemobile/c/aw;
+	move-result-object	v0
+; v0 : Landroid/support/v4/app/FragmentActivity;
+	const-string	v1,"Connected"
+; v1 : Ljava/lang/String;
+	const/4	v2,0
+; v2 : single-length
+	invoke-static	{v0,v1,v2},android/widget/Toast/makeText	; makeText(Landroid/content/Context;Ljava/lang/CharSequence;I)Landroid/widget/Toast;
+; v0 : Landroid/support/v4/app/FragmentActivity; , v1 : Ljava/lang/String; , v2 : single-length
+	move-result-object	v0
+; v0 : Landroid/widget/Toast;
+.line 498
+	invoke-virtual	{v0},android/widget/Toast/show	; show()V
+; v0 : Landroid/widget/Toast;
+.line 499
+	return-void	
+.end method
+
+.method public onServiceDisconnected(Landroid/content/ComponentName;)V
+.limit registers 5
+; this: v3 (Lcom/fsharemobile/c/ax;)
+; parameter[0] : v4 (Landroid/content/ComponentName;)
+.line 487
+	iget-object	v0,v3,com/fsharemobile/c/ax.a Lcom/fsharemobile/c/aw;
+; v0 : Lcom/fsharemobile/c/aw; , v3 : Lcom/fsharemobile/c/ax;
+	const/4	v1,0
+; v1 : single-length
+	invoke-static	{v0,v1},com/fsharemobile/c/aw/a	; a(Lcom/fsharemobile/c/aw;Lcom/fsharemobile/service/UploadService;)V
+; v0 : Lcom/fsharemobile/c/aw; , v1 : single-length
+.line 488
+	iget-object	v0,v3,com/fsharemobile/c/ax.a Lcom/fsharemobile/c/aw;
+; v0 : Lcom/fsharemobile/c/aw; , v3 : Lcom/fsharemobile/c/ax;
+	invoke-virtual	{v0},com/fsharemobile/c/aw/getActivity	; getActivity()Landroid/support/v4/app/FragmentActivity;
+; v0 : Lcom/fsharemobile/c/aw;
+	move-result-object	v0
+; v0 : Landroid/support/v4/app/FragmentActivity;
+	const-string	v1,"Dis connected"
+; v1 : Ljava/lang/String;
+	const/4	v2,0
+; v2 : single-length
+	invoke-static	{v0,v1,v2},android/widget/Toast/makeText	; makeText(Landroid/content/Context;Ljava/lang/CharSequence;I)Landroid/widget/Toast;
+; v0 : Landroid/support/v4/app/FragmentActivity; , v1 : Ljava/lang/String; , v2 : single-length
+	move-result-object	v0
+; v0 : Landroid/widget/Toast;
+.line 489
+	invoke-virtual	{v0},android/widget/Toast/show	; show()V
+; v0 : Landroid/widget/Toast;
+.line 490
+	return-void	
+.end method
+
+

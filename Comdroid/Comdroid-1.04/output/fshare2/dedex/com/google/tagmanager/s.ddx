@@ -1,0 +1,70 @@
+.class com/google/tagmanager/s
+.super java/lang/Object
+.source MyApplication
+
+.field final a Ljava/lang/String;
+.field final b [B
+
+.method <init>(Ljava/lang/String;[B)V
+.limit registers 3
+; this: v0 (Lcom/google/tagmanager/s;)
+; parameter[0] : v1 (Ljava/lang/String;)
+; parameter[1] : v2 ([B)
+.line 517
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Lcom/google/tagmanager/s;
+.line 518
+	iput-object	v1,v0,com/google/tagmanager/s.a Ljava/lang/String;
+; v1 : Ljava/lang/String; , v0 : Lcom/google/tagmanager/s;
+.line 519
+	iput-object	v2,v0,com/google/tagmanager/s.b [B
+; v2 : [B , v0 : Lcom/google/tagmanager/s;
+.line 520
+	return-void	
+.end method
+
+.method public toString()Ljava/lang/String;
+.limit registers 3
+; this: v2 (Lcom/google/tagmanager/s;)
+.line 524
+	new-instance	v0,java/lang/StringBuilder
+; v0 : Ljava/lang/StringBuilder;
+	invoke-direct	{v0},java/lang/StringBuilder/<init>	; <init>()V
+; v0 : Ljava/lang/StringBuilder;
+	const-string	v1,"KeyAndSerialized: key = "
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v1 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	iget-object	v1,v2,com/google/tagmanager/s.a Ljava/lang/String;
+; v1 : Ljava/lang/String; , v2 : Lcom/google/tagmanager/s;
+	invoke-virtual	{v0,v1},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v1 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	const-string	v1," serialized hash = "
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v1 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	iget-object	v1,v2,com/google/tagmanager/s.b [B
+; v1 : [B , v2 : Lcom/google/tagmanager/s;
+	invoke-static	{v1},java/util/Arrays/hashCode	; hashCode([B)I
+; v1 : [B
+	move-result	v1
+; v1 : single-length
+	invoke-virtual	{v0,v1},java/lang/StringBuilder/append	; append(I)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v1 : single-length
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v0},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v0 : Ljava/lang/StringBuilder;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	return-object	v0
+; v0 : Ljava/lang/String;
+.end method
+
+

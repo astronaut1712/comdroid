@@ -1,0 +1,213 @@
+.class com/squareup/okhttp/internal/http/HttpTransport$FixedLengthInputStream
+.super com/squareup/okhttp/internal/http/AbstractHttpInputStream
+.source HttpTransport.java
+
+.inner class FixedLengthInputStream inner com/squareup/okhttp/internal/http/HttpTransport$FixedLengthInputStream outer com/squareup/okhttp/internal/http/HttpTransport
+.field private bytesRemaining J
+
+.method public <init>(Ljava/io/InputStream;Ljava/net/CacheRequest;Lcom/squareup/okhttp/internal/http/HttpEngine;J)V
+.throws Ljava/io/IOException;
+.limit registers 10
+; this: v4 (Lcom/squareup/okhttp/internal/http/HttpTransport$FixedLengthInputStream;)
+; parameter[0] : v5 (Ljava/io/InputStream;)
+; parameter[1] : v6 (Ljava/net/CacheRequest;)
+; parameter[2] : v7 (Lcom/squareup/okhttp/internal/http/HttpEngine;)
+; parameter[3] : v8 (J)
+.line 377
+	invoke-direct	{v4,v5,v7,v6},com/squareup/okhttp/internal/http/AbstractHttpInputStream/<init>	; <init>(Ljava/io/InputStream;Lcom/squareup/okhttp/internal/http/HttpEngine;Ljava/net/CacheRequest;)V
+; v4 : Lcom/squareup/okhttp/internal/http/HttpTransport$FixedLengthInputStream; , v5 : Ljava/io/InputStream; , v7 : Lcom/squareup/okhttp/internal/http/HttpEngine; , v6 : Ljava/net/CacheRequest;
+.line 378
+	iput-wide	v8,v4,com/squareup/okhttp/internal/http/HttpTransport$FixedLengthInputStream.bytesRemaining J
+; v8 : double-length , v4 : Lcom/squareup/okhttp/internal/http/HttpTransport$FixedLengthInputStream;
+.line 379
+	iget-wide	v0,v4,com/squareup/okhttp/internal/http/HttpTransport$FixedLengthInputStream.bytesRemaining J
+; v0 : double-length , v4 : Lcom/squareup/okhttp/internal/http/HttpTransport$FixedLengthInputStream;
+	const-wide/16	v2,0
+; v2 : double-length
+	cmp-long	v0,v0,v2
+; v0 : single-length , v0 : single-length , v2 : double-length
+	if-nez	v0,lefad4
+; v0 : single-length
+.line 380
+	invoke-virtual	{v4},com/squareup/okhttp/internal/http/HttpTransport$FixedLengthInputStream/endOfInput	; endOfInput()V
+; v4 : Lcom/squareup/okhttp/internal/http/HttpTransport$FixedLengthInputStream;
+lefad4:
+.line 382
+	return-void	
+.end method
+
+.method public available()I
+.throws Ljava/io/IOException;
+.limit registers 5
+; this: v4 (Lcom/squareup/okhttp/internal/http/HttpTransport$FixedLengthInputStream;)
+.line 404
+	invoke-virtual	{v4},com/squareup/okhttp/internal/http/HttpTransport$FixedLengthInputStream/checkNotClosed	; checkNotClosed()V
+; v4 : Lcom/squareup/okhttp/internal/http/HttpTransport$FixedLengthInputStream;
+.line 405
+	iget-wide	v0,v4,com/squareup/okhttp/internal/http/HttpTransport$FixedLengthInputStream.bytesRemaining J
+; v0 : double-length , v4 : Lcom/squareup/okhttp/internal/http/HttpTransport$FixedLengthInputStream;
+	const-wide/16	v2,0
+; v2 : double-length
+	cmp-long	v0,v0,v2
+; v0 : single-length , v0 : single-length , v2 : double-length
+	if-nez	v0,lefb02
+; v0 : single-length
+	const/4	v0,0
+; v0 : single-length
+lefb00:
+	return	v0
+; v0 : single-length
+lefb02:
+	iget-object	v0,v4,com/squareup/okhttp/internal/http/HttpTransport$FixedLengthInputStream.in Ljava/io/InputStream;
+; v0 : Ljava/io/InputStream; , v4 : Lcom/squareup/okhttp/internal/http/HttpTransport$FixedLengthInputStream;
+	invoke-virtual	{v0},java/io/InputStream/available	; available()I
+; v0 : Ljava/io/InputStream;
+	move-result	v0
+; v0 : single-length
+	int-to-long	v0,v0
+; v0 : double-length , v0 : double-length
+	iget-wide	v2,v4,com/squareup/okhttp/internal/http/HttpTransport$FixedLengthInputStream.bytesRemaining J
+; v2 : double-length , v4 : Lcom/squareup/okhttp/internal/http/HttpTransport$FixedLengthInputStream;
+	invoke-static	{v0,v1,v2,v3},java/lang/Math/min	; min(JJ)J
+; v0 : double-length , v2 : double-length
+	move-result-wide	v0
+; v0 : double-length
+	long-to-int	v0,v0
+; v0 : single-length , v0 : single-length
+	goto	lefb00
+.end method
+
+.method public close()V
+.throws Ljava/io/IOException;
+.limit registers 5
+; this: v4 (Lcom/squareup/okhttp/internal/http/HttpTransport$FixedLengthInputStream;)
+.line 409
+	iget-boolean	v0,v4,com/squareup/okhttp/internal/http/HttpTransport$FixedLengthInputStream.closed Z
+; v0 : single-length , v4 : Lcom/squareup/okhttp/internal/http/HttpTransport$FixedLengthInputStream;
+	if-eqz	v0,lefb3a
+; v0 : single-length
+lefb38:
+.line 416
+	return-void	
+lefb3a:
+.line 412
+	iget-wide	v0,v4,com/squareup/okhttp/internal/http/HttpTransport$FixedLengthInputStream.bytesRemaining J
+; v0 : double-length , v4 : Lcom/squareup/okhttp/internal/http/HttpTransport$FixedLengthInputStream;
+	const-wide/16	v2,0
+; v2 : double-length
+	cmp-long	v0,v0,v2
+; v0 : single-length , v0 : single-length , v2 : double-length
+	if-eqz	v0,lefb60
+; v0 : single-length
+	iget-object	v0,v4,com/squareup/okhttp/internal/http/HttpTransport$FixedLengthInputStream.httpEngine Lcom/squareup/okhttp/internal/http/HttpEngine;
+; v0 : Lcom/squareup/okhttp/internal/http/HttpEngine; , v4 : Lcom/squareup/okhttp/internal/http/HttpTransport$FixedLengthInputStream;
+	invoke-static	{v0,v4},com/squareup/okhttp/internal/http/HttpTransport/access$200	; access$200(Lcom/squareup/okhttp/internal/http/HttpEngine;Ljava/io/InputStream;)Z
+; v0 : Lcom/squareup/okhttp/internal/http/HttpEngine; , v4 : Lcom/squareup/okhttp/internal/http/HttpTransport$FixedLengthInputStream;
+	move-result	v0
+; v0 : single-length
+	if-nez	v0,lefb60
+; v0 : single-length
+.line 413
+	invoke-virtual	{v4},com/squareup/okhttp/internal/http/HttpTransport$FixedLengthInputStream/unexpectedEndOfInput	; unexpectedEndOfInput()V
+; v4 : Lcom/squareup/okhttp/internal/http/HttpTransport$FixedLengthInputStream;
+lefb60:
+.line 415
+	const/4	v0,1
+; v0 : single-length
+	iput-boolean	v0,v4,com/squareup/okhttp/internal/http/HttpTransport$FixedLengthInputStream.closed Z
+; v0 : single-length , v4 : Lcom/squareup/okhttp/internal/http/HttpTransport$FixedLengthInputStream;
+	goto	lefb38
+.end method
+
+.method public read([BII)I
+.throws Ljava/io/IOException;
+.limit registers 13
+; this: v9 (Lcom/squareup/okhttp/internal/http/HttpTransport$FixedLengthInputStream;)
+; parameter[0] : v10 ([B)
+; parameter[1] : v11 (I)
+; parameter[2] : v12 (I)
+	const-wide/16	v7,0
+; v7 : double-length
+	const/4	v1,15
+; v1 : single-length
+.line 385
+	array-length	v2,v10
+; v2 : single-length , v10 : [B
+	invoke-static	{v2,v11,v12},com/squareup/okhttp/internal/Util/checkOffsetAndCount	; checkOffsetAndCount(III)V
+; v2 : single-length , v11 : single-length , v12 : single-length
+.line 386
+	invoke-virtual	{v9},com/squareup/okhttp/internal/http/HttpTransport$FixedLengthInputStream/checkNotClosed	; checkNotClosed()V
+; v9 : Lcom/squareup/okhttp/internal/http/HttpTransport$FixedLengthInputStream;
+.line 387
+	iget-wide	v2,v9,com/squareup/okhttp/internal/http/HttpTransport$FixedLengthInputStream.bytesRemaining J
+; v2 : double-length , v9 : Lcom/squareup/okhttp/internal/http/HttpTransport$FixedLengthInputStream;
+	cmp-long	v2,v2,v7
+; v2 : single-length , v2 : single-length , v7 : double-length
+	if-nez	v2,lefb9c
+; v2 : single-length
+	move	v0,v1
+; v0 : single-length , v1 : single-length
+lefb9a:
+.line 400
+	return	v0
+; v0 : single-length
+lefb9c:
+.line 390
+	iget-object	v2,v9,com/squareup/okhttp/internal/http/HttpTransport$FixedLengthInputStream.in Ljava/io/InputStream;
+; v2 : Ljava/io/InputStream; , v9 : Lcom/squareup/okhttp/internal/http/HttpTransport$FixedLengthInputStream;
+	int-to-long	v3,v12
+; v3 : double-length , v12 : single-length
+	iget-wide	v5,v9,com/squareup/okhttp/internal/http/HttpTransport$FixedLengthInputStream.bytesRemaining J
+; v5 : double-length , v9 : Lcom/squareup/okhttp/internal/http/HttpTransport$FixedLengthInputStream;
+	invoke-static	{v3,v4,v5,v6},java/lang/Math/min	; min(JJ)J
+; v3 : double-length , v5 : double-length
+	move-result-wide	v3
+; v3 : double-length
+	long-to-int	v3,v3
+; v3 : single-length , v3 : single-length
+	invoke-virtual	{v2,v10,v11,v3},java/io/InputStream/read	; read([BII)I
+; v2 : Ljava/io/InputStream; , v10 : [B , v11 : single-length , v3 : single-length
+	move-result	v0
+; v0 : single-length
+.line 391
+	if-ne	v0,v1,lefbd2
+; v0 : single-length , v1 : single-length
+.line 392
+	invoke-virtual	{v9},com/squareup/okhttp/internal/http/HttpTransport$FixedLengthInputStream/unexpectedEndOfInput	; unexpectedEndOfInput()V
+; v9 : Lcom/squareup/okhttp/internal/http/HttpTransport$FixedLengthInputStream;
+.line 393
+	new-instance	v1,java/net/ProtocolException
+; v1 : Ljava/net/ProtocolException;
+	const-string	v2,"unexpected end of stream"
+; v2 : Ljava/lang/String;
+	invoke-direct	{v1,v2},java/net/ProtocolException/<init>	; <init>(Ljava/lang/String;)V
+; v1 : Ljava/net/ProtocolException; , v2 : Ljava/lang/String;
+	throw	v1
+; v1 : Ljava/net/ProtocolException;
+lefbd2:
+.line 395
+	iget-wide	v1,v9,com/squareup/okhttp/internal/http/HttpTransport$FixedLengthInputStream.bytesRemaining J
+; v1 : double-length , v9 : Lcom/squareup/okhttp/internal/http/HttpTransport$FixedLengthInputStream;
+	int-to-long	v3,v0
+; v3 : double-length , v0 : single-length
+	sub-long/2addr	v1,v3
+; v1 : double-length , v3 : double-length
+	iput-wide	v1,v9,com/squareup/okhttp/internal/http/HttpTransport$FixedLengthInputStream.bytesRemaining J
+; v1 : double-length , v9 : Lcom/squareup/okhttp/internal/http/HttpTransport$FixedLengthInputStream;
+.line 396
+	invoke-virtual	{v9,v10,v11,v0},com/squareup/okhttp/internal/http/HttpTransport$FixedLengthInputStream/cacheWrite	; cacheWrite([BII)V
+; v9 : Lcom/squareup/okhttp/internal/http/HttpTransport$FixedLengthInputStream; , v10 : [B , v11 : single-length , v0 : single-length
+.line 397
+	iget-wide	v1,v9,com/squareup/okhttp/internal/http/HttpTransport$FixedLengthInputStream.bytesRemaining J
+; v1 : double-length , v9 : Lcom/squareup/okhttp/internal/http/HttpTransport$FixedLengthInputStream;
+	cmp-long	v1,v1,v7
+; v1 : single-length , v1 : single-length , v7 : double-length
+	if-nez	v1,lefb9a
+; v1 : single-length
+.line 398
+	invoke-virtual	{v9},com/squareup/okhttp/internal/http/HttpTransport$FixedLengthInputStream/endOfInput	; endOfInput()V
+; v9 : Lcom/squareup/okhttp/internal/http/HttpTransport$FixedLengthInputStream;
+	goto	lefb9a
+.end method
+
+

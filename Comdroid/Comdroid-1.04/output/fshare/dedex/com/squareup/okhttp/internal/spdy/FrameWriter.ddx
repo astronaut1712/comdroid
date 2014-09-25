@@ -1,0 +1,68 @@
+.interface public abstract com/squareup/okhttp/internal/spdy/FrameWriter
+.super java/lang/Object
+.source FrameWriter.java
+.implements java/io/Closeable
+
+
+.method public abstract connectionHeader()V
+.throws Ljava/io/IOException;
+.end method
+
+.method public abstract data(ZI[B)V
+.throws Ljava/io/IOException;
+.end method
+
+.method public abstract data(ZI[BII)V
+.throws Ljava/io/IOException;
+.end method
+
+.method public abstract flush()V
+.throws Ljava/io/IOException;
+.end method
+
+.method public abstract goAway(ILcom/squareup/okhttp/internal/spdy/ErrorCode;)V
+.throws Ljava/io/IOException;
+.end method
+
+.method public abstract headers(ILjava/util/List;)V
+.throws Ljava/io/IOException;
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "(I" , "Ljava/util/List" , "<" , "Ljava/lang/String;" , ">;)V" }
+.end annotation
+.end method
+
+.method public abstract noop()V
+.throws Ljava/io/IOException;
+.end method
+
+.method public abstract ping(ZII)V
+.throws Ljava/io/IOException;
+.end method
+
+.method public abstract rstStream(ILcom/squareup/okhttp/internal/spdy/ErrorCode;)V
+.throws Ljava/io/IOException;
+.end method
+
+.method public abstract settings(Lcom/squareup/okhttp/internal/spdy/Settings;)V
+.throws Ljava/io/IOException;
+.end method
+
+.method public abstract synReply(ZILjava/util/List;)V
+.throws Ljava/io/IOException;
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "(ZI" , "Ljava/util/List" , "<" , "Ljava/lang/String;" , ">;)V" }
+.end annotation
+.end method
+
+.method public abstract synStream(ZZIIIILjava/util/List;)V
+.throws Ljava/io/IOException;
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "(ZZIIII" , "Ljava/util/List" , "<" , "Ljava/lang/String;" , ">;)V" }
+.end annotation
+.end method
+
+.method public abstract windowUpdate(II)V
+.throws Ljava/io/IOException;
+.end method
+
+

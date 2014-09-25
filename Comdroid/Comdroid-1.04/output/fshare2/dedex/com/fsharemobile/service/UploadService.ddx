@@ -1,0 +1,894 @@
+.class public com/fsharemobile/service/UploadService
+.super android/app/Service
+.source MyApplication
+
+.field static d I
+.field static e I
+.field static f I
+.field private static g Ljava/util/Queue;
+.field private static h Ljava/util/ArrayList;
+.field private static i Z
+.field private static k Lcom/fsharemobile/a/z;
+.field a Landroid/content/IntentFilter;
+.field b Lcom/fsharemobile/a/c;
+.field c Lcom/fsharemobile/a/af;
+.field private final j Landroid/os/IBinder;
+.field private l Lcom/fsharemobile/b/b;
+.field private m Lcom/fsharemobile/model/f;
+.field private n Z
+
+.method static <clinit>()V
+.limit registers 1
+.line 44
+	new-instance	v0,java/util/LinkedList
+; v0 : Ljava/util/LinkedList;
+	invoke-direct	{v0},java/util/LinkedList/<init>	; <init>()V
+; v0 : Ljava/util/LinkedList;
+	sput-object	v0,com/fsharemobile/service/UploadService.g Ljava/util/Queue;
+; v0 : Ljava/util/Queue;
+.line 45
+	new-instance	v0,java/util/ArrayList
+; v0 : Ljava/util/ArrayList;
+	invoke-direct	{v0},java/util/ArrayList/<init>	; <init>()V
+; v0 : Ljava/util/ArrayList;
+	sput-object	v0,com/fsharemobile/service/UploadService.h Ljava/util/ArrayList;
+; v0 : Ljava/util/ArrayList;
+.line 46
+	const/4	v0,0
+; v0 : single-length
+	sput-boolean	v0,com/fsharemobile/service/UploadService.i Z
+; v0 : Z
+.line 60
+	const/4	v0,15
+; v0 : single-length
+	sput	v0,com/fsharemobile/service/UploadService.f I
+; v0 : I
+	return-void	
+.end method
+
+.method public <init>()V
+.limit registers 3
+; this: v2 (Lcom/fsharemobile/service/UploadService;)
+.line 42
+	invoke-direct	{v2},android/app/Service/<init>	; <init>()V
+; v2 : Lcom/fsharemobile/service/UploadService;
+.line 51
+	new-instance	v0,com/fsharemobile/service/f
+; v0 : Lcom/fsharemobile/service/f;
+	invoke-direct	{v0,v2},com/fsharemobile/service/f/<init>	; <init>(Lcom/fsharemobile/service/UploadService;)V
+; v0 : Lcom/fsharemobile/service/f; , v2 : Lcom/fsharemobile/service/UploadService;
+	iput-object	v0,v2,com/fsharemobile/service/UploadService.j Landroid/os/IBinder;
+; v0 : Lcom/fsharemobile/service/f; , v2 : Lcom/fsharemobile/service/UploadService;
+.line 54
+	new-instance	v0,android/content/IntentFilter
+; v0 : Landroid/content/IntentFilter;
+.line 55
+	const-string	v1,"android.hardware.action.NEW_PICTURE"
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},android/content/IntentFilter/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Landroid/content/IntentFilter; , v1 : Ljava/lang/String;
+	iput-object	v0,v2,com/fsharemobile/service/UploadService.a Landroid/content/IntentFilter;
+; v0 : Landroid/content/IntentFilter; , v2 : Lcom/fsharemobile/service/UploadService;
+.line 62
+	const/4	v0,0
+; v0 : single-length
+	iput-object	v0,v2,com/fsharemobile/service/UploadService.m Lcom/fsharemobile/model/f;
+; v0 : single-length , v2 : Lcom/fsharemobile/service/UploadService;
+.line 64
+	const/4	v0,1
+; v0 : single-length
+	iput-boolean	v0,v2,com/fsharemobile/service/UploadService.n Z
+; v0 : single-length , v2 : Lcom/fsharemobile/service/UploadService;
+.line 42
+	return-void	
+.end method
+
+.method static a(Lcom/fsharemobile/service/UploadService;Lcom/fsharemobile/model/f;)V
+.limit registers 2
+; parameter[0] : v0 (Lcom/fsharemobile/service/UploadService;)
+; parameter[1] : v1 (Lcom/fsharemobile/model/f;)
+.line 62
+	iput-object	v1,v0,com/fsharemobile/service/UploadService.m Lcom/fsharemobile/model/f;
+; v1 : Lcom/fsharemobile/model/f; , v0 : Lcom/fsharemobile/service/UploadService;
+	return-void	
+.end method
+
+.method static a(Ljava/util/ArrayList;)V
+.limit registers 1
+; parameter[0] : v0 (Ljava/util/ArrayList;)
+.line 45
+	sput-object	v0,com/fsharemobile/service/UploadService.h Ljava/util/ArrayList;
+; v0 : Ljava/util/ArrayList;
+	return-void	
+.end method
+
+.method static a(Lcom/fsharemobile/service/UploadService;)Z
+.limit registers 2
+; parameter[0] : v1 (Lcom/fsharemobile/service/UploadService;)
+.line 64
+	iget-boolean	v0,v1,com/fsharemobile/service/UploadService.n Z
+; v0 : single-length , v1 : Lcom/fsharemobile/service/UploadService;
+	return	v0
+; v0 : single-length
+.end method
+
+.method static b(Lcom/fsharemobile/service/UploadService;)V
+.limit registers 1
+; parameter[0] : v0 (Lcom/fsharemobile/service/UploadService;)
+.line 255
+	invoke-direct	{v0},com/fsharemobile/service/UploadService/f	; f()V
+; v0 : Lcom/fsharemobile/service/UploadService;
+	return-void	
+.end method
+
+.method static c(Lcom/fsharemobile/service/UploadService;)Lcom/fsharemobile/model/f;
+.limit registers 2
+; parameter[0] : v1 (Lcom/fsharemobile/service/UploadService;)
+.line 62
+	iget-object	v0,v1,com/fsharemobile/service/UploadService.m Lcom/fsharemobile/model/f;
+; v0 : Lcom/fsharemobile/model/f; , v1 : Lcom/fsharemobile/service/UploadService;
+	return-object	v0
+; v0 : Lcom/fsharemobile/model/f;
+.end method
+
+.method static d()Ljava/util/ArrayList;
+.limit registers 1
+.line 45
+	sget-object	v0,com/fsharemobile/service/UploadService.h Ljava/util/ArrayList;
+; v0 : Ljava/util/ArrayList;
+	return-object	v0
+; v0 : Ljava/util/ArrayList;
+.end method
+
+.method static e()Lcom/fsharemobile/a/z;
+.limit registers 1
+.line 53
+	sget-object	v0,com/fsharemobile/service/UploadService.k Lcom/fsharemobile/a/z;
+; v0 : Lcom/fsharemobile/a/z;
+	return-object	v0
+; v0 : Lcom/fsharemobile/a/z;
+.end method
+
+.method private f()V
+.limit registers 8
+; this: v7 (Lcom/fsharemobile/service/UploadService;)
+.catch java/lang/InterruptedException from l93890 to l93896 using l93898
+.catch java/lang/Exception from l937ac to l937be using l93814
+	const/4	v6,0
+; v6 : single-length
+	const/4	v5,1
+; v5 : single-length
+.line 257
+	sget-object	v0,com/fsharemobile/service/UploadService.g Ljava/util/Queue;
+; v0 : Ljava/util/Queue;
+	invoke-interface	{v0},java/util/Queue/isEmpty	; isEmpty()Z
+; v0 : Ljava/util/Queue;
+	move-result	v0
+; v0 : single-length
+	if-nez	v0,l93812
+; v0 : single-length
+	sget-boolean	v0,com/fsharemobile/service/UploadService.i Z
+; v0 : single-length
+	if-nez	v0,l93812
+; v0 : single-length
+	sget	v0,com/fsharemobile/service/UploadService.f I
+; v0 : single-length
+	if-ne	v0,v5,l93812
+; v0 : single-length , v5 : single-length
+.line 258
+	sput-boolean	v5,com/fsharemobile/service/UploadService.i Z
+; v5 : Z
+.line 259
+	new-instance	v1,android/content/Intent
+; v1 : Landroid/content/Intent;
+	invoke-direct	{v1},android/content/Intent/<init>	; <init>()V
+; v1 : Landroid/content/Intent;
+.line 260
+	const-string	v0,"STATUS_AUTO_UPLOAD_ACTION"
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v1,v0},android/content/Intent/setAction	; setAction(Ljava/lang/String;)Landroid/content/Intent;
+; v1 : Landroid/content/Intent; , v0 : Ljava/lang/String;
+.line 261
+	const-string	v0,"Status"
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v1,v0,v5},android/content/Intent/putExtra	; putExtra(Ljava/lang/String;I)Landroid/content/Intent;
+; v1 : Landroid/content/Intent; , v0 : Ljava/lang/String; , v5 : Z
+.line 262
+	invoke-virtual	{v7,v1},com/fsharemobile/service/UploadService/sendBroadcast	; sendBroadcast(Landroid/content/Intent;)V
+; v7 : Lcom/fsharemobile/service/UploadService; , v1 : Landroid/content/Intent;
+l937ac:
+.line 264
+	iget-object	v0,v7,com/fsharemobile/service/UploadService.l Lcom/fsharemobile/b/b;
+; v0 : Lcom/fsharemobile/b/b; , v7 : Lcom/fsharemobile/service/UploadService;
+	const/4	v2,0
+; v2 : single-length
+	invoke-virtual	{v0,v2},com/fsharemobile/b/b/a	; a(I)I
+; v0 : Lcom/fsharemobile/b/b; , v2 : single-length
+	move-result	v0
+; v0 : single-length
+	sput	v0,com/fsharemobile/service/UploadService.f I
+; v0 : I
+l937be:
+.line 269
+	const-string	v0,"Upload_Service_UPload_Status_2"
+; v0 : Ljava/lang/String;
+	new-instance	v2,java/lang/StringBuilder
+; v2 : Ljava/lang/StringBuilder;
+	sget	v3,com/fsharemobile/service/UploadService.f I
+; v3 : single-length
+	invoke-static	{v3},java/lang/String/valueOf	; valueOf(I)Ljava/lang/String;
+; v3 : single-length
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-direct	{v2,v3},java/lang/StringBuilder/<init>	; <init>(Ljava/lang/String;)V
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	invoke-virtual	{v2},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v2 : Ljava/lang/StringBuilder;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-static	{v0,v2},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v0 : Ljava/lang/String; , v2 : Ljava/lang/String;
+l937e6:
+.line 270
+	sget-object	v0,com/fsharemobile/service/UploadService.g Ljava/util/Queue;
+; v0 : Ljava/util/Queue;
+	invoke-interface	{v0},java/util/Queue/isEmpty	; isEmpty()Z
+; v0 : Ljava/util/Queue;
+	move-result	v0
+; v0 : single-length
+	if-nez	v0,l937fe
+; v0 : single-length
+	sget	v0,com/fsharemobile/service/UploadService.f I
+; v0 : single-length
+	if-eq	v0,v5,l9381e
+; v0 : single-length , v5 : I
+l937fe:
+.line 299
+	const-string	v0,"Status"
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v1,v0,v6},android/content/Intent/putExtra	; putExtra(Ljava/lang/String;I)Landroid/content/Intent;
+; v1 : Landroid/content/Intent; , v0 : Ljava/lang/String; , v6 : single-length
+.line 300
+	invoke-virtual	{v7,v1},com/fsharemobile/service/UploadService/sendBroadcast	; sendBroadcast(Landroid/content/Intent;)V
+; v7 : Lcom/fsharemobile/service/UploadService; , v1 : Landroid/content/Intent;
+.line 301
+	sput-boolean	v6,com/fsharemobile/service/UploadService.i Z
+; v6 : Z
+l93812:
+.line 303
+	return-void	
+l93814:
+.line 265
+	move-exception	v0
+; v0 : java/lang/Exception
+.line 267
+	invoke-virtual	{v0},java/lang/Exception/printStackTrace	; printStackTrace()V
+; v0 : java/lang/Exception
+	goto	l937be
+l9381e:
+.line 271
+	sget	v0,com/fsharemobile/service/UploadService.d I
+; v0 : single-length
+	if-nez	v0,l9388c
+; v0 : single-length
+.line 272
+	sput	v5,com/fsharemobile/service/UploadService.d I
+; v5 : I
+.line 273
+	invoke-virtual	{v7},com/fsharemobile/service/UploadService/b	; b()Lcom/fsharemobile/model/f;
+; v7 : Lcom/fsharemobile/service/UploadService;
+	move-result-object	v0
+; v0 : Lcom/fsharemobile/model/f;
+.line 275
+	invoke-virtual	{v7,v0},com/fsharemobile/service/UploadService/b	; b(Lcom/fsharemobile/model/f;)V
+; v7 : Lcom/fsharemobile/service/UploadService; , v0 : Lcom/fsharemobile/model/f;
+.line 276
+	invoke-virtual	{v0},com/fsharemobile/model/f/b	; b()Lcom/fsharemobile/model/LocalFile;
+; v0 : Lcom/fsharemobile/model/f;
+	move-result-object	v2
+; v2 : Lcom/fsharemobile/model/LocalFile;
+	invoke-virtual	{v2},com/fsharemobile/model/LocalFile/b	; b()Ljava/lang/String;
+; v2 : Lcom/fsharemobile/model/LocalFile;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	if-eqz	v2,l9388c
+; v2 : Ljava/lang/String;
+.line 277
+	iget-boolean	v2,v7,com/fsharemobile/service/UploadService.n Z
+; v2 : single-length , v7 : Lcom/fsharemobile/service/UploadService;
+	if-eqz	v2,l9388c
+; v2 : single-length
+.line 278
+	const-string	v2,"UPLOAD_SERVICE_RUN_UPload"
+; v2 : Ljava/lang/String;
+.line 279
+	new-instance	v3,java/lang/StringBuilder
+; v3 : Ljava/lang/StringBuilder;
+	const-string	v4,"upload service upload "
+; v4 : Ljava/lang/String;
+	invoke-direct	{v3,v4},java/lang/StringBuilder/<init>	; <init>(Ljava/lang/String;)V
+; v3 : Ljava/lang/StringBuilder; , v4 : Ljava/lang/String;
+.line 281
+	invoke-virtual	{v0},com/fsharemobile/model/f/b	; b()Lcom/fsharemobile/model/LocalFile;
+; v0 : Lcom/fsharemobile/model/f;
+	move-result-object	v0
+; v0 : Lcom/fsharemobile/model/LocalFile;
+	invoke-virtual	{v0},com/fsharemobile/model/LocalFile/b	; b()Ljava/lang/String;
+; v0 : Lcom/fsharemobile/model/LocalFile;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+.line 280
+	invoke-virtual	{v3,v0},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v3 : Ljava/lang/StringBuilder; , v0 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+.line 279
+	invoke-virtual	{v0},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v0 : Ljava/lang/StringBuilder;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+.line 278
+	invoke-static	{v2,v0},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v2 : Ljava/lang/String; , v0 : Ljava/lang/String;
+l9388c:
+.line 292
+	const-wide/16	v2,20000
+; v2 : double-length
+l93890:
+	invoke-static	{v2,v3},java/lang/Thread/sleep	; sleep(J)V
+; v2 : double-length
+l93896:
+	goto	l937e6
+l93898:
+.line 293
+	move-exception	v0
+; v0 : java/lang/InterruptedException
+.line 295
+	invoke-virtual	{v0},java/lang/InterruptedException/printStackTrace	; printStackTrace()V
+; v0 : java/lang/InterruptedException
+	goto	l937e6
+.end method
+
+.method public a()I
+.limit registers 2
+; this: v1 (Lcom/fsharemobile/service/UploadService;)
+.line 231
+	sget-object	v0,com/fsharemobile/service/UploadService.g Ljava/util/Queue;
+; v0 : Ljava/util/Queue;
+	invoke-interface	{v0},java/util/Queue/size	; size()I
+; v0 : Ljava/util/Queue;
+	move-result	v0
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public a(Lcom/fsharemobile/model/f;)V
+.limit registers 3
+; this: v1 (Lcom/fsharemobile/service/UploadService;)
+; parameter[0] : v2 (Lcom/fsharemobile/model/f;)
+.line 227
+	sget-object	v0,com/fsharemobile/service/UploadService.g Ljava/util/Queue;
+; v0 : Ljava/util/Queue;
+	invoke-interface	{v0,v2},java/util/Queue/add	; add(Ljava/lang/Object;)Z
+; v0 : Ljava/util/Queue; , v2 : Lcom/fsharemobile/model/f;
+.line 228
+	return-void	
+.end method
+
+.method public a(Ljava/lang/String;Ljava/lang/String;JLjava/lang/String;Z)V
+.limit registers 13
+; this: v6 (Lcom/fsharemobile/service/UploadService;)
+; parameter[0] : v7 (Ljava/lang/String;)
+; parameter[1] : v8 (Ljava/lang/String;)
+; parameter[2] : v9 (J)
+; parameter[3] : v11 (Ljava/lang/String;)
+; parameter[4] : v12 (Z)
+.catch java/lang/Exception from l93928 to l93942 using l93944
+.line 307
+.line 310
+	const/4	v0,1
+; v0 : single-length
+	sput	v0,com/fsharemobile/service/UploadService.e I
+; v0 : I
+.line 311
+	iget-boolean	v0,v6,com/fsharemobile/service/UploadService.n Z
+; v0 : single-length , v6 : Lcom/fsharemobile/service/UploadService;
+	if-eqz	v0,l93928
+; v0 : single-length
+.line 312
+	const-string	v0,"GEN_LINK_SERVICE"
+; v0 : Ljava/lang/String;
+	const-string	v1,"OK OK "
+; v1 : Ljava/lang/String;
+	invoke-static	{v0,v1},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v0 : Ljava/lang/String; , v1 : Ljava/lang/String;
+l93928:
+.line 315
+	iget-object	v0,v6,com/fsharemobile/service/UploadService.c Lcom/fsharemobile/a/af;
+; v0 : Lcom/fsharemobile/a/af; , v6 : Lcom/fsharemobile/service/UploadService;
+.line 316
+	new-instance	v5,com/fsharemobile/service/c
+; v5 : Lcom/fsharemobile/service/c;
+	invoke-direct	{v5,v6,v7,v11,v12},com/fsharemobile/service/c/<init>	; <init>(Lcom/fsharemobile/service/UploadService;Ljava/lang/String;Ljava/lang/String;Z)V
+; v5 : Lcom/fsharemobile/service/c; , v6 : Lcom/fsharemobile/service/UploadService; , v7 : Ljava/lang/String; , v11 : Ljava/lang/String; , v12 : single-length
+	move-object	v1,v7
+; v1 : Ljava/lang/String; , v7 : Ljava/lang/String;
+	move-object	v2,v8
+; v2 : Ljava/lang/String; , v8 : Ljava/lang/String;
+	move-wide	v3,v9
+; v3 : double-length , v9 : double-length
+.line 315
+	invoke-virtual/range	{v0..v5},com/fsharemobile/a/af/a;	a(Ljava/lang/String;Ljava/lang/String;JLcom/fsharemobile/a/aj;)V
+; v0 : Lcom/fsharemobile/a/af; , v1 : Ljava/lang/String; , v2 : Ljava/lang/String; , v3 : double-length , v5 : Lcom/fsharemobile/service/c;
+l93942:
+.line 348
+	return-void	
+l93944:
+.line 345
+	move-exception	v0
+; v0 : java/lang/Exception
+.line 346
+	invoke-virtual	{v0},java/lang/Exception/printStackTrace	; printStackTrace()V
+; v0 : java/lang/Exception
+	goto	l93942
+.end method
+
+.method public b()Lcom/fsharemobile/model/f;
+.limit registers 2
+; this: v1 (Lcom/fsharemobile/service/UploadService;)
+.line 239
+	sget-object	v0,com/fsharemobile/service/UploadService.g Ljava/util/Queue;
+; v0 : Ljava/util/Queue;
+	invoke-interface	{v0},java/util/Queue/poll	; poll()Ljava/lang/Object;
+; v0 : Ljava/util/Queue;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,com/fsharemobile/model/f
+; v0 : Lcom/fsharemobile/model/f;
+	return-object	v0
+; v0 : Lcom/fsharemobile/model/f;
+.end method
+
+.method public b(Lcom/fsharemobile/model/f;)V
+.limit registers 4
+; this: v2 (Lcom/fsharemobile/service/UploadService;)
+; parameter[0] : v3 (Lcom/fsharemobile/model/f;)
+.line 351
+.line 352
+	iget-boolean	v0,v2,com/fsharemobile/service/UploadService.n Z
+; v0 : single-length , v2 : Lcom/fsharemobile/service/UploadService;
+	if-eqz	v0,l939aa
+; v0 : single-length
+.line 353
+	const-string	v0,"UPLOAD_SERVICE"
+; v0 : Ljava/lang/String;
+	const-string	v1,"MY upload"
+; v1 : Ljava/lang/String;
+	invoke-static	{v0,v1},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v0 : Ljava/lang/String; , v1 : Ljava/lang/String;
+l939aa:
+.line 355
+	const/4	v0,1
+; v0 : single-length
+	sput	v0,com/fsharemobile/service/UploadService.d I
+; v0 : I
+.line 356
+	new-instance	v0,java/lang/Thread
+; v0 : Ljava/lang/Thread;
+	new-instance	v1,com/fsharemobile/service/d
+; v1 : Lcom/fsharemobile/service/d;
+	invoke-direct	{v1,v2,v3},com/fsharemobile/service/d/<init>	; <init>(Lcom/fsharemobile/service/UploadService;Lcom/fsharemobile/model/f;)V
+; v1 : Lcom/fsharemobile/service/d; , v2 : Lcom/fsharemobile/service/UploadService; , v3 : Lcom/fsharemobile/model/f;
+	invoke-direct	{v0,v1},java/lang/Thread/<init>	; <init>(Ljava/lang/Runnable;)V
+; v0 : Ljava/lang/Thread; , v1 : Lcom/fsharemobile/service/d;
+.line 429
+	invoke-virtual	{v0},java/lang/Thread/start	; start()V
+; v0 : Ljava/lang/Thread;
+.line 431
+	return-void	
+.end method
+
+.method public c()I
+.limit registers 5
+; this: v4 (Lcom/fsharemobile/service/UploadService;)
+.line 434
+.line 435
+	sget-boolean	v0,com/fsharemobile/service/UploadService.i Z
+; v0 : single-length
+	if-eqz	v0,l93a18
+; v0 : single-length
+.line 436
+	const/4	v0,1
+; v0 : single-length
+l939e6:
+.line 440
+	iget-boolean	v1,v4,com/fsharemobile/service/UploadService.n Z
+; v1 : single-length , v4 : Lcom/fsharemobile/service/UploadService;
+	if-eqz	v1,l93a16
+; v1 : single-length
+.line 441
+	const-string	v1,"UPLOADCOUNT_SERVEICE"
+; v1 : Ljava/lang/String;
+	new-instance	v2,java/lang/StringBuilder
+; v2 : Ljava/lang/StringBuilder;
+	sget	v3,com/fsharemobile/service/UploadService.d I
+; v3 : single-length
+	invoke-static	{v3},java/lang/String/valueOf	; valueOf(I)Ljava/lang/String;
+; v3 : single-length
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-direct	{v2,v3},java/lang/StringBuilder/<init>	; <init>(Ljava/lang/String;)V
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	invoke-virtual	{v2},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v2 : Ljava/lang/StringBuilder;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-static	{v1,v2},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v1 : Ljava/lang/String; , v2 : Ljava/lang/String;
+l93a16:
+.line 443
+	return	v0
+; v0 : single-length
+l93a18:
+.line 438
+	const/4	v0,0
+; v0 : single-length
+	goto	l939e6
+.end method
+
+.method public onBind(Landroid/content/Intent;)Landroid/os/IBinder;
+.limit registers 3
+; this: v1 (Lcom/fsharemobile/service/UploadService;)
+; parameter[0] : v2 (Landroid/content/Intent;)
+.line 69
+	iget-object	v0,v1,com/fsharemobile/service/UploadService.j Landroid/os/IBinder;
+; v0 : Landroid/os/IBinder; , v1 : Lcom/fsharemobile/service/UploadService;
+	return-object	v0
+; v0 : Landroid/os/IBinder;
+.end method
+
+.method public onCreate()V
+.limit registers 1
+; this: v0 (Lcom/fsharemobile/service/UploadService;)
+.line 75
+	invoke-super	{v0},android/app/Service/onCreate	; onCreate()V
+; v0 : Lcom/fsharemobile/service/UploadService;
+.line 92
+	return-void	
+.end method
+
+.method public onStartCommand(Landroid/content/Intent;II)I
+.limit registers 13
+; this: v9 (Lcom/fsharemobile/service/UploadService;)
+; parameter[0] : v10 (Landroid/content/Intent;)
+; parameter[1] : v11 (I)
+; parameter[2] : v12 (I)
+.catch java/lang/Exception from l93a8e to l93aa0 using l93b6e
+	const/4	v6,1
+; v6 : single-length
+	const/4	v0,15
+; v0 : single-length
+.line 97
+	new-instance	v1,com/fsharemobile/a/z
+; v1 : Lcom/fsharemobile/a/z;
+	invoke-direct	{v1},com/fsharemobile/a/z/<init>	; <init>()V
+; v1 : Lcom/fsharemobile/a/z;
+	sput-object	v1,com/fsharemobile/service/UploadService.k Lcom/fsharemobile/a/z;
+; v1 : Lcom/fsharemobile/a/z;
+.line 98
+	new-instance	v1,com/fsharemobile/b/b
+; v1 : Lcom/fsharemobile/b/b;
+	invoke-virtual	{v9},com/fsharemobile/service/UploadService/getBaseContext	; getBaseContext()Landroid/content/Context;
+; v9 : Lcom/fsharemobile/service/UploadService;
+	move-result-object	v2
+; v2 : Landroid/content/Context;
+	invoke-direct	{v1,v2},com/fsharemobile/b/b/<init>	; <init>(Landroid/content/Context;)V
+; v1 : Lcom/fsharemobile/b/b; , v2 : Landroid/content/Context;
+	iput-object	v1,v9,com/fsharemobile/service/UploadService.l Lcom/fsharemobile/b/b;
+; v1 : Lcom/fsharemobile/b/b; , v9 : Lcom/fsharemobile/service/UploadService;
+.line 101
+	iget-object	v1,v9,com/fsharemobile/service/UploadService.l Lcom/fsharemobile/b/b;
+; v1 : Lcom/fsharemobile/b/b; , v9 : Lcom/fsharemobile/service/UploadService;
+	invoke-virtual	{v1},com/fsharemobile/b/b/a	; a()Lcom/fsharemobile/b/b;
+; v1 : Lcom/fsharemobile/b/b;
+l93a8e:
+.line 103
+	iget-object	v1,v9,com/fsharemobile/service/UploadService.l Lcom/fsharemobile/b/b;
+; v1 : Lcom/fsharemobile/b/b; , v9 : Lcom/fsharemobile/service/UploadService;
+	const/4	v2,0
+; v2 : single-length
+	invoke-virtual	{v1,v2},com/fsharemobile/b/b/a	; a(I)I
+; v1 : Lcom/fsharemobile/b/b; , v2 : single-length
+	move-result	v1
+; v1 : single-length
+	sput	v1,com/fsharemobile/service/UploadService.f I
+; v1 : I
+l93aa0:
+.line 108
+	iget-object	v1,v9,com/fsharemobile/service/UploadService.l Lcom/fsharemobile/b/b;
+; v1 : Lcom/fsharemobile/b/b; , v9 : Lcom/fsharemobile/service/UploadService;
+	invoke-virtual	{v1},com/fsharemobile/b/b/b	; b()V
+; v1 : Lcom/fsharemobile/b/b;
+.line 111
+	if-eqz	v10,l93ac6
+; v10 : Landroid/content/Intent;
+	invoke-virtual	{v10},android/content/Intent/getExtras	; getExtras()Landroid/os/Bundle;
+; v10 : Landroid/content/Intent;
+	move-result-object	v1
+; v1 : Landroid/os/Bundle;
+	if-eqz	v1,l93ac6
+; v1 : Landroid/os/Bundle;
+.line 112
+	const-string	v1,"Upload_Style"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v10,v1,v0},android/content/Intent/getIntExtra	; getIntExtra(Ljava/lang/String;I)I
+; v10 : Landroid/content/Intent; , v1 : Ljava/lang/String; , v0 : single-length
+	move-result	v0
+; v0 : single-length
+l93ac6:
+.line 114
+	const-string	v1,"OnStartCommand_Service"
+; v1 : Ljava/lang/String;
+	new-instance	v2,java/lang/StringBuilder
+; v2 : Ljava/lang/StringBuilder;
+	const-string	v3,"abcbabcbacbacSytle"
+; v3 : Ljava/lang/String;
+	invoke-direct	{v2,v3},java/lang/StringBuilder/<init>	; <init>(Ljava/lang/String;)V
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v0},java/lang/StringBuilder/append	; append(I)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v0 : single-length
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v2},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v2 : Ljava/lang/StringBuilder;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-static	{v1,v2},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v1 : Ljava/lang/String; , v2 : Ljava/lang/String;
+.line 115
+	invoke-static	{},com/fsharemobile/model/e/b	; b()Lcom/fsharemobile/model/e;
+; 
+	nop	
+	move-result-object	v1
+; v1 : Lcom/fsharemobile/model/e;
+.line 116
+	invoke-virtual	{v1},com/fsharemobile/model/e/a	; a()Lcom/fsharemobile/a/c;
+; v1 : Lcom/fsharemobile/model/e;
+	move-result-object	v1
+; v1 : Lcom/fsharemobile/a/c;
+	iput-object	v1,v9,com/fsharemobile/service/UploadService.b Lcom/fsharemobile/a/c;
+; v1 : Lcom/fsharemobile/a/c; , v9 : Lcom/fsharemobile/service/UploadService;
+.line 117
+	iget-object	v1,v9,com/fsharemobile/service/UploadService.b Lcom/fsharemobile/a/c;
+; v1 : Lcom/fsharemobile/a/c; , v9 : Lcom/fsharemobile/service/UploadService;
+	invoke-virtual	{v1},com/fsharemobile/a/c/f	; f()Lcom/fsharemobile/a/af;
+; v1 : Lcom/fsharemobile/a/c;
+	move-result-object	v1
+; v1 : Lcom/fsharemobile/a/af;
+	iput-object	v1,v9,com/fsharemobile/service/UploadService.c Lcom/fsharemobile/a/af;
+; v1 : Lcom/fsharemobile/a/af; , v9 : Lcom/fsharemobile/service/UploadService;
+.line 118
+	const/4	v2,0
+; v2 : single-length
+.line 119
+	const-string	v1,""
+; v1 : Ljava/lang/String;
+.line 120
+	const-string	v1,""
+; v1 : Ljava/lang/String;
+.line 121
+	iget-boolean	v1,v9,com/fsharemobile/service/UploadService.n Z
+; v1 : single-length , v9 : Lcom/fsharemobile/service/UploadService;
+	if-eqz	v1,l93b66
+; v1 : single-length
+.line 122
+	const-string	v1,"SERVICE_SESSION"
+; v1 : Ljava/lang/String;
+	iget-object	v3,v9,com/fsharemobile/service/UploadService.b Lcom/fsharemobile/a/c;
+; v3 : Lcom/fsharemobile/a/c; , v9 : Lcom/fsharemobile/service/UploadService;
+	invoke-virtual	{v3},com/fsharemobile/a/c/b	; b()Ljava/lang/String;
+; v3 : Lcom/fsharemobile/a/c;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-static	{v1,v3},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v1 : Ljava/lang/String; , v3 : Ljava/lang/String;
+.line 123
+	const-string	v1,"Queue_SIZE"
+; v1 : Ljava/lang/String;
+	new-instance	v3,java/lang/StringBuilder
+; v3 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v9},com/fsharemobile/service/UploadService/a	; a()I
+; v9 : Lcom/fsharemobile/service/UploadService;
+	move-result	v4
+; v4 : single-length
+	invoke-static	{v4},java/lang/String/valueOf	; valueOf(I)Ljava/lang/String;
+; v4 : single-length
+	move-result-object	v4
+; v4 : Ljava/lang/String;
+	invoke-direct	{v3,v4},java/lang/StringBuilder/<init>	; <init>(Ljava/lang/String;)V
+; v3 : Ljava/lang/StringBuilder; , v4 : Ljava/lang/String;
+	invoke-virtual	{v3},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v3 : Ljava/lang/StringBuilder;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-static	{v1,v3},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v1 : Ljava/lang/String; , v3 : Ljava/lang/String;
+l93b66:
+.line 125
+	packed-switch	v0,0
+		ps93b66_93b78	; case 0
+		ps93b66_93c52	; case 1
+		default: ps93b66_default
+; v0 : single-length
+l93b6c:
+.line 213
+	return	v6
+; v6 : single-length
+l93b6e:
+.line 104
+	move-exception	v1
+; v1 : java/lang/Exception
+.line 106
+	invoke-virtual	{v1},java/lang/Exception/printStackTrace	; printStackTrace()V
+; v1 : java/lang/Exception
+	goto	l93aa0
+ps93b66_93b78:
+.line 127
+	const-string	v0,"Image_Name"
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v10,v0},android/content/Intent/getStringExtra	; getStringExtra(Ljava/lang/String;)Ljava/lang/String;
+; v10 : Landroid/content/Intent; , v0 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+.line 128
+	const-string	v0,"Image_Path"
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v10,v0},android/content/Intent/getStringExtra	; getStringExtra(Ljava/lang/String;)Ljava/lang/String;
+; v10 : Landroid/content/Intent; , v0 : Ljava/lang/String;
+	move-result-object	v5
+; v5 : Ljava/lang/String;
+.line 129
+	iget-boolean	v0,v9,com/fsharemobile/service/UploadService.n Z
+; v0 : single-length , v9 : Lcom/fsharemobile/service/UploadService;
+	if-eqz	v0,l93bba
+; v0 : single-length
+.line 130
+	const-string	v0,"IMAGEE_NAME_SERVICE"
+; v0 : Ljava/lang/String;
+	invoke-static	{v0,v1},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v0 : Ljava/lang/String; , v1 : Ljava/lang/String;
+.line 131
+	const-string	v0,"IMAGEE_PATH_SERVICE"
+; v0 : Ljava/lang/String;
+	invoke-static	{v0,v5},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v0 : Ljava/lang/String; , v5 : Ljava/lang/String;
+.line 132
+	const-string	v0,"Upload_Service_Take_New_Picture"
+; v0 : Ljava/lang/String;
+	const-string	v3,"Take new picture"
+; v3 : Ljava/lang/String;
+	invoke-static	{v0,v3},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v0 : Ljava/lang/String; , v3 : Ljava/lang/String;
+l93bba:
+.line 135
+	if-eqz	v1,l93b6c
+; v1 : Ljava/lang/String;
+	if-eqz	v5,l93b6c
+; v5 : Ljava/lang/String;
+.line 136
+	iget-object	v0,v9,com/fsharemobile/service/UploadService.b Lcom/fsharemobile/a/c;
+; v0 : Lcom/fsharemobile/a/c; , v9 : Lcom/fsharemobile/service/UploadService;
+	invoke-virtual	{v0},com/fsharemobile/a/c/b	; b()Ljava/lang/String;
+; v0 : Lcom/fsharemobile/a/c;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	const-string	v3,""
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v0,v3},java/lang/String/equals	; equals(Ljava/lang/Object;)Z
+; v0 : Ljava/lang/String; , v3 : Ljava/lang/String;
+	move-result	v0
+; v0 : single-length
+	if-nez	v0,l93b6c
+; v0 : single-length
+.line 137
+	const-string	v0,""
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v5,v0},java/lang/String/equals	; equals(Ljava/lang/Object;)Z
+; v5 : Ljava/lang/String; , v0 : Ljava/lang/String;
+	move-result	v0
+; v0 : single-length
+	if-nez	v0,l93b6c
+; v0 : single-length
+.line 138
+	const-string	v0,""
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v5,v0},java/lang/String/equals	; equals(Ljava/lang/Object;)Z
+; v5 : Ljava/lang/String; , v0 : Ljava/lang/String;
+	move-result	v0
+; v0 : single-length
+	if-nez	v0,l93c86
+; v0 : single-length
+.line 139
+	new-instance	v0,java/io/File
+; v0 : Ljava/io/File;
+	invoke-direct	{v0,v5},java/io/File/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/io/File; , v5 : Ljava/lang/String;
+l93c08:
+.line 141
+	iget-boolean	v2,v9,com/fsharemobile/service/UploadService.n Z
+; v2 : single-length , v9 : Lcom/fsharemobile/service/UploadService;
+	if-eqz	v2,l93c3c
+; v2 : single-length
+.line 142
+	const-string	v2,"File_SIZE_SERVICE"
+; v2 : Ljava/lang/String;
+	new-instance	v3,java/lang/StringBuilder
+; v3 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v0},java/io/File/length	; length()J
+; v0 : Ljava/io/File;
+	move-result-wide	v7
+; v7 : double-length
+	invoke-static	{v7,v8},java/lang/String/valueOf	; valueOf(J)Ljava/lang/String;
+; v7 : double-length
+	move-result-object	v4
+; v4 : Ljava/lang/String;
+	invoke-direct	{v3,v4},java/lang/StringBuilder/<init>	; <init>(Ljava/lang/String;)V
+; v3 : Ljava/lang/StringBuilder; , v4 : Ljava/lang/String;
+	invoke-virtual	{v3},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v3 : Ljava/lang/StringBuilder;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-static	{v2,v3},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v2 : Ljava/lang/String; , v3 : Ljava/lang/String;
+l93c3c:
+.line 144
+	const-string	v2,"/Photos"
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v0},java/io/File/length	; length()J
+; v0 : Ljava/io/File;
+	move-result-wide	v3
+; v3 : double-length
+	move-object	v0,v9
+; v0 : Lcom/fsharemobile/service/UploadService; , v9 : Lcom/fsharemobile/service/UploadService;
+	invoke-virtual/range	{v0..v6},com/fsharemobile/service/UploadService/a;	a(Ljava/lang/String;Ljava/lang/String;JLjava/lang/String;Z)V
+; v0 : Lcom/fsharemobile/service/UploadService; , v1 : Ljava/lang/String; , v2 : Ljava/lang/String; , v3 : double-length , v5 : Ljava/lang/String; , v6 : single-length
+	goto	l93b6c
+ps93b66_93c52:
+.line 150
+	iget-boolean	v0,v9,com/fsharemobile/service/UploadService.n Z
+; v0 : single-length , v9 : Lcom/fsharemobile/service/UploadService;
+	if-eqz	v0,l93c68
+; v0 : single-length
+.line 151
+	const-string	v0,"Upload_Service_Full_Upload"
+; v0 : Ljava/lang/String;
+	const-string	v1,"Full Upload"
+; v1 : Ljava/lang/String;
+	invoke-static	{v0,v1},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v0 : Ljava/lang/String; , v1 : Ljava/lang/String;
+l93c68:
+.line 153
+	new-instance	v0,java/lang/Thread
+; v0 : Ljava/lang/Thread;
+	new-instance	v1,com/fsharemobile/service/b
+; v1 : Lcom/fsharemobile/service/b;
+	invoke-direct	{v1,v9,v10},com/fsharemobile/service/b/<init>	; <init>(Lcom/fsharemobile/service/UploadService;Landroid/content/Intent;)V
+; v1 : Lcom/fsharemobile/service/b; , v9 : Lcom/fsharemobile/service/UploadService; , v10 : Landroid/content/Intent;
+	invoke-direct	{v0,v1},java/lang/Thread/<init>	; <init>(Ljava/lang/Runnable;)V
+; v0 : Ljava/lang/Thread; , v1 : Lcom/fsharemobile/service/b;
+.line 208
+	invoke-virtual	{v0},java/lang/Thread/start	; start()V
+; v0 : Ljava/lang/Thread;
+	goto/16	l93b6c
+l93c86:
+	move-object	v0,v2
+; v0 : single-length , v2 : single-length
+	goto	l93c08
+.line 125
+l93c8a:	data-array
+		0x00, 0x00
+	end data-array
+.end method
+
+

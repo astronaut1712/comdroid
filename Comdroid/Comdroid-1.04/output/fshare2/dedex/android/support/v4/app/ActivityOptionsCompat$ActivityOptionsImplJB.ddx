@@ -1,0 +1,59 @@
+.class android/support/v4/app/ActivityOptionsCompat$ActivityOptionsImplJB
+.super android/support/v4/app/ActivityOptionsCompat
+.source MyApplication
+
+.field private final mImpl Landroid/support/v4/app/ActivityOptionsCompatJB;
+
+.method <init>(Landroid/support/v4/app/ActivityOptionsCompatJB;)V
+.limit registers 2
+; this: v0 (Landroid/support/v4/app/ActivityOptionsCompat$ActivityOptionsImplJB;)
+; parameter[0] : v1 (Landroid/support/v4/app/ActivityOptionsCompatJB;)
+.line 115
+	invoke-direct	{v0},android/support/v4/app/ActivityOptionsCompat/<init>	; <init>()V
+; v0 : Landroid/support/v4/app/ActivityOptionsCompat$ActivityOptionsImplJB;
+.line 116
+	iput-object	v1,v0,android/support/v4/app/ActivityOptionsCompat$ActivityOptionsImplJB.mImpl Landroid/support/v4/app/ActivityOptionsCompatJB;
+; v1 : Landroid/support/v4/app/ActivityOptionsCompatJB; , v0 : Landroid/support/v4/app/ActivityOptionsCompat$ActivityOptionsImplJB;
+.line 117
+	return-void	
+.end method
+
+.method public toBundle()Landroid/os/Bundle;
+.limit registers 2
+; this: v1 (Landroid/support/v4/app/ActivityOptionsCompat$ActivityOptionsImplJB;)
+.line 121
+	iget-object	v0,v1,android/support/v4/app/ActivityOptionsCompat$ActivityOptionsImplJB.mImpl Landroid/support/v4/app/ActivityOptionsCompatJB;
+; v0 : Landroid/support/v4/app/ActivityOptionsCompatJB; , v1 : Landroid/support/v4/app/ActivityOptionsCompat$ActivityOptionsImplJB;
+	invoke-virtual	{v0},android/support/v4/app/ActivityOptionsCompatJB/toBundle	; toBundle()Landroid/os/Bundle;
+; v0 : Landroid/support/v4/app/ActivityOptionsCompatJB;
+	move-result-object	v0
+; v0 : Landroid/os/Bundle;
+	return-object	v0
+; v0 : Landroid/os/Bundle;
+.end method
+
+.method public update(Landroid/support/v4/app/ActivityOptionsCompat;)V
+.limit registers 4
+; this: v2 (Landroid/support/v4/app/ActivityOptionsCompat$ActivityOptionsImplJB;)
+; parameter[0] : v3 (Landroid/support/v4/app/ActivityOptionsCompat;)
+.line 126
+	instance-of	v0,v3,android/support/v4/app/ActivityOptionsCompat$ActivityOptionsImplJB
+; v0 : single-length , v3 : Landroid/support/v4/app/ActivityOptionsCompat;
+	if-eqz	v0,l350d6
+; v0 : single-length
+.line 127
+	check-cast	v3,android/support/v4/app/ActivityOptionsCompat$ActivityOptionsImplJB
+; v3 : Landroid/support/v4/app/ActivityOptionsCompat$ActivityOptionsImplJB;
+.line 128
+	iget-object	v0,v2,android/support/v4/app/ActivityOptionsCompat$ActivityOptionsImplJB.mImpl Landroid/support/v4/app/ActivityOptionsCompatJB;
+; v0 : Landroid/support/v4/app/ActivityOptionsCompatJB; , v2 : Landroid/support/v4/app/ActivityOptionsCompat$ActivityOptionsImplJB;
+	iget-object	v1,v3,android/support/v4/app/ActivityOptionsCompat$ActivityOptionsImplJB.mImpl Landroid/support/v4/app/ActivityOptionsCompatJB;
+; v1 : Landroid/support/v4/app/ActivityOptionsCompatJB; , v3 : Landroid/support/v4/app/ActivityOptionsCompat$ActivityOptionsImplJB;
+	invoke-virtual	{v0,v1},android/support/v4/app/ActivityOptionsCompatJB/update	; update(Landroid/support/v4/app/ActivityOptionsCompatJB;)V
+; v0 : Landroid/support/v4/app/ActivityOptionsCompatJB; , v1 : Landroid/support/v4/app/ActivityOptionsCompatJB;
+l350d6:
+.line 130
+	return-void	
+.end method
+
+

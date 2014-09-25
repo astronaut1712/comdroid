@@ -1,0 +1,53 @@
+.class public com/fsharemobile/adapter/z
+.super android/support/v4/app/FragmentStatePagerAdapter
+.source MyApplication
+
+.field private a Ljava/util/List;
+
+.method public <init>(Landroid/support/v4/app/FragmentManager;Ljava/util/List;)V
+.limit registers 3
+; this: v0 (Lcom/fsharemobile/adapter/z;)
+; parameter[0] : v1 (Landroid/support/v4/app/FragmentManager;)
+; parameter[1] : v2 (Ljava/util/List;)
+.line 14
+	invoke-direct	{v0,v1},android/support/v4/app/FragmentStatePagerAdapter/<init>	; <init>(Landroid/support/v4/app/FragmentManager;)V
+; v0 : Lcom/fsharemobile/adapter/z; , v1 : Landroid/support/v4/app/FragmentManager;
+.line 15
+	iput-object	v2,v0,com/fsharemobile/adapter/z.a Ljava/util/List;
+; v2 : Ljava/util/List; , v0 : Lcom/fsharemobile/adapter/z;
+.line 17
+	return-void	
+.end method
+
+.method public getCount()I
+.limit registers 2
+; this: v1 (Lcom/fsharemobile/adapter/z;)
+.line 28
+	iget-object	v0,v1,com/fsharemobile/adapter/z.a Ljava/util/List;
+; v0 : Ljava/util/List; , v1 : Lcom/fsharemobile/adapter/z;
+	invoke-interface	{v0},java/util/List/size	; size()I
+; v0 : Ljava/util/List;
+	move-result	v0
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public getItem(I)Landroid/support/v4/app/Fragment;
+.limit registers 3
+; this: v1 (Lcom/fsharemobile/adapter/z;)
+; parameter[0] : v2 (I)
+.line 22
+	iget-object	v0,v1,com/fsharemobile/adapter/z.a Ljava/util/List;
+; v0 : Ljava/util/List; , v1 : Lcom/fsharemobile/adapter/z;
+	invoke-interface	{v0,v2},java/util/List/get	; get(I)Ljava/lang/Object;
+; v0 : Ljava/util/List; , v2 : single-length
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,android/support/v4/app/Fragment
+; v0 : Landroid/support/v4/app/Fragment;
+	return-object	v0
+; v0 : Landroid/support/v4/app/Fragment;
+.end method
+
+

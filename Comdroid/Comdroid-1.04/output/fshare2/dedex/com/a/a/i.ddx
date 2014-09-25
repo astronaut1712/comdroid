@@ -1,0 +1,79 @@
+.class com/a/a/i
+.super java/lang/Object
+.source MyApplication
+
+.field static final a [I
+
+.method static <clinit>()V
+.limit registers 3
+.catch java/lang/NoSuchFieldError from l762fa to l76310 using l76312
+.catch java/lang/NoSuchFieldError from l762e4 to l762fa using l76316
+.catch java/lang/NoSuchFieldError from l762ce to l762e4 using l7631a
+.line 351
+	invoke-static	{},com/a/a/u/values	; values()[Lcom/a/a/u;
+; 
+	nop	
+	move-result-object	v0
+; v0 : [Lcom/a/a/u;
+	array-length	v0,v0
+; v0 : single-length , v0 : single-length
+	new-array	v0,v0,[I
+; v0 : [I , v0 : [I
+	sput-object	v0,com/a/a/i.a [I
+; v0 : [I
+l762ce:
+	sget-object	v0,com/a/a/i.a [I
+; v0 : [I
+	sget-object	v1,com/a/a/u.a Lcom/a/a/u;
+; v1 : Lcom/a/a/u;
+	invoke-virtual	{v1},com/a/a/u/ordinal	; ordinal()I
+; v1 : Lcom/a/a/u;
+	move-result	v1
+; v1 : single-length
+	const/4	v2,1
+; v2 : single-length
+	aput	v2,v0,v1
+; v2 : single-length , v0 : [I , v1 : single-length
+l762e4:
+	sget-object	v0,com/a/a/i.a [I
+; v0 : [I
+	sget-object	v1,com/a/a/u.b Lcom/a/a/u;
+; v1 : Lcom/a/a/u;
+	invoke-virtual	{v1},com/a/a/u/ordinal	; ordinal()I
+; v1 : Lcom/a/a/u;
+	move-result	v1
+; v1 : single-length
+	const/4	v2,2
+; v2 : single-length
+	aput	v2,v0,v1
+; v2 : single-length , v0 : [I , v1 : single-length
+l762fa:
+	sget-object	v0,com/a/a/i.a [I
+; v0 : [I
+	sget-object	v1,com/a/a/u.c Lcom/a/a/u;
+; v1 : Lcom/a/a/u;
+	invoke-virtual	{v1},com/a/a/u/ordinal	; ordinal()I
+; v1 : Lcom/a/a/u;
+	move-result	v1
+; v1 : single-length
+	const/4	v2,3
+; v2 : single-length
+	aput	v2,v0,v1
+; v2 : single-length , v0 : [I , v1 : single-length
+l76310:
+	return-void	
+l76312:
+	move-exception	v0
+; v0 : java/lang/NoSuchFieldError
+	goto	l76310
+l76316:
+	move-exception	v0
+; v0 : java/lang/NoSuchFieldError
+	goto	l762fa
+l7631a:
+	move-exception	v0
+; v0 : java/lang/NoSuchFieldError
+	goto	l762e4
+.end method
+
+

@@ -1,0 +1,76 @@
+.class public com/squareup/okhttp/Failure$Builder
+.super java/lang/Object
+.source Failure.java
+
+.inner class Builder inner com/squareup/okhttp/Failure$Builder outer com/squareup/okhttp/Failure
+.field private exception Ljava/lang/Throwable;
+.field private request Lcom/squareup/okhttp/Request;
+
+.method public <init>()V
+.limit registers 1
+; this: v0 (Lcom/squareup/okhttp/Failure$Builder;)
+.line 41
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Lcom/squareup/okhttp/Failure$Builder;
+	return-void	
+.end method
+
+.method static access$000(Lcom/squareup/okhttp/Failure$Builder;)Lcom/squareup/okhttp/Request;
+.limit registers 2
+; parameter[0] : v1 (Lcom/squareup/okhttp/Failure$Builder;)
+.line 41
+	iget-object	v0,v1,com/squareup/okhttp/Failure$Builder.request Lcom/squareup/okhttp/Request;
+; v0 : Lcom/squareup/okhttp/Request; , v1 : Lcom/squareup/okhttp/Failure$Builder;
+	return-object	v0
+; v0 : Lcom/squareup/okhttp/Request;
+.end method
+
+.method static access$100(Lcom/squareup/okhttp/Failure$Builder;)Ljava/lang/Throwable;
+.limit registers 2
+; parameter[0] : v1 (Lcom/squareup/okhttp/Failure$Builder;)
+.line 41
+	iget-object	v0,v1,com/squareup/okhttp/Failure$Builder.exception Ljava/lang/Throwable;
+; v0 : Ljava/lang/Throwable; , v1 : Lcom/squareup/okhttp/Failure$Builder;
+	return-object	v0
+; v0 : Ljava/lang/Throwable;
+.end method
+
+.method public build()Lcom/squareup/okhttp/Failure;
+.limit registers 3
+; this: v2 (Lcom/squareup/okhttp/Failure$Builder;)
+.line 56
+	new-instance	v0,com/squareup/okhttp/Failure
+; v0 : Lcom/squareup/okhttp/Failure;
+	const/4	v1,0
+; v1 : single-length
+	invoke-direct	{v0,v2,v1},com/squareup/okhttp/Failure/<init>	; <init>(Lcom/squareup/okhttp/Failure$Builder;Lcom/squareup/okhttp/Failure$1;)V
+; v0 : Lcom/squareup/okhttp/Failure; , v2 : Lcom/squareup/okhttp/Failure$Builder; , v1 : single-length
+	return-object	v0
+; v0 : Lcom/squareup/okhttp/Failure;
+.end method
+
+.method public exception(Ljava/lang/Throwable;)Lcom/squareup/okhttp/Failure$Builder;
+.limit registers 2
+; this: v0 (Lcom/squareup/okhttp/Failure$Builder;)
+; parameter[0] : v1 (Ljava/lang/Throwable;)
+.line 51
+	iput-object	v1,v0,com/squareup/okhttp/Failure$Builder.exception Ljava/lang/Throwable;
+; v1 : Ljava/lang/Throwable; , v0 : Lcom/squareup/okhttp/Failure$Builder;
+.line 52
+	return-object	v0
+; v0 : Lcom/squareup/okhttp/Failure$Builder;
+.end method
+
+.method public request(Lcom/squareup/okhttp/Request;)Lcom/squareup/okhttp/Failure$Builder;
+.limit registers 2
+; this: v0 (Lcom/squareup/okhttp/Failure$Builder;)
+; parameter[0] : v1 (Lcom/squareup/okhttp/Request;)
+.line 46
+	iput-object	v1,v0,com/squareup/okhttp/Failure$Builder.request Lcom/squareup/okhttp/Request;
+; v1 : Lcom/squareup/okhttp/Request; , v0 : Lcom/squareup/okhttp/Failure$Builder;
+.line 47
+	return-object	v0
+; v0 : Lcom/squareup/okhttp/Failure$Builder;
+.end method
+
+

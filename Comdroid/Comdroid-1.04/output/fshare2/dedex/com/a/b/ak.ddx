@@ -1,0 +1,121 @@
+.class public final com/a/b/ak
+.super java/lang/Enum
+.source MyApplication
+
+.field public static final a Lcom/a/b/ak;
+.field public static final b Lcom/a/b/ak;
+.field public static final c Lcom/a/b/ak;
+.field private static final e [Lcom/a/b/ak;
+.field final d I
+
+.method static <clinit>()V
+.limit registers 6
+	const/4	v5,2
+; v5 : single-length
+	const/4	v4,1
+; v4 : single-length
+	const/4	v3,0
+; v3 : single-length
+.line 512
+	new-instance	v0,com/a/b/ak
+; v0 : Lcom/a/b/ak;
+	const-string	v1,"MEMORY"
+; v1 : Ljava/lang/String;
+	const	v2,4278255360	; 0xff00ff00
+; v2 : single-length
+	invoke-direct	{v0,v1,v3,v2},com/a/b/ak/<init>	; <init>(Ljava/lang/String;II)V
+; v0 : Lcom/a/b/ak; , v1 : Ljava/lang/String; , v3 : single-length , v2 : single-length
+	sput-object	v0,com/a/b/ak.a Lcom/a/b/ak;
+; v0 : Lcom/a/b/ak;
+.line 513
+	new-instance	v0,com/a/b/ak
+; v0 : Lcom/a/b/ak;
+	const-string	v1,"DISK"
+; v1 : Ljava/lang/String;
+	const/16	v2,65280
+; v2 : single-length
+	invoke-direct	{v0,v1,v4,v2},com/a/b/ak/<init>	; <init>(Ljava/lang/String;II)V
+; v0 : Lcom/a/b/ak; , v1 : Ljava/lang/String; , v4 : single-length , v2 : single-length
+	sput-object	v0,com/a/b/ak.b Lcom/a/b/ak;
+; v0 : Lcom/a/b/ak;
+.line 514
+	new-instance	v0,com/a/b/ak
+; v0 : Lcom/a/b/ak;
+	const-string	v1,"NETWORK"
+; v1 : Ljava/lang/String;
+	const/high16	v2,65535
+; v2 : single-length
+	invoke-direct	{v0,v1,v5,v2},com/a/b/ak/<init>	; <init>(Ljava/lang/String;II)V
+; v0 : Lcom/a/b/ak; , v1 : Ljava/lang/String; , v5 : single-length , v2 : single-length
+	sput-object	v0,com/a/b/ak.c Lcom/a/b/ak;
+; v0 : Lcom/a/b/ak;
+.line 511
+	const/4	v0,3
+; v0 : single-length
+	new-array	v0,v0,[Lcom/a/b/ak;
+; v0 : [Lcom/a/b/ak; , v0 : [Lcom/a/b/ak;
+	sget-object	v1,com/a/b/ak.a Lcom/a/b/ak;
+; v1 : Lcom/a/b/ak;
+	aput-object	v1,v0,v3
+; v1 : Lcom/a/b/ak; , v0 : [Lcom/a/b/ak; , v3 : single-length
+	sget-object	v1,com/a/b/ak.b Lcom/a/b/ak;
+; v1 : Lcom/a/b/ak;
+	aput-object	v1,v0,v4
+; v1 : Lcom/a/b/ak; , v0 : [Lcom/a/b/ak; , v4 : single-length
+	sget-object	v1,com/a/b/ak.c Lcom/a/b/ak;
+; v1 : Lcom/a/b/ak;
+	aput-object	v1,v0,v5
+; v1 : Lcom/a/b/ak; , v0 : [Lcom/a/b/ak; , v5 : single-length
+	sput-object	v0,com/a/b/ak.e [Lcom/a/b/ak;
+; v0 : [Lcom/a/b/ak;
+	return-void	
+.end method
+
+.method private <init>(Ljava/lang/String;II)V
+.limit registers 4
+; this: v0 (Lcom/a/b/ak;)
+; parameter[0] : v1 (Ljava/lang/String;)
+; parameter[1] : v2 (I)
+; parameter[2] : v3 (I)
+.line 518
+	invoke-direct	{v0,v1,v2},java/lang/Enum/<init>	; <init>(Ljava/lang/String;I)V
+; v0 : Lcom/a/b/ak; , v1 : Ljava/lang/String; , v2 : single-length
+.line 519
+	iput	v3,v0,com/a/b/ak.d I
+; v3 : single-length , v0 : Lcom/a/b/ak;
+.line 520
+	return-void	
+.end method
+
+.method public static valueOf(Ljava/lang/String;)Lcom/a/b/ak;
+.limit registers 2
+; parameter[0] : v1 (Ljava/lang/String;)
+.line 511
+	const-class	v0,com/a/b/ak
+; v0 : Ljava/lang/Class;
+	invoke-static	{v0,v1},java/lang/Enum/valueOf	; valueOf(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Enum;
+; v0 : Ljava/lang/Class; , v1 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/Enum;
+	check-cast	v0,com/a/b/ak
+; v0 : Lcom/a/b/ak;
+	return-object	v0
+; v0 : Lcom/a/b/ak;
+.end method
+
+.method public static values()[Lcom/a/b/ak;
+.limit registers 1
+.line 511
+	sget-object	v0,com/a/b/ak.e [Lcom/a/b/ak;
+; v0 : [Lcom/a/b/ak;
+	invoke-virtual	{v0},[Lcom/a/b/ak/clone	; clone()Ljava/lang/Object;
+; v0 : [Lcom/a/b/ak;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,[Lcom/a/b/ak
+; v0 : [Lcom/a/b/ak
+	return-object	v0
+; v0 : [Lcom/a/b/ak
+.end method
+
+

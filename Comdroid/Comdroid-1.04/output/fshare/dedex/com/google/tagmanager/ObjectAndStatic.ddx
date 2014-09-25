@@ -1,0 +1,60 @@
+.class com/google/tagmanager/ObjectAndStatic
+.super java/lang/Object
+.source ObjectAndStatic.java
+
+.annotation systemVisibility Ldalvik/annotation/Signature;
+  value [Ljava/lang/String; = { "<T:" , "Ljava/lang/Object;" , ">" , "Ljava/lang/Object;" }
+.end annotation
+
+.field private final mIsStatic Z
+.field private final mObject Ljava/lang/Object;
+  .annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "TT;" }
+  .end annotation
+.end field
+
+.method <init>(Ljava/lang/Object;Z)V
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "(TT;Z)V" }
+.end annotation
+.limit registers 3
+; this: v0 (Lcom/google/tagmanager/ObjectAndStatic;)
+; parameter[0] : v1 (Ljava/lang/Object;)
+; parameter[1] : v2 (Z)
+.line 14
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Lcom/google/tagmanager/ObjectAndStatic;
+.line 15
+	iput-object	v1,v0,com/google/tagmanager/ObjectAndStatic.mObject Ljava/lang/Object;
+; v1 : Ljava/lang/Object; , v0 : Lcom/google/tagmanager/ObjectAndStatic;
+.line 16
+	iput-boolean	v2,v0,com/google/tagmanager/ObjectAndStatic.mIsStatic Z
+; v2 : single-length , v0 : Lcom/google/tagmanager/ObjectAndStatic;
+.line 17
+	return-void	
+.end method
+
+.method public getObject()Ljava/lang/Object;
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "()TT;" }
+.end annotation
+.limit registers 2
+; this: v1 (Lcom/google/tagmanager/ObjectAndStatic;)
+.line 19
+	iget-object	v0,v1,com/google/tagmanager/ObjectAndStatic.mObject Ljava/lang/Object;
+; v0 : Ljava/lang/Object; , v1 : Lcom/google/tagmanager/ObjectAndStatic;
+	return-object	v0
+; v0 : Ljava/lang/Object;
+.end method
+
+.method public isStatic()Z
+.limit registers 2
+; this: v1 (Lcom/google/tagmanager/ObjectAndStatic;)
+.line 20
+	iget-boolean	v0,v1,com/google/tagmanager/ObjectAndStatic.mIsStatic Z
+; v0 : single-length , v1 : Lcom/google/tagmanager/ObjectAndStatic;
+	return	v0
+; v0 : single-length
+.end method
+
+

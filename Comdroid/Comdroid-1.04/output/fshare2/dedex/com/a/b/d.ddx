@@ -1,0 +1,1488 @@
+.class abstract com/a/b/d
+.super java/lang/Object
+.source MyApplication
+.implements java/lang/Runnable
+
+.field private static final n Ljava/lang/Object;
+.field final a Lcom/a/b/ae;
+.field final b Lcom/a/b/o;
+.field final c Lcom/a/b/h;
+.field final d Lcom/a/b/au;
+.field final e Ljava/lang/String;
+.field final f Lcom/a/b/ap;
+.field final g Ljava/util/List;
+.field final h Z
+.field i Landroid/graphics/Bitmap;
+.field j Ljava/util/concurrent/Future;
+.field k Lcom/a/b/ak;
+.field l Ljava/lang/Exception;
+.field m I
+
+.method static <clinit>()V
+.limit registers 1
+.line 46
+	new-instance	v0,java/lang/Object
+; v0 : Ljava/lang/Object;
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Ljava/lang/Object;
+	sput-object	v0,com/a/b/d.n Ljava/lang/Object;
+; v0 : Ljava/lang/Object;
+	return-void	
+.end method
+
+.method <init>(Lcom/a/b/ae;Lcom/a/b/o;Lcom/a/b/h;Lcom/a/b/au;Lcom/a/b/a;)V
+.limit registers 8
+; this: v2 (Lcom/a/b/d;)
+; parameter[0] : v3 (Lcom/a/b/ae;)
+; parameter[1] : v4 (Lcom/a/b/o;)
+; parameter[2] : v5 (Lcom/a/b/h;)
+; parameter[3] : v6 (Lcom/a/b/au;)
+; parameter[4] : v7 (Lcom/a/b/a;)
+.line 63
+	invoke-direct	{v2},java/lang/Object/<init>	; <init>()V
+; v2 : Lcom/a/b/d;
+.line 64
+	iput-object	v3,v2,com/a/b/d.a Lcom/a/b/ae;
+; v3 : Lcom/a/b/ae; , v2 : Lcom/a/b/d;
+.line 65
+	iput-object	v4,v2,com/a/b/d.b Lcom/a/b/o;
+; v4 : Lcom/a/b/o; , v2 : Lcom/a/b/d;
+.line 66
+	iput-object	v5,v2,com/a/b/d.c Lcom/a/b/h;
+; v5 : Lcom/a/b/h; , v2 : Lcom/a/b/d;
+.line 67
+	iput-object	v6,v2,com/a/b/d.d Lcom/a/b/au;
+; v6 : Lcom/a/b/au; , v2 : Lcom/a/b/d;
+.line 68
+	invoke-virtual	{v7},com/a/b/a/e	; e()Ljava/lang/String;
+; v7 : Lcom/a/b/a;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	iput-object	v0,v2,com/a/b/d.e Ljava/lang/String;
+; v0 : Ljava/lang/String; , v2 : Lcom/a/b/d;
+.line 69
+	invoke-virtual	{v7},com/a/b/a/c	; c()Lcom/a/b/ap;
+; v7 : Lcom/a/b/a;
+	move-result-object	v0
+; v0 : Lcom/a/b/ap;
+	iput-object	v0,v2,com/a/b/d.f Lcom/a/b/ap;
+; v0 : Lcom/a/b/ap; , v2 : Lcom/a/b/d;
+.line 70
+	iget-boolean	v0,v7,com/a/b/a.d Z
+; v0 : single-length , v7 : Lcom/a/b/a;
+	iput-boolean	v0,v2,com/a/b/d.h Z
+; v0 : single-length , v2 : Lcom/a/b/d;
+.line 71
+	new-instance	v0,java/util/ArrayList
+; v0 : Ljava/util/ArrayList;
+	const/4	v1,4
+; v1 : single-length
+	invoke-direct	{v0,v1},java/util/ArrayList/<init>	; <init>(I)V
+; v0 : Ljava/util/ArrayList; , v1 : single-length
+	iput-object	v0,v2,com/a/b/d.g Ljava/util/List;
+; v0 : Ljava/util/ArrayList; , v2 : Lcom/a/b/d;
+.line 72
+	invoke-virtual	{v2,v7},com/a/b/d/a	; a(Lcom/a/b/a;)V
+; v2 : Lcom/a/b/d; , v7 : Lcom/a/b/a;
+.line 73
+	return-void	
+.end method
+
+.method static a(Lcom/a/b/ap;Landroid/graphics/Bitmap;I)Landroid/graphics/Bitmap;
+.limit registers 14
+; parameter[0] : v11 (Lcom/a/b/ap;)
+; parameter[1] : v12 (Landroid/graphics/Bitmap;)
+; parameter[2] : v13 (I)
+	const/4	v4,0
+; v4 : single-length
+.line 296
+	invoke-virtual	{v12},android/graphics/Bitmap/getWidth	; getWidth()I
+; v12 : Landroid/graphics/Bitmap;
+	move-result	v3
+; v3 : single-length
+.line 297
+	invoke-virtual	{v12},android/graphics/Bitmap/getHeight	; getHeight()I
+; v12 : Landroid/graphics/Bitmap;
+	move-result	v2
+; v2 : single-length
+.line 304
+	new-instance	v5,android/graphics/Matrix
+; v5 : Landroid/graphics/Matrix;
+	invoke-direct	{v5},android/graphics/Matrix/<init>	; <init>()V
+; v5 : Landroid/graphics/Matrix;
+.line 306
+	invoke-virtual	{v11},com/a/b/ap/d	; d()Z
+; v11 : Lcom/a/b/ap;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,l77f40
+; v0 : single-length
+.line 307
+	iget	v0,v11,com/a/b/ap.d I
+; v0 : single-length , v11 : Lcom/a/b/ap;
+.line 308
+	iget	v1,v11,com/a/b/ap.e I
+; v1 : single-length , v11 : Lcom/a/b/ap;
+.line 310
+	iget	v6,v11,com/a/b/ap.h F
+; v6 : single-length , v11 : Lcom/a/b/ap;
+.line 311
+	const/4	v7,0
+; v7 : single-length
+	cmpl-float	v7,v6,v7
+; v7 : single-length , v6 : single-length , v7 : single-length
+	if-eqz	v7,l77e4c
+; v7 : single-length
+.line 312
+	iget-boolean	v7,v11,com/a/b/ap.k Z
+; v7 : single-length , v11 : Lcom/a/b/ap;
+	if-eqz	v7,l77ebe
+; v7 : single-length
+.line 313
+	iget	v7,v11,com/a/b/ap.i F
+; v7 : single-length , v11 : Lcom/a/b/ap;
+	iget	v8,v11,com/a/b/ap.j F
+; v8 : single-length , v11 : Lcom/a/b/ap;
+	invoke-virtual	{v5,v6,v7,v8},android/graphics/Matrix/setRotate	; setRotate(FFF)V
+; v5 : Landroid/graphics/Matrix; , v6 : single-length , v7 : single-length , v8 : single-length
+l77e4c:
+.line 319
+	iget-boolean	v6,v11,com/a/b/ap.f Z
+; v6 : single-length , v11 : Lcom/a/b/ap;
+	if-eqz	v6,l77eee
+; v6 : single-length
+.line 320
+	int-to-float	v0,v0
+; v0 : single-length , v0 : single-length
+	int-to-float	v6,v3
+; v6 : single-length , v3 : single-length
+	div-float/2addr	v0,v6
+; v0 : single-length , v6 : single-length
+.line 321
+	int-to-float	v1,v1
+; v1 : single-length , v1 : single-length
+	int-to-float	v6,v2
+; v6 : single-length , v2 : single-length
+	div-float/2addr	v1,v6
+; v1 : single-length , v6 : single-length
+.line 323
+	cmpl-float	v6,v0,v1
+; v6 : single-length , v0 : single-length , v1 : single-length
+	if-lez	v6,l77ec6
+; v6 : single-length
+.line 325
+	int-to-float	v6,v2
+; v6 : single-length , v2 : single-length
+	div-float/2addr	v1,v0
+; v1 : single-length , v0 : single-length
+	mul-float/2addr	v1,v6
+; v1 : single-length , v6 : single-length
+	float-to-double	v6,v1
+; v6 : double-length , v1 : single-length
+	invoke-static	{v6,v7},java/lang/Math/ceil	; ceil(D)D
+; v6 : double-length
+	move-result-wide	v6
+; v6 : double-length
+	double-to-int	v1,v6
+; v1 : single-length , v6 : double-length
+.line 326
+	sub-int/2addr	v2,v1
+; v2 : single-length , v1 : single-length
+	div-int/lit8	v2,v2,2
+; v2 : single-length , v2 : single-length
+	move	v9,v3
+; v9 : single-length , v3 : single-length
+	move	v3,v2
+; v3 : single-length , v2 : single-length
+	move	v2,v9
+; v2 : single-length , v9 : single-length
+l77e86:
+.line 334
+	invoke-virtual	{v5,v0,v0},android/graphics/Matrix/preScale	; preScale(FF)Z
+; v5 : Landroid/graphics/Matrix; , v0 : single-length , v0 : single-length
+	move	v9,v1
+; v9 : single-length , v1 : single-length
+	move	v1,v4
+; v1 : single-length , v4 : single-length
+	move	v4,v9
+; v4 : single-length , v9 : single-length
+	move	v10,v3
+; v10 : single-length , v3 : single-length
+	move	v3,v2
+; v3 : single-length , v2 : single-length
+	move	v2,v10
+; v2 : single-length , v10 : single-length
+l77e98:
+.line 350
+	if-eqz	v13,l77ea4
+; v13 : single-length
+.line 351
+	int-to-float	v0,v13
+; v0 : single-length , v13 : single-length
+	invoke-virtual	{v5,v0},android/graphics/Matrix/preRotate	; preRotate(F)Z
+; v5 : Landroid/graphics/Matrix; , v0 : single-length
+l77ea4:
+.line 354
+	const/4	v6,1
+; v6 : single-length
+	move-object	v0,v12
+; v0 : Landroid/graphics/Bitmap; , v12 : Landroid/graphics/Bitmap;
+	invoke-static/range	{v0..v6},android/graphics/Bitmap/createBitmap;	createBitmap(Landroid/graphics/Bitmap;IIIILandroid/graphics/Matrix;Z)Landroid/graphics/Bitmap;
+; v0 : Landroid/graphics/Bitmap; , v1 : single-length , v2 : single-length , v3 : single-length , v4 : single-length , v5 : Landroid/graphics/Matrix; , v6 : single-length
+	move-result-object	v0
+; v0 : Landroid/graphics/Bitmap;
+.line 356
+	if-eq	v0,v12,l77ebc
+; v0 : Landroid/graphics/Bitmap; , v12 : Landroid/graphics/Bitmap;
+.line 357
+	invoke-virtual	{v12},android/graphics/Bitmap/recycle	; recycle()V
+; v12 : Landroid/graphics/Bitmap;
+	move-object	v12,v0
+; v12 : Landroid/graphics/Bitmap; , v0 : Landroid/graphics/Bitmap;
+l77ebc:
+.line 361
+	return-object	v12
+; v12 : Landroid/graphics/Bitmap;
+l77ebe:
+.line 315
+	invoke-virtual	{v5,v6},android/graphics/Matrix/setRotate	; setRotate(F)V
+; v5 : Landroid/graphics/Matrix; , v6 : single-length
+	goto	l77e4c
+l77ec6:
+.line 330
+	int-to-float	v6,v3
+; v6 : single-length , v3 : single-length
+	div-float/2addr	v0,v1
+; v0 : single-length , v1 : single-length
+	mul-float/2addr	v0,v6
+; v0 : single-length , v6 : single-length
+	float-to-double	v6,v0
+; v6 : double-length , v0 : single-length
+	invoke-static	{v6,v7},java/lang/Math/ceil	; ceil(D)D
+; v6 : double-length
+	move-result-wide	v6
+; v6 : double-length
+	double-to-int	v0,v6
+; v0 : single-length , v6 : double-length
+.line 331
+	sub-int/2addr	v3,v0
+; v3 : single-length , v0 : single-length
+	div-int/lit8	v3,v3,2
+; v3 : single-length , v3 : single-length
+	move	v9,v1
+; v9 : single-length , v1 : single-length
+	move	v1,v2
+; v1 : single-length , v2 : single-length
+	move	v2,v0
+; v2 : single-length , v0 : single-length
+	move	v0,v9
+; v0 : single-length , v9 : single-length
+	move	v10,v4
+; v10 : single-length , v4 : single-length
+	move	v4,v3
+; v4 : single-length , v3 : single-length
+	move	v3,v10
+; v3 : single-length , v10 : single-length
+.line 332
+	goto	l77e86
+l77eee:
+.line 335
+	iget-boolean	v6,v11,com/a/b/ap.g Z
+; v6 : single-length , v11 : Lcom/a/b/ap;
+	if-eqz	v6,l77f1e
+; v6 : single-length
+.line 336
+	int-to-float	v0,v0
+; v0 : single-length , v0 : single-length
+	int-to-float	v6,v3
+; v6 : single-length , v3 : single-length
+	div-float/2addr	v0,v6
+; v0 : single-length , v6 : single-length
+.line 337
+	int-to-float	v1,v1
+; v1 : single-length , v1 : single-length
+	int-to-float	v6,v2
+; v6 : single-length , v2 : single-length
+	div-float/2addr	v1,v6
+; v1 : single-length , v6 : single-length
+.line 338
+	cmpg-float	v6,v0,v1
+; v6 : single-length , v0 : single-length , v1 : single-length
+	if-gez	v6,l77f1a
+; v6 : single-length
+l77f0a:
+.line 339
+	invoke-virtual	{v5,v0,v0},android/graphics/Matrix/preScale	; preScale(FF)Z
+; v5 : Landroid/graphics/Matrix; , v0 : single-length , v0 : single-length
+	move	v1,v4
+; v1 : single-length , v4 : single-length
+	move	v9,v4
+; v9 : single-length , v4 : single-length
+	move	v4,v2
+; v4 : single-length , v2 : single-length
+	move	v2,v9
+; v2 : single-length , v9 : single-length
+.line 340
+	goto	l77e98
+l77f1a:
+	move	v0,v1
+; v0 : single-length , v1 : single-length
+.line 338
+	goto	l77f0a
+l77f1e:
+.line 340
+	if-eqz	v0,l77f40
+; v0 : single-length
+	if-eqz	v1,l77f40
+; v1 : single-length
+	if-ne	v0,v3,l77f2e
+; v0 : single-length , v3 : single-length
+	if-eq	v1,v2,l77f40
+; v1 : single-length , v2 : single-length
+l77f2e:
+.line 344
+	int-to-float	v0,v0
+; v0 : single-length , v0 : single-length
+	int-to-float	v6,v3
+; v6 : single-length , v3 : single-length
+	div-float/2addr	v0,v6
+; v0 : single-length , v6 : single-length
+.line 345
+	int-to-float	v1,v1
+; v1 : single-length , v1 : single-length
+	int-to-float	v6,v2
+; v6 : single-length , v2 : single-length
+	div-float/2addr	v1,v6
+; v1 : single-length , v6 : single-length
+.line 346
+	invoke-virtual	{v5,v0,v1},android/graphics/Matrix/preScale	; preScale(FF)Z
+; v5 : Landroid/graphics/Matrix; , v0 : single-length , v1 : single-length
+l77f40:
+	move	v1,v4
+; v1 : single-length , v4 : single-length
+	move	v9,v4
+; v9 : single-length , v4 : single-length
+	move	v4,v2
+; v4 : single-length , v2 : single-length
+	move	v2,v9
+; v2 : single-length , v9 : single-length
+	goto	l77e98
+.end method
+
+.method static a(Ljava/util/List;Landroid/graphics/Bitmap;)Landroid/graphics/Bitmap;
+.limit registers 8
+; parameter[0] : v6 (Ljava/util/List;)
+; parameter[1] : v7 (Landroid/graphics/Bitmap;)
+	const/4	v1,0
+; v1 : single-length
+.line 245
+	const/4	v0,0
+; v0 : single-length
+	invoke-interface	{v6},java/util/List/size	; size()I
+; v6 : Ljava/util/List;
+	move-result	v4
+; v4 : single-length
+	move	v3,v0
+; v3 : single-length , v0 : single-length
+	move-object	v2,v7
+; v2 : Landroid/graphics/Bitmap; , v7 : Landroid/graphics/Bitmap;
+l77f6c:
+	if-ge	v3,v4,l7807e
+; v3 : single-length , v4 : single-length
+.line 246
+	invoke-interface	{v6,v3},java/util/List/get	; get(I)Ljava/lang/Object;
+; v6 : Ljava/util/List; , v3 : single-length
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,com/a/b/ay
+; v0 : Lcom/a/b/ay;
+.line 247
+	invoke-interface	{v0,v2},com/a/b/ay/a	; a(Landroid/graphics/Bitmap;)Landroid/graphics/Bitmap;
+; v0 : Lcom/a/b/ay; , v2 : Landroid/graphics/Bitmap;
+	move-result-object	v7
+; v7 : Landroid/graphics/Bitmap;
+.line 249
+	if-nez	v7,l78022
+; v7 : Landroid/graphics/Bitmap;
+.line 250
+	new-instance	v2,java/lang/StringBuilder
+; v2 : Ljava/lang/StringBuilder;
+	invoke-direct	{v2},java/lang/StringBuilder/<init>	; <init>()V
+; v2 : Ljava/lang/StringBuilder;
+	const-string	v4,"Transformation "
+; v4 : Ljava/lang/String;
+	invoke-virtual	{v2,v4},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v4 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	invoke-interface	{v0},com/a/b/ay/a	; a()Ljava/lang/String;
+; v0 : Lcom/a/b/ay;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v2,v0},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v0 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	const-string	v2," returned null after "
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v0,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v0,v3},java/lang/StringBuilder/append	; append(I)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v3 : single-length
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	const-string	v2," previous transformation(s).
+
+Transformation list:
+"
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v0,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+.line 256
+	invoke-interface	{v6},java/util/List/iterator	; iterator()Ljava/util/Iterator;
+; v6 : Ljava/util/List;
+	move-result-object	v3
+; v3 : Ljava/util/Iterator;
+l77fd6:
+	invoke-interface	{v3},java/util/Iterator/hasNext	; hasNext()Z
+; v3 : Ljava/util/Iterator;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,l7800a
+; v0 : single-length
+	invoke-interface	{v3},java/util/Iterator/next	; next()Ljava/lang/Object;
+; v3 : Ljava/util/Iterator;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,com/a/b/ay
+; v0 : Lcom/a/b/ay;
+.line 257
+	invoke-interface	{v0},com/a/b/ay/a	; a()Ljava/lang/String;
+; v0 : Lcom/a/b/ay;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v2,v0},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v0 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	const/16	v4,10
+; v4 : single-length
+	invoke-virtual	{v0,v4},java/lang/StringBuilder/append	; append(C)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v4 : single-length
+	goto	l77fd6
+l7800a:
+.line 259
+	sget-object	v0,com/a/b/ae.a Landroid/os/Handler;
+; v0 : Landroid/os/Handler;
+	new-instance	v3,com/a/b/e
+; v3 : Lcom/a/b/e;
+	invoke-direct	{v3,v2},com/a/b/e/<init>	; <init>(Ljava/lang/StringBuilder;)V
+; v3 : Lcom/a/b/e; , v2 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v0,v3},android/os/Handler/post	; post(Ljava/lang/Runnable;)Z
+; v0 : Landroid/os/Handler; , v3 : Lcom/a/b/e;
+	move-object	v0,v1
+; v0 : single-length , v1 : single-length
+l78020:
+.line 292
+	return-object	v0
+; v0 : single-length
+l78022:
+.line 267
+	if-ne	v7,v2,l7804a
+; v7 : Landroid/graphics/Bitmap; , v2 : Landroid/graphics/Bitmap;
+	invoke-virtual	{v2},android/graphics/Bitmap/isRecycled	; isRecycled()Z
+; v2 : Landroid/graphics/Bitmap;
+	move-result	v5
+; v5 : single-length
+	if-eqz	v5,l7804a
+; v5 : single-length
+.line 268
+	sget-object	v2,com/a/b/ae.a Landroid/os/Handler;
+; v2 : Landroid/os/Handler;
+	new-instance	v3,com/a/b/f
+; v3 : Lcom/a/b/f;
+	invoke-direct	{v3,v0},com/a/b/f/<init>	; <init>(Lcom/a/b/ay;)V
+; v3 : Lcom/a/b/f; , v0 : Lcom/a/b/ay;
+	invoke-virtual	{v2,v3},android/os/Handler/post	; post(Ljava/lang/Runnable;)Z
+; v2 : Landroid/os/Handler; , v3 : Lcom/a/b/f;
+	move-object	v0,v1
+; v0 : single-length , v1 : single-length
+.line 275
+	goto	l78020
+l7804a:
+.line 279
+	if-eq	v7,v2,l78072
+; v7 : Landroid/graphics/Bitmap; , v2 : Landroid/graphics/Bitmap;
+	invoke-virtual	{v2},android/graphics/Bitmap/isRecycled	; isRecycled()Z
+; v2 : Landroid/graphics/Bitmap;
+	move-result	v2
+; v2 : single-length
+	if-nez	v2,l78072
+; v2 : single-length
+.line 280
+	sget-object	v2,com/a/b/ae.a Landroid/os/Handler;
+; v2 : Landroid/os/Handler;
+	new-instance	v3,com/a/b/g
+; v3 : Lcom/a/b/g;
+	invoke-direct	{v3,v0},com/a/b/g/<init>	; <init>(Lcom/a/b/ay;)V
+; v3 : Lcom/a/b/g; , v0 : Lcom/a/b/ay;
+	invoke-virtual	{v2,v3},android/os/Handler/post	; post(Ljava/lang/Runnable;)Z
+; v2 : Landroid/os/Handler; , v3 : Lcom/a/b/g;
+	move-object	v0,v1
+; v0 : single-length , v1 : single-length
+.line 287
+	goto	l78020
+l78072:
+.line 245
+	add-int/lit8	v0,v3,1
+; v0 : single-length , v3 : single-length
+	move	v3,v0
+; v3 : single-length , v0 : single-length
+	move-object	v2,v7
+; v2 : Landroid/graphics/Bitmap; , v7 : Landroid/graphics/Bitmap;
+	goto/16	l77f6c
+l7807e:
+	move-object	v0,v2
+; v0 : Landroid/graphics/Bitmap; , v2 : Landroid/graphics/Bitmap;
+.line 292
+	goto	l78020
+.end method
+
+.method static a(Landroid/content/Context;Lcom/a/b/ae;Lcom/a/b/o;Lcom/a/b/h;Lcom/a/b/au;Lcom/a/b/a;Lcom/a/b/t;)Lcom/a/b/d;
+.limit registers 14
+; parameter[0] : v7 (Landroid/content/Context;)
+; parameter[1] : v8 (Lcom/a/b/ae;)
+; parameter[2] : v9 (Lcom/a/b/o;)
+; parameter[3] : v10 (Lcom/a/b/h;)
+; parameter[4] : v11 (Lcom/a/b/au;)
+; parameter[5] : v12 (Lcom/a/b/a;)
+; parameter[6] : v13 (Lcom/a/b/t;)
+.line 193
+	invoke-virtual	{v12},com/a/b/a/c	; c()Lcom/a/b/ap;
+; v12 : Lcom/a/b/a;
+	move-result-object	v0
+; v0 : Lcom/a/b/ap;
+	iget	v0,v0,com/a/b/ap.b I
+; v0 : single-length , v0 : single-length
+	if-eqz	v0,l780bc
+; v0 : single-length
+.line 194
+	new-instance	v0,com/a/b/at
+; v0 : Lcom/a/b/at;
+	move-object	v1,v7
+; v1 : Landroid/content/Context; , v7 : Landroid/content/Context;
+	move-object	v2,v8
+; v2 : Lcom/a/b/ae; , v8 : Lcom/a/b/ae;
+	move-object	v3,v9
+; v3 : Lcom/a/b/o; , v9 : Lcom/a/b/o;
+	move-object	v4,v10
+; v4 : Lcom/a/b/h; , v10 : Lcom/a/b/h;
+	move-object	v5,v11
+; v5 : Lcom/a/b/au; , v11 : Lcom/a/b/au;
+	move-object	v6,v12
+; v6 : Lcom/a/b/a; , v12 : Lcom/a/b/a;
+	invoke-direct/range	{v0..v6},com/a/b/at/<init>;	<init>(Landroid/content/Context;Lcom/a/b/ae;Lcom/a/b/o;Lcom/a/b/h;Lcom/a/b/au;Lcom/a/b/a;)V
+; v0 : Lcom/a/b/at; , v1 : Landroid/content/Context; , v2 : Lcom/a/b/ae; , v3 : Lcom/a/b/o; , v4 : Lcom/a/b/h; , v5 : Lcom/a/b/au; , v6 : Lcom/a/b/a;
+l780ba:
+.line 215
+	return-object	v0
+; v0 : Lcom/a/b/ac;
+l780bc:
+.line 196
+	invoke-virtual	{v12},com/a/b/a/c	; c()Lcom/a/b/ap;
+; v12 : Lcom/a/b/a;
+	move-result-object	v0
+; v0 : Lcom/a/b/ap;
+	iget-object	v0,v0,com/a/b/ap.a Landroid/net/Uri;
+; v0 : Landroid/net/Uri; , v0 : Landroid/net/Uri;
+.line 197
+	invoke-virtual	{v0},android/net/Uri/getScheme	; getScheme()Ljava/lang/String;
+; v0 : Landroid/net/Uri;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+.line 198
+	const-string	v2,"content"
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v2,v1},java/lang/String/equals	; equals(Ljava/lang/Object;)Z
+; v2 : Ljava/lang/String; , v1 : Ljava/lang/String;
+	move-result	v2
+; v2 : single-length
+	if-eqz	v2,l78178
+; v2 : single-length
+.line 199
+	sget-object	v1,android/provider/ContactsContract$Contacts.CONTENT_URI Landroid/net/Uri;
+; v1 : Landroid/net/Uri;
+	invoke-virtual	{v1},android/net/Uri/getHost	; getHost()Ljava/lang/String;
+; v1 : Landroid/net/Uri;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0},android/net/Uri/getHost	; getHost()Ljava/lang/String;
+; v0 : Landroid/net/Uri;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/String/equals	; equals(Ljava/lang/Object;)Z
+; v1 : Ljava/lang/String; , v2 : Ljava/lang/String;
+	move-result	v1
+; v1 : single-length
+	if-eqz	v1,l78130
+; v1 : single-length
+	invoke-virtual	{v0},android/net/Uri/getPathSegments	; getPathSegments()Ljava/util/List;
+; v0 : Landroid/net/Uri;
+	move-result-object	v1
+; v1 : Ljava/util/List;
+	const-string	v2,"photo"
+; v2 : Ljava/lang/String;
+	invoke-interface	{v1,v2},java/util/List/contains	; contains(Ljava/lang/Object;)Z
+; v1 : Ljava/util/List; , v2 : Ljava/lang/String;
+	move-result	v1
+; v1 : single-length
+	if-nez	v1,l78130
+; v1 : single-length
+.line 201
+	new-instance	v0,com/a/b/k
+; v0 : Lcom/a/b/k;
+	move-object	v1,v7
+; v1 : Landroid/content/Context; , v7 : Landroid/content/Context;
+	move-object	v2,v8
+; v2 : Lcom/a/b/ae; , v8 : Lcom/a/b/ae;
+	move-object	v3,v9
+; v3 : Lcom/a/b/o; , v9 : Lcom/a/b/o;
+	move-object	v4,v10
+; v4 : Lcom/a/b/h; , v10 : Lcom/a/b/h;
+	move-object	v5,v11
+; v5 : Lcom/a/b/au; , v11 : Lcom/a/b/au;
+	move-object	v6,v12
+; v6 : Lcom/a/b/a; , v12 : Lcom/a/b/a;
+	invoke-direct/range	{v0..v6},com/a/b/k/<init>;	<init>(Landroid/content/Context;Lcom/a/b/ae;Lcom/a/b/o;Lcom/a/b/h;Lcom/a/b/au;Lcom/a/b/a;)V
+; v0 : Lcom/a/b/k; , v1 : Landroid/content/Context; , v2 : Lcom/a/b/ae; , v3 : Lcom/a/b/o; , v4 : Lcom/a/b/h; , v5 : Lcom/a/b/au; , v6 : Lcom/a/b/a;
+	goto	l780ba
+l78130:
+.line 202
+	const-string	v1,"media"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0},android/net/Uri/getAuthority	; getAuthority()Ljava/lang/String;
+; v0 : Landroid/net/Uri;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v1,v0},java/lang/String/equals	; equals(Ljava/lang/Object;)Z
+; v1 : Ljava/lang/String; , v0 : Ljava/lang/String;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,l78160
+; v0 : single-length
+.line 203
+	new-instance	v0,com/a/b/aa
+; v0 : Lcom/a/b/aa;
+	move-object	v1,v7
+; v1 : Landroid/content/Context; , v7 : Landroid/content/Context;
+	move-object	v2,v8
+; v2 : Lcom/a/b/ae; , v8 : Lcom/a/b/ae;
+	move-object	v3,v9
+; v3 : Lcom/a/b/o; , v9 : Lcom/a/b/o;
+	move-object	v4,v10
+; v4 : Lcom/a/b/h; , v10 : Lcom/a/b/h;
+	move-object	v5,v11
+; v5 : Lcom/a/b/au; , v11 : Lcom/a/b/au;
+	move-object	v6,v12
+; v6 : Lcom/a/b/a; , v12 : Lcom/a/b/a;
+	invoke-direct/range	{v0..v6},com/a/b/aa/<init>;	<init>(Landroid/content/Context;Lcom/a/b/ae;Lcom/a/b/o;Lcom/a/b/h;Lcom/a/b/au;Lcom/a/b/a;)V
+; v0 : Lcom/a/b/aa; , v1 : Landroid/content/Context; , v2 : Lcom/a/b/ae; , v3 : Lcom/a/b/o; , v4 : Lcom/a/b/h; , v5 : Lcom/a/b/au; , v6 : Lcom/a/b/a;
+	goto	l780ba
+l78160:
+.line 205
+	new-instance	v0,com/a/b/m
+; v0 : Lcom/a/b/m;
+	move-object	v1,v7
+; v1 : Landroid/content/Context; , v7 : Landroid/content/Context;
+	move-object	v2,v8
+; v2 : Lcom/a/b/ae; , v8 : Lcom/a/b/ae;
+	move-object	v3,v9
+; v3 : Lcom/a/b/o; , v9 : Lcom/a/b/o;
+	move-object	v4,v10
+; v4 : Lcom/a/b/h; , v10 : Lcom/a/b/h;
+	move-object	v5,v11
+; v5 : Lcom/a/b/au; , v11 : Lcom/a/b/au;
+	move-object	v6,v12
+; v6 : Lcom/a/b/a; , v12 : Lcom/a/b/a;
+	invoke-direct/range	{v0..v6},com/a/b/m/<init>;	<init>(Landroid/content/Context;Lcom/a/b/ae;Lcom/a/b/o;Lcom/a/b/h;Lcom/a/b/au;Lcom/a/b/a;)V
+; v0 : Lcom/a/b/m; , v1 : Landroid/content/Context; , v2 : Lcom/a/b/ae; , v3 : Lcom/a/b/o; , v4 : Lcom/a/b/h; , v5 : Lcom/a/b/au; , v6 : Lcom/a/b/a;
+	goto	l780ba
+l78178:
+.line 207
+	const-string	v2,"file"
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v2,v1},java/lang/String/equals	; equals(Ljava/lang/Object;)Z
+; v2 : Ljava/lang/String; , v1 : Ljava/lang/String;
+	move-result	v2
+; v2 : single-length
+	if-eqz	v2,l781f2
+; v2 : single-length
+.line 208
+	invoke-virtual	{v0},android/net/Uri/getPathSegments	; getPathSegments()Ljava/util/List;
+; v0 : Landroid/net/Uri;
+	move-result-object	v1
+; v1 : Ljava/util/List;
+	invoke-interface	{v1},java/util/List/isEmpty	; isEmpty()Z
+; v1 : Ljava/util/List;
+	move-result	v1
+; v1 : single-length
+	if-nez	v1,l781d8
+; v1 : single-length
+	const-string	v1,"android_asset"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0},android/net/Uri/getPathSegments	; getPathSegments()Ljava/util/List;
+; v0 : Landroid/net/Uri;
+	move-result-object	v0
+; v0 : Ljava/util/List;
+	const/4	v2,0
+; v2 : single-length
+	invoke-interface	{v0,v2},java/util/List/get	; get(I)Ljava/lang/Object;
+; v0 : Ljava/util/List; , v2 : single-length
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	invoke-virtual	{v1,v0},java/lang/String/equals	; equals(Ljava/lang/Object;)Z
+; v1 : Ljava/lang/String; , v0 : Ljava/lang/Object;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,l781d8
+; v0 : single-length
+.line 209
+	new-instance	v0,com/a/b/c
+; v0 : Lcom/a/b/c;
+	move-object	v1,v7
+; v1 : Landroid/content/Context; , v7 : Landroid/content/Context;
+	move-object	v2,v8
+; v2 : Lcom/a/b/ae; , v8 : Lcom/a/b/ae;
+	move-object	v3,v9
+; v3 : Lcom/a/b/o; , v9 : Lcom/a/b/o;
+	move-object	v4,v10
+; v4 : Lcom/a/b/h; , v10 : Lcom/a/b/h;
+	move-object	v5,v11
+; v5 : Lcom/a/b/au; , v11 : Lcom/a/b/au;
+	move-object	v6,v12
+; v6 : Lcom/a/b/a; , v12 : Lcom/a/b/a;
+	invoke-direct/range	{v0..v6},com/a/b/c/<init>;	<init>(Landroid/content/Context;Lcom/a/b/ae;Lcom/a/b/o;Lcom/a/b/h;Lcom/a/b/au;Lcom/a/b/a;)V
+; v0 : Lcom/a/b/c; , v1 : Landroid/content/Context; , v2 : Lcom/a/b/ae; , v3 : Lcom/a/b/o; , v4 : Lcom/a/b/h; , v5 : Lcom/a/b/au; , v6 : Lcom/a/b/a;
+	goto/16	l780ba
+l781d8:
+.line 211
+	new-instance	v0,com/a/b/w
+; v0 : Lcom/a/b/w;
+	move-object	v1,v7
+; v1 : Landroid/content/Context; , v7 : Landroid/content/Context;
+	move-object	v2,v8
+; v2 : Lcom/a/b/ae; , v8 : Lcom/a/b/ae;
+	move-object	v3,v9
+; v3 : Lcom/a/b/o; , v9 : Lcom/a/b/o;
+	move-object	v4,v10
+; v4 : Lcom/a/b/h; , v10 : Lcom/a/b/h;
+	move-object	v5,v11
+; v5 : Lcom/a/b/au; , v11 : Lcom/a/b/au;
+	move-object	v6,v12
+; v6 : Lcom/a/b/a; , v12 : Lcom/a/b/a;
+	invoke-direct/range	{v0..v6},com/a/b/w/<init>;	<init>(Landroid/content/Context;Lcom/a/b/ae;Lcom/a/b/o;Lcom/a/b/h;Lcom/a/b/au;Lcom/a/b/a;)V
+; v0 : Lcom/a/b/w; , v1 : Landroid/content/Context; , v2 : Lcom/a/b/ae; , v3 : Lcom/a/b/o; , v4 : Lcom/a/b/h; , v5 : Lcom/a/b/au; , v6 : Lcom/a/b/a;
+	goto/16	l780ba
+l781f2:
+.line 212
+	const-string	v0,"android.resource"
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/String/equals	; equals(Ljava/lang/Object;)Z
+; v0 : Ljava/lang/String; , v1 : Ljava/lang/String;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,l7821c
+; v0 : single-length
+.line 213
+	new-instance	v0,com/a/b/at
+; v0 : Lcom/a/b/at;
+	move-object	v1,v7
+; v1 : Landroid/content/Context; , v7 : Landroid/content/Context;
+	move-object	v2,v8
+; v2 : Lcom/a/b/ae; , v8 : Lcom/a/b/ae;
+	move-object	v3,v9
+; v3 : Lcom/a/b/o; , v9 : Lcom/a/b/o;
+	move-object	v4,v10
+; v4 : Lcom/a/b/h; , v10 : Lcom/a/b/h;
+	move-object	v5,v11
+; v5 : Lcom/a/b/au; , v11 : Lcom/a/b/au;
+	move-object	v6,v12
+; v6 : Lcom/a/b/a; , v12 : Lcom/a/b/a;
+	invoke-direct/range	{v0..v6},com/a/b/at/<init>;	<init>(Landroid/content/Context;Lcom/a/b/ae;Lcom/a/b/o;Lcom/a/b/h;Lcom/a/b/au;Lcom/a/b/a;)V
+; v0 : Lcom/a/b/at; , v1 : Landroid/content/Context; , v2 : Lcom/a/b/ae; , v3 : Lcom/a/b/o; , v4 : Lcom/a/b/h; , v5 : Lcom/a/b/au; , v6 : Lcom/a/b/a;
+	goto/16	l780ba
+l7821c:
+.line 215
+	new-instance	v0,com/a/b/ac
+; v0 : Lcom/a/b/ac;
+	move-object	v1,v8
+; v1 : Lcom/a/b/ae; , v8 : Lcom/a/b/ae;
+	move-object	v2,v9
+; v2 : Lcom/a/b/o; , v9 : Lcom/a/b/o;
+	move-object	v3,v10
+; v3 : Lcom/a/b/h; , v10 : Lcom/a/b/h;
+	move-object	v4,v11
+; v4 : Lcom/a/b/au; , v11 : Lcom/a/b/au;
+	move-object	v5,v12
+; v5 : Lcom/a/b/a; , v12 : Lcom/a/b/a;
+	move-object	v6,v13
+; v6 : Lcom/a/b/t; , v13 : Lcom/a/b/t;
+	invoke-direct/range	{v0..v6},com/a/b/ac/<init>;	<init>(Lcom/a/b/ae;Lcom/a/b/o;Lcom/a/b/h;Lcom/a/b/au;Lcom/a/b/a;Lcom/a/b/t;)V
+; v0 : Lcom/a/b/ac; , v1 : Lcom/a/b/ae; , v2 : Lcom/a/b/o; , v3 : Lcom/a/b/h; , v4 : Lcom/a/b/au; , v5 : Lcom/a/b/a; , v6 : Lcom/a/b/t;
+	goto/16	l780ba
+.end method
+
+.method static a(IIIILandroid/graphics/BitmapFactory$Options;)V
+.limit registers 8
+; parameter[0] : v3 (I)
+; parameter[1] : v4 (I)
+; parameter[2] : v5 (I)
+; parameter[3] : v6 (I)
+; parameter[4] : v7 (Landroid/graphics/BitmapFactory$Options;)
+.line 233
+	const/4	v0,1
+; v0 : single-length
+.line 234
+	if-gt	v6,v4,l78252
+; v6 : single-length , v4 : single-length
+	if-le	v5,v3,l78272
+; v5 : single-length , v3 : single-length
+l78252:
+.line 235
+	int-to-float	v0,v6
+; v0 : single-length , v6 : single-length
+	int-to-float	v1,v4
+; v1 : single-length , v4 : single-length
+	div-float/2addr	v0,v1
+; v0 : single-length , v1 : single-length
+	invoke-static	{v0},java/lang/Math/round	; round(F)I
+; v0 : single-length
+	move-result	v0
+; v0 : single-length
+.line 236
+	int-to-float	v1,v5
+; v1 : single-length , v5 : single-length
+	int-to-float	v2,v3
+; v2 : single-length , v3 : single-length
+	div-float/2addr	v1,v2
+; v1 : single-length , v2 : single-length
+	invoke-static	{v1},java/lang/Math/round	; round(F)I
+; v1 : single-length
+	move-result	v1
+; v1 : single-length
+.line 237
+	if-ge	v0,v1,l7827e
+; v0 : single-length , v1 : single-length
+l78272:
+.line 240
+	iput	v0,v7,android/graphics/BitmapFactory$Options.inSampleSize I
+; v0 : single-length , v7 : Landroid/graphics/BitmapFactory$Options;
+.line 241
+	const/4	v0,0
+; v0 : single-length
+	iput-boolean	v0,v7,android/graphics/BitmapFactory$Options.inJustDecodeBounds Z
+; v0 : single-length , v7 : Landroid/graphics/BitmapFactory$Options;
+.line 242
+	return-void	
+l7827e:
+	move	v0,v1
+; v0 : single-length , v1 : single-length
+.line 237
+	goto	l78272
+.end method
+
+.method static a(IILandroid/graphics/BitmapFactory$Options;)V
+.limit registers 5
+; parameter[0] : v2 (I)
+; parameter[1] : v3 (I)
+; parameter[2] : v4 (Landroid/graphics/BitmapFactory$Options;)
+.line 228
+	iget	v0,v4,android/graphics/BitmapFactory$Options.outWidth I
+; v0 : single-length , v4 : Landroid/graphics/BitmapFactory$Options;
+	iget	v1,v4,android/graphics/BitmapFactory$Options.outHeight I
+; v1 : single-length , v4 : Landroid/graphics/BitmapFactory$Options;
+	invoke-static	{v2,v3,v0,v1,v4},com/a/b/d/a	; a(IIIILandroid/graphics/BitmapFactory$Options;)V
+; v2 : single-length , v3 : single-length , v0 : single-length , v1 : single-length , v4 : Landroid/graphics/BitmapFactory$Options;
+.line 229
+	return-void	
+.end method
+
+.method static b(Lcom/a/b/ap;)Landroid/graphics/BitmapFactory$Options;
+.limit registers 3
+; parameter[0] : v2 (Lcom/a/b/ap;)
+.line 220
+	new-instance	v0,android/graphics/BitmapFactory$Options
+; v0 : Landroid/graphics/BitmapFactory$Options;
+	invoke-direct	{v0},android/graphics/BitmapFactory$Options/<init>	; <init>()V
+; v0 : Landroid/graphics/BitmapFactory$Options;
+.line 221
+	iget-object	v1,v2,com/a/b/ap.l Landroid/graphics/Bitmap$Config;
+; v1 : Landroid/graphics/Bitmap$Config; , v2 : Lcom/a/b/ap;
+	if-eqz	v1,l782ce
+; v1 : Landroid/graphics/Bitmap$Config;
+.line 222
+	iget-object	v1,v2,com/a/b/ap.l Landroid/graphics/Bitmap$Config;
+; v1 : Landroid/graphics/Bitmap$Config; , v2 : Lcom/a/b/ap;
+	iput-object	v1,v0,android/graphics/BitmapFactory$Options.inPreferredConfig Landroid/graphics/Bitmap$Config;
+; v1 : Landroid/graphics/Bitmap$Config; , v0 : Landroid/graphics/BitmapFactory$Options;
+l782ce:
+.line 224
+	return-object	v0
+; v0 : Landroid/graphics/BitmapFactory$Options;
+.end method
+
+.method abstract a(Lcom/a/b/ap;)Landroid/graphics/Bitmap;
+.end method
+
+.method a()Lcom/a/b/ak;
+.limit registers 2
+; this: v1 (Lcom/a/b/d;)
+.line 188
+	iget-object	v0,v1,com/a/b/d.k Lcom/a/b/ak;
+; v0 : Lcom/a/b/ak; , v1 : Lcom/a/b/d;
+	return-object	v0
+; v0 : Lcom/a/b/ak;
+.end method
+
+.method protected a(I)V
+.limit registers 2
+; this: v0 (Lcom/a/b/d;)
+; parameter[0] : v1 (I)
+.line 76
+	iput	v1,v0,com/a/b/d.m I
+; v1 : single-length , v0 : Lcom/a/b/d;
+.line 77
+	return-void	
+.end method
+
+.method a(Lcom/a/b/a;)V
+.limit registers 3
+; this: v1 (Lcom/a/b/d;)
+; parameter[0] : v2 (Lcom/a/b/a;)
+.line 144
+	iget-object	v0,v1,com/a/b/d.g Ljava/util/List;
+; v0 : Ljava/util/List; , v1 : Lcom/a/b/d;
+	invoke-interface	{v0,v2},java/util/List/add	; add(Ljava/lang/Object;)Z
+; v0 : Ljava/util/List; , v2 : Lcom/a/b/a;
+.line 145
+	return-void	
+.end method
+
+.method a(ZLandroid/net/NetworkInfo;)Z
+.limit registers 4
+; this: v1 (Lcom/a/b/d;)
+; parameter[0] : v2 (Z)
+; parameter[1] : v3 (Landroid/net/NetworkInfo;)
+.line 164
+	const/4	v0,0
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method b()Landroid/graphics/Bitmap;
+.limit registers 5
+; this: v4 (Lcom/a/b/d;)
+.catch java/lang/Exception from l78400 to l78402 using l783fe
+.catch java/lang/Exception from l783a8 to l783f2 using l783fe
+.line 114
+	iget-boolean	v0,v4,com/a/b/d.h Z
+; v0 : single-length , v4 : Lcom/a/b/d;
+	if-nez	v0,l78370
+; v0 : single-length
+.line 115
+	iget-object	v0,v4,com/a/b/d.c Lcom/a/b/h;
+; v0 : Lcom/a/b/h; , v4 : Lcom/a/b/d;
+	iget-object	v1,v4,com/a/b/d.e Ljava/lang/String;
+; v1 : Ljava/lang/String; , v4 : Lcom/a/b/d;
+	invoke-interface	{v0,v1},com/a/b/h/a	; a(Ljava/lang/String;)Landroid/graphics/Bitmap;
+; v0 : Lcom/a/b/h; , v1 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Landroid/graphics/Bitmap;
+.line 116
+	if-eqz	v0,l78370
+; v0 : Landroid/graphics/Bitmap;
+.line 117
+	iget-object	v1,v4,com/a/b/d.d Lcom/a/b/au;
+; v1 : Lcom/a/b/au; , v4 : Lcom/a/b/d;
+	invoke-virtual	{v1},com/a/b/au/a	; a()V
+; v1 : Lcom/a/b/au;
+.line 118
+	sget-object	v1,com/a/b/ak.a Lcom/a/b/ak;
+; v1 : Lcom/a/b/ak;
+	iput-object	v1,v4,com/a/b/d.k Lcom/a/b/ak;
+; v1 : Lcom/a/b/ak; , v4 : Lcom/a/b/d;
+l7836e:
+.line 140
+	return-object	v0
+; v0 : Landroid/graphics/Bitmap;
+l78370:
+.line 123
+	iget-object	v0,v4,com/a/b/d.f Lcom/a/b/ap;
+; v0 : Lcom/a/b/ap; , v4 : Lcom/a/b/d;
+	invoke-virtual	{v4,v0},com/a/b/d/a	; a(Lcom/a/b/ap;)Landroid/graphics/Bitmap;
+; v4 : Lcom/a/b/d; , v0 : Lcom/a/b/ap;
+	move-result-object	v0
+; v0 : Landroid/graphics/Bitmap;
+.line 125
+	if-eqz	v0,l7836e
+; v0 : Landroid/graphics/Bitmap;
+.line 126
+	iget-object	v1,v4,com/a/b/d.d Lcom/a/b/au;
+; v1 : Lcom/a/b/au; , v4 : Lcom/a/b/d;
+	invoke-virtual	{v1,v0},com/a/b/au/a	; a(Landroid/graphics/Bitmap;)V
+; v1 : Lcom/a/b/au; , v0 : Landroid/graphics/Bitmap;
+.line 127
+	iget-object	v1,v4,com/a/b/d.f Lcom/a/b/ap;
+; v1 : Lcom/a/b/ap; , v4 : Lcom/a/b/d;
+	invoke-virtual	{v1},com/a/b/ap/c	; c()Z
+; v1 : Lcom/a/b/ap;
+	move-result	v1
+; v1 : single-length
+	if-nez	v1,l783a2
+; v1 : single-length
+	iget	v1,v4,com/a/b/d.m I
+; v1 : single-length , v4 : Lcom/a/b/d;
+	if-eqz	v1,l7836e
+; v1 : single-length
+l783a2:
+.line 128
+	sget-object	v1,com/a/b/d.n Ljava/lang/Object;
+; v1 : Ljava/lang/Object;
+	monitor-enter	v1
+; v1 : Ljava/lang/Object;
+l783a8:
+.line 129
+	iget-object	v2,v4,com/a/b/d.f Lcom/a/b/ap;
+; v2 : Lcom/a/b/ap; , v4 : Lcom/a/b/d;
+	invoke-virtual	{v2},com/a/b/ap/d	; d()Z
+; v2 : Lcom/a/b/ap;
+	move-result	v2
+; v2 : single-length
+	if-nez	v2,l783c0
+; v2 : single-length
+	iget	v2,v4,com/a/b/d.m I
+; v2 : single-length , v4 : Lcom/a/b/d;
+	if-eqz	v2,l783d0
+; v2 : single-length
+l783c0:
+.line 130
+	iget-object	v2,v4,com/a/b/d.f Lcom/a/b/ap;
+; v2 : Lcom/a/b/ap; , v4 : Lcom/a/b/d;
+	iget	v3,v4,com/a/b/d.m I
+; v3 : single-length , v4 : Lcom/a/b/d;
+	invoke-static	{v2,v0,v3},com/a/b/d/a	; a(Lcom/a/b/ap;Landroid/graphics/Bitmap;I)Landroid/graphics/Bitmap;
+; v2 : Lcom/a/b/ap; , v0 : Landroid/graphics/Bitmap; , v3 : single-length
+	move-result-object	v0
+; v0 : Landroid/graphics/Bitmap;
+l783d0:
+.line 132
+	iget-object	v2,v4,com/a/b/d.f Lcom/a/b/ap;
+; v2 : Lcom/a/b/ap; , v4 : Lcom/a/b/d;
+	invoke-virtual	{v2},com/a/b/ap/e	; e()Z
+; v2 : Lcom/a/b/ap;
+	move-result	v2
+; v2 : single-length
+	if-eqz	v2,l783f0
+; v2 : single-length
+.line 133
+	iget-object	v2,v4,com/a/b/d.f Lcom/a/b/ap;
+; v2 : Lcom/a/b/ap; , v4 : Lcom/a/b/d;
+	iget-object	v2,v2,com/a/b/ap.c Ljava/util/List;
+; v2 : Ljava/util/List; , v2 : Ljava/util/List;
+	invoke-static	{v2,v0},com/a/b/d/a	; a(Ljava/util/List;Landroid/graphics/Bitmap;)Landroid/graphics/Bitmap;
+; v2 : Ljava/util/List; , v0 : Landroid/graphics/Bitmap;
+	move-result-object	v0
+; v0 : Landroid/graphics/Bitmap;
+l783f0:
+.line 135
+	monitor-exit	v1
+; v1 : Ljava/lang/Object;
+l783f2:
+.line 136
+	iget-object	v1,v4,com/a/b/d.d Lcom/a/b/au;
+; v1 : Lcom/a/b/au; , v4 : Lcom/a/b/d;
+	invoke-virtual	{v1,v0},com/a/b/au/b	; b(Landroid/graphics/Bitmap;)V
+; v1 : Lcom/a/b/au; , v0 : Landroid/graphics/Bitmap;
+	goto	l7836e
+l783fe:
+.line 135
+	move-exception	v0
+; v0 : java/lang/Exception
+l78400:
+	monitor-exit	v1
+; v1 : Ljava/lang/Object;
+l78402:
+	throw	v0
+; v0 : java/lang/Exception
+.end method
+
+.method b(Lcom/a/b/a;)V
+.limit registers 3
+; this: v1 (Lcom/a/b/d;)
+; parameter[0] : v2 (Lcom/a/b/a;)
+.line 148
+	iget-object	v0,v1,com/a/b/d.g Ljava/util/List;
+; v0 : Ljava/util/List; , v1 : Lcom/a/b/d;
+	invoke-interface	{v0,v2},java/util/List/remove	; remove(Ljava/lang/Object;)Z
+; v0 : Ljava/util/List; , v2 : Lcom/a/b/a;
+.line 149
+	return-void	
+.end method
+
+.method c()Z
+.limit registers 3
+; this: v2 (Lcom/a/b/d;)
+	const/4	v0,0
+; v0 : single-length
+.line 152
+	iget-object	v1,v2,com/a/b/d.g Ljava/util/List;
+; v1 : Ljava/util/List; , v2 : Lcom/a/b/d;
+	invoke-interface	{v1},java/util/List/isEmpty	; isEmpty()Z
+; v1 : Ljava/util/List;
+	move-result	v1
+; v1 : single-length
+	if-eqz	v1,l78470
+; v1 : single-length
+	iget-object	v1,v2,com/a/b/d.j Ljava/util/concurrent/Future;
+; v1 : Ljava/util/concurrent/Future; , v2 : Lcom/a/b/d;
+	if-eqz	v1,l78470
+; v1 : Ljava/util/concurrent/Future;
+	iget-object	v1,v2,com/a/b/d.j Ljava/util/concurrent/Future;
+; v1 : Ljava/util/concurrent/Future; , v2 : Lcom/a/b/d;
+	invoke-interface	{v1,v0},java/util/concurrent/Future/cancel	; cancel(Z)Z
+; v1 : Ljava/util/concurrent/Future; , v0 : single-length
+	move-result	v1
+; v1 : single-length
+	if-eqz	v1,l78470
+; v1 : single-length
+	const/4	v0,1
+; v0 : single-length
+l78470:
+	return	v0
+; v0 : single-length
+.end method
+
+.method d()Z
+.limit registers 2
+; this: v1 (Lcom/a/b/d;)
+.line 156
+	iget-object	v0,v1,com/a/b/d.j Ljava/util/concurrent/Future;
+; v0 : Ljava/util/concurrent/Future; , v1 : Lcom/a/b/d;
+	if-eqz	v0,l784a0
+; v0 : Ljava/util/concurrent/Future;
+	iget-object	v0,v1,com/a/b/d.j Ljava/util/concurrent/Future;
+; v0 : Ljava/util/concurrent/Future; , v1 : Lcom/a/b/d;
+	invoke-interface	{v0},java/util/concurrent/Future/isCancelled	; isCancelled()Z
+; v0 : Ljava/util/concurrent/Future;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,l784a0
+; v0 : single-length
+	const/4	v0,1
+; v0 : single-length
+l7849e:
+	return	v0
+; v0 : single-length
+l784a0:
+	const/4	v0,0
+; v0 : single-length
+	goto	l7849e
+.end method
+
+.method e()Z
+.limit registers 2
+; this: v1 (Lcom/a/b/d;)
+.line 160
+	iget-boolean	v0,v1,com/a/b/d.h Z
+; v0 : single-length , v1 : Lcom/a/b/d;
+	return	v0
+; v0 : single-length
+.end method
+
+.method f()Landroid/graphics/Bitmap;
+.limit registers 2
+; this: v1 (Lcom/a/b/d;)
+.line 168
+	iget-object	v0,v1,com/a/b/d.i Landroid/graphics/Bitmap;
+; v0 : Landroid/graphics/Bitmap; , v1 : Lcom/a/b/d;
+	return-object	v0
+; v0 : Landroid/graphics/Bitmap;
+.end method
+
+.method g()Ljava/lang/String;
+.limit registers 2
+; this: v1 (Lcom/a/b/d;)
+.line 172
+	iget-object	v0,v1,com/a/b/d.e Ljava/lang/String;
+; v0 : Ljava/lang/String; , v1 : Lcom/a/b/d;
+	return-object	v0
+; v0 : Ljava/lang/String;
+.end method
+
+.method h()Lcom/a/b/ap;
+.limit registers 2
+; this: v1 (Lcom/a/b/d;)
+.line 176
+	iget-object	v0,v1,com/a/b/d.f Lcom/a/b/ap;
+; v0 : Lcom/a/b/ap; , v1 : Lcom/a/b/d;
+	return-object	v0
+; v0 : Lcom/a/b/ap;
+.end method
+
+.method i()Ljava/util/List;
+.limit registers 2
+; this: v1 (Lcom/a/b/d;)
+.line 180
+	iget-object	v0,v1,com/a/b/d.g Ljava/util/List;
+; v0 : Ljava/util/List; , v1 : Lcom/a/b/d;
+	return-object	v0
+; v0 : Ljava/util/List;
+.end method
+
+.method j()Ljava/lang/Exception;
+.limit registers 2
+; this: v1 (Lcom/a/b/d;)
+.line 184
+	iget-object	v0,v1,com/a/b/d.l Ljava/lang/Exception;
+; v0 : Ljava/lang/Exception; , v1 : Lcom/a/b/d;
+	return-object	v0
+; v0 : Ljava/lang/Exception;
+.end method
+
+.method public run()V
+.limit registers 5
+; this: v4 (Lcom/a/b/d;)
+.catch java/lang/Exception from l78668 to l78676 using l7868a
+.catch java/lang/Exception from l7860c to l78652 using l7868a
+.catch java/lang/Exception from l785e8 to l785f6 using l7868a
+.catch java/lang/Exception from l785c4 to l785d2 using l7868a
+.catch com/a/b/v from l785b6 to l785c0 using l785c2
+.catch java/io/IOException from l785b6 to l785c0 using l785e6
+.catch java/lang/OutOfMemoryError from l785b6 to l785c0 using l7860a
+.catch java/lang/Exception from l785b6 to l785c0 using l78666
+.catch java/lang/Exception from l785b6 to l785c0 using l7868a
+.catch com/a/b/v from l78544 to l785a2 using l785c2
+.catch java/io/IOException from l78544 to l785a2 using l785e6
+.catch java/lang/OutOfMemoryError from l78544 to l785a2 using l7860a
+.catch java/lang/Exception from l78544 to l785a2 using l78666
+.catch java/lang/Exception from l78544 to l785a2 using l7868a
+l78544:
+.line 81
+	invoke-static	{},java/lang/Thread/currentThread	; currentThread()Ljava/lang/Thread;
+; 
+	nop	
+	move-result-object	v0
+; v0 : Ljava/lang/Thread;
+	new-instance	v1,java/lang/StringBuilder
+; v1 : Ljava/lang/StringBuilder;
+	invoke-direct	{v1},java/lang/StringBuilder/<init>	; <init>()V
+; v1 : Ljava/lang/StringBuilder;
+	const-string	v2,"Picasso-"
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	iget-object	v2,v4,com/a/b/d.f Lcom/a/b/ap;
+; v2 : Lcom/a/b/ap; , v4 : Lcom/a/b/d;
+	invoke-virtual	{v2},com/a/b/ap/a	; a()Ljava/lang/String;
+; v2 : Lcom/a/b/ap;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v1},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v1 : Ljava/lang/StringBuilder;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/Thread/setName	; setName(Ljava/lang/String;)V
+; v0 : Ljava/lang/Thread; , v1 : Ljava/lang/String;
+.line 83
+	invoke-virtual	{v4},com/a/b/d/b	; b()Landroid/graphics/Bitmap;
+; v4 : Lcom/a/b/d;
+	move-result-object	v0
+; v0 : Landroid/graphics/Bitmap;
+	iput-object	v0,v4,com/a/b/d.i Landroid/graphics/Bitmap;
+; v0 : Landroid/graphics/Bitmap; , v4 : Lcom/a/b/d;
+.line 85
+	iget-object	v0,v4,com/a/b/d.i Landroid/graphics/Bitmap;
+; v0 : Landroid/graphics/Bitmap; , v4 : Lcom/a/b/d;
+	if-nez	v0,l785b6
+; v0 : Landroid/graphics/Bitmap;
+.line 86
+	iget-object	v0,v4,com/a/b/d.b Lcom/a/b/o;
+; v0 : Lcom/a/b/o; , v4 : Lcom/a/b/d;
+	invoke-virtual	{v0,v4},com/a/b/o/c	; c(Lcom/a/b/d;)V
+; v0 : Lcom/a/b/o; , v4 : Lcom/a/b/d;
+l785a2:
+.line 105
+	invoke-static	{},java/lang/Thread/currentThread	; currentThread()Ljava/lang/Thread;
+; 
+	nop	
+	move-result-object	v0
+; v0 : Ljava/lang/Thread;
+	const-string	v1,"Picasso-Idle"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/Thread/setName	; setName(Ljava/lang/String;)V
+; v0 : Ljava/lang/Thread; , v1 : Ljava/lang/String;
+l785b4:
+.line 107
+	return-void	
+l785b6:
+.line 88
+	iget-object	v0,v4,com/a/b/d.b Lcom/a/b/o;
+; v0 : Lcom/a/b/o; , v4 : Lcom/a/b/d;
+	invoke-virtual	{v0,v4},com/a/b/o/a	; a(Lcom/a/b/d;)V
+; v0 : Lcom/a/b/o; , v4 : Lcom/a/b/d;
+l785c0:
+	goto	l785a2
+l785c2:
+.line 90
+	move-exception	v0
+; v0 : com/a/b/v
+l785c4:
+.line 91
+	iput-object	v0,v4,com/a/b/d.l Ljava/lang/Exception;
+; v0 : com/a/b/v , v4 : Lcom/a/b/d;
+.line 92
+	iget-object	v0,v4,com/a/b/d.b Lcom/a/b/o;
+; v0 : Lcom/a/b/o; , v4 : Lcom/a/b/d;
+	invoke-virtual	{v0,v4},com/a/b/o/c	; c(Lcom/a/b/d;)V
+; v0 : Lcom/a/b/o; , v4 : Lcom/a/b/d;
+l785d2:
+.line 105
+	invoke-static	{},java/lang/Thread/currentThread	; currentThread()Ljava/lang/Thread;
+; 
+	nop	
+	move-result-object	v0
+; v0 : Ljava/lang/Thread;
+	const-string	v1,"Picasso-Idle"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/Thread/setName	; setName(Ljava/lang/String;)V
+; v0 : Ljava/lang/Thread; , v1 : Ljava/lang/String;
+	goto	l785b4
+l785e6:
+.line 93
+	move-exception	v0
+; v0 : java/io/IOException
+l785e8:
+.line 94
+	iput-object	v0,v4,com/a/b/d.l Ljava/lang/Exception;
+; v0 : java/io/IOException , v4 : Lcom/a/b/d;
+.line 95
+	iget-object	v0,v4,com/a/b/d.b Lcom/a/b/o;
+; v0 : Lcom/a/b/o; , v4 : Lcom/a/b/d;
+	invoke-virtual	{v0,v4},com/a/b/o/b	; b(Lcom/a/b/d;)V
+; v0 : Lcom/a/b/o; , v4 : Lcom/a/b/d;
+l785f6:
+.line 105
+	invoke-static	{},java/lang/Thread/currentThread	; currentThread()Ljava/lang/Thread;
+; 
+	nop	
+	move-result-object	v0
+; v0 : Ljava/lang/Thread;
+	const-string	v1,"Picasso-Idle"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/Thread/setName	; setName(Ljava/lang/String;)V
+; v0 : Ljava/lang/Thread; , v1 : Ljava/lang/String;
+	goto	l785b4
+l7860a:
+.line 96
+	move-exception	v0
+; v0 : java/lang/OutOfMemoryError
+l7860c:
+.line 97
+	new-instance	v1,java/io/StringWriter
+; v1 : Ljava/io/StringWriter;
+	invoke-direct	{v1},java/io/StringWriter/<init>	; <init>()V
+; v1 : Ljava/io/StringWriter;
+.line 98
+	iget-object	v2,v4,com/a/b/d.d Lcom/a/b/au;
+; v2 : Lcom/a/b/au; , v4 : Lcom/a/b/d;
+	invoke-virtual	{v2},com/a/b/au/e	; e()Lcom/a/b/ax;
+; v2 : Lcom/a/b/au;
+	move-result-object	v2
+; v2 : Lcom/a/b/ax;
+	new-instance	v3,java/io/PrintWriter
+; v3 : Ljava/io/PrintWriter;
+	invoke-direct	{v3,v1},java/io/PrintWriter/<init>	; <init>(Ljava/io/Writer;)V
+; v3 : Ljava/io/PrintWriter; , v1 : Ljava/io/StringWriter;
+	invoke-virtual	{v2,v3},com/a/b/ax/a	; a(Ljava/io/PrintWriter;)V
+; v2 : Lcom/a/b/ax; , v3 : Ljava/io/PrintWriter;
+.line 99
+	new-instance	v2,java/lang/RuntimeException
+; v2 : Ljava/lang/RuntimeException;
+	invoke-virtual	{v1},java/io/StringWriter/toString	; toString()Ljava/lang/String;
+; v1 : Ljava/io/StringWriter;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-direct	{v2,v1,v0},java/lang/RuntimeException/<init>	; <init>(Ljava/lang/String;Ljava/lang/Throwable;)V
+; v2 : Ljava/lang/RuntimeException; , v1 : Ljava/lang/String; , v0 : java/lang/OutOfMemoryError
+	iput-object	v2,v4,com/a/b/d.l Ljava/lang/Exception;
+; v2 : Ljava/lang/RuntimeException; , v4 : Lcom/a/b/d;
+.line 100
+	iget-object	v0,v4,com/a/b/d.b Lcom/a/b/o;
+; v0 : Lcom/a/b/o; , v4 : Lcom/a/b/d;
+	invoke-virtual	{v0,v4},com/a/b/o/c	; c(Lcom/a/b/d;)V
+; v0 : Lcom/a/b/o; , v4 : Lcom/a/b/d;
+l78652:
+.line 105
+	invoke-static	{},java/lang/Thread/currentThread	; currentThread()Ljava/lang/Thread;
+; 
+	nop	
+	move-result-object	v0
+; v0 : Ljava/lang/Thread;
+	const-string	v1,"Picasso-Idle"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/Thread/setName	; setName(Ljava/lang/String;)V
+; v0 : Ljava/lang/Thread; , v1 : Ljava/lang/String;
+	goto	l785b4
+l78666:
+.line 101
+	move-exception	v0
+; v0 : java/lang/Exception
+l78668:
+.line 102
+	iput-object	v0,v4,com/a/b/d.l Ljava/lang/Exception;
+; v0 : java/lang/Exception , v4 : Lcom/a/b/d;
+.line 103
+	iget-object	v0,v4,com/a/b/d.b Lcom/a/b/o;
+; v0 : Lcom/a/b/o; , v4 : Lcom/a/b/d;
+	invoke-virtual	{v0,v4},com/a/b/o/c	; c(Lcom/a/b/d;)V
+; v0 : Lcom/a/b/o; , v4 : Lcom/a/b/d;
+l78676:
+.line 105
+	invoke-static	{},java/lang/Thread/currentThread	; currentThread()Ljava/lang/Thread;
+; 
+	nop	
+	move-result-object	v0
+; v0 : Ljava/lang/Thread;
+	const-string	v1,"Picasso-Idle"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/Thread/setName	; setName(Ljava/lang/String;)V
+; v0 : Ljava/lang/Thread; , v1 : Ljava/lang/String;
+	goto	l785b4
+l7868a:
+	move-exception	v0
+; v0 : java/lang/Exception
+	invoke-static	{},java/lang/Thread/currentThread	; currentThread()Ljava/lang/Thread;
+; 
+	nop	
+	move-result-object	v1
+; v1 : Ljava/lang/Thread;
+	const-string	v2,"Picasso-Idle"
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/Thread/setName	; setName(Ljava/lang/String;)V
+; v1 : Ljava/lang/Thread; , v2 : Ljava/lang/String;
+	throw	v0
+; v0 : java/lang/Exception
+.end method
+
+

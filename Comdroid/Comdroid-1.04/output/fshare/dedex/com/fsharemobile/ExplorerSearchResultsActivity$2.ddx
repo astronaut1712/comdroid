@@ -1,0 +1,445 @@
+.class com/fsharemobile/ExplorerSearchResultsActivity$2
+.super java/lang/Object
+.source ExplorerSearchResultsActivity.java
+.implements android/widget/AdapterView$OnItemClickListener
+
+.enclosing method com/onCreate(Landroid/os/Bundle;)V
+.annotation systemVisibility Ldalvik/annotation/Signature;
+  value [Ljava/lang/String; = { "Ljava/lang/Object;" , "Landroid/widget/AdapterView$OnItemClickListener;" }
+.end annotation
+
+.field final this$0 Lcom/fsharemobile/ExplorerSearchResultsActivity;
+
+.method <init>(Lcom/fsharemobile/ExplorerSearchResultsActivity;)V
+.limit registers 2
+; this: v0 (Lcom/fsharemobile/ExplorerSearchResultsActivity$2;)
+; parameter[0] : v1 (Lcom/fsharemobile/ExplorerSearchResultsActivity;)
+.line 1
+	iput-object	v1,v0,com/fsharemobile/ExplorerSearchResultsActivity$2.this$0 Lcom/fsharemobile/ExplorerSearchResultsActivity;
+; v1 : Lcom/fsharemobile/ExplorerSearchResultsActivity; , v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity$2;
+.line 275
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity$2;
+	return-void	
+.end method
+
+.method static access$0(Lcom/fsharemobile/ExplorerSearchResultsActivity$2;)Lcom/fsharemobile/ExplorerSearchResultsActivity;
+.limit registers 2
+; parameter[0] : v1 (Lcom/fsharemobile/ExplorerSearchResultsActivity$2;)
+.line 275
+	iget-object	v0,v1,com/fsharemobile/ExplorerSearchResultsActivity$2.this$0 Lcom/fsharemobile/ExplorerSearchResultsActivity;
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity; , v1 : Lcom/fsharemobile/ExplorerSearchResultsActivity$2;
+	return-object	v0
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity;
+.end method
+
+.method public onItemClick(Landroid/widget/AdapterView;Landroid/view/View;IJ)V
+.annotation buildVisibility Landroid/annotation/SuppressLint;
+    value [Ljava/lang/String; = { "DefaultLocale" }
+.end annotation
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "(" , "Landroid/widget/AdapterView" , "<*>;" , "Landroid/view/View;" , "IJ)V" }
+.end annotation
+.limit registers 18
+; this: v12 (Lcom/fsharemobile/ExplorerSearchResultsActivity$2;)
+; parameter[0] : v13 (Landroid/widget/AdapterView;)
+; parameter[1] : v14 (Landroid/view/View;)
+; parameter[2] : v15 (I)
+; parameter[3] : v16 (J)
+.catch java/lang/Exception from l8f252 to l8f284 using l8f288
+.catch java/lang/Exception from l8f1da to l8f200 using l8f294
+.var 8 is path Ljava/lang/String; from l8f064 to l8f166
+.var 8 is path Ljava/lang/String; from l8f17a to l8f1be
+.var 2 is type_name Ljava/lang/String; from l8f204 to l8f294
+.var 3 is fileId Ljava/lang/String; from l8f21c to l8f294
+.var 5 is id I from l8f23c to l8f294
+.var 6 is e Ljava/lang/Exception; from l8f28a to l8f294
+.line 283
+	iget-object	v0,v12,com/fsharemobile/ExplorerSearchResultsActivity$2.this$0 Lcom/fsharemobile/ExplorerSearchResultsActivity;
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity; , v12 : Lcom/fsharemobile/ExplorerSearchResultsActivity$2;
+	iget-boolean	v0,v0,com/fsharemobile/ExplorerSearchResultsActivity.isClicked Z
+; v0 : single-length , v0 : single-length
+	if-eqz	v0,l8f168
+; v0 : single-length
+.line 284
+	const-string	v0,"Is clicked"
+; v0 : Ljava/lang/String;
+	const-string	v1,"trure"
+; v1 : Ljava/lang/String;
+	invoke-static	{v0,v1},android/util/Log/i	; i(Ljava/lang/String;Ljava/lang/String;)I
+; v0 : Ljava/lang/String; , v1 : Ljava/lang/String;
+l8f01a:
+.line 288
+	iget-object	v0,v12,com/fsharemobile/ExplorerSearchResultsActivity$2.this$0 Lcom/fsharemobile/ExplorerSearchResultsActivity;
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity; , v12 : Lcom/fsharemobile/ExplorerSearchResultsActivity$2;
+	iget-object	v0,v0,com/fsharemobile/ExplorerSearchResultsActivity.explorerAdapter Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	invoke-virtual	{v0,v15},com/fsharemobile/adapter/ExplorerArrayAdapter/getItem	; getItem(I)Lcom/fsharemobile/model/File;
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v15 : single-length
+	move-result-object	v0
+; v0 : Lcom/fsharemobile/model/File;
+	invoke-virtual	{v0},com/fsharemobile/model/File/getmType	; getmType()Ljava/lang/String;
+; v0 : Lcom/fsharemobile/model/File;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	const-string	v1,"0"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/String/compareTo	; compareTo(Ljava/lang/String;)I
+; v0 : Ljava/lang/String; , v1 : Ljava/lang/String;
+	move-result	v0
+; v0 : single-length
+	if-nez	v0,l8f1be
+; v0 : single-length
+.line 291
+	iget-object	v0,v12,com/fsharemobile/ExplorerSearchResultsActivity$2.this$0 Lcom/fsharemobile/ExplorerSearchResultsActivity;
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity; , v12 : Lcom/fsharemobile/ExplorerSearchResultsActivity$2;
+	iget-object	v0,v0,com/fsharemobile/ExplorerSearchResultsActivity.explorerAdapter Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	invoke-virtual	{v0,v15},com/fsharemobile/adapter/ExplorerArrayAdapter/getItem	; getItem(I)Lcom/fsharemobile/model/File;
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v15 : single-length
+	move-result-object	v0
+; v0 : Lcom/fsharemobile/model/File;
+	invoke-virtual	{v0},com/fsharemobile/model/File/getmName	; getmName()Ljava/lang/String;
+; v0 : Lcom/fsharemobile/model/File;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	invoke-static	{v0},com/fsharemobile/ExplorerSearchResultsActivity/access$4	; access$4(Ljava/lang/String;)V
+; v0 : Ljava/lang/String;
+.line 292
+	const-string	v8,""
+; v8 : Ljava/lang/String;
+.line 293
+	iget-object	v0,v12,com/fsharemobile/ExplorerSearchResultsActivity$2.this$0 Lcom/fsharemobile/ExplorerSearchResultsActivity;
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity; , v12 : Lcom/fsharemobile/ExplorerSearchResultsActivity$2;
+	iget-object	v1,v12,com/fsharemobile/ExplorerSearchResultsActivity$2.this$0 Lcom/fsharemobile/ExplorerSearchResultsActivity;
+; v1 : Lcom/fsharemobile/ExplorerSearchResultsActivity; , v12 : Lcom/fsharemobile/ExplorerSearchResultsActivity$2;
+	iget-object	v1,v1,com/fsharemobile/ExplorerSearchResultsActivity.explorerAdapter Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+; v1 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v1 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	invoke-virtual	{v1,v15},com/fsharemobile/adapter/ExplorerArrayAdapter/getItem	; getItem(I)Lcom/fsharemobile/model/File;
+; v1 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v15 : single-length
+	move-result-object	v1
+; v1 : Lcom/fsharemobile/model/File;
+	invoke-virtual	{v1},com/fsharemobile/model/File/getmPath	; getmPath()Ljava/lang/String;
+; v1 : Lcom/fsharemobile/model/File;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-static	{v0,v1},com/fsharemobile/ExplorerSearchResultsActivity/access$5	; access$5(Lcom/fsharemobile/ExplorerSearchResultsActivity;Ljava/lang/String;)Z
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity; , v1 : Ljava/lang/String;
+	move-result	v0
+; v0 : single-length
+	if-nez	v0,l8f17a
+; v0 : single-length
+.line 294
+	new-instance	v0,java/lang/StringBuilder
+; v0 : Ljava/lang/StringBuilder;
+	iget-object	v1,v12,com/fsharemobile/ExplorerSearchResultsActivity$2.this$0 Lcom/fsharemobile/ExplorerSearchResultsActivity;
+; v1 : Lcom/fsharemobile/ExplorerSearchResultsActivity; , v12 : Lcom/fsharemobile/ExplorerSearchResultsActivity$2;
+	iget-object	v1,v1,com/fsharemobile/ExplorerSearchResultsActivity.explorerAdapter Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+; v1 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v1 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	invoke-virtual	{v1,v15},com/fsharemobile/adapter/ExplorerArrayAdapter/getItem	; getItem(I)Lcom/fsharemobile/model/File;
+; v1 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v15 : single-length
+	move-result-object	v1
+; v1 : Lcom/fsharemobile/model/File;
+	invoke-virtual	{v1},com/fsharemobile/model/File/getmPath	; getmPath()Ljava/lang/String;
+; v1 : Lcom/fsharemobile/model/File;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-static	{v1},java/lang/String/valueOf	; valueOf(Ljava/lang/Object;)Ljava/lang/String;
+; v1 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/StringBuilder/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/StringBuilder; , v1 : Ljava/lang/String;
+	const-string	v1,"/"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v1 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+.line 295
+	invoke-static	{},com/fsharemobile/ExplorerSearchResultsActivity/access$6	; access$6()Ljava/lang/String;
+; 
+	nop	
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v1 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+.line 294
+	invoke-virtual	{v0},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v0 : Ljava/lang/StringBuilder;
+	move-result-object	v8
+; v8 : Ljava/lang/String;
+l8f0da:
+.line 304
+	iget-object	v0,v12,com/fsharemobile/ExplorerSearchResultsActivity$2.this$0 Lcom/fsharemobile/ExplorerSearchResultsActivity;
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity; , v12 : Lcom/fsharemobile/ExplorerSearchResultsActivity$2;
+	iget-object	v1,v12,com/fsharemobile/ExplorerSearchResultsActivity$2.this$0 Lcom/fsharemobile/ExplorerSearchResultsActivity;
+; v1 : Lcom/fsharemobile/ExplorerSearchResultsActivity; , v12 : Lcom/fsharemobile/ExplorerSearchResultsActivity$2;
+	iget-object	v1,v1,com/fsharemobile/ExplorerSearchResultsActivity.explorerAdapter Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+; v1 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v1 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	invoke-virtual	{v1,v15},com/fsharemobile/adapter/ExplorerArrayAdapter/getItem	; getItem(I)Lcom/fsharemobile/model/File;
+; v1 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v15 : single-length
+	move-result-object	v1
+; v1 : Lcom/fsharemobile/model/File;
+	invoke-virtual	{v1},com/fsharemobile/model/File/getmLinkCode	; getmLinkCode()Ljava/lang/String;
+; v1 : Lcom/fsharemobile/model/File;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-static	{v0,v1},com/fsharemobile/ExplorerSearchResultsActivity/access$7	; access$7(Lcom/fsharemobile/ExplorerSearchResultsActivity;Ljava/lang/String;)V
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity; , v1 : Ljava/lang/String;
+.line 305
+	iget-object	v0,v12,com/fsharemobile/ExplorerSearchResultsActivity$2.this$0 Lcom/fsharemobile/ExplorerSearchResultsActivity;
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity; , v12 : Lcom/fsharemobile/ExplorerSearchResultsActivity$2;
+	iget-object	v0,v0,com/fsharemobile/ExplorerSearchResultsActivity.stFile Ljava/util/Stack;
+; v0 : Ljava/util/Stack; , v0 : Ljava/util/Stack;
+	iget-object	v1,v12,com/fsharemobile/ExplorerSearchResultsActivity$2.this$0 Lcom/fsharemobile/ExplorerSearchResultsActivity;
+; v1 : Lcom/fsharemobile/ExplorerSearchResultsActivity; , v12 : Lcom/fsharemobile/ExplorerSearchResultsActivity$2;
+	iget-object	v1,v1,com/fsharemobile/ExplorerSearchResultsActivity.explorerAdapter Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+; v1 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v1 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	invoke-virtual	{v1,v15},com/fsharemobile/adapter/ExplorerArrayAdapter/getItem	; getItem(I)Lcom/fsharemobile/model/File;
+; v1 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v15 : single-length
+	move-result-object	v1
+; v1 : Lcom/fsharemobile/model/File;
+	invoke-virtual	{v0,v1},java/util/Stack/push	; push(Ljava/lang/Object;)Ljava/lang/Object;
+; v0 : Ljava/util/Stack; , v1 : Lcom/fsharemobile/model/File;
+.line 308
+	iget-object	v0,v12,com/fsharemobile/ExplorerSearchResultsActivity$2.this$0 Lcom/fsharemobile/ExplorerSearchResultsActivity;
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity; , v12 : Lcom/fsharemobile/ExplorerSearchResultsActivity$2;
+	iget-object	v0,v0,com/fsharemobile/ExplorerSearchResultsActivity.explorerAdapter Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	invoke-virtual	{v0},com/fsharemobile/adapter/ExplorerArrayAdapter/clear	; clear()V
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+.line 309
+	iget-object	v0,v12,com/fsharemobile/ExplorerSearchResultsActivity$2.this$0 Lcom/fsharemobile/ExplorerSearchResultsActivity;
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity; , v12 : Lcom/fsharemobile/ExplorerSearchResultsActivity$2;
+	const/4	v1,0
+; v1 : single-length
+	invoke-static	{v0,v1},com/fsharemobile/ExplorerSearchResultsActivity/access$8	; access$8(Lcom/fsharemobile/ExplorerSearchResultsActivity;Z)V
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity; , v1 : single-length
+.line 310
+	iget-object	v0,v12,com/fsharemobile/ExplorerSearchResultsActivity$2.this$0 Lcom/fsharemobile/ExplorerSearchResultsActivity;
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity; , v12 : Lcom/fsharemobile/ExplorerSearchResultsActivity$2;
+	const/4	v1,0
+; v1 : single-length
+	const/4	v10,0
+; v10 : single-length
+	invoke-static	{v0,v1,v10,v8},com/fsharemobile/ExplorerSearchResultsActivity/access$9	; access$9(Lcom/fsharemobile/ExplorerSearchResultsActivity;IILjava/lang/String;)V
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity; , v1 : single-length , v10 : single-length , v8 : Ljava/lang/String;
+.line 311
+	invoke-static	{v8},com/fsharemobile/ExplorerSearchResultsActivity/access$10	; access$10(Ljava/lang/String;)V
+; v8 : Ljava/lang/String;
+.line 312
+	const/4	v0,0
+; v0 : single-length
+	invoke-static	{v0},com/fsharemobile/ExplorerSearchResultsActivity/access$11	; access$11(I)V
+; v0 : single-length
+.line 313
+	iget-object	v0,v12,com/fsharemobile/ExplorerSearchResultsActivity$2.this$0 Lcom/fsharemobile/ExplorerSearchResultsActivity;
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity; , v12 : Lcom/fsharemobile/ExplorerSearchResultsActivity$2;
+	const/4	v1,0
+; v1 : single-length
+	invoke-static	{v0,v1},com/fsharemobile/ExplorerSearchResultsActivity/access$12	; access$12(Lcom/fsharemobile/ExplorerSearchResultsActivity;I)V
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity; , v1 : single-length
+.line 314
+	iget-object	v0,v12,com/fsharemobile/ExplorerSearchResultsActivity$2.this$0 Lcom/fsharemobile/ExplorerSearchResultsActivity;
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity; , v12 : Lcom/fsharemobile/ExplorerSearchResultsActivity$2;
+	const/4	v1,0
+; v1 : single-length
+	iput-boolean	v1,v0,com/fsharemobile/ExplorerSearchResultsActivity.isClicked Z
+; v1 : single-length , v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity;
+l8f166:
+.line 377
+	return-void	
+l8f168:
+.line 286
+	const-string	v0,"Is clicked"
+; v0 : Ljava/lang/String;
+	const-string	v1,"false"
+; v1 : Ljava/lang/String;
+	invoke-static	{v0,v1},android/util/Log/i	; i(Ljava/lang/String;Ljava/lang/String;)I
+; v0 : Ljava/lang/String; , v1 : Ljava/lang/String;
+	goto/16	l8f01a
+l8f17a:
+.line 298
+	new-instance	v0,java/lang/StringBuilder
+; v0 : Ljava/lang/StringBuilder;
+	iget-object	v1,v12,com/fsharemobile/ExplorerSearchResultsActivity$2.this$0 Lcom/fsharemobile/ExplorerSearchResultsActivity;
+; v1 : Lcom/fsharemobile/ExplorerSearchResultsActivity; , v12 : Lcom/fsharemobile/ExplorerSearchResultsActivity$2;
+	iget-object	v1,v1,com/fsharemobile/ExplorerSearchResultsActivity.explorerAdapter Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+; v1 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v1 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	invoke-virtual	{v1,v15},com/fsharemobile/adapter/ExplorerArrayAdapter/getItem	; getItem(I)Lcom/fsharemobile/model/File;
+; v1 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v15 : single-length
+	move-result-object	v1
+; v1 : Lcom/fsharemobile/model/File;
+	invoke-virtual	{v1},com/fsharemobile/model/File/getmPath	; getmPath()Ljava/lang/String;
+; v1 : Lcom/fsharemobile/model/File;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-static	{v1},java/lang/String/valueOf	; valueOf(Ljava/lang/Object;)Ljava/lang/String;
+; v1 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/StringBuilder/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/StringBuilder; , v1 : Ljava/lang/String;
+.line 299
+	invoke-static	{},com/fsharemobile/ExplorerSearchResultsActivity/access$6	; access$6()Ljava/lang/String;
+; 
+	nop	
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v1 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+.line 298
+	invoke-virtual	{v0},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v0 : Ljava/lang/StringBuilder;
+	move-result-object	v8
+; v8 : Ljava/lang/String;
+	goto	l8f0da
+l8f1be:
+.line 317
+	iget-object	v0,v12,com/fsharemobile/ExplorerSearchResultsActivity$2.this$0 Lcom/fsharemobile/ExplorerSearchResultsActivity;
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity; , v12 : Lcom/fsharemobile/ExplorerSearchResultsActivity$2;
+	iget-object	v0,v0,com/fsharemobile/ExplorerSearchResultsActivity.explorerAdapter Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	invoke-virtual	{v0,v15},com/fsharemobile/adapter/ExplorerArrayAdapter/getItem	; getItem(I)Lcom/fsharemobile/model/File;
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v15 : single-length
+	move-result-object	v0
+; v0 : Lcom/fsharemobile/model/File;
+.line 318
+	invoke-virtual	{v0},com/fsharemobile/model/File/getmName	; getmName()Ljava/lang/String;
+; v0 : Lcom/fsharemobile/model/File;
+	move-result-object	v4
+; v4 : Ljava/lang/String;
+.line 319
+	const-string	v9,""
+; v9 : Ljava/lang/String;
+l8f1da:
+.line 321
+	iget-object	v0,v12,com/fsharemobile/ExplorerSearchResultsActivity$2.this$0 Lcom/fsharemobile/ExplorerSearchResultsActivity;
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity; , v12 : Lcom/fsharemobile/ExplorerSearchResultsActivity$2;
+	iget-object	v0,v0,com/fsharemobile/ExplorerSearchResultsActivity.explorerAdapter Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	iget-object	v1,v12,com/fsharemobile/ExplorerSearchResultsActivity$2.this$0 Lcom/fsharemobile/ExplorerSearchResultsActivity;
+; v1 : Lcom/fsharemobile/ExplorerSearchResultsActivity; , v12 : Lcom/fsharemobile/ExplorerSearchResultsActivity$2;
+	iget-object	v1,v1,com/fsharemobile/ExplorerSearchResultsActivity.explorerAdapter Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+; v1 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v1 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+.line 322
+	invoke-virtual	{v1,v4},com/fsharemobile/adapter/ExplorerArrayAdapter/getExt	; getExt(Ljava/lang/String;)Ljava/lang/String;
+; v1 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v4 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v1},java/lang/String/toLowerCase	; toLowerCase()Ljava/lang/String;
+; v1 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+.line 321
+	invoke-virtual	{v0,v1},com/fsharemobile/adapter/ExplorerArrayAdapter/getType	; getType(Ljava/lang/String;)Ljava/lang/String;
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v1 : Ljava/lang/String;
+l8f200:
+	move-result-object	v9
+; v9 : Ljava/lang/String;
+l8f202:
+.line 326
+	move-object	v2,v9
+; v2 : Ljava/lang/String; , v9 : Ljava/lang/String;
+.line 328
+	iget-object	v0,v12,com/fsharemobile/ExplorerSearchResultsActivity$2.this$0 Lcom/fsharemobile/ExplorerSearchResultsActivity;
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity; , v12 : Lcom/fsharemobile/ExplorerSearchResultsActivity$2;
+	iget-object	v0,v0,com/fsharemobile/ExplorerSearchResultsActivity.explorerAdapter Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	invoke-virtual	{v0,v15},com/fsharemobile/adapter/ExplorerArrayAdapter/getItem	; getItem(I)Lcom/fsharemobile/model/File;
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v15 : single-length
+	move-result-object	v0
+; v0 : Lcom/fsharemobile/model/File;
+.line 329
+	invoke-virtual	{v0},com/fsharemobile/model/File/getmLinkCode	; getmLinkCode()Ljava/lang/String;
+; v0 : Lcom/fsharemobile/model/File;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+.line 330
+	iget-object	v0,v12,com/fsharemobile/ExplorerSearchResultsActivity$2.this$0 Lcom/fsharemobile/ExplorerSearchResultsActivity;
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity; , v12 : Lcom/fsharemobile/ExplorerSearchResultsActivity$2;
+	iget-object	v0,v0,com/fsharemobile/ExplorerSearchResultsActivity.explorerAdapter Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	invoke-virtual	{v0,v15},com/fsharemobile/adapter/ExplorerArrayAdapter/getItem	; getItem(I)Lcom/fsharemobile/model/File;
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v15 : single-length
+	move-result-object	v0
+; v0 : Lcom/fsharemobile/model/File;
+.line 331
+	invoke-virtual	{v0},com/fsharemobile/model/File/getmId	; getmId()Ljava/lang/String;
+; v0 : Lcom/fsharemobile/model/File;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+.line 330
+	invoke-static	{v0},java/lang/Integer/parseInt	; parseInt(Ljava/lang/String;)I
+; v0 : Ljava/lang/String;
+	move-result	v5
+; v5 : single-length
+.line 333
+	iget-object	v0,v12,com/fsharemobile/ExplorerSearchResultsActivity$2.this$0 Lcom/fsharemobile/ExplorerSearchResultsActivity;
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity; , v12 : Lcom/fsharemobile/ExplorerSearchResultsActivity$2;
+	iget-boolean	v0,v0,com/fsharemobile/ExplorerSearchResultsActivity.isClicked Z
+; v0 : single-length , v0 : single-length
+	if-nez	v0,l8f166
+; v0 : single-length
+.line 334
+	iget-object	v0,v12,com/fsharemobile/ExplorerSearchResultsActivity$2.this$0 Lcom/fsharemobile/ExplorerSearchResultsActivity;
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity; , v12 : Lcom/fsharemobile/ExplorerSearchResultsActivity$2;
+	const/4	v1,1
+; v1 : single-length
+	iput-boolean	v1,v0,com/fsharemobile/ExplorerSearchResultsActivity.isClicked Z
+; v1 : single-length , v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity;
+l8f252:
+.line 336
+	iget-object	v0,v12,com/fsharemobile/ExplorerSearchResultsActivity$2.this$0 Lcom/fsharemobile/ExplorerSearchResultsActivity;
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity; , v12 : Lcom/fsharemobile/ExplorerSearchResultsActivity$2;
+	iget-object	v10,v0,com/fsharemobile/ExplorerSearchResultsActivity.sesProxy Lcom/fsharemobile/client/SessionProxy;
+; v10 : Lcom/fsharemobile/client/SessionProxy; , v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity;
+	iget-object	v0,v12,com/fsharemobile/ExplorerSearchResultsActivity$2.this$0 Lcom/fsharemobile/ExplorerSearchResultsActivity;
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity; , v12 : Lcom/fsharemobile/ExplorerSearchResultsActivity$2;
+	iget-object	v0,v0,com/fsharemobile/ExplorerSearchResultsActivity.explorerAdapter Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+.line 337
+	invoke-virtual	{v0,v15},com/fsharemobile/adapter/ExplorerArrayAdapter/getItem	; getItem(I)Lcom/fsharemobile/model/File;
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v15 : single-length
+	move-result-object	v0
+; v0 : Lcom/fsharemobile/model/File;
+	invoke-virtual	{v0},com/fsharemobile/model/File/getmLinkCode	; getmLinkCode()Ljava/lang/String;
+; v0 : Lcom/fsharemobile/model/File;
+	move-result-object	v11
+; v11 : Ljava/lang/String;
+.line 338
+	new-instance	v0,com/fsharemobile/ExplorerSearchResultsActivity$2$1
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity$2$1;
+	move-object	v1,v12
+; v1 : Lcom/fsharemobile/ExplorerSearchResultsActivity$2; , v12 : Lcom/fsharemobile/ExplorerSearchResultsActivity$2;
+	invoke-direct/range	{v0..v5},com/fsharemobile/ExplorerSearchResultsActivity$2$1/<init>;	<init>(Lcom/fsharemobile/ExplorerSearchResultsActivity$2;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;I)V
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity$2$1; , v1 : Lcom/fsharemobile/ExplorerSearchResultsActivity$2; , v2 : Ljava/lang/String; , v3 : Ljava/lang/String; , v4 : Ljava/lang/String; , v5 : single-length
+.line 336
+	invoke-virtual	{v10,v11,v0},com/fsharemobile/client/SessionProxy/createDownloadSession	; createDownloadSession(Ljava/lang/String;Lcom/fsharemobile/client/SessionProxy$OnCreateDLSessionCompleted;)V
+; v10 : Lcom/fsharemobile/client/SessionProxy; , v11 : Ljava/lang/String; , v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity$2$1;
+l8f284:
+	goto/16	l8f166
+l8f288:
+.line 372
+	move-exception	v6
+; v6 : java/lang/Exception
+.line 373
+	invoke-virtual	{v6},java/lang/Exception/printStackTrace	; printStackTrace()V
+; v6 : java/lang/Exception
+	goto/16	l8f166
+l8f294:
+.line 323
+	move-exception	v7
+; v7 : java/lang/Exception
+.line 324
+	invoke-virtual	{v7},java/lang/Exception/printStackTrace	; printStackTrace()V
+; v7 : java/lang/Exception
+	goto	l8f202
+.end method
+
+

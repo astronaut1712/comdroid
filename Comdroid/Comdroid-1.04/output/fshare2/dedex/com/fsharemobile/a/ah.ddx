@@ -1,0 +1,104 @@
+.class com/fsharemobile/a/ah
+.super java/lang/Object
+.source MyApplication
+.implements com/fsharemobile/a/b
+
+.field final a Lcom/fsharemobile/a/af;
+.field private final b Lcom/fsharemobile/a/aj;
+
+.method <init>(Lcom/fsharemobile/a/af;Lcom/fsharemobile/a/aj;)V
+.limit registers 3
+; this: v0 (Lcom/fsharemobile/a/ah;)
+; parameter[0] : v1 (Lcom/fsharemobile/a/af;)
+; parameter[1] : v2 (Lcom/fsharemobile/a/aj;)
+.line 1
+	iput-object	v1,v0,com/fsharemobile/a/ah.a Lcom/fsharemobile/a/af;
+; v1 : Lcom/fsharemobile/a/af; , v0 : Lcom/fsharemobile/a/ah;
+	iput-object	v2,v0,com/fsharemobile/a/ah.b Lcom/fsharemobile/a/aj;
+; v2 : Lcom/fsharemobile/a/aj; , v0 : Lcom/fsharemobile/a/ah;
+.line 123
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Lcom/fsharemobile/a/ah;
+	return-void	
+.end method
+
+.method public a(Lcom/fsharemobile/a/y;)V
+.limit registers 6
+; this: v4 (Lcom/fsharemobile/a/ah;)
+; parameter[0] : v5 (Lcom/fsharemobile/a/y;)
+.catch java/lang/Exception from l814b0 to l814f2 using l81500
+.line 127
+.line 129
+	const-string	v0,""
+; v0 : Ljava/lang/String;
+l814b0:
+.line 132
+	invoke-virtual	{v5},com/fsharemobile/a/y/c	; c()I
+; v5 : Lcom/fsharemobile/a/y;
+	move-result	v1
+; v1 : single-length
+.line 133
+	invoke-virtual	{v5},com/fsharemobile/a/y/c	; c()I
+; v5 : Lcom/fsharemobile/a/y;
+	move-result	v2
+; v2 : single-length
+	const/16	v3,200
+; v3 : single-length
+	if-eq	v2,v3,l814d4
+; v2 : single-length , v3 : single-length
+.line 134
+	iget-object	v2,v4,com/fsharemobile/a/ah.b Lcom/fsharemobile/a/aj;
+; v2 : Lcom/fsharemobile/a/aj; , v4 : Lcom/fsharemobile/a/ah;
+	invoke-interface	{v2,v1,v0},com/fsharemobile/a/aj/a	; a(ILjava/lang/String;)V
+; v2 : Lcom/fsharemobile/a/aj; , v1 : single-length , v0 : Ljava/lang/String;
+l814d2:
+.line 146
+	return-void	
+l814d4:
+.line 137
+	new-instance	v2,org/json/JSONObject
+; v2 : Lorg/json/JSONObject;
+	invoke-virtual	{v5},com/fsharemobile/a/y/b	; b()Ljava/lang/String;
+; v5 : Lcom/fsharemobile/a/y;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-direct	{v2,v1},org/json/JSONObject/<init>	; <init>(Ljava/lang/String;)V
+; v2 : Lorg/json/JSONObject; , v1 : Ljava/lang/String;
+.line 138
+	const/4	v1,0
+; v1 : single-length
+.line 139
+	const-string	v3,"location"
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},org/json/JSONObject/getString	; getString(Ljava/lang/String;)Ljava/lang/String;
+; v2 : Lorg/json/JSONObject; , v3 : Ljava/lang/String;
+l814f2:
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+l814f4:
+.line 144
+	iget-object	v2,v4,com/fsharemobile/a/ah.b Lcom/fsharemobile/a/aj;
+; v2 : Lcom/fsharemobile/a/aj; , v4 : Lcom/fsharemobile/a/ah;
+	invoke-interface	{v2,v1,v0},com/fsharemobile/a/aj/a	; a(ILjava/lang/String;)V
+; v2 : Lcom/fsharemobile/a/aj; , v1 : single-length , v0 : Ljava/lang/String;
+	goto	l814d2
+l81500:
+.line 140
+	move-exception	v1
+; v1 : java/lang/Exception
+.line 141
+	sget-object	v2,java/lang/System.out Ljava/io/PrintStream;
+; v2 : Ljava/io/PrintStream;
+	invoke-virtual	{v1},java/lang/Exception/toString	; toString()Ljava/lang/String;
+; v1 : java/lang/Exception
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v2,v1},java/io/PrintStream/println	; println(Ljava/lang/String;)V
+; v2 : Ljava/io/PrintStream; , v1 : Ljava/lang/String;
+.line 142
+	const/4	v1,1
+; v1 : single-length
+	goto	l814f4
+.end method
+
+

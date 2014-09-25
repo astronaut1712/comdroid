@@ -1,0 +1,243 @@
+.class public com/fsharemobile/model/LocalFile
+.super java/lang/Object
+.source MyApplication
+.implements android/os/Parcelable
+
+.field public static final CREATOR Landroid/os/Parcelable$Creator;
+.field private a Ljava/lang/String;
+.field private b Ljava/lang/String;
+
+.method static <clinit>()V
+.limit registers 1
+.line 81
+	new-instance	v0,com/fsharemobile/model/c
+; v0 : Lcom/fsharemobile/model/c;
+	invoke-direct	{v0},com/fsharemobile/model/c/<init>	; <init>()V
+; v0 : Lcom/fsharemobile/model/c;
+	sput-object	v0,com/fsharemobile/model/LocalFile.CREATOR Landroid/os/Parcelable$Creator;
+; v0 : Landroid/os/Parcelable$Creator;
+.line 95
+	return-void	
+.end method
+
+.method public <init>()V
+.limit registers 1
+; this: v0 (Lcom/fsharemobile/model/LocalFile;)
+.line 17
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Lcom/fsharemobile/model/LocalFile;
+.line 18
+	return-void	
+.end method
+
+.method private <init>(Landroid/os/Parcel;)V
+.limit registers 3
+; this: v1 (Lcom/fsharemobile/model/LocalFile;)
+; parameter[0] : v2 (Landroid/os/Parcel;)
+.line 63
+	invoke-direct	{v1},java/lang/Object/<init>	; <init>()V
+; v1 : Lcom/fsharemobile/model/LocalFile;
+.line 64
+	invoke-virtual	{v2},android/os/Parcel/readString	; readString()Ljava/lang/String;
+; v2 : Landroid/os/Parcel;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	iput-object	v0,v1,com/fsharemobile/model/LocalFile.a Ljava/lang/String;
+; v0 : Ljava/lang/String; , v1 : Lcom/fsharemobile/model/LocalFile;
+.line 65
+	invoke-virtual	{v2},android/os/Parcel/readString	; readString()Ljava/lang/String;
+; v2 : Landroid/os/Parcel;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	iput-object	v0,v1,com/fsharemobile/model/LocalFile.b Ljava/lang/String;
+; v0 : Ljava/lang/String; , v1 : Lcom/fsharemobile/model/LocalFile;
+.line 67
+	return-void	
+.end method
+
+.method <init>(Landroid/os/Parcel;Lcom/fsharemobile/model/LocalFile;)V
+.limit registers 3
+; this: v0 (Lcom/fsharemobile/model/LocalFile;)
+; parameter[0] : v1 (Landroid/os/Parcel;)
+; parameter[1] : v2 (Lcom/fsharemobile/model/LocalFile;)
+.line 63
+	invoke-direct	{v0,v1},com/fsharemobile/model/LocalFile/<init>	; <init>(Landroid/os/Parcel;)V
+; v0 : Lcom/fsharemobile/model/LocalFile; , v1 : Landroid/os/Parcel;
+	return-void	
+.end method
+
+.method public a()Ljava/lang/String;
+.limit registers 2
+; this: v1 (Lcom/fsharemobile/model/LocalFile;)
+.line 21
+	iget-object	v0,v1,com/fsharemobile/model/LocalFile.a Ljava/lang/String;
+; v0 : Ljava/lang/String; , v1 : Lcom/fsharemobile/model/LocalFile;
+	return-object	v0
+; v0 : Ljava/lang/String;
+.end method
+
+.method public a(Ljava/lang/String;)V
+.limit registers 2
+; this: v0 (Lcom/fsharemobile/model/LocalFile;)
+; parameter[0] : v1 (Ljava/lang/String;)
+.line 25
+	iput-object	v1,v0,com/fsharemobile/model/LocalFile.a Ljava/lang/String;
+; v1 : Ljava/lang/String; , v0 : Lcom/fsharemobile/model/LocalFile;
+.line 26
+	return-void	
+.end method
+
+.method public b()Ljava/lang/String;
+.limit registers 2
+; this: v1 (Lcom/fsharemobile/model/LocalFile;)
+.line 29
+	iget-object	v0,v1,com/fsharemobile/model/LocalFile.b Ljava/lang/String;
+; v0 : Ljava/lang/String; , v1 : Lcom/fsharemobile/model/LocalFile;
+	return-object	v0
+; v0 : Ljava/lang/String;
+.end method
+
+.method public b(Ljava/lang/String;)V
+.limit registers 2
+; this: v0 (Lcom/fsharemobile/model/LocalFile;)
+; parameter[0] : v1 (Ljava/lang/String;)
+.line 33
+	iput-object	v1,v0,com/fsharemobile/model/LocalFile.b Ljava/lang/String;
+; v1 : Ljava/lang/String; , v0 : Lcom/fsharemobile/model/LocalFile;
+.line 34
+	return-void	
+.end method
+
+.method public describeContents()I
+.limit registers 2
+; this: v1 (Lcom/fsharemobile/model/LocalFile;)
+.line 71
+	const/4	v0,0
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public equals(Ljava/lang/Object;)Z
+.limit registers 6
+; this: v4 (Lcom/fsharemobile/model/LocalFile;)
+; parameter[0] : v5 (Ljava/lang/Object;)
+	const/4	v0,1
+; v0 : single-length
+	const/4	v1,0
+; v1 : single-length
+.line 47
+	if-ne	v4,v5,l922a2
+; v4 : Lcom/fsharemobile/model/LocalFile; , v5 : Ljava/lang/Object;
+l922a0:
+.line 59
+	return	v0
+; v0 : single-length
+l922a2:
+.line 49
+	if-nez	v5,l922aa
+; v5 : Ljava/lang/Object;
+	move	v0,v1
+; v0 : single-length , v1 : single-length
+.line 50
+	goto	l922a0
+l922aa:
+.line 51
+	invoke-virtual	{v4},java/lang/Object/getClass	; getClass()Ljava/lang/Class;
+; v4 : Lcom/fsharemobile/model/LocalFile;
+	move-result-object	v2
+; v2 : Ljava/lang/Class;
+	invoke-virtual	{v5},java/lang/Object/getClass	; getClass()Ljava/lang/Class;
+; v5 : Ljava/lang/Object;
+	move-result-object	v3
+; v3 : Ljava/lang/Class;
+	if-eq	v2,v3,l922c2
+; v2 : Ljava/lang/Class; , v3 : Ljava/lang/Class;
+	move	v0,v1
+; v0 : single-length , v1 : single-length
+.line 52
+	goto	l922a0
+l922c2:
+.line 53
+	check-cast	v5,com/fsharemobile/model/LocalFile
+; v5 : Lcom/fsharemobile/model/LocalFile;
+.line 54
+	iget-object	v2,v4,com/fsharemobile/model/LocalFile.a Ljava/lang/String;
+; v2 : Ljava/lang/String; , v4 : Lcom/fsharemobile/model/LocalFile;
+	if-nez	v2,l922da
+; v2 : Ljava/lang/String;
+.line 55
+	iget-object	v2,v5,com/fsharemobile/model/LocalFile.a Ljava/lang/String;
+; v2 : Ljava/lang/String; , v5 : Lcom/fsharemobile/model/LocalFile;
+	if-eqz	v2,l922a0
+; v2 : Ljava/lang/String;
+	move	v0,v1
+; v0 : single-length , v1 : single-length
+.line 56
+	goto	l922a0
+l922da:
+.line 57
+	iget-object	v2,v4,com/fsharemobile/model/LocalFile.a Ljava/lang/String;
+; v2 : Ljava/lang/String; , v4 : Lcom/fsharemobile/model/LocalFile;
+	iget-object	v3,v5,com/fsharemobile/model/LocalFile.a Ljava/lang/String;
+; v3 : Ljava/lang/String; , v5 : Lcom/fsharemobile/model/LocalFile;
+	invoke-virtual	{v2,v3},java/lang/String/equals	; equals(Ljava/lang/Object;)Z
+; v2 : Ljava/lang/String; , v3 : Ljava/lang/String;
+	move-result	v2
+; v2 : single-length
+	if-nez	v2,l922a0
+; v2 : single-length
+	move	v0,v1
+; v0 : single-length , v1 : single-length
+.line 58
+	goto	l922a0
+.end method
+
+.method public hashCode()I
+.limit registers 2
+; this: v1 (Lcom/fsharemobile/model/LocalFile;)
+.line 39
+.line 41
+	iget-object	v0,v1,com/fsharemobile/model/LocalFile.a Ljava/lang/String;
+; v0 : Ljava/lang/String; , v1 : Lcom/fsharemobile/model/LocalFile;
+	if-nez	v0,l92314
+; v0 : Ljava/lang/String;
+	const/4	v0,0
+; v0 : single-length
+l9230e:
+	add-int/lit8	v0,v0,31
+; v0 : single-length , v0 : single-length
+.line 42
+	return	v0
+; v0 : single-length
+l92314:
+.line 41
+	iget-object	v0,v1,com/fsharemobile/model/LocalFile.a Ljava/lang/String;
+; v0 : Ljava/lang/String; , v1 : Lcom/fsharemobile/model/LocalFile;
+	invoke-virtual	{v0},java/lang/String/hashCode	; hashCode()I
+; v0 : Ljava/lang/String;
+	move-result	v0
+; v0 : single-length
+	goto	l9230e
+.end method
+
+.method public writeToParcel(Landroid/os/Parcel;I)V
+.limit registers 4
+; this: v1 (Lcom/fsharemobile/model/LocalFile;)
+; parameter[0] : v2 (Landroid/os/Parcel;)
+; parameter[1] : v3 (I)
+.line 77
+	iget-object	v0,v1,com/fsharemobile/model/LocalFile.a Ljava/lang/String;
+; v0 : Ljava/lang/String; , v1 : Lcom/fsharemobile/model/LocalFile;
+	invoke-virtual	{v2,v0},android/os/Parcel/writeString	; writeString(Ljava/lang/String;)V
+; v2 : Landroid/os/Parcel; , v0 : Ljava/lang/String;
+.line 78
+	iget-object	v0,v1,com/fsharemobile/model/LocalFile.b Ljava/lang/String;
+; v0 : Ljava/lang/String; , v1 : Lcom/fsharemobile/model/LocalFile;
+	invoke-virtual	{v2,v0},android/os/Parcel/writeString	; writeString(Ljava/lang/String;)V
+; v2 : Landroid/os/Parcel; , v0 : Ljava/lang/String;
+.line 79
+	return-void	
+.end method
+
+

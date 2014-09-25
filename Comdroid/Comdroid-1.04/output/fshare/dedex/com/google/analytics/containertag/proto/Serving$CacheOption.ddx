@@ -1,0 +1,478 @@
+.class public final com/google/analytics/containertag/proto/Serving$CacheOption
+.super com/google/tagmanager/protobuf/nano/ExtendableMessageNano
+.source Serving.java
+
+.inner class CacheOption inner com/google/analytics/containertag/proto/Serving$CacheOption outer com/google/analytics/containertag/proto/Serving
+.inner class CacheLevel inner com/google/analytics/containertag/proto/Serving$CacheOption$CacheLevel outer com/google/analytics/containertag/proto/Serving$CacheOption
+.field public static final EMPTY_ARRAY [Lcom/google/analytics/containertag/proto/Serving$CacheOption;
+.field public expirationSeconds I
+.field public gcacheExpirationSeconds I
+.field public level I
+
+.method static <clinit>()V
+.limit registers 1
+.line 1206
+	const/4	v0,0
+; v0 : single-length
+	new-array	v0,v0,[Lcom/google/analytics/containertag/proto/Serving$CacheOption;
+; v0 : [Lcom/google/analytics/containertag/proto/Serving$CacheOption; , v0 : [Lcom/google/analytics/containertag/proto/Serving$CacheOption;
+	sput-object	v0,com/google/analytics/containertag/proto/Serving$CacheOption.EMPTY_ARRAY [Lcom/google/analytics/containertag/proto/Serving$CacheOption;
+; v0 : [Lcom/google/analytics/containertag/proto/Serving$CacheOption;
+	return-void	
+.end method
+
+.method public <init>()V
+.limit registers 3
+; this: v2 (Lcom/google/analytics/containertag/proto/Serving$CacheOption;)
+	const/4	v1,0
+; v1 : single-length
+.line 1207
+	invoke-direct	{v2},com/google/tagmanager/protobuf/nano/ExtendableMessageNano/<init>	; <init>()V
+; v2 : Lcom/google/analytics/containertag/proto/Serving$CacheOption;
+.line 1216
+	const/4	v0,1
+; v0 : single-length
+	iput	v0,v2,com/google/analytics/containertag/proto/Serving$CacheOption.level I
+; v0 : single-length , v2 : Lcom/google/analytics/containertag/proto/Serving$CacheOption;
+.line 1219
+	iput	v1,v2,com/google/analytics/containertag/proto/Serving$CacheOption.expirationSeconds I
+; v1 : single-length , v2 : Lcom/google/analytics/containertag/proto/Serving$CacheOption;
+.line 1222
+	iput	v1,v2,com/google/analytics/containertag/proto/Serving$CacheOption.gcacheExpirationSeconds I
+; v1 : single-length , v2 : Lcom/google/analytics/containertag/proto/Serving$CacheOption;
+.line 1207
+	return-void	
+.end method
+
+.method public static parseFrom(Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)Lcom/google/analytics/containertag/proto/Serving$CacheOption;
+.throws Lcom/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException;
+.limit registers 2
+; parameter[0] : v1 (Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)
+.line 1339
+	new-instance	v0,com/google/analytics/containertag/proto/Serving$CacheOption
+; v0 : Lcom/google/analytics/containertag/proto/Serving$CacheOption;
+	invoke-direct	{v0},com/google/analytics/containertag/proto/Serving$CacheOption/<init>	; <init>()V
+; v0 : Lcom/google/analytics/containertag/proto/Serving$CacheOption;
+	invoke-virtual	{v0,v1},com/google/analytics/containertag/proto/Serving$CacheOption/mergeFrom	; mergeFrom(Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)Lcom/google/analytics/containertag/proto/Serving$CacheOption;
+; v0 : Lcom/google/analytics/containertag/proto/Serving$CacheOption; , v1 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result-object	v0
+; v0 : Lcom/google/analytics/containertag/proto/Serving$CacheOption;
+	return-object	v0
+; v0 : Lcom/google/analytics/containertag/proto/Serving$CacheOption;
+.end method
+
+.method public static parseFrom([B)Lcom/google/analytics/containertag/proto/Serving$CacheOption;
+.throws Lcom/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException;
+.limit registers 2
+; parameter[0] : v1 ([B)
+.line 1333
+	new-instance	v0,com/google/analytics/containertag/proto/Serving$CacheOption
+; v0 : Lcom/google/analytics/containertag/proto/Serving$CacheOption;
+	invoke-direct	{v0},com/google/analytics/containertag/proto/Serving$CacheOption/<init>	; <init>()V
+; v0 : Lcom/google/analytics/containertag/proto/Serving$CacheOption;
+	invoke-static	{v0,v1},com/google/tagmanager/protobuf/nano/MessageNano/mergeFrom	; mergeFrom(Lcom/google/tagmanager/protobuf/nano/MessageNano;[B)Lcom/google/tagmanager/protobuf/nano/MessageNano;
+; v0 : Lcom/google/analytics/containertag/proto/Serving$CacheOption; , v1 : [B
+	move-result-object	v0
+; v0 : Lcom/google/tagmanager/protobuf/nano/MessageNano;
+	check-cast	v0,com/google/analytics/containertag/proto/Serving$CacheOption
+; v0 : Lcom/google/analytics/containertag/proto/Serving$CacheOption;
+	return-object	v0
+; v0 : Lcom/google/analytics/containertag/proto/Serving$CacheOption;
+.end method
+
+.method public final clear()Lcom/google/analytics/containertag/proto/Serving$CacheOption;
+.limit registers 3
+; this: v2 (Lcom/google/analytics/containertag/proto/Serving$CacheOption;)
+	const/4	v1,0
+; v1 : single-length
+.line 1225
+	const/4	v0,1
+; v0 : single-length
+	iput	v0,v2,com/google/analytics/containertag/proto/Serving$CacheOption.level I
+; v0 : single-length , v2 : Lcom/google/analytics/containertag/proto/Serving$CacheOption;
+.line 1226
+	iput	v1,v2,com/google/analytics/containertag/proto/Serving$CacheOption.expirationSeconds I
+; v1 : single-length , v2 : Lcom/google/analytics/containertag/proto/Serving$CacheOption;
+.line 1227
+	iput	v1,v2,com/google/analytics/containertag/proto/Serving$CacheOption.gcacheExpirationSeconds I
+; v1 : single-length , v2 : Lcom/google/analytics/containertag/proto/Serving$CacheOption;
+.line 1228
+	const/4	v0,0
+; v0 : single-length
+	iput-object	v0,v2,com/google/analytics/containertag/proto/Serving$CacheOption.unknownFieldData Ljava/util/List;
+; v0 : single-length , v2 : Lcom/google/analytics/containertag/proto/Serving$CacheOption;
+.line 1229
+	const/4	v0,15
+; v0 : single-length
+	iput	v0,v2,com/google/analytics/containertag/proto/Serving$CacheOption.cachedSize I
+; v0 : single-length , v2 : Lcom/google/analytics/containertag/proto/Serving$CacheOption;
+.line 1230
+	return-object	v2
+; v2 : Lcom/google/analytics/containertag/proto/Serving$CacheOption;
+.end method
+
+.method public final equals(Ljava/lang/Object;)Z
+.limit registers 7
+; this: v5 (Lcom/google/analytics/containertag/proto/Serving$CacheOption;)
+; parameter[0] : v6 (Ljava/lang/Object;)
+	const/4	v1,1
+; v1 : single-length
+	const/4	v2,0
+; v2 : single-length
+.line 1235
+	if-ne	v6,v5,lf9f9e
+; v6 : Ljava/lang/Object; , v5 : Lcom/google/analytics/containertag/proto/Serving$CacheOption;
+lf9f9c:
+.line 1238
+	return	v1
+; v1 : single-length
+lf9f9e:
+.line 1236
+	instance-of	v3,v6,com/google/analytics/containertag/proto/Serving$CacheOption
+; v3 : single-length , v6 : Ljava/lang/Object;
+	if-nez	v3,lf9faa
+; v3 : single-length
+	move	v1,v2
+; v1 : single-length , v2 : single-length
+	goto	lf9f9c
+lf9faa:
+	move-object	v0,v6
+; v0 : Ljava/lang/Object; , v6 : Ljava/lang/Object;
+.line 1237
+	check-cast	v0,com/google/analytics/containertag/proto/Serving$CacheOption
+; v0 : Lcom/google/analytics/containertag/proto/Serving$CacheOption;
+.line 1238
+	iget	v3,v5,com/google/analytics/containertag/proto/Serving$CacheOption.level I
+; v3 : single-length , v5 : Lcom/google/analytics/containertag/proto/Serving$CacheOption;
+	iget	v4,v0,com/google/analytics/containertag/proto/Serving$CacheOption.level I
+; v4 : single-length , v0 : Lcom/google/analytics/containertag/proto/Serving$CacheOption;
+	if-ne	v3,v4,lf9fe4
+; v3 : single-length , v4 : single-length
+	iget	v3,v5,com/google/analytics/containertag/proto/Serving$CacheOption.expirationSeconds I
+; v3 : single-length , v5 : Lcom/google/analytics/containertag/proto/Serving$CacheOption;
+	iget	v4,v0,com/google/analytics/containertag/proto/Serving$CacheOption.expirationSeconds I
+; v4 : single-length , v0 : Lcom/google/analytics/containertag/proto/Serving$CacheOption;
+	if-ne	v3,v4,lf9fe4
+; v3 : single-length , v4 : single-length
+	iget	v3,v5,com/google/analytics/containertag/proto/Serving$CacheOption.gcacheExpirationSeconds I
+; v3 : single-length , v5 : Lcom/google/analytics/containertag/proto/Serving$CacheOption;
+	iget	v4,v0,com/google/analytics/containertag/proto/Serving$CacheOption.gcacheExpirationSeconds I
+; v4 : single-length , v0 : Lcom/google/analytics/containertag/proto/Serving$CacheOption;
+	if-ne	v3,v4,lf9fe4
+; v3 : single-length , v4 : single-length
+	iget-object	v3,v5,com/google/analytics/containertag/proto/Serving$CacheOption.unknownFieldData Ljava/util/List;
+; v3 : Ljava/util/List; , v5 : Lcom/google/analytics/containertag/proto/Serving$CacheOption;
+	if-nez	v3,lf9fe8
+; v3 : Ljava/util/List;
+	iget-object	v3,v0,com/google/analytics/containertag/proto/Serving$CacheOption.unknownFieldData Ljava/util/List;
+; v3 : Ljava/util/List; , v0 : Lcom/google/analytics/containertag/proto/Serving$CacheOption;
+	if-eqz	v3,lf9f9c
+; v3 : Ljava/util/List;
+lf9fe4:
+	move	v1,v2
+; v1 : single-length , v2 : single-length
+	goto	lf9f9c
+lf9fe8:
+	iget-object	v3,v5,com/google/analytics/containertag/proto/Serving$CacheOption.unknownFieldData Ljava/util/List;
+; v3 : Ljava/util/List; , v5 : Lcom/google/analytics/containertag/proto/Serving$CacheOption;
+	iget-object	v4,v0,com/google/analytics/containertag/proto/Serving$CacheOption.unknownFieldData Ljava/util/List;
+; v4 : Ljava/util/List; , v0 : Lcom/google/analytics/containertag/proto/Serving$CacheOption;
+	invoke-interface	{v3,v4},java/util/List/equals	; equals(Ljava/lang/Object;)Z
+; v3 : Ljava/util/List; , v4 : Ljava/util/List;
+	move-result	v3
+; v3 : single-length
+	if-eqz	v3,lf9fe4
+; v3 : single-length
+	goto	lf9f9c
+.end method
+
+.method public getSerializedSize()I
+.limit registers 4
+; this: v3 (Lcom/google/analytics/containertag/proto/Serving$CacheOption;)
+	const/4	v2,1
+; v2 : single-length
+.line 1270
+	const/4	v0,0
+; v0 : single-length
+.line 1271
+	iget	v1,v3,com/google/analytics/containertag/proto/Serving$CacheOption.level I
+; v1 : single-length , v3 : Lcom/google/analytics/containertag/proto/Serving$CacheOption;
+	if-eq	v1,v2,lfa02a
+; v1 : single-length , v2 : single-length
+.line 1272
+	iget	v1,v3,com/google/analytics/containertag/proto/Serving$CacheOption.level I
+; v1 : single-length , v3 : Lcom/google/analytics/containertag/proto/Serving$CacheOption;
+	invoke-static	{v2,v1},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/computeInt32Size	; computeInt32Size(II)I
+; v2 : single-length , v1 : single-length
+	move-result	v1
+; v1 : single-length
+	add-int/2addr	v0,v1
+; v0 : single-length , v1 : single-length
+lfa02a:
+.line 1275
+	iget	v1,v3,com/google/analytics/containertag/proto/Serving$CacheOption.expirationSeconds I
+; v1 : single-length , v3 : Lcom/google/analytics/containertag/proto/Serving$CacheOption;
+	if-eqz	v1,lfa042
+; v1 : single-length
+.line 1276
+	const/4	v1,2
+; v1 : single-length
+	iget	v2,v3,com/google/analytics/containertag/proto/Serving$CacheOption.expirationSeconds I
+; v2 : single-length , v3 : Lcom/google/analytics/containertag/proto/Serving$CacheOption;
+	invoke-static	{v1,v2},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/computeInt32Size	; computeInt32Size(II)I
+; v1 : single-length , v2 : single-length
+	move-result	v1
+; v1 : single-length
+	add-int/2addr	v0,v1
+; v0 : single-length , v1 : single-length
+lfa042:
+.line 1279
+	iget	v1,v3,com/google/analytics/containertag/proto/Serving$CacheOption.gcacheExpirationSeconds I
+; v1 : single-length , v3 : Lcom/google/analytics/containertag/proto/Serving$CacheOption;
+	if-eqz	v1,lfa05a
+; v1 : single-length
+.line 1280
+	const/4	v1,3
+; v1 : single-length
+	iget	v2,v3,com/google/analytics/containertag/proto/Serving$CacheOption.gcacheExpirationSeconds I
+; v2 : single-length , v3 : Lcom/google/analytics/containertag/proto/Serving$CacheOption;
+	invoke-static	{v1,v2},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/computeInt32Size	; computeInt32Size(II)I
+; v1 : single-length , v2 : single-length
+	move-result	v1
+; v1 : single-length
+	add-int/2addr	v0,v1
+; v0 : single-length , v1 : single-length
+lfa05a:
+.line 1283
+	iget-object	v1,v3,com/google/analytics/containertag/proto/Serving$CacheOption.unknownFieldData Ljava/util/List;
+; v1 : Ljava/util/List; , v3 : Lcom/google/analytics/containertag/proto/Serving$CacheOption;
+	invoke-static	{v1},com/google/tagmanager/protobuf/nano/WireFormatNano/computeWireSize	; computeWireSize(Ljava/util/List;)I
+; v1 : Ljava/util/List;
+	move-result	v1
+; v1 : single-length
+	add-int/2addr	v0,v1
+; v0 : single-length , v1 : single-length
+.line 1284
+	iput	v0,v3,com/google/analytics/containertag/proto/Serving$CacheOption.cachedSize I
+; v0 : single-length , v3 : Lcom/google/analytics/containertag/proto/Serving$CacheOption;
+.line 1285
+	return	v0
+; v0 : single-length
+.end method
+
+.method public hashCode()I
+.limit registers 4
+; this: v3 (Lcom/google/analytics/containertag/proto/Serving$CacheOption;)
+.line 1245
+	const/16	v0,17
+; v0 : single-length
+.line 1246
+	iget	v1,v3,com/google/analytics/containertag/proto/Serving$CacheOption.level I
+; v1 : single-length , v3 : Lcom/google/analytics/containertag/proto/Serving$CacheOption;
+	add-int/lit16	v0,v1,527
+; v0 : single-length , v1 : single-length
+.line 1247
+	mul-int/lit-8	v1,v0,31
+; v1 : single-length , v0 : single-length
+	iget	v2,v3,com/google/analytics/containertag/proto/Serving$CacheOption.expirationSeconds I
+; v2 : single-length , v3 : Lcom/google/analytics/containertag/proto/Serving$CacheOption;
+	add-int	v0,v1,v2
+; v0 : single-length , v1 : single-length , v2 : single-length
+.line 1248
+	mul-int/lit-8	v1,v0,31
+; v1 : single-length , v0 : single-length
+	iget	v2,v3,com/google/analytics/containertag/proto/Serving$CacheOption.gcacheExpirationSeconds I
+; v2 : single-length , v3 : Lcom/google/analytics/containertag/proto/Serving$CacheOption;
+	add-int	v0,v1,v2
+; v0 : single-length , v1 : single-length , v2 : single-length
+.line 1249
+	mul-int/lit-8	v2,v0,31
+; v2 : single-length , v0 : single-length
+	iget-object	v1,v3,com/google/analytics/containertag/proto/Serving$CacheOption.unknownFieldData Ljava/util/List;
+; v1 : Ljava/util/List; , v3 : Lcom/google/analytics/containertag/proto/Serving$CacheOption;
+	if-nez	v1,lfa0b8
+; v1 : Ljava/util/List;
+	const/4	v1,0
+; v1 : single-length
+lfa0b2:
+	add-int	v0,v2,v1
+; v0 : single-length , v2 : single-length , v1 : single-length
+.line 1250
+	return	v0
+; v0 : single-length
+lfa0b8:
+.line 1249
+	iget-object	v1,v3,com/google/analytics/containertag/proto/Serving$CacheOption.unknownFieldData Ljava/util/List;
+; v1 : Ljava/util/List; , v3 : Lcom/google/analytics/containertag/proto/Serving$CacheOption;
+	invoke-interface	{v1},java/util/List/hashCode	; hashCode()I
+; v1 : Ljava/util/List;
+	move-result	v1
+; v1 : single-length
+	goto	lfa0b2
+.end method
+
+.method public mergeFrom(Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)Lcom/google/analytics/containertag/proto/Serving$CacheOption;
+.throws Ljava/io/IOException;
+.limit registers 6
+; this: v4 (Lcom/google/analytics/containertag/proto/Serving$CacheOption;)
+; parameter[0] : v5 (Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)
+.var 1 is temp I from lfa118 to lfa134
+	const/4	v3,1
+; v3 : single-length
+lfa0da:
+.line 1293
+	invoke-virtual	{v5},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readTag	; readTag()I
+; v5 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result	v0
+; v0 : single-length
+.line 1294
+	sparse-switch	v0
+		0 : spfa0e2_fa10e
+		8 : spfa0e2_fa110
+		16 : spfa0e2_fa134
+		24 : spfa0e2_fa142
+		default: spfa0e2_default
+; v0 : single-length
+spfa0e2_default:
+.line 1298
+	iget-object	v2,v4,com/google/analytics/containertag/proto/Serving$CacheOption.unknownFieldData Ljava/util/List;
+; v2 : Ljava/util/List; , v4 : Lcom/google/analytics/containertag/proto/Serving$CacheOption;
+	if-nez	v2,lfa0fe
+; v2 : Ljava/util/List;
+.line 1299
+	new-instance	v2,java/util/ArrayList
+; v2 : Ljava/util/ArrayList;
+	invoke-direct	{v2},java/util/ArrayList/<init>	; <init>()V
+; v2 : Ljava/util/ArrayList;
+	iput-object	v2,v4,com/google/analytics/containertag/proto/Serving$CacheOption.unknownFieldData Ljava/util/List;
+; v2 : Ljava/util/ArrayList; , v4 : Lcom/google/analytics/containertag/proto/Serving$CacheOption;
+lfa0fe:
+.line 1302
+	iget-object	v2,v4,com/google/analytics/containertag/proto/Serving$CacheOption.unknownFieldData Ljava/util/List;
+; v2 : Ljava/util/List; , v4 : Lcom/google/analytics/containertag/proto/Serving$CacheOption;
+	invoke-static	{v2,v5,v0},com/google/tagmanager/protobuf/nano/WireFormatNano/storeUnknownField	; storeUnknownField(Ljava/util/List;Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;I)Z
+; v2 : Ljava/util/List; , v5 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano; , v0 : single-length
+	move-result	v2
+; v2 : single-length
+	if-nez	v2,lfa0da
+; v2 : single-length
+spfa0e2_fa10e:
+.line 1304
+	return-object	v4
+; v4 : Lcom/google/analytics/containertag/proto/Serving$CacheOption;
+spfa0e2_fa110:
+.line 1309
+	invoke-virtual	{v5},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readInt32	; readInt32()I
+; v5 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result	v1
+; v1 : single-length
+.line 1310
+	if-eq	v1,v3,lfa128
+; v1 : single-length , v3 : single-length
+	const/4	v2,2
+; v2 : single-length
+	if-eq	v1,v2,lfa128
+; v1 : single-length , v2 : single-length
+	const/4	v2,3
+; v2 : single-length
+	if-ne	v1,v2,lfa12e
+; v1 : single-length , v2 : single-length
+lfa128:
+.line 1313
+	iput	v1,v4,com/google/analytics/containertag/proto/Serving$CacheOption.level I
+; v1 : single-length , v4 : Lcom/google/analytics/containertag/proto/Serving$CacheOption;
+	goto	lfa0da
+lfa12e:
+.line 1315
+	iput	v3,v4,com/google/analytics/containertag/proto/Serving$CacheOption.level I
+; v3 : single-length , v4 : Lcom/google/analytics/containertag/proto/Serving$CacheOption;
+	goto	lfa0da
+spfa0e2_fa134:
+.line 1320
+	invoke-virtual	{v5},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readInt32	; readInt32()I
+; v5 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result	v2
+; v2 : single-length
+	iput	v2,v4,com/google/analytics/containertag/proto/Serving$CacheOption.expirationSeconds I
+; v2 : single-length , v4 : Lcom/google/analytics/containertag/proto/Serving$CacheOption;
+	goto	lfa0da
+spfa0e2_fa142:
+.line 1324
+	invoke-virtual	{v5},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readInt32	; readInt32()I
+; v5 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result	v2
+; v2 : single-length
+	iput	v2,v4,com/google/analytics/containertag/proto/Serving$CacheOption.gcacheExpirationSeconds I
+; v2 : single-length , v4 : Lcom/google/analytics/containertag/proto/Serving$CacheOption;
+	goto	lfa0da
+.line 1294
+.end method
+
+.method public mergeFrom(Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)Lcom/google/tagmanager/protobuf/nano/MessageNano;
+.throws Ljava/io/IOException;
+.limit registers 3
+; this: v1 (Lcom/google/analytics/containertag/proto/Serving$CacheOption;)
+; parameter[0] : v2 (Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)
+.line 1203
+	invoke-virtual	{v1,v2},com/google/analytics/containertag/proto/Serving$CacheOption/mergeFrom	; mergeFrom(Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)Lcom/google/analytics/containertag/proto/Serving$CacheOption;
+; v1 : Lcom/google/analytics/containertag/proto/Serving$CacheOption; , v2 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result-object	v0
+; v0 : Lcom/google/analytics/containertag/proto/Serving$CacheOption;
+	return-object	v0
+; v0 : Lcom/google/analytics/containertag/proto/Serving$CacheOption;
+.end method
+
+.method public writeTo(Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;)V
+.throws Ljava/io/IOException;
+.limit registers 4
+; this: v2 (Lcom/google/analytics/containertag/proto/Serving$CacheOption;)
+; parameter[0] : v3 (Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;)
+	const/4	v1,1
+; v1 : single-length
+.line 1255
+	iget	v0,v2,com/google/analytics/containertag/proto/Serving$CacheOption.level I
+; v0 : single-length , v2 : Lcom/google/analytics/containertag/proto/Serving$CacheOption;
+	if-eq	v0,v1,lfa1b4
+; v0 : single-length , v1 : single-length
+.line 1256
+	iget	v0,v2,com/google/analytics/containertag/proto/Serving$CacheOption.level I
+; v0 : single-length , v2 : Lcom/google/analytics/containertag/proto/Serving$CacheOption;
+	invoke-virtual	{v3,v1,v0},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeInt32	; writeInt32(II)V
+; v3 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v1 : single-length , v0 : single-length
+lfa1b4:
+.line 1258
+	iget	v0,v2,com/google/analytics/containertag/proto/Serving$CacheOption.expirationSeconds I
+; v0 : single-length , v2 : Lcom/google/analytics/containertag/proto/Serving$CacheOption;
+	if-eqz	v0,lfa1c8
+; v0 : single-length
+.line 1259
+	const/4	v0,2
+; v0 : single-length
+	iget	v1,v2,com/google/analytics/containertag/proto/Serving$CacheOption.expirationSeconds I
+; v1 : single-length , v2 : Lcom/google/analytics/containertag/proto/Serving$CacheOption;
+	invoke-virtual	{v3,v0,v1},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeInt32	; writeInt32(II)V
+; v3 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v0 : single-length , v1 : single-length
+lfa1c8:
+.line 1261
+	iget	v0,v2,com/google/analytics/containertag/proto/Serving$CacheOption.gcacheExpirationSeconds I
+; v0 : single-length , v2 : Lcom/google/analytics/containertag/proto/Serving$CacheOption;
+	if-eqz	v0,lfa1dc
+; v0 : single-length
+.line 1262
+	const/4	v0,3
+; v0 : single-length
+	iget	v1,v2,com/google/analytics/containertag/proto/Serving$CacheOption.gcacheExpirationSeconds I
+; v1 : single-length , v2 : Lcom/google/analytics/containertag/proto/Serving$CacheOption;
+	invoke-virtual	{v3,v0,v1},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeInt32	; writeInt32(II)V
+; v3 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v0 : single-length , v1 : single-length
+lfa1dc:
+.line 1264
+	iget-object	v0,v2,com/google/analytics/containertag/proto/Serving$CacheOption.unknownFieldData Ljava/util/List;
+; v0 : Ljava/util/List; , v2 : Lcom/google/analytics/containertag/proto/Serving$CacheOption;
+	invoke-static	{v0,v3},com/google/tagmanager/protobuf/nano/WireFormatNano/writeUnknownFields	; writeUnknownFields(Ljava/util/List;Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;)V
+; v0 : Ljava/util/List; , v3 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;
+.line 1266
+	return-void	
+.end method
+
+

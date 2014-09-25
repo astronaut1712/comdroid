@@ -1,0 +1,371 @@
+.class public final com/google/analytics/containertag/proto/Serving$Property
+.super com/google/tagmanager/protobuf/nano/ExtendableMessageNano
+.source Serving.java
+
+.inner class Property inner com/google/analytics/containertag/proto/Serving$Property outer com/google/analytics/containertag/proto/Serving
+.field public static final EMPTY_ARRAY [Lcom/google/analytics/containertag/proto/Serving$Property;
+.field public key I
+.field public value I
+
+.method static <clinit>()V
+.limit registers 1
+.line 456
+	const/4	v0,0
+; v0 : single-length
+	new-array	v0,v0,[Lcom/google/analytics/containertag/proto/Serving$Property;
+; v0 : [Lcom/google/analytics/containertag/proto/Serving$Property; , v0 : [Lcom/google/analytics/containertag/proto/Serving$Property;
+	sput-object	v0,com/google/analytics/containertag/proto/Serving$Property.EMPTY_ARRAY [Lcom/google/analytics/containertag/proto/Serving$Property;
+; v0 : [Lcom/google/analytics/containertag/proto/Serving$Property;
+	return-void	
+.end method
+
+.method public <init>()V
+.limit registers 2
+; this: v1 (Lcom/google/analytics/containertag/proto/Serving$Property;)
+	const/4	v0,0
+; v0 : single-length
+.line 457
+	invoke-direct	{v1},com/google/tagmanager/protobuf/nano/ExtendableMessageNano/<init>	; <init>()V
+; v1 : Lcom/google/analytics/containertag/proto/Serving$Property;
+.line 460
+	iput	v0,v1,com/google/analytics/containertag/proto/Serving$Property.key I
+; v0 : single-length , v1 : Lcom/google/analytics/containertag/proto/Serving$Property;
+.line 463
+	iput	v0,v1,com/google/analytics/containertag/proto/Serving$Property.value I
+; v0 : single-length , v1 : Lcom/google/analytics/containertag/proto/Serving$Property;
+.line 457
+	return-void	
+.end method
+
+.method public static parseFrom(Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)Lcom/google/analytics/containertag/proto/Serving$Property;
+.throws Lcom/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException;
+.limit registers 2
+; parameter[0] : v1 (Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)
+.line 551
+	new-instance	v0,com/google/analytics/containertag/proto/Serving$Property
+; v0 : Lcom/google/analytics/containertag/proto/Serving$Property;
+	invoke-direct	{v0},com/google/analytics/containertag/proto/Serving$Property/<init>	; <init>()V
+; v0 : Lcom/google/analytics/containertag/proto/Serving$Property;
+	invoke-virtual	{v0,v1},com/google/analytics/containertag/proto/Serving$Property/mergeFrom	; mergeFrom(Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)Lcom/google/analytics/containertag/proto/Serving$Property;
+; v0 : Lcom/google/analytics/containertag/proto/Serving$Property; , v1 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result-object	v0
+; v0 : Lcom/google/analytics/containertag/proto/Serving$Property;
+	return-object	v0
+; v0 : Lcom/google/analytics/containertag/proto/Serving$Property;
+.end method
+
+.method public static parseFrom([B)Lcom/google/analytics/containertag/proto/Serving$Property;
+.throws Lcom/google/tagmanager/protobuf/nano/InvalidProtocolBufferNanoException;
+.limit registers 2
+; parameter[0] : v1 ([B)
+.line 545
+	new-instance	v0,com/google/analytics/containertag/proto/Serving$Property
+; v0 : Lcom/google/analytics/containertag/proto/Serving$Property;
+	invoke-direct	{v0},com/google/analytics/containertag/proto/Serving$Property/<init>	; <init>()V
+; v0 : Lcom/google/analytics/containertag/proto/Serving$Property;
+	invoke-static	{v0,v1},com/google/tagmanager/protobuf/nano/MessageNano/mergeFrom	; mergeFrom(Lcom/google/tagmanager/protobuf/nano/MessageNano;[B)Lcom/google/tagmanager/protobuf/nano/MessageNano;
+; v0 : Lcom/google/analytics/containertag/proto/Serving$Property; , v1 : [B
+	move-result-object	v0
+; v0 : Lcom/google/tagmanager/protobuf/nano/MessageNano;
+	check-cast	v0,com/google/analytics/containertag/proto/Serving$Property
+; v0 : Lcom/google/analytics/containertag/proto/Serving$Property;
+	return-object	v0
+; v0 : Lcom/google/analytics/containertag/proto/Serving$Property;
+.end method
+
+.method public final clear()Lcom/google/analytics/containertag/proto/Serving$Property;
+.limit registers 2
+; this: v1 (Lcom/google/analytics/containertag/proto/Serving$Property;)
+	const/4	v0,0
+; v0 : single-length
+.line 466
+	iput	v0,v1,com/google/analytics/containertag/proto/Serving$Property.key I
+; v0 : single-length , v1 : Lcom/google/analytics/containertag/proto/Serving$Property;
+.line 467
+	iput	v0,v1,com/google/analytics/containertag/proto/Serving$Property.value I
+; v0 : single-length , v1 : Lcom/google/analytics/containertag/proto/Serving$Property;
+.line 468
+	const/4	v0,0
+; v0 : single-length
+	iput-object	v0,v1,com/google/analytics/containertag/proto/Serving$Property.unknownFieldData Ljava/util/List;
+; v0 : single-length , v1 : Lcom/google/analytics/containertag/proto/Serving$Property;
+.line 469
+	const/4	v0,15
+; v0 : single-length
+	iput	v0,v1,com/google/analytics/containertag/proto/Serving$Property.cachedSize I
+; v0 : single-length , v1 : Lcom/google/analytics/containertag/proto/Serving$Property;
+.line 470
+	return-object	v1
+; v1 : Lcom/google/analytics/containertag/proto/Serving$Property;
+.end method
+
+.method public final equals(Ljava/lang/Object;)Z
+.limit registers 7
+; this: v5 (Lcom/google/analytics/containertag/proto/Serving$Property;)
+; parameter[0] : v6 (Ljava/lang/Object;)
+	const/4	v1,1
+; v1 : single-length
+	const/4	v2,0
+; v2 : single-length
+.line 475
+	if-ne	v6,v5,lfb5ee
+; v6 : Ljava/lang/Object; , v5 : Lcom/google/analytics/containertag/proto/Serving$Property;
+lfb5ec:
+.line 478
+	return	v1
+; v1 : single-length
+lfb5ee:
+.line 476
+	instance-of	v3,v6,com/google/analytics/containertag/proto/Serving$Property
+; v3 : single-length , v6 : Ljava/lang/Object;
+	if-nez	v3,lfb5fa
+; v3 : single-length
+	move	v1,v2
+; v1 : single-length , v2 : single-length
+	goto	lfb5ec
+lfb5fa:
+	move-object	v0,v6
+; v0 : Ljava/lang/Object; , v6 : Ljava/lang/Object;
+.line 477
+	check-cast	v0,com/google/analytics/containertag/proto/Serving$Property
+; v0 : Lcom/google/analytics/containertag/proto/Serving$Property;
+.line 478
+	iget	v3,v5,com/google/analytics/containertag/proto/Serving$Property.key I
+; v3 : single-length , v5 : Lcom/google/analytics/containertag/proto/Serving$Property;
+	iget	v4,v0,com/google/analytics/containertag/proto/Serving$Property.key I
+; v4 : single-length , v0 : Lcom/google/analytics/containertag/proto/Serving$Property;
+	if-ne	v3,v4,lfb628
+; v3 : single-length , v4 : single-length
+	iget	v3,v5,com/google/analytics/containertag/proto/Serving$Property.value I
+; v3 : single-length , v5 : Lcom/google/analytics/containertag/proto/Serving$Property;
+	iget	v4,v0,com/google/analytics/containertag/proto/Serving$Property.value I
+; v4 : single-length , v0 : Lcom/google/analytics/containertag/proto/Serving$Property;
+	if-ne	v3,v4,lfb628
+; v3 : single-length , v4 : single-length
+	iget-object	v3,v5,com/google/analytics/containertag/proto/Serving$Property.unknownFieldData Ljava/util/List;
+; v3 : Ljava/util/List; , v5 : Lcom/google/analytics/containertag/proto/Serving$Property;
+	if-nez	v3,lfb62c
+; v3 : Ljava/util/List;
+	iget-object	v3,v0,com/google/analytics/containertag/proto/Serving$Property.unknownFieldData Ljava/util/List;
+; v3 : Ljava/util/List; , v0 : Lcom/google/analytics/containertag/proto/Serving$Property;
+	if-eqz	v3,lfb5ec
+; v3 : Ljava/util/List;
+lfb628:
+	move	v1,v2
+; v1 : single-length , v2 : single-length
+	goto	lfb5ec
+lfb62c:
+	iget-object	v3,v5,com/google/analytics/containertag/proto/Serving$Property.unknownFieldData Ljava/util/List;
+; v3 : Ljava/util/List; , v5 : Lcom/google/analytics/containertag/proto/Serving$Property;
+	iget-object	v4,v0,com/google/analytics/containertag/proto/Serving$Property.unknownFieldData Ljava/util/List;
+; v4 : Ljava/util/List; , v0 : Lcom/google/analytics/containertag/proto/Serving$Property;
+	invoke-interface	{v3,v4},java/util/List/equals	; equals(Ljava/lang/Object;)Z
+; v3 : Ljava/util/List; , v4 : Ljava/util/List;
+	move-result	v3
+; v3 : single-length
+	if-eqz	v3,lfb628
+; v3 : single-length
+	goto	lfb5ec
+.end method
+
+.method public getSerializedSize()I
+.limit registers 4
+; this: v3 (Lcom/google/analytics/containertag/proto/Serving$Property;)
+.line 501
+	const/4	v0,0
+; v0 : single-length
+.line 502
+	const/4	v1,1
+; v1 : single-length
+	iget	v2,v3,com/google/analytics/containertag/proto/Serving$Property.key I
+; v2 : single-length , v3 : Lcom/google/analytics/containertag/proto/Serving$Property;
+	invoke-static	{v1,v2},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/computeInt32Size	; computeInt32Size(II)I
+; v1 : single-length , v2 : single-length
+	move-result	v1
+; v1 : single-length
+	add-int/2addr	v0,v1
+; v0 : single-length , v1 : single-length
+.line 504
+	const/4	v1,2
+; v1 : single-length
+	iget	v2,v3,com/google/analytics/containertag/proto/Serving$Property.value I
+; v2 : single-length , v3 : Lcom/google/analytics/containertag/proto/Serving$Property;
+	invoke-static	{v1,v2},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/computeInt32Size	; computeInt32Size(II)I
+; v1 : single-length , v2 : single-length
+	move-result	v1
+; v1 : single-length
+	add-int/2addr	v0,v1
+; v0 : single-length , v1 : single-length
+.line 506
+	iget-object	v1,v3,com/google/analytics/containertag/proto/Serving$Property.unknownFieldData Ljava/util/List;
+; v1 : Ljava/util/List; , v3 : Lcom/google/analytics/containertag/proto/Serving$Property;
+	invoke-static	{v1},com/google/tagmanager/protobuf/nano/WireFormatNano/computeWireSize	; computeWireSize(Ljava/util/List;)I
+; v1 : Ljava/util/List;
+	move-result	v1
+; v1 : single-length
+	add-int/2addr	v0,v1
+; v0 : single-length , v1 : single-length
+.line 507
+	iput	v0,v3,com/google/analytics/containertag/proto/Serving$Property.cachedSize I
+; v0 : single-length , v3 : Lcom/google/analytics/containertag/proto/Serving$Property;
+.line 508
+	return	v0
+; v0 : single-length
+.end method
+
+.method public hashCode()I
+.limit registers 4
+; this: v3 (Lcom/google/analytics/containertag/proto/Serving$Property;)
+.line 484
+	const/16	v0,17
+; v0 : single-length
+.line 485
+	iget	v1,v3,com/google/analytics/containertag/proto/Serving$Property.key I
+; v1 : single-length , v3 : Lcom/google/analytics/containertag/proto/Serving$Property;
+	add-int/lit16	v0,v1,527
+; v0 : single-length , v1 : single-length
+.line 486
+	mul-int/lit-8	v1,v0,31
+; v1 : single-length , v0 : single-length
+	iget	v2,v3,com/google/analytics/containertag/proto/Serving$Property.value I
+; v2 : single-length , v3 : Lcom/google/analytics/containertag/proto/Serving$Property;
+	add-int	v0,v1,v2
+; v0 : single-length , v1 : single-length , v2 : single-length
+.line 487
+	mul-int/lit-8	v2,v0,31
+; v2 : single-length , v0 : single-length
+	iget-object	v1,v3,com/google/analytics/containertag/proto/Serving$Property.unknownFieldData Ljava/util/List;
+; v1 : Ljava/util/List; , v3 : Lcom/google/analytics/containertag/proto/Serving$Property;
+	if-nez	v1,lfb6c8
+; v1 : Ljava/util/List;
+	const/4	v1,0
+; v1 : single-length
+lfb6c2:
+	add-int	v0,v2,v1
+; v0 : single-length , v2 : single-length , v1 : single-length
+.line 488
+	return	v0
+; v0 : single-length
+lfb6c8:
+.line 487
+	iget-object	v1,v3,com/google/analytics/containertag/proto/Serving$Property.unknownFieldData Ljava/util/List;
+; v1 : Ljava/util/List; , v3 : Lcom/google/analytics/containertag/proto/Serving$Property;
+	invoke-interface	{v1},java/util/List/hashCode	; hashCode()I
+; v1 : Ljava/util/List;
+	move-result	v1
+; v1 : single-length
+	goto	lfb6c2
+.end method
+
+.method public mergeFrom(Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)Lcom/google/analytics/containertag/proto/Serving$Property;
+.throws Ljava/io/IOException;
+.limit registers 4
+; this: v2 (Lcom/google/analytics/containertag/proto/Serving$Property;)
+; parameter[0] : v3 (Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)
+lfb6e8:
+.line 516
+	invoke-virtual	{v3},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readTag	; readTag()I
+; v3 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result	v0
+; v0 : single-length
+.line 517
+	sparse-switch	v0
+		0 : spfb6f0_fb71c
+		8 : spfb6f0_fb71e
+		16 : spfb6f0_fb72c
+		default: spfb6f0_default
+; v0 : single-length
+spfb6f0_default:
+.line 521
+	iget-object	v1,v2,com/google/analytics/containertag/proto/Serving$Property.unknownFieldData Ljava/util/List;
+; v1 : Ljava/util/List; , v2 : Lcom/google/analytics/containertag/proto/Serving$Property;
+	if-nez	v1,lfb70c
+; v1 : Ljava/util/List;
+.line 522
+	new-instance	v1,java/util/ArrayList
+; v1 : Ljava/util/ArrayList;
+	invoke-direct	{v1},java/util/ArrayList/<init>	; <init>()V
+; v1 : Ljava/util/ArrayList;
+	iput-object	v1,v2,com/google/analytics/containertag/proto/Serving$Property.unknownFieldData Ljava/util/List;
+; v1 : Ljava/util/ArrayList; , v2 : Lcom/google/analytics/containertag/proto/Serving$Property;
+lfb70c:
+.line 525
+	iget-object	v1,v2,com/google/analytics/containertag/proto/Serving$Property.unknownFieldData Ljava/util/List;
+; v1 : Ljava/util/List; , v2 : Lcom/google/analytics/containertag/proto/Serving$Property;
+	invoke-static	{v1,v3,v0},com/google/tagmanager/protobuf/nano/WireFormatNano/storeUnknownField	; storeUnknownField(Ljava/util/List;Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;I)Z
+; v1 : Ljava/util/List; , v3 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano; , v0 : single-length
+	move-result	v1
+; v1 : single-length
+	if-nez	v1,lfb6e8
+; v1 : single-length
+spfb6f0_fb71c:
+.line 527
+	return-object	v2
+; v2 : Lcom/google/analytics/containertag/proto/Serving$Property;
+spfb6f0_fb71e:
+.line 532
+	invoke-virtual	{v3},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readInt32	; readInt32()I
+; v3 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result	v1
+; v1 : single-length
+	iput	v1,v2,com/google/analytics/containertag/proto/Serving$Property.key I
+; v1 : single-length , v2 : Lcom/google/analytics/containertag/proto/Serving$Property;
+	goto	lfb6e8
+spfb6f0_fb72c:
+.line 536
+	invoke-virtual	{v3},com/google/tagmanager/protobuf/nano/CodedInputByteBufferNano/readInt32	; readInt32()I
+; v3 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result	v1
+; v1 : single-length
+	iput	v1,v2,com/google/analytics/containertag/proto/Serving$Property.value I
+; v1 : single-length , v2 : Lcom/google/analytics/containertag/proto/Serving$Property;
+	goto	lfb6e8
+.line 517
+lfb73a:	data-array
+		0x00, 0x00
+	end data-array
+.end method
+
+.method public mergeFrom(Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)Lcom/google/tagmanager/protobuf/nano/MessageNano;
+.throws Ljava/io/IOException;
+.limit registers 3
+; this: v1 (Lcom/google/analytics/containertag/proto/Serving$Property;)
+; parameter[0] : v2 (Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)
+.line 453
+	invoke-virtual	{v1,v2},com/google/analytics/containertag/proto/Serving$Property/mergeFrom	; mergeFrom(Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;)Lcom/google/analytics/containertag/proto/Serving$Property;
+; v1 : Lcom/google/analytics/containertag/proto/Serving$Property; , v2 : Lcom/google/tagmanager/protobuf/nano/CodedInputByteBufferNano;
+	move-result-object	v0
+; v0 : Lcom/google/analytics/containertag/proto/Serving$Property;
+	return-object	v0
+; v0 : Lcom/google/analytics/containertag/proto/Serving$Property;
+.end method
+
+.method public writeTo(Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;)V
+.throws Ljava/io/IOException;
+.limit registers 4
+; this: v2 (Lcom/google/analytics/containertag/proto/Serving$Property;)
+; parameter[0] : v3 (Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;)
+.line 493
+	const/4	v0,1
+; v0 : single-length
+	iget	v1,v2,com/google/analytics/containertag/proto/Serving$Property.key I
+; v1 : single-length , v2 : Lcom/google/analytics/containertag/proto/Serving$Property;
+	invoke-virtual	{v3,v0,v1},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeInt32	; writeInt32(II)V
+; v3 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v0 : single-length , v1 : single-length
+.line 494
+	const/4	v0,2
+; v0 : single-length
+	iget	v1,v2,com/google/analytics/containertag/proto/Serving$Property.value I
+; v1 : single-length , v2 : Lcom/google/analytics/containertag/proto/Serving$Property;
+	invoke-virtual	{v3,v0,v1},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeInt32	; writeInt32(II)V
+; v3 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v0 : single-length , v1 : single-length
+.line 495
+	iget-object	v0,v2,com/google/analytics/containertag/proto/Serving$Property.unknownFieldData Ljava/util/List;
+; v0 : Ljava/util/List; , v2 : Lcom/google/analytics/containertag/proto/Serving$Property;
+	invoke-static	{v0,v3},com/google/tagmanager/protobuf/nano/WireFormatNano/writeUnknownFields	; writeUnknownFields(Ljava/util/List;Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;)V
+; v0 : Ljava/util/List; , v3 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;
+.line 497
+	return-void	
+.end method
+
+

@@ -1,0 +1,436 @@
+.class public com/a/b/y
+.super java/lang/Object
+.source MyApplication
+.implements com/a/b/h
+
+.field final b Ljava/util/LinkedHashMap;
+.field private final c I
+.field private d I
+.field private e I
+.field private f I
+.field private g I
+.field private h I
+
+.method public <init>(I)V
+.limit registers 6
+; this: v4 (Lcom/a/b/y;)
+; parameter[0] : v5 (I)
+.line 40
+	invoke-direct	{v4},java/lang/Object/<init>	; <init>()V
+; v4 : Lcom/a/b/y;
+.line 41
+	if-gtz	v5,l7c212
+; v5 : single-length
+.line 42
+	new-instance	v0,java/lang/IllegalArgumentException
+; v0 : Ljava/lang/IllegalArgumentException;
+	const-string	v1,"Max size must be positive."
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/IllegalArgumentException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/IllegalArgumentException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/IllegalArgumentException;
+l7c212:
+.line 44
+	iput	v5,v4,com/a/b/y.c I
+; v5 : single-length , v4 : Lcom/a/b/y;
+.line 45
+	new-instance	v0,java/util/LinkedHashMap
+; v0 : Ljava/util/LinkedHashMap;
+	const/4	v1,0
+; v1 : single-length
+	const/high16	v2,16192
+; v2 : single-length
+	const/4	v3,1
+; v3 : single-length
+	invoke-direct	{v0,v1,v2,v3},java/util/LinkedHashMap/<init>	; <init>(IFZ)V
+; v0 : Ljava/util/LinkedHashMap; , v1 : single-length , v2 : single-length , v3 : single-length
+	iput-object	v0,v4,com/a/b/y.b Ljava/util/LinkedHashMap;
+; v0 : Ljava/util/LinkedHashMap; , v4 : Lcom/a/b/y;
+.line 46
+	return-void	
+.end method
+
+.method public <init>(Landroid/content/Context;)V
+.limit registers 3
+; this: v1 (Lcom/a/b/y;)
+; parameter[0] : v2 (Landroid/content/Context;)
+.line 36
+	invoke-static	{v2},com/a/b/bb/c	; c(Landroid/content/Context;)I
+; v2 : Landroid/content/Context;
+	move-result	v0
+; v0 : single-length
+	invoke-direct	{v1,v0},com/a/b/y/<init>	; <init>(I)V
+; v1 : Lcom/a/b/y; , v0 : single-length
+.line 37
+	return-void	
+.end method
+
+.method private a(I)V
+.limit registers 5
+; this: v3 (Lcom/a/b/y;)
+; parameter[0] : v4 (I)
+.catch java/lang/Exception from l7c2ca to l7c34a using l7c2c4
+.catch java/lang/Exception from l7c262 to l7c2c8 using l7c2c4
+l7c260:
+.line 88
+	monitor-enter	v3
+; v3 : Lcom/a/b/y;
+l7c262:
+.line 89
+	iget	v0,v3,com/a/b/y.d I
+; v0 : single-length , v3 : Lcom/a/b/y;
+	if-ltz	v0,l7c282
+; v0 : single-length
+	iget-object	v0,v3,com/a/b/y.b Ljava/util/LinkedHashMap;
+; v0 : Ljava/util/LinkedHashMap; , v3 : Lcom/a/b/y;
+	invoke-virtual	{v0},java/util/LinkedHashMap/isEmpty	; isEmpty()Z
+; v0 : Ljava/util/LinkedHashMap;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,l7c2ca
+; v0 : single-length
+	iget	v0,v3,com/a/b/y.d I
+; v0 : single-length , v3 : Lcom/a/b/y;
+	if-eqz	v0,l7c2ca
+; v0 : single-length
+l7c282:
+.line 90
+	new-instance	v0,java/lang/IllegalStateException
+; v0 : Ljava/lang/IllegalStateException;
+	new-instance	v1,java/lang/StringBuilder
+; v1 : Ljava/lang/StringBuilder;
+	invoke-direct	{v1},java/lang/StringBuilder/<init>	; <init>()V
+; v1 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v3},java/lang/Object/getClass	; getClass()Ljava/lang/Class;
+; v3 : Lcom/a/b/y;
+	move-result-object	v2
+; v2 : Ljava/lang/Class;
+	invoke-virtual	{v2},java/lang/Class/getName	; getName()Ljava/lang/String;
+; v2 : Ljava/lang/Class;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	const-string	v2,".sizeOf() is reporting inconsistent results!"
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v1},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v1 : Ljava/lang/StringBuilder;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/IllegalStateException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/IllegalStateException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/IllegalStateException;
+l7c2c4:
+.line 104
+	move-exception	v0
+; v0 : java/lang/Exception
+	monitor-exit	v3
+; v3 : Lcom/a/b/y;
+l7c2c8:
+	throw	v0
+; v0 : java/lang/Exception
+l7c2ca:
+.line 94
+	iget	v0,v3,com/a/b/y.d I
+; v0 : single-length , v3 : Lcom/a/b/y;
+	if-le	v0,v4,l7c2e2
+; v0 : single-length , v4 : single-length
+	iget-object	v0,v3,com/a/b/y.b Ljava/util/LinkedHashMap;
+; v0 : Ljava/util/LinkedHashMap; , v3 : Lcom/a/b/y;
+	invoke-virtual	{v0},java/util/LinkedHashMap/isEmpty	; isEmpty()Z
+; v0 : Ljava/util/LinkedHashMap;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,l7c2e6
+; v0 : single-length
+l7c2e2:
+.line 95
+	monitor-exit	v3
+; v3 : Lcom/a/b/y;
+.line 106
+	return-void	
+l7c2e6:
+.line 98
+	iget-object	v0,v3,com/a/b/y.b Ljava/util/LinkedHashMap;
+; v0 : Ljava/util/LinkedHashMap; , v3 : Lcom/a/b/y;
+	invoke-virtual	{v0},java/util/LinkedHashMap/entrySet	; entrySet()Ljava/util/Set;
+; v0 : Ljava/util/LinkedHashMap;
+	move-result-object	v0
+; v0 : Ljava/util/Set;
+	invoke-interface	{v0},java/util/Set/iterator	; iterator()Ljava/util/Iterator;
+; v0 : Ljava/util/Set;
+	move-result-object	v0
+; v0 : Ljava/util/Iterator;
+	invoke-interface	{v0},java/util/Iterator/next	; next()Ljava/lang/Object;
+; v0 : Ljava/util/Iterator;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,java/util/Map$Entry
+; v0 : Ljava/util/Map$Entry;
+.line 99
+	invoke-interface	{v0},java/util/Map$Entry/getKey	; getKey()Ljava/lang/Object;
+; v0 : Ljava/util/Map$Entry;
+	move-result-object	v1
+; v1 : Ljava/lang/Object;
+	check-cast	v1,java/lang/String
+; v1 : Ljava/lang/String;
+.line 100
+	invoke-interface	{v0},java/util/Map$Entry/getValue	; getValue()Ljava/lang/Object;
+; v0 : Ljava/util/Map$Entry;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,android/graphics/Bitmap
+; v0 : Landroid/graphics/Bitmap;
+.line 101
+	iget-object	v2,v3,com/a/b/y.b Ljava/util/LinkedHashMap;
+; v2 : Ljava/util/LinkedHashMap; , v3 : Lcom/a/b/y;
+	invoke-virtual	{v2,v1},java/util/LinkedHashMap/remove	; remove(Ljava/lang/Object;)Ljava/lang/Object;
+; v2 : Ljava/util/LinkedHashMap; , v1 : Ljava/lang/String;
+.line 102
+	iget	v1,v3,com/a/b/y.d I
+; v1 : single-length , v3 : Lcom/a/b/y;
+	invoke-static	{v0},com/a/b/bb/a	; a(Landroid/graphics/Bitmap;)I
+; v0 : Landroid/graphics/Bitmap;
+	move-result	v0
+; v0 : single-length
+	sub-int	v0,v1,v0
+; v0 : single-length , v1 : single-length , v0 : single-length
+	iput	v0,v3,com/a/b/y.d I
+; v0 : single-length , v3 : Lcom/a/b/y;
+.line 103
+	iget	v0,v3,com/a/b/y.f I
+; v0 : single-length , v3 : Lcom/a/b/y;
+	add-int/lit8	v0,v0,1
+; v0 : single-length , v0 : single-length
+	iput	v0,v3,com/a/b/y.f I
+; v0 : single-length , v3 : Lcom/a/b/y;
+.line 104
+	monitor-exit	v3
+; v3 : Lcom/a/b/y;
+l7c34a:
+	goto	l7c260
+.end method
+
+.method public final synchronized a()I
+.limit registers 2
+; this: v1 (Lcom/a/b/y;)
+.catch java/lang/Exception from l7c372 to l7c376 using l7c37a
+.line 115
+	monitor-enter	v1
+; v1 : Lcom/a/b/y;
+l7c372:
+	iget	v0,v1,com/a/b/y.d I
+; v0 : single-length , v1 : Lcom/a/b/y;
+l7c376:
+	monitor-exit	v1
+; v1 : Lcom/a/b/y;
+	return	v0
+; v0 : single-length
+l7c37a:
+	move-exception	v0
+; v0 : java/lang/Exception
+	monitor-exit	v1
+; v1 : Lcom/a/b/y;
+	throw	v0
+; v0 : java/lang/Exception
+.end method
+
+.method public a(Ljava/lang/String;)Landroid/graphics/Bitmap;
+.limit registers 4
+; this: v2 (Lcom/a/b/y;)
+; parameter[0] : v3 (Ljava/lang/String;)
+.catch java/lang/Exception from l7c3b2 to l7c3ec using l7c3e8
+.line 49
+	if-nez	v3,l7c3b0
+; v3 : Ljava/lang/String;
+.line 50
+	new-instance	v0,java/lang/NullPointerException
+; v0 : Ljava/lang/NullPointerException;
+	const-string	v1,"key == null"
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/NullPointerException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/NullPointerException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/NullPointerException;
+l7c3b0:
+.line 54
+	monitor-enter	v2
+; v2 : Lcom/a/b/y;
+l7c3b2:
+.line 55
+	iget-object	v0,v2,com/a/b/y.b Ljava/util/LinkedHashMap;
+; v0 : Ljava/util/LinkedHashMap; , v2 : Lcom/a/b/y;
+	invoke-virtual	{v0,v3},java/util/LinkedHashMap/get	; get(Ljava/lang/Object;)Ljava/lang/Object;
+; v0 : Ljava/util/LinkedHashMap; , v3 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,android/graphics/Bitmap
+; v0 : Landroid/graphics/Bitmap;
+.line 56
+	if-eqz	v0,l7c3d6
+; v0 : Landroid/graphics/Bitmap;
+.line 57
+	iget	v1,v2,com/a/b/y.g I
+; v1 : single-length , v2 : Lcom/a/b/y;
+	add-int/lit8	v1,v1,1
+; v1 : single-length , v1 : single-length
+	iput	v1,v2,com/a/b/y.g I
+; v1 : single-length , v2 : Lcom/a/b/y;
+.line 58
+	monitor-exit	v2
+; v2 : Lcom/a/b/y;
+l7c3d4:
+.line 63
+	return-object	v0
+; v0 : single-length
+l7c3d6:
+.line 60
+	iget	v0,v2,com/a/b/y.h I
+; v0 : single-length , v2 : Lcom/a/b/y;
+	add-int/lit8	v0,v0,1
+; v0 : single-length , v0 : single-length
+	iput	v0,v2,com/a/b/y.h I
+; v0 : single-length , v2 : Lcom/a/b/y;
+.line 61
+	monitor-exit	v2
+; v2 : Lcom/a/b/y;
+.line 63
+	const/4	v0,0
+; v0 : single-length
+	goto	l7c3d4
+l7c3e8:
+.line 61
+	move-exception	v0
+; v0 : java/lang/Exception
+	monitor-exit	v2
+; v2 : Lcom/a/b/y;
+l7c3ec:
+	throw	v0
+; v0 : java/lang/Exception
+.end method
+
+.method public a(Ljava/lang/String;Landroid/graphics/Bitmap;)V
+.limit registers 5
+; this: v2 (Lcom/a/b/y;)
+; parameter[0] : v3 (Ljava/lang/String;)
+; parameter[1] : v4 (Landroid/graphics/Bitmap;)
+.catch java/lang/Exception from l7c47c to l7c47e using l7c47a
+.catch java/lang/Exception from l7c426 to l7c46e using l7c47a
+.line 67
+	if-eqz	v3,l7c414
+; v3 : Ljava/lang/String;
+	if-nez	v4,l7c424
+; v4 : Landroid/graphics/Bitmap;
+l7c414:
+.line 68
+	new-instance	v0,java/lang/NullPointerException
+; v0 : Ljava/lang/NullPointerException;
+	const-string	v1,"key == null || bitmap == null"
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/NullPointerException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/NullPointerException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/NullPointerException;
+l7c424:
+.line 72
+	monitor-enter	v2
+; v2 : Lcom/a/b/y;
+l7c426:
+.line 73
+	iget	v0,v2,com/a/b/y.e I
+; v0 : single-length , v2 : Lcom/a/b/y;
+	add-int/lit8	v0,v0,1
+; v0 : single-length , v0 : single-length
+	iput	v0,v2,com/a/b/y.e I
+; v0 : single-length , v2 : Lcom/a/b/y;
+.line 74
+	iget	v0,v2,com/a/b/y.d I
+; v0 : single-length , v2 : Lcom/a/b/y;
+	invoke-static	{v4},com/a/b/bb/a	; a(Landroid/graphics/Bitmap;)I
+; v4 : Landroid/graphics/Bitmap;
+	move-result	v1
+; v1 : single-length
+	add-int/2addr	v0,v1
+; v0 : single-length , v1 : single-length
+	iput	v0,v2,com/a/b/y.d I
+; v0 : single-length , v2 : Lcom/a/b/y;
+.line 75
+	iget-object	v0,v2,com/a/b/y.b Ljava/util/LinkedHashMap;
+; v0 : Ljava/util/LinkedHashMap; , v2 : Lcom/a/b/y;
+	invoke-virtual	{v0,v3,v4},java/util/LinkedHashMap/put	; put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+; v0 : Ljava/util/LinkedHashMap; , v3 : Ljava/lang/String; , v4 : Landroid/graphics/Bitmap;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,android/graphics/Bitmap
+; v0 : Landroid/graphics/Bitmap;
+.line 76
+	if-eqz	v0,l7c46c
+; v0 : Landroid/graphics/Bitmap;
+.line 77
+	iget	v1,v2,com/a/b/y.d I
+; v1 : single-length , v2 : Lcom/a/b/y;
+	invoke-static	{v0},com/a/b/bb/a	; a(Landroid/graphics/Bitmap;)I
+; v0 : Landroid/graphics/Bitmap;
+	move-result	v0
+; v0 : single-length
+	sub-int	v0,v1,v0
+; v0 : single-length , v1 : single-length , v0 : single-length
+	iput	v0,v2,com/a/b/y.d I
+; v0 : single-length , v2 : Lcom/a/b/y;
+l7c46c:
+.line 79
+	monitor-exit	v2
+; v2 : Lcom/a/b/y;
+l7c46e:
+.line 81
+	iget	v0,v2,com/a/b/y.c I
+; v0 : single-length , v2 : Lcom/a/b/y;
+	invoke-direct	{v2,v0},com/a/b/y/a	; a(I)V
+; v2 : Lcom/a/b/y; , v0 : single-length
+.line 82
+	return-void	
+l7c47a:
+.line 79
+	move-exception	v0
+; v0 : java/lang/Exception
+l7c47c:
+	monitor-exit	v2
+; v2 : Lcom/a/b/y;
+l7c47e:
+	throw	v0
+; v0 : java/lang/Exception
+.end method
+
+.method public final synchronized b()I
+.limit registers 2
+; this: v1 (Lcom/a/b/y;)
+.catch java/lang/Exception from l7c4a6 to l7c4aa using l7c4ae
+.line 120
+	monitor-enter	v1
+; v1 : Lcom/a/b/y;
+l7c4a6:
+	iget	v0,v1,com/a/b/y.c I
+; v0 : single-length , v1 : Lcom/a/b/y;
+l7c4aa:
+	monitor-exit	v1
+; v1 : Lcom/a/b/y;
+	return	v0
+; v0 : single-length
+l7c4ae:
+	move-exception	v0
+; v0 : java/lang/Exception
+	monitor-exit	v1
+; v1 : Lcom/a/b/y;
+	throw	v0
+; v0 : java/lang/Exception
+.end method
+
+

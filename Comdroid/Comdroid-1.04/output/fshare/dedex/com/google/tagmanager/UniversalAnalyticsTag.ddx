@@ -1,0 +1,1064 @@
+.class com/google/tagmanager/UniversalAnalyticsTag
+.super com/google/tagmanager/TrackingTag
+.source UniversalAnalyticsTag.java
+
+.field private static final ACCOUNT Ljava/lang/String; = null
+.field private static final ANALYTICS_FIELDS Ljava/lang/String; = null
+.field private static final ANALYTICS_PASS_THROUGH Ljava/lang/String; = null
+.field private static final DEFAULT_TRACKING_ID Ljava/lang/String; = "_GTM_DEFAULT_TRACKER_"
+.field private static final ID Ljava/lang/String;
+.field private static final TRACK_TRANSACTION Ljava/lang/String;
+.field private static final TRANSACTION_DATALAYER_MAP Ljava/lang/String;
+.field private static final TRANSACTION_ITEM_DATALAYER_MAP Ljava/lang/String;
+.field private static defaultItemMap Ljava/util/Map;
+  .annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "Ljava/util/Map" , "<" , "Ljava/lang/String;" , "Ljava/lang/String;" , ">;" }
+  .end annotation
+.end field
+.field private static defaultTransactionMap Ljava/util/Map;
+  .annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "Ljava/util/Map" , "<" , "Ljava/lang/String;" , "Ljava/lang/String;" , ">;" }
+  .end annotation
+.end field
+.field private final mDataLayer Lcom/google/tagmanager/DataLayer;
+.field private final mTrackerProvider Lcom/google/tagmanager/TrackerProvider;
+.field private final mTurnOffAnonymizeIpValues Ljava/util/Set;
+  .annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "Ljava/util/Set" , "<" , "Ljava/lang/String;" , ">;" }
+  .end annotation
+.end field
+
+.method static <clinit>()V
+.limit registers 1
+.line 28
+	sget-object	v0,com/google/analytics/containertag/common/FunctionType.UNIVERSAL_ANALYTICS Lcom/google/analytics/containertag/common/FunctionType;
+; v0 : Lcom/google/analytics/containertag/common/FunctionType;
+	invoke-virtual	{v0},com/google/analytics/containertag/common/FunctionType/toString	; toString()Ljava/lang/String;
+; v0 : Lcom/google/analytics/containertag/common/FunctionType;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	sput-object	v0,com/google/tagmanager/UniversalAnalyticsTag.ID Ljava/lang/String;
+; v0 : Ljava/lang/String;
+.line 33
+	sget-object	v0,com/google/analytics/containertag/common/Key.ACCOUNT Lcom/google/analytics/containertag/common/Key;
+; v0 : Lcom/google/analytics/containertag/common/Key;
+	invoke-virtual	{v0},com/google/analytics/containertag/common/Key/toString	; toString()Ljava/lang/String;
+; v0 : Lcom/google/analytics/containertag/common/Key;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	sput-object	v0,com/google/tagmanager/UniversalAnalyticsTag.ACCOUNT Ljava/lang/String;
+; v0 : Ljava/lang/String;
+.line 38
+	sget-object	v0,com/google/analytics/containertag/common/Key.ANALYTICS_PASS_THROUGH Lcom/google/analytics/containertag/common/Key;
+; v0 : Lcom/google/analytics/containertag/common/Key;
+	invoke-virtual	{v0},com/google/analytics/containertag/common/Key/toString	; toString()Ljava/lang/String;
+; v0 : Lcom/google/analytics/containertag/common/Key;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	sput-object	v0,com/google/tagmanager/UniversalAnalyticsTag.ANALYTICS_PASS_THROUGH Ljava/lang/String;
+; v0 : Ljava/lang/String;
+.line 42
+	sget-object	v0,com/google/analytics/containertag/common/Key.ANALYTICS_FIELDS Lcom/google/analytics/containertag/common/Key;
+; v0 : Lcom/google/analytics/containertag/common/Key;
+	invoke-virtual	{v0},com/google/analytics/containertag/common/Key/toString	; toString()Ljava/lang/String;
+; v0 : Lcom/google/analytics/containertag/common/Key;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	sput-object	v0,com/google/tagmanager/UniversalAnalyticsTag.ANALYTICS_FIELDS Ljava/lang/String;
+; v0 : Ljava/lang/String;
+.line 45
+	sget-object	v0,com/google/analytics/containertag/common/Key.TRACK_TRANSACTION Lcom/google/analytics/containertag/common/Key;
+; v0 : Lcom/google/analytics/containertag/common/Key;
+	invoke-virtual	{v0},com/google/analytics/containertag/common/Key/toString	; toString()Ljava/lang/String;
+; v0 : Lcom/google/analytics/containertag/common/Key;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	sput-object	v0,com/google/tagmanager/UniversalAnalyticsTag.TRACK_TRANSACTION Ljava/lang/String;
+; v0 : Ljava/lang/String;
+.line 49
+	sget-object	v0,com/google/analytics/containertag/common/Key.TRANSACTION_DATALAYER_MAP Lcom/google/analytics/containertag/common/Key;
+; v0 : Lcom/google/analytics/containertag/common/Key;
+	invoke-virtual	{v0},com/google/analytics/containertag/common/Key/toString	; toString()Ljava/lang/String;
+; v0 : Lcom/google/analytics/containertag/common/Key;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	sput-object	v0,com/google/tagmanager/UniversalAnalyticsTag.TRANSACTION_DATALAYER_MAP Ljava/lang/String;
+; v0 : Ljava/lang/String;
+.line 54
+	sget-object	v0,com/google/analytics/containertag/common/Key.TRANSACTION_ITEM_DATALAYER_MAP Lcom/google/analytics/containertag/common/Key;
+; v0 : Lcom/google/analytics/containertag/common/Key;
+	invoke-virtual	{v0},com/google/analytics/containertag/common/Key/toString	; toString()Ljava/lang/String;
+; v0 : Lcom/google/analytics/containertag/common/Key;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	sput-object	v0,com/google/tagmanager/UniversalAnalyticsTag.TRANSACTION_ITEM_DATALAYER_MAP Ljava/lang/String;
+; v0 : Ljava/lang/String;
+	return-void	
+.end method
+
+.method public <init>(Landroid/content/Context;Lcom/google/tagmanager/DataLayer;)V
+.annotation buildVisibility Lcom/google/android/gms/common/util/VisibleForTesting;
+.end annotation
+.limit registers 4
+; this: v1 (Lcom/google/tagmanager/UniversalAnalyticsTag;)
+; parameter[0] : v2 (Landroid/content/Context;)
+; parameter[1] : v3 (Lcom/google/tagmanager/DataLayer;)
+.line 72
+	new-instance	v0,com/google/tagmanager/TrackerProvider
+; v0 : Lcom/google/tagmanager/TrackerProvider;
+	invoke-direct	{v0,v2},com/google/tagmanager/TrackerProvider/<init>	; <init>(Landroid/content/Context;)V
+; v0 : Lcom/google/tagmanager/TrackerProvider; , v2 : Landroid/content/Context;
+	invoke-direct	{v1,v2,v3,v0},com/google/tagmanager/UniversalAnalyticsTag/<init>	; <init>(Landroid/content/Context;Lcom/google/tagmanager/DataLayer;Lcom/google/tagmanager/TrackerProvider;)V
+; v1 : Lcom/google/tagmanager/UniversalAnalyticsTag; , v2 : Landroid/content/Context; , v3 : Lcom/google/tagmanager/DataLayer; , v0 : Lcom/google/tagmanager/TrackerProvider;
+.line 73
+	return-void	
+.end method
+
+.method <init>(Landroid/content/Context;Lcom/google/tagmanager/DataLayer;Lcom/google/tagmanager/TrackerProvider;)V
+.annotation buildVisibility Lcom/google/android/gms/common/util/VisibleForTesting;
+.end annotation
+.limit registers 6
+; this: v2 (Lcom/google/tagmanager/UniversalAnalyticsTag;)
+; parameter[0] : v3 (Landroid/content/Context;)
+; parameter[1] : v4 (Lcom/google/tagmanager/DataLayer;)
+; parameter[2] : v5 (Lcom/google/tagmanager/TrackerProvider;)
+.line 77
+	sget-object	v0,com/google/tagmanager/UniversalAnalyticsTag.ID Ljava/lang/String;
+; v0 : Ljava/lang/String;
+	const/4	v1,0
+; v1 : single-length
+	new-array	v1,v1,[Ljava/lang/String;
+; v1 : [Ljava/lang/String; , v1 : [Ljava/lang/String;
+	invoke-direct	{v2,v0,v1},com/google/tagmanager/TrackingTag/<init>	; <init>(Ljava/lang/String;[Ljava/lang/String;)V
+; v2 : Lcom/google/tagmanager/UniversalAnalyticsTag; , v0 : Ljava/lang/String; , v1 : [Ljava/lang/String;
+.line 78
+	iput-object	v4,v2,com/google/tagmanager/UniversalAnalyticsTag.mDataLayer Lcom/google/tagmanager/DataLayer;
+; v4 : Lcom/google/tagmanager/DataLayer; , v2 : Lcom/google/tagmanager/UniversalAnalyticsTag;
+.line 79
+	iput-object	v5,v2,com/google/tagmanager/UniversalAnalyticsTag.mTrackerProvider Lcom/google/tagmanager/TrackerProvider;
+; v5 : Lcom/google/tagmanager/TrackerProvider; , v2 : Lcom/google/tagmanager/UniversalAnalyticsTag;
+.line 81
+	new-instance	v0,java/util/HashSet
+; v0 : Ljava/util/HashSet;
+	invoke-direct	{v0},java/util/HashSet/<init>	; <init>()V
+; v0 : Ljava/util/HashSet;
+	iput-object	v0,v2,com/google/tagmanager/UniversalAnalyticsTag.mTurnOffAnonymizeIpValues Ljava/util/Set;
+; v0 : Ljava/util/HashSet; , v2 : Lcom/google/tagmanager/UniversalAnalyticsTag;
+.line 83
+	iget-object	v0,v2,com/google/tagmanager/UniversalAnalyticsTag.mTurnOffAnonymizeIpValues Ljava/util/Set;
+; v0 : Ljava/util/Set; , v2 : Lcom/google/tagmanager/UniversalAnalyticsTag;
+	const-string	v1,""
+; v1 : Ljava/lang/String;
+	invoke-interface	{v0,v1},java/util/Set/add	; add(Ljava/lang/Object;)Z
+; v0 : Ljava/util/Set; , v1 : Ljava/lang/String;
+.line 84
+	iget-object	v0,v2,com/google/tagmanager/UniversalAnalyticsTag.mTurnOffAnonymizeIpValues Ljava/util/Set;
+; v0 : Ljava/util/Set; , v2 : Lcom/google/tagmanager/UniversalAnalyticsTag;
+	const-string	v1,"0"
+; v1 : Ljava/lang/String;
+	invoke-interface	{v0,v1},java/util/Set/add	; add(Ljava/lang/Object;)Z
+; v0 : Ljava/util/Set; , v1 : Ljava/lang/String;
+.line 85
+	iget-object	v0,v2,com/google/tagmanager/UniversalAnalyticsTag.mTurnOffAnonymizeIpValues Ljava/util/Set;
+; v0 : Ljava/util/Set; , v2 : Lcom/google/tagmanager/UniversalAnalyticsTag;
+	const-string	v1,"false"
+; v1 : Ljava/lang/String;
+	invoke-interface	{v0,v1},java/util/Set/add	; add(Ljava/lang/Object;)Z
+; v0 : Ljava/util/Set; , v1 : Ljava/lang/String;
+.line 86
+	return-void	
+.end method
+
+.method private addParam(Ljava/util/Map;Ljava/lang/String;Ljava/lang/String;)V
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "(" , "Ljava/util/Map" , "<" , "Ljava/lang/String;" , "Ljava/lang/String;" , ">;" , "Ljava/lang/String;" , "Ljava/lang/String;" , ")V" }
+.end annotation
+.limit registers 4
+; this: v0 (Lcom/google/tagmanager/UniversalAnalyticsTag;)
+; parameter[0] : v1 (Ljava/util/Map;)
+; parameter[1] : v2 (Ljava/lang/String;)
+; parameter[2] : v3 (Ljava/lang/String;)
+.line 144
+	if-eqz	v3,lffcee
+; v3 : Ljava/lang/String;
+.line 145
+	invoke-interface	{v1,v2,v3},java/util/Map/put	; put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+; v1 : Ljava/util/Map; , v2 : Ljava/lang/String; , v3 : Ljava/lang/String;
+lffcee:
+.line 147
+	return-void	
+.end method
+
+.method private checkBooleanProperty(Ljava/util/Map;Ljava/lang/String;)Z
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "(" , "Ljava/util/Map" , "<" , "Ljava/lang/String;" , "Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;" , ">;" , "Ljava/lang/String;" , ")Z" }
+.end annotation
+.limit registers 5
+; this: v2 (Lcom/google/tagmanager/UniversalAnalyticsTag;)
+; parameter[0] : v3 (Ljava/util/Map;)
+; parameter[1] : v4 (Ljava/lang/String;)
+.line 89
+	invoke-interface	{v3,v4},java/util/Map/get	; get(Ljava/lang/Object;)Ljava/lang/Object;
+; v3 : Ljava/util/Map; , v4 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,com/google/analytics/midtier/proto/containertag/TypeSystem$Value
+; v0 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+.line 90
+	if-nez	v0,lffd14
+; v0 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	const/4	v1,0
+; v1 : single-length
+lffd12:
+	return	v1
+; v1 : single-length
+lffd14:
+	invoke-static	{v0},com/google/tagmanager/Types/valueToBoolean	; valueToBoolean(Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;)Ljava/lang/Boolean;
+; v0 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	move-result-object	v1
+; v1 : Ljava/lang/Boolean;
+	invoke-virtual	{v1},java/lang/Boolean/booleanValue	; booleanValue()Z
+; v1 : Ljava/lang/Boolean;
+	move-result	v1
+; v1 : single-length
+	goto	lffd12
+.end method
+
+.method private convertToGaFields(Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;)Ljava/util/Map;
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "(" , "Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;" , ")" , "Ljava/util/Map" , "<" , "Ljava/lang/String;" , "Ljava/lang/String;" , ">;" }
+.end annotation
+.limit registers 6
+; this: v4 (Lcom/google/tagmanager/UniversalAnalyticsTag;)
+; parameter[0] : v5 (Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;)
+.var 1 is params Ljava/util/Map; from lffd50 to lffd58
+.line 223
+	if-nez	v5,lffd48
+; v5 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+.line 224
+	new-instance	v1,java/util/HashMap
+; v1 : Ljava/util/HashMap;
+	invoke-direct	{v1},java/util/HashMap/<init>	; <init>()V
+; v1 : Ljava/util/HashMap;
+lffd46:
+.line 237
+	return-object	v1
+; v1 : Ljava/lang/Object;
+lffd48:
+.line 226
+	invoke-direct	{v4,v5},com/google/tagmanager/UniversalAnalyticsTag/valueToMap	; valueToMap(Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;)Ljava/util/Map;
+; v4 : Lcom/google/tagmanager/UniversalAnalyticsTag; , v5 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	move-result-object	v1
+; v1 : Ljava/util/Map;
+.line 227
+	if-nez	v1,lffd60
+; v1 : Ljava/util/Map;
+.line 228
+	new-instance	v1,java/util/HashMap
+; v1 : Ljava/util/HashMap;
+lffd58:
+	invoke-direct	{v1},java/util/HashMap/<init>	; <init>()V
+; v1 : Ljava/util/HashMap;
+	goto	lffd46
+lffd60:
+.line 233
+	const-string	v2,"&aip"
+; v2 : Ljava/lang/String;
+	invoke-interface	{v1,v2},java/util/Map/get	; get(Ljava/lang/Object;)Ljava/lang/Object;
+; v1 : Ljava/util/Map; , v2 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,java/lang/String
+; v0 : Ljava/lang/String;
+.line 234
+	if-eqz	v0,lffd46
+; v0 : Ljava/lang/String;
+	iget-object	v2,v4,com/google/tagmanager/UniversalAnalyticsTag.mTurnOffAnonymizeIpValues Ljava/util/Set;
+; v2 : Ljava/util/Set; , v4 : Lcom/google/tagmanager/UniversalAnalyticsTag;
+	invoke-virtual	{v0},java/lang/String/toLowerCase	; toLowerCase()Ljava/lang/String;
+; v0 : Ljava/lang/String;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-interface	{v2,v3},java/util/Set/contains	; contains(Ljava/lang/Object;)Z
+; v2 : Ljava/util/Set; , v3 : Ljava/lang/String;
+	move-result	v2
+; v2 : single-length
+	if-eqz	v2,lffd46
+; v2 : single-length
+.line 235
+	const-string	v2,"&aip"
+; v2 : Ljava/lang/String;
+	invoke-interface	{v1,v2},java/util/Map/remove	; remove(Ljava/lang/Object;)Ljava/lang/Object;
+; v1 : Ljava/util/Map; , v2 : Ljava/lang/String;
+	goto	lffd46
+.end method
+
+.method private getDataLayerString(Ljava/lang/String;)Ljava/lang/String;
+.limit registers 4
+; this: v2 (Lcom/google/tagmanager/UniversalAnalyticsTag;)
+; parameter[0] : v3 (Ljava/lang/String;)
+.line 109
+	iget-object	v1,v2,com/google/tagmanager/UniversalAnalyticsTag.mDataLayer Lcom/google/tagmanager/DataLayer;
+; v1 : Lcom/google/tagmanager/DataLayer; , v2 : Lcom/google/tagmanager/UniversalAnalyticsTag;
+	invoke-virtual	{v1,v3},com/google/tagmanager/DataLayer/get	; get(Ljava/lang/String;)Ljava/lang/Object;
+; v1 : Lcom/google/tagmanager/DataLayer; , v3 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+.line 110
+	if-nez	v0,lffdbc
+; v0 : Ljava/lang/Object;
+	const/4	v1,0
+; v1 : single-length
+lffdba:
+	return-object	v1
+; v1 : Ljava/lang/String;
+lffdbc:
+	invoke-virtual	{v0},java/lang/Object/toString	; toString()Ljava/lang/String;
+; v0 : Ljava/lang/Object;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	goto	lffdba
+.end method
+
+.method public static getFunctionId()Ljava/lang/String;
+.limit registers 1
+.line 68
+	sget-object	v0,com/google/tagmanager/UniversalAnalyticsTag.ID Ljava/lang/String;
+; v0 : Ljava/lang/String;
+	return-object	v0
+; v0 : Ljava/lang/String;
+.end method
+
+.method private getTransactionFields(Ljava/util/Map;)Ljava/util/Map;
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "(" , "Ljava/util/Map" , "<" , "Ljava/lang/String;" , "Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;" , ">;)" , "Ljava/util/Map" , "<" , "Ljava/lang/String;" , "Ljava/lang/String;" , ">;" }
+.end annotation
+.limit registers 6
+; this: v4 (Lcom/google/tagmanager/UniversalAnalyticsTag;)
+; parameter[0] : v5 (Ljava/util/Map;)
+.var 0 is defaultMap Ljava/util/HashMap; from lffe20 to lffe78
+.line 245
+	sget-object	v2,com/google/tagmanager/UniversalAnalyticsTag.TRANSACTION_DATALAYER_MAP Ljava/lang/String;
+; v2 : Ljava/lang/String;
+	invoke-interface	{v5,v2},java/util/Map/get	; get(Ljava/lang/Object;)Ljava/lang/Object;
+; v5 : Ljava/util/Map; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/Object;
+	check-cast	v1,com/google/analytics/midtier/proto/containertag/TypeSystem$Value
+; v1 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+.line 246
+	if-eqz	v1,lffe0e
+; v1 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+.line 247
+	invoke-direct	{v4,v1},com/google/tagmanager/UniversalAnalyticsTag/valueToMap	; valueToMap(Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;)Ljava/util/Map;
+; v4 : Lcom/google/tagmanager/UniversalAnalyticsTag; , v1 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	move-result-object	v2
+; v2 : Ljava/util/Map;
+lffe0c:
+.line 259
+	return-object	v2
+; v2 : Ljava/util/Map;
+lffe0e:
+.line 249
+	sget-object	v2,com/google/tagmanager/UniversalAnalyticsTag.defaultTransactionMap Ljava/util/Map;
+; v2 : Ljava/util/Map;
+	if-nez	v2,lffe78
+; v2 : Ljava/util/Map;
+.line 250
+	new-instance	v0,java/util/HashMap
+; v0 : Ljava/util/HashMap;
+	invoke-direct	{v0},java/util/HashMap/<init>	; <init>()V
+; v0 : Ljava/util/HashMap;
+.line 251
+	const-string	v2,"transactionId"
+; v2 : Ljava/lang/String;
+	const-string	v3,"&ti"
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v0,v2,v3},java/util/HashMap/put	; put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+; v0 : Ljava/util/HashMap; , v2 : Ljava/lang/String; , v3 : Ljava/lang/String;
+.line 252
+	const-string	v2,"transactionAffiliation"
+; v2 : Ljava/lang/String;
+	const-string	v3,"&ta"
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v0,v2,v3},java/util/HashMap/put	; put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+; v0 : Ljava/util/HashMap; , v2 : Ljava/lang/String; , v3 : Ljava/lang/String;
+.line 253
+	const-string	v2,"transactionTax"
+; v2 : Ljava/lang/String;
+	const-string	v3,"&tt"
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v0,v2,v3},java/util/HashMap/put	; put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+; v0 : Ljava/util/HashMap; , v2 : Ljava/lang/String; , v3 : Ljava/lang/String;
+.line 254
+	const-string	v2,"transactionShipping"
+; v2 : Ljava/lang/String;
+	const-string	v3,"&ts"
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v0,v2,v3},java/util/HashMap/put	; put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+; v0 : Ljava/util/HashMap; , v2 : Ljava/lang/String; , v3 : Ljava/lang/String;
+.line 255
+	const-string	v2,"transactionTotal"
+; v2 : Ljava/lang/String;
+	const-string	v3,"&tr"
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v0,v2,v3},java/util/HashMap/put	; put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+; v0 : Ljava/util/HashMap; , v2 : Ljava/lang/String; , v3 : Ljava/lang/String;
+.line 256
+	const-string	v2,"transactionCurrency"
+; v2 : Ljava/lang/String;
+	const-string	v3,"&cu"
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v0,v2,v3},java/util/HashMap/put	; put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+; v0 : Ljava/util/HashMap; , v2 : Ljava/lang/String; , v3 : Ljava/lang/String;
+.line 257
+	sput-object	v0,com/google/tagmanager/UniversalAnalyticsTag.defaultTransactionMap Ljava/util/Map;
+; v0 : Ljava/util/Map;
+lffe78:
+.line 259
+	sget-object	v2,com/google/tagmanager/UniversalAnalyticsTag.defaultTransactionMap Ljava/util/Map;
+; v2 : Ljava/util/Map;
+	goto	lffe0c
+.end method
+
+.method private getTransactionItemFields(Ljava/util/Map;)Ljava/util/Map;
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "(" , "Ljava/util/Map" , "<" , "Ljava/lang/String;" , "Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;" , ">;)" , "Ljava/util/Map" , "<" , "Ljava/lang/String;" , "Ljava/lang/String;" , ">;" }
+.end annotation
+.limit registers 6
+; this: v4 (Lcom/google/tagmanager/UniversalAnalyticsTag;)
+; parameter[0] : v5 (Ljava/util/Map;)
+.var 0 is defaultMap Ljava/util/HashMap; from lffec0 to lfff18
+.line 269
+	sget-object	v2,com/google/tagmanager/UniversalAnalyticsTag.TRANSACTION_ITEM_DATALAYER_MAP Ljava/lang/String;
+; v2 : Ljava/lang/String;
+	invoke-interface	{v5,v2},java/util/Map/get	; get(Ljava/lang/Object;)Ljava/lang/Object;
+; v5 : Ljava/util/Map; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/Object;
+	check-cast	v1,com/google/analytics/midtier/proto/containertag/TypeSystem$Value
+; v1 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+.line 270
+	if-eqz	v1,lffeae
+; v1 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+.line 271
+	invoke-direct	{v4,v1},com/google/tagmanager/UniversalAnalyticsTag/valueToMap	; valueToMap(Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;)Ljava/util/Map;
+; v4 : Lcom/google/tagmanager/UniversalAnalyticsTag; , v1 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	move-result-object	v2
+; v2 : Ljava/util/Map;
+lffeac:
+.line 283
+	return-object	v2
+; v2 : Ljava/util/Map;
+lffeae:
+.line 273
+	sget-object	v2,com/google/tagmanager/UniversalAnalyticsTag.defaultItemMap Ljava/util/Map;
+; v2 : Ljava/util/Map;
+	if-nez	v2,lfff18
+; v2 : Ljava/util/Map;
+.line 274
+	new-instance	v0,java/util/HashMap
+; v0 : Ljava/util/HashMap;
+	invoke-direct	{v0},java/util/HashMap/<init>	; <init>()V
+; v0 : Ljava/util/HashMap;
+.line 275
+	const-string	v2,"name"
+; v2 : Ljava/lang/String;
+	const-string	v3,"&in"
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v0,v2,v3},java/util/HashMap/put	; put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+; v0 : Ljava/util/HashMap; , v2 : Ljava/lang/String; , v3 : Ljava/lang/String;
+.line 276
+	const-string	v2,"sku"
+; v2 : Ljava/lang/String;
+	const-string	v3,"&ic"
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v0,v2,v3},java/util/HashMap/put	; put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+; v0 : Ljava/util/HashMap; , v2 : Ljava/lang/String; , v3 : Ljava/lang/String;
+.line 277
+	const-string	v2,"category"
+; v2 : Ljava/lang/String;
+	const-string	v3,"&iv"
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v0,v2,v3},java/util/HashMap/put	; put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+; v0 : Ljava/util/HashMap; , v2 : Ljava/lang/String; , v3 : Ljava/lang/String;
+.line 278
+	const-string	v2,"price"
+; v2 : Ljava/lang/String;
+	const-string	v3,"&ip"
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v0,v2,v3},java/util/HashMap/put	; put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+; v0 : Ljava/util/HashMap; , v2 : Ljava/lang/String; , v3 : Ljava/lang/String;
+.line 279
+	const-string	v2,"quantity"
+; v2 : Ljava/lang/String;
+	const-string	v3,"&iq"
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v0,v2,v3},java/util/HashMap/put	; put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+; v0 : Ljava/util/HashMap; , v2 : Ljava/lang/String; , v3 : Ljava/lang/String;
+.line 280
+	const-string	v2,"currency"
+; v2 : Ljava/lang/String;
+	const-string	v3,"&cu"
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v0,v2,v3},java/util/HashMap/put	; put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+; v0 : Ljava/util/HashMap; , v2 : Ljava/lang/String; , v3 : Ljava/lang/String;
+.line 281
+	sput-object	v0,com/google/tagmanager/UniversalAnalyticsTag.defaultItemMap Ljava/util/Map;
+; v0 : Ljava/util/Map;
+lfff18:
+.line 283
+	sget-object	v2,com/google/tagmanager/UniversalAnalyticsTag.defaultItemMap Ljava/util/Map;
+; v2 : Ljava/util/Map;
+	goto	lffeac
+.end method
+
+.method private getTransactionItems()Ljava/util/List;
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "()" , "Ljava/util/List" , "<" , "Ljava/util/Map" , "<" , "Ljava/lang/String;" , "Ljava/lang/String;" , ">;>;" }
+.end annotation
+.limit registers 8
+; this: v7 (Lcom/google/tagmanager/UniversalAnalyticsTag;)
+.var 3 is obj Ljava/lang/Object; from lfff82 to lfff9a
+.line 119
+	iget-object	v5,v7,com/google/tagmanager/UniversalAnalyticsTag.mDataLayer Lcom/google/tagmanager/DataLayer;
+; v5 : Lcom/google/tagmanager/DataLayer; , v7 : Lcom/google/tagmanager/UniversalAnalyticsTag;
+	const-string	v6,"transactionProducts"
+; v6 : Ljava/lang/String;
+	invoke-virtual	{v5,v6},com/google/tagmanager/DataLayer/get	; get(Ljava/lang/String;)Ljava/lang/Object;
+; v5 : Lcom/google/tagmanager/DataLayer; , v6 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+.line 120
+	if-nez	v0,lfff48
+; v0 : Ljava/lang/Object;
+.line 121
+	const/4	v4,0
+; v4 : single-length
+lfff46:
+.line 140
+	return-object	v4
+; v4 : Ljava/util/List;
+lfff48:
+.line 123
+	instance-of	v5,v0,java/util/List
+; v5 : single-length , v0 : Ljava/lang/Object;
+	if-nez	v5,lfff60
+; v5 : single-length
+.line 124
+	new-instance	v5,java/lang/IllegalArgumentException
+; v5 : Ljava/lang/IllegalArgumentException;
+	const-string	v6,"transactionProducts should be of type List."
+; v6 : Ljava/lang/String;
+	invoke-direct	{v5,v6},java/lang/IllegalArgumentException/<init>	; <init>(Ljava/lang/String;)V
+; v5 : Ljava/lang/IllegalArgumentException; , v6 : Ljava/lang/String;
+	throw	v5
+; v5 : Ljava/lang/IllegalArgumentException;
+lfff60:
+	move-object	v2,v0
+; v2 : Ljava/lang/Object; , v0 : Ljava/lang/Object;
+.line 129
+	check-cast	v2,java/util/List
+; v2 : Ljava/util/List;
+.line 131
+	invoke-interface	{v2},java/util/List/iterator	; iterator()Ljava/util/Iterator;
+; v2 : Ljava/util/List;
+	move-result-object	v1
+; v1 : Ljava/util/Iterator;
+lfff6e:
+	invoke-interface	{v1},java/util/Iterator/hasNext	; hasNext()Z
+; v1 : Ljava/util/Iterator;
+	move-result	v5
+; v5 : single-length
+	if-eqz	v5,lfff9a
+; v5 : single-length
+	invoke-interface	{v1},java/util/Iterator/next	; next()Ljava/lang/Object;
+; v1 : Ljava/util/Iterator;
+	move-result-object	v3
+; v3 : Ljava/lang/Object;
+.line 132
+	instance-of	v5,v3,java/util/Map
+; v5 : single-length , v3 : Ljava/lang/Object;
+	if-nez	v5,lfff6e
+; v5 : single-length
+.line 133
+	new-instance	v5,java/lang/IllegalArgumentException
+; v5 : Ljava/lang/IllegalArgumentException;
+	const-string	v6,"Each element of transactionProducts should be of type Map."
+; v6 : Ljava/lang/String;
+	invoke-direct	{v5,v6},java/lang/IllegalArgumentException/<init>	; <init>(Ljava/lang/String;)V
+; v5 : Ljava/lang/IllegalArgumentException; , v6 : Ljava/lang/String;
+	throw	v5
+; v5 : Ljava/lang/IllegalArgumentException;
+lfff9a:
+	move-object	v4,v0
+; v4 : Ljava/lang/Object; , v0 : Ljava/lang/Object;
+.line 139
+	check-cast	v4,java/util/List
+; v4 : Ljava/util/List;
+.line 140
+	goto	lfff46
+.end method
+
+.method private sendTransaction(Lcom/google/analytics/tracking/android/Tracker;Ljava/util/Map;)V
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "(" , "Lcom/google/analytics/tracking/android/Tracker;" , "Ljava/util/Map" , "<" , "Ljava/lang/String;" , "Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;" , ">;)V" }
+.end annotation
+.limit registers 20
+; this: v17 (Lcom/google/tagmanager/UniversalAnalyticsTag;)
+; parameter[0] : v18 (Lcom/google/analytics/tracking/android/Tracker;)
+; parameter[1] : v19 (Ljava/util/Map;)
+.catch java/lang/IllegalArgumentException from l10008e to l1001b8 using l100080
+.catch java/lang/IllegalArgumentException from lfffde to l10007e using l100080
+.var 3 is entry Ljava/util/Map$Entry; from l100048 to l100080
+.var 5 is i$ Ljava/util/Iterator; from l100030 to l100080
+.var 11 is params Ljava/util/Map; from lffffe to l100080
+.var 13 is transactionFields Ljava/util/Map; from l100020 to l100080
+.var 2 is e Ljava/lang/IllegalArgumentException; from l100082 to l10008e
+.var 5 is i$ Ljava/util/Iterator; from l10008e to l1000a8
+.var 3 is entry Ljava/util/Map$Entry; from l100152 to l100186
+.var 6 is i$ Ljava/util/Iterator; from l10013a to l10018e
+.var 7 is item Ljava/util/Map; from l1000c0 to l10018e
+.var 8 is itemFields Ljava/util/Map; from l10012a to l10018e
+.var 9 is itemParams Ljava/util/Map; from l1000fe to l10018e
+.line 154
+	const-string	v15,"transactionId"
+; v15 : Ljava/lang/String;
+	move-object/from16	v0,v17
+; v0 : Lcom/google/tagmanager/UniversalAnalyticsTag; , v17 : Lcom/google/tagmanager/UniversalAnalyticsTag;
+	invoke-direct	{v0,v15},com/google/tagmanager/UniversalAnalyticsTag/getDataLayerString	; getDataLayerString(Ljava/lang/String;)Ljava/lang/String;
+; v0 : Lcom/google/tagmanager/UniversalAnalyticsTag; , v15 : Ljava/lang/String;
+	move-result-object	v14
+; v14 : Ljava/lang/String;
+.line 155
+	if-nez	v14,lfffd4
+; v14 : Ljava/lang/String;
+.line 156
+	const-string	v15,"Cannot find transactionId in data layer."
+; v15 : Ljava/lang/String;
+	invoke-static	{v15},com/google/tagmanager/Log/e	; e(Ljava/lang/String;)V
+; v15 : Ljava/lang/String;
+lfffd2:
+.line 200
+	return-void	
+lfffd4:
+.line 162
+	new-instance	v12,java/util/LinkedList
+; v12 : Ljava/util/LinkedList;
+	invoke-direct	{v12},java/util/LinkedList/<init>	; <init>()V
+; v12 : Ljava/util/LinkedList;
+lfffde:
+.line 165
+	sget-object	v15,com/google/tagmanager/UniversalAnalyticsTag.ANALYTICS_FIELDS Ljava/lang/String;
+; v15 : Ljava/lang/String;
+	move-object/from16	v0,v19
+; v0 : Ljava/util/Map; , v19 : Ljava/util/Map;
+	invoke-interface	{v0,v15},java/util/Map/get	; get(Ljava/lang/Object;)Ljava/lang/Object;
+; v0 : Ljava/util/Map; , v15 : Ljava/lang/String;
+	move-result-object	v15
+; v15 : Ljava/lang/Object;
+	check-cast	v15,com/google/analytics/midtier/proto/containertag/TypeSystem$Value
+; v15 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	move-object/from16	v0,v17
+; v0 : Lcom/google/tagmanager/UniversalAnalyticsTag; , v17 : Lcom/google/tagmanager/UniversalAnalyticsTag;
+	invoke-direct	{v0,v15},com/google/tagmanager/UniversalAnalyticsTag/convertToGaFields	; convertToGaFields(Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;)Ljava/util/Map;
+; v0 : Lcom/google/tagmanager/UniversalAnalyticsTag; , v15 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	move-result-object	v11
+; v11 : Ljava/util/Map;
+.line 166
+	const-string	v15,"&t"
+; v15 : Ljava/lang/String;
+	const-string	v16,"transaction"
+; v16 : Ljava/lang/String;
+	move-object/from16	v0,v16
+; v0 : Ljava/lang/String; , v16 : Ljava/lang/String;
+	invoke-interface	{v11,v15,v0},java/util/Map/put	; put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+; v11 : Ljava/util/Map; , v15 : Ljava/lang/String; , v0 : Ljava/lang/String;
+.line 168
+	move-object/from16	v0,v17
+; v0 : Lcom/google/tagmanager/UniversalAnalyticsTag; , v17 : Lcom/google/tagmanager/UniversalAnalyticsTag;
+	move-object/from16	v1,v19
+; v1 : Ljava/util/Map; , v19 : Ljava/util/Map;
+	invoke-direct	{v0,v1},com/google/tagmanager/UniversalAnalyticsTag/getTransactionFields	; getTransactionFields(Ljava/util/Map;)Ljava/util/Map;
+; v0 : Lcom/google/tagmanager/UniversalAnalyticsTag; , v1 : Ljava/util/Map;
+	move-result-object	v13
+; v13 : Ljava/util/Map;
+.line 169
+	invoke-interface	{v13},java/util/Map/entrySet	; entrySet()Ljava/util/Set;
+; v13 : Ljava/util/Map;
+	move-result-object	v15
+; v15 : Ljava/util/Set;
+	invoke-interface	{v15},java/util/Set/iterator	; iterator()Ljava/util/Iterator;
+; v15 : Ljava/util/Set;
+	move-result-object	v5
+; v5 : Ljava/util/Iterator;
+l100030:
+	invoke-interface	{v5},java/util/Iterator/hasNext	; hasNext()Z
+; v5 : Ljava/util/Iterator;
+	move-result	v15
+; v15 : single-length
+	if-eqz	v15,l10008e
+; v15 : single-length
+	invoke-interface	{v5},java/util/Iterator/next	; next()Ljava/lang/Object;
+; v5 : Ljava/util/Iterator;
+	move-result-object	v3
+; v3 : Ljava/lang/Object;
+	check-cast	v3,java/util/Map$Entry
+; v3 : Ljava/util/Map$Entry;
+.line 170
+	invoke-interface	{v3},java/util/Map$Entry/getValue	; getValue()Ljava/lang/Object;
+; v3 : Ljava/util/Map$Entry;
+	move-result-object	v15
+; v15 : Ljava/lang/Object;
+	check-cast	v15,java/lang/String
+; v15 : Ljava/lang/String;
+	invoke-interface	{v3},java/util/Map$Entry/getKey	; getKey()Ljava/lang/Object;
+; v3 : Ljava/util/Map$Entry;
+	move-result-object	v16
+; v16 : Ljava/lang/Object;
+	check-cast	v16,java/lang/String
+; v16 : Ljava/lang/String;
+	move-object/from16	v0,v17
+; v0 : Lcom/google/tagmanager/UniversalAnalyticsTag; , v17 : Lcom/google/tagmanager/UniversalAnalyticsTag;
+	move-object/from16	v1,v16
+; v1 : Ljava/lang/String; , v16 : Ljava/lang/String;
+	invoke-direct	{v0,v1},com/google/tagmanager/UniversalAnalyticsTag/getDataLayerString	; getDataLayerString(Ljava/lang/String;)Ljava/lang/String;
+; v0 : Lcom/google/tagmanager/UniversalAnalyticsTag; , v1 : Ljava/lang/String;
+	move-result-object	v16
+; v16 : Ljava/lang/String;
+	move-object/from16	v0,v17
+; v0 : Lcom/google/tagmanager/UniversalAnalyticsTag; , v17 : Lcom/google/tagmanager/UniversalAnalyticsTag;
+	move-object/from16	v1,v16
+; v1 : Ljava/lang/String; , v16 : Ljava/lang/String;
+	invoke-direct	{v0,v11,v15,v1},com/google/tagmanager/UniversalAnalyticsTag/addParam	; addParam(Ljava/util/Map;Ljava/lang/String;Ljava/lang/String;)V
+; v0 : Lcom/google/tagmanager/UniversalAnalyticsTag; , v11 : Ljava/util/Map; , v15 : Ljava/lang/String; , v1 : Ljava/lang/String;
+l10007e:
+	goto	l100030
+l100080:
+.line 196
+	move-exception	v2
+; v2 : java/lang/IllegalArgumentException
+.line 197
+	const-string	v15,"Unable to send transaction"
+; v15 : Ljava/lang/String;
+	invoke-static	{v15,v2},com/google/tagmanager/Log/e	; e(Ljava/lang/String;Ljava/lang/Throwable;)V
+; v15 : Ljava/lang/String; , v2 : java/lang/IllegalArgumentException
+	goto	lfffd2
+l10008e:
+.line 172
+	invoke-interface	{v12,v11},java/util/List/add	; add(Ljava/lang/Object;)Z
+; v12 : Ljava/util/LinkedList; , v11 : Ljava/util/Map;
+.line 174
+	invoke-direct/range	{v17},com/google/tagmanager/UniversalAnalyticsTag/getTransactionItems;	getTransactionItems()Ljava/util/List;
+; v17 : Lcom/google/tagmanager/UniversalAnalyticsTag;
+	move-result-object	v10
+; v10 : Ljava/util/List;
+.line 175
+	if-eqz	v10,l10018e
+; v10 : Ljava/util/List;
+.line 176
+	invoke-interface	{v10},java/util/List/iterator	; iterator()Ljava/util/Iterator;
+; v10 : Ljava/util/List;
+	move-result-object	v5
+; v5 : Ljava/util/Iterator;
+l1000a8:
+	invoke-interface	{v5},java/util/Iterator/hasNext	; hasNext()Z
+; v5 : Ljava/util/Iterator;
+	move-result	v15
+; v15 : single-length
+	if-eqz	v15,l10018e
+; v15 : single-length
+	invoke-interface	{v5},java/util/Iterator/next	; next()Ljava/lang/Object;
+; v5 : Ljava/util/Iterator;
+	move-result-object	v7
+; v7 : Ljava/lang/Object;
+	check-cast	v7,java/util/Map
+; v7 : Ljava/util/Map;
+.line 177
+	const-string	v15,"name"
+; v15 : Ljava/lang/String;
+	invoke-interface	{v7,v15},java/util/Map/get	; get(Ljava/lang/Object;)Ljava/lang/Object;
+; v7 : Ljava/util/Map; , v15 : Ljava/lang/String;
+	move-result-object	v15
+; v15 : Ljava/lang/Object;
+	if-nez	v15,l1000de
+; v15 : Ljava/lang/Object;
+.line 178
+	const-string	v15,"Unable to send transaction item hit due to missing 'name' field."
+; v15 : Ljava/lang/String;
+	invoke-static	{v15},com/google/tagmanager/Log/e	; e(Ljava/lang/String;)V
+; v15 : Ljava/lang/String;
+	goto/16	lfffd2
+l1000de:
+.line 182
+	sget-object	v15,com/google/tagmanager/UniversalAnalyticsTag.ANALYTICS_FIELDS Ljava/lang/String;
+; v15 : Ljava/lang/String;
+	move-object/from16	v0,v19
+; v0 : Ljava/util/Map; , v19 : Ljava/util/Map;
+	invoke-interface	{v0,v15},java/util/Map/get	; get(Ljava/lang/Object;)Ljava/lang/Object;
+; v0 : Ljava/util/Map; , v15 : Ljava/lang/String;
+	move-result-object	v15
+; v15 : Ljava/lang/Object;
+	check-cast	v15,com/google/analytics/midtier/proto/containertag/TypeSystem$Value
+; v15 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	move-object/from16	v0,v17
+; v0 : Lcom/google/tagmanager/UniversalAnalyticsTag; , v17 : Lcom/google/tagmanager/UniversalAnalyticsTag;
+	invoke-direct	{v0,v15},com/google/tagmanager/UniversalAnalyticsTag/convertToGaFields	; convertToGaFields(Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;)Ljava/util/Map;
+; v0 : Lcom/google/tagmanager/UniversalAnalyticsTag; , v15 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	move-result-object	v9
+; v9 : Ljava/util/Map;
+.line 183
+	const-string	v15,"&t"
+; v15 : Ljava/lang/String;
+	const-string	v16,"item"
+; v16 : Ljava/lang/String;
+	move-object/from16	v0,v16
+; v0 : Ljava/lang/String; , v16 : Ljava/lang/String;
+	invoke-interface	{v9,v15,v0},java/util/Map/put	; put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+; v9 : Ljava/util/Map; , v15 : Ljava/lang/String; , v0 : Ljava/lang/String;
+.line 184
+	const-string	v15,"&ti"
+; v15 : Ljava/lang/String;
+	invoke-interface	{v9,v15,v14},java/util/Map/put	; put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+; v9 : Ljava/util/Map; , v15 : Ljava/lang/String; , v14 : Ljava/lang/String;
+.line 186
+	move-object/from16	v0,v17
+; v0 : Lcom/google/tagmanager/UniversalAnalyticsTag; , v17 : Lcom/google/tagmanager/UniversalAnalyticsTag;
+	move-object/from16	v1,v19
+; v1 : Ljava/util/Map; , v19 : Ljava/util/Map;
+	invoke-direct	{v0,v1},com/google/tagmanager/UniversalAnalyticsTag/getTransactionItemFields	; getTransactionItemFields(Ljava/util/Map;)Ljava/util/Map;
+; v0 : Lcom/google/tagmanager/UniversalAnalyticsTag; , v1 : Ljava/util/Map;
+	move-result-object	v8
+; v8 : Ljava/util/Map;
+.line 187
+	invoke-interface	{v8},java/util/Map/entrySet	; entrySet()Ljava/util/Set;
+; v8 : Ljava/util/Map;
+	move-result-object	v15
+; v15 : Ljava/util/Set;
+	invoke-interface	{v15},java/util/Set/iterator	; iterator()Ljava/util/Iterator;
+; v15 : Ljava/util/Set;
+	move-result-object	v6
+; v6 : Ljava/util/Iterator;
+l10013a:
+	invoke-interface	{v6},java/util/Iterator/hasNext	; hasNext()Z
+; v6 : Ljava/util/Iterator;
+	move-result	v15
+; v15 : single-length
+	if-eqz	v15,l100186
+; v15 : single-length
+	invoke-interface	{v6},java/util/Iterator/next	; next()Ljava/lang/Object;
+; v6 : Ljava/util/Iterator;
+	move-result-object	v3
+; v3 : Ljava/lang/Object;
+	check-cast	v3,java/util/Map$Entry
+; v3 : Ljava/util/Map$Entry;
+.line 188
+	invoke-interface	{v3},java/util/Map$Entry/getValue	; getValue()Ljava/lang/Object;
+; v3 : Ljava/util/Map$Entry;
+	move-result-object	v15
+; v15 : Ljava/lang/Object;
+	check-cast	v15,java/lang/String
+; v15 : Ljava/lang/String;
+	invoke-interface	{v3},java/util/Map$Entry/getKey	; getKey()Ljava/lang/Object;
+; v3 : Ljava/util/Map$Entry;
+	move-result-object	v16
+; v16 : Ljava/lang/Object;
+	move-object/from16	v0,v16
+; v0 : Ljava/lang/Object; , v16 : Ljava/lang/Object;
+	invoke-interface	{v7,v0},java/util/Map/get	; get(Ljava/lang/Object;)Ljava/lang/Object;
+; v7 : Ljava/util/Map; , v0 : Ljava/lang/Object;
+	move-result-object	v16
+; v16 : Ljava/lang/Object;
+	check-cast	v16,java/lang/String
+; v16 : Ljava/lang/String;
+	move-object/from16	v0,v17
+; v0 : Lcom/google/tagmanager/UniversalAnalyticsTag; , v17 : Lcom/google/tagmanager/UniversalAnalyticsTag;
+	move-object/from16	v1,v16
+; v1 : Ljava/lang/String; , v16 : Ljava/lang/String;
+	invoke-direct	{v0,v9,v15,v1},com/google/tagmanager/UniversalAnalyticsTag/addParam	; addParam(Ljava/util/Map;Ljava/lang/String;Ljava/lang/String;)V
+; v0 : Lcom/google/tagmanager/UniversalAnalyticsTag; , v9 : Ljava/util/Map; , v15 : Ljava/lang/String; , v1 : Ljava/lang/String;
+	goto	l10013a
+l100186:
+.line 190
+	invoke-interface	{v12,v9},java/util/List/add	; add(Ljava/lang/Object;)Z
+; v12 : Ljava/util/LinkedList; , v9 : Ljava/util/Map;
+	goto	l1000a8
+l10018e:
+.line 193
+	invoke-interface	{v12},java/util/List/iterator	; iterator()Ljava/util/Iterator;
+; v12 : Ljava/util/LinkedList;
+	move-result-object	v5
+; v5 : Ljava/util/Iterator;
+l100196:
+	invoke-interface	{v5},java/util/Iterator/hasNext	; hasNext()Z
+; v5 : Ljava/util/Iterator;
+	move-result	v15
+; v15 : single-length
+	if-eqz	v15,lfffd2
+; v15 : single-length
+	invoke-interface	{v5},java/util/Iterator/next	; next()Ljava/lang/Object;
+; v5 : Ljava/util/Iterator;
+	move-result-object	v4
+; v4 : Ljava/lang/Object;
+	check-cast	v4,java/util/Map
+; v4 : Ljava/util/Map;
+.line 194
+	move-object/from16	v0,v18
+; v0 : Lcom/google/analytics/tracking/android/Tracker; , v18 : Lcom/google/analytics/tracking/android/Tracker;
+	invoke-virtual	{v0,v4},com/google/analytics/tracking/android/Tracker/send	; send(Ljava/util/Map;)V
+; v0 : Lcom/google/analytics/tracking/android/Tracker; , v4 : Ljava/util/Map;
+l1001b8:
+	goto	l100196
+.end method
+
+.method private valueToMap(Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;)Ljava/util/Map;
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "(" , "Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;" , ")" , "Ljava/util/Map" , "<" , "Ljava/lang/String;" , "Ljava/lang/String;" , ">;" }
+.end annotation
+.limit registers 9
+; this: v7 (Lcom/google/tagmanager/UniversalAnalyticsTag;)
+; parameter[0] : v8 (Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;)
+.line 206
+	invoke-static	{v8},com/google/tagmanager/Types/valueToObject	; valueToObject(Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;)Ljava/lang/Object;
+; v8 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	move-result-object	v3
+; v3 : Ljava/lang/Object;
+.line 207
+	instance-of	v5,v3,java/util/Map
+; v5 : single-length , v3 : Ljava/lang/Object;
+	if-nez	v5,l1001f8
+; v5 : single-length
+.line 208
+	const/4	v4,0
+; v4 : single-length
+l1001f6:
+.line 216
+	return-object	v4
+; v4 : Ljava/util/LinkedHashMap;
+l1001f8:
+	move-object	v2,v3
+; v2 : Ljava/lang/Object; , v3 : Ljava/lang/Object;
+.line 211
+	check-cast	v2,java/util/Map
+; v2 : Ljava/util/Map;
+.line 212
+	new-instance	v4,java/util/LinkedHashMap
+; v4 : Ljava/util/LinkedHashMap;
+	invoke-direct	{v4},java/util/LinkedHashMap/<init>	; <init>()V
+; v4 : Ljava/util/LinkedHashMap;
+.line 213
+	invoke-interface	{v2},java/util/Map/entrySet	; entrySet()Ljava/util/Set;
+; v2 : Ljava/util/Map;
+	move-result-object	v5
+; v5 : Ljava/util/Set;
+	invoke-interface	{v5},java/util/Set/iterator	; iterator()Ljava/util/Iterator;
+; v5 : Ljava/util/Set;
+	move-result-object	v1
+; v1 : Ljava/util/Iterator;
+l100218:
+	invoke-interface	{v1},java/util/Iterator/hasNext	; hasNext()Z
+; v1 : Ljava/util/Iterator;
+	move-result	v5
+; v5 : single-length
+	if-eqz	v5,l1001f6
+; v5 : single-length
+	invoke-interface	{v1},java/util/Iterator/next	; next()Ljava/lang/Object;
+; v1 : Ljava/util/Iterator;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,java/util/Map$Entry
+; v0 : Ljava/util/Map$Entry;
+.line 214
+	invoke-interface	{v0},java/util/Map$Entry/getKey	; getKey()Ljava/lang/Object;
+; v0 : Ljava/util/Map$Entry;
+	move-result-object	v5
+; v5 : Ljava/lang/Object;
+	invoke-virtual	{v5},java/lang/Object/toString	; toString()Ljava/lang/String;
+; v5 : Ljava/lang/Object;
+	move-result-object	v5
+; v5 : Ljava/lang/String;
+	invoke-interface	{v0},java/util/Map$Entry/getValue	; getValue()Ljava/lang/Object;
+; v0 : Ljava/util/Map$Entry;
+	move-result-object	v6
+; v6 : Ljava/lang/Object;
+	invoke-virtual	{v6},java/lang/Object/toString	; toString()Ljava/lang/String;
+; v6 : Ljava/lang/Object;
+	move-result-object	v6
+; v6 : Ljava/lang/String;
+	invoke-interface	{v4,v5,v6},java/util/Map/put	; put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+; v4 : Ljava/util/LinkedHashMap; , v5 : Ljava/lang/String; , v6 : Ljava/lang/String;
+	goto	l100218
+.end method
+
+.method public evaluateTrackingTag(Ljava/util/Map;)V
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "(" , "Ljava/util/Map" , "<" , "Ljava/lang/String;" , "Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;" , ">;)V" }
+.end annotation
+.limit registers 5
+; this: v3 (Lcom/google/tagmanager/UniversalAnalyticsTag;)
+; parameter[0] : v4 (Ljava/util/Map;)
+.line 95
+	iget-object	v1,v3,com/google/tagmanager/UniversalAnalyticsTag.mTrackerProvider Lcom/google/tagmanager/TrackerProvider;
+; v1 : Lcom/google/tagmanager/TrackerProvider; , v3 : Lcom/google/tagmanager/UniversalAnalyticsTag;
+	const-string	v2,"_GTM_DEFAULT_TRACKER_"
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},com/google/tagmanager/TrackerProvider/getTracker	; getTracker(Ljava/lang/String;)Lcom/google/analytics/tracking/android/Tracker;
+; v1 : Lcom/google/tagmanager/TrackerProvider; , v2 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Lcom/google/analytics/tracking/android/Tracker;
+.line 97
+	sget-object	v1,com/google/tagmanager/UniversalAnalyticsTag.ANALYTICS_PASS_THROUGH Ljava/lang/String;
+; v1 : Ljava/lang/String;
+	invoke-direct	{v3,v4,v1},com/google/tagmanager/UniversalAnalyticsTag/checkBooleanProperty	; checkBooleanProperty(Ljava/util/Map;Ljava/lang/String;)Z
+; v3 : Lcom/google/tagmanager/UniversalAnalyticsTag; , v4 : Ljava/util/Map; , v1 : Ljava/lang/String;
+	move-result	v1
+; v1 : single-length
+	if-eqz	v1,l1002b2
+; v1 : single-length
+.line 98
+	sget-object	v1,com/google/tagmanager/UniversalAnalyticsTag.ANALYTICS_FIELDS Ljava/lang/String;
+; v1 : Ljava/lang/String;
+	invoke-interface	{v4,v1},java/util/Map/get	; get(Ljava/lang/Object;)Ljava/lang/Object;
+; v4 : Ljava/util/Map; , v1 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/Object;
+	check-cast	v1,com/google/analytics/midtier/proto/containertag/TypeSystem$Value
+; v1 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	invoke-direct	{v3,v1},com/google/tagmanager/UniversalAnalyticsTag/convertToGaFields	; convertToGaFields(Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;)Ljava/util/Map;
+; v3 : Lcom/google/tagmanager/UniversalAnalyticsTag; , v1 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	move-result-object	v1
+; v1 : Ljava/util/Map;
+	invoke-virtual	{v0,v1},com/google/analytics/tracking/android/Tracker/send	; send(Ljava/util/Map;)V
+; v0 : Lcom/google/analytics/tracking/android/Tracker; , v1 : Ljava/util/Map;
+l1002a6:
+.line 105
+	iget-object	v1,v3,com/google/tagmanager/UniversalAnalyticsTag.mTrackerProvider Lcom/google/tagmanager/TrackerProvider;
+; v1 : Lcom/google/tagmanager/TrackerProvider; , v3 : Lcom/google/tagmanager/UniversalAnalyticsTag;
+	invoke-virtual	{v1,v0},com/google/tagmanager/TrackerProvider/close	; close(Lcom/google/analytics/tracking/android/Tracker;)V
+; v1 : Lcom/google/tagmanager/TrackerProvider; , v0 : Lcom/google/analytics/tracking/android/Tracker;
+.line 106
+	return-void	
+l1002b2:
+.line 99
+	sget-object	v1,com/google/tagmanager/UniversalAnalyticsTag.TRACK_TRANSACTION Ljava/lang/String;
+; v1 : Ljava/lang/String;
+	invoke-direct	{v3,v4,v1},com/google/tagmanager/UniversalAnalyticsTag/checkBooleanProperty	; checkBooleanProperty(Ljava/util/Map;Ljava/lang/String;)Z
+; v3 : Lcom/google/tagmanager/UniversalAnalyticsTag; , v4 : Ljava/util/Map; , v1 : Ljava/lang/String;
+	move-result	v1
+; v1 : single-length
+	if-eqz	v1,l1002ca
+; v1 : single-length
+.line 100
+	invoke-direct	{v3,v0,v4},com/google/tagmanager/UniversalAnalyticsTag/sendTransaction	; sendTransaction(Lcom/google/analytics/tracking/android/Tracker;Ljava/util/Map;)V
+; v3 : Lcom/google/tagmanager/UniversalAnalyticsTag; , v0 : Lcom/google/analytics/tracking/android/Tracker; , v4 : Ljava/util/Map;
+	goto	l1002a6
+l1002ca:
+.line 102
+	const-string	v1,"Ignoring unknown tag."
+; v1 : Ljava/lang/String;
+	invoke-static	{v1},com/google/tagmanager/Log/w	; w(Ljava/lang/String;)V
+; v1 : Ljava/lang/String;
+	goto	l1002a6
+.end method
+
+

@@ -1,0 +1,117 @@
+.class com/squareup/picasso/ResourceBitmapHunter
+.super com/squareup/picasso/BitmapHunter
+.source ResourceBitmapHunter.java
+
+.field private final context Landroid/content/Context;
+
+.method <init>(Landroid/content/Context;Lcom/squareup/picasso/Picasso;Lcom/squareup/picasso/Dispatcher;Lcom/squareup/picasso/Cache;Lcom/squareup/picasso/Stats;Lcom/squareup/picasso/Action;)V
+.limit registers 13
+; this: v6 (Lcom/squareup/picasso/ResourceBitmapHunter;)
+; parameter[0] : v7 (Landroid/content/Context;)
+; parameter[1] : v8 (Lcom/squareup/picasso/Picasso;)
+; parameter[2] : v9 (Lcom/squareup/picasso/Dispatcher;)
+; parameter[3] : v10 (Lcom/squareup/picasso/Cache;)
+; parameter[4] : v11 (Lcom/squareup/picasso/Stats;)
+; parameter[5] : v12 (Lcom/squareup/picasso/Action;)
+.line 31
+	move-object	v0,v6
+; v0 : Lcom/squareup/picasso/ResourceBitmapHunter; , v6 : Lcom/squareup/picasso/ResourceBitmapHunter;
+	move-object	v1,v8
+; v1 : Lcom/squareup/picasso/Picasso; , v8 : Lcom/squareup/picasso/Picasso;
+	move-object	v2,v9
+; v2 : Lcom/squareup/picasso/Dispatcher; , v9 : Lcom/squareup/picasso/Dispatcher;
+	move-object	v3,v10
+; v3 : Lcom/squareup/picasso/Cache; , v10 : Lcom/squareup/picasso/Cache;
+	move-object	v4,v11
+; v4 : Lcom/squareup/picasso/Stats; , v11 : Lcom/squareup/picasso/Stats;
+	move-object	v5,v12
+; v5 : Lcom/squareup/picasso/Action; , v12 : Lcom/squareup/picasso/Action;
+	invoke-direct/range	{v0..v5},com/squareup/picasso/BitmapHunter/<init>;	<init>(Lcom/squareup/picasso/Picasso;Lcom/squareup/picasso/Dispatcher;Lcom/squareup/picasso/Cache;Lcom/squareup/picasso/Stats;Lcom/squareup/picasso/Action;)V
+; v0 : Lcom/squareup/picasso/ResourceBitmapHunter; , v1 : Lcom/squareup/picasso/Picasso; , v2 : Lcom/squareup/picasso/Dispatcher; , v3 : Lcom/squareup/picasso/Cache; , v4 : Lcom/squareup/picasso/Stats; , v5 : Lcom/squareup/picasso/Action;
+.line 32
+	iput-object	v7,v6,com/squareup/picasso/ResourceBitmapHunter.context Landroid/content/Context;
+; v7 : Landroid/content/Context; , v6 : Lcom/squareup/picasso/ResourceBitmapHunter;
+.line 33
+	return-void	
+.end method
+
+.method private decodeResource(Landroid/content/res/Resources;ILcom/squareup/picasso/Request;)Landroid/graphics/Bitmap;
+.limit registers 7
+; this: v3 (Lcom/squareup/picasso/ResourceBitmapHunter;)
+; parameter[0] : v4 (Landroid/content/res/Resources;)
+; parameter[1] : v5 (I)
+; parameter[2] : v6 (Lcom/squareup/picasso/Request;)
+.line 46
+	invoke-static	{v6},com/squareup/picasso/ResourceBitmapHunter/createBitmapOptions	; createBitmapOptions(Lcom/squareup/picasso/Request;)Landroid/graphics/BitmapFactory$Options;
+; v6 : Lcom/squareup/picasso/Request;
+	move-result-object	v0
+; v0 : Landroid/graphics/BitmapFactory$Options;
+.line 47
+	invoke-virtual	{v6},com/squareup/picasso/Request/hasSize	; hasSize()Z
+; v6 : Lcom/squareup/picasso/Request;
+	move-result	v1
+; v1 : single-length
+	if-eqz	v1,lf47ce
+; v1 : single-length
+.line 48
+	const/4	v1,1
+; v1 : single-length
+	iput-boolean	v1,v0,android/graphics/BitmapFactory$Options.inJustDecodeBounds Z
+; v1 : single-length , v0 : Landroid/graphics/BitmapFactory$Options;
+.line 49
+	invoke-static	{v4,v5,v0},android/graphics/BitmapFactory/decodeResource	; decodeResource(Landroid/content/res/Resources;ILandroid/graphics/BitmapFactory$Options;)Landroid/graphics/Bitmap;
+; v4 : Landroid/content/res/Resources; , v5 : single-length , v0 : Landroid/graphics/BitmapFactory$Options;
+.line 50
+	iget	v1,v6,com/squareup/picasso/Request.targetWidth I
+; v1 : single-length , v6 : Lcom/squareup/picasso/Request;
+	iget	v2,v6,com/squareup/picasso/Request.targetHeight I
+; v2 : single-length , v6 : Lcom/squareup/picasso/Request;
+	invoke-static	{v1,v2,v0},com/squareup/picasso/ResourceBitmapHunter/calculateInSampleSize	; calculateInSampleSize(IILandroid/graphics/BitmapFactory$Options;)V
+; v1 : single-length , v2 : single-length , v0 : Landroid/graphics/BitmapFactory$Options;
+lf47ce:
+.line 52
+	invoke-static	{v4,v5,v0},android/graphics/BitmapFactory/decodeResource	; decodeResource(Landroid/content/res/Resources;ILandroid/graphics/BitmapFactory$Options;)Landroid/graphics/Bitmap;
+; v4 : Landroid/content/res/Resources; , v5 : single-length , v0 : Landroid/graphics/BitmapFactory$Options;
+	move-result-object	v1
+; v1 : Landroid/graphics/Bitmap;
+	return-object	v1
+; v1 : Landroid/graphics/Bitmap;
+.end method
+
+.method decode(Lcom/squareup/picasso/Request;)Landroid/graphics/Bitmap;
+.throws Ljava/io/IOException;
+.limit registers 5
+; this: v3 (Lcom/squareup/picasso/ResourceBitmapHunter;)
+; parameter[0] : v4 (Lcom/squareup/picasso/Request;)
+.line 36
+	iget-object	v2,v3,com/squareup/picasso/ResourceBitmapHunter.context Landroid/content/Context;
+; v2 : Landroid/content/Context; , v3 : Lcom/squareup/picasso/ResourceBitmapHunter;
+	invoke-static	{v2,v4},com/squareup/picasso/Utils/getResources	; getResources(Landroid/content/Context;Lcom/squareup/picasso/Request;)Landroid/content/res/Resources;
+; v2 : Landroid/content/Context; , v4 : Lcom/squareup/picasso/Request;
+	move-result-object	v1
+; v1 : Landroid/content/res/Resources;
+.line 37
+	invoke-static	{v1,v4},com/squareup/picasso/Utils/getResourceId	; getResourceId(Landroid/content/res/Resources;Lcom/squareup/picasso/Request;)I
+; v1 : Landroid/content/res/Resources; , v4 : Lcom/squareup/picasso/Request;
+	move-result	v0
+; v0 : single-length
+.line 38
+	invoke-direct	{v3,v1,v0,v4},com/squareup/picasso/ResourceBitmapHunter/decodeResource	; decodeResource(Landroid/content/res/Resources;ILcom/squareup/picasso/Request;)Landroid/graphics/Bitmap;
+; v3 : Lcom/squareup/picasso/ResourceBitmapHunter; , v1 : Landroid/content/res/Resources; , v0 : single-length , v4 : Lcom/squareup/picasso/Request;
+	move-result-object	v2
+; v2 : Landroid/graphics/Bitmap;
+	return-object	v2
+; v2 : Landroid/graphics/Bitmap;
+.end method
+
+.method getLoadedFrom()Lcom/squareup/picasso/Picasso$LoadedFrom;
+.limit registers 2
+; this: v1 (Lcom/squareup/picasso/ResourceBitmapHunter;)
+.line 42
+	sget-object	v0,com/squareup/picasso/Picasso$LoadedFrom.DISK Lcom/squareup/picasso/Picasso$LoadedFrom;
+; v0 : Lcom/squareup/picasso/Picasso$LoadedFrom;
+	return-object	v0
+; v0 : Lcom/squareup/picasso/Picasso$LoadedFrom;
+.end method
+
+

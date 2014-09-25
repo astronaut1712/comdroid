@@ -1,0 +1,679 @@
+.class com/google/tagmanager/JoinerMacro
+.super com/google/tagmanager/FunctionCallImplementation
+.source JoinerMacro.java
+
+.inner class 1 inner com/google/tagmanager/JoinerMacro$1 outer com/google/tagmanager/JoinerMacro
+.inner class EscapeType inner com/google/tagmanager/JoinerMacro$EscapeType outer com/google/tagmanager/JoinerMacro
+.field private static final ARG0 Ljava/lang/String; = null
+.field private static final DEFAULT_ITEM_SEPARATOR Ljava/lang/String; = ""
+.field private static final DEFAULT_KEY_VALUE_SEPARATOR Ljava/lang/String; = "="
+.field private static final ESCAPE Ljava/lang/String;
+.field private static final ID Ljava/lang/String;
+.field private static final ITEM_SEPARATOR Ljava/lang/String;
+.field private static final KEY_VALUE_SEPARATOR Ljava/lang/String;
+
+.method static <clinit>()V
+.limit registers 1
+.line 16
+	sget-object	v0,com/google/analytics/containertag/common/FunctionType.JOINER Lcom/google/analytics/containertag/common/FunctionType;
+; v0 : Lcom/google/analytics/containertag/common/FunctionType;
+	invoke-virtual	{v0},com/google/analytics/containertag/common/FunctionType/toString	; toString()Ljava/lang/String;
+; v0 : Lcom/google/analytics/containertag/common/FunctionType;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	sput-object	v0,com/google/tagmanager/JoinerMacro.ID Ljava/lang/String;
+; v0 : Ljava/lang/String;
+.line 17
+	sget-object	v0,com/google/analytics/containertag/common/Key.ARG0 Lcom/google/analytics/containertag/common/Key;
+; v0 : Lcom/google/analytics/containertag/common/Key;
+	invoke-virtual	{v0},com/google/analytics/containertag/common/Key/toString	; toString()Ljava/lang/String;
+; v0 : Lcom/google/analytics/containertag/common/Key;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	sput-object	v0,com/google/tagmanager/JoinerMacro.ARG0 Ljava/lang/String;
+; v0 : Ljava/lang/String;
+.line 18
+	sget-object	v0,com/google/analytics/containertag/common/Key.ITEM_SEPARATOR Lcom/google/analytics/containertag/common/Key;
+; v0 : Lcom/google/analytics/containertag/common/Key;
+	invoke-virtual	{v0},com/google/analytics/containertag/common/Key/toString	; toString()Ljava/lang/String;
+; v0 : Lcom/google/analytics/containertag/common/Key;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	sput-object	v0,com/google/tagmanager/JoinerMacro.ITEM_SEPARATOR Ljava/lang/String;
+; v0 : Ljava/lang/String;
+.line 19
+	sget-object	v0,com/google/analytics/containertag/common/Key.KEY_VALUE_SEPARATOR Lcom/google/analytics/containertag/common/Key;
+; v0 : Lcom/google/analytics/containertag/common/Key;
+	invoke-virtual	{v0},com/google/analytics/containertag/common/Key/toString	; toString()Ljava/lang/String;
+; v0 : Lcom/google/analytics/containertag/common/Key;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	sput-object	v0,com/google/tagmanager/JoinerMacro.KEY_VALUE_SEPARATOR Ljava/lang/String;
+; v0 : Ljava/lang/String;
+.line 20
+	sget-object	v0,com/google/analytics/containertag/common/Key.ESCAPE Lcom/google/analytics/containertag/common/Key;
+; v0 : Lcom/google/analytics/containertag/common/Key;
+	invoke-virtual	{v0},com/google/analytics/containertag/common/Key/toString	; toString()Ljava/lang/String;
+; v0 : Lcom/google/analytics/containertag/common/Key;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	sput-object	v0,com/google/tagmanager/JoinerMacro.ESCAPE Ljava/lang/String;
+; v0 : Ljava/lang/String;
+	return-void	
+.end method
+
+.method public <init>()V
+.limit registers 5
+; this: v4 (Lcom/google/tagmanager/JoinerMacro;)
+.line 31
+	sget-object	v0,com/google/tagmanager/JoinerMacro.ID Ljava/lang/String;
+; v0 : Ljava/lang/String;
+	const/4	v1,1
+; v1 : single-length
+	new-array	v1,v1,[Ljava/lang/String;
+; v1 : [Ljava/lang/String; , v1 : [Ljava/lang/String;
+	const/4	v2,0
+; v2 : single-length
+	sget-object	v3,com/google/tagmanager/JoinerMacro.ARG0 Ljava/lang/String;
+; v3 : Ljava/lang/String;
+	aput-object	v3,v1,v2
+; v3 : Ljava/lang/String; , v1 : [Ljava/lang/String; , v2 : single-length
+	invoke-direct	{v4,v0,v1},com/google/tagmanager/FunctionCallImplementation/<init>	; <init>(Ljava/lang/String;[Ljava/lang/String;)V
+; v4 : Lcom/google/tagmanager/JoinerMacro; , v0 : Ljava/lang/String; , v1 : [Ljava/lang/String;
+.line 32
+	return-void	
+.end method
+
+.method private addTo(Ljava/util/Set;Ljava/lang/String;)V
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "(" , "Ljava/util/Set" , "<" , "Ljava/lang/Character;" , ">;" , "Ljava/lang/String;" , ")V" }
+.end annotation
+.limit registers 5
+; this: v2 (Lcom/google/tagmanager/JoinerMacro;)
+; parameter[0] : v3 (Ljava/util/Set;)
+; parameter[1] : v4 (Ljava/lang/String;)
+.line 107
+	const/4	v0,0
+; v0 : single-length
+le9c22:
+	invoke-virtual	{v4},java/lang/String/length	; length()I
+; v4 : Ljava/lang/String;
+	move-result	v1
+; v1 : single-length
+	if-ge	v0,v1,le9c4a
+; v0 : single-length , v1 : single-length
+.line 108
+	invoke-virtual	{v4,v0},java/lang/String/charAt	; charAt(I)C
+; v4 : Ljava/lang/String; , v0 : single-length
+	move-result	v1
+; v1 : single-length
+	invoke-static	{v1},java/lang/Character/valueOf	; valueOf(C)Ljava/lang/Character;
+; v1 : single-length
+	move-result-object	v1
+; v1 : Ljava/lang/Character;
+	invoke-interface	{v3,v1},java/util/Set/add	; add(Ljava/lang/Object;)Z
+; v3 : Ljava/util/Set; , v1 : Ljava/lang/Character;
+.line 107
+	add-int/lit8	v0,v0,1
+; v0 : single-length , v0 : single-length
+	goto	le9c22
+le9c4a:
+.line 110
+	return-void	
+.end method
+
+.method private append(Ljava/lang/StringBuilder;Ljava/lang/String;Lcom/google/tagmanager/JoinerMacro$EscapeType;Ljava/util/Set;)V
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "(" , "Ljava/lang/StringBuilder;" , "Ljava/lang/String;" , "Lcom/google/tagmanager/JoinerMacro$EscapeType;" , "Ljava/util/Set" , "<" , "Ljava/lang/Character;" , ">;)V" }
+.end annotation
+.limit registers 6
+; this: v1 (Lcom/google/tagmanager/JoinerMacro;)
+; parameter[0] : v2 (Ljava/lang/StringBuilder;)
+; parameter[1] : v3 (Ljava/lang/String;)
+; parameter[2] : v4 (Lcom/google/tagmanager/JoinerMacro$EscapeType;)
+; parameter[3] : v5 (Ljava/util/Set;)
+.line 114
+	invoke-direct	{v1,v3,v4,v5},com/google/tagmanager/JoinerMacro/escape	; escape(Ljava/lang/String;Lcom/google/tagmanager/JoinerMacro$EscapeType;Ljava/util/Set;)Ljava/lang/String;
+; v1 : Lcom/google/tagmanager/JoinerMacro; , v3 : Ljava/lang/String; , v4 : Lcom/google/tagmanager/JoinerMacro$EscapeType; , v5 : Ljava/util/Set;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v2,v0},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v0 : Ljava/lang/String;
+.line 115
+	return-void	
+.end method
+
+.method private escape(Ljava/lang/String;Lcom/google/tagmanager/JoinerMacro$EscapeType;Ljava/util/Set;)Ljava/lang/String;
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "(" , "Ljava/lang/String;" , "Lcom/google/tagmanager/JoinerMacro$EscapeType;" , "Ljava/util/Set" , "<" , "Ljava/lang/Character;" , ">;)" , "Ljava/lang/String;" }
+.end annotation
+.limit registers 10
+; this: v6 (Lcom/google/tagmanager/JoinerMacro;)
+; parameter[0] : v7 (Ljava/lang/String;)
+; parameter[1] : v8 (Lcom/google/tagmanager/JoinerMacro$EscapeType;)
+; parameter[2] : v9 (Ljava/util/Set;)
+.catch java/io/UnsupportedEncodingException from le9c96 to le9c9c using le9ca0
+.var 2 is e Ljava/io/UnsupportedEncodingException; from le9ca2 to le9cb0
+.var 0 is c Ljava/lang/Character; from le9ce0 to le9d18
+.var 1 is charAsString Ljava/lang/String; from le9ce8 to le9d18
+.line 118
+	sget-object	v4,com/google/tagmanager/JoinerMacro$1.$SwitchMap$com$google$tagmanager$JoinerMacro$EscapeType [I
+; v4 : [I
+	invoke-virtual	{v8},com/google/tagmanager/JoinerMacro$EscapeType/ordinal	; ordinal()I
+; v8 : Lcom/google/tagmanager/JoinerMacro$EscapeType;
+	move-result	v5
+; v5 : single-length
+	aget	v4,v4,v5
+; v4 : single-length , v4 : single-length , v5 : single-length
+	packed-switch	v4,1
+		pse9c8c_e9c96	; case 1
+		pse9c8c_e9cb0	; case 2
+		default: pse9c8c_default
+; v4 : single-length
+pse9c8c_default:
+	move-object	v4,v7
+; v4 : Ljava/lang/String; , v7 : Ljava/lang/String;
+le9c94:
+.line 135
+	return-object	v4
+; v4 : Ljava/lang/String;
+le9c96:
+.line 121
+	invoke-static	{v7},com/google/tagmanager/ValueEscapeUtil/urlEncode	; urlEncode(Ljava/lang/String;)Ljava/lang/String;
+; v7 : Ljava/lang/String;
+le9c9c:
+	move-result-object	v4
+; v4 : Ljava/lang/String;
+	goto	le9c94
+le9ca0:
+.line 122
+	move-exception	v2
+; v2 : java/io/UnsupportedEncodingException
+.line 123
+	const-string	v4,"Joiner: unsupported encoding"
+; v4 : Ljava/lang/String;
+	invoke-static	{v4,v2},com/google/tagmanager/Log/e	; e(Ljava/lang/String;Ljava/lang/Throwable;)V
+; v4 : Ljava/lang/String; , v2 : java/io/UnsupportedEncodingException
+	move-object	v4,v7
+; v4 : Ljava/lang/String; , v7 : Ljava/lang/String;
+.line 124
+	goto	le9c94
+pse9c8c_e9cb0:
+.line 127
+	const-string	v4,"\"
+; v4 : Ljava/lang/String;
+	const-string	v5,"\\"
+; v5 : Ljava/lang/String;
+	invoke-virtual	{v7,v4,v5},java/lang/String/replace	; replace(Ljava/lang/CharSequence;Ljava/lang/CharSequence;)Ljava/lang/String;
+; v7 : Ljava/lang/String; , v4 : Ljava/lang/String; , v5 : Ljava/lang/String;
+	move-result-object	v7
+; v7 : Ljava/lang/String;
+.line 128
+	invoke-interface	{v9},java/util/Set/iterator	; iterator()Ljava/util/Iterator;
+; v9 : Ljava/util/Set;
+	move-result-object	v3
+; v3 : Ljava/util/Iterator;
+le9cc8:
+	invoke-interface	{v3},java/util/Iterator/hasNext	; hasNext()Z
+; v3 : Ljava/util/Iterator;
+	move-result	v4
+; v4 : single-length
+	if-eqz	v4,le9d18
+; v4 : single-length
+	invoke-interface	{v3},java/util/Iterator/next	; next()Ljava/lang/Object;
+; v3 : Ljava/util/Iterator;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,java/lang/Character
+; v0 : Ljava/lang/Character;
+.line 129
+	invoke-virtual	{v0},java/lang/Character/toString	; toString()Ljava/lang/String;
+; v0 : Ljava/lang/Character;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+.line 130
+	new-instance	v4,java/lang/StringBuilder
+; v4 : Ljava/lang/StringBuilder;
+	invoke-direct	{v4},java/lang/StringBuilder/<init>	; <init>()V
+; v4 : Ljava/lang/StringBuilder;
+	const-string	v5,"\"
+; v5 : Ljava/lang/String;
+	invoke-virtual	{v4,v5},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v4 : Ljava/lang/StringBuilder; , v5 : Ljava/lang/String;
+	move-result-object	v4
+; v4 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v4,v1},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v4 : Ljava/lang/StringBuilder; , v1 : Ljava/lang/String;
+	move-result-object	v4
+; v4 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v4},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v4 : Ljava/lang/StringBuilder;
+	move-result-object	v4
+; v4 : Ljava/lang/String;
+	invoke-virtual	{v7,v1,v4},java/lang/String/replace	; replace(Ljava/lang/CharSequence;Ljava/lang/CharSequence;)Ljava/lang/String;
+; v7 : Ljava/lang/String; , v1 : Ljava/lang/String; , v4 : Ljava/lang/String;
+	move-result-object	v7
+; v7 : Ljava/lang/String;
+.line 131
+	goto	le9cc8
+le9d18:
+	move-object	v4,v7
+; v4 : Ljava/lang/String; , v7 : Ljava/lang/String;
+.line 132
+	goto	le9c94
+.line 118
+.end method
+
+.method public static getFunctionId()Ljava/lang/String;
+.limit registers 1
+.line 27
+	sget-object	v0,com/google/tagmanager/JoinerMacro.ID Ljava/lang/String;
+; v0 : Ljava/lang/String;
+	return-object	v0
+; v0 : Ljava/lang/String;
+.end method
+
+.method public evaluate(Ljava/util/Map;)Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "(" , "Ljava/util/Map" , "<" , "Ljava/lang/String;" , "Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;" , ">;)" , "Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;" }
+.end annotation
+.limit registers 25
+; this: v23 (Lcom/google/tagmanager/JoinerMacro;)
+; parameter[0] : v24 (Ljava/util/Map;)
+.var 5 is escape Ljava/lang/String; from le9dfc to le9e14
+.var 4 is charsToBackslashEscape Ljava/util/Set; from le9df0 to le9e58
+.var 6 is escapeParameter Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; from le9dee to le9e58
+.var 7 is escapeType Lcom/google/tagmanager/JoinerMacro$EscapeType; from le9dd6 to le9e58
+.var 12 is itemSeparator Ljava/lang/String; from le9dae to le9e58
+.var 16 is keyValueSeparator Ljava/lang/String; from le9dd2 to le9e58
+.var 17 is keyValueSeparatorParameter Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; from le9dc6 to le9e58
+.var 19 is sb Ljava/lang/StringBuilder; from le9e1e to le9e58
+.var 4 is charsToBackslashEscape Ljava/util/Set; from le9e64 to le9e80
+.var 5 is escape Ljava/lang/String; from le9e64 to le9ef2
+.var 3 is arr$ [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; from le9ef8 to le9f3c
+.var 8 is firstTime Z from le9ef4 to le9f3c
+.var 10 is i$ I from le9f00 to le9f3c
+.var 14 is itemVal Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; from le9f0c to le9f3c
+.var 18 is len$ I from le9efe to le9f3c
+.line 39
+	sget-object	v21,com/google/tagmanager/JoinerMacro.ARG0 Ljava/lang/String;
+; v21 : Ljava/lang/String;
+	move-object/from16	v0,v24
+; v0 : Ljava/util/Map; , v24 : Ljava/util/Map;
+	move-object/from16	v1,v21
+; v1 : Ljava/lang/String; , v21 : Ljava/lang/String;
+	invoke-interface	{v0,v1},java/util/Map/get	; get(Ljava/lang/Object;)Ljava/lang/Object;
+; v0 : Ljava/util/Map; , v1 : Ljava/lang/String;
+	move-result-object	v11
+; v11 : Ljava/lang/Object;
+	check-cast	v11,com/google/analytics/midtier/proto/containertag/TypeSystem$Value
+; v11 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+.line 40
+	if-nez	v11,le9d8a
+; v11 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+.line 41
+	invoke-static	{},com/google/tagmanager/Types/getDefaultValue	; getDefaultValue()Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+; 
+	nop	
+	move-result-object	v21
+; v21 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+le9d88:
+.line 103
+	return-object	v21
+; v21 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+le9d8a:
+.line 44
+	sget-object	v21,com/google/tagmanager/JoinerMacro.ITEM_SEPARATOR Ljava/lang/String;
+; v21 : Ljava/lang/String;
+	move-object/from16	v0,v24
+; v0 : Ljava/util/Map; , v24 : Ljava/util/Map;
+	move-object/from16	v1,v21
+; v1 : Ljava/lang/String; , v21 : Ljava/lang/String;
+	invoke-interface	{v0,v1},java/util/Map/get	; get(Ljava/lang/Object;)Ljava/lang/Object;
+; v0 : Ljava/util/Map; , v1 : Ljava/lang/String;
+	move-result-object	v13
+; v13 : Ljava/lang/Object;
+	check-cast	v13,com/google/analytics/midtier/proto/containertag/TypeSystem$Value
+; v13 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+.line 45
+	if-eqz	v13,le9e58
+; v13 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	invoke-static	{v13},com/google/tagmanager/Types/valueToString	; valueToString(Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;)Ljava/lang/String;
+; v13 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	move-result-object	v12
+; v12 : Ljava/lang/String;
+le9dae:
+.line 49
+	sget-object	v21,com/google/tagmanager/JoinerMacro.KEY_VALUE_SEPARATOR Ljava/lang/String;
+; v21 : Ljava/lang/String;
+	move-object/from16	v0,v24
+; v0 : Ljava/util/Map; , v24 : Ljava/util/Map;
+	move-object/from16	v1,v21
+; v1 : Ljava/lang/String; , v21 : Ljava/lang/String;
+	invoke-interface	{v0,v1},java/util/Map/get	; get(Ljava/lang/Object;)Ljava/lang/Object;
+; v0 : Ljava/util/Map; , v1 : Ljava/lang/String;
+	move-result-object	v17
+; v17 : Ljava/lang/Object;
+	check-cast	v17,com/google/analytics/midtier/proto/containertag/TypeSystem$Value
+; v17 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+.line 50
+	if-eqz	v17,le9e5e
+; v17 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	invoke-static/range	{v17},com/google/tagmanager/Types/valueToString;	valueToString(Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;)Ljava/lang/String;
+; v17 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	move-result-object	v16
+; v16 : Ljava/lang/String;
+le9dd2:
+.line 54
+	sget-object	v7,com/google/tagmanager/JoinerMacro$EscapeType.NONE Lcom/google/tagmanager/JoinerMacro$EscapeType;
+; v7 : Lcom/google/tagmanager/JoinerMacro$EscapeType;
+.line 55
+	sget-object	v21,com/google/tagmanager/JoinerMacro.ESCAPE Ljava/lang/String;
+; v21 : Ljava/lang/String;
+	move-object/from16	v0,v24
+; v0 : Ljava/util/Map; , v24 : Ljava/util/Map;
+	move-object/from16	v1,v21
+; v1 : Ljava/lang/String; , v21 : Ljava/lang/String;
+	invoke-interface	{v0,v1},java/util/Map/get	; get(Ljava/lang/Object;)Ljava/lang/Object;
+; v0 : Ljava/util/Map; , v1 : Ljava/lang/String;
+	move-result-object	v6
+; v6 : Ljava/lang/Object;
+	check-cast	v6,com/google/analytics/midtier/proto/containertag/TypeSystem$Value
+; v6 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+.line 56
+	const/4	v4,0
+; v4 : single-length
+.line 57
+	if-eqz	v6,le9e14
+; v6 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+.line 58
+	invoke-static	{v6},com/google/tagmanager/Types/valueToString	; valueToString(Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;)Ljava/lang/String;
+; v6 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	move-result-object	v5
+; v5 : Ljava/lang/String;
+.line 59
+	const-string	v21,"url"
+; v21 : Ljava/lang/String;
+	move-object/from16	v0,v21
+; v0 : Ljava/lang/String; , v21 : Ljava/lang/String;
+	invoke-virtual	{v0,v5},java/lang/String/equals	; equals(Ljava/lang/Object;)Z
+; v0 : Ljava/lang/String; , v5 : Ljava/lang/String;
+	move-result	v21
+; v21 : single-length
+	if-eqz	v21,le9e64
+; v21 : single-length
+.line 60
+	sget-object	v7,com/google/tagmanager/JoinerMacro$EscapeType.URL Lcom/google/tagmanager/JoinerMacro$EscapeType;
+; v7 : Lcom/google/tagmanager/JoinerMacro$EscapeType;
+le9e14:
+.line 74
+	new-instance	v19,java/lang/StringBuilder
+; v19 : Ljava/lang/StringBuilder;
+	invoke-direct/range	{v19},java/lang/StringBuilder/<init>;	<init>()V
+; v19 : Ljava/lang/StringBuilder;
+.line 75
+	iget	v0,v11,com/google/analytics/midtier/proto/containertag/TypeSystem$Value.type I
+; v0 : single-length , v11 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	move/from16	v21,v0
+; v21 : single-length , v0 : single-length
+	packed-switch	v21,2
+		pse9e26_e9ef2	; case 2
+		pse9e26_e9f3c	; case 3
+		default: pse9e26_default
+; v21 : single-length
+pse9e26_default:
+.line 101
+	invoke-static	{v11},com/google/tagmanager/Types/valueToString	; valueToString(Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;)Ljava/lang/String;
+; v11 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	move-result-object	v21
+; v21 : Ljava/lang/String;
+	move-object/from16	v0,v23
+; v0 : Lcom/google/tagmanager/JoinerMacro; , v23 : Lcom/google/tagmanager/JoinerMacro;
+	move-object/from16	v1,v19
+; v1 : Ljava/lang/StringBuilder; , v19 : Ljava/lang/StringBuilder;
+	move-object/from16	v2,v21
+; v2 : Ljava/lang/String; , v21 : Ljava/lang/String;
+	invoke-direct	{v0,v1,v2,v7,v4},com/google/tagmanager/JoinerMacro/append	; append(Ljava/lang/StringBuilder;Ljava/lang/String;Lcom/google/tagmanager/JoinerMacro$EscapeType;Ljava/util/Set;)V
+; v0 : Lcom/google/tagmanager/JoinerMacro; , v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String; , v7 : Lcom/google/tagmanager/JoinerMacro$EscapeType; , v4 : Ljava/util/HashSet;
+le9e46:
+.line 103
+	invoke-virtual/range	{v19},java/lang/StringBuilder/toString;	toString()Ljava/lang/String;
+; v19 : Ljava/lang/StringBuilder;
+	move-result-object	v21
+; v21 : Ljava/lang/String;
+	invoke-static/range	{v21},com/google/tagmanager/Types/objectToValue;	objectToValue(Ljava/lang/Object;)Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+; v21 : Ljava/lang/String;
+	move-result-object	v21
+; v21 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	goto	le9d88
+le9e58:
+.line 45
+	const-string	v12,""
+; v12 : Ljava/lang/String;
+	goto	le9dae
+le9e5e:
+.line 50
+	const-string	v16,"="
+; v16 : Ljava/lang/String;
+	goto	le9dd2
+le9e64:
+.line 61
+	const-string	v21,"backslash"
+; v21 : Ljava/lang/String;
+	move-object/from16	v0,v21
+; v0 : Ljava/lang/String; , v21 : Ljava/lang/String;
+	invoke-virtual	{v0,v5},java/lang/String/equals	; equals(Ljava/lang/Object;)Z
+; v0 : Ljava/lang/String; , v5 : Ljava/lang/String;
+	move-result	v21
+; v21 : single-length
+	if-eqz	v21,le9eb6
+; v21 : single-length
+.line 62
+	sget-object	v7,com/google/tagmanager/JoinerMacro$EscapeType.BACKSLASH Lcom/google/tagmanager/JoinerMacro$EscapeType;
+; v7 : Lcom/google/tagmanager/JoinerMacro$EscapeType;
+.line 63
+	new-instance	v4,java/util/HashSet
+; v4 : Ljava/util/HashSet;
+le9e80:
+	invoke-direct	{v4},java/util/HashSet/<init>	; <init>()V
+; v4 : Ljava/util/HashSet;
+.line 64
+	move-object/from16	v0,v23
+; v0 : Lcom/google/tagmanager/JoinerMacro; , v23 : Lcom/google/tagmanager/JoinerMacro;
+	invoke-direct	{v0,v4,v12},com/google/tagmanager/JoinerMacro/addTo	; addTo(Ljava/util/Set;Ljava/lang/String;)V
+; v0 : Lcom/google/tagmanager/JoinerMacro; , v4 : Ljava/util/HashSet; , v12 : Ljava/lang/String;
+.line 65
+	move-object/from16	v0,v23
+; v0 : Lcom/google/tagmanager/JoinerMacro; , v23 : Lcom/google/tagmanager/JoinerMacro;
+	move-object/from16	v1,v16
+; v1 : Ljava/lang/String; , v16 : Ljava/lang/String;
+	invoke-direct	{v0,v4,v1},com/google/tagmanager/JoinerMacro/addTo	; addTo(Ljava/util/Set;Ljava/lang/String;)V
+; v0 : Lcom/google/tagmanager/JoinerMacro; , v4 : Ljava/util/HashSet; , v1 : Ljava/lang/String;
+.line 67
+	const/16	v21,92
+; v21 : single-length
+	invoke-static/range	{v21},java/lang/Character/valueOf;	valueOf(C)Ljava/lang/Character;
+; v21 : single-length
+	move-result-object	v21
+; v21 : Ljava/lang/Character;
+	move-object/from16	v0,v21
+; v0 : Ljava/lang/Character; , v21 : Ljava/lang/Character;
+	invoke-interface	{v4,v0},java/util/Set/remove	; remove(Ljava/lang/Object;)Z
+; v4 : Ljava/util/HashSet; , v0 : Ljava/lang/Character;
+	goto	le9e14
+le9eb6:
+.line 69
+	new-instance	v21,java/lang/StringBuilder
+; v21 : Ljava/lang/StringBuilder;
+	invoke-direct/range	{v21},java/lang/StringBuilder/<init>;	<init>()V
+; v21 : Ljava/lang/StringBuilder;
+	const-string	v22,"Joiner: unsupported escape type: "
+; v22 : Ljava/lang/String;
+	invoke-virtual/range	{v21..v22},java/lang/StringBuilder/append;	append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v21 : Ljava/lang/StringBuilder; , v22 : Ljava/lang/String;
+	move-result-object	v21
+; v21 : Ljava/lang/StringBuilder;
+	move-object/from16	v0,v21
+; v0 : Ljava/lang/StringBuilder; , v21 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v0,v5},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v5 : Ljava/lang/String;
+	move-result-object	v21
+; v21 : Ljava/lang/StringBuilder;
+	invoke-virtual/range	{v21},java/lang/StringBuilder/toString;	toString()Ljava/lang/String;
+; v21 : Ljava/lang/StringBuilder;
+	move-result-object	v21
+; v21 : Ljava/lang/String;
+	invoke-static/range	{v21},com/google/tagmanager/Log/e;	e(Ljava/lang/String;)V
+; v21 : Ljava/lang/String;
+.line 70
+	invoke-static	{},com/google/tagmanager/Types/getDefaultValue	; getDefaultValue()Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+; 
+	nop	
+	move-result-object	v21
+; v21 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	goto/16	le9d88
+pse9e26_e9ef2:
+.line 77
+	const/4	v8,1
+; v8 : single-length
+.line 78
+	iget-object	v3,v11,com/google/analytics/midtier/proto/containertag/TypeSystem$Value.listItem [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+; v3 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v11 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+le9ef8:
+	array-length	v0,v3
+; v0 : single-length , v3 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	move/from16	v18,v0
+; v18 : single-length , v0 : single-length
+le9efe:
+	const/4	v10,0
+; v10 : single-length
+le9f00:
+	move/from16	v0,v18
+; v0 : single-length , v18 : single-length
+	if-ge	v10,v0,le9e46
+; v10 : single-length , v0 : single-length
+	aget-object	v14,v3,v10
+; v14 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v3 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v10 : single-length
+.line 79
+	if-nez	v8,le9f1a
+; v8 : single-length
+.line 80
+	move-object/from16	v0,v19
+; v0 : Ljava/lang/StringBuilder; , v19 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v0,v12},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v12 : Ljava/lang/String;
+le9f1a:
+.line 82
+	const/4	v8,0
+; v8 : single-length
+.line 83
+	invoke-static	{v14},com/google/tagmanager/Types/valueToString	; valueToString(Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;)Ljava/lang/String;
+; v14 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	move-result-object	v21
+; v21 : Ljava/lang/String;
+	move-object/from16	v0,v23
+; v0 : Lcom/google/tagmanager/JoinerMacro; , v23 : Lcom/google/tagmanager/JoinerMacro;
+	move-object/from16	v1,v19
+; v1 : Ljava/lang/StringBuilder; , v19 : Ljava/lang/StringBuilder;
+	move-object/from16	v2,v21
+; v2 : Ljava/lang/String; , v21 : Ljava/lang/String;
+	invoke-direct	{v0,v1,v2,v7,v4},com/google/tagmanager/JoinerMacro/append	; append(Ljava/lang/StringBuilder;Ljava/lang/String;Lcom/google/tagmanager/JoinerMacro$EscapeType;Ljava/util/Set;)V
+; v0 : Lcom/google/tagmanager/JoinerMacro; , v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String; , v7 : Lcom/google/tagmanager/JoinerMacro$EscapeType; , v4 : single-length
+.line 78
+	add-int/lit8	v10,v10,1
+; v10 : single-length , v10 : single-length
+	goto	le9f00
+pse9e26_e9f3c:
+.line 88
+	const/4	v9,0
+; v9 : single-length
+le9f3e:
+	iget-object	v0,v11,com/google/analytics/midtier/proto/containertag/TypeSystem$Value.mapKey [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+; v0 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v11 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	move-object/from16	v21,v0
+; v21 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v0 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	move-object/from16	v0,v21
+; v0 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v21 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	array-length	v0,v0
+; v0 : single-length , v0 : single-length
+	move/from16	v21,v0
+; v21 : single-length , v0 : single-length
+	move/from16	v0,v21
+; v0 : single-length , v21 : single-length
+	if-ge	v9,v0,le9e46
+; v9 : single-length , v0 : single-length
+.line 89
+	if-lez	v9,le9f66
+; v9 : single-length
+.line 90
+	move-object/from16	v0,v19
+; v0 : Ljava/lang/StringBuilder; , v19 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v0,v12},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v12 : Ljava/lang/String;
+le9f66:
+.line 92
+	iget-object	v0,v11,com/google/analytics/midtier/proto/containertag/TypeSystem$Value.mapKey [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+; v0 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v11 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	move-object/from16	v21,v0
+; v21 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v0 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	aget-object	v21,v21,v9
+; v21 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v21 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v9 : single-length
+	invoke-static/range	{v21},com/google/tagmanager/Types/valueToString;	valueToString(Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;)Ljava/lang/String;
+; v21 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	move-result-object	v15
+; v15 : Ljava/lang/String;
+.line 93
+	iget-object	v0,v11,com/google/analytics/midtier/proto/containertag/TypeSystem$Value.mapValue [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+; v0 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v11 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	move-object/from16	v21,v0
+; v21 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v0 : [Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	aget-object	v21,v21,v9
+; v21 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v21 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value; , v9 : single-length
+	invoke-static/range	{v21},com/google/tagmanager/Types/valueToString;	valueToString(Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;)Ljava/lang/String;
+; v21 : Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+	move-result-object	v20
+; v20 : Ljava/lang/String;
+.line 94
+	move-object/from16	v0,v23
+; v0 : Lcom/google/tagmanager/JoinerMacro; , v23 : Lcom/google/tagmanager/JoinerMacro;
+	move-object/from16	v1,v19
+; v1 : Ljava/lang/StringBuilder; , v19 : Ljava/lang/StringBuilder;
+	invoke-direct	{v0,v1,v15,v7,v4},com/google/tagmanager/JoinerMacro/append	; append(Ljava/lang/StringBuilder;Ljava/lang/String;Lcom/google/tagmanager/JoinerMacro$EscapeType;Ljava/util/Set;)V
+; v0 : Lcom/google/tagmanager/JoinerMacro; , v1 : Ljava/lang/StringBuilder; , v15 : Ljava/lang/String; , v7 : Lcom/google/tagmanager/JoinerMacro$EscapeType; , v4 : single-length
+.line 95
+	move-object/from16	v0,v19
+; v0 : Ljava/lang/StringBuilder; , v19 : Ljava/lang/StringBuilder;
+	move-object/from16	v1,v16
+; v1 : Ljava/lang/String; , v16 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v1 : Ljava/lang/String;
+.line 96
+	move-object/from16	v0,v23
+; v0 : Lcom/google/tagmanager/JoinerMacro; , v23 : Lcom/google/tagmanager/JoinerMacro;
+	move-object/from16	v1,v19
+; v1 : Ljava/lang/StringBuilder; , v19 : Ljava/lang/StringBuilder;
+	move-object/from16	v2,v20
+; v2 : Ljava/lang/String; , v20 : Ljava/lang/String;
+	invoke-direct	{v0,v1,v2,v7,v4},com/google/tagmanager/JoinerMacro/append	; append(Ljava/lang/StringBuilder;Ljava/lang/String;Lcom/google/tagmanager/JoinerMacro$EscapeType;Ljava/util/Set;)V
+; v0 : Lcom/google/tagmanager/JoinerMacro; , v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String; , v7 : Lcom/google/tagmanager/JoinerMacro$EscapeType; , v4 : single-length
+.line 88
+	add-int/lit8	v9,v9,1
+; v9 : single-length , v9 : single-length
+	goto	le9f3e
+.line 75
+le9fc2:	data-array
+		0x00, 0x00
+	end data-array
+.end method
+
+.method public isCacheable()Z
+.limit registers 2
+; this: v1 (Lcom/google/tagmanager/JoinerMacro;)
+.line 35
+	const/4	v0,1
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+

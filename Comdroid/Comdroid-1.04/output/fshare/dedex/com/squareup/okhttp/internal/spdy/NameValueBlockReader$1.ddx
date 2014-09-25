@@ -1,0 +1,85 @@
+.class com/squareup/okhttp/internal/spdy/NameValueBlockReader$1
+.super java/io/InputStream
+.source NameValueBlockReader.java
+
+.enclosing method com/<init>(Ljava/io/InputStream;)V
+.field final this$0 Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader;
+.field final val$in Ljava/io/InputStream;
+
+.method <init>(Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader;Ljava/io/InputStream;)V
+.limit registers 3
+; this: v0 (Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader$1;)
+; parameter[0] : v1 (Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader;)
+; parameter[1] : v2 (Ljava/io/InputStream;)
+.line 29
+	iput-object	v1,v0,com/squareup/okhttp/internal/spdy/NameValueBlockReader$1.this$0 Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader;
+; v1 : Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader; , v0 : Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader$1;
+	iput-object	v2,v0,com/squareup/okhttp/internal/spdy/NameValueBlockReader$1.val$in Ljava/io/InputStream;
+; v2 : Ljava/io/InputStream; , v0 : Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader$1;
+	invoke-direct	{v0},java/io/InputStream/<init>	; <init>()V
+; v0 : Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader$1;
+	return-void	
+.end method
+
+.method public close()V
+.throws Ljava/io/IOException;
+.limit registers 2
+; this: v1 (Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader$1;)
+.line 42
+	iget-object	v0,v1,com/squareup/okhttp/internal/spdy/NameValueBlockReader$1.val$in Ljava/io/InputStream;
+; v0 : Ljava/io/InputStream; , v1 : Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader$1;
+	invoke-virtual	{v0},java/io/InputStream/close	; close()V
+; v0 : Ljava/io/InputStream;
+.line 43
+	return-void	
+.end method
+
+.method public read()I
+.throws Ljava/io/IOException;
+.limit registers 2
+; this: v1 (Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader$1;)
+.line 31
+	invoke-static	{v1},com/squareup/okhttp/internal/Util/readSingleByte	; readSingleByte(Ljava/io/InputStream;)I
+; v1 : Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader$1;
+	move-result	v0
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public read([BII)I
+.throws Ljava/io/IOException;
+.limit registers 6
+; this: v2 (Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader$1;)
+; parameter[0] : v3 ([B)
+; parameter[1] : v4 (I)
+; parameter[2] : v5 (I)
+.line 35
+	iget-object	v1,v2,com/squareup/okhttp/internal/spdy/NameValueBlockReader$1.this$0 Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader;
+; v1 : Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader; , v2 : Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader$1;
+	invoke-static	{v1},com/squareup/okhttp/internal/spdy/NameValueBlockReader/access$000	; access$000(Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader;)I
+; v1 : Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader;
+	move-result	v1
+; v1 : single-length
+	invoke-static	{v5,v1},java/lang/Math/min	; min(II)I
+; v5 : single-length , v1 : single-length
+	move-result	v5
+; v5 : single-length
+.line 36
+	iget-object	v1,v2,com/squareup/okhttp/internal/spdy/NameValueBlockReader$1.val$in Ljava/io/InputStream;
+; v1 : Ljava/io/InputStream; , v2 : Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader$1;
+	invoke-virtual	{v1,v3,v4,v5},java/io/InputStream/read	; read([BII)I
+; v1 : Ljava/io/InputStream; , v3 : [B , v4 : single-length , v5 : single-length
+	move-result	v0
+; v0 : single-length
+.line 37
+	iget-object	v1,v2,com/squareup/okhttp/internal/spdy/NameValueBlockReader$1.this$0 Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader;
+; v1 : Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader; , v2 : Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader$1;
+	invoke-static	{v1,v0},com/squareup/okhttp/internal/spdy/NameValueBlockReader/access$020	; access$020(Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader;I)I
+; v1 : Lcom/squareup/okhttp/internal/spdy/NameValueBlockReader; , v0 : single-length
+.line 38
+	return	v0
+; v0 : single-length
+.end method
+
+

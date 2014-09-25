@@ -1,0 +1,443 @@
+.class com/google/tagmanager/PreviewManager
+.super java/lang/Object
+.source PreviewManager.java
+
+.inner class PreviewMode inner com/google/tagmanager/PreviewManager$PreviewMode outer com/google/tagmanager/PreviewManager
+.field static final BASE_DEBUG_QUERY Ljava/lang/String; = "&gtm_debug=x"
+.field private static final CONTAINER_BASE_PATTERN Ljava/lang/String; = "^tagmanager.c.\S+:\/\/preview\/p\?id=\S+&"
+.field private static final CONTAINER_DEBUG_STRING_PATTERN Ljava/lang/String; = ".*?&gtm_debug=x$"
+.field private static final CONTAINER_PREVIEW_EXIT_URL_PATTERN Ljava/lang/String; = "^tagmanager.c.\S+:\/\/preview\/p\?id=\S+&gtm_preview=$"
+.field private static final CONTAINER_PREVIEW_URL_PATTERN Ljava/lang/String; = "^tagmanager.c.\S+:\/\/preview\/p\?id=\S+&gtm_auth=\S+&gtm_preview=\d+(&gtm_debug=x)?$"
+.field static final CTFE_URL_PATH_PREFIX Ljava/lang/String; = "/r?"
+.field private static sInstance Lcom/google/tagmanager/PreviewManager;
+.field private volatile mCTFEUrlPath Ljava/lang/String;
+.field private volatile mCTFEUrlQuery Ljava/lang/String;
+.field private volatile mContainerId Ljava/lang/String;
+.field private volatile mPreviewMode Lcom/google/tagmanager/PreviewManager$PreviewMode;
+
+.method <init>()V
+.limit registers 1
+; this: v0 (Lcom/google/tagmanager/PreviewManager;)
+.line 53
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Lcom/google/tagmanager/PreviewManager;
+.line 54
+	invoke-virtual	{v0},com/google/tagmanager/PreviewManager/clear	; clear()V
+; v0 : Lcom/google/tagmanager/PreviewManager;
+.line 55
+	return-void	
+.end method
+
+.method private getContainerId(Ljava/lang/String;)Ljava/lang/String;
+.limit registers 5
+; this: v3 (Lcom/google/tagmanager/PreviewManager;)
+; parameter[0] : v4 (Ljava/lang/String;)
+.line 138
+	const-string	v1,"&"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v4,v1},java/lang/String/split	; split(Ljava/lang/String;)[Ljava/lang/String;
+; v4 : Ljava/lang/String; , v1 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : [Ljava/lang/String;
+.line 140
+	const/4	v1,0
+; v1 : single-length
+	aget-object	v1,v0,v1
+; v1 : Ljava/lang/String; , v0 : [Ljava/lang/String; , v1 : Ljava/lang/String;
+	const-string	v2,"="
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/String/split	; split(Ljava/lang/String;)[Ljava/lang/String;
+; v1 : Ljava/lang/String; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : [Ljava/lang/String;
+	const/4	v2,1
+; v2 : single-length
+	aget-object	v1,v1,v2
+; v1 : Ljava/lang/String; , v1 : Ljava/lang/String; , v2 : single-length
+	return-object	v1
+; v1 : Ljava/lang/String;
+.end method
+
+.method static getInstance()Lcom/google/tagmanager/PreviewManager;
+.limit registers 2
+.catch java/lang/Exception from la84d2 to la84f4 using la84f0
+.line 58
+	const-class	v1,com/google/tagmanager/PreviewManager
+; v1 : Ljava/lang/Class;
+	monitor-enter	v1
+; v1 : Ljava/lang/Class;
+la84d2:
+.line 59
+	sget-object	v0,com/google/tagmanager/PreviewManager.sInstance Lcom/google/tagmanager/PreviewManager;
+; v0 : Lcom/google/tagmanager/PreviewManager;
+	if-nez	v0,la84e8
+; v0 : Lcom/google/tagmanager/PreviewManager;
+.line 60
+	new-instance	v0,com/google/tagmanager/PreviewManager
+; v0 : Lcom/google/tagmanager/PreviewManager;
+	invoke-direct	{v0},com/google/tagmanager/PreviewManager/<init>	; <init>()V
+; v0 : Lcom/google/tagmanager/PreviewManager;
+	sput-object	v0,com/google/tagmanager/PreviewManager.sInstance Lcom/google/tagmanager/PreviewManager;
+; v0 : Lcom/google/tagmanager/PreviewManager;
+la84e8:
+.line 63
+	sget-object	v0,com/google/tagmanager/PreviewManager.sInstance Lcom/google/tagmanager/PreviewManager;
+; v0 : Lcom/google/tagmanager/PreviewManager;
+	monitor-exit	v1
+; v1 : Ljava/lang/Class;
+	return-object	v0
+; v0 : Lcom/google/tagmanager/PreviewManager;
+la84f0:
+.line 64
+	move-exception	v0
+; v0 : java/lang/Exception
+	monitor-exit	v1
+; v1 : Ljava/lang/Class;
+la84f4:
+	throw	v0
+; v0 : java/lang/Exception
+.end method
+
+.method private getQueryWithoutDebugParameter(Landroid/net/Uri;)Ljava/lang/String;
+.limit registers 5
+; this: v3 (Lcom/google/tagmanager/PreviewManager;)
+; parameter[0] : v4 (Landroid/net/Uri;)
+.line 111
+	invoke-virtual	{v4},android/net/Uri/getQuery	; getQuery()Ljava/lang/String;
+; v4 : Landroid/net/Uri;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	const-string	v1,"&gtm_debug=x"
+; v1 : Ljava/lang/String;
+	const-string	v2,""
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v0,v1,v2},java/lang/String/replace	; replace(Ljava/lang/CharSequence;Ljava/lang/CharSequence;)Ljava/lang/String;
+; v0 : Ljava/lang/String; , v1 : Ljava/lang/String; , v2 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	return-object	v0
+; v0 : Ljava/lang/String;
+.end method
+
+.method clear()V
+.limit registers 3
+; this: v2 (Lcom/google/tagmanager/PreviewManager;)
+	const/4	v1,0
+; v1 : single-length
+.line 131
+	sget-object	v0,com/google/tagmanager/PreviewManager$PreviewMode.NONE Lcom/google/tagmanager/PreviewManager$PreviewMode;
+; v0 : Lcom/google/tagmanager/PreviewManager$PreviewMode;
+	iput-object	v0,v2,com/google/tagmanager/PreviewManager.mPreviewMode Lcom/google/tagmanager/PreviewManager$PreviewMode;
+; v0 : Lcom/google/tagmanager/PreviewManager$PreviewMode; , v2 : Lcom/google/tagmanager/PreviewManager;
+.line 132
+	iput-object	v1,v2,com/google/tagmanager/PreviewManager.mCTFEUrlPath Ljava/lang/String;
+; v1 : single-length , v2 : Lcom/google/tagmanager/PreviewManager;
+.line 133
+	iput-object	v1,v2,com/google/tagmanager/PreviewManager.mContainerId Ljava/lang/String;
+; v1 : single-length , v2 : Lcom/google/tagmanager/PreviewManager;
+.line 134
+	iput-object	v1,v2,com/google/tagmanager/PreviewManager.mCTFEUrlQuery Ljava/lang/String;
+; v1 : single-length , v2 : Lcom/google/tagmanager/PreviewManager;
+.line 135
+	return-void	
+.end method
+
+.method getCTFEUrlDebugQuery()Ljava/lang/String;
+.limit registers 2
+; this: v1 (Lcom/google/tagmanager/PreviewManager;)
+.line 127
+	iget-object	v0,v1,com/google/tagmanager/PreviewManager.mCTFEUrlQuery Ljava/lang/String;
+; v0 : Ljava/lang/String; , v1 : Lcom/google/tagmanager/PreviewManager;
+	return-object	v0
+; v0 : Ljava/lang/String;
+.end method
+
+.method getCTFEUrlPath()Ljava/lang/String;
+.limit registers 2
+; this: v1 (Lcom/google/tagmanager/PreviewManager;)
+.line 119
+	iget-object	v0,v1,com/google/tagmanager/PreviewManager.mCTFEUrlPath Ljava/lang/String;
+; v0 : Ljava/lang/String; , v1 : Lcom/google/tagmanager/PreviewManager;
+	return-object	v0
+; v0 : Ljava/lang/String;
+.end method
+
+.method getContainerId()Ljava/lang/String;
+.limit registers 2
+; this: v1 (Lcom/google/tagmanager/PreviewManager;)
+.line 123
+	iget-object	v0,v1,com/google/tagmanager/PreviewManager.mContainerId Ljava/lang/String;
+; v0 : Ljava/lang/String; , v1 : Lcom/google/tagmanager/PreviewManager;
+	return-object	v0
+; v0 : Ljava/lang/String;
+.end method
+
+.method getPreviewMode()Lcom/google/tagmanager/PreviewManager$PreviewMode;
+.limit registers 2
+; this: v1 (Lcom/google/tagmanager/PreviewManager;)
+.line 115
+	iget-object	v0,v1,com/google/tagmanager/PreviewManager.mPreviewMode Lcom/google/tagmanager/PreviewManager$PreviewMode;
+; v0 : Lcom/google/tagmanager/PreviewManager$PreviewMode; , v1 : Lcom/google/tagmanager/PreviewManager;
+	return-object	v0
+; v0 : Lcom/google/tagmanager/PreviewManager$PreviewMode;
+.end method
+
+.method synchronized setPreviewData(Landroid/net/Uri;)Z
+.limit registers 8
+; this: v6 (Lcom/google/tagmanager/PreviewManager;)
+; parameter[0] : v7 (Landroid/net/Uri;)
+.catch java/lang/Exception from la86b4 to la8754 using la86ae
+.catch java/lang/Exception from la86a4 to la86ac using la86ae
+.catch java/lang/Exception from la85e4 to la869a using la86ae
+.catch java/io/UnsupportedEncodingException from la85d0 to la85e2 using la869e
+.catch java/lang/Exception from la85d0 to la85e2 using la86ae
+.var 0 is e Ljava/io/UnsupportedEncodingException; from la86a0 to la86a4
+	const/4	v2,1
+; v2 : single-length
+	const/4	v3,0
+; v3 : single-length
+.line 68
+	monitor-enter	v6
+; v6 : Lcom/google/tagmanager/PreviewManager;
+	const/4	v1,0
+; v1 : single-length
+la85d0:
+.line 70
+	invoke-virtual	{v7},android/net/Uri/toString	; toString()Ljava/lang/String;
+; v7 : Landroid/net/Uri;
+	move-result-object	v4
+; v4 : Ljava/lang/String;
+	const-string	v5,"UTF-8"
+; v5 : Ljava/lang/String;
+	invoke-static	{v4,v5},java/net/URLDecoder/decode	; decode(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;
+; v4 : Ljava/lang/String; , v5 : Ljava/lang/String;
+la85e2:
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+la85e4:
+.line 75
+	const-string	v4,"^tagmanager.c.\S+:\/\/preview\/p\?id=\S+&gtm_auth=\S+&gtm_preview=\d+(&gtm_debug=x)?$"
+; v4 : Ljava/lang/String;
+	invoke-virtual	{v1,v4},java/lang/String/matches	; matches(Ljava/lang/String;)Z
+; v1 : Ljava/lang/String; , v4 : Ljava/lang/String;
+	move-result	v4
+; v4 : single-length
+	if-eqz	v4,la86b4
+; v4 : single-length
+.line 76
+	new-instance	v3,java/lang/StringBuilder
+; v3 : Ljava/lang/StringBuilder;
+	invoke-direct	{v3},java/lang/StringBuilder/<init>	; <init>()V
+; v3 : Ljava/lang/StringBuilder;
+	const-string	v4,"Container preview url: "
+; v4 : Ljava/lang/String;
+	invoke-virtual	{v3,v4},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v3 : Ljava/lang/StringBuilder; , v4 : Ljava/lang/String;
+	move-result-object	v3
+; v3 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v3,v1},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v3 : Ljava/lang/StringBuilder; , v1 : Ljava/lang/String;
+	move-result-object	v3
+; v3 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v3},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v3 : Ljava/lang/StringBuilder;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-static	{v3},com/google/tagmanager/Log/v	; v(Ljava/lang/String;)V
+; v3 : Ljava/lang/String;
+.line 77
+	const-string	v3,".*?&gtm_debug=x$"
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v1,v3},java/lang/String/matches	; matches(Ljava/lang/String;)Z
+; v1 : Ljava/lang/String; , v3 : Ljava/lang/String;
+	move-result	v3
+; v3 : single-length
+	if-eqz	v3,la86a4
+; v3 : single-length
+.line 78
+	sget-object	v3,com/google/tagmanager/PreviewManager$PreviewMode.CONTAINER_DEBUG Lcom/google/tagmanager/PreviewManager$PreviewMode;
+; v3 : Lcom/google/tagmanager/PreviewManager$PreviewMode;
+	iput-object	v3,v6,com/google/tagmanager/PreviewManager.mPreviewMode Lcom/google/tagmanager/PreviewManager$PreviewMode;
+; v3 : Lcom/google/tagmanager/PreviewManager$PreviewMode; , v6 : Lcom/google/tagmanager/PreviewManager;
+la8638:
+.line 97
+	invoke-direct	{v6,v7},com/google/tagmanager/PreviewManager/getQueryWithoutDebugParameter	; getQueryWithoutDebugParameter(Landroid/net/Uri;)Ljava/lang/String;
+; v6 : Lcom/google/tagmanager/PreviewManager; , v7 : Landroid/net/Uri;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	iput-object	v3,v6,com/google/tagmanager/PreviewManager.mCTFEUrlQuery Ljava/lang/String;
+; v3 : Ljava/lang/String; , v6 : Lcom/google/tagmanager/PreviewManager;
+.line 99
+	iget-object	v3,v6,com/google/tagmanager/PreviewManager.mPreviewMode Lcom/google/tagmanager/PreviewManager$PreviewMode;
+; v3 : Lcom/google/tagmanager/PreviewManager$PreviewMode; , v6 : Lcom/google/tagmanager/PreviewManager;
+	sget-object	v4,com/google/tagmanager/PreviewManager$PreviewMode.CONTAINER Lcom/google/tagmanager/PreviewManager$PreviewMode;
+; v4 : Lcom/google/tagmanager/PreviewManager$PreviewMode;
+	if-eq	v3,v4,la865c
+; v3 : Lcom/google/tagmanager/PreviewManager$PreviewMode; , v4 : Lcom/google/tagmanager/PreviewManager$PreviewMode;
+	iget-object	v3,v6,com/google/tagmanager/PreviewManager.mPreviewMode Lcom/google/tagmanager/PreviewManager$PreviewMode;
+; v3 : Lcom/google/tagmanager/PreviewManager$PreviewMode; , v6 : Lcom/google/tagmanager/PreviewManager;
+	sget-object	v4,com/google/tagmanager/PreviewManager$PreviewMode.CONTAINER_DEBUG Lcom/google/tagmanager/PreviewManager$PreviewMode;
+; v4 : Lcom/google/tagmanager/PreviewManager$PreviewMode;
+	if-ne	v3,v4,la868a
+; v3 : Lcom/google/tagmanager/PreviewManager$PreviewMode; , v4 : Lcom/google/tagmanager/PreviewManager$PreviewMode;
+la865c:
+.line 100
+	new-instance	v3,java/lang/StringBuilder
+; v3 : Ljava/lang/StringBuilder;
+	invoke-direct	{v3},java/lang/StringBuilder/<init>	; <init>()V
+; v3 : Ljava/lang/StringBuilder;
+	const-string	v4,"/r?"
+; v4 : Ljava/lang/String;
+	invoke-virtual	{v3,v4},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v3 : Ljava/lang/StringBuilder; , v4 : Ljava/lang/String;
+	move-result-object	v3
+; v3 : Ljava/lang/StringBuilder;
+	iget-object	v4,v6,com/google/tagmanager/PreviewManager.mCTFEUrlQuery Ljava/lang/String;
+; v4 : Ljava/lang/String; , v6 : Lcom/google/tagmanager/PreviewManager;
+	invoke-virtual	{v3,v4},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v3 : Ljava/lang/StringBuilder; , v4 : Ljava/lang/String;
+	move-result-object	v3
+; v3 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v3},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v3 : Ljava/lang/StringBuilder;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	iput-object	v3,v6,com/google/tagmanager/PreviewManager.mCTFEUrlPath Ljava/lang/String;
+; v3 : Ljava/lang/String; , v6 : Lcom/google/tagmanager/PreviewManager;
+la868a:
+.line 103
+	iget-object	v3,v6,com/google/tagmanager/PreviewManager.mCTFEUrlQuery Ljava/lang/String;
+; v3 : Ljava/lang/String; , v6 : Lcom/google/tagmanager/PreviewManager;
+	invoke-direct	{v6,v3},com/google/tagmanager/PreviewManager/getContainerId	; getContainerId(Ljava/lang/String;)Ljava/lang/String;
+; v6 : Lcom/google/tagmanager/PreviewManager; , v3 : Ljava/lang/String;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	iput-object	v3,v6,com/google/tagmanager/PreviewManager.mContainerId Ljava/lang/String;
+; v3 : Ljava/lang/String; , v6 : Lcom/google/tagmanager/PreviewManager;
+la869a:
+.line 105
+	monitor-exit	v6
+; v6 : Lcom/google/tagmanager/PreviewManager;
+	return	v2
+; v2 : single-length
+la869e:
+.line 71
+	move-exception	v0
+; v0 : java/io/UnsupportedEncodingException
+la86a0:
+	move	v2,v3
+; v2 : single-length , v3 : single-length
+.line 73
+	goto	la869a
+la86a4:
+.line 80
+	sget-object	v3,com/google/tagmanager/PreviewManager$PreviewMode.CONTAINER Lcom/google/tagmanager/PreviewManager$PreviewMode;
+; v3 : Lcom/google/tagmanager/PreviewManager$PreviewMode;
+	iput-object	v3,v6,com/google/tagmanager/PreviewManager.mPreviewMode Lcom/google/tagmanager/PreviewManager$PreviewMode;
+; v3 : Lcom/google/tagmanager/PreviewManager$PreviewMode; , v6 : Lcom/google/tagmanager/PreviewManager;
+la86ac:
+	goto	la8638
+la86ae:
+.line 68
+	move-exception	v2
+; v2 : java/lang/Exception
+	monitor-exit	v6
+; v6 : Lcom/google/tagmanager/PreviewManager;
+	throw	v2
+; v2 : java/lang/Exception
+la86b4:
+.line 82
+	const-string	v4,"^tagmanager.c.\S+:\/\/preview\/p\?id=\S+&gtm_preview=$"
+; v4 : Ljava/lang/String;
+	invoke-virtual	{v1,v4},java/lang/String/matches	; matches(Ljava/lang/String;)Z
+; v1 : Ljava/lang/String; , v4 : Ljava/lang/String;
+	move-result	v4
+; v4 : single-length
+	if-eqz	v4,la8728
+; v4 : single-length
+.line 83
+	invoke-virtual	{v7},android/net/Uri/getQuery	; getQuery()Ljava/lang/String;
+; v7 : Landroid/net/Uri;
+	move-result-object	v4
+; v4 : Ljava/lang/String;
+	invoke-direct	{v6,v4},com/google/tagmanager/PreviewManager/getContainerId	; getContainerId(Ljava/lang/String;)Ljava/lang/String;
+; v6 : Lcom/google/tagmanager/PreviewManager; , v4 : Ljava/lang/String;
+	move-result-object	v4
+; v4 : Ljava/lang/String;
+	iget-object	v5,v6,com/google/tagmanager/PreviewManager.mContainerId Ljava/lang/String;
+; v5 : Ljava/lang/String; , v6 : Lcom/google/tagmanager/PreviewManager;
+	invoke-virtual	{v4,v5},java/lang/String/equals	; equals(Ljava/lang/Object;)Z
+; v4 : Ljava/lang/String; , v5 : Ljava/lang/String;
+	move-result	v4
+; v4 : single-length
+	if-eqz	v4,la8724
+; v4 : single-length
+.line 84
+	new-instance	v3,java/lang/StringBuilder
+; v3 : Ljava/lang/StringBuilder;
+	invoke-direct	{v3},java/lang/StringBuilder/<init>	; <init>()V
+; v3 : Ljava/lang/StringBuilder;
+	const-string	v4,"Exit preview mode for container: "
+; v4 : Ljava/lang/String;
+	invoke-virtual	{v3,v4},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v3 : Ljava/lang/StringBuilder; , v4 : Ljava/lang/String;
+	move-result-object	v3
+; v3 : Ljava/lang/StringBuilder;
+	iget-object	v4,v6,com/google/tagmanager/PreviewManager.mContainerId Ljava/lang/String;
+; v4 : Ljava/lang/String; , v6 : Lcom/google/tagmanager/PreviewManager;
+	invoke-virtual	{v3,v4},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v3 : Ljava/lang/StringBuilder; , v4 : Ljava/lang/String;
+	move-result-object	v3
+; v3 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v3},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v3 : Ljava/lang/StringBuilder;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-static	{v3},com/google/tagmanager/Log/v	; v(Ljava/lang/String;)V
+; v3 : Ljava/lang/String;
+.line 85
+	sget-object	v3,com/google/tagmanager/PreviewManager$PreviewMode.NONE Lcom/google/tagmanager/PreviewManager$PreviewMode;
+; v3 : Lcom/google/tagmanager/PreviewManager$PreviewMode;
+	iput-object	v3,v6,com/google/tagmanager/PreviewManager.mPreviewMode Lcom/google/tagmanager/PreviewManager$PreviewMode;
+; v3 : Lcom/google/tagmanager/PreviewManager$PreviewMode; , v6 : Lcom/google/tagmanager/PreviewManager;
+.line 86
+	const/4	v3,0
+; v3 : single-length
+	iput-object	v3,v6,com/google/tagmanager/PreviewManager.mCTFEUrlPath Ljava/lang/String;
+; v3 : single-length , v6 : Lcom/google/tagmanager/PreviewManager;
+	goto	la869a
+la8724:
+	move	v2,v3
+; v2 : single-length , v3 : single-length
+.line 90
+	goto	la869a
+la8728:
+.line 93
+	new-instance	v2,java/lang/StringBuilder
+; v2 : Ljava/lang/StringBuilder;
+	invoke-direct	{v2},java/lang/StringBuilder/<init>	; <init>()V
+; v2 : Ljava/lang/StringBuilder;
+	const-string	v4,"Invalid preview uri: "
+; v4 : Ljava/lang/String;
+	invoke-virtual	{v2,v4},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v4 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v2,v1},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v1 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v2},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v2 : Ljava/lang/StringBuilder;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-static	{v2},com/google/tagmanager/Log/w	; w(Ljava/lang/String;)V
+; v2 : Ljava/lang/String;
+la8754:
+	move	v2,v3
+; v2 : single-length , v3 : single-length
+.line 94
+	goto	la869a
+.end method
+
+

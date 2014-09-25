@@ -1,0 +1,344 @@
+.class com/google/analytics/tracking/android/GAUsage
+.super java/lang/Object
+.source GAUsage.java
+
+.inner class Field inner com/google/analytics/tracking/android/GAUsage$Field outer com/google/analytics/tracking/android/GAUsage
+.field private static final BASE_64_CHARS Ljava/lang/String; = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_"
+.field private static final INSTANCE Lcom/google/analytics/tracking/android/GAUsage;
+.field private mDisableUsage Z
+.field private mSequence Ljava/lang/StringBuilder;
+.field private mUsedFields Ljava/util/SortedSet;
+  .annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "Ljava/util/SortedSet" , "<" , "Lcom/google/analytics/tracking/android/GAUsage$Field;" , ">;" }
+  .end annotation
+.end field
+
+.method static <clinit>()V
+.limit registers 1
+.line 103
+	new-instance	v0,com/google/analytics/tracking/android/GAUsage
+; v0 : Lcom/google/analytics/tracking/android/GAUsage;
+	invoke-direct	{v0},com/google/analytics/tracking/android/GAUsage/<init>	; <init>()V
+; v0 : Lcom/google/analytics/tracking/android/GAUsage;
+	sput-object	v0,com/google/analytics/tracking/android/GAUsage.INSTANCE Lcom/google/analytics/tracking/android/GAUsage;
+; v0 : Lcom/google/analytics/tracking/android/GAUsage;
+	return-void	
+.end method
+
+.method private <init>()V
+.limit registers 2
+; this: v1 (Lcom/google/analytics/tracking/android/GAUsage;)
+.line 114
+	invoke-direct	{v1},java/lang/Object/<init>	; <init>()V
+; v1 : Lcom/google/analytics/tracking/android/GAUsage;
+.line 97
+	new-instance	v0,java/util/TreeSet
+; v0 : Ljava/util/TreeSet;
+	invoke-direct	{v0},java/util/TreeSet/<init>	; <init>()V
+; v0 : Ljava/util/TreeSet;
+	iput-object	v0,v1,com/google/analytics/tracking/android/GAUsage.mUsedFields Ljava/util/SortedSet;
+; v0 : Ljava/util/TreeSet; , v1 : Lcom/google/analytics/tracking/android/GAUsage;
+.line 99
+	new-instance	v0,java/lang/StringBuilder
+; v0 : Ljava/lang/StringBuilder;
+	invoke-direct	{v0},java/lang/StringBuilder/<init>	; <init>()V
+; v0 : Ljava/lang/StringBuilder;
+	iput-object	v0,v1,com/google/analytics/tracking/android/GAUsage.mSequence Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v1 : Lcom/google/analytics/tracking/android/GAUsage;
+.line 101
+	const/4	v0,0
+; v0 : single-length
+	iput-boolean	v0,v1,com/google/analytics/tracking/android/GAUsage.mDisableUsage Z
+; v0 : single-length , v1 : Lcom/google/analytics/tracking/android/GAUsage;
+.line 114
+	return-void	
+.end method
+
+.method public static getInstance()Lcom/google/analytics/tracking/android/GAUsage;
+.limit registers 1
+.line 106
+	sget-object	v0,com/google/analytics/tracking/android/GAUsage.INSTANCE Lcom/google/analytics/tracking/android/GAUsage;
+; v0 : Lcom/google/analytics/tracking/android/GAUsage;
+	return-object	v0
+; v0 : Lcom/google/analytics/tracking/android/GAUsage;
+.end method
+
+.method static getPrivateInstance()Lcom/google/analytics/tracking/android/GAUsage;
+.annotation buildVisibility Lcom/google/android/gms/common/util/VisibleForTesting;
+.end annotation
+.limit registers 1
+.line 111
+	new-instance	v0,com/google/analytics/tracking/android/GAUsage
+; v0 : Lcom/google/analytics/tracking/android/GAUsage;
+	invoke-direct	{v0},com/google/analytics/tracking/android/GAUsage/<init>	; <init>()V
+; v0 : Lcom/google/analytics/tracking/android/GAUsage;
+	return-object	v0
+; v0 : Lcom/google/analytics/tracking/android/GAUsage;
+.end method
+
+.method public synchronized getAndClearSequence()Ljava/lang/String;
+.limit registers 5
+; this: v4 (Lcom/google/analytics/tracking/android/GAUsage;)
+.catch java/lang/Exception from la1da6 to la1de0 using la1de4
+.var 0 is result Ljava/lang/String; from la1dd2 to la1de4
+.line 187
+	monitor-enter	v4
+; v4 : Lcom/google/analytics/tracking/android/GAUsage;
+la1da6:
+	iget-object	v1,v4,com/google/analytics/tracking/android/GAUsage.mSequence Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v4 : Lcom/google/analytics/tracking/android/GAUsage;
+	invoke-virtual	{v1},java/lang/StringBuilder/length	; length()I
+; v1 : Ljava/lang/StringBuilder;
+	move-result	v1
+; v1 : single-length
+	if-lez	v1,la1dc6
+; v1 : single-length
+.line 188
+	iget-object	v1,v4,com/google/analytics/tracking/android/GAUsage.mSequence Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v4 : Lcom/google/analytics/tracking/android/GAUsage;
+	const/4	v2,0
+; v2 : single-length
+	const-string	v3,"."
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v1,v2,v3},java/lang/StringBuilder/insert	; insert(ILjava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : single-length , v3 : Ljava/lang/String;
+la1dc6:
+.line 190
+	iget-object	v1,v4,com/google/analytics/tracking/android/GAUsage.mSequence Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v4 : Lcom/google/analytics/tracking/android/GAUsage;
+	invoke-virtual	{v1},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v1 : Ljava/lang/StringBuilder;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+.line 191
+	new-instance	v1,java/lang/StringBuilder
+; v1 : Ljava/lang/StringBuilder;
+	invoke-direct	{v1},java/lang/StringBuilder/<init>	; <init>()V
+; v1 : Ljava/lang/StringBuilder;
+	iput-object	v1,v4,com/google/analytics/tracking/android/GAUsage.mSequence Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v4 : Lcom/google/analytics/tracking/android/GAUsage;
+la1de0:
+.line 192
+	monitor-exit	v4
+; v4 : Lcom/google/analytics/tracking/android/GAUsage;
+	return-object	v0
+; v0 : Ljava/lang/String;
+la1de4:
+.line 187
+	move-exception	v1
+; v1 : java/lang/Exception
+	monitor-exit	v4
+; v4 : Lcom/google/analytics/tracking/android/GAUsage;
+	throw	v1
+; v1 : java/lang/Exception
+.end method
+
+.method public synchronized getAndClearUsage()Ljava/lang/String;
+.limit registers 8
+; this: v7 (Lcom/google/analytics/tracking/android/GAUsage;)
+.catch java/lang/Exception from la1e0a to la1eae using la1eb4
+.var 0 is f Lcom/google/analytics/tracking/android/GAUsage$Field; from la1e38 to la1e7c
+.var 2 is nextLoc I from la1e4a to la1e7c
+.var 1 is nextBoundary I from la1e18 to la1eb4
+.var 3 is result Ljava/lang/StringBuilder; from la1e14 to la1eb4
+.var 4 is spot I from la1e16 to la1eb4
+.line 134
+	monitor-enter	v7
+; v7 : Lcom/google/analytics/tracking/android/GAUsage;
+la1e0a:
+	new-instance	v3,java/lang/StringBuilder
+; v3 : Ljava/lang/StringBuilder;
+	invoke-direct	{v3},java/lang/StringBuilder/<init>	; <init>()V
+; v3 : Ljava/lang/StringBuilder;
+.line 135
+	const/4	v4,0
+; v4 : single-length
+.line 142
+	const/4	v1,6
+; v1 : single-length
+la1e18:
+.line 144
+	iget-object	v5,v7,com/google/analytics/tracking/android/GAUsage.mUsedFields Ljava/util/SortedSet;
+; v5 : Ljava/util/SortedSet; , v7 : Lcom/google/analytics/tracking/android/GAUsage;
+	invoke-interface	{v5},java/util/SortedSet/size	; size()I
+; v5 : Ljava/util/SortedSet;
+	move-result	v5
+; v5 : single-length
+	if-lez	v5,la1e7c
+; v5 : single-length
+.line 148
+	iget-object	v5,v7,com/google/analytics/tracking/android/GAUsage.mUsedFields Ljava/util/SortedSet;
+; v5 : Ljava/util/SortedSet; , v7 : Lcom/google/analytics/tracking/android/GAUsage;
+	invoke-interface	{v5},java/util/SortedSet/first	; first()Ljava/lang/Object;
+; v5 : Ljava/util/SortedSet;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,com/google/analytics/tracking/android/GAUsage$Field
+; v0 : Lcom/google/analytics/tracking/android/GAUsage$Field;
+.line 149
+	iget-object	v5,v7,com/google/analytics/tracking/android/GAUsage.mUsedFields Ljava/util/SortedSet;
+; v5 : Ljava/util/SortedSet; , v7 : Lcom/google/analytics/tracking/android/GAUsage;
+	invoke-interface	{v5,v0},java/util/SortedSet/remove	; remove(Ljava/lang/Object;)Z
+; v5 : Ljava/util/SortedSet; , v0 : Lcom/google/analytics/tracking/android/GAUsage$Field;
+.line 150
+	invoke-virtual	{v0},com/google/analytics/tracking/android/GAUsage$Field/ordinal	; ordinal()I
+; v0 : Lcom/google/analytics/tracking/android/GAUsage$Field;
+	move-result	v2
+; v2 : single-length
+la1e4a:
+.line 158
+	if-lt	v2,v1,la1e68
+; v2 : single-length , v1 : single-length
+.line 159
+	const-string	v5,"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_"
+; v5 : Ljava/lang/String;
+	invoke-virtual	{v5,v4},java/lang/String/charAt	; charAt(I)C
+; v5 : Ljava/lang/String; , v4 : single-length
+	move-result	v5
+; v5 : single-length
+	invoke-virtual	{v3,v5},java/lang/StringBuilder/append	; append(C)Ljava/lang/StringBuilder;
+; v3 : Ljava/lang/StringBuilder; , v5 : single-length
+.line 160
+	const/4	v4,0
+; v4 : single-length
+.line 161
+	add-int/lit8	v1,v1,6
+; v1 : single-length , v1 : single-length
+	goto	la1e4a
+la1e68:
+.line 163
+	const/4	v5,1
+; v5 : single-length
+	invoke-virtual	{v0},com/google/analytics/tracking/android/GAUsage$Field/ordinal	; ordinal()I
+; v0 : Lcom/google/analytics/tracking/android/GAUsage$Field;
+	move-result	v6
+; v6 : single-length
+	rem-int/lit8	v6,v6,6
+; v6 : single-length , v6 : single-length
+	shl-int/2addr	v5,v6
+; v5 : single-length , v6 : single-length
+	add-int/2addr	v4,v5
+; v4 : single-length , v5 : single-length
+.line 164
+	goto	la1e18
+la1e7c:
+.line 169
+	if-gtz	v4,la1e8c
+; v4 : single-length
+	invoke-virtual	{v3},java/lang/StringBuilder/length	; length()I
+; v3 : Ljava/lang/StringBuilder;
+	move-result	v5
+; v5 : single-length
+	if-nez	v5,la1e9e
+; v5 : single-length
+la1e8c:
+.line 170
+	const-string	v5,"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_"
+; v5 : Ljava/lang/String;
+	invoke-virtual	{v5,v4},java/lang/String/charAt	; charAt(I)C
+; v5 : Ljava/lang/String; , v4 : single-length
+	move-result	v5
+; v5 : single-length
+	invoke-virtual	{v3,v5},java/lang/StringBuilder/append	; append(C)Ljava/lang/StringBuilder;
+; v3 : Ljava/lang/StringBuilder; , v5 : single-length
+la1e9e:
+.line 174
+	iget-object	v5,v7,com/google/analytics/tracking/android/GAUsage.mUsedFields Ljava/util/SortedSet;
+; v5 : Ljava/util/SortedSet; , v7 : Lcom/google/analytics/tracking/android/GAUsage;
+	invoke-interface	{v5},java/util/SortedSet/clear	; clear()V
+; v5 : Ljava/util/SortedSet;
+.line 176
+	invoke-virtual	{v3},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v3 : Ljava/lang/StringBuilder;
+la1eae:
+	move-result-object	v5
+; v5 : Ljava/lang/String;
+	monitor-exit	v7
+; v7 : Lcom/google/analytics/tracking/android/GAUsage;
+	return-object	v5
+; v5 : Ljava/lang/String;
+la1eb4:
+.line 134
+	move-exception	v5
+; v5 : java/lang/Exception
+	monitor-exit	v7
+; v7 : Lcom/google/analytics/tracking/android/GAUsage;
+	throw	v5
+; v5 : java/lang/Exception
+.end method
+
+.method public synchronized setDisableUsage(Z)V
+.limit registers 3
+; this: v1 (Lcom/google/analytics/tracking/android/GAUsage;)
+; parameter[0] : v2 (Z)
+.catch java/lang/Exception from la1eda to la1ede using la1ee2
+.line 117
+	monitor-enter	v1
+; v1 : Lcom/google/analytics/tracking/android/GAUsage;
+la1eda:
+	iput-boolean	v2,v1,com/google/analytics/tracking/android/GAUsage.mDisableUsage Z
+; v2 : single-length , v1 : Lcom/google/analytics/tracking/android/GAUsage;
+la1ede:
+.line 118
+	monitor-exit	v1
+; v1 : Lcom/google/analytics/tracking/android/GAUsage;
+	return-void	
+la1ee2:
+.line 117
+	move-exception	v0
+; v0 : java/lang/Exception
+	monitor-exit	v1
+; v1 : Lcom/google/analytics/tracking/android/GAUsage;
+	throw	v0
+; v0 : java/lang/Exception
+.end method
+
+.method public synchronized setUsage(Lcom/google/analytics/tracking/android/GAUsage$Field;)V
+.limit registers 5
+; this: v3 (Lcom/google/analytics/tracking/android/GAUsage;)
+; parameter[0] : v4 (Lcom/google/analytics/tracking/android/GAUsage$Field;)
+.catch java/lang/Exception from la1f06 to la1f36 using la1f3a
+.line 121
+	monitor-enter	v3
+; v3 : Lcom/google/analytics/tracking/android/GAUsage;
+la1f06:
+	iget-boolean	v0,v3,com/google/analytics/tracking/android/GAUsage.mDisableUsage Z
+; v0 : single-length , v3 : Lcom/google/analytics/tracking/android/GAUsage;
+	if-nez	v0,la1f36
+; v0 : single-length
+.line 122
+	iget-object	v0,v3,com/google/analytics/tracking/android/GAUsage.mUsedFields Ljava/util/SortedSet;
+; v0 : Ljava/util/SortedSet; , v3 : Lcom/google/analytics/tracking/android/GAUsage;
+	invoke-interface	{v0,v4},java/util/SortedSet/add	; add(Ljava/lang/Object;)Z
+; v0 : Ljava/util/SortedSet; , v4 : Lcom/google/analytics/tracking/android/GAUsage$Field;
+.line 123
+	iget-object	v0,v3,com/google/analytics/tracking/android/GAUsage.mSequence Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v3 : Lcom/google/analytics/tracking/android/GAUsage;
+	const-string	v1,"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v4},com/google/analytics/tracking/android/GAUsage$Field/ordinal	; ordinal()I
+; v4 : Lcom/google/analytics/tracking/android/GAUsage$Field;
+	move-result	v2
+; v2 : single-length
+	invoke-virtual	{v1,v2},java/lang/String/charAt	; charAt(I)C
+; v1 : Ljava/lang/String; , v2 : single-length
+	move-result	v1
+; v1 : single-length
+	invoke-virtual	{v0,v1},java/lang/StringBuilder/append	; append(C)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v1 : single-length
+la1f36:
+.line 125
+	monitor-exit	v3
+; v3 : Lcom/google/analytics/tracking/android/GAUsage;
+	return-void	
+la1f3a:
+.line 121
+	move-exception	v0
+; v0 : java/lang/Exception
+	monitor-exit	v3
+; v3 : Lcom/google/analytics/tracking/android/GAUsage;
+	throw	v0
+; v0 : java/lang/Exception
+.end method
+
+

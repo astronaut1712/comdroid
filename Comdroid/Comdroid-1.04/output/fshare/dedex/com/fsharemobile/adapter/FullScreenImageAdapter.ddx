@@ -1,0 +1,375 @@
+.class public com/fsharemobile/adapter/FullScreenImageAdapter
+.super android/support/v4/view/PagerAdapter
+.source FullScreenImageAdapter.java
+
+.field private _activity Landroid/app/Activity;
+.field private _imageNames Ljava/util/ArrayList;
+  .annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "Ljava/util/ArrayList" , "<" , "Ljava/lang/String;" , ">;" }
+  .end annotation
+.end field
+.field private _imagePaths Ljava/util/ArrayList;
+  .annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "Ljava/util/ArrayList" , "<" , "Ljava/lang/String;" , ">;" }
+  .end annotation
+.end field
+.field private inflater Landroid/view/LayoutInflater;
+
+.method public <init>(Landroid/app/Activity;Ljava/util/ArrayList;Ljava/util/ArrayList;)V
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "(" , "Landroid/app/Activity;" , "Ljava/util/ArrayList" , "<" , "Ljava/lang/String;" , ">;" , "Ljava/util/ArrayList" , "<" , "Ljava/lang/String;" , ">;)V" }
+.end annotation
+.limit registers 4
+; this: v0 (Lcom/fsharemobile/adapter/FullScreenImageAdapter;)
+; parameter[0] : v1 (Landroid/app/Activity;)
+; parameter[1] : v2 (Ljava/util/ArrayList;)
+; parameter[2] : v3 (Ljava/util/ArrayList;)
+.line 34
+	invoke-direct	{v0},android/support/v4/view/PagerAdapter/<init>	; <init>()V
+; v0 : Lcom/fsharemobile/adapter/FullScreenImageAdapter;
+.line 36
+	iput-object	v1,v0,com/fsharemobile/adapter/FullScreenImageAdapter._activity Landroid/app/Activity;
+; v1 : Landroid/app/Activity; , v0 : Lcom/fsharemobile/adapter/FullScreenImageAdapter;
+.line 37
+	iput-object	v2,v0,com/fsharemobile/adapter/FullScreenImageAdapter._imagePaths Ljava/util/ArrayList;
+; v2 : Ljava/util/ArrayList; , v0 : Lcom/fsharemobile/adapter/FullScreenImageAdapter;
+.line 38
+	iput-object	v3,v0,com/fsharemobile/adapter/FullScreenImageAdapter._imageNames Ljava/util/ArrayList;
+; v3 : Ljava/util/ArrayList; , v0 : Lcom/fsharemobile/adapter/FullScreenImageAdapter;
+.line 40
+	return-void	
+.end method
+
+.method static access$0(Lcom/fsharemobile/adapter/FullScreenImageAdapter;)Landroid/app/Activity;
+.limit registers 2
+; parameter[0] : v1 (Lcom/fsharemobile/adapter/FullScreenImageAdapter;)
+.line 29
+	iget-object	v0,v1,com/fsharemobile/adapter/FullScreenImageAdapter._activity Landroid/app/Activity;
+; v0 : Landroid/app/Activity; , v1 : Lcom/fsharemobile/adapter/FullScreenImageAdapter;
+	return-object	v0
+; v0 : Landroid/app/Activity;
+.end method
+
+.method public static decodeFileA(Ljava/lang/String;II)Landroid/graphics/Bitmap;
+.limit registers 13
+; parameter[0] : v10 (Ljava/lang/String;)
+; parameter[1] : v11 (I)
+; parameter[2] : v12 (I)
+.catch java/io/FileNotFoundException from ld9e0e to ld9e7c using ld9e86
+.var 0 is REQUIRED_HIGHT I from ld9e3e to ld9e7e
+.var 1 is REQUIRED_WIDTH I from ld9e3c to ld9e7e
+.var 3 is f Ljava/io/File; from ld9e18 to ld9e7e
+.var 4 is o Landroid/graphics/BitmapFactory$Options; from ld9e22 to ld9e7e
+.var 5 is o2 Landroid/graphics/BitmapFactory$Options; from ld9e66 to ld9e7e
+.var 6 is scale I from ld9e40 to ld9e7e
+.var 0 is REQUIRED_HIGHT I from ld9e80 to ld9e86
+.var 1 is REQUIRED_WIDTH I from ld9e80 to ld9e86
+.var 3 is f Ljava/io/File; from ld9e80 to ld9e86
+.var 4 is o Landroid/graphics/BitmapFactory$Options; from ld9e80 to ld9e86
+.var 6 is scale I from ld9e80 to ld9e86
+	const/4	v7,0
+; v7 : single-length
+ld9e0e:
+.line 104
+	new-instance	v3,java/io/File
+; v3 : Ljava/io/File;
+	invoke-direct	{v3,v10},java/io/File/<init>	; <init>(Ljava/lang/String;)V
+; v3 : Ljava/io/File; , v10 : Ljava/lang/String;
+.line 106
+	new-instance	v4,android/graphics/BitmapFactory$Options
+; v4 : Landroid/graphics/BitmapFactory$Options;
+	invoke-direct	{v4},android/graphics/BitmapFactory$Options/<init>	; <init>()V
+; v4 : Landroid/graphics/BitmapFactory$Options;
+.line 107
+	const/4	v8,1
+; v8 : single-length
+	iput-boolean	v8,v4,android/graphics/BitmapFactory$Options.inJustDecodeBounds Z
+; v8 : single-length , v4 : Landroid/graphics/BitmapFactory$Options;
+.line 108
+	new-instance	v8,java/io/FileInputStream
+; v8 : Ljava/io/FileInputStream;
+	invoke-direct	{v8,v3},java/io/FileInputStream/<init>	; <init>(Ljava/io/File;)V
+; v8 : Ljava/io/FileInputStream; , v3 : Ljava/io/File;
+	const/4	v9,0
+; v9 : single-length
+	invoke-static	{v8,v9,v4},android/graphics/BitmapFactory/decodeStream	; decodeStream(Ljava/io/InputStream;Landroid/graphics/Rect;Landroid/graphics/BitmapFactory$Options;)Landroid/graphics/Bitmap;
+; v8 : Ljava/io/FileInputStream; , v9 : single-length , v4 : Landroid/graphics/BitmapFactory$Options;
+.line 110
+	move	v1,v11
+; v1 : single-length , v11 : single-length
+.line 111
+	move	v0,v12
+; v0 : single-length , v12 : single-length
+.line 112
+	const/4	v6,1
+; v6 : single-length
+ld9e40:
+.line 113
+	iget	v8,v4,android/graphics/BitmapFactory$Options.outWidth I
+; v8 : single-length , v4 : Landroid/graphics/BitmapFactory$Options;
+	div-int/2addr	v8,v6
+; v8 : single-length , v6 : single-length
+	div-int/lit8	v8,v8,2
+; v8 : single-length , v8 : single-length
+	if-lt	v8,v1,ld9e5c
+; v8 : single-length , v1 : single-length
+.line 114
+	iget	v8,v4,android/graphics/BitmapFactory$Options.outHeight I
+; v8 : single-length , v4 : Landroid/graphics/BitmapFactory$Options;
+	div-int/2addr	v8,v6
+; v8 : single-length , v6 : single-length
+	div-int/lit8	v8,v8,2
+; v8 : single-length , v8 : single-length
+.line 113
+	if-ge	v8,v0,ld9e80
+; v8 : single-length , v0 : single-length
+ld9e5c:
+.line 117
+	new-instance	v5,android/graphics/BitmapFactory$Options
+; v5 : Landroid/graphics/BitmapFactory$Options;
+	invoke-direct	{v5},android/graphics/BitmapFactory$Options/<init>	; <init>()V
+; v5 : Landroid/graphics/BitmapFactory$Options;
+.line 118
+	iput	v6,v5,android/graphics/BitmapFactory$Options.inSampleSize I
+; v6 : single-length , v5 : Landroid/graphics/BitmapFactory$Options;
+.line 119
+	new-instance	v8,java/io/FileInputStream
+; v8 : Ljava/io/FileInputStream;
+	invoke-direct	{v8,v3},java/io/FileInputStream/<init>	; <init>(Ljava/io/File;)V
+; v8 : Ljava/io/FileInputStream; , v3 : Ljava/io/File;
+	const/4	v9,0
+; v9 : single-length
+	invoke-static	{v8,v9,v5},android/graphics/BitmapFactory/decodeStream	; decodeStream(Ljava/io/InputStream;Landroid/graphics/Rect;Landroid/graphics/BitmapFactory$Options;)Landroid/graphics/Bitmap;
+; v8 : Ljava/io/FileInputStream; , v9 : single-length , v5 : Landroid/graphics/BitmapFactory$Options;
+ld9e7c:
+	move-result-object	v7
+; v7 : Landroid/graphics/Bitmap;
+ld9e7e:
+.line 123
+	return-object	v7
+; v7 : single-length
+ld9e80:
+.line 115
+	mul-int/lit-8	v6,v6,2
+; v6 : single-length , v6 : single-length
+	goto	ld9e40
+ld9e86:
+.line 120
+	move-exception	v2
+; v2 : java/io/FileNotFoundException
+.line 121
+	invoke-virtual	{v2},java/io/FileNotFoundException/printStackTrace	; printStackTrace()V
+; v2 : java/io/FileNotFoundException
+	goto	ld9e7e
+.end method
+
+.method public destroyItem(Landroid/view/ViewGroup;ILjava/lang/Object;)V
+.limit registers 4
+; this: v0 (Lcom/fsharemobile/adapter/FullScreenImageAdapter;)
+; parameter[0] : v1 (Landroid/view/ViewGroup;)
+; parameter[1] : v2 (I)
+; parameter[2] : v3 (Ljava/lang/Object;)
+.line 98
+	check-cast	v1,android/support/v4/view/ViewPager
+; v1 : Landroid/support/v4/view/ViewPager;
+	check-cast	v3,android/widget/RelativeLayout
+; v3 : Landroid/widget/RelativeLayout;
+	invoke-virtual	{v1,v3},android/support/v4/view/ViewPager/removeView	; removeView(Landroid/view/View;)V
+; v1 : Landroid/support/v4/view/ViewPager; , v3 : Landroid/widget/RelativeLayout;
+.line 99
+	return-void	
+.end method
+
+.method public getCount()I
+.limit registers 2
+; this: v1 (Lcom/fsharemobile/adapter/FullScreenImageAdapter;)
+.line 45
+	iget-object	v0,v1,com/fsharemobile/adapter/FullScreenImageAdapter._imagePaths Ljava/util/ArrayList;
+; v0 : Ljava/util/ArrayList; , v1 : Lcom/fsharemobile/adapter/FullScreenImageAdapter;
+	invoke-virtual	{v0},java/util/ArrayList/size	; size()I
+; v0 : Ljava/util/ArrayList;
+	move-result	v0
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public instantiateItem(Landroid/view/ViewGroup;I)Ljava/lang/Object;
+.limit registers 11
+; this: v8 (Lcom/fsharemobile/adapter/FullScreenImageAdapter;)
+; parameter[0] : v9 (Landroid/view/ViewGroup;)
+; parameter[1] : v10 (I)
+.line 61
+	iget-object	v5,v8,com/fsharemobile/adapter/FullScreenImageAdapter._activity Landroid/app/Activity;
+; v5 : Landroid/app/Activity; , v8 : Lcom/fsharemobile/adapter/FullScreenImageAdapter;
+.line 62
+	const-string	v6,"layout_inflater"
+; v6 : Ljava/lang/String;
+	invoke-virtual	{v5,v6},android/app/Activity/getSystemService	; getSystemService(Ljava/lang/String;)Ljava/lang/Object;
+; v5 : Landroid/app/Activity; , v6 : Ljava/lang/String;
+	move-result-object	v5
+; v5 : Ljava/lang/Object;
+	check-cast	v5,android/view/LayoutInflater
+; v5 : Landroid/view/LayoutInflater;
+.line 61
+	iput-object	v5,v8,com/fsharemobile/adapter/FullScreenImageAdapter.inflater Landroid/view/LayoutInflater;
+; v5 : Landroid/view/LayoutInflater; , v8 : Lcom/fsharemobile/adapter/FullScreenImageAdapter;
+.line 63
+	iget-object	v5,v8,com/fsharemobile/adapter/FullScreenImageAdapter.inflater Landroid/view/LayoutInflater;
+; v5 : Landroid/view/LayoutInflater; , v8 : Lcom/fsharemobile/adapter/FullScreenImageAdapter;
+	const	v6,2130903069	; 0x7f03001d
+; v6 : single-length
+.line 64
+	const/4	v7,0
+; v7 : single-length
+.line 63
+	invoke-virtual	{v5,v6,v9,v7},android/view/LayoutInflater/inflate	; inflate(ILandroid/view/ViewGroup;Z)Landroid/view/View;
+; v5 : Landroid/view/LayoutInflater; , v6 : single-length , v9 : Landroid/view/ViewGroup; , v7 : single-length
+	move-result-object	v4
+; v4 : Landroid/view/View;
+.line 66
+	const	v5,2131427451	; 0x7f0b007b
+; v5 : single-length
+	invoke-virtual	{v4,v5},android/view/View/findViewById	; findViewById(I)Landroid/view/View;
+; v4 : Landroid/view/View; , v5 : single-length
+	move-result-object	v1
+; v1 : Landroid/view/View;
+	check-cast	v1,com/fsharemobile/customview/TouchImageView
+; v1 : Lcom/fsharemobile/customview/TouchImageView;
+.line 67
+	const	v5,2131427453	; 0x7f0b007d
+; v5 : single-length
+	invoke-virtual	{v4,v5},android/view/View/findViewById	; findViewById(I)Landroid/view/View;
+; v4 : Landroid/view/View; , v5 : single-length
+	move-result-object	v0
+; v0 : Landroid/view/View;
+	check-cast	v0,android/widget/Button
+; v0 : Landroid/widget/Button;
+.line 68
+	const	v5,2131427454	; 0x7f0b007e
+; v5 : single-length
+	invoke-virtual	{v4,v5},android/view/View/findViewById	; findViewById(I)Landroid/view/View;
+; v4 : Landroid/view/View; , v5 : single-length
+	move-result-object	v3
+; v3 : Landroid/view/View;
+	check-cast	v3,android/widget/TextView
+; v3 : Landroid/widget/TextView;
+.line 69
+	const	v5,2131427452	; 0x7f0b007c
+; v5 : single-length
+	invoke-virtual	{v4,v5},android/view/View/findViewById	; findViewById(I)Landroid/view/View;
+; v4 : Landroid/view/View; , v5 : single-length
+	move-result-object	v2
+; v2 : Landroid/view/View;
+	check-cast	v2,android/widget/TextView
+; v2 : Landroid/widget/TextView;
+.line 70
+	const/16	v5,8
+; v5 : single-length
+	invoke-virtual	{v0,v5},android/widget/Button/setVisibility	; setVisibility(I)V
+; v0 : Landroid/widget/Button; , v5 : single-length
+.line 77
+	iget-object	v5,v8,com/fsharemobile/adapter/FullScreenImageAdapter._imageNames Ljava/util/ArrayList;
+; v5 : Ljava/util/ArrayList; , v8 : Lcom/fsharemobile/adapter/FullScreenImageAdapter;
+	invoke-virtual	{v5,v10},java/util/ArrayList/get	; get(I)Ljava/lang/Object;
+; v5 : Ljava/util/ArrayList; , v10 : single-length
+	move-result-object	v5
+; v5 : Ljava/lang/Object;
+	check-cast	v5,java/lang/CharSequence
+; v5 : Ljava/lang/CharSequence;
+	invoke-virtual	{v2,v5},android/widget/TextView/setText	; setText(Ljava/lang/CharSequence;)V
+; v2 : Landroid/widget/TextView; , v5 : Ljava/lang/CharSequence;
+.line 78
+	new-instance	v5,java/lang/StringBuilder
+; v5 : Ljava/lang/StringBuilder;
+	add-int/lit8	v6,v10,1
+; v6 : single-length , v10 : single-length
+	invoke-static	{v6},java/lang/String/valueOf	; valueOf(I)Ljava/lang/String;
+; v6 : single-length
+	move-result-object	v6
+; v6 : Ljava/lang/String;
+	invoke-direct	{v5,v6},java/lang/StringBuilder/<init>	; <init>(Ljava/lang/String;)V
+; v5 : Ljava/lang/StringBuilder; , v6 : Ljava/lang/String;
+	const-string	v6,"/"
+; v6 : Ljava/lang/String;
+	invoke-virtual	{v5,v6},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v5 : Ljava/lang/StringBuilder; , v6 : Ljava/lang/String;
+	move-result-object	v5
+; v5 : Ljava/lang/StringBuilder;
+	iget-object	v6,v8,com/fsharemobile/adapter/FullScreenImageAdapter._imagePaths Ljava/util/ArrayList;
+; v6 : Ljava/util/ArrayList; , v8 : Lcom/fsharemobile/adapter/FullScreenImageAdapter;
+	invoke-virtual	{v6},java/util/ArrayList/size	; size()I
+; v6 : Ljava/util/ArrayList;
+	move-result	v6
+; v6 : single-length
+	invoke-virtual	{v5,v6},java/lang/StringBuilder/append	; append(I)Ljava/lang/StringBuilder;
+; v5 : Ljava/lang/StringBuilder; , v6 : single-length
+	move-result-object	v5
+; v5 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v5},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v5 : Ljava/lang/StringBuilder;
+	move-result-object	v5
+; v5 : Ljava/lang/String;
+	invoke-virtual	{v3,v5},android/widget/TextView/setText	; setText(Ljava/lang/CharSequence;)V
+; v3 : Landroid/widget/TextView; , v5 : Ljava/lang/String;
+.line 79
+	iget-object	v5,v8,com/fsharemobile/adapter/FullScreenImageAdapter._activity Landroid/app/Activity;
+; v5 : Landroid/app/Activity; , v8 : Lcom/fsharemobile/adapter/FullScreenImageAdapter;
+	invoke-static	{v5},com/squareup/picasso/Picasso/with	; with(Landroid/content/Context;)Lcom/squareup/picasso/Picasso;
+; v5 : Landroid/app/Activity;
+	move-result-object	v6
+; v6 : Lcom/squareup/picasso/Picasso;
+	iget-object	v5,v8,com/fsharemobile/adapter/FullScreenImageAdapter._imagePaths Ljava/util/ArrayList;
+; v5 : Ljava/util/ArrayList; , v8 : Lcom/fsharemobile/adapter/FullScreenImageAdapter;
+	invoke-virtual	{v5,v10},java/util/ArrayList/get	; get(I)Ljava/lang/Object;
+; v5 : Ljava/util/ArrayList; , v10 : single-length
+	move-result-object	v5
+; v5 : Ljava/lang/Object;
+	check-cast	v5,java/lang/String
+; v5 : Ljava/lang/String;
+	invoke-virtual	{v6,v5},com/squareup/picasso/Picasso/load	; load(Ljava/lang/String;)Lcom/squareup/picasso/RequestCreator;
+; v6 : Lcom/squareup/picasso/Picasso; , v5 : Ljava/lang/String;
+	move-result-object	v5
+; v5 : Lcom/squareup/picasso/RequestCreator;
+.line 80
+	invoke-virtual	{v5,v1},com/squareup/picasso/RequestCreator/into	; into(Landroid/widget/ImageView;)V
+; v5 : Lcom/squareup/picasso/RequestCreator; , v1 : Lcom/fsharemobile/customview/TouchImageView;
+.line 83
+	new-instance	v5,com/fsharemobile/adapter/FullScreenImageAdapter$1
+; v5 : Lcom/fsharemobile/adapter/FullScreenImageAdapter$1;
+	invoke-direct	{v5,v8},com/fsharemobile/adapter/FullScreenImageAdapter$1/<init>	; <init>(Lcom/fsharemobile/adapter/FullScreenImageAdapter;)V
+; v5 : Lcom/fsharemobile/adapter/FullScreenImageAdapter$1; , v8 : Lcom/fsharemobile/adapter/FullScreenImageAdapter;
+	invoke-virtual	{v0,v5},android/widget/Button/setOnClickListener	; setOnClickListener(Landroid/view/View$OnClickListener;)V
+; v0 : Landroid/widget/Button; , v5 : Lcom/fsharemobile/adapter/FullScreenImageAdapter$1;
+.line 90
+	check-cast	v9,android/support/v4/view/ViewPager
+; v9 : Landroid/support/v4/view/ViewPager;
+	invoke-virtual	{v9,v4},android/support/v4/view/ViewPager/addView	; addView(Landroid/view/View;)V
+; v9 : Landroid/support/v4/view/ViewPager; , v4 : Landroid/view/View;
+.line 92
+	return-object	v4
+; v4 : Landroid/view/View;
+.end method
+
+.method public isViewFromObject(Landroid/view/View;Ljava/lang/Object;)Z
+.limit registers 4
+; this: v1 (Lcom/fsharemobile/adapter/FullScreenImageAdapter;)
+; parameter[0] : v2 (Landroid/view/View;)
+; parameter[1] : v3 (Ljava/lang/Object;)
+.line 51
+	check-cast	v3,android/widget/RelativeLayout
+; v3 : Landroid/widget/RelativeLayout;
+	if-ne	v2,v3,lda02c
+; v2 : Landroid/view/View; , v3 : Landroid/widget/RelativeLayout;
+	const/4	v0,1
+; v0 : single-length
+lda02a:
+	return	v0
+; v0 : single-length
+lda02c:
+	const/4	v0,0
+; v0 : single-length
+	goto	lda02a
+.end method
+
+

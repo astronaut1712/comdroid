@@ -1,0 +1,101 @@
+.class public final com/google/tagmanager/InstallReferrerService
+.super android/app/IntentService
+.source InstallReferrerService.java
+
+.field contextOverride Landroid/content/Context;
+  .annotation buildVisibility Lcom/google/android/gms/common/util/VisibleForTesting;
+  .end annotation
+.end field
+.field gaService Lcom/google/analytics/tracking/android/CampaignTrackingService;
+  .annotation buildVisibility Lcom/google/android/gms/common/util/VisibleForTesting;
+  .end annotation
+.end field
+
+.method public <init>()V
+.limit registers 2
+; this: v1 (Lcom/google/tagmanager/InstallReferrerService;)
+.line 28
+	const-string	v0,"InstallReferrerService"
+; v0 : Ljava/lang/String;
+	invoke-direct	{v1,v0},android/app/IntentService/<init>	; <init>(Ljava/lang/String;)V
+; v1 : Lcom/google/tagmanager/InstallReferrerService; , v0 : Ljava/lang/String;
+.line 29
+	return-void	
+.end method
+
+.method public <init>(Ljava/lang/String;)V
+.limit registers 2
+; this: v0 (Lcom/google/tagmanager/InstallReferrerService;)
+; parameter[0] : v1 (Ljava/lang/String;)
+.line 24
+	invoke-direct	{v0,v1},android/app/IntentService/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Lcom/google/tagmanager/InstallReferrerService; , v1 : Ljava/lang/String;
+.line 25
+	return-void	
+.end method
+
+.method private forwardToGoogleAnalytics(Landroid/content/Context;Landroid/content/Intent;)V
+.limit registers 4
+; this: v1 (Lcom/google/tagmanager/InstallReferrerService;)
+; parameter[0] : v2 (Landroid/content/Context;)
+; parameter[1] : v3 (Landroid/content/Intent;)
+.line 40
+	iget-object	v0,v1,com/google/tagmanager/InstallReferrerService.gaService Lcom/google/analytics/tracking/android/CampaignTrackingService;
+; v0 : Lcom/google/analytics/tracking/android/CampaignTrackingService; , v1 : Lcom/google/tagmanager/InstallReferrerService;
+	if-nez	v0,la72c6
+; v0 : Lcom/google/analytics/tracking/android/CampaignTrackingService;
+.line 41
+	new-instance	v0,com/google/analytics/tracking/android/CampaignTrackingService
+; v0 : Lcom/google/analytics/tracking/android/CampaignTrackingService;
+	invoke-direct	{v0},com/google/analytics/tracking/android/CampaignTrackingService/<init>	; <init>()V
+; v0 : Lcom/google/analytics/tracking/android/CampaignTrackingService;
+	iput-object	v0,v1,com/google/tagmanager/InstallReferrerService.gaService Lcom/google/analytics/tracking/android/CampaignTrackingService;
+; v0 : Lcom/google/analytics/tracking/android/CampaignTrackingService; , v1 : Lcom/google/tagmanager/InstallReferrerService;
+la72c6:
+.line 43
+	iget-object	v0,v1,com/google/tagmanager/InstallReferrerService.gaService Lcom/google/analytics/tracking/android/CampaignTrackingService;
+; v0 : Lcom/google/analytics/tracking/android/CampaignTrackingService; , v1 : Lcom/google/tagmanager/InstallReferrerService;
+	invoke-virtual	{v0,v2,v3},com/google/analytics/tracking/android/CampaignTrackingService/processIntent	; processIntent(Landroid/content/Context;Landroid/content/Intent;)V
+; v0 : Lcom/google/analytics/tracking/android/CampaignTrackingService; , v2 : Landroid/content/Context; , v3 : Landroid/content/Intent;
+.line 44
+	return-void	
+.end method
+
+.method protected onHandleIntent(Landroid/content/Intent;)V
+.limit registers 5
+; this: v3 (Lcom/google/tagmanager/InstallReferrerService;)
+; parameter[0] : v4 (Landroid/content/Intent;)
+.var 0 is context Landroid/content/Context; from la72fc to la730a
+.line 33
+	const-string	v2,"referrer"
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v4,v2},android/content/Intent/getStringExtra	; getStringExtra(Ljava/lang/String;)Ljava/lang/String;
+; v4 : Landroid/content/Intent; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+.line 34
+	iget-object	v2,v3,com/google/tagmanager/InstallReferrerService.contextOverride Landroid/content/Context;
+; v2 : Landroid/content/Context; , v3 : Lcom/google/tagmanager/InstallReferrerService;
+	if-eqz	v2,la730a
+; v2 : Landroid/content/Context;
+	iget-object	v0,v3,com/google/tagmanager/InstallReferrerService.contextOverride Landroid/content/Context;
+; v0 : Landroid/content/Context; , v3 : Lcom/google/tagmanager/InstallReferrerService;
+la72fc:
+.line 35
+	invoke-static	{v0,v1},com/google/tagmanager/InstallReferrerUtil/saveInstallReferrer	; saveInstallReferrer(Landroid/content/Context;Ljava/lang/String;)V
+; v0 : Landroid/content/Context; , v1 : Ljava/lang/String;
+.line 36
+	invoke-direct	{v3,v0,v4},com/google/tagmanager/InstallReferrerService/forwardToGoogleAnalytics	; forwardToGoogleAnalytics(Landroid/content/Context;Landroid/content/Intent;)V
+; v3 : Lcom/google/tagmanager/InstallReferrerService; , v0 : Landroid/content/Context; , v4 : Landroid/content/Intent;
+.line 37
+	return-void	
+la730a:
+.line 34
+	invoke-virtual	{v3},com/google/tagmanager/InstallReferrerService/getApplicationContext	; getApplicationContext()Landroid/content/Context;
+; v3 : Lcom/google/tagmanager/InstallReferrerService;
+	move-result-object	v0
+; v0 : Landroid/content/Context;
+	goto	la72fc
+.end method
+
+

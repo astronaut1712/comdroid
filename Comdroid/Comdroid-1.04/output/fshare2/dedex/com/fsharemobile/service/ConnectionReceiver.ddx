@@ -1,0 +1,211 @@
+.class public com/fsharemobile/service/ConnectionReceiver
+.super android/content/BroadcastReceiver
+.source MyApplication
+
+.field a Lcom/fsharemobile/f/a;
+.field private b Lcom/fsharemobile/a/c;
+.field private c Lcom/fsharemobile/a/ak;
+
+.method public <init>()V
+.limit registers 2
+; this: v1 (Lcom/fsharemobile/service/ConnectionReceiver;)
+.line 21
+	invoke-direct	{v1},android/content/BroadcastReceiver/<init>	; <init>()V
+; v1 : Lcom/fsharemobile/service/ConnectionReceiver;
+.line 22
+	const/4	v0,0
+; v0 : single-length
+	iput-object	v0,v1,com/fsharemobile/service/ConnectionReceiver.b Lcom/fsharemobile/a/c;
+; v0 : single-length , v1 : Lcom/fsharemobile/service/ConnectionReceiver;
+.line 21
+	return-void	
+.end method
+
+.method static a(Lcom/fsharemobile/service/ConnectionReceiver;)Lcom/fsharemobile/a/c;
+.limit registers 2
+; parameter[0] : v1 (Lcom/fsharemobile/service/ConnectionReceiver;)
+.line 22
+	iget-object	v0,v1,com/fsharemobile/service/ConnectionReceiver.b Lcom/fsharemobile/a/c;
+; v0 : Lcom/fsharemobile/a/c; , v1 : Lcom/fsharemobile/service/ConnectionReceiver;
+	return-object	v0
+; v0 : Lcom/fsharemobile/a/c;
+.end method
+
+.method public onReceive(Landroid/content/Context;Landroid/content/Intent;)V
+.limit registers 7
+; this: v4 (Lcom/fsharemobile/service/ConnectionReceiver;)
+; parameter[0] : v5 (Landroid/content/Context;)
+; parameter[1] : v6 (Landroid/content/Intent;)
+.catch java/lang/Exception from l93510 to l93534 using l93536
+.line 30
+	invoke-static	{},com/fsharemobile/model/e/b	; b()Lcom/fsharemobile/model/e;
+; 
+	nop	
+	move-result-object	v0
+; v0 : Lcom/fsharemobile/model/e;
+.line 31
+	invoke-virtual	{v0},com/fsharemobile/model/e/a	; a()Lcom/fsharemobile/a/c;
+; v0 : Lcom/fsharemobile/model/e;
+	move-result-object	v0
+; v0 : Lcom/fsharemobile/a/c;
+	iput-object	v0,v4,com/fsharemobile/service/ConnectionReceiver.b Lcom/fsharemobile/a/c;
+; v0 : Lcom/fsharemobile/a/c; , v4 : Lcom/fsharemobile/service/ConnectionReceiver;
+.line 32
+	iget-object	v0,v4,com/fsharemobile/service/ConnectionReceiver.b Lcom/fsharemobile/a/c;
+; v0 : Lcom/fsharemobile/a/c; , v4 : Lcom/fsharemobile/service/ConnectionReceiver;
+	invoke-virtual	{v0},com/fsharemobile/a/c/d	; d()Lcom/fsharemobile/a/ak;
+; v0 : Lcom/fsharemobile/a/c;
+	move-result-object	v0
+; v0 : Lcom/fsharemobile/a/ak;
+	iput-object	v0,v4,com/fsharemobile/service/ConnectionReceiver.c Lcom/fsharemobile/a/ak;
+; v0 : Lcom/fsharemobile/a/ak; , v4 : Lcom/fsharemobile/service/ConnectionReceiver;
+.line 34
+	new-instance	v0,com/fsharemobile/f/a
+; v0 : Lcom/fsharemobile/f/a;
+	invoke-direct	{v0,v5},com/fsharemobile/f/a/<init>	; <init>(Landroid/content/Context;)V
+; v0 : Lcom/fsharemobile/f/a; , v5 : Landroid/content/Context;
+	iput-object	v0,v4,com/fsharemobile/service/ConnectionReceiver.a Lcom/fsharemobile/f/a;
+; v0 : Lcom/fsharemobile/f/a; , v4 : Lcom/fsharemobile/service/ConnectionReceiver;
+.line 35
+	new-instance	v0,com/fsharemobile/model/d
+; v0 : Lcom/fsharemobile/model/d;
+	invoke-direct	{v0},com/fsharemobile/model/d/<init>	; <init>()V
+; v0 : Lcom/fsharemobile/model/d;
+.line 37
+	const-string	v0,"connectivity"
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v5,v0},android/content/Context/getSystemService	; getSystemService(Ljava/lang/String;)Ljava/lang/Object;
+; v5 : Landroid/content/Context; , v0 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+.line 36
+	check-cast	v0,android/net/ConnectivityManager
+; v0 : Landroid/net/ConnectivityManager;
+.line 38
+	invoke-virtual	{v0},android/net/ConnectivityManager/getActiveNetworkInfo	; getActiveNetworkInfo()Landroid/net/NetworkInfo;
+; v0 : Landroid/net/ConnectivityManager;
+	move-result-object	v0
+; v0 : Landroid/net/NetworkInfo;
+.line 39
+	invoke-virtual	{v6},android/content/Intent/getAction	; getAction()Ljava/lang/String;
+; v6 : Landroid/content/Intent;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	const-string	v2,"android.net.conn.CONNECTIVITY_CHANGE"
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/String/equals	; equals(Ljava/lang/Object;)Z
+; v1 : Ljava/lang/String; , v2 : Ljava/lang/String;
+	move-result	v1
+; v1 : single-length
+	if-nez	v1,l934ac
+; v1 : single-length
+.line 40
+	invoke-virtual	{v6},android/content/Intent/getAction	; getAction()Ljava/lang/String;
+; v6 : Landroid/content/Intent;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+.line 41
+	const-string	v2,"com.fsharemobile.service.Relogin"
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/String/equals	; equals(Ljava/lang/Object;)Z
+; v1 : Ljava/lang/String; , v2 : Ljava/lang/String;
+	move-result	v1
+; v1 : single-length
+	if-eqz	v1,l93534
+; v1 : single-length
+l934ac:
+.line 43
+	if-eqz	v0,l93540
+; v0 : Landroid/net/NetworkInfo;
+	invoke-virtual	{v0},android/net/NetworkInfo/isAvailable	; isAvailable()Z
+; v0 : Landroid/net/NetworkInfo;
+	move-result	v1
+; v1 : single-length
+	if-eqz	v1,l93540
+; v1 : single-length
+	invoke-virtual	{v0},android/net/NetworkInfo/isConnected	; isConnected()Z
+; v0 : Landroid/net/NetworkInfo;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,l93540
+; v0 : single-length
+.line 44
+	const-string	v0,"NET"
+; v0 : Ljava/lang/String;
+	const-string	v1,"connected"
+; v1 : Ljava/lang/String;
+	invoke-static	{v0,v1},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v0 : Ljava/lang/String; , v1 : Ljava/lang/String;
+.line 45
+	iget-object	v0,v4,com/fsharemobile/service/ConnectionReceiver.a Lcom/fsharemobile/f/a;
+; v0 : Lcom/fsharemobile/f/a; , v4 : Lcom/fsharemobile/service/ConnectionReceiver;
+	invoke-virtual	{v0},com/fsharemobile/f/a/d	; d()Lcom/fsharemobile/model/d;
+; v0 : Lcom/fsharemobile/f/a;
+	move-result-object	v0
+; v0 : Lcom/fsharemobile/model/d;
+.line 47
+	iget-object	v1,v4,com/fsharemobile/service/ConnectionReceiver.b Lcom/fsharemobile/a/c;
+; v1 : Lcom/fsharemobile/a/c; , v4 : Lcom/fsharemobile/service/ConnectionReceiver;
+	const-string	v2,""
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},com/fsharemobile/a/c/b	; b(Ljava/lang/String;)V
+; v1 : Lcom/fsharemobile/a/c; , v2 : Ljava/lang/String;
+.line 48
+	iget-object	v1,v4,com/fsharemobile/service/ConnectionReceiver.b Lcom/fsharemobile/a/c;
+; v1 : Lcom/fsharemobile/a/c; , v4 : Lcom/fsharemobile/service/ConnectionReceiver;
+	const-string	v2,""
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},com/fsharemobile/a/c/a	; a(Ljava/lang/String;)V
+; v1 : Lcom/fsharemobile/a/c; , v2 : Ljava/lang/String;
+.line 49
+	iget-object	v1,v4,com/fsharemobile/service/ConnectionReceiver.b Lcom/fsharemobile/a/c;
+; v1 : Lcom/fsharemobile/a/c; , v4 : Lcom/fsharemobile/service/ConnectionReceiver;
+	invoke-virtual	{v1},com/fsharemobile/a/c/c	; c()Ljava/util/List;
+; v1 : Lcom/fsharemobile/a/c;
+	move-result-object	v1
+; v1 : Ljava/util/List;
+	invoke-interface	{v1},java/util/List/clear	; clear()V
+; v1 : Ljava/util/List;
+l93510:
+.line 52
+	iget-object	v1,v4,com/fsharemobile/service/ConnectionReceiver.c Lcom/fsharemobile/a/ak;
+; v1 : Lcom/fsharemobile/a/ak; , v4 : Lcom/fsharemobile/service/ConnectionReceiver;
+	invoke-virtual	{v0},com/fsharemobile/model/d/a	; a()Ljava/lang/String;
+; v0 : Lcom/fsharemobile/model/d;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v0},com/fsharemobile/model/d/b	; b()Ljava/lang/String;
+; v0 : Lcom/fsharemobile/model/d;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+.line 53
+	new-instance	v3,com/fsharemobile/service/a
+; v3 : Lcom/fsharemobile/service/a;
+	invoke-direct	{v3,v4,v5},com/fsharemobile/service/a/<init>	; <init>(Lcom/fsharemobile/service/ConnectionReceiver;Landroid/content/Context;)V
+; v3 : Lcom/fsharemobile/service/a; , v4 : Lcom/fsharemobile/service/ConnectionReceiver; , v5 : Landroid/content/Context;
+.line 52
+	invoke-virtual	{v1,v2,v0,v3},com/fsharemobile/a/ak/a	; a(Ljava/lang/String;Ljava/lang/String;Lcom/fsharemobile/a/ap;)V
+; v1 : Lcom/fsharemobile/a/ak; , v2 : Ljava/lang/String; , v0 : Ljava/lang/String; , v3 : Lcom/fsharemobile/service/a;
+l93534:
+.line 101
+	return-void	
+l93536:
+.line 93
+	move-exception	v0
+; v0 : java/lang/Exception
+.line 95
+	invoke-virtual	{v0},java/lang/Exception/printStackTrace	; printStackTrace()V
+; v0 : java/lang/Exception
+	goto	l93534
+l93540:
+.line 98
+	const-string	v0,"NET"
+; v0 : Ljava/lang/String;
+	const-string	v1,"no wifi"
+; v1 : Ljava/lang/String;
+	invoke-static	{v0,v1},android/util/Log/e	; e(Ljava/lang/String;Ljava/lang/String;)I
+; v0 : Ljava/lang/String; , v1 : Ljava/lang/String;
+	goto	l93534
+.end method
+
+

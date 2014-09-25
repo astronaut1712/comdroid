@@ -1,0 +1,56 @@
+.class com/google/tagmanager/NetworkClientFactory
+.super java/lang/Object
+.source NetworkClientFactory.java
+
+
+.method <init>()V
+.limit registers 1
+; this: v0 (Lcom/google/tagmanager/NetworkClientFactory;)
+.line 10
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Lcom/google/tagmanager/NetworkClientFactory;
+	return-void	
+.end method
+
+.method public createNetworkClient()Lcom/google/tagmanager/NetworkClient;
+.limit registers 3
+; this: v2 (Lcom/google/tagmanager/NetworkClientFactory;)
+.line 12
+	invoke-virtual	{v2},com/google/tagmanager/NetworkClientFactory/getSdkVersion	; getSdkVersion()I
+; v2 : Lcom/google/tagmanager/NetworkClientFactory;
+	move-result	v0
+; v0 : single-length
+	const/16	v1,8
+; v1 : single-length
+	if-ge	v0,v1,la7c64
+; v0 : single-length , v1 : single-length
+.line 15
+	new-instance	v0,com/google/tagmanager/HttpNetworkClient
+; v0 : Lcom/google/tagmanager/HttpNetworkClient;
+	invoke-direct	{v0},com/google/tagmanager/HttpNetworkClient/<init>	; <init>()V
+; v0 : Lcom/google/tagmanager/HttpNetworkClient;
+la7c62:
+.line 20
+	return-object	v0
+; v0 : Lcom/google/tagmanager/HttpUrlConnectionNetworkClient;
+la7c64:
+	new-instance	v0,com/google/tagmanager/HttpUrlConnectionNetworkClient
+; v0 : Lcom/google/tagmanager/HttpUrlConnectionNetworkClient;
+	invoke-direct	{v0},com/google/tagmanager/HttpUrlConnectionNetworkClient/<init>	; <init>()V
+; v0 : Lcom/google/tagmanager/HttpUrlConnectionNetworkClient;
+	goto	la7c62
+.end method
+
+.method getSdkVersion()I
+.annotation buildVisibility Lcom/google/android/gms/common/util/VisibleForTesting;
+.end annotation
+.limit registers 2
+; this: v1 (Lcom/google/tagmanager/NetworkClientFactory;)
+.line 26
+	sget	v0,android/os/Build$VERSION.SDK_INT I
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+

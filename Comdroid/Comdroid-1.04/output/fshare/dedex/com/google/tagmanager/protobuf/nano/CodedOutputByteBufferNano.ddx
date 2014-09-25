@@ -1,0 +1,1953 @@
+.class public final com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano
+.super java/lang/Object
+.source CodedOutputByteBufferNano.java
+
+.inner class OutOfSpaceException inner com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano$OutOfSpaceException outer com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano
+.field public static final LITTLE_ENDIAN_32_SIZE I = 4	; 0x4
+.field public static final LITTLE_ENDIAN_64_SIZE I = 8	; 0x8
+.field private final buffer [B
+.field private final limit I
+.field private position I
+
+.method private <init>([BII)V
+.limit registers 5
+; this: v1 (Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;)
+; parameter[0] : v2 ([B)
+; parameter[1] : v3 (I)
+; parameter[2] : v4 (I)
+.line 56
+	invoke-direct	{v1},java/lang/Object/<init>	; <init>()V
+; v1 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;
+.line 57
+	iput-object	v2,v1,com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano.buffer [B
+; v2 : [B , v1 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;
+.line 58
+	iput	v3,v1,com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano.position I
+; v3 : single-length , v1 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;
+.line 59
+	add-int	v0,v3,v4
+; v0 : single-length , v3 : single-length , v4 : single-length
+	iput	v0,v1,com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano.limit I
+; v0 : single-length , v1 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;
+.line 60
+	return-void	
+.end method
+
+.method public static computeBoolSize(IZ)I
+.limit registers 4
+; parameter[0] : v2 (I)
+; parameter[1] : v3 (Z)
+.line 430
+	invoke-static	{v2},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/computeTagSize	; computeTagSize(I)I
+; v2 : single-length
+	move-result	v0
+; v0 : single-length
+	invoke-static	{v3},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/computeBoolSizeNoTag	; computeBoolSizeNoTag(Z)I
+; v3 : single-length
+	move-result	v1
+; v1 : single-length
+	add-int/2addr	v0,v1
+; v0 : single-length , v1 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public static computeBoolSizeNoTag(Z)I
+.limit registers 2
+; parameter[0] : v1 (Z)
+.line 621
+	const/4	v0,1
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public static computeByteArraySize(I[B)I
+.limit registers 4
+; parameter[0] : v2 (I)
+; parameter[1] : v3 ([B)
+.line 475
+	invoke-static	{v2},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/computeTagSize	; computeTagSize(I)I
+; v2 : single-length
+	move-result	v0
+; v0 : single-length
+	invoke-static	{v3},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/computeByteArraySizeNoTag	; computeByteArraySizeNoTag([B)I
+; v3 : [B
+	move-result	v1
+; v1 : single-length
+	add-int/2addr	v0,v1
+; v0 : single-length , v1 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public static computeByteArraySizeNoTag([B)I
+.limit registers 3
+; parameter[0] : v2 ([B)
+.line 668
+	array-length	v0,v2
+; v0 : single-length , v2 : [B
+	invoke-static	{v0},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/computeRawVarint32Size	; computeRawVarint32Size(I)I
+; v0 : single-length
+	move-result	v0
+; v0 : single-length
+	array-length	v1,v2
+; v1 : single-length , v2 : [B
+	add-int/2addr	v0,v1
+; v0 : single-length , v1 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public static computeBytesSize(I[B)I
+.limit registers 4
+; parameter[0] : v2 (I)
+; parameter[1] : v3 ([B)
+.line 466
+	invoke-static	{v2},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/computeTagSize	; computeTagSize(I)I
+; v2 : single-length
+	move-result	v0
+; v0 : single-length
+	invoke-static	{v3},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/computeBytesSizeNoTag	; computeBytesSizeNoTag([B)I
+; v3 : [B
+	move-result	v1
+; v1 : single-length
+	add-int/2addr	v0,v1
+; v0 : single-length , v1 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public static computeBytesSizeNoTag([B)I
+.limit registers 3
+; parameter[0] : v2 ([B)
+.line 660
+	array-length	v0,v2
+; v0 : single-length , v2 : [B
+	invoke-static	{v0},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/computeRawVarint32Size	; computeRawVarint32Size(I)I
+; v0 : single-length
+	move-result	v0
+; v0 : single-length
+	array-length	v1,v2
+; v1 : single-length , v2 : [B
+	add-int/2addr	v0,v1
+; v0 : single-length , v1 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public static computeDoubleSize(ID)I
+.limit registers 5
+; parameter[0] : v2 (I)
+; parameter[1] : v3 (D)
+.line 371
+	invoke-static	{v2},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/computeTagSize	; computeTagSize(I)I
+; v2 : single-length
+	move-result	v0
+; v0 : single-length
+	invoke-static	{v3,v4},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/computeDoubleSizeNoTag	; computeDoubleSizeNoTag(D)I
+; v3 : double-length
+	move-result	v1
+; v1 : single-length
+	add-int/2addr	v0,v1
+; v0 : single-length , v1 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public static computeDoubleSizeNoTag(D)I
+.limit registers 3
+; parameter[0] : v1 (D)
+.line 560
+	const/16	v0,8
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public static computeEnumSize(II)I
+.limit registers 4
+; parameter[0] : v2 (I)
+; parameter[1] : v3 (I)
+.line 492
+	invoke-static	{v2},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/computeTagSize	; computeTagSize(I)I
+; v2 : single-length
+	move-result	v0
+; v0 : single-length
+	invoke-static	{v3},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/computeEnumSizeNoTag	; computeEnumSizeNoTag(I)I
+; v3 : single-length
+	move-result	v1
+; v1 : single-length
+	add-int/2addr	v0,v1
+; v0 : single-length , v1 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public static computeEnumSizeNoTag(I)I
+.limit registers 2
+; parameter[0] : v1 (I)
+.line 684
+	invoke-static	{v1},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/computeRawVarint32Size	; computeRawVarint32Size(I)I
+; v1 : single-length
+	move-result	v0
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public static computeFixed32Size(II)I
+.limit registers 4
+; parameter[0] : v2 (I)
+; parameter[1] : v3 (I)
+.line 421
+	invoke-static	{v2},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/computeTagSize	; computeTagSize(I)I
+; v2 : single-length
+	move-result	v0
+; v0 : single-length
+	invoke-static	{v3},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/computeFixed32SizeNoTag	; computeFixed32SizeNoTag(I)I
+; v3 : single-length
+	move-result	v1
+; v1 : single-length
+	add-int/2addr	v0,v1
+; v0 : single-length , v1 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public static computeFixed32SizeNoTag(I)I
+.limit registers 2
+; parameter[0] : v1 (I)
+.line 613
+	const/4	v0,4
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public static computeFixed64Size(IJ)I
+.limit registers 5
+; parameter[0] : v2 (I)
+; parameter[1] : v3 (J)
+.line 412
+	invoke-static	{v2},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/computeTagSize	; computeTagSize(I)I
+; v2 : single-length
+	move-result	v0
+; v0 : single-length
+	invoke-static	{v3,v4},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/computeFixed64SizeNoTag	; computeFixed64SizeNoTag(J)I
+; v3 : double-length
+	move-result	v1
+; v1 : single-length
+	add-int/2addr	v0,v1
+; v0 : single-length , v1 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public static computeFixed64SizeNoTag(J)I
+.limit registers 3
+; parameter[0] : v1 (J)
+.line 605
+	const/16	v0,8
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public static computeFloatSize(IF)I
+.limit registers 4
+; parameter[0] : v2 (I)
+; parameter[1] : v3 (F)
+.line 379
+	invoke-static	{v2},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/computeTagSize	; computeTagSize(I)I
+; v2 : single-length
+	move-result	v0
+; v0 : single-length
+	invoke-static	{v3},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/computeFloatSizeNoTag	; computeFloatSizeNoTag(F)I
+; v3 : single-length
+	move-result	v1
+; v1 : single-length
+	add-int/2addr	v0,v1
+; v0 : single-length , v1 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public static computeFloatSizeNoTag(F)I
+.limit registers 2
+; parameter[0] : v1 (F)
+.line 568
+	const/4	v0,4
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public static computeGroupSize(ILcom/google/tagmanager/protobuf/nano/MessageNano;)I
+.limit registers 4
+; parameter[0] : v2 (I)
+; parameter[1] : v3 (Lcom/google/tagmanager/protobuf/nano/MessageNano;)
+.line 448
+	invoke-static	{v2},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/computeTagSize	; computeTagSize(I)I
+; v2 : single-length
+	move-result	v0
+; v0 : single-length
+	mul-int/lit-8	v0,v0,2
+; v0 : single-length , v0 : single-length
+	invoke-static	{v3},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/computeGroupSizeNoTag	; computeGroupSizeNoTag(Lcom/google/tagmanager/protobuf/nano/MessageNano;)I
+; v3 : Lcom/google/tagmanager/protobuf/nano/MessageNano;
+	move-result	v1
+; v1 : single-length
+	add-int/2addr	v0,v1
+; v0 : single-length , v1 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public static computeGroupSizeNoTag(Lcom/google/tagmanager/protobuf/nano/MessageNano;)I
+.limit registers 2
+; parameter[0] : v1 (Lcom/google/tagmanager/protobuf/nano/MessageNano;)
+.line 643
+	invoke-virtual	{v1},com/google/tagmanager/protobuf/nano/MessageNano/getSerializedSize	; getSerializedSize()I
+; v1 : Lcom/google/tagmanager/protobuf/nano/MessageNano;
+	move-result	v0
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public static computeInt32Size(II)I
+.limit registers 4
+; parameter[0] : v2 (I)
+; parameter[1] : v3 (I)
+.line 403
+	invoke-static	{v2},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/computeTagSize	; computeTagSize(I)I
+; v2 : single-length
+	move-result	v0
+; v0 : single-length
+	invoke-static	{v3},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/computeInt32SizeNoTag	; computeInt32SizeNoTag(I)I
+; v3 : single-length
+	move-result	v1
+; v1 : single-length
+	add-int/2addr	v0,v1
+; v0 : single-length , v1 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public static computeInt32SizeNoTag(I)I
+.limit registers 2
+; parameter[0] : v1 (I)
+.line 592
+	if-ltz	v1,lae062
+; v1 : single-length
+.line 593
+	invoke-static	{v1},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/computeRawVarint32Size	; computeRawVarint32Size(I)I
+; v1 : single-length
+	move-result	v0
+; v0 : single-length
+lae060:
+.line 596
+	return	v0
+; v0 : single-length
+lae062:
+	const/16	v0,10
+; v0 : single-length
+	goto	lae060
+.end method
+
+.method public static computeInt64Size(IJ)I
+.limit registers 5
+; parameter[0] : v2 (I)
+; parameter[1] : v3 (J)
+.line 395
+	invoke-static	{v2},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/computeTagSize	; computeTagSize(I)I
+; v2 : single-length
+	move-result	v0
+; v0 : single-length
+	invoke-static	{v3,v4},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/computeInt64SizeNoTag	; computeInt64SizeNoTag(J)I
+; v3 : double-length
+	move-result	v1
+; v1 : single-length
+	add-int/2addr	v0,v1
+; v0 : single-length , v1 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public static computeInt64SizeNoTag(J)I
+.limit registers 3
+; parameter[0] : v1 (J)
+.line 584
+	invoke-static	{v1,v2},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/computeRawVarint64Size	; computeRawVarint64Size(J)I
+; v1 : double-length
+	move-result	v0
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public static computeMessageSize(ILcom/google/tagmanager/protobuf/nano/MessageNano;)I
+.limit registers 4
+; parameter[0] : v2 (I)
+; parameter[1] : v3 (Lcom/google/tagmanager/protobuf/nano/MessageNano;)
+.line 457
+	invoke-static	{v2},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/computeTagSize	; computeTagSize(I)I
+; v2 : single-length
+	move-result	v0
+; v0 : single-length
+	invoke-static	{v3},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/computeMessageSizeNoTag	; computeMessageSizeNoTag(Lcom/google/tagmanager/protobuf/nano/MessageNano;)I
+; v3 : Lcom/google/tagmanager/protobuf/nano/MessageNano;
+	move-result	v1
+; v1 : single-length
+	add-int/2addr	v0,v1
+; v0 : single-length , v1 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public static computeMessageSizeNoTag(Lcom/google/tagmanager/protobuf/nano/MessageNano;)I
+.limit registers 3
+; parameter[0] : v2 (Lcom/google/tagmanager/protobuf/nano/MessageNano;)
+.line 651
+	invoke-virtual	{v2},com/google/tagmanager/protobuf/nano/MessageNano/getSerializedSize	; getSerializedSize()I
+; v2 : Lcom/google/tagmanager/protobuf/nano/MessageNano;
+	move-result	v0
+; v0 : single-length
+.line 652
+	invoke-static	{v0},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/computeRawVarint32Size	; computeRawVarint32Size(I)I
+; v0 : single-length
+	move-result	v1
+; v1 : single-length
+	add-int/2addr	v1,v0
+; v1 : single-length , v0 : single-length
+	return	v1
+; v1 : single-length
+.end method
+
+.method public static computeRawVarint32Size(I)I
+.limit registers 2
+; parameter[0] : v1 (I)
+.line 823
+	and-int/lit8	v0,v1,128
+; v0 : single-length , v1 : single-length
+	if-nez	v0,lae10c
+; v0 : single-length
+	const/4	v0,1
+; v0 : single-length
+lae10a:
+.line 827
+	return	v0
+; v0 : single-length
+lae10c:
+.line 824
+	and-int/lit16	v0,v1,49152
+; v0 : single-length , v1 : single-length
+	if-nez	v0,lae118
+; v0 : single-length
+	const/4	v0,2
+; v0 : single-length
+	goto	lae10a
+lae118:
+.line 825
+	const/high16	v0,65504
+; v0 : single-length
+	and-int/2addr	v0,v1
+; v0 : single-length , v1 : single-length
+	if-nez	v0,lae126
+; v0 : single-length
+	const/4	v0,3
+; v0 : single-length
+	goto	lae10a
+lae126:
+.line 826
+	const/high16	v0,61440
+; v0 : single-length
+	and-int/2addr	v0,v1
+; v0 : single-length , v1 : single-length
+	if-nez	v0,lae134
+; v0 : single-length
+	const/4	v0,4
+; v0 : single-length
+	goto	lae10a
+lae134:
+.line 827
+	const/4	v0,5
+; v0 : single-length
+	goto	lae10a
+.end method
+
+.method public static computeRawVarint64Size(J)I
+.limit registers 6
+; parameter[0] : v4 (J)
+	const-wide/16	v2,0
+; v2 : double-length
+.line 845
+	const-wide/16	v0,65408
+; v0 : double-length
+	and-long/2addr	v0,v4
+; v0 : double-length , v4 : double-length
+	cmp-long	v0,v0,v2
+; v0 : single-length , v0 : single-length , v2 : double-length
+	if-nez	v0,lae15e
+; v0 : single-length
+	const/4	v0,1
+; v0 : single-length
+lae15c:
+.line 854
+	return	v0
+; v0 : single-length
+lae15e:
+.line 846
+	const-wide/16	v0,49152
+; v0 : double-length
+	and-long/2addr	v0,v4
+; v0 : double-length , v4 : double-length
+	cmp-long	v0,v0,v2
+; v0 : single-length , v0 : single-length , v2 : double-length
+	if-nez	v0,lae170
+; v0 : single-length
+	const/4	v0,2
+; v0 : single-length
+	goto	lae15c
+lae170:
+.line 847
+	const-wide/32	v0,4292870144	; 0xffe00000
+; v0 : double-length
+	and-long/2addr	v0,v4
+; v0 : double-length , v4 : double-length
+	cmp-long	v0,v0,v2
+; v0 : single-length , v0 : single-length , v2 : double-length
+	if-nez	v0,lae184
+; v0 : single-length
+	const/4	v0,3
+; v0 : single-length
+	goto	lae15c
+lae184:
+.line 848
+	const-wide/32	v0,4026531840	; 0xf0000000
+; v0 : double-length
+	and-long/2addr	v0,v4
+; v0 : double-length , v4 : double-length
+	cmp-long	v0,v0,v2
+; v0 : single-length , v0 : single-length , v2 : double-length
+	if-nez	v0,lae198
+; v0 : single-length
+	const/4	v0,4
+; v0 : single-length
+	goto	lae15c
+lae198:
+.line 849
+	const-wide	v0,-34359738368	; 0xfffffff800000000
+; v0 : double-length
+	and-long/2addr	v0,v4
+; v0 : double-length , v4 : double-length
+	cmp-long	v0,v0,v2
+; v0 : single-length , v0 : single-length , v2 : double-length
+	if-nez	v0,lae1b0
+; v0 : single-length
+	const/4	v0,5
+; v0 : single-length
+	goto	lae15c
+lae1b0:
+.line 850
+	const-wide	v0,-4398046511104	; 0xfffffc0000000000
+; v0 : double-length
+	and-long/2addr	v0,v4
+; v0 : double-length , v4 : double-length
+	cmp-long	v0,v0,v2
+; v0 : single-length , v0 : single-length , v2 : double-length
+	if-nez	v0,lae1c8
+; v0 : single-length
+	const/4	v0,6
+; v0 : single-length
+	goto	lae15c
+lae1c8:
+.line 851
+	const-wide/high16	v0,65534
+; v0 : double-length
+	and-long/2addr	v0,v4
+; v0 : double-length , v4 : double-length
+	cmp-long	v0,v0,v2
+; v0 : single-length , v0 : single-length , v2 : double-length
+	if-nez	v0,lae1da
+; v0 : single-length
+	const/4	v0,7
+; v0 : single-length
+	goto	lae15c
+lae1da:
+.line 852
+	const-wide/high16	v0,65280
+; v0 : double-length
+	and-long/2addr	v0,v4
+; v0 : double-length , v4 : double-length
+	cmp-long	v0,v0,v2
+; v0 : single-length , v0 : single-length , v2 : double-length
+	if-nez	v0,lae1ee
+; v0 : single-length
+	const/16	v0,8
+; v0 : single-length
+	goto	lae15c
+lae1ee:
+.line 853
+	const-wide/high16	v0,32768
+; v0 : double-length
+	and-long/2addr	v0,v4
+; v0 : double-length , v4 : double-length
+	cmp-long	v0,v0,v2
+; v0 : single-length , v0 : single-length , v2 : double-length
+	if-nez	v0,lae202
+; v0 : single-length
+	const/16	v0,9
+; v0 : single-length
+	goto	lae15c
+lae202:
+.line 854
+	const/16	v0,10
+; v0 : single-length
+	goto	lae15c
+.end method
+
+.method public static computeSFixed32Size(II)I
+.limit registers 4
+; parameter[0] : v2 (I)
+; parameter[1] : v3 (I)
+.line 501
+	invoke-static	{v2},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/computeTagSize	; computeTagSize(I)I
+; v2 : single-length
+	move-result	v0
+; v0 : single-length
+	invoke-static	{v3},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/computeSFixed32SizeNoTag	; computeSFixed32SizeNoTag(I)I
+; v3 : single-length
+	move-result	v1
+; v1 : single-length
+	add-int/2addr	v0,v1
+; v0 : single-length , v1 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public static computeSFixed32SizeNoTag(I)I
+.limit registers 2
+; parameter[0] : v1 (I)
+.line 692
+	const/4	v0,4
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public static computeSFixed64Size(IJ)I
+.limit registers 5
+; parameter[0] : v2 (I)
+; parameter[1] : v3 (J)
+.line 510
+	invoke-static	{v2},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/computeTagSize	; computeTagSize(I)I
+; v2 : single-length
+	move-result	v0
+; v0 : single-length
+	invoke-static	{v3,v4},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/computeSFixed64SizeNoTag	; computeSFixed64SizeNoTag(J)I
+; v3 : double-length
+	move-result	v1
+; v1 : single-length
+	add-int/2addr	v0,v1
+; v0 : single-length , v1 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public static computeSFixed64SizeNoTag(J)I
+.limit registers 3
+; parameter[0] : v1 (J)
+.line 700
+	const/16	v0,8
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public static computeSInt32Size(II)I
+.limit registers 4
+; parameter[0] : v2 (I)
+; parameter[1] : v3 (I)
+.line 518
+	invoke-static	{v2},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/computeTagSize	; computeTagSize(I)I
+; v2 : single-length
+	move-result	v0
+; v0 : single-length
+	invoke-static	{v3},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/computeSInt32SizeNoTag	; computeSInt32SizeNoTag(I)I
+; v3 : single-length
+	move-result	v1
+; v1 : single-length
+	add-int/2addr	v0,v1
+; v0 : single-length , v1 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public static computeSInt32SizeNoTag(I)I
+.limit registers 2
+; parameter[0] : v1 (I)
+.line 708
+	invoke-static	{v1},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/encodeZigZag32	; encodeZigZag32(I)I
+; v1 : single-length
+	move-result	v0
+; v0 : single-length
+	invoke-static	{v0},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/computeRawVarint32Size	; computeRawVarint32Size(I)I
+; v0 : single-length
+	move-result	v0
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public static computeSInt64Size(IJ)I
+.limit registers 5
+; parameter[0] : v2 (I)
+; parameter[1] : v3 (J)
+.line 526
+	invoke-static	{v2},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/computeTagSize	; computeTagSize(I)I
+; v2 : single-length
+	move-result	v0
+; v0 : single-length
+	invoke-static	{v3,v4},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/computeSInt64SizeNoTag	; computeSInt64SizeNoTag(J)I
+; v3 : double-length
+	move-result	v1
+; v1 : single-length
+	add-int/2addr	v0,v1
+; v0 : single-length , v1 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public static computeSInt64SizeNoTag(J)I
+.limit registers 4
+; parameter[0] : v2 (J)
+.line 716
+	invoke-static	{v2,v3},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/encodeZigZag64	; encodeZigZag64(J)J
+; v2 : double-length
+	move-result-wide	v0
+; v0 : double-length
+	invoke-static	{v0,v1},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/computeRawVarint64Size	; computeRawVarint64Size(J)I
+; v0 : double-length
+	move-result	v0
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public static computeStringSize(ILjava/lang/String;)I
+.limit registers 4
+; parameter[0] : v2 (I)
+; parameter[1] : v3 (Ljava/lang/String;)
+.line 439
+	invoke-static	{v2},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/computeTagSize	; computeTagSize(I)I
+; v2 : single-length
+	move-result	v0
+; v0 : single-length
+	invoke-static	{v3},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/computeStringSizeNoTag	; computeStringSizeNoTag(Ljava/lang/String;)I
+; v3 : Ljava/lang/String;
+	move-result	v1
+; v1 : single-length
+	add-int/2addr	v0,v1
+; v0 : single-length , v1 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public static computeStringSizeNoTag(Ljava/lang/String;)I
+.limit registers 5
+; parameter[0] : v4 (Ljava/lang/String;)
+.catch java/io/UnsupportedEncodingException from lae340 to lae358 using lae35c
+.var 0 is bytes [B from lae34c to lae35c
+lae340:
+.line 630
+	const-string	v2,"UTF-8"
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v4,v2},java/lang/String/getBytes	; getBytes(Ljava/lang/String;)[B
+; v4 : Ljava/lang/String; , v2 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : [B
+.line 631
+	array-length	v2,v0
+; v2 : single-length , v0 : [B
+	invoke-static	{v2},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/computeRawVarint32Size	; computeRawVarint32Size(I)I
+; v2 : single-length
+	move-result	v2
+; v2 : single-length
+	array-length	v3,v0
+; v3 : single-length , v0 : [B
+lae358:
+	add-int/2addr	v2,v3
+; v2 : single-length , v3 : single-length
+	return	v2
+; v2 : single-length
+lae35c:
+.line 633
+	move-exception	v1
+; v1 : java/io/UnsupportedEncodingException
+.line 634
+	new-instance	v2,java/lang/RuntimeException
+; v2 : Ljava/lang/RuntimeException;
+	const-string	v3,"UTF-8 not supported."
+; v3 : Ljava/lang/String;
+	invoke-direct	{v2,v3},java/lang/RuntimeException/<init>	; <init>(Ljava/lang/String;)V
+; v2 : Ljava/lang/RuntimeException; , v3 : Ljava/lang/String;
+	throw	v2
+; v2 : Ljava/lang/RuntimeException;
+.end method
+
+.method public static computeTagSize(I)I
+.limit registers 2
+; parameter[0] : v1 (I)
+.line 798
+	const/4	v0,0
+; v0 : single-length
+	invoke-static	{v1,v0},com/google/tagmanager/protobuf/nano/WireFormatNano/makeTag	; makeTag(II)I
+; v1 : single-length , v0 : single-length
+	move-result	v0
+; v0 : single-length
+	invoke-static	{v0},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/computeRawVarint32Size	; computeRawVarint32Size(I)I
+; v0 : single-length
+	move-result	v0
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public static computeUInt32Size(II)I
+.limit registers 4
+; parameter[0] : v2 (I)
+; parameter[1] : v3 (I)
+.line 483
+	invoke-static	{v2},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/computeTagSize	; computeTagSize(I)I
+; v2 : single-length
+	move-result	v0
+; v0 : single-length
+	invoke-static	{v3},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/computeUInt32SizeNoTag	; computeUInt32SizeNoTag(I)I
+; v3 : single-length
+	move-result	v1
+; v1 : single-length
+	add-int/2addr	v0,v1
+; v0 : single-length , v1 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public static computeUInt32SizeNoTag(I)I
+.limit registers 2
+; parameter[0] : v1 (I)
+.line 676
+	invoke-static	{v1},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/computeRawVarint32Size	; computeRawVarint32Size(I)I
+; v1 : single-length
+	move-result	v0
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public static computeUInt64Size(IJ)I
+.limit registers 5
+; parameter[0] : v2 (I)
+; parameter[1] : v3 (J)
+.line 387
+	invoke-static	{v2},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/computeTagSize	; computeTagSize(I)I
+; v2 : single-length
+	move-result	v0
+; v0 : single-length
+	invoke-static	{v3,v4},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/computeUInt64SizeNoTag	; computeUInt64SizeNoTag(J)I
+; v3 : double-length
+	move-result	v1
+; v1 : single-length
+	add-int/2addr	v0,v1
+; v0 : single-length , v1 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public static computeUInt64SizeNoTag(J)I
+.limit registers 3
+; parameter[0] : v1 (J)
+.line 576
+	invoke-static	{v1,v2},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/computeRawVarint64Size	; computeRawVarint64Size(J)I
+; v1 : double-length
+	move-result	v0
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public static encodeZigZag32(I)I
+.limit registers 3
+; parameter[0] : v2 (I)
+.line 893
+	shl-int/lit8	v0,v2,1
+; v0 : single-length , v2 : single-length
+	shr-int/lit8	v1,v2,31
+; v1 : single-length , v2 : single-length
+	xor-int/2addr	v0,v1
+; v0 : single-length , v1 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public static encodeZigZag64(J)J
+.limit registers 6
+; parameter[0] : v4 (J)
+.line 908
+	const/4	v0,1
+; v0 : single-length
+	shl-long	v0,v4,v0
+; v0 : double-length , v4 : double-length , v0 : double-length
+	const/16	v2,63
+; v2 : single-length
+	shr-long	v2,v4,v2
+; v2 : double-length , v4 : double-length , v2 : double-length
+	xor-long/2addr	v0,v2
+; v0 : double-length , v2 : double-length
+	return-wide	v0
+; v0 : double-length
+.end method
+
+.method public static newInstance([B)Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;
+.limit registers 3
+; parameter[0] : v2 ([B)
+.line 69
+	const/4	v0,0
+; v0 : single-length
+	array-length	v1,v2
+; v1 : single-length , v2 : [B
+	invoke-static	{v2,v0,v1},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/newInstance	; newInstance([BII)Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;
+; v2 : [B , v0 : single-length , v1 : single-length
+	move-result-object	v0
+; v0 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;
+	return-object	v0
+; v0 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;
+.end method
+
+.method public static newInstance([BII)Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;
+.limit registers 4
+; parameter[0] : v1 ([B)
+; parameter[1] : v2 (I)
+; parameter[2] : v3 (I)
+.line 81
+	new-instance	v0,com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano
+; v0 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;
+	invoke-direct	{v0,v1,v2,v3},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/<init>	; <init>([BII)V
+; v0 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v1 : [B , v2 : single-length , v3 : single-length
+	return-object	v0
+; v0 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;
+.end method
+
+.method public checkNoSpaceLeft()V
+.limit registers 3
+; this: v2 (Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;)
+.line 737
+	invoke-virtual	{v2},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/spaceLeft	; spaceLeft()I
+; v2 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,lae4cc
+; v0 : single-length
+.line 738
+	new-instance	v0,java/lang/IllegalStateException
+; v0 : Ljava/lang/IllegalStateException;
+	const-string	v1,"Did not write as much data as expected."
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/IllegalStateException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/IllegalStateException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/IllegalStateException;
+lae4cc:
+.line 741
+	return-void	
+.end method
+
+.method public spaceLeft()I
+.limit registers 3
+; this: v2 (Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;)
+.line 726
+	iget	v0,v2,com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano.limit I
+; v0 : single-length , v2 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;
+	iget	v1,v2,com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano.position I
+; v1 : single-length , v2 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;
+	sub-int/2addr	v0,v1
+; v0 : single-length , v1 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public writeBool(IZ)V
+.throws Ljava/io/IOException;
+.limit registers 4
+; this: v1 (Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;)
+; parameter[0] : v2 (I)
+; parameter[1] : v3 (Z)
+.line 138
+	const/4	v0,0
+; v0 : single-length
+	invoke-virtual	{v1,v2,v0},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeTag	; writeTag(II)V
+; v1 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v2 : single-length , v0 : single-length
+.line 139
+	invoke-virtual	{v1,v3},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeBoolNoTag	; writeBoolNoTag(Z)V
+; v1 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v3 : single-length
+.line 140
+	return-void	
+.end method
+
+.method public writeBoolNoTag(Z)V
+.throws Ljava/io/IOException;
+.limit registers 3
+; this: v1 (Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;)
+; parameter[0] : v2 (Z)
+.line 294
+	if-eqz	v2,lae52a
+; v2 : single-length
+	const/4	v0,1
+; v0 : single-length
+lae522:
+	invoke-virtual	{v1,v0},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeRawByte	; writeRawByte(I)V
+; v1 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v0 : single-length
+.line 295
+	return-void	
+lae52a:
+.line 294
+	const/4	v0,0
+; v0 : single-length
+	goto	lae522
+.end method
+
+.method public writeByteArray(I[B)V
+.throws Ljava/io/IOException;
+.limit registers 4
+; this: v1 (Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;)
+; parameter[0] : v2 (I)
+; parameter[1] : v3 ([B)
+.line 174
+	const/4	v0,2
+; v0 : single-length
+	invoke-virtual	{v1,v2,v0},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeTag	; writeTag(II)V
+; v1 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v2 : single-length , v0 : single-length
+.line 175
+	invoke-virtual	{v1,v3},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeByteArrayNoTag	; writeByteArrayNoTag([B)V
+; v1 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v3 : [B
+.line 176
+	return-void	
+.end method
+
+.method public writeByteArrayNoTag([B)V
+.throws Ljava/io/IOException;
+.limit registers 3
+; this: v1 (Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;)
+; parameter[0] : v2 ([B)
+.line 326
+	array-length	v0,v2
+; v0 : single-length , v2 : [B
+	invoke-virtual	{v1,v0},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeRawVarint32	; writeRawVarint32(I)V
+; v1 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v0 : single-length
+.line 327
+	invoke-virtual	{v1,v2},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeRawBytes	; writeRawBytes([B)V
+; v1 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v2 : [B
+.line 328
+	return-void	
+.end method
+
+.method public writeBytes(I[B)V
+.throws Ljava/io/IOException;
+.limit registers 4
+; this: v1 (Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;)
+; parameter[0] : v2 (I)
+; parameter[1] : v3 ([B)
+.line 167
+	const/4	v0,2
+; v0 : single-length
+	invoke-virtual	{v1,v2,v0},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeTag	; writeTag(II)V
+; v1 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v2 : single-length , v0 : single-length
+.line 168
+	invoke-virtual	{v1,v3},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeBytesNoTag	; writeBytesNoTag([B)V
+; v1 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v3 : [B
+.line 169
+	return-void	
+.end method
+
+.method public writeBytesNoTag([B)V
+.throws Ljava/io/IOException;
+.limit registers 3
+; this: v1 (Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;)
+; parameter[0] : v2 ([B)
+.line 320
+	array-length	v0,v2
+; v0 : single-length , v2 : [B
+	invoke-virtual	{v1,v0},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeRawVarint32	; writeRawVarint32(I)V
+; v1 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v0 : single-length
+.line 321
+	invoke-virtual	{v1,v2},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeRawBytes	; writeRawBytes([B)V
+; v1 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v2 : [B
+.line 322
+	return-void	
+.end method
+
+.method public writeDouble(ID)V
+.throws Ljava/io/IOException;
+.limit registers 5
+; this: v1 (Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;)
+; parameter[0] : v2 (I)
+; parameter[1] : v3 (D)
+.line 89
+	const/4	v0,1
+; v0 : single-length
+	invoke-virtual	{v1,v2,v0},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeTag	; writeTag(II)V
+; v1 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v2 : single-length , v0 : single-length
+.line 90
+	invoke-virtual	{v1,v3,v4},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeDoubleNoTag	; writeDoubleNoTag(D)V
+; v1 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v3 : double-length
+.line 91
+	return-void	
+.end method
+
+.method public writeDoubleNoTag(D)V
+.throws Ljava/io/IOException;
+.limit registers 5
+; this: v2 (Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;)
+; parameter[0] : v3 (D)
+.line 254
+	invoke-static	{v3,v4},java/lang/Double/doubleToLongBits	; doubleToLongBits(D)J
+; v3 : double-length
+	move-result-wide	v0
+; v0 : double-length
+	invoke-virtual	{v2,v0,v1},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeRawLittleEndian64	; writeRawLittleEndian64(J)V
+; v2 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v0 : double-length
+.line 255
+	return-void	
+.end method
+
+.method public writeEnum(II)V
+.throws Ljava/io/IOException;
+.limit registers 4
+; this: v1 (Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;)
+; parameter[0] : v2 (I)
+; parameter[1] : v3 (I)
+.line 192
+	const/4	v0,0
+; v0 : single-length
+	invoke-virtual	{v1,v2,v0},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeTag	; writeTag(II)V
+; v1 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v2 : single-length , v0 : single-length
+.line 193
+	invoke-virtual	{v1,v3},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeEnumNoTag	; writeEnumNoTag(I)V
+; v1 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v3 : single-length
+.line 194
+	return-void	
+.end method
+
+.method public writeEnumNoTag(I)V
+.throws Ljava/io/IOException;
+.limit registers 2
+; this: v0 (Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;)
+; parameter[0] : v1 (I)
+.line 340
+	invoke-virtual	{v0,v1},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeRawVarint32	; writeRawVarint32(I)V
+; v0 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v1 : single-length
+.line 341
+	return-void	
+.end method
+
+.method public writeFixed32(II)V
+.throws Ljava/io/IOException;
+.limit registers 4
+; this: v1 (Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;)
+; parameter[0] : v2 (I)
+; parameter[1] : v3 (I)
+.line 131
+	const/4	v0,5
+; v0 : single-length
+	invoke-virtual	{v1,v2,v0},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeTag	; writeTag(II)V
+; v1 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v2 : single-length , v0 : single-length
+.line 132
+	invoke-virtual	{v1,v3},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeFixed32NoTag	; writeFixed32NoTag(I)V
+; v1 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v3 : single-length
+.line 133
+	return-void	
+.end method
+
+.method public writeFixed32NoTag(I)V
+.throws Ljava/io/IOException;
+.limit registers 2
+; this: v0 (Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;)
+; parameter[0] : v1 (I)
+.line 289
+	invoke-virtual	{v0,v1},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeRawLittleEndian32	; writeRawLittleEndian32(I)V
+; v0 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v1 : single-length
+.line 290
+	return-void	
+.end method
+
+.method public writeFixed64(IJ)V
+.throws Ljava/io/IOException;
+.limit registers 5
+; this: v1 (Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;)
+; parameter[0] : v2 (I)
+; parameter[1] : v3 (J)
+.line 124
+	const/4	v0,1
+; v0 : single-length
+	invoke-virtual	{v1,v2,v0},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeTag	; writeTag(II)V
+; v1 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v2 : single-length , v0 : single-length
+.line 125
+	invoke-virtual	{v1,v3,v4},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeFixed64NoTag	; writeFixed64NoTag(J)V
+; v1 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v3 : double-length
+.line 126
+	return-void	
+.end method
+
+.method public writeFixed64NoTag(J)V
+.throws Ljava/io/IOException;
+.limit registers 3
+; this: v0 (Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;)
+; parameter[0] : v1 (J)
+.line 284
+	invoke-virtual	{v0,v1,v2},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeRawLittleEndian64	; writeRawLittleEndian64(J)V
+; v0 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v1 : double-length
+.line 285
+	return-void	
+.end method
+
+.method public writeFloat(IF)V
+.throws Ljava/io/IOException;
+.limit registers 4
+; this: v1 (Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;)
+; parameter[0] : v2 (I)
+; parameter[1] : v3 (F)
+.line 96
+	const/4	v0,5
+; v0 : single-length
+	invoke-virtual	{v1,v2,v0},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeTag	; writeTag(II)V
+; v1 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v2 : single-length , v0 : single-length
+.line 97
+	invoke-virtual	{v1,v3},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeFloatNoTag	; writeFloatNoTag(F)V
+; v1 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v3 : single-length
+.line 98
+	return-void	
+.end method
+
+.method public writeFloatNoTag(F)V
+.throws Ljava/io/IOException;
+.limit registers 3
+; this: v1 (Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;)
+; parameter[0] : v2 (F)
+.line 259
+	invoke-static	{v2},java/lang/Float/floatToIntBits	; floatToIntBits(F)I
+; v2 : single-length
+	move-result	v0
+; v0 : single-length
+	invoke-virtual	{v1,v0},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeRawLittleEndian32	; writeRawLittleEndian32(I)V
+; v1 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v0 : single-length
+.line 260
+	return-void	
+.end method
+
+.method public writeGroup(ILcom/google/tagmanager/protobuf/nano/MessageNano;)V
+.throws Ljava/io/IOException;
+.limit registers 4
+; this: v1 (Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;)
+; parameter[0] : v2 (I)
+; parameter[1] : v3 (Lcom/google/tagmanager/protobuf/nano/MessageNano;)
+.line 152
+	const/4	v0,3
+; v0 : single-length
+	invoke-virtual	{v1,v2,v0},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeTag	; writeTag(II)V
+; v1 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v2 : single-length , v0 : single-length
+.line 153
+	invoke-virtual	{v1,v3},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeGroupNoTag	; writeGroupNoTag(Lcom/google/tagmanager/protobuf/nano/MessageNano;)V
+; v1 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v3 : Lcom/google/tagmanager/protobuf/nano/MessageNano;
+.line 154
+	const/4	v0,4
+; v0 : single-length
+	invoke-virtual	{v1,v2,v0},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeTag	; writeTag(II)V
+; v1 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v2 : single-length , v0 : single-length
+.line 155
+	return-void	
+.end method
+
+.method public writeGroupNoTag(Lcom/google/tagmanager/protobuf/nano/MessageNano;)V
+.throws Ljava/io/IOException;
+.limit registers 2
+; this: v0 (Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;)
+; parameter[0] : v1 (Lcom/google/tagmanager/protobuf/nano/MessageNano;)
+.line 309
+	invoke-virtual	{v1,v0},com/google/tagmanager/protobuf/nano/MessageNano/writeTo	; writeTo(Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;)V
+; v1 : Lcom/google/tagmanager/protobuf/nano/MessageNano; , v0 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;
+.line 310
+	return-void	
+.end method
+
+.method public writeInt32(II)V
+.throws Ljava/io/IOException;
+.limit registers 4
+; this: v1 (Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;)
+; parameter[0] : v2 (I)
+; parameter[1] : v3 (I)
+.line 117
+	const/4	v0,0
+; v0 : single-length
+	invoke-virtual	{v1,v2,v0},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeTag	; writeTag(II)V
+; v1 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v2 : single-length , v0 : single-length
+.line 118
+	invoke-virtual	{v1,v3},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeInt32NoTag	; writeInt32NoTag(I)V
+; v1 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v3 : single-length
+.line 119
+	return-void	
+.end method
+
+.method public writeInt32NoTag(I)V
+.throws Ljava/io/IOException;
+.limit registers 4
+; this: v2 (Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;)
+; parameter[0] : v3 (I)
+.line 274
+	if-ltz	v3,lae754
+; v3 : single-length
+.line 275
+	invoke-virtual	{v2,v3},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeRawVarint32	; writeRawVarint32(I)V
+; v2 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v3 : single-length
+lae752:
+.line 280
+	return-void	
+lae754:
+.line 278
+	int-to-long	v0,v3
+; v0 : double-length , v3 : single-length
+	invoke-virtual	{v2,v0,v1},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeRawVarint64	; writeRawVarint64(J)V
+; v2 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v0 : double-length
+	goto	lae752
+.end method
+
+.method public writeInt64(IJ)V
+.throws Ljava/io/IOException;
+.limit registers 5
+; this: v1 (Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;)
+; parameter[0] : v2 (I)
+; parameter[1] : v3 (J)
+.line 110
+	const/4	v0,0
+; v0 : single-length
+	invoke-virtual	{v1,v2,v0},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeTag	; writeTag(II)V
+; v1 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v2 : single-length , v0 : single-length
+.line 111
+	invoke-virtual	{v1,v3,v4},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeInt64NoTag	; writeInt64NoTag(J)V
+; v1 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v3 : double-length
+.line 112
+	return-void	
+.end method
+
+.method public writeInt64NoTag(J)V
+.throws Ljava/io/IOException;
+.limit registers 3
+; this: v0 (Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;)
+; parameter[0] : v1 (J)
+.line 269
+	invoke-virtual	{v0,v1,v2},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeRawVarint64	; writeRawVarint64(J)V
+; v0 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v1 : double-length
+.line 270
+	return-void	
+.end method
+
+.method public writeMessage(ILcom/google/tagmanager/protobuf/nano/MessageNano;)V
+.throws Ljava/io/IOException;
+.limit registers 4
+; this: v1 (Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;)
+; parameter[0] : v2 (I)
+; parameter[1] : v3 (Lcom/google/tagmanager/protobuf/nano/MessageNano;)
+.line 160
+	const/4	v0,2
+; v0 : single-length
+	invoke-virtual	{v1,v2,v0},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeTag	; writeTag(II)V
+; v1 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v2 : single-length , v0 : single-length
+.line 161
+	invoke-virtual	{v1,v3},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeMessageNoTag	; writeMessageNoTag(Lcom/google/tagmanager/protobuf/nano/MessageNano;)V
+; v1 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v3 : Lcom/google/tagmanager/protobuf/nano/MessageNano;
+.line 162
+	return-void	
+.end method
+
+.method public writeMessageNoTag(Lcom/google/tagmanager/protobuf/nano/MessageNano;)V
+.throws Ljava/io/IOException;
+.limit registers 3
+; this: v1 (Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;)
+; parameter[0] : v2 (Lcom/google/tagmanager/protobuf/nano/MessageNano;)
+.line 314
+	invoke-virtual	{v2},com/google/tagmanager/protobuf/nano/MessageNano/getCachedSize	; getCachedSize()I
+; v2 : Lcom/google/tagmanager/protobuf/nano/MessageNano;
+	move-result	v0
+; v0 : single-length
+	invoke-virtual	{v1,v0},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeRawVarint32	; writeRawVarint32(I)V
+; v1 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v0 : single-length
+.line 315
+	invoke-virtual	{v2,v1},com/google/tagmanager/protobuf/nano/MessageNano/writeTo	; writeTo(Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;)V
+; v2 : Lcom/google/tagmanager/protobuf/nano/MessageNano; , v1 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;
+.line 316
+	return-void	
+.end method
+
+.method public writeRawByte(B)V
+.throws Ljava/io/IOException;
+.limit registers 5
+; this: v3 (Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;)
+; parameter[0] : v4 (B)
+.line 759
+	iget	v0,v3,com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano.position I
+; v0 : single-length , v3 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;
+	iget	v1,v3,com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano.limit I
+; v1 : single-length , v3 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;
+	if-ne	v0,v1,lae810
+; v0 : single-length , v1 : single-length
+.line 761
+	new-instance	v0,com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano$OutOfSpaceException
+; v0 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano$OutOfSpaceException;
+	iget	v1,v3,com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano.position I
+; v1 : single-length , v3 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;
+	iget	v2,v3,com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano.limit I
+; v2 : single-length , v3 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;
+	invoke-direct	{v0,v1,v2},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano$OutOfSpaceException/<init>	; <init>(II)V
+; v0 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano$OutOfSpaceException; , v1 : single-length , v2 : single-length
+	throw	v0
+; v0 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano$OutOfSpaceException;
+lae810:
+.line 764
+	iget-object	v0,v3,com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano.buffer [B
+; v0 : [B , v3 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;
+	iget	v1,v3,com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano.position I
+; v1 : single-length , v3 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;
+	add-int/lit8	v2,v1,1
+; v2 : single-length , v1 : single-length
+	iput	v2,v3,com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano.position I
+; v2 : single-length , v3 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;
+	aput-byte	v4,v0,v1
+; v4 : single-length , v0 : [B , v1 : single-length
+.line 765
+	return-void	
+.end method
+
+.method public writeRawByte(I)V
+.throws Ljava/io/IOException;
+.limit registers 3
+; this: v1 (Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;)
+; parameter[0] : v2 (I)
+.line 769
+	int-to-byte	v0,v2
+; v0 : single-length , v2 : single-length
+	invoke-virtual	{v1,v0},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeRawByte	; writeRawByte(B)V
+; v1 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v0 : single-length
+.line 770
+	return-void	
+.end method
+
+.method public writeRawBytes([B)V
+.throws Ljava/io/IOException;
+.limit registers 4
+; this: v2 (Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;)
+; parameter[0] : v3 ([B)
+.line 774
+	const/4	v0,0
+; v0 : single-length
+	array-length	v1,v3
+; v1 : single-length , v3 : [B
+	invoke-virtual	{v2,v3,v0,v1},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeRawBytes	; writeRawBytes([BII)V
+; v2 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v3 : [B , v0 : single-length , v1 : single-length
+.line 775
+	return-void	
+.end method
+
+.method public writeRawBytes([BII)V
+.throws Ljava/io/IOException;
+.limit registers 7
+; this: v3 (Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;)
+; parameter[0] : v4 ([B)
+; parameter[1] : v5 (I)
+; parameter[2] : v6 (I)
+.line 780
+	iget	v0,v3,com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano.limit I
+; v0 : single-length , v3 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;
+	iget	v1,v3,com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano.position I
+; v1 : single-length , v3 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;
+	sub-int/2addr	v0,v1
+; v0 : single-length , v1 : single-length
+	if-lt	v0,v6,lae898
+; v0 : single-length , v6 : single-length
+.line 782
+	iget-object	v0,v3,com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano.buffer [B
+; v0 : [B , v3 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;
+	iget	v1,v3,com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano.position I
+; v1 : single-length , v3 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;
+	invoke-static	{v4,v5,v0,v1,v6},java/lang/System/arraycopy	; arraycopy(Ljava/lang/Object;ILjava/lang/Object;II)V
+; v4 : [B , v5 : single-length , v0 : [B , v1 : single-length , v6 : single-length
+.line 783
+	iget	v0,v3,com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano.position I
+; v0 : single-length , v3 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;
+	add-int/2addr	v0,v6
+; v0 : single-length , v6 : single-length
+	iput	v0,v3,com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano.position I
+; v0 : single-length , v3 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;
+.line 788
+	return-void	
+lae898:
+.line 786
+	new-instance	v0,com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano$OutOfSpaceException
+; v0 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano$OutOfSpaceException;
+	iget	v1,v3,com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano.position I
+; v1 : single-length , v3 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;
+	iget	v2,v3,com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano.limit I
+; v2 : single-length , v3 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;
+	invoke-direct	{v0,v1,v2},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano$OutOfSpaceException/<init>	; <init>(II)V
+; v0 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano$OutOfSpaceException; , v1 : single-length , v2 : single-length
+	throw	v0
+; v0 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano$OutOfSpaceException;
+.end method
+
+.method public writeRawLittleEndian32(I)V
+.throws Ljava/io/IOException;
+.limit registers 3
+; this: v1 (Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;)
+; parameter[0] : v2 (I)
+.line 859
+	and-int/lit16	v0,v2,255
+; v0 : single-length , v2 : single-length
+	invoke-virtual	{v1,v0},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeRawByte	; writeRawByte(I)V
+; v1 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v0 : single-length
+.line 860
+	shr-int/lit8	v0,v2,8
+; v0 : single-length , v2 : single-length
+	and-int/lit16	v0,v0,255
+; v0 : single-length , v0 : single-length
+	invoke-virtual	{v1,v0},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeRawByte	; writeRawByte(I)V
+; v1 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v0 : single-length
+.line 861
+	shr-int/lit8	v0,v2,16
+; v0 : single-length , v2 : single-length
+	and-int/lit16	v0,v0,255
+; v0 : single-length , v0 : single-length
+	invoke-virtual	{v1,v0},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeRawByte	; writeRawByte(I)V
+; v1 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v0 : single-length
+.line 862
+	shr-int/lit8	v0,v2,24
+; v0 : single-length , v2 : single-length
+	and-int/lit16	v0,v0,255
+; v0 : single-length , v0 : single-length
+	invoke-virtual	{v1,v0},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeRawByte	; writeRawByte(I)V
+; v1 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v0 : single-length
+.line 863
+	return-void	
+.end method
+
+.method public writeRawLittleEndian64(J)V
+.throws Ljava/io/IOException;
+.limit registers 5
+; this: v2 (Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;)
+; parameter[0] : v3 (J)
+.line 869
+	long-to-int	v0,v3
+; v0 : single-length , v3 : double-length
+	and-int/lit16	v0,v0,255
+; v0 : single-length , v0 : single-length
+	invoke-virtual	{v2,v0},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeRawByte	; writeRawByte(I)V
+; v2 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v0 : single-length
+.line 870
+	const/16	v0,8
+; v0 : single-length
+	shr-long	v0,v3,v0
+; v0 : double-length , v3 : double-length , v0 : double-length
+	long-to-int	v0,v0
+; v0 : single-length , v0 : single-length
+	and-int/lit16	v0,v0,255
+; v0 : single-length , v0 : single-length
+	invoke-virtual	{v2,v0},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeRawByte	; writeRawByte(I)V
+; v2 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v0 : single-length
+.line 871
+	const/16	v0,16
+; v0 : single-length
+	shr-long	v0,v3,v0
+; v0 : double-length , v3 : double-length , v0 : double-length
+	long-to-int	v0,v0
+; v0 : single-length , v0 : single-length
+	and-int/lit16	v0,v0,255
+; v0 : single-length , v0 : single-length
+	invoke-virtual	{v2,v0},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeRawByte	; writeRawByte(I)V
+; v2 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v0 : single-length
+.line 872
+	const/16	v0,24
+; v0 : single-length
+	shr-long	v0,v3,v0
+; v0 : double-length , v3 : double-length , v0 : double-length
+	long-to-int	v0,v0
+; v0 : single-length , v0 : single-length
+	and-int/lit16	v0,v0,255
+; v0 : single-length , v0 : single-length
+	invoke-virtual	{v2,v0},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeRawByte	; writeRawByte(I)V
+; v2 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v0 : single-length
+.line 873
+	const/16	v0,32
+; v0 : single-length
+	shr-long	v0,v3,v0
+; v0 : double-length , v3 : double-length , v0 : double-length
+	long-to-int	v0,v0
+; v0 : single-length , v0 : single-length
+	and-int/lit16	v0,v0,255
+; v0 : single-length , v0 : single-length
+	invoke-virtual	{v2,v0},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeRawByte	; writeRawByte(I)V
+; v2 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v0 : single-length
+.line 874
+	const/16	v0,40
+; v0 : single-length
+	shr-long	v0,v3,v0
+; v0 : double-length , v3 : double-length , v0 : double-length
+	long-to-int	v0,v0
+; v0 : single-length , v0 : single-length
+	and-int/lit16	v0,v0,255
+; v0 : single-length , v0 : single-length
+	invoke-virtual	{v2,v0},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeRawByte	; writeRawByte(I)V
+; v2 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v0 : single-length
+.line 875
+	const/16	v0,48
+; v0 : single-length
+	shr-long	v0,v3,v0
+; v0 : double-length , v3 : double-length , v0 : double-length
+	long-to-int	v0,v0
+; v0 : single-length , v0 : single-length
+	and-int/lit16	v0,v0,255
+; v0 : single-length , v0 : single-length
+	invoke-virtual	{v2,v0},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeRawByte	; writeRawByte(I)V
+; v2 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v0 : single-length
+.line 876
+	const/16	v0,56
+; v0 : single-length
+	shr-long	v0,v3,v0
+; v0 : double-length , v3 : double-length , v0 : double-length
+	long-to-int	v0,v0
+; v0 : single-length , v0 : single-length
+	and-int/lit16	v0,v0,255
+; v0 : single-length , v0 : single-length
+	invoke-virtual	{v2,v0},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeRawByte	; writeRawByte(I)V
+; v2 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v0 : single-length
+.line 877
+	return-void	
+.end method
+
+.method public writeRawVarint32(I)V
+.throws Ljava/io/IOException;
+.limit registers 3
+; this: v1 (Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;)
+; parameter[0] : v2 (I)
+lae9b0:
+.line 807
+	and-int/lit8	v0,v2,128
+; v0 : single-length , v2 : single-length
+	if-nez	v0,lae9c0
+; v0 : single-length
+.line 808
+	invoke-virtual	{v1,v2},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeRawByte	; writeRawByte(I)V
+; v1 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v2 : single-length
+.line 809
+	return-void	
+lae9c0:
+.line 811
+	and-int/lit8	v0,v2,127
+; v0 : single-length , v2 : single-length
+	or-int/lit16	v0,v0,128
+; v0 : single-length , v0 : single-length
+	invoke-virtual	{v1,v0},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeRawByte	; writeRawByte(I)V
+; v1 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v0 : single-length
+.line 812
+	ushr-int/lit8	v2,v2,7
+; v2 : single-length , v2 : single-length
+	goto	lae9b0
+.end method
+
+.method public writeRawVarint64(J)V
+.throws Ljava/io/IOException;
+.limit registers 7
+; this: v4 (Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;)
+; parameter[0] : v5 (J)
+lae9e4:
+.line 833
+	const-wide/16	v0,65408
+; v0 : double-length
+	and-long/2addr	v0,v5
+; v0 : double-length , v5 : double-length
+	const-wide/16	v2,0
+; v2 : double-length
+	cmp-long	v0,v0,v2
+; v0 : single-length , v0 : single-length , v2 : double-length
+	if-nez	v0,laea00
+; v0 : single-length
+.line 834
+	long-to-int	v0,v5
+; v0 : single-length , v5 : double-length
+	invoke-virtual	{v4,v0},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeRawByte	; writeRawByte(I)V
+; v4 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v0 : single-length
+.line 835
+	return-void	
+laea00:
+.line 837
+	long-to-int	v0,v5
+; v0 : single-length , v5 : double-length
+	and-int/lit8	v0,v0,127
+; v0 : single-length , v0 : single-length
+	or-int/lit16	v0,v0,128
+; v0 : single-length , v0 : single-length
+	invoke-virtual	{v4,v0},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeRawByte	; writeRawByte(I)V
+; v4 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v0 : single-length
+.line 838
+	const/4	v0,7
+; v0 : single-length
+	ushr-long/2addr	v5,v0
+; v5 : double-length , v0 : single-length
+	goto	lae9e4
+.end method
+
+.method public writeSFixed32(II)V
+.throws Ljava/io/IOException;
+.limit registers 4
+; this: v1 (Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;)
+; parameter[0] : v2 (I)
+; parameter[1] : v3 (I)
+.line 199
+	const/4	v0,5
+; v0 : single-length
+	invoke-virtual	{v1,v2,v0},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeTag	; writeTag(II)V
+; v1 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v2 : single-length , v0 : single-length
+.line 200
+	invoke-virtual	{v1,v3},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeSFixed32NoTag	; writeSFixed32NoTag(I)V
+; v1 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v3 : single-length
+.line 201
+	return-void	
+.end method
+
+.method public writeSFixed32NoTag(I)V
+.throws Ljava/io/IOException;
+.limit registers 2
+; this: v0 (Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;)
+; parameter[0] : v1 (I)
+.line 345
+	invoke-virtual	{v0,v1},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeRawLittleEndian32	; writeRawLittleEndian32(I)V
+; v0 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v1 : single-length
+.line 346
+	return-void	
+.end method
+
+.method public writeSFixed64(IJ)V
+.throws Ljava/io/IOException;
+.limit registers 5
+; this: v1 (Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;)
+; parameter[0] : v2 (I)
+; parameter[1] : v3 (J)
+.line 206
+	const/4	v0,1
+; v0 : single-length
+	invoke-virtual	{v1,v2,v0},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeTag	; writeTag(II)V
+; v1 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v2 : single-length , v0 : single-length
+.line 207
+	invoke-virtual	{v1,v3,v4},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeSFixed64NoTag	; writeSFixed64NoTag(J)V
+; v1 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v3 : double-length
+.line 208
+	return-void	
+.end method
+
+.method public writeSFixed64NoTag(J)V
+.throws Ljava/io/IOException;
+.limit registers 3
+; this: v0 (Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;)
+; parameter[0] : v1 (J)
+.line 350
+	invoke-virtual	{v0,v1,v2},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeRawLittleEndian64	; writeRawLittleEndian64(J)V
+; v0 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v1 : double-length
+.line 351
+	return-void	
+.end method
+
+.method public writeSInt32(II)V
+.throws Ljava/io/IOException;
+.limit registers 4
+; this: v1 (Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;)
+; parameter[0] : v2 (I)
+; parameter[1] : v3 (I)
+.line 213
+	const/4	v0,0
+; v0 : single-length
+	invoke-virtual	{v1,v2,v0},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeTag	; writeTag(II)V
+; v1 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v2 : single-length , v0 : single-length
+.line 214
+	invoke-virtual	{v1,v3},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeSInt32NoTag	; writeSInt32NoTag(I)V
+; v1 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v3 : single-length
+.line 215
+	return-void	
+.end method
+
+.method public writeSInt32NoTag(I)V
+.throws Ljava/io/IOException;
+.limit registers 3
+; this: v1 (Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;)
+; parameter[0] : v2 (I)
+.line 355
+	invoke-static	{v2},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/encodeZigZag32	; encodeZigZag32(I)I
+; v2 : single-length
+	move-result	v0
+; v0 : single-length
+	invoke-virtual	{v1,v0},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeRawVarint32	; writeRawVarint32(I)V
+; v1 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v0 : single-length
+.line 356
+	return-void	
+.end method
+
+.method public writeSInt64(IJ)V
+.throws Ljava/io/IOException;
+.limit registers 5
+; this: v1 (Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;)
+; parameter[0] : v2 (I)
+; parameter[1] : v3 (J)
+.line 220
+	const/4	v0,0
+; v0 : single-length
+	invoke-virtual	{v1,v2,v0},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeTag	; writeTag(II)V
+; v1 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v2 : single-length , v0 : single-length
+.line 221
+	invoke-virtual	{v1,v3,v4},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeSInt64NoTag	; writeSInt64NoTag(J)V
+; v1 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v3 : double-length
+.line 222
+	return-void	
+.end method
+
+.method public writeSInt64NoTag(J)V
+.throws Ljava/io/IOException;
+.limit registers 5
+; this: v2 (Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;)
+; parameter[0] : v3 (J)
+.line 360
+	invoke-static	{v3,v4},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/encodeZigZag64	; encodeZigZag64(J)J
+; v3 : double-length
+	move-result-wide	v0
+; v0 : double-length
+	invoke-virtual	{v2,v0,v1},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeRawVarint64	; writeRawVarint64(J)V
+; v2 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v0 : double-length
+.line 361
+	return-void	
+.end method
+
+.method public writeString(ILjava/lang/String;)V
+.throws Ljava/io/IOException;
+.limit registers 4
+; this: v1 (Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;)
+; parameter[0] : v2 (I)
+; parameter[1] : v3 (Ljava/lang/String;)
+.line 145
+	const/4	v0,2
+; v0 : single-length
+	invoke-virtual	{v1,v2,v0},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeTag	; writeTag(II)V
+; v1 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v2 : single-length , v0 : single-length
+.line 146
+	invoke-virtual	{v1,v3},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeStringNoTag	; writeStringNoTag(Ljava/lang/String;)V
+; v1 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v3 : Ljava/lang/String;
+.line 147
+	return-void	
+.end method
+
+.method public writeStringNoTag(Ljava/lang/String;)V
+.throws Ljava/io/IOException;
+.limit registers 4
+; this: v2 (Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;)
+; parameter[0] : v3 (Ljava/lang/String;)
+.line 302
+	const-string	v1,"UTF-8"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v3,v1},java/lang/String/getBytes	; getBytes(Ljava/lang/String;)[B
+; v3 : Ljava/lang/String; , v1 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : [B
+.line 303
+	array-length	v1,v0
+; v1 : single-length , v0 : [B
+	invoke-virtual	{v2,v1},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeRawVarint32	; writeRawVarint32(I)V
+; v2 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v1 : single-length
+.line 304
+	invoke-virtual	{v2,v0},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeRawBytes	; writeRawBytes([B)V
+; v2 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v0 : [B
+.line 305
+	return-void	
+.end method
+
+.method public writeTag(II)V
+.throws Ljava/io/IOException;
+.limit registers 4
+; this: v1 (Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;)
+; parameter[0] : v2 (I)
+; parameter[1] : v3 (I)
+.line 793
+	invoke-static	{v2,v3},com/google/tagmanager/protobuf/nano/WireFormatNano/makeTag	; makeTag(II)I
+; v2 : single-length , v3 : single-length
+	move-result	v0
+; v0 : single-length
+	invoke-virtual	{v1,v0},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeRawVarint32	; writeRawVarint32(I)V
+; v1 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v0 : single-length
+.line 794
+	return-void	
+.end method
+
+.method public writeUInt32(II)V
+.throws Ljava/io/IOException;
+.limit registers 4
+; this: v1 (Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;)
+; parameter[0] : v2 (I)
+; parameter[1] : v3 (I)
+.line 182
+	const/4	v0,0
+; v0 : single-length
+	invoke-virtual	{v1,v2,v0},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeTag	; writeTag(II)V
+; v1 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v2 : single-length , v0 : single-length
+.line 183
+	invoke-virtual	{v1,v3},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeUInt32NoTag	; writeUInt32NoTag(I)V
+; v1 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v3 : single-length
+.line 184
+	return-void	
+.end method
+
+.method public writeUInt32NoTag(I)V
+.throws Ljava/io/IOException;
+.limit registers 2
+; this: v0 (Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;)
+; parameter[0] : v1 (I)
+.line 332
+	invoke-virtual	{v0,v1},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeRawVarint32	; writeRawVarint32(I)V
+; v0 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v1 : single-length
+.line 333
+	return-void	
+.end method
+
+.method public writeUInt64(IJ)V
+.throws Ljava/io/IOException;
+.limit registers 5
+; this: v1 (Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;)
+; parameter[0] : v2 (I)
+; parameter[1] : v3 (J)
+.line 103
+	const/4	v0,0
+; v0 : single-length
+	invoke-virtual	{v1,v2,v0},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeTag	; writeTag(II)V
+; v1 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v2 : single-length , v0 : single-length
+.line 104
+	invoke-virtual	{v1,v3,v4},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeUInt64NoTag	; writeUInt64NoTag(J)V
+; v1 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v3 : double-length
+.line 105
+	return-void	
+.end method
+
+.method public writeUInt64NoTag(J)V
+.throws Ljava/io/IOException;
+.limit registers 3
+; this: v0 (Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano;)
+; parameter[0] : v1 (J)
+.line 264
+	invoke-virtual	{v0,v1,v2},com/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano/writeRawVarint64	; writeRawVarint64(J)V
+; v0 : Lcom/google/tagmanager/protobuf/nano/CodedOutputByteBufferNano; , v1 : double-length
+.line 265
+	return-void	
+.end method
+
+

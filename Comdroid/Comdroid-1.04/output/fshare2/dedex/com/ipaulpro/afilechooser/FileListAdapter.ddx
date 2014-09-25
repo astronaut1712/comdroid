@@ -1,0 +1,259 @@
+.class public com/ipaulpro/afilechooser/FileListAdapter
+.super android/widget/BaseAdapter
+.source MyApplication
+
+.field private static final ICON_FILE I
+.field private static final ICON_FOLDER I
+.field private mData Ljava/util/List;
+.field private final mInflater Landroid/view/LayoutInflater;
+
+.method static <clinit>()V
+.limit registers 1
+.line 38
+	sget	v0,com/ipaulpro/afilechooser/R$drawable.ic_folder I
+; v0 : single-length
+	sput	v0,com/ipaulpro/afilechooser/FileListAdapter.ICON_FOLDER I
+; v0 : I
+.line 39
+	sget	v0,com/ipaulpro/afilechooser/R$drawable.ic_file I
+; v0 : single-length
+	sput	v0,com/ipaulpro/afilechooser/FileListAdapter.ICON_FILE I
+; v0 : I
+	return-void	
+.end method
+
+.method public <init>(Landroid/content/Context;)V
+.limit registers 3
+; this: v1 (Lcom/ipaulpro/afilechooser/FileListAdapter;)
+; parameter[0] : v2 (Landroid/content/Context;)
+.line 45
+	invoke-direct	{v1},android/widget/BaseAdapter/<init>	; <init>()V
+; v1 : Lcom/ipaulpro/afilechooser/FileListAdapter;
+.line 43
+	new-instance	v0,java/util/ArrayList
+; v0 : Ljava/util/ArrayList;
+	invoke-direct	{v0},java/util/ArrayList/<init>	; <init>()V
+; v0 : Ljava/util/ArrayList;
+	iput-object	v0,v1,com/ipaulpro/afilechooser/FileListAdapter.mData Ljava/util/List;
+; v0 : Ljava/util/ArrayList; , v1 : Lcom/ipaulpro/afilechooser/FileListAdapter;
+.line 46
+	invoke-static	{v2},android/view/LayoutInflater/from	; from(Landroid/content/Context;)Landroid/view/LayoutInflater;
+; v2 : Landroid/content/Context;
+	move-result-object	v0
+; v0 : Landroid/view/LayoutInflater;
+	iput-object	v0,v1,com/ipaulpro/afilechooser/FileListAdapter.mInflater Landroid/view/LayoutInflater;
+; v0 : Landroid/view/LayoutInflater; , v1 : Lcom/ipaulpro/afilechooser/FileListAdapter;
+.line 47
+	return-void	
+.end method
+
+.method public add(Ljava/io/File;)V
+.limit registers 3
+; this: v1 (Lcom/ipaulpro/afilechooser/FileListAdapter;)
+; parameter[0] : v2 (Ljava/io/File;)
+.line 50
+	iget-object	v0,v1,com/ipaulpro/afilechooser/FileListAdapter.mData Ljava/util/List;
+; v0 : Ljava/util/List; , v1 : Lcom/ipaulpro/afilechooser/FileListAdapter;
+	invoke-interface	{v0,v2},java/util/List/add	; add(Ljava/lang/Object;)Z
+; v0 : Ljava/util/List; , v2 : Ljava/io/File;
+.line 51
+	invoke-virtual	{v1},com/ipaulpro/afilechooser/FileListAdapter/notifyDataSetChanged	; notifyDataSetChanged()V
+; v1 : Lcom/ipaulpro/afilechooser/FileListAdapter;
+.line 52
+	return-void	
+.end method
+
+.method public clear()V
+.limit registers 2
+; this: v1 (Lcom/ipaulpro/afilechooser/FileListAdapter;)
+.line 65
+	iget-object	v0,v1,com/ipaulpro/afilechooser/FileListAdapter.mData Ljava/util/List;
+; v0 : Ljava/util/List; , v1 : Lcom/ipaulpro/afilechooser/FileListAdapter;
+	invoke-interface	{v0},java/util/List/clear	; clear()V
+; v0 : Ljava/util/List;
+.line 66
+	invoke-virtual	{v1},com/ipaulpro/afilechooser/FileListAdapter/notifyDataSetChanged	; notifyDataSetChanged()V
+; v1 : Lcom/ipaulpro/afilechooser/FileListAdapter;
+.line 67
+	return-void	
+.end method
+
+.method public getCount()I
+.limit registers 2
+; this: v1 (Lcom/ipaulpro/afilechooser/FileListAdapter;)
+.line 81
+	iget-object	v0,v1,com/ipaulpro/afilechooser/FileListAdapter.mData Ljava/util/List;
+; v0 : Ljava/util/List; , v1 : Lcom/ipaulpro/afilechooser/FileListAdapter;
+	invoke-interface	{v0},java/util/List/size	; size()I
+; v0 : Ljava/util/List;
+	move-result	v0
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public getItem(I)Ljava/io/File;
+.limit registers 3
+; this: v1 (Lcom/ipaulpro/afilechooser/FileListAdapter;)
+; parameter[0] : v2 (I)
+.line 71
+	iget-object	v0,v1,com/ipaulpro/afilechooser/FileListAdapter.mData Ljava/util/List;
+; v0 : Ljava/util/List; , v1 : Lcom/ipaulpro/afilechooser/FileListAdapter;
+	invoke-interface	{v0,v2},java/util/List/get	; get(I)Ljava/lang/Object;
+; v0 : Ljava/util/List; , v2 : single-length
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	check-cast	v0,java/io/File
+; v0 : Ljava/io/File;
+	return-object	v0
+; v0 : Ljava/io/File;
+.end method
+
+.method public getItem(I)Ljava/lang/Object;
+.limit registers 3
+; this: v1 (Lcom/ipaulpro/afilechooser/FileListAdapter;)
+; parameter[0] : v2 (I)
+.line 1
+	invoke-virtual	{v1,v2},com/ipaulpro/afilechooser/FileListAdapter/getItem	; getItem(I)Ljava/io/File;
+; v1 : Lcom/ipaulpro/afilechooser/FileListAdapter; , v2 : single-length
+	move-result-object	v0
+; v0 : Ljava/io/File;
+	return-object	v0
+; v0 : Ljava/io/File;
+.end method
+
+.method public getItemId(I)J
+.limit registers 4
+; this: v2 (Lcom/ipaulpro/afilechooser/FileListAdapter;)
+; parameter[0] : v3 (I)
+.line 76
+	int-to-long	v0,v3
+; v0 : double-length , v3 : single-length
+	return-wide	v0
+; v0 : double-length
+.end method
+
+.method public getListItems()Ljava/util/List;
+.limit registers 2
+; this: v1 (Lcom/ipaulpro/afilechooser/FileListAdapter;)
+.line 85
+	iget-object	v0,v1,com/ipaulpro/afilechooser/FileListAdapter.mData Ljava/util/List;
+; v0 : Ljava/util/List; , v1 : Lcom/ipaulpro/afilechooser/FileListAdapter;
+	return-object	v0
+; v0 : Ljava/util/List;
+.end method
+
+.method public getView(ILandroid/view/View;Landroid/view/ViewGroup;)Landroid/view/View;
+.limit registers 9
+; this: v5 (Lcom/ipaulpro/afilechooser/FileListAdapter;)
+; parameter[0] : v6 (I)
+; parameter[1] : v7 (Landroid/view/View;)
+; parameter[2] : v8 (Landroid/view/ViewGroup;)
+	const/4	v4,0
+; v4 : single-length
+.line 101
+.line 103
+	if-nez	v7,la5aa0
+; v7 : Landroid/view/View;
+.line 104
+	iget-object	v0,v5,com/ipaulpro/afilechooser/FileListAdapter.mInflater Landroid/view/LayoutInflater;
+; v0 : Landroid/view/LayoutInflater; , v5 : Lcom/ipaulpro/afilechooser/FileListAdapter;
+	sget	v1,com/ipaulpro/afilechooser/R$layout.file I
+; v1 : single-length
+	invoke-virtual	{v0,v1,v8,v4},android/view/LayoutInflater/inflate	; inflate(ILandroid/view/ViewGroup;Z)Landroid/view/View;
+; v0 : Landroid/view/LayoutInflater; , v1 : single-length , v8 : Landroid/view/ViewGroup; , v4 : single-length
+	move-result-object	v1
+; v1 : Landroid/view/View;
+la5a66:
+	move-object	v0,v1
+; v0 : Landroid/view/View; , v1 : Landroid/view/View;
+.line 106
+	check-cast	v0,android/widget/TextView
+; v0 : Landroid/widget/TextView;
+.line 109
+	invoke-virtual	{v5,v6},com/ipaulpro/afilechooser/FileListAdapter/getItem	; getItem(I)Ljava/io/File;
+; v5 : Lcom/ipaulpro/afilechooser/FileListAdapter; , v6 : single-length
+	move-result-object	v2
+; v2 : Ljava/io/File;
+.line 112
+	invoke-virtual	{v2},java/io/File/getName	; getName()Ljava/lang/String;
+; v2 : Ljava/io/File;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v0,v3},android/widget/TextView/setText	; setText(Ljava/lang/CharSequence;)V
+; v0 : Landroid/widget/TextView; , v3 : Ljava/lang/String;
+.line 115
+	invoke-virtual	{v2},java/io/File/isDirectory	; isDirectory()Z
+; v2 : Ljava/io/File;
+	move-result	v2
+; v2 : single-length
+	if-eqz	v2,la5a9a
+; v2 : single-length
+	sget	v2,com/ipaulpro/afilechooser/FileListAdapter.ICON_FOLDER I
+; v2 : single-length
+la5a92:
+.line 116
+	invoke-virtual	{v0,v2,v4,v4,v4},android/widget/TextView/setCompoundDrawablesWithIntrinsicBounds	; setCompoundDrawablesWithIntrinsicBounds(IIII)V
+; v0 : Landroid/widget/TextView; , v2 : single-length , v4 : single-length , v4 : single-length , v4 : single-length
+.line 118
+	return-object	v1
+; v1 : Landroid/view/View;
+la5a9a:
+.line 115
+	sget	v2,com/ipaulpro/afilechooser/FileListAdapter.ICON_FILE I
+; v2 : single-length
+	goto	la5a92
+la5aa0:
+	move-object	v1,v7
+; v1 : Landroid/view/View; , v7 : Landroid/view/View;
+	goto	la5a66
+.end method
+
+.method public insert(Ljava/io/File;I)V
+.limit registers 4
+; this: v1 (Lcom/ipaulpro/afilechooser/FileListAdapter;)
+; parameter[0] : v2 (Ljava/io/File;)
+; parameter[1] : v3 (I)
+.line 60
+	iget-object	v0,v1,com/ipaulpro/afilechooser/FileListAdapter.mData Ljava/util/List;
+; v0 : Ljava/util/List; , v1 : Lcom/ipaulpro/afilechooser/FileListAdapter;
+	invoke-interface	{v0,v3,v2},java/util/List/add	; add(ILjava/lang/Object;)V
+; v0 : Ljava/util/List; , v3 : single-length , v2 : Ljava/io/File;
+.line 61
+	invoke-virtual	{v1},com/ipaulpro/afilechooser/FileListAdapter/notifyDataSetChanged	; notifyDataSetChanged()V
+; v1 : Lcom/ipaulpro/afilechooser/FileListAdapter;
+.line 62
+	return-void	
+.end method
+
+.method public remove(Ljava/io/File;)V
+.limit registers 3
+; this: v1 (Lcom/ipaulpro/afilechooser/FileListAdapter;)
+; parameter[0] : v2 (Ljava/io/File;)
+.line 55
+	iget-object	v0,v1,com/ipaulpro/afilechooser/FileListAdapter.mData Ljava/util/List;
+; v0 : Ljava/util/List; , v1 : Lcom/ipaulpro/afilechooser/FileListAdapter;
+	invoke-interface	{v0,v2},java/util/List/remove	; remove(Ljava/lang/Object;)Z
+; v0 : Ljava/util/List; , v2 : Ljava/io/File;
+.line 56
+	invoke-virtual	{v1},com/ipaulpro/afilechooser/FileListAdapter/notifyDataSetChanged	; notifyDataSetChanged()V
+; v1 : Lcom/ipaulpro/afilechooser/FileListAdapter;
+.line 57
+	return-void	
+.end method
+
+.method public setListItems(Ljava/util/List;)V
+.limit registers 2
+; this: v0 (Lcom/ipaulpro/afilechooser/FileListAdapter;)
+; parameter[0] : v1 (Ljava/util/List;)
+.line 95
+	iput-object	v1,v0,com/ipaulpro/afilechooser/FileListAdapter.mData Ljava/util/List;
+; v1 : Ljava/util/List; , v0 : Lcom/ipaulpro/afilechooser/FileListAdapter;
+.line 96
+	invoke-virtual	{v0},com/ipaulpro/afilechooser/FileListAdapter/notifyDataSetChanged	; notifyDataSetChanged()V
+; v0 : Lcom/ipaulpro/afilechooser/FileListAdapter;
+.line 97
+	return-void	
+.end method
+
+

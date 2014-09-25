@@ -1,0 +1,160 @@
+.class com/fsharemobile/client/FileProxy$3
+.super java/lang/Object
+.source FileProxy.java
+.implements com/fsharemobile/client/APICallTask$OnAPICallCompleted
+
+.enclosing method com/shareViaEmail(Ljava/util/List;Ljava/util/List;Ljava/lang/String;Lcom/fsharemobile/client/FileProxy$OnShareCompleted;)V
+.field final this$0 Lcom/fsharemobile/client/FileProxy;
+.field private final val$callback Lcom/fsharemobile/client/FileProxy$OnShareCompleted;
+
+.method <init>(Lcom/fsharemobile/client/FileProxy;Lcom/fsharemobile/client/FileProxy$OnShareCompleted;)V
+.limit registers 3
+; this: v0 (Lcom/fsharemobile/client/FileProxy$3;)
+; parameter[0] : v1 (Lcom/fsharemobile/client/FileProxy;)
+; parameter[1] : v2 (Lcom/fsharemobile/client/FileProxy$OnShareCompleted;)
+.line 1
+	iput-object	v1,v0,com/fsharemobile/client/FileProxy$3.this$0 Lcom/fsharemobile/client/FileProxy;
+; v1 : Lcom/fsharemobile/client/FileProxy; , v0 : Lcom/fsharemobile/client/FileProxy$3;
+	iput-object	v2,v0,com/fsharemobile/client/FileProxy$3.val$callback Lcom/fsharemobile/client/FileProxy$OnShareCompleted;
+; v2 : Lcom/fsharemobile/client/FileProxy$OnShareCompleted; , v0 : Lcom/fsharemobile/client/FileProxy$3;
+.line 247
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Lcom/fsharemobile/client/FileProxy$3;
+	return-void	
+.end method
+
+.method public onAPICallCompleted(Lcom/fsharemobile/client/HttpResponse;)V
+.limit registers 11
+; this: v9 (Lcom/fsharemobile/client/FileProxy$3;)
+; parameter[0] : v10 (Lcom/fsharemobile/client/HttpResponse;)
+.catch java/lang/Exception from lda868 to lda876 using lda894
+.catch java/lang/Exception from lda84c to lda852 using lda894
+.catch java/lang/Exception from lda808 to lda84a using lda87c
+.var 3 is jsoArr Lorg/json/JSONArray; from lda82e to lda832
+.var 5 is list Ljava/util/List; from lda808 to lda84a
+.var 1 is i I from lda84c to lda85c
+.var 3 is jsoArr Lorg/json/JSONArray; from lda840 to lda85c
+.var 6 is list Ljava/util/List; from lda84a to lda85c
+.var 5 is list Ljava/util/List; from lda85c to lda868
+.var 1 is i I from lda868 to lda87c
+.var 3 is jsoArr Lorg/json/JSONArray; from lda868 to lda87c
+.var 4 is link Ljava/lang/String; from lda870 to lda87c
+.var 6 is list Ljava/util/List; from lda868 to lda87c
+.var 2 is jex Ljava/lang/Exception; from lda87e to lda894
+.var 5 is list Ljava/util/List; from lda87c to lda894
+.var 6 is list Ljava/util/List; from lda894 to lda898
+.line 251
+	const/4	v0,0
+; v0 : single-length
+.line 253
+	const/4	v5,0
+; v5 : single-length
+lda808:
+.line 256
+	invoke-virtual	{v10},com/fsharemobile/client/HttpResponse/getHttpCode	; getHttpCode()I
+; v10 : Lcom/fsharemobile/client/HttpResponse;
+	move-result	v0
+; v0 : single-length
+.line 257
+	invoke-virtual	{v10},com/fsharemobile/client/HttpResponse/getHttpCode	; getHttpCode()I
+; v10 : Lcom/fsharemobile/client/HttpResponse;
+	move-result	v7
+; v7 : single-length
+	const/16	v8,200
+; v8 : single-length
+	if-eq	v7,v8,lda82c
+; v7 : single-length , v8 : single-length
+.line 258
+	iget-object	v7,v9,com/fsharemobile/client/FileProxy$3.val$callback Lcom/fsharemobile/client/FileProxy$OnShareCompleted;
+; v7 : Lcom/fsharemobile/client/FileProxy$OnShareCompleted; , v9 : Lcom/fsharemobile/client/FileProxy$3;
+	invoke-interface	{v7,v0},com/fsharemobile/client/FileProxy$OnShareCompleted/onShareCompleted	; onShareCompleted(I)V
+; v7 : Lcom/fsharemobile/client/FileProxy$OnShareCompleted; , v0 : single-length
+lda82a:
+.line 284
+	return-void	
+lda82c:
+.line 261
+	const/4	v3,0
+; v3 : single-length
+.line 262
+	new-instance	v3,org/json/JSONArray
+; v3 : Lorg/json/JSONArray;
+lda832:
+	invoke-virtual	{v10},com/fsharemobile/client/HttpResponse/getBodyAsString	; getBodyAsString()Ljava/lang/String;
+; v10 : Lcom/fsharemobile/client/HttpResponse;
+	move-result-object	v7
+; v7 : Ljava/lang/String;
+	invoke-direct	{v3,v7},org/json/JSONArray/<init>	; <init>(Ljava/lang/String;)V
+; v3 : Lorg/json/JSONArray; , v7 : Ljava/lang/String;
+.line 266
+	new-instance	v6,java/util/ArrayList
+; v6 : Ljava/util/ArrayList;
+	invoke-direct	{v6},java/util/ArrayList/<init>	; <init>()V
+; v6 : Ljava/util/ArrayList;
+lda84a:
+.line 267
+	const/4	v1,0
+; v1 : single-length
+lda84c:
+	invoke-virtual	{v3},org/json/JSONArray/length	; length()I
+; v3 : Lorg/json/JSONArray;
+lda852:
+	move-result	v7
+; v7 : single-length
+	if-lt	v1,v7,lda868
+; v1 : single-length , v7 : single-length
+.line 277
+	const/4	v0,0
+; v0 : single-length
+	move-object	v5,v6
+; v5 : Ljava/util/ArrayList; , v6 : Ljava/util/ArrayList;
+lda85c:
+.line 282
+	iget-object	v7,v9,com/fsharemobile/client/FileProxy$3.val$callback Lcom/fsharemobile/client/FileProxy$OnShareCompleted;
+; v7 : Lcom/fsharemobile/client/FileProxy$OnShareCompleted; , v9 : Lcom/fsharemobile/client/FileProxy$3;
+	invoke-interface	{v7,v0},com/fsharemobile/client/FileProxy$OnShareCompleted/onShareCompleted	; onShareCompleted(I)V
+; v7 : Lcom/fsharemobile/client/FileProxy$OnShareCompleted; , v0 : single-length
+	goto	lda82a
+lda868:
+.line 268
+	invoke-virtual	{v3,v1},org/json/JSONArray/getString	; getString(I)Ljava/lang/String;
+; v3 : Lorg/json/JSONArray; , v1 : single-length
+	move-result-object	v4
+; v4 : Ljava/lang/String;
+.line 269
+	invoke-interface	{v6,v4},java/util/List/add	; add(Ljava/lang/Object;)Z
+; v6 : Ljava/util/ArrayList; , v4 : Ljava/lang/String;
+lda876:
+.line 267
+	add-int/lit8	v1,v1,1
+; v1 : single-length , v1 : single-length
+	goto	lda84c
+lda87c:
+.line 278
+	move-exception	v2
+; v2 : java/lang/Exception
+lda87e:
+.line 279
+	sget-object	v7,java/lang/System.out Ljava/io/PrintStream;
+; v7 : Ljava/io/PrintStream;
+	invoke-virtual	{v2},java/lang/Exception/toString	; toString()Ljava/lang/String;
+; v2 : java/lang/Exception
+	move-result-object	v8
+; v8 : Ljava/lang/String;
+	invoke-virtual	{v7,v8},java/io/PrintStream/println	; println(Ljava/lang/String;)V
+; v7 : Ljava/io/PrintStream; , v8 : Ljava/lang/String;
+.line 280
+	const/4	v0,1
+; v0 : single-length
+	goto	lda85c
+lda894:
+.line 278
+	move-exception	v2
+; v2 : java/lang/Exception
+	move-object	v5,v6
+; v5 : Ljava/util/ArrayList; , v6 : Ljava/util/ArrayList;
+lda898:
+	goto	lda87e
+.end method
+
+

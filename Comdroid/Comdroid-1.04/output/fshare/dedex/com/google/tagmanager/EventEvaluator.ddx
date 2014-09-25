@@ -1,0 +1,75 @@
+.class com/google/tagmanager/EventEvaluator
+.super java/lang/Object
+.source EventEvaluator.java
+
+.field private final mResource Lcom/google/tagmanager/ResourceUtil$ExpandedResource;
+.field private final mRuntime Lcom/google/tagmanager/Runtime;
+
+.method public <init>(Lcom/google/tagmanager/Runtime;Lcom/google/tagmanager/ResourceUtil$ExpandedResource;)V
+.limit registers 5
+; this: v2 (Lcom/google/tagmanager/EventEvaluator;)
+; parameter[0] : v3 (Lcom/google/tagmanager/Runtime;)
+; parameter[1] : v4 (Lcom/google/tagmanager/ResourceUtil$ExpandedResource;)
+.line 12
+	invoke-direct	{v2},java/lang/Object/<init>	; <init>()V
+; v2 : Lcom/google/tagmanager/EventEvaluator;
+.line 13
+	if-nez	v3,la6b62
+; v3 : Lcom/google/tagmanager/Runtime;
+.line 14
+	new-instance	v0,java/lang/NullPointerException
+; v0 : Ljava/lang/NullPointerException;
+	const-string	v1,"runtime cannot be null"
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/NullPointerException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/NullPointerException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/NullPointerException;
+la6b62:
+.line 16
+	iput-object	v3,v2,com/google/tagmanager/EventEvaluator.mRuntime Lcom/google/tagmanager/Runtime;
+; v3 : Lcom/google/tagmanager/Runtime; , v2 : Lcom/google/tagmanager/EventEvaluator;
+.line 18
+	invoke-virtual	{v3},com/google/tagmanager/Runtime/getResource	; getResource()Lcom/google/tagmanager/ResourceUtil$ExpandedResource;
+; v3 : Lcom/google/tagmanager/Runtime;
+	move-result-object	v0
+; v0 : Lcom/google/tagmanager/ResourceUtil$ExpandedResource;
+	if-eq	v4,v0,la6b82
+; v4 : Lcom/google/tagmanager/ResourceUtil$ExpandedResource; , v0 : Lcom/google/tagmanager/ResourceUtil$ExpandedResource;
+.line 19
+	new-instance	v0,java/lang/IllegalArgumentException
+; v0 : Ljava/lang/IllegalArgumentException;
+	const-string	v1,"resource must be the same as the resource in runtime"
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/IllegalArgumentException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/IllegalArgumentException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/IllegalArgumentException;
+la6b82:
+.line 21
+	invoke-virtual	{v3},com/google/tagmanager/Runtime/getResource	; getResource()Lcom/google/tagmanager/ResourceUtil$ExpandedResource;
+; v3 : Lcom/google/tagmanager/Runtime;
+	move-result-object	v0
+; v0 : Lcom/google/tagmanager/ResourceUtil$ExpandedResource;
+	iput-object	v0,v2,com/google/tagmanager/EventEvaluator.mResource Lcom/google/tagmanager/ResourceUtil$ExpandedResource;
+; v0 : Lcom/google/tagmanager/ResourceUtil$ExpandedResource; , v2 : Lcom/google/tagmanager/EventEvaluator;
+.line 22
+	return-void	
+.end method
+
+.method evaluateEvent(Ljava/lang/String;)V
+.limit registers 4
+; this: v2 (Lcom/google/tagmanager/EventEvaluator;)
+; parameter[0] : v3 (Ljava/lang/String;)
+.line 31
+	new-instance	v0,java/lang/UnsupportedOperationException
+; v0 : Ljava/lang/UnsupportedOperationException;
+	const-string	v1,"this code not yet written"
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/lang/UnsupportedOperationException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/lang/UnsupportedOperationException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/lang/UnsupportedOperationException;
+.end method
+
+

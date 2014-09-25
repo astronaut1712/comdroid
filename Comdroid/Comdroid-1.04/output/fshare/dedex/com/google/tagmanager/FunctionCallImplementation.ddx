@@ -1,0 +1,119 @@
+.class abstract com/google/tagmanager/FunctionCallImplementation
+.super java/lang/Object
+.source FunctionCallImplementation.java
+
+.field private static final FUNCTION_KEY Ljava/lang/String; = "function"
+.field private final mFunctionId Ljava/lang/String;
+.field private final mRequiredKeys Ljava/util/Set;
+  .annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "Ljava/util/Set" , "<" , "Ljava/lang/String;" , ">;" }
+  .end annotation
+.end field
+
+.method public <init>(Ljava/lang/String;[Ljava/lang/String;)V
+.limit registers 9
+; this: v6 (Lcom/google/tagmanager/FunctionCallImplementation;)
+; parameter[0] : v7 (Ljava/lang/String;)
+; parameter[1] : v8 ([Ljava/lang/String;)
+.var 3 is requiredKey Ljava/lang/String; from la6f24 to la6f34
+.line 32
+	invoke-direct	{v6},java/lang/Object/<init>	; <init>()V
+; v6 : Lcom/google/tagmanager/FunctionCallImplementation;
+.line 33
+	iput-object	v7,v6,com/google/tagmanager/FunctionCallImplementation.mFunctionId Ljava/lang/String;
+; v7 : Ljava/lang/String; , v6 : Lcom/google/tagmanager/FunctionCallImplementation;
+.line 34
+	new-instance	v4,java/util/HashSet
+; v4 : Ljava/util/HashSet;
+	array-length	v5,v8
+; v5 : single-length , v8 : [Ljava/lang/String;
+	invoke-direct	{v4,v5},java/util/HashSet/<init>	; <init>(I)V
+; v4 : Ljava/util/HashSet; , v5 : single-length
+	iput-object	v4,v6,com/google/tagmanager/FunctionCallImplementation.mRequiredKeys Ljava/util/Set;
+; v4 : Ljava/util/HashSet; , v6 : Lcom/google/tagmanager/FunctionCallImplementation;
+.line 35
+	move-object	v0,v8
+; v0 : [Ljava/lang/String; , v8 : [Ljava/lang/String;
+	array-length	v2,v0
+; v2 : single-length , v0 : [Ljava/lang/String;
+	const/4	v1,0
+; v1 : single-length
+la6f1c:
+	if-ge	v1,v2,la6f34
+; v1 : single-length , v2 : single-length
+	aget-object	v3,v0,v1
+; v3 : Ljava/lang/String; , v0 : [Ljava/lang/String; , v1 : single-length
+.line 36
+	iget-object	v4,v6,com/google/tagmanager/FunctionCallImplementation.mRequiredKeys Ljava/util/Set;
+; v4 : Ljava/util/Set; , v6 : Lcom/google/tagmanager/FunctionCallImplementation;
+	invoke-interface	{v4,v3},java/util/Set/add	; add(Ljava/lang/Object;)Z
+; v4 : Ljava/util/Set; , v3 : Ljava/lang/String;
+.line 35
+	add-int/lit8	v1,v1,1
+; v1 : single-length , v1 : single-length
+	goto	la6f1c
+la6f34:
+.line 38
+	return-void	
+.end method
+
+.method public static getFunctionKey()Ljava/lang/String;
+.limit registers 1
+.line 19
+	const-string	v0,"function"
+; v0 : Ljava/lang/String;
+	return-object	v0
+; v0 : Ljava/lang/String;
+.end method
+
+.method public abstract evaluate(Ljava/util/Map;)Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "(" , "Ljava/util/Map" , "<" , "Ljava/lang/String;" , "Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;" , ">;)" , "Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;" }
+.end annotation
+.end method
+
+.method public getInstanceFunctionId()Ljava/lang/String;
+.limit registers 2
+; this: v1 (Lcom/google/tagmanager/FunctionCallImplementation;)
+.line 26
+	iget-object	v0,v1,com/google/tagmanager/FunctionCallImplementation.mFunctionId Ljava/lang/String;
+; v0 : Ljava/lang/String; , v1 : Lcom/google/tagmanager/FunctionCallImplementation;
+	return-object	v0
+; v0 : Ljava/lang/String;
+.end method
+
+.method public getRequiredKeys()Ljava/util/Set;
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "()" , "Ljava/util/Set" , "<" , "Ljava/lang/String;" , ">;" }
+.end annotation
+.limit registers 2
+; this: v1 (Lcom/google/tagmanager/FunctionCallImplementation;)
+.line 55
+	iget-object	v0,v1,com/google/tagmanager/FunctionCallImplementation.mRequiredKeys Ljava/util/Set;
+; v0 : Ljava/util/Set; , v1 : Lcom/google/tagmanager/FunctionCallImplementation;
+	return-object	v0
+; v0 : Ljava/util/Set;
+.end method
+
+.method hasRequiredKeys(Ljava/util/Set;)Z
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "(" , "Ljava/util/Set" , "<" , "Ljava/lang/String;" , ">;)Z" }
+.end annotation
+.limit registers 3
+; this: v1 (Lcom/google/tagmanager/FunctionCallImplementation;)
+; parameter[0] : v2 (Ljava/util/Set;)
+.line 62
+	iget-object	v0,v1,com/google/tagmanager/FunctionCallImplementation.mRequiredKeys Ljava/util/Set;
+; v0 : Ljava/util/Set; , v1 : Lcom/google/tagmanager/FunctionCallImplementation;
+	invoke-interface	{v2,v0},java/util/Set/containsAll	; containsAll(Ljava/util/Collection;)Z
+; v2 : Ljava/util/Set; , v0 : Ljava/util/Set;
+	move-result	v0
+; v0 : single-length
+	return	v0
+; v0 : single-length
+.end method
+
+.method public abstract isCacheable()Z
+.end method
+
+

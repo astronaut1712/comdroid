@@ -1,0 +1,156 @@
+.class com/a/a/a/o
+.super com/a/a/a/m
+.source MyApplication
+
+.field protected final a Ljava/lang/Class;
+.field private final b Ljava/lang/reflect/Method;
+.field private final c Ljava/lang/reflect/Method;
+
+.method private <init>(Ljava/lang/Class;Ljava/lang/reflect/Method;Ljava/lang/reflect/Method;)V
+.limit registers 4
+; this: v0 (Lcom/a/a/a/o;)
+; parameter[0] : v1 (Ljava/lang/Class;)
+; parameter[1] : v2 (Ljava/lang/reflect/Method;)
+; parameter[2] : v3 (Ljava/lang/reflect/Method;)
+.line 197
+	invoke-direct	{v0},com/a/a/a/m/<init>	; <init>()V
+; v0 : Lcom/a/a/a/o;
+.line 198
+	iput-object	v1,v0,com/a/a/a/o.a Ljava/lang/Class;
+; v1 : Ljava/lang/Class; , v0 : Lcom/a/a/a/o;
+.line 199
+	iput-object	v2,v0,com/a/a/a/o.b Ljava/lang/reflect/Method;
+; v2 : Ljava/lang/reflect/Method; , v0 : Lcom/a/a/a/o;
+.line 200
+	iput-object	v3,v0,com/a/a/a/o.c Ljava/lang/reflect/Method;
+; v3 : Ljava/lang/reflect/Method; , v0 : Lcom/a/a/a/o;
+.line 201
+	return-void	
+.end method
+
+.method <init>(Ljava/lang/Class;Ljava/lang/reflect/Method;Ljava/lang/reflect/Method;Lcom/a/a/a/n;)V
+.limit registers 5
+; this: v0 (Lcom/a/a/a/o;)
+; parameter[0] : v1 (Ljava/lang/Class;)
+; parameter[1] : v2 (Ljava/lang/reflect/Method;)
+; parameter[2] : v3 (Ljava/lang/reflect/Method;)
+; parameter[3] : v4 (Lcom/a/a/a/n;)
+.line 191
+	invoke-direct	{v0,v1,v2,v3},com/a/a/a/o/<init>	; <init>(Ljava/lang/Class;Ljava/lang/reflect/Method;Ljava/lang/reflect/Method;)V
+; v0 : Lcom/a/a/a/o; , v1 : Ljava/lang/Class; , v2 : Ljava/lang/reflect/Method; , v3 : Ljava/lang/reflect/Method;
+	return-void	
+.end method
+
+.method public a(Ljava/net/Socket;Ljava/net/InetSocketAddress;I)V
+.limit registers 7
+; this: v3 (Lcom/a/a/a/o;)
+; parameter[0] : v4 (Ljava/net/Socket;)
+; parameter[1] : v5 (Ljava/net/InetSocketAddress;)
+; parameter[2] : v6 (I)
+.catch java/lang/SecurityException from l73d20 to l73d26 using l73d28
+l73d20:
+.line 206
+	invoke-virtual	{v4,v5,v6},java/net/Socket/connect	; connect(Ljava/net/SocketAddress;I)V
+; v4 : Ljava/net/Socket; , v5 : Ljava/net/InetSocketAddress; , v6 : single-length
+l73d26:
+.line 214
+	return-void	
+l73d28:
+.line 207
+	move-exception	v0
+; v0 : java/lang/SecurityException
+.line 210
+	new-instance	v1,java/io/IOException
+; v1 : Ljava/io/IOException;
+	const-string	v2,"Exception in connect"
+; v2 : Ljava/lang/String;
+	invoke-direct	{v1,v2},java/io/IOException/<init>	; <init>(Ljava/lang/String;)V
+; v1 : Ljava/io/IOException; , v2 : Ljava/lang/String;
+.line 211
+	invoke-virtual	{v1,v0},java/io/IOException/initCause	; initCause(Ljava/lang/Throwable;)Ljava/lang/Throwable;
+; v1 : Ljava/io/IOException; , v0 : java/lang/SecurityException
+.line 212
+	throw	v1
+; v1 : Ljava/io/IOException;
+.end method
+
+.method public a(Ljavax/net/ssl/SSLSocket;Ljava/lang/String;)V
+.limit registers 7
+; this: v4 (Lcom/a/a/a/o;)
+; parameter[0] : v5 (Ljavax/net/ssl/SSLSocket;)
+; parameter[1] : v6 (Ljava/lang/String;)
+.catch java/lang/reflect/InvocationTargetException from l73d76 to l73dac using l73dae
+.catch java/lang/IllegalAccessException from l73d76 to l73dac using l73dbc
+.line 217
+	invoke-super	{v4,v5,v6},com/a/a/a/m/a	; a(Ljavax/net/ssl/SSLSocket;Ljava/lang/String;)V
+; v4 : Lcom/a/a/a/o; , v5 : Ljavax/net/ssl/SSLSocket; , v6 : Ljava/lang/String;
+.line 218
+	iget-object	v0,v4,com/a/a/a/o.a Ljava/lang/Class;
+; v0 : Ljava/lang/Class; , v4 : Lcom/a/a/a/o;
+	invoke-virtual	{v0,v5},java/lang/Class/isInstance	; isInstance(Ljava/lang/Object;)Z
+; v0 : Ljava/lang/Class; , v5 : Ljavax/net/ssl/SSLSocket;
+	move-result	v0
+; v0 : single-length
+	if-eqz	v0,l73dac
+; v0 : single-length
+l73d76:
+.line 221
+	iget-object	v0,v4,com/a/a/a/o.b Ljava/lang/reflect/Method;
+; v0 : Ljava/lang/reflect/Method; , v4 : Lcom/a/a/a/o;
+	const/4	v1,1
+; v1 : single-length
+	new-array	v1,v1,[Ljava/lang/Object;
+; v1 : [Ljava/lang/Object; , v1 : [Ljava/lang/Object;
+	const/4	v2,0
+; v2 : single-length
+	const/4	v3,1
+; v3 : single-length
+	invoke-static	{v3},java/lang/Boolean/valueOf	; valueOf(Z)Ljava/lang/Boolean;
+; v3 : single-length
+	move-result-object	v3
+; v3 : Ljava/lang/Boolean;
+	aput-object	v3,v1,v2
+; v3 : Ljava/lang/Boolean; , v1 : [Ljava/lang/Object; , v2 : single-length
+	invoke-virtual	{v0,v5,v1},java/lang/reflect/Method/invoke	; invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
+; v0 : Ljava/lang/reflect/Method; , v5 : Ljavax/net/ssl/SSLSocket; , v1 : [Ljava/lang/Object;
+.line 222
+	iget-object	v0,v4,com/a/a/a/o.c Ljava/lang/reflect/Method;
+; v0 : Ljava/lang/reflect/Method; , v4 : Lcom/a/a/a/o;
+	const/4	v1,1
+; v1 : single-length
+	new-array	v1,v1,[Ljava/lang/Object;
+; v1 : [Ljava/lang/Object; , v1 : [Ljava/lang/Object;
+	const/4	v2,0
+; v2 : single-length
+	aput-object	v6,v1,v2
+; v6 : Ljava/lang/String; , v1 : [Ljava/lang/Object; , v2 : single-length
+	invoke-virtual	{v0,v5,v1},java/lang/reflect/Method/invoke	; invoke(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
+; v0 : Ljava/lang/reflect/Method; , v5 : Ljavax/net/ssl/SSLSocket; , v1 : [Ljava/lang/Object;
+l73dac:
+.line 229
+	return-void	
+l73dae:
+.line 223
+	move-exception	v0
+; v0 : java/lang/reflect/InvocationTargetException
+.line 224
+	new-instance	v1,java/lang/RuntimeException
+; v1 : Ljava/lang/RuntimeException;
+	invoke-direct	{v1,v0},java/lang/RuntimeException/<init>	; <init>(Ljava/lang/Throwable;)V
+; v1 : Ljava/lang/RuntimeException; , v0 : java/lang/reflect/InvocationTargetException
+	throw	v1
+; v1 : Ljava/lang/RuntimeException;
+l73dbc:
+.line 225
+	move-exception	v0
+; v0 : java/lang/IllegalAccessException
+.line 226
+	new-instance	v1,java/lang/AssertionError
+; v1 : Ljava/lang/AssertionError;
+	invoke-direct	{v1,v0},java/lang/AssertionError/<init>	; <init>(Ljava/lang/Object;)V
+; v1 : Ljava/lang/AssertionError; , v0 : java/lang/IllegalAccessException
+	throw	v1
+; v1 : Ljava/lang/AssertionError;
+.end method
+
+

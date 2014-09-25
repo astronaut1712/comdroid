@@ -1,0 +1,66 @@
+.class com/squareup/okhttp/internal/spdy/SpdyConnection$3
+.super com/squareup/okhttp/internal/NamedRunnable
+.source SpdyConnection.java
+
+.enclosing method com/writePingLater(ZIILcom/squareup/okhttp/internal/spdy/Ping;)V
+.field final this$0 Lcom/squareup/okhttp/internal/spdy/SpdyConnection;
+.field final val$payload1 I
+.field final val$payload2 I
+.field final val$ping Lcom/squareup/okhttp/internal/spdy/Ping;
+.field final val$reply Z
+
+.method <init>(Lcom/squareup/okhttp/internal/spdy/SpdyConnection;Ljava/lang/String;[Ljava/lang/Object;ZIILcom/squareup/okhttp/internal/spdy/Ping;)V
+.limit registers 8
+; this: v0 (Lcom/squareup/okhttp/internal/spdy/SpdyConnection$3;)
+; parameter[0] : v1 (Lcom/squareup/okhttp/internal/spdy/SpdyConnection;)
+; parameter[1] : v2 (Ljava/lang/String;)
+; parameter[2] : v3 ([Ljava/lang/Object;)
+; parameter[3] : v4 (Z)
+; parameter[4] : v5 (I)
+; parameter[5] : v6 (I)
+; parameter[6] : v7 (Lcom/squareup/okhttp/internal/spdy/Ping;)
+.line 244
+	iput-object	v1,v0,com/squareup/okhttp/internal/spdy/SpdyConnection$3.this$0 Lcom/squareup/okhttp/internal/spdy/SpdyConnection;
+; v1 : Lcom/squareup/okhttp/internal/spdy/SpdyConnection; , v0 : Lcom/squareup/okhttp/internal/spdy/SpdyConnection$3;
+	iput-boolean	v4,v0,com/squareup/okhttp/internal/spdy/SpdyConnection$3.val$reply Z
+; v4 : single-length , v0 : Lcom/squareup/okhttp/internal/spdy/SpdyConnection$3;
+	iput	v5,v0,com/squareup/okhttp/internal/spdy/SpdyConnection$3.val$payload1 I
+; v5 : single-length , v0 : Lcom/squareup/okhttp/internal/spdy/SpdyConnection$3;
+	iput	v6,v0,com/squareup/okhttp/internal/spdy/SpdyConnection$3.val$payload2 I
+; v6 : single-length , v0 : Lcom/squareup/okhttp/internal/spdy/SpdyConnection$3;
+	iput-object	v7,v0,com/squareup/okhttp/internal/spdy/SpdyConnection$3.val$ping Lcom/squareup/okhttp/internal/spdy/Ping;
+; v7 : Lcom/squareup/okhttp/internal/spdy/Ping; , v0 : Lcom/squareup/okhttp/internal/spdy/SpdyConnection$3;
+	invoke-direct	{v0,v2,v3},com/squareup/okhttp/internal/NamedRunnable/<init>	; <init>(Ljava/lang/String;[Ljava/lang/Object;)V
+; v0 : Lcom/squareup/okhttp/internal/spdy/SpdyConnection$3; , v2 : Ljava/lang/String; , v3 : [Ljava/lang/Object;
+	return-void	
+.end method
+
+.method public execute()V
+.limit registers 6
+; this: v5 (Lcom/squareup/okhttp/internal/spdy/SpdyConnection$3;)
+.catch java/io/IOException from lf32d0 to lf32ea using lf32ec
+lf32d0:
+.line 247
+	iget-object	v0,v5,com/squareup/okhttp/internal/spdy/SpdyConnection$3.this$0 Lcom/squareup/okhttp/internal/spdy/SpdyConnection;
+; v0 : Lcom/squareup/okhttp/internal/spdy/SpdyConnection; , v5 : Lcom/squareup/okhttp/internal/spdy/SpdyConnection$3;
+	iget-boolean	v1,v5,com/squareup/okhttp/internal/spdy/SpdyConnection$3.val$reply Z
+; v1 : single-length , v5 : Lcom/squareup/okhttp/internal/spdy/SpdyConnection$3;
+	iget	v2,v5,com/squareup/okhttp/internal/spdy/SpdyConnection$3.val$payload1 I
+; v2 : single-length , v5 : Lcom/squareup/okhttp/internal/spdy/SpdyConnection$3;
+	iget	v3,v5,com/squareup/okhttp/internal/spdy/SpdyConnection$3.val$payload2 I
+; v3 : single-length , v5 : Lcom/squareup/okhttp/internal/spdy/SpdyConnection$3;
+	iget-object	v4,v5,com/squareup/okhttp/internal/spdy/SpdyConnection$3.val$ping Lcom/squareup/okhttp/internal/spdy/Ping;
+; v4 : Lcom/squareup/okhttp/internal/spdy/Ping; , v5 : Lcom/squareup/okhttp/internal/spdy/SpdyConnection$3;
+	invoke-static	{v0,v1,v2,v3,v4},com/squareup/okhttp/internal/spdy/SpdyConnection/access$700	; access$700(Lcom/squareup/okhttp/internal/spdy/SpdyConnection;ZIILcom/squareup/okhttp/internal/spdy/Ping;)V
+; v0 : Lcom/squareup/okhttp/internal/spdy/SpdyConnection; , v1 : single-length , v2 : single-length , v3 : single-length , v4 : Lcom/squareup/okhttp/internal/spdy/Ping;
+lf32ea:
+.line 250
+	return-void	
+lf32ec:
+.line 248
+	move-exception	v0
+; v0 : java/io/IOException
+	goto	lf32ea
+.end method
+
+

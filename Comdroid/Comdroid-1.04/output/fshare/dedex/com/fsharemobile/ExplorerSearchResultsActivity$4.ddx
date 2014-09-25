@@ -1,0 +1,54 @@
+.class com/fsharemobile/ExplorerSearchResultsActivity$4
+.super java/lang/Object
+.source ExplorerSearchResultsActivity.java
+.implements com/fsharemobile/client/FileProxy$OnSearchCompleted
+
+.enclosing method com/search(Ljava/lang/String;)V
+.field final this$0 Lcom/fsharemobile/ExplorerSearchResultsActivity;
+
+.method <init>(Lcom/fsharemobile/ExplorerSearchResultsActivity;)V
+.limit registers 2
+; this: v0 (Lcom/fsharemobile/ExplorerSearchResultsActivity$4;)
+; parameter[0] : v1 (Lcom/fsharemobile/ExplorerSearchResultsActivity;)
+.line 1
+	iput-object	v1,v0,com/fsharemobile/ExplorerSearchResultsActivity$4.this$0 Lcom/fsharemobile/ExplorerSearchResultsActivity;
+; v1 : Lcom/fsharemobile/ExplorerSearchResultsActivity; , v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity$4;
+.line 600
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity$4;
+	return-void	
+.end method
+
+.method static access$0(Lcom/fsharemobile/ExplorerSearchResultsActivity$4;)Lcom/fsharemobile/ExplorerSearchResultsActivity;
+.limit registers 2
+; parameter[0] : v1 (Lcom/fsharemobile/ExplorerSearchResultsActivity$4;)
+.line 600
+	iget-object	v0,v1,com/fsharemobile/ExplorerSearchResultsActivity$4.this$0 Lcom/fsharemobile/ExplorerSearchResultsActivity;
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity; , v1 : Lcom/fsharemobile/ExplorerSearchResultsActivity$4;
+	return-object	v0
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity;
+.end method
+
+.method public onSearchCompleted(ILjava/util/List;)V
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "(I" , "Ljava/util/List" , "<" , "Lcom/fsharemobile/model/File;" , ">;)V" }
+.end annotation
+.limit registers 5
+; this: v2 (Lcom/fsharemobile/ExplorerSearchResultsActivity$4;)
+; parameter[0] : v3 (I)
+; parameter[1] : v4 (Ljava/util/List;)
+.line 605
+	iget-object	v0,v2,com/fsharemobile/ExplorerSearchResultsActivity$4.this$0 Lcom/fsharemobile/ExplorerSearchResultsActivity;
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity; , v2 : Lcom/fsharemobile/ExplorerSearchResultsActivity$4;
+.line 606
+	new-instance	v1,com/fsharemobile/ExplorerSearchResultsActivity$4$1
+; v1 : Lcom/fsharemobile/ExplorerSearchResultsActivity$4$1;
+	invoke-direct	{v1,v2,v3,v4},com/fsharemobile/ExplorerSearchResultsActivity$4$1/<init>	; <init>(Lcom/fsharemobile/ExplorerSearchResultsActivity$4;ILjava/util/List;)V
+; v1 : Lcom/fsharemobile/ExplorerSearchResultsActivity$4$1; , v2 : Lcom/fsharemobile/ExplorerSearchResultsActivity$4; , v3 : single-length , v4 : Ljava/util/List;
+	invoke-virtual	{v0,v1},com/fsharemobile/ExplorerSearchResultsActivity/runOnUiThread	; runOnUiThread(Ljava/lang/Runnable;)V
+; v0 : Lcom/fsharemobile/ExplorerSearchResultsActivity; , v1 : Lcom/fsharemobile/ExplorerSearchResultsActivity$4$1;
+.line 635
+	return-void	
+.end method
+
+

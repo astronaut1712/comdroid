@@ -1,0 +1,75 @@
+.class com/fsharemobile/adapter/b
+.super java/lang/Object
+.source MyApplication
+.implements com/fsharemobile/e/d
+
+.field final a Lcom/fsharemobile/adapter/a;
+.field private final b I
+
+.method <init>(Lcom/fsharemobile/adapter/a;I)V
+.limit registers 3
+; this: v0 (Lcom/fsharemobile/adapter/b;)
+; parameter[0] : v1 (Lcom/fsharemobile/adapter/a;)
+; parameter[1] : v2 (I)
+.line 1
+	iput-object	v1,v0,com/fsharemobile/adapter/b.a Lcom/fsharemobile/adapter/a;
+; v1 : Lcom/fsharemobile/adapter/a; , v0 : Lcom/fsharemobile/adapter/b;
+	iput	v2,v0,com/fsharemobile/adapter/b.b I
+; v2 : single-length , v0 : Lcom/fsharemobile/adapter/b;
+.line 238
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Lcom/fsharemobile/adapter/b;
+	return-void	
+.end method
+
+.method public a(I)V
+.limit registers 5
+; this: v3 (Lcom/fsharemobile/adapter/b;)
+; parameter[0] : v4 (I)
+.line 244
+	const-string	v0,"FSHARE MOBILE"
+; v0 : Ljava/lang/String;
+	new-instance	v1,java/lang/StringBuilder
+; v1 : Ljava/lang/StringBuilder;
+	invoke-direct	{v1},java/lang/StringBuilder/<init>	; <init>()V
+; v1 : Ljava/lang/StringBuilder;
+	iget-object	v2,v3,com/fsharemobile/adapter/b.a Lcom/fsharemobile/adapter/a;
+; v2 : Lcom/fsharemobile/adapter/a; , v3 : Lcom/fsharemobile/adapter/b;
+	invoke-static	{v2},com/fsharemobile/adapter/a/a	; a(Lcom/fsharemobile/adapter/a;)I
+; v2 : Lcom/fsharemobile/adapter/a;
+	move-result	v2
+; v2 : single-length
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(I)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : single-length
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v1},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v1 : Ljava/lang/StringBuilder;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-static	{v0,v1},android/util/Log/i	; i(Ljava/lang/String;Ljava/lang/String;)I
+; v0 : Ljava/lang/String; , v1 : Ljava/lang/String;
+.line 245
+	const-string	v0,"FSHARE MOBILE"
+; v0 : Ljava/lang/String;
+	new-instance	v1,java/lang/StringBuilder
+; v1 : Ljava/lang/StringBuilder;
+	invoke-direct	{v1},java/lang/StringBuilder/<init>	; <init>()V
+; v1 : Ljava/lang/StringBuilder;
+	iget	v2,v3,com/fsharemobile/adapter/b.b I
+; v2 : single-length , v3 : Lcom/fsharemobile/adapter/b;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(I)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : single-length
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v1},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v1 : Ljava/lang/StringBuilder;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-static	{v0,v1},android/util/Log/i	; i(Ljava/lang/String;Ljava/lang/String;)I
+; v0 : Ljava/lang/String; , v1 : Ljava/lang/String;
+.line 255
+	return-void	
+.end method
+
+

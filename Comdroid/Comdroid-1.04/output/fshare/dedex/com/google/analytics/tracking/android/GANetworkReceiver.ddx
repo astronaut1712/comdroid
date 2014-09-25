@@ -1,0 +1,179 @@
+.class com/google/analytics/tracking/android/GANetworkReceiver
+.super android/content/BroadcastReceiver
+.source GANetworkReceiver.java
+
+.field static final SELF_IDENTIFYING_EXTRA Ljava/lang/String;
+  .annotation buildVisibility Lcom/google/android/gms/common/util/VisibleForTesting;
+  .end annotation
+.end field
+.field private final mManager Lcom/google/analytics/tracking/android/ServiceManager;
+
+.method static <clinit>()V
+.limit registers 1
+.line 26
+	const-class	v0,com/google/analytics/tracking/android/GANetworkReceiver
+; v0 : Ljava/lang/Class;
+	invoke-virtual	{v0},java/lang/Class/getName	; getName()Ljava/lang/String;
+; v0 : Ljava/lang/Class;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	sput-object	v0,com/google/analytics/tracking/android/GANetworkReceiver.SELF_IDENTIFYING_EXTRA Ljava/lang/String;
+; v0 : Ljava/lang/String;
+	return-void	
+.end method
+
+.method <init>(Lcom/google/analytics/tracking/android/ServiceManager;)V
+.limit registers 2
+; this: v0 (Lcom/google/analytics/tracking/android/GANetworkReceiver;)
+; parameter[0] : v1 (Lcom/google/analytics/tracking/android/ServiceManager;)
+.line 30
+	invoke-direct	{v0},android/content/BroadcastReceiver/<init>	; <init>()V
+; v0 : Lcom/google/analytics/tracking/android/GANetworkReceiver;
+.line 31
+	iput-object	v1,v0,com/google/analytics/tracking/android/GANetworkReceiver.mManager Lcom/google/analytics/tracking/android/ServiceManager;
+; v1 : Lcom/google/analytics/tracking/android/ServiceManager; , v0 : Lcom/google/analytics/tracking/android/GANetworkReceiver;
+.line 32
+	return-void	
+.end method
+
+.method public static sendRadioPoweredBroadcast(Landroid/content/Context;)V
+.limit registers 4
+; parameter[0] : v3 (Landroid/content/Context;)
+.line 67
+	new-instance	v0,android/content/Intent
+; v0 : Landroid/content/Intent;
+	const-string	v1,"com.google.analytics.RADIO_POWERED"
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},android/content/Intent/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Landroid/content/Intent; , v1 : Ljava/lang/String;
+.line 68
+	invoke-virtual	{v3},android/content/Context/getPackageName	; getPackageName()Ljava/lang/String;
+; v3 : Landroid/content/Context;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},android/content/Intent/addCategory	; addCategory(Ljava/lang/String;)Landroid/content/Intent;
+; v0 : Landroid/content/Intent; , v1 : Ljava/lang/String;
+.line 69
+	sget-object	v1,com/google/analytics/tracking/android/GANetworkReceiver.SELF_IDENTIFYING_EXTRA Ljava/lang/String;
+; v1 : Ljava/lang/String;
+	const/4	v2,1
+; v2 : single-length
+	invoke-virtual	{v0,v1,v2},android/content/Intent/putExtra	; putExtra(Ljava/lang/String;Z)Landroid/content/Intent;
+; v0 : Landroid/content/Intent; , v1 : Ljava/lang/String; , v2 : single-length
+.line 70
+	invoke-virtual	{v3,v0},android/content/Context/sendBroadcast	; sendBroadcast(Landroid/content/Intent;)V
+; v3 : Landroid/content/Context; , v0 : Landroid/content/Intent;
+.line 71
+	return-void	
+.end method
+
+.method public onReceive(Landroid/content/Context;Landroid/content/Intent;)V
+.limit registers 7
+; this: v4 (Lcom/google/analytics/tracking/android/GANetworkReceiver;)
+; parameter[0] : v5 (Landroid/content/Context;)
+; parameter[1] : v6 (Landroid/content/Intent;)
+.var 1 is notConnected Z from la0b42 to la0b52
+	const/4	v2,0
+; v2 : single-length
+.line 36
+	invoke-virtual	{v6},android/content/Intent/getAction	; getAction()Ljava/lang/String;
+; v6 : Landroid/content/Intent;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+.line 37
+	const-string	v3,"android.net.conn.CONNECTIVITY_CHANGE"
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v3,v0},java/lang/String/equals	; equals(Ljava/lang/Object;)Z
+; v3 : Ljava/lang/String; , v0 : Ljava/lang/String;
+	move-result	v3
+; v3 : single-length
+	if-eqz	v3,la0b54
+; v3 : single-length
+.line 38
+	const-string	v3,"noConnectivity"
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v6,v3,v2},android/content/Intent/getBooleanExtra	; getBooleanExtra(Ljava/lang/String;Z)Z
+; v6 : Landroid/content/Intent; , v3 : Ljava/lang/String; , v2 : single-length
+	move-result	v1
+; v1 : single-length
+.line 39
+	iget-object	v3,v4,com/google/analytics/tracking/android/GANetworkReceiver.mManager Lcom/google/analytics/tracking/android/ServiceManager;
+; v3 : Lcom/google/analytics/tracking/android/ServiceManager; , v4 : Lcom/google/analytics/tracking/android/GANetworkReceiver;
+	if-nez	v1,la0b4c
+; v1 : single-length
+	const/4	v2,1
+; v2 : single-length
+la0b4c:
+	invoke-virtual	{v3,v2},com/google/analytics/tracking/android/ServiceManager/updateConnectivityStatus	; updateConnectivityStatus(Z)V
+; v3 : Lcom/google/analytics/tracking/android/ServiceManager; , v2 : single-length
+la0b52:
+.line 44
+	return-void	
+la0b54:
+.line 40
+	const-string	v2,"com.google.analytics.RADIO_POWERED"
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v2,v0},java/lang/String/equals	; equals(Ljava/lang/Object;)Z
+; v2 : Ljava/lang/String; , v0 : Ljava/lang/String;
+	move-result	v2
+; v2 : single-length
+	if-eqz	v2,la0b52
+; v2 : single-length
+	sget-object	v2,com/google/analytics/tracking/android/GANetworkReceiver.SELF_IDENTIFYING_EXTRA Ljava/lang/String;
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v6,v2},android/content/Intent/hasExtra	; hasExtra(Ljava/lang/String;)Z
+; v6 : Landroid/content/Intent; , v2 : Ljava/lang/String;
+	move-result	v2
+; v2 : single-length
+	if-nez	v2,la0b52
+; v2 : single-length
+.line 42
+	iget-object	v2,v4,com/google/analytics/tracking/android/GANetworkReceiver.mManager Lcom/google/analytics/tracking/android/ServiceManager;
+; v2 : Lcom/google/analytics/tracking/android/ServiceManager; , v4 : Lcom/google/analytics/tracking/android/GANetworkReceiver;
+	invoke-virtual	{v2},com/google/analytics/tracking/android/ServiceManager/onRadioPowered	; onRadioPowered()V
+; v2 : Lcom/google/analytics/tracking/android/ServiceManager;
+	goto	la0b52
+.end method
+
+.method public register(Landroid/content/Context;)V
+.limit registers 5
+; this: v3 (Lcom/google/analytics/tracking/android/GANetworkReceiver;)
+; parameter[0] : v4 (Landroid/content/Context;)
+.line 50
+	new-instance	v0,android/content/IntentFilter
+; v0 : Landroid/content/IntentFilter;
+	invoke-direct	{v0},android/content/IntentFilter/<init>	; <init>()V
+; v0 : Landroid/content/IntentFilter;
+.line 51
+	const-string	v2,"android.net.conn.CONNECTIVITY_CHANGE"
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v0,v2},android/content/IntentFilter/addAction	; addAction(Ljava/lang/String;)V
+; v0 : Landroid/content/IntentFilter; , v2 : Ljava/lang/String;
+.line 52
+	invoke-virtual	{v4,v3,v0},android/content/Context/registerReceiver	; registerReceiver(Landroid/content/BroadcastReceiver;Landroid/content/IntentFilter;)Landroid/content/Intent;
+; v4 : Landroid/content/Context; , v3 : Lcom/google/analytics/tracking/android/GANetworkReceiver; , v0 : Landroid/content/IntentFilter;
+.line 53
+	new-instance	v1,android/content/IntentFilter
+; v1 : Landroid/content/IntentFilter;
+	invoke-direct	{v1},android/content/IntentFilter/<init>	; <init>()V
+; v1 : Landroid/content/IntentFilter;
+.line 54
+	const-string	v2,"com.google.analytics.RADIO_POWERED"
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},android/content/IntentFilter/addAction	; addAction(Ljava/lang/String;)V
+; v1 : Landroid/content/IntentFilter; , v2 : Ljava/lang/String;
+.line 56
+	invoke-virtual	{v4},android/content/Context/getPackageName	; getPackageName()Ljava/lang/String;
+; v4 : Landroid/content/Context;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},android/content/IntentFilter/addCategory	; addCategory(Ljava/lang/String;)V
+; v1 : Landroid/content/IntentFilter; , v2 : Ljava/lang/String;
+.line 57
+	invoke-virtual	{v4,v3,v1},android/content/Context/registerReceiver	; registerReceiver(Landroid/content/BroadcastReceiver;Landroid/content/IntentFilter;)Landroid/content/Intent;
+; v4 : Landroid/content/Context; , v3 : Lcom/google/analytics/tracking/android/GANetworkReceiver; , v1 : Landroid/content/IntentFilter;
+.line 58
+	return-void	
+.end method
+
+

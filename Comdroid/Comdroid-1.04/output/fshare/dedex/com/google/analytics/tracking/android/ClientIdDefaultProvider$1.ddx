@@ -1,0 +1,78 @@
+.class com/google/analytics/tracking/android/ClientIdDefaultProvider$1
+.super java/lang/Thread
+.source ClientIdDefaultProvider.java
+
+.enclosing method com/asyncInitializeClientId()V
+.field final this$0 Lcom/google/analytics/tracking/android/ClientIdDefaultProvider;
+
+.method <init>(Lcom/google/analytics/tracking/android/ClientIdDefaultProvider;Ljava/lang/String;)V
+.limit registers 3
+; this: v0 (Lcom/google/analytics/tracking/android/ClientIdDefaultProvider$1;)
+; parameter[0] : v1 (Lcom/google/analytics/tracking/android/ClientIdDefaultProvider;)
+; parameter[1] : v2 (Ljava/lang/String;)
+.line 130
+	iput-object	v1,v0,com/google/analytics/tracking/android/ClientIdDefaultProvider$1.this$0 Lcom/google/analytics/tracking/android/ClientIdDefaultProvider;
+; v1 : Lcom/google/analytics/tracking/android/ClientIdDefaultProvider; , v0 : Lcom/google/analytics/tracking/android/ClientIdDefaultProvider$1;
+	invoke-direct	{v0,v2},java/lang/Thread/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Lcom/google/analytics/tracking/android/ClientIdDefaultProvider$1; , v2 : Ljava/lang/String;
+	return-void	
+.end method
+
+.method public run()V
+.limit registers 4
+; this: v3 (Lcom/google/analytics/tracking/android/ClientIdDefaultProvider$1;)
+.catch java/lang/Exception from la02ea to la0326 using la0322
+.line 133
+	iget-object	v0,v3,com/google/analytics/tracking/android/ClientIdDefaultProvider$1.this$0 Lcom/google/analytics/tracking/android/ClientIdDefaultProvider;
+; v0 : Lcom/google/analytics/tracking/android/ClientIdDefaultProvider; , v3 : Lcom/google/analytics/tracking/android/ClientIdDefaultProvider$1;
+	invoke-static	{v0},com/google/analytics/tracking/android/ClientIdDefaultProvider/access$000	; access$000(Lcom/google/analytics/tracking/android/ClientIdDefaultProvider;)Ljava/lang/Object;
+; v0 : Lcom/google/analytics/tracking/android/ClientIdDefaultProvider;
+	move-result-object	v1
+; v1 : Ljava/lang/Object;
+	monitor-enter	v1
+; v1 : Ljava/lang/Object;
+la02ea:
+.line 134
+	iget-object	v0,v3,com/google/analytics/tracking/android/ClientIdDefaultProvider$1.this$0 Lcom/google/analytics/tracking/android/ClientIdDefaultProvider;
+; v0 : Lcom/google/analytics/tracking/android/ClientIdDefaultProvider; , v3 : Lcom/google/analytics/tracking/android/ClientIdDefaultProvider$1;
+	iget-object	v2,v3,com/google/analytics/tracking/android/ClientIdDefaultProvider$1.this$0 Lcom/google/analytics/tracking/android/ClientIdDefaultProvider;
+; v2 : Lcom/google/analytics/tracking/android/ClientIdDefaultProvider; , v3 : Lcom/google/analytics/tracking/android/ClientIdDefaultProvider$1;
+	invoke-virtual	{v2},com/google/analytics/tracking/android/ClientIdDefaultProvider/initializeClientId	; initializeClientId()Ljava/lang/String;
+; v2 : Lcom/google/analytics/tracking/android/ClientIdDefaultProvider;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-static	{v0,v2},com/google/analytics/tracking/android/ClientIdDefaultProvider/access$102	; access$102(Lcom/google/analytics/tracking/android/ClientIdDefaultProvider;Ljava/lang/String;)Ljava/lang/String;
+; v0 : Lcom/google/analytics/tracking/android/ClientIdDefaultProvider; , v2 : Ljava/lang/String;
+.line 135
+	iget-object	v0,v3,com/google/analytics/tracking/android/ClientIdDefaultProvider$1.this$0 Lcom/google/analytics/tracking/android/ClientIdDefaultProvider;
+; v0 : Lcom/google/analytics/tracking/android/ClientIdDefaultProvider; , v3 : Lcom/google/analytics/tracking/android/ClientIdDefaultProvider$1;
+	const/4	v2,1
+; v2 : single-length
+	invoke-static	{v0,v2},com/google/analytics/tracking/android/ClientIdDefaultProvider/access$202	; access$202(Lcom/google/analytics/tracking/android/ClientIdDefaultProvider;Z)Z
+; v0 : Lcom/google/analytics/tracking/android/ClientIdDefaultProvider; , v2 : single-length
+.line 136
+	iget-object	v0,v3,com/google/analytics/tracking/android/ClientIdDefaultProvider$1.this$0 Lcom/google/analytics/tracking/android/ClientIdDefaultProvider;
+; v0 : Lcom/google/analytics/tracking/android/ClientIdDefaultProvider; , v3 : Lcom/google/analytics/tracking/android/ClientIdDefaultProvider$1;
+	invoke-static	{v0},com/google/analytics/tracking/android/ClientIdDefaultProvider/access$000	; access$000(Lcom/google/analytics/tracking/android/ClientIdDefaultProvider;)Ljava/lang/Object;
+; v0 : Lcom/google/analytics/tracking/android/ClientIdDefaultProvider;
+	move-result-object	v0
+; v0 : Ljava/lang/Object;
+	invoke-virtual	{v0},java/lang/Object/notifyAll	; notifyAll()V
+; v0 : Ljava/lang/Object;
+.line 137
+	monitor-exit	v1
+; v1 : Ljava/lang/Object;
+.line 138
+	return-void	
+la0322:
+.line 137
+	move-exception	v0
+; v0 : java/lang/Exception
+	monitor-exit	v1
+; v1 : Ljava/lang/Object;
+la0326:
+	throw	v0
+; v0 : java/lang/Exception
+.end method
+
+

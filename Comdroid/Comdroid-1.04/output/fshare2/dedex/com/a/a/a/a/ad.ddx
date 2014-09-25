@@ -1,0 +1,278 @@
+.class final com/a/a/a/a/ad
+.super com/a/a/a/a
+.source MyApplication
+
+.field private final b I
+.field private final c Ljava/io/ByteArrayOutputStream;
+
+.method public <init>()V
+.limit registers 2
+; this: v1 (Lcom/a/a/a/a/ad;)
+.line 41
+	invoke-direct	{v1},com/a/a/a/a/<init>	; <init>()V
+; v1 : Lcom/a/a/a/a/ad;
+.line 42
+	const/4	v0,15
+; v0 : single-length
+	iput	v0,v1,com/a/a/a/a/ad.b I
+; v0 : single-length , v1 : Lcom/a/a/a/a/ad;
+.line 43
+	new-instance	v0,java/io/ByteArrayOutputStream
+; v0 : Ljava/io/ByteArrayOutputStream;
+	invoke-direct	{v0},java/io/ByteArrayOutputStream/<init>	; <init>()V
+; v0 : Ljava/io/ByteArrayOutputStream;
+	iput-object	v0,v1,com/a/a/a/a/ad.c Ljava/io/ByteArrayOutputStream;
+; v0 : Ljava/io/ByteArrayOutputStream; , v1 : Lcom/a/a/a/a/ad;
+.line 44
+	return-void	
+.end method
+
+.method public <init>(I)V
+.limit registers 3
+; this: v1 (Lcom/a/a/a/a/ad;)
+; parameter[0] : v2 (I)
+.line 36
+	invoke-direct	{v1},com/a/a/a/a/<init>	; <init>()V
+; v1 : Lcom/a/a/a/a/ad;
+.line 37
+	iput	v2,v1,com/a/a/a/a/ad.b I
+; v2 : single-length , v1 : Lcom/a/a/a/a/ad;
+.line 38
+	new-instance	v0,java/io/ByteArrayOutputStream
+; v0 : Ljava/io/ByteArrayOutputStream;
+	invoke-direct	{v0,v2},java/io/ByteArrayOutputStream/<init>	; <init>(I)V
+; v0 : Ljava/io/ByteArrayOutputStream; , v2 : single-length
+	iput-object	v0,v1,com/a/a/a/a/ad.c Ljava/io/ByteArrayOutputStream;
+; v0 : Ljava/io/ByteArrayOutputStream; , v1 : Lcom/a/a/a/a/ad;
+.line 39
+	return-void	
+.end method
+
+.method public a(Ljava/io/OutputStream;)V
+.limit registers 3
+; this: v1 (Lcom/a/a/a/a/ad;)
+; parameter[0] : v2 (Ljava/io/OutputStream;)
+.line 73
+	iget-object	v0,v1,com/a/a/a/a/ad.c Ljava/io/ByteArrayOutputStream;
+; v0 : Ljava/io/ByteArrayOutputStream; , v1 : Lcom/a/a/a/a/ad;
+	invoke-virtual	{v0,v2},java/io/ByteArrayOutputStream/writeTo	; writeTo(Ljava/io/OutputStream;)V
+; v0 : Ljava/io/ByteArrayOutputStream; , v2 : Ljava/io/OutputStream;
+.line 74
+	return-void	
+.end method
+
+.method public synchronized c()I
+.limit registers 2
+; this: v1 (Lcom/a/a/a/a/ad;)
+.catch java/lang/Exception from l65b7e to l65b8e using l65b94
+.line 68
+	monitor-enter	v1
+; v1 : Lcom/a/a/a/a/ad;
+l65b7e:
+	invoke-virtual	{v1},com/a/a/a/a/ad/close	; close()V
+; v1 : Lcom/a/a/a/a/ad;
+.line 69
+	iget-object	v0,v1,com/a/a/a/a/ad.c Ljava/io/ByteArrayOutputStream;
+; v0 : Ljava/io/ByteArrayOutputStream; , v1 : Lcom/a/a/a/a/ad;
+	invoke-virtual	{v0},java/io/ByteArrayOutputStream/size	; size()I
+; v0 : Ljava/io/ByteArrayOutputStream;
+l65b8e:
+	move-result	v0
+; v0 : single-length
+	monitor-exit	v1
+; v1 : Lcom/a/a/a/a/ad;
+	return	v0
+; v0 : single-length
+l65b94:
+.line 68
+	move-exception	v0
+; v0 : java/lang/Exception
+	monitor-exit	v1
+; v1 : Lcom/a/a/a/a/ad;
+	throw	v0
+; v0 : java/lang/Exception
+.end method
+
+.method public synchronized close()V
+.limit registers 4
+; this: v3 (Lcom/a/a/a/a/ad;)
+.catch java/lang/Exception from l65bc8 to l65c36 using l65c36
+.catch java/lang/Exception from l65bba to l65bbe using l65c36
+.line 47
+	monitor-enter	v3
+; v3 : Lcom/a/a/a/a/ad;
+l65bba:
+	iget-boolean	v0,v3,com/a/a/a/a/ad.a Z
+; v0 : single-length , v3 : Lcom/a/a/a/a/ad;
+l65bbe:
+	if-eqz	v0,l65bc6
+; v0 : single-length
+l65bc2:
+.line 55
+	monitor-exit	v3
+; v3 : Lcom/a/a/a/a/ad;
+	return-void	
+l65bc6:
+.line 50
+	const/4	v0,1
+; v0 : single-length
+l65bc8:
+	iput-boolean	v0,v3,com/a/a/a/a/ad.a Z
+; v0 : single-length , v3 : Lcom/a/a/a/a/ad;
+.line 51
+	iget-object	v0,v3,com/a/a/a/a/ad.c Ljava/io/ByteArrayOutputStream;
+; v0 : Ljava/io/ByteArrayOutputStream; , v3 : Lcom/a/a/a/a/ad;
+	invoke-virtual	{v0},java/io/ByteArrayOutputStream/size	; size()I
+; v0 : Ljava/io/ByteArrayOutputStream;
+	move-result	v0
+; v0 : single-length
+	iget	v1,v3,com/a/a/a/a/ad.b I
+; v1 : single-length , v3 : Lcom/a/a/a/a/ad;
+	if-ge	v0,v1,l65bc2
+; v0 : single-length , v1 : single-length
+.line 52
+	new-instance	v0,java/net/ProtocolException
+; v0 : Ljava/net/ProtocolException;
+	new-instance	v1,java/lang/StringBuilder
+; v1 : Ljava/lang/StringBuilder;
+	invoke-direct	{v1},java/lang/StringBuilder/<init>	; <init>()V
+; v1 : Ljava/lang/StringBuilder;
+	const-string	v2,"content-length promised "
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	iget	v2,v3,com/a/a/a/a/ad.b I
+; v2 : single-length , v3 : Lcom/a/a/a/a/ad;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(I)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : single-length
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	const-string	v2," bytes, but received "
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	iget-object	v2,v3,com/a/a/a/a/ad.c Ljava/io/ByteArrayOutputStream;
+; v2 : Ljava/io/ByteArrayOutputStream; , v3 : Lcom/a/a/a/a/ad;
+	invoke-virtual	{v2},java/io/ByteArrayOutputStream/size	; size()I
+; v2 : Ljava/io/ByteArrayOutputStream;
+	move-result	v2
+; v2 : single-length
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(I)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : single-length
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v1},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v1 : Ljava/lang/StringBuilder;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/net/ProtocolException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/net/ProtocolException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/net/ProtocolException;
+l65c36:
+.line 47
+	move-exception	v0
+; v0 : java/lang/Exception
+	monitor-exit	v3
+; v3 : Lcom/a/a/a/a/ad;
+	throw	v0
+; v0 : java/lang/Exception
+.end method
+
+.method public synchronized write([BII)V
+.limit registers 7
+; this: v3 (Lcom/a/a/a/a/ad;)
+; parameter[0] : v4 ([B)
+; parameter[1] : v5 (I)
+; parameter[2] : v6 (I)
+.catch java/lang/Exception from l65cd8 to l65ce2 using l65cd2
+.catch java/lang/Exception from l65c62 to l65cd2 using l65cd2
+.line 59
+	monitor-enter	v3
+; v3 : Lcom/a/a/a/a/ad;
+l65c62:
+	invoke-virtual	{v3},com/a/a/a/a/ad/a	; a()V
+; v3 : Lcom/a/a/a/a/ad;
+.line 60
+	array-length	v0,v4
+; v0 : single-length , v4 : [B
+	invoke-static	{v0,v5,v6},com/a/a/a/u/a	; a(III)V
+; v0 : single-length , v5 : single-length , v6 : single-length
+.line 61
+	iget	v0,v3,com/a/a/a/a/ad.b I
+; v0 : single-length , v3 : Lcom/a/a/a/a/ad;
+	const/4	v1,15
+; v1 : single-length
+	if-eq	v0,v1,l65cd8
+; v0 : single-length , v1 : single-length
+	iget-object	v0,v3,com/a/a/a/a/ad.c Ljava/io/ByteArrayOutputStream;
+; v0 : Ljava/io/ByteArrayOutputStream; , v3 : Lcom/a/a/a/a/ad;
+	invoke-virtual	{v0},java/io/ByteArrayOutputStream/size	; size()I
+; v0 : Ljava/io/ByteArrayOutputStream;
+	move-result	v0
+; v0 : single-length
+	iget	v1,v3,com/a/a/a/a/ad.b I
+; v1 : single-length , v3 : Lcom/a/a/a/a/ad;
+	sub-int/2addr	v1,v6
+; v1 : single-length , v6 : single-length
+	if-le	v0,v1,l65cd8
+; v0 : single-length , v1 : single-length
+.line 62
+	new-instance	v0,java/net/ProtocolException
+; v0 : Ljava/net/ProtocolException;
+	new-instance	v1,java/lang/StringBuilder
+; v1 : Ljava/lang/StringBuilder;
+	invoke-direct	{v1},java/lang/StringBuilder/<init>	; <init>()V
+; v1 : Ljava/lang/StringBuilder;
+	const-string	v2,"exceeded content-length limit of "
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	iget	v2,v3,com/a/a/a/a/ad.b I
+; v2 : single-length , v3 : Lcom/a/a/a/a/ad;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(I)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : single-length
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	const-string	v2," bytes"
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v1},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v1 : Ljava/lang/StringBuilder;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/net/ProtocolException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/net/ProtocolException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/net/ProtocolException;
+l65cd2:
+.line 59
+	move-exception	v0
+; v0 : java/lang/Exception
+	monitor-exit	v3
+; v3 : Lcom/a/a/a/a/ad;
+	throw	v0
+; v0 : java/lang/Exception
+l65cd8:
+.line 64
+	iget-object	v0,v3,com/a/a/a/a/ad.c Ljava/io/ByteArrayOutputStream;
+; v0 : Ljava/io/ByteArrayOutputStream; , v3 : Lcom/a/a/a/a/ad;
+	invoke-virtual	{v0,v4,v5,v6},java/io/ByteArrayOutputStream/write	; write([BII)V
+; v0 : Ljava/io/ByteArrayOutputStream; , v4 : [B , v5 : single-length , v6 : single-length
+l65ce2:
+.line 65
+	monitor-exit	v3
+; v3 : Lcom/a/a/a/a/ad;
+	return-void	
+.end method
+
+

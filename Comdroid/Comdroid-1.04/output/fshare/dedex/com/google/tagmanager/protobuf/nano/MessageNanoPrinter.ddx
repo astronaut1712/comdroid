@@ -1,0 +1,648 @@
+.class public final com/google/tagmanager/protobuf/nano/MessageNanoPrinter
+.super java/lang/Object
+.source MessageNanoPrinter.java
+
+.field private static final INDENT Ljava/lang/String; = "  "
+.field private static final MAX_STRING_LEN I = 200	; 0xc8
+
+.method private <init>()V
+.limit registers 1
+; this: v0 (Lcom/google/tagmanager/protobuf/nano/MessageNanoPrinter;)
+.line 44
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Lcom/google/tagmanager/protobuf/nano/MessageNanoPrinter;
+	return-void	
+.end method
+
+.method private static deCamelCaseify(Ljava/lang/String;)Ljava/lang/String;
+.limit registers 6
+; parameter[0] : v5 (Ljava/lang/String;)
+.var 0 is currentChar C from laf1a4 to laf1ec
+.line 141
+	new-instance	v2,java/lang/StringBuffer
+; v2 : Ljava/lang/StringBuffer;
+	invoke-direct	{v2},java/lang/StringBuffer/<init>	; <init>()V
+; v2 : Ljava/lang/StringBuffer;
+.line 142
+	const/4	v1,0
+; v1 : single-length
+laf190:
+	invoke-virtual	{v5},java/lang/String/length	; length()I
+; v5 : Ljava/lang/String;
+	move-result	v3
+; v3 : single-length
+	if-ge	v1,v3,laf1ec
+; v1 : single-length , v3 : single-length
+.line 143
+	invoke-virtual	{v5,v1},java/lang/String/charAt	; charAt(I)C
+; v5 : Ljava/lang/String; , v1 : single-length
+	move-result	v0
+; v0 : single-length
+.line 144
+	if-nez	v1,laf1bc
+; v1 : single-length
+.line 145
+	invoke-static	{v0},java/lang/Character/toLowerCase	; toLowerCase(C)C
+; v0 : single-length
+	move-result	v3
+; v3 : single-length
+	invoke-virtual	{v2,v3},java/lang/StringBuffer/append	; append(C)Ljava/lang/StringBuffer;
+; v2 : Ljava/lang/StringBuffer; , v3 : single-length
+laf1b6:
+.line 142
+	add-int/lit8	v1,v1,1
+; v1 : single-length , v1 : single-length
+	goto	laf190
+laf1bc:
+.line 146
+	invoke-static	{v0},java/lang/Character/isUpperCase	; isUpperCase(C)Z
+; v0 : single-length
+	move-result	v3
+; v3 : single-length
+	if-eqz	v3,laf1e4
+; v3 : single-length
+.line 147
+	const/16	v3,95
+; v3 : single-length
+	invoke-virtual	{v2,v3},java/lang/StringBuffer/append	; append(C)Ljava/lang/StringBuffer;
+; v2 : Ljava/lang/StringBuffer; , v3 : single-length
+	move-result-object	v3
+; v3 : Ljava/lang/StringBuffer;
+	invoke-static	{v0},java/lang/Character/toLowerCase	; toLowerCase(C)C
+; v0 : single-length
+	move-result	v4
+; v4 : single-length
+	invoke-virtual	{v3,v4},java/lang/StringBuffer/append	; append(C)Ljava/lang/StringBuffer;
+; v3 : Ljava/lang/StringBuffer; , v4 : single-length
+	goto	laf1b6
+laf1e4:
+.line 149
+	invoke-virtual	{v2,v0},java/lang/StringBuffer/append	; append(C)Ljava/lang/StringBuffer;
+; v2 : Ljava/lang/StringBuffer; , v0 : single-length
+	goto	laf1b6
+laf1ec:
+.line 152
+	invoke-virtual	{v2},java/lang/StringBuffer/toString	; toString()Ljava/lang/String;
+; v2 : Ljava/lang/StringBuffer;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	return-object	v3
+; v3 : Ljava/lang/String;
+.end method
+
+.method private static escapeString(Ljava/lang/String;)Ljava/lang/String;
+.limit registers 9
+; parameter[0] : v8 (Ljava/lang/String;)
+.var 2 is original C from laf228 to laf27c
+.line 170
+	invoke-virtual	{v8},java/lang/String/length	; length()I
+; v8 : Ljava/lang/String;
+	move-result	v3
+; v3 : single-length
+.line 171
+	new-instance	v0,java/lang/StringBuilder
+; v0 : Ljava/lang/StringBuilder;
+	invoke-direct	{v0,v3},java/lang/StringBuilder/<init>	; <init>(I)V
+; v0 : Ljava/lang/StringBuilder; , v3 : single-length
+.line 172
+	const/4	v1,0
+; v1 : single-length
+laf21c:
+	if-ge	v1,v3,laf27c
+; v1 : single-length , v3 : single-length
+.line 173
+	invoke-virtual	{v8,v1},java/lang/String/charAt	; charAt(I)C
+; v8 : Ljava/lang/String; , v1 : single-length
+	move-result	v2
+; v2 : single-length
+.line 174
+	const/16	v4,32
+; v4 : single-length
+	if-lt	v2,v4,laf254
+; v2 : single-length , v4 : single-length
+	const/16	v4,126
+; v4 : single-length
+	if-gt	v2,v4,laf254
+; v2 : single-length , v4 : single-length
+	const/16	v4,34
+; v4 : single-length
+	if-eq	v2,v4,laf254
+; v2 : single-length , v4 : single-length
+	const/16	v4,39
+; v4 : single-length
+	if-eq	v2,v4,laf254
+; v2 : single-length , v4 : single-length
+.line 175
+	invoke-virtual	{v0,v2},java/lang/StringBuilder/append	; append(C)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v2 : single-length
+laf24e:
+.line 172
+	add-int/lit8	v1,v1,1
+; v1 : single-length , v1 : single-length
+	goto	laf21c
+laf254:
+.line 177
+	const-string	v4,"\u%04x"
+; v4 : Ljava/lang/String;
+	const/4	v5,1
+; v5 : single-length
+	new-array	v5,v5,[Ljava/lang/Object;
+; v5 : [Ljava/lang/Object; , v5 : [Ljava/lang/Object;
+	const/4	v6,0
+; v6 : single-length
+	invoke-static	{v2},java/lang/Integer/valueOf	; valueOf(I)Ljava/lang/Integer;
+; v2 : single-length
+	move-result-object	v7
+; v7 : Ljava/lang/Integer;
+	aput-object	v7,v5,v6
+; v7 : Ljava/lang/Integer; , v5 : [Ljava/lang/Object; , v6 : single-length
+	invoke-static	{v4,v5},java/lang/String/format	; format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+; v4 : Ljava/lang/String; , v5 : [Ljava/lang/Object;
+	move-result-object	v4
+; v4 : Ljava/lang/String;
+	invoke-virtual	{v0,v4},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v4 : Ljava/lang/String;
+	goto	laf24e
+laf27c:
+.line 180
+	invoke-virtual	{v0},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v0 : Ljava/lang/StringBuilder;
+	move-result-object	v4
+; v4 : Ljava/lang/String;
+	return-object	v4
+; v4 : Ljava/lang/String;
+.end method
+
+.method public static print(Lcom/google/tagmanager/protobuf/nano/MessageNano;)Ljava/lang/String;
+.throws Ljava/lang/IllegalAccessException;
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "(" , "Ljava/lang/String;" , "Ljava/lang/Class" , "<*>;" , "Ljava/lang/Object;" , "Ljava/lang/StringBuffer;" , "Ljava/lang/StringBuffer;" , ")V" }
+.end annotation
+.limit registers 6
+; parameter[0] : v5 (Lcom/google/tagmanager/protobuf/nano/MessageNano;)
+.catch java/lang/IllegalAccessException from laf2ac to laf2d4 using laf2de
+.line 56
+	if-nez	v5,laf2a2
+; v5 : Lcom/google/tagmanager/protobuf/nano/MessageNano;
+.line 57
+	const-string	v2,"null"
+; v2 : Ljava/lang/String;
+laf2a0:
+.line 67
+	return-object	v2
+; v2 : Ljava/lang/String;
+laf2a2:
+.line 60
+	new-instance	v0,java/lang/StringBuffer
+; v0 : Ljava/lang/StringBuffer;
+	invoke-direct	{v0},java/lang/StringBuffer/<init>	; <init>()V
+; v0 : Ljava/lang/StringBuffer;
+laf2ac:
+.line 62
+	invoke-virtual	{v5},java/lang/Object/getClass	; getClass()Ljava/lang/Class;
+; v5 : Lcom/google/tagmanager/protobuf/nano/MessageNano;
+	move-result-object	v2
+; v2 : Ljava/lang/Class;
+	invoke-virtual	{v2},java/lang/Class/getSimpleName	; getSimpleName()Ljava/lang/String;
+; v2 : Ljava/lang/Class;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v5},java/lang/Object/getClass	; getClass()Ljava/lang/Class;
+; v5 : Lcom/google/tagmanager/protobuf/nano/MessageNano;
+	move-result-object	v3
+; v3 : Ljava/lang/Class;
+	new-instance	v4,java/lang/StringBuffer
+; v4 : Ljava/lang/StringBuffer;
+	invoke-direct	{v4},java/lang/StringBuffer/<init>	; <init>()V
+; v4 : Ljava/lang/StringBuffer;
+	invoke-static	{v2,v3,v5,v4,v0},com/google/tagmanager/protobuf/nano/MessageNanoPrinter/print	; print(Ljava/lang/String;Ljava/lang/Class;Ljava/lang/Object;Ljava/lang/StringBuffer;Ljava/lang/StringBuffer;)V
+; v2 : Ljava/lang/String; , v3 : Ljava/lang/Class; , v5 : Lcom/google/tagmanager/protobuf/nano/MessageNano; , v4 : Ljava/lang/StringBuffer; , v0 : Ljava/lang/StringBuffer;
+laf2d4:
+.line 67
+	invoke-virtual	{v0},java/lang/StringBuffer/toString	; toString()Ljava/lang/String;
+; v0 : Ljava/lang/StringBuffer;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	goto	laf2a0
+laf2de:
+.line 64
+	move-exception	v1
+; v1 : java/lang/IllegalAccessException
+.line 65
+	new-instance	v2,java/lang/StringBuilder
+; v2 : Ljava/lang/StringBuilder;
+	invoke-direct	{v2},java/lang/StringBuilder/<init>	; <init>()V
+; v2 : Ljava/lang/StringBuilder;
+	const-string	v3,"Error printing proto: "
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v1},java/lang/IllegalAccessException/getMessage	; getMessage()Ljava/lang/String;
+; v1 : java/lang/IllegalAccessException
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+	invoke-virtual	{v2,v3},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v2 : Ljava/lang/StringBuilder; , v3 : Ljava/lang/String;
+	move-result-object	v2
+; v2 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v2},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v2 : Ljava/lang/StringBuilder;
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	goto	laf2a0
+.end method
+
+.method private static print(Ljava/lang/String;Ljava/lang/Class;Ljava/lang/Object;Ljava/lang/StringBuffer;Ljava/lang/StringBuffer;)V
+.throws Ljava/lang/IllegalAccessException;
+.annotation systemVisibility Ldalvik/annotation/Signature;
+    value [Ljava/lang/String; = { "(" , "Ljava/lang/String;" , "Ljava/lang/Class" , "<*>;" , "Ljava/lang/Object;" , "Ljava/lang/StringBuffer;" , "Ljava/lang/StringBuffer;" , ")V" }
+.end annotation
+.limit registers 22
+; parameter[0] : v17 (Ljava/lang/String;)
+; parameter[1] : v18 (Ljava/lang/Class;)
+; parameter[2] : v19 (Ljava/lang/Object;)
+; parameter[3] : v20 (Ljava/lang/StringBuffer;)
+; parameter[4] : v21 (Ljava/lang/StringBuffer;)
+.var 4 is elem Ljava/lang/Object; from laf43e to laf452
+.var 8 is i I from laf432 to laf452
+.var 10 is len I from laf430 to laf452
+.var 3 is arrayType Ljava/lang/Class; from laf412 to laf45c
+.var 5 is field Ljava/lang/reflect/Field; from laf394 to laf46c
+.var 6 is fieldName Ljava/lang/String; from laf3a4 to laf46c
+.var 7 is fieldType Ljava/lang/Class; from laf3f2 to laf46c
+.var 12 is modifiers I from laf39c to laf46c
+.var 14 is value Ljava/lang/Object; from laf3fe to laf46c
+.var 2 is arr$ [Ljava/lang/reflect/Field; from laf388 to laf4b8
+.var 9 is i$ I from laf38c to laf4b8
+.var 11 is len$ I from laf38a to laf4b8
+.var 13 is stringMessage Ljava/lang/String; from laf502 to laf524
+.line 76
+	const-class	v15,com/google/tagmanager/protobuf/nano/MessageNano
+; v15 : Ljava/lang/Class;
+	move-object/from16	v0,v18
+; v0 : Ljava/lang/Class; , v18 : Ljava/lang/Class;
+	invoke-virtual	{v15,v0},java/lang/Class/isAssignableFrom	; isAssignableFrom(Ljava/lang/Class;)Z
+; v15 : Ljava/lang/Class; , v0 : Ljava/lang/Class;
+	move-result	v15
+; v15 : single-length
+	if-eqz	v15,laf4b8
+; v15 : single-length
+.line 77
+	if-nez	v19,laf34a
+; v19 : Ljava/lang/Object;
+laf348:
+.line 135
+	return-void	
+laf34a:
+.line 82
+	move-object/from16	v0,v21
+; v0 : Ljava/lang/StringBuffer; , v21 : Ljava/lang/StringBuffer;
+	move-object/from16	v1,v20
+; v1 : Ljava/lang/StringBuffer; , v20 : Ljava/lang/StringBuffer;
+	invoke-virtual	{v0,v1},java/lang/StringBuffer/append	; append(Ljava/lang/StringBuffer;)Ljava/lang/StringBuffer;
+; v0 : Ljava/lang/StringBuffer; , v1 : Ljava/lang/StringBuffer;
+	move-result-object	v15
+; v15 : Ljava/lang/StringBuffer;
+	move-object/from16	v0,v17
+; v0 : Ljava/lang/String; , v17 : Ljava/lang/String;
+	invoke-virtual	{v15,v0},java/lang/StringBuffer/append	; append(Ljava/lang/String;)Ljava/lang/StringBuffer;
+; v15 : Ljava/lang/StringBuffer; , v0 : Ljava/lang/String;
+.line 84
+	const-string	v15,"  "
+; v15 : Ljava/lang/String;
+	move-object/from16	v0,v20
+; v0 : Ljava/lang/StringBuffer; , v20 : Ljava/lang/StringBuffer;
+	invoke-virtual	{v0,v15},java/lang/StringBuffer/append	; append(Ljava/lang/String;)Ljava/lang/StringBuffer;
+; v0 : Ljava/lang/StringBuffer; , v15 : Ljava/lang/String;
+.line 85
+	const-string	v15," <
+"
+; v15 : Ljava/lang/String;
+	move-object/from16	v0,v21
+; v0 : Ljava/lang/StringBuffer; , v21 : Ljava/lang/StringBuffer;
+	invoke-virtual	{v0,v15},java/lang/StringBuffer/append	; append(Ljava/lang/String;)Ljava/lang/StringBuffer;
+; v0 : Ljava/lang/StringBuffer; , v15 : Ljava/lang/String;
+.line 86
+	invoke-virtual/range	{v18},java/lang/Class/getFields;	getFields()[Ljava/lang/reflect/Field;
+; v18 : Ljava/lang/Class;
+	move-result-object	v2
+; v2 : [Ljava/lang/reflect/Field;
+laf388:
+	array-length	v11,v2
+; v11 : single-length , v2 : [Ljava/lang/reflect/Field;
+laf38a:
+	const/4	v9,0
+; v9 : single-length
+laf38c:
+	if-ge	v9,v11,laf46c
+; v9 : single-length , v11 : single-length
+	aget-object	v5,v2,v9
+; v5 : Ljava/lang/reflect/Field; , v2 : [Ljava/lang/reflect/Field; , v9 : single-length
+.line 88
+	invoke-virtual	{v5},java/lang/reflect/Field/getModifiers	; getModifiers()I
+; v5 : Ljava/lang/reflect/Field;
+	move-result	v12
+; v12 : single-length
+.line 89
+	invoke-virtual	{v5},java/lang/reflect/Field/getName	; getName()Ljava/lang/String;
+; v5 : Ljava/lang/reflect/Field;
+	move-result-object	v6
+; v6 : Ljava/lang/String;
+.line 90
+	and-int/lit8	v15,v12,1
+; v15 : single-length , v12 : single-length
+	const/16	v16,1
+; v16 : single-length
+	move/from16	v0,v16
+; v0 : single-length , v16 : single-length
+	if-ne	v15,v0,laf3e4
+; v15 : single-length , v0 : single-length
+	and-int/lit8	v15,v12,8
+; v15 : single-length , v12 : single-length
+	const/16	v16,8
+; v16 : single-length
+	move/from16	v0,v16
+; v0 : single-length , v16 : single-length
+	if-eq	v15,v0,laf3e4
+; v15 : single-length , v0 : single-length
+	const-string	v15,"_"
+; v15 : Ljava/lang/String;
+	invoke-virtual	{v6,v15},java/lang/String/startsWith	; startsWith(Ljava/lang/String;)Z
+; v6 : Ljava/lang/String; , v15 : Ljava/lang/String;
+	move-result	v15
+; v15 : single-length
+	if-nez	v15,laf3e4
+; v15 : single-length
+	const-string	v15,"_"
+; v15 : Ljava/lang/String;
+	invoke-virtual	{v6,v15},java/lang/String/endsWith	; endsWith(Ljava/lang/String;)Z
+; v6 : Ljava/lang/String; , v15 : Ljava/lang/String;
+	move-result	v15
+; v15 : single-length
+	if-eqz	v15,laf3ea
+; v15 : single-length
+laf3e4:
+.line 86
+	add-int/lit8	v9,v9,1
+; v9 : single-length , v9 : single-length
+	goto	laf38c
+laf3ea:
+.line 96
+	invoke-virtual	{v5},java/lang/reflect/Field/getType	; getType()Ljava/lang/Class;
+; v5 : Ljava/lang/reflect/Field;
+	move-result-object	v7
+; v7 : Ljava/lang/Class;
+.line 97
+	move-object/from16	v0,v19
+; v0 : Ljava/lang/Object; , v19 : Ljava/lang/Object;
+	invoke-virtual	{v5,v0},java/lang/reflect/Field/get	; get(Ljava/lang/Object;)Ljava/lang/Object;
+; v5 : Ljava/lang/reflect/Field; , v0 : Ljava/lang/Object;
+	move-result-object	v14
+; v14 : Ljava/lang/Object;
+.line 99
+	invoke-virtual	{v7},java/lang/Class/isArray	; isArray()Z
+; v7 : Ljava/lang/Class;
+	move-result	v15
+; v15 : single-length
+	if-eqz	v15,laf45c
+; v15 : single-length
+.line 100
+	invoke-virtual	{v7},java/lang/Class/getComponentType	; getComponentType()Ljava/lang/Class;
+; v7 : Ljava/lang/Class;
+	move-result-object	v3
+; v3 : Ljava/lang/Class;
+.line 103
+	sget-object	v15,java/lang/Byte.TYPE Ljava/lang/Class;
+; v15 : Ljava/lang/Class;
+	if-ne	v3,v15,laf42a
+; v3 : Ljava/lang/Class; , v15 : Ljava/lang/Class;
+.line 104
+	move-object/from16	v0,v20
+; v0 : Ljava/lang/StringBuffer; , v20 : Ljava/lang/StringBuffer;
+	move-object/from16	v1,v21
+; v1 : Ljava/lang/StringBuffer; , v21 : Ljava/lang/StringBuffer;
+	invoke-static	{v6,v7,v14,v0,v1},com/google/tagmanager/protobuf/nano/MessageNanoPrinter/print	; print(Ljava/lang/String;Ljava/lang/Class;Ljava/lang/Object;Ljava/lang/StringBuffer;Ljava/lang/StringBuffer;)V
+; v6 : Ljava/lang/String; , v7 : Ljava/lang/Class; , v14 : Ljava/lang/Object; , v0 : Ljava/lang/StringBuffer; , v1 : Ljava/lang/StringBuffer;
+	goto	laf3e4
+laf42a:
+.line 106
+	if-nez	v14,laf452
+; v14 : Ljava/lang/Object;
+	const/4	v10,0
+; v10 : single-length
+laf430:
+.line 107
+	const/4	v8,0
+; v8 : single-length
+laf432:
+	if-ge	v8,v10,laf3e4
+; v8 : single-length , v10 : single-length
+.line 108
+	invoke-static	{v14,v8},java/lang/reflect/Array/get	; get(Ljava/lang/Object;I)Ljava/lang/Object;
+; v14 : Ljava/lang/Object; , v8 : single-length
+	move-result-object	v4
+; v4 : Ljava/lang/Object;
+.line 109
+	move-object/from16	v0,v20
+; v0 : Ljava/lang/StringBuffer; , v20 : Ljava/lang/StringBuffer;
+	move-object/from16	v1,v21
+; v1 : Ljava/lang/StringBuffer; , v21 : Ljava/lang/StringBuffer;
+	invoke-static	{v6,v3,v4,v0,v1},com/google/tagmanager/protobuf/nano/MessageNanoPrinter/print	; print(Ljava/lang/String;Ljava/lang/Class;Ljava/lang/Object;Ljava/lang/StringBuffer;Ljava/lang/StringBuffer;)V
+; v6 : Ljava/lang/String; , v3 : Ljava/lang/Class; , v4 : Ljava/lang/Object; , v0 : Ljava/lang/StringBuffer; , v1 : Ljava/lang/StringBuffer;
+.line 107
+	add-int/lit8	v8,v8,1
+; v8 : single-length , v8 : single-length
+	goto	laf432
+laf452:
+.line 106
+	invoke-static	{v14},java/lang/reflect/Array/getLength	; getLength(Ljava/lang/Object;)I
+; v14 : Ljava/lang/Object;
+	move-result	v10
+; v10 : single-length
+	goto	laf430
+laf45c:
+.line 113
+	move-object/from16	v0,v20
+; v0 : Ljava/lang/StringBuffer; , v20 : Ljava/lang/StringBuffer;
+	move-object/from16	v1,v21
+; v1 : Ljava/lang/StringBuffer; , v21 : Ljava/lang/StringBuffer;
+	invoke-static	{v6,v7,v14,v0,v1},com/google/tagmanager/protobuf/nano/MessageNanoPrinter/print	; print(Ljava/lang/String;Ljava/lang/Class;Ljava/lang/Object;Ljava/lang/StringBuffer;Ljava/lang/StringBuffer;)V
+; v6 : Ljava/lang/String; , v7 : Ljava/lang/Class; , v14 : Ljava/lang/Object; , v0 : Ljava/lang/StringBuffer; , v1 : Ljava/lang/StringBuffer;
+	goto	laf3e4
+laf46c:
+.line 116
+	invoke-virtual/range	{v20},java/lang/StringBuffer/length;	length()I
+; v20 : Ljava/lang/StringBuffer;
+	move-result	v15
+; v15 : single-length
+	const-string	v16,"  "
+; v16 : Ljava/lang/String;
+	invoke-virtual/range	{v16},java/lang/String/length;	length()I
+; v16 : Ljava/lang/String;
+	move-result	v16
+; v16 : single-length
+	sub-int	v15,v15,v16
+; v15 : single-length , v15 : single-length , v16 : single-length
+	invoke-virtual/range	{v20},java/lang/StringBuffer/length;	length()I
+; v20 : Ljava/lang/StringBuffer;
+	move-result	v16
+; v16 : single-length
+	move-object/from16	v0,v20
+; v0 : Ljava/lang/StringBuffer; , v20 : Ljava/lang/StringBuffer;
+	move/from16	v1,v16
+; v1 : single-length , v16 : single-length
+	invoke-virtual	{v0,v15,v1},java/lang/StringBuffer/delete	; delete(II)Ljava/lang/StringBuffer;
+; v0 : Ljava/lang/StringBuffer; , v15 : single-length , v1 : single-length
+.line 117
+	move-object/from16	v0,v21
+; v0 : Ljava/lang/StringBuffer; , v21 : Ljava/lang/StringBuffer;
+	move-object/from16	v1,v20
+; v1 : Ljava/lang/StringBuffer; , v20 : Ljava/lang/StringBuffer;
+	invoke-virtual	{v0,v1},java/lang/StringBuffer/append	; append(Ljava/lang/StringBuffer;)Ljava/lang/StringBuffer;
+; v0 : Ljava/lang/StringBuffer; , v1 : Ljava/lang/StringBuffer;
+	move-result-object	v15
+; v15 : Ljava/lang/StringBuffer;
+	const-string	v16,">
+"
+; v16 : Ljava/lang/String;
+	invoke-virtual/range	{v15..v16},java/lang/StringBuffer/append;	append(Ljava/lang/String;)Ljava/lang/StringBuffer;
+; v15 : Ljava/lang/StringBuffer; , v16 : Ljava/lang/String;
+	goto/16	laf348
+laf4b8:
+.line 120
+	if-eqz	v19,laf348
+; v19 : Ljava/lang/Object;
+.line 125
+	invoke-static/range	{v17},com/google/tagmanager/protobuf/nano/MessageNanoPrinter/deCamelCaseify;	deCamelCaseify(Ljava/lang/String;)Ljava/lang/String;
+; v17 : Ljava/lang/String;
+	move-result-object	v17
+; v17 : Ljava/lang/String;
+.line 126
+	move-object/from16	v0,v21
+; v0 : Ljava/lang/StringBuffer; , v21 : Ljava/lang/StringBuffer;
+	move-object/from16	v1,v20
+; v1 : Ljava/lang/StringBuffer; , v20 : Ljava/lang/StringBuffer;
+	invoke-virtual	{v0,v1},java/lang/StringBuffer/append	; append(Ljava/lang/StringBuffer;)Ljava/lang/StringBuffer;
+; v0 : Ljava/lang/StringBuffer; , v1 : Ljava/lang/StringBuffer;
+	move-result-object	v15
+; v15 : Ljava/lang/StringBuffer;
+	move-object/from16	v0,v17
+; v0 : Ljava/lang/String; , v17 : Ljava/lang/String;
+	invoke-virtual	{v15,v0},java/lang/StringBuffer/append	; append(Ljava/lang/String;)Ljava/lang/StringBuffer;
+; v15 : Ljava/lang/StringBuffer; , v0 : Ljava/lang/String;
+	move-result-object	v15
+; v15 : Ljava/lang/StringBuffer;
+	const-string	v16,": "
+; v16 : Ljava/lang/String;
+	invoke-virtual/range	{v15..v16},java/lang/StringBuffer/append;	append(Ljava/lang/String;)Ljava/lang/StringBuffer;
+; v15 : Ljava/lang/StringBuffer; , v16 : Ljava/lang/String;
+.line 127
+	move-object/from16	v0,v19
+; v0 : Ljava/lang/Object; , v19 : Ljava/lang/Object;
+	instance-of	v15,v0,java/lang/String
+; v15 : single-length , v0 : Ljava/lang/Object;
+	if-eqz	v15,laf536
+; v15 : single-length
+.line 128
+	check-cast	v19,java/lang/String
+; v19 : Ljava/lang/String;
+	invoke-static/range	{v19},com/google/tagmanager/protobuf/nano/MessageNanoPrinter/sanitizeString;	sanitizeString(Ljava/lang/String;)Ljava/lang/String;
+; v19 : Ljava/lang/String;
+	move-result-object	v13
+; v13 : Ljava/lang/String;
+.line 129
+	const-string	v15,"""
+; v15 : Ljava/lang/String;
+	move-object/from16	v0,v21
+; v0 : Ljava/lang/StringBuffer; , v21 : Ljava/lang/StringBuffer;
+	invoke-virtual	{v0,v15},java/lang/StringBuffer/append	; append(Ljava/lang/String;)Ljava/lang/StringBuffer;
+; v0 : Ljava/lang/StringBuffer; , v15 : Ljava/lang/String;
+	move-result-object	v15
+; v15 : Ljava/lang/StringBuffer;
+	invoke-virtual	{v15,v13},java/lang/StringBuffer/append	; append(Ljava/lang/String;)Ljava/lang/StringBuffer;
+; v15 : Ljava/lang/StringBuffer; , v13 : Ljava/lang/String;
+	move-result-object	v15
+; v15 : Ljava/lang/StringBuffer;
+	const-string	v16,"""
+; v16 : Ljava/lang/String;
+	invoke-virtual/range	{v15..v16},java/lang/StringBuffer/append;	append(Ljava/lang/String;)Ljava/lang/StringBuffer;
+; v15 : Ljava/lang/StringBuffer; , v16 : Ljava/lang/String;
+laf524:
+.line 133
+	const-string	v15,"
+"
+; v15 : Ljava/lang/String;
+	move-object/from16	v0,v21
+; v0 : Ljava/lang/StringBuffer; , v21 : Ljava/lang/StringBuffer;
+	invoke-virtual	{v0,v15},java/lang/StringBuffer/append	; append(Ljava/lang/String;)Ljava/lang/StringBuffer;
+; v0 : Ljava/lang/StringBuffer; , v15 : Ljava/lang/String;
+	goto/16	laf348
+laf536:
+.line 131
+	move-object/from16	v0,v21
+; v0 : Ljava/lang/StringBuffer; , v21 : Ljava/lang/StringBuffer;
+	move-object/from16	v1,v19
+; v1 : Ljava/lang/Object; , v19 : Ljava/lang/Object;
+	invoke-virtual	{v0,v1},java/lang/StringBuffer/append	; append(Ljava/lang/Object;)Ljava/lang/StringBuffer;
+; v0 : Ljava/lang/StringBuffer; , v1 : Ljava/lang/Object;
+	goto	laf524
+.end method
+
+.method private static sanitizeString(Ljava/lang/String;)Ljava/lang/String;
+.limit registers 4
+; parameter[0] : v3 (Ljava/lang/String;)
+	const/16	v2,200
+; v2 : single-length
+.line 159
+	const-string	v0,"http"
+; v0 : Ljava/lang/String;
+	invoke-virtual	{v3,v0},java/lang/String/startsWith	; startsWith(Ljava/lang/String;)Z
+; v3 : Ljava/lang/String; , v0 : Ljava/lang/String;
+	move-result	v0
+; v0 : single-length
+	if-nez	v0,laf5a8
+; v0 : single-length
+	invoke-virtual	{v3},java/lang/String/length	; length()I
+; v3 : Ljava/lang/String;
+	move-result	v0
+; v0 : single-length
+	if-le	v0,v2,laf5a8
+; v0 : single-length , v2 : single-length
+.line 161
+	new-instance	v0,java/lang/StringBuilder
+; v0 : Ljava/lang/StringBuilder;
+	invoke-direct	{v0},java/lang/StringBuilder/<init>	; <init>()V
+; v0 : Ljava/lang/StringBuilder;
+	const/4	v1,0
+; v1 : single-length
+	invoke-virtual	{v3,v1,v2},java/lang/String/substring	; substring(II)Ljava/lang/String;
+; v3 : Ljava/lang/String; , v1 : single-length , v2 : single-length
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v1 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	const-string	v1,"[...]"
+; v1 : Ljava/lang/String;
+	invoke-virtual	{v0,v1},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v0 : Ljava/lang/StringBuilder; , v1 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v0},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v0 : Ljava/lang/StringBuilder;
+	move-result-object	v3
+; v3 : Ljava/lang/String;
+laf5a8:
+.line 163
+	invoke-static	{v3},com/google/tagmanager/protobuf/nano/MessageNanoPrinter/escapeString	; escapeString(Ljava/lang/String;)Ljava/lang/String;
+; v3 : Ljava/lang/String;
+	move-result-object	v0
+; v0 : Ljava/lang/String;
+	return-object	v0
+; v0 : Ljava/lang/String;
+.end method
+
+

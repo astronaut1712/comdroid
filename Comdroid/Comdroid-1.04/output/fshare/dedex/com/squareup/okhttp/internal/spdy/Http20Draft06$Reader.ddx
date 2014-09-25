@@ -1,0 +1,982 @@
+.class final com/squareup/okhttp/internal/spdy/Http20Draft06$Reader
+.super java/lang/Object
+.source Http20Draft06.java
+.implements com/squareup/okhttp/internal/spdy/FrameReader
+
+.inner class Reader inner com/squareup/okhttp/internal/spdy/Http20Draft06$Reader outer com/squareup/okhttp/internal/spdy/Http20Draft06
+.field private final client Z
+.field private final hpackReader Lcom/squareup/okhttp/internal/spdy/Hpack$Reader;
+.field private final in Ljava/io/DataInputStream;
+
+.method <init>(Ljava/io/InputStream;Z)V
+.limit registers 5
+; this: v2 (Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Reader;)
+; parameter[0] : v3 (Ljava/io/InputStream;)
+; parameter[1] : v4 (Z)
+.line 74
+	invoke-direct	{v2},java/lang/Object/<init>	; <init>()V
+; v2 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Reader;
+.line 75
+	new-instance	v0,java/io/DataInputStream
+; v0 : Ljava/io/DataInputStream;
+	invoke-direct	{v0,v3},java/io/DataInputStream/<init>	; <init>(Ljava/io/InputStream;)V
+; v0 : Ljava/io/DataInputStream; , v3 : Ljava/io/InputStream;
+	iput-object	v0,v2,com/squareup/okhttp/internal/spdy/Http20Draft06$Reader.in Ljava/io/DataInputStream;
+; v0 : Ljava/io/DataInputStream; , v2 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Reader;
+.line 76
+	iput-boolean	v4,v2,com/squareup/okhttp/internal/spdy/Http20Draft06$Reader.client Z
+; v4 : single-length , v2 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Reader;
+.line 77
+	new-instance	v0,com/squareup/okhttp/internal/spdy/Hpack$Reader
+; v0 : Lcom/squareup/okhttp/internal/spdy/Hpack$Reader;
+	iget-object	v1,v2,com/squareup/okhttp/internal/spdy/Http20Draft06$Reader.in Ljava/io/DataInputStream;
+; v1 : Ljava/io/DataInputStream; , v2 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Reader;
+	invoke-direct	{v0,v1,v4},com/squareup/okhttp/internal/spdy/Hpack$Reader/<init>	; <init>(Ljava/io/DataInputStream;Z)V
+; v0 : Lcom/squareup/okhttp/internal/spdy/Hpack$Reader; , v1 : Ljava/io/DataInputStream; , v4 : single-length
+	iput-object	v0,v2,com/squareup/okhttp/internal/spdy/Http20Draft06$Reader.hpackReader Lcom/squareup/okhttp/internal/spdy/Hpack$Reader;
+; v0 : Lcom/squareup/okhttp/internal/spdy/Hpack$Reader; , v2 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Reader;
+.line 78
+	return-void	
+.end method
+
+.method private static ioException(Ljava/lang/String;[Ljava/lang/Object;)Ljava/io/IOException;
+.throws Ljava/io/IOException;
+.limit registers 4
+; parameter[0] : v2 (Ljava/lang/String;)
+; parameter[1] : v3 ([Ljava/lang/Object;)
+.line 266
+	new-instance	v0,java/io/IOException
+; v0 : Ljava/io/IOException;
+	invoke-static	{v2,v3},java/lang/String/format	; format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String;
+; v2 : Ljava/lang/String; , v3 : [Ljava/lang/Object;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-direct	{v0,v1},java/io/IOException/<init>	; <init>(Ljava/lang/String;)V
+; v0 : Ljava/io/IOException; , v1 : Ljava/lang/String;
+	throw	v0
+; v0 : Ljava/io/IOException;
+.end method
+
+.method private readData(Lcom/squareup/okhttp/internal/spdy/FrameReader$Handler;III)V
+.throws Ljava/io/IOException;
+.limit registers 7
+; this: v2 (Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Reader;)
+; parameter[0] : v3 (Lcom/squareup/okhttp/internal/spdy/FrameReader$Handler;)
+; parameter[1] : v4 (I)
+; parameter[2] : v5 (I)
+; parameter[3] : v6 (I)
+.var 0 is inFinished Z from lf1902 to lf190e
+.line 186
+	and-int/lit8	v1,v4,1
+; v1 : single-length , v4 : single-length
+	if-eqz	v1,lf190e
+; v1 : single-length
+	const/4	v0,1
+; v0 : single-length
+lf1902:
+.line 187
+	iget-object	v1,v2,com/squareup/okhttp/internal/spdy/Http20Draft06$Reader.in Ljava/io/DataInputStream;
+; v1 : Ljava/io/DataInputStream; , v2 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Reader;
+	invoke-interface	{v3,v0,v6,v1,v5},com/squareup/okhttp/internal/spdy/FrameReader$Handler/data	; data(ZILjava/io/InputStream;I)V
+; v3 : Lcom/squareup/okhttp/internal/spdy/FrameReader$Handler; , v0 : single-length , v6 : single-length , v1 : Ljava/io/DataInputStream; , v5 : single-length
+.line 188
+	return-void	
+lf190e:
+.line 186
+	const/4	v0,0
+; v0 : single-length
+	goto	lf1902
+.end method
+
+.method private readGoAway(Lcom/squareup/okhttp/internal/spdy/FrameReader$Handler;III)V
+.throws Ljava/io/IOException;
+.limit registers 13
+; this: v8 (Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Reader;)
+; parameter[0] : v9 (Lcom/squareup/okhttp/internal/spdy/FrameReader$Handler;)
+; parameter[1] : v10 (I)
+; parameter[2] : v11 (I)
+; parameter[3] : v12 (I)
+	const/4	v5,1
+; v5 : single-length
+	const/4	v7,0
+; v7 : single-length
+.line 242
+	const/16	v4,8
+; v4 : single-length
+	if-ge	v11,v4,lf194e
+; v11 : single-length , v4 : single-length
+	const-string	v4,"TYPE_GOAWAY length < 8: %s"
+; v4 : Ljava/lang/String;
+	new-array	v5,v5,[Ljava/lang/Object;
+; v5 : [Ljava/lang/Object; , v5 : [Ljava/lang/Object;
+	invoke-static	{v11},java/lang/Integer/valueOf	; valueOf(I)Ljava/lang/Integer;
+; v11 : single-length
+	move-result-object	v6
+; v6 : Ljava/lang/Integer;
+	aput-object	v6,v5,v7
+; v6 : Ljava/lang/Integer; , v5 : [Ljava/lang/Object; , v7 : single-length
+	invoke-static	{v4,v5},com/squareup/okhttp/internal/spdy/Http20Draft06$Reader/ioException	; ioException(Ljava/lang/String;[Ljava/lang/Object;)Ljava/io/IOException;
+; v4 : Ljava/lang/String; , v5 : [Ljava/lang/Object;
+	move-result-object	v4
+; v4 : Ljava/io/IOException;
+	throw	v4
+; v4 : Ljava/io/IOException;
+lf194e:
+.line 243
+	iget-object	v4,v8,com/squareup/okhttp/internal/spdy/Http20Draft06$Reader.in Ljava/io/DataInputStream;
+; v4 : Ljava/io/DataInputStream; , v8 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Reader;
+	invoke-virtual	{v4},java/io/DataInputStream/readInt	; readInt()I
+; v4 : Ljava/io/DataInputStream;
+	move-result	v2
+; v2 : single-length
+.line 244
+	iget-object	v4,v8,com/squareup/okhttp/internal/spdy/Http20Draft06$Reader.in Ljava/io/DataInputStream;
+; v4 : Ljava/io/DataInputStream; , v8 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Reader;
+	invoke-virtual	{v4},java/io/DataInputStream/readInt	; readInt()I
+; v4 : Ljava/io/DataInputStream;
+	move-result	v1
+; v1 : single-length
+.line 245
+	add-int/lit8	v3,v11,248
+; v3 : single-length , v11 : single-length
+.line 246
+	invoke-static	{v1},com/squareup/okhttp/internal/spdy/ErrorCode/fromHttp2	; fromHttp2(I)Lcom/squareup/okhttp/internal/spdy/ErrorCode;
+; v1 : single-length
+	move-result-object	v0
+; v0 : Lcom/squareup/okhttp/internal/spdy/ErrorCode;
+.line 247
+	if-nez	v0,lf1994
+; v0 : Lcom/squareup/okhttp/internal/spdy/ErrorCode;
+.line 248
+	const-string	v4,"TYPE_RST_STREAM unexpected error code: %d"
+; v4 : Ljava/lang/String;
+	new-array	v5,v5,[Ljava/lang/Object;
+; v5 : [Ljava/lang/Object; , v5 : [Ljava/lang/Object;
+	invoke-static	{v1},java/lang/Integer/valueOf	; valueOf(I)Ljava/lang/Integer;
+; v1 : single-length
+	move-result-object	v6
+; v6 : Ljava/lang/Integer;
+	aput-object	v6,v5,v7
+; v6 : Ljava/lang/Integer; , v5 : [Ljava/lang/Object; , v7 : single-length
+	invoke-static	{v4,v5},com/squareup/okhttp/internal/spdy/Http20Draft06$Reader/ioException	; ioException(Ljava/lang/String;[Ljava/lang/Object;)Ljava/io/IOException;
+; v4 : Ljava/lang/String; , v5 : [Ljava/lang/Object;
+	move-result-object	v4
+; v4 : Ljava/io/IOException;
+	throw	v4
+; v4 : Ljava/io/IOException;
+lf1994:
+.line 250
+	iget-object	v4,v8,com/squareup/okhttp/internal/spdy/Http20Draft06$Reader.in Ljava/io/DataInputStream;
+; v4 : Ljava/io/DataInputStream; , v8 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Reader;
+	int-to-long	v5,v3
+; v5 : double-length , v3 : single-length
+	invoke-static	{v4,v5,v6},com/squareup/okhttp/internal/Util/skipByReading	; skipByReading(Ljava/io/InputStream;J)J
+; v4 : Ljava/io/DataInputStream; , v5 : double-length
+	move-result-wide	v4
+; v4 : double-length
+	int-to-long	v6,v3
+; v6 : double-length , v3 : single-length
+	cmp-long	v4,v4,v6
+; v4 : single-length , v4 : single-length , v6 : double-length
+	if-eqz	v4,lf19bc
+; v4 : single-length
+.line 251
+	new-instance	v4,java/io/IOException
+; v4 : Ljava/io/IOException;
+	const-string	v5,"TYPE_GOAWAY opaque data was truncated"
+; v5 : Ljava/lang/String;
+	invoke-direct	{v4,v5},java/io/IOException/<init>	; <init>(Ljava/lang/String;)V
+; v4 : Ljava/io/IOException; , v5 : Ljava/lang/String;
+	throw	v4
+; v4 : Ljava/io/IOException;
+lf19bc:
+.line 253
+	invoke-interface	{v9,v2,v0},com/squareup/okhttp/internal/spdy/FrameReader$Handler/goAway	; goAway(ILcom/squareup/okhttp/internal/spdy/ErrorCode;)V
+; v9 : Lcom/squareup/okhttp/internal/spdy/FrameReader$Handler; , v2 : single-length , v0 : Lcom/squareup/okhttp/internal/spdy/ErrorCode;
+.line 254
+	return-void	
+.end method
+
+.method private readHeaders(Lcom/squareup/okhttp/internal/spdy/FrameReader$Handler;III)V
+.throws Ljava/io/IOException;
+.limit registers 18
+; this: v13 (Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Reader;)
+; parameter[0] : v14 (Lcom/squareup/okhttp/internal/spdy/FrameReader$Handler;)
+; parameter[1] : v15 (I)
+; parameter[2] : v16 (I)
+; parameter[3] : v17 (I)
+.var 3 is inFinished Z from lf19f6 to lf1a3a
+.var 6 is priority I from lf1a24 to lf1a3a
+.var 7 is namesAndValues Ljava/util/List; from lf1a22 to lf1a3a
+.var 9 is newStreamId I from lf1a84 to lf1aa0
+.line 148
+	if-nez	v17,lf19ec
+; v17 : single-length
+	const-string	v1,"TYPE_HEADERS streamId == 0"
+; v1 : Ljava/lang/String;
+	const/4	v2,0
+; v2 : single-length
+	new-array	v2,v2,[Ljava/lang/Object;
+; v2 : [Ljava/lang/Object; , v2 : [Ljava/lang/Object;
+	invoke-static	{v1,v2},com/squareup/okhttp/internal/spdy/Http20Draft06$Reader/ioException	; ioException(Ljava/lang/String;[Ljava/lang/Object;)Ljava/io/IOException;
+; v1 : Ljava/lang/String; , v2 : [Ljava/lang/Object;
+	move-result-object	v1
+; v1 : Ljava/io/IOException;
+	throw	v1
+; v1 : Ljava/io/IOException;
+lf19ec:
+.line 150
+	and-int/lit8	v1,v15,1
+; v1 : single-length , v15 : single-length
+	if-eqz	v1,lf1a3a
+; v1 : single-length
+	const/4	v3,1
+; v3 : single-length
+lf19f6:
+.line 153
+	iget-object	v1,v13,com/squareup/okhttp/internal/spdy/Http20Draft06$Reader.hpackReader Lcom/squareup/okhttp/internal/spdy/Hpack$Reader;
+; v1 : Lcom/squareup/okhttp/internal/spdy/Hpack$Reader; , v13 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Reader;
+	move/from16	v0,v16
+; v0 : single-length , v16 : single-length
+	invoke-virtual	{v1,v0},com/squareup/okhttp/internal/spdy/Hpack$Reader/readHeaders	; readHeaders(I)V
+; v1 : Lcom/squareup/okhttp/internal/spdy/Hpack$Reader; , v0 : single-length
+.line 155
+	and-int/lit8	v1,v15,4
+; v1 : single-length , v15 : single-length
+	if-eqz	v1,lf1a3e
+; v1 : single-length
+.line 156
+	iget-object	v1,v13,com/squareup/okhttp/internal/spdy/Http20Draft06$Reader.hpackReader Lcom/squareup/okhttp/internal/spdy/Hpack$Reader;
+; v1 : Lcom/squareup/okhttp/internal/spdy/Hpack$Reader; , v13 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Reader;
+	invoke-virtual	{v1},com/squareup/okhttp/internal/spdy/Hpack$Reader/emitReferenceSet	; emitReferenceSet()V
+; v1 : Lcom/squareup/okhttp/internal/spdy/Hpack$Reader;
+.line 157
+	iget-object	v1,v13,com/squareup/okhttp/internal/spdy/Http20Draft06$Reader.hpackReader Lcom/squareup/okhttp/internal/spdy/Hpack$Reader;
+; v1 : Lcom/squareup/okhttp/internal/spdy/Hpack$Reader; , v13 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Reader;
+	invoke-virtual	{v1},com/squareup/okhttp/internal/spdy/Hpack$Reader/getAndReset	; getAndReset()Ljava/util/List;
+; v1 : Lcom/squareup/okhttp/internal/spdy/Hpack$Reader;
+	move-result-object	v7
+; v7 : Ljava/util/List;
+.line 158
+	const/4	v6,15
+; v6 : single-length
+.line 159
+	const/4	v2,0
+; v2 : single-length
+	const/4	v5,15
+; v5 : single-length
+	sget-object	v8,com/squareup/okhttp/internal/spdy/HeadersMode.HTTP_20_HEADERS Lcom/squareup/okhttp/internal/spdy/HeadersMode;
+; v8 : Lcom/squareup/okhttp/internal/spdy/HeadersMode;
+	move-object	v1,v14
+; v1 : Lcom/squareup/okhttp/internal/spdy/FrameReader$Handler; , v14 : Lcom/squareup/okhttp/internal/spdy/FrameReader$Handler;
+	move/from16	v4,v17
+; v4 : single-length , v17 : single-length
+	invoke-interface/range	{v1..v8},com/squareup/okhttp/internal/spdy/FrameReader$Handler/headers;	headers(ZZIIILjava/util/List;Lcom/squareup/okhttp/internal/spdy/HeadersMode;)V
+; v1 : Lcom/squareup/okhttp/internal/spdy/FrameReader$Handler; , v2 : single-length , v3 : single-length , v4 : single-length , v5 : single-length , v6 : single-length , v7 : Ljava/util/List; , v8 : Lcom/squareup/okhttp/internal/spdy/HeadersMode;
+.line 161
+	return-void	
+lf1a3a:
+.line 150
+	const/4	v3,0
+; v3 : single-length
+	goto	lf19f6
+lf1a3e:
+.line 165
+	iget-object	v1,v13,com/squareup/okhttp/internal/spdy/Http20Draft06$Reader.in Ljava/io/DataInputStream;
+; v1 : Ljava/io/DataInputStream; , v13 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Reader;
+	invoke-virtual	{v1},java/io/DataInputStream/readInt	; readInt()I
+; v1 : Ljava/io/DataInputStream;
+	move-result	v11
+; v11 : single-length
+.line 166
+	iget-object	v1,v13,com/squareup/okhttp/internal/spdy/Http20Draft06$Reader.in Ljava/io/DataInputStream;
+; v1 : Ljava/io/DataInputStream; , v13 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Reader;
+	invoke-virtual	{v1},java/io/DataInputStream/readInt	; readInt()I
+; v1 : Ljava/io/DataInputStream;
+	move-result	v12
+; v12 : single-length
+.line 168
+	const/high16	v1,65535
+; v1 : single-length
+	and-int/2addr	v1,v11
+; v1 : single-length , v11 : single-length
+	shr-int/lit8	v16,v1,16
+; v16 : single-length , v1 : single-length
+.line 169
+	const	v1,65280	; 0xff00
+; v1 : single-length
+	and-int/2addr	v1,v11
+; v1 : single-length , v11 : single-length
+	shr-int/lit8	v10,v1,8
+; v10 : single-length , v1 : single-length
+.line 170
+	and-int/lit16	v15,v11,255
+; v15 : single-length , v11 : single-length
+.line 173
+	and-int/lit8	v1,v15,1
+; v1 : single-length , v15 : single-length
+	if-eqz	v1,lf1aa0
+; v1 : single-length
+	const/4	v3,1
+; v3 : single-length
+lf1a7a:
+.line 176
+	const	v1,2147483647	; 0x7fffffff
+; v1 : single-length
+	and-int	v9,v12,v1
+; v9 : single-length , v12 : single-length , v1 : single-length
+.line 178
+	const/16	v1,10
+; v1 : single-length
+	if-eq	v10,v1,lf1aa4
+; v10 : single-length , v1 : single-length
+.line 179
+	const-string	v1,"TYPE_CONTINUATION didn't have FLAG_END_HEADERS"
+; v1 : Ljava/lang/String;
+	const/4	v2,0
+; v2 : single-length
+	new-array	v2,v2,[Ljava/lang/Object;
+; v2 : [Ljava/lang/Object; , v2 : [Ljava/lang/Object;
+	invoke-static	{v1,v2},com/squareup/okhttp/internal/spdy/Http20Draft06$Reader/ioException	; ioException(Ljava/lang/String;[Ljava/lang/Object;)Ljava/io/IOException;
+; v1 : Ljava/lang/String; , v2 : [Ljava/lang/Object;
+	move-result-object	v1
+; v1 : Ljava/io/IOException;
+	throw	v1
+; v1 : Ljava/io/IOException;
+lf1aa0:
+.line 173
+	const/4	v3,0
+; v3 : single-length
+	goto	lf1a7a
+lf1aa4:
+.line 181
+	move/from16	v0,v17
+; v0 : single-length , v17 : single-length
+	if-eq	v9,v0,lf19f6
+; v9 : single-length , v0 : single-length
+	const-string	v1,"TYPE_CONTINUATION streamId changed"
+; v1 : Ljava/lang/String;
+	const/4	v2,0
+; v2 : single-length
+	new-array	v2,v2,[Ljava/lang/Object;
+; v2 : [Ljava/lang/Object; , v2 : [Ljava/lang/Object;
+	invoke-static	{v1,v2},com/squareup/okhttp/internal/spdy/Http20Draft06$Reader/ioException	; ioException(Ljava/lang/String;[Ljava/lang/Object;)Ljava/io/IOException;
+; v1 : Ljava/lang/String; , v2 : [Ljava/lang/Object;
+	move-result-object	v1
+; v1 : Ljava/io/IOException;
+	throw	v1
+; v1 : Ljava/io/IOException;
+.end method
+
+.method private readPing(Lcom/squareup/okhttp/internal/spdy/FrameReader$Handler;III)V
+.throws Ljava/io/IOException;
+.limit registers 12
+; this: v7 (Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Reader;)
+; parameter[0] : v8 (Lcom/squareup/okhttp/internal/spdy/FrameReader$Handler;)
+; parameter[1] : v9 (I)
+; parameter[2] : v10 (I)
+; parameter[3] : v11 (I)
+.var 2 is reply Z from lf1b30 to lf1b38
+	const/4	v2,1
+; v2 : single-length
+	const/4	v3,0
+; v3 : single-length
+.line 232
+	const/16	v4,8
+; v4 : single-length
+	if-eq	v10,v4,lf1afa
+; v10 : single-length , v4 : single-length
+	const-string	v4,"TYPE_PING length != 8: %s"
+; v4 : Ljava/lang/String;
+	new-array	v5,v2,[Ljava/lang/Object;
+; v5 : [Ljava/lang/Object; , v2 : single-length
+	invoke-static	{v10},java/lang/Integer/valueOf	; valueOf(I)Ljava/lang/Integer;
+; v10 : single-length
+	move-result-object	v6
+; v6 : Ljava/lang/Integer;
+	aput-object	v6,v5,v3
+; v6 : Ljava/lang/Integer; , v5 : [Ljava/lang/Object; , v3 : single-length
+	invoke-static	{v4,v5},com/squareup/okhttp/internal/spdy/Http20Draft06$Reader/ioException	; ioException(Ljava/lang/String;[Ljava/lang/Object;)Ljava/io/IOException;
+; v4 : Ljava/lang/String; , v5 : [Ljava/lang/Object;
+	move-result-object	v3
+; v3 : Ljava/io/IOException;
+	throw	v3
+; v3 : Ljava/io/IOException;
+lf1afa:
+.line 233
+	if-eqz	v11,lf1b10
+; v11 : single-length
+	const-string	v4,"TYPE_PING streamId != 0"
+; v4 : Ljava/lang/String;
+	new-array	v3,v3,[Ljava/lang/Object;
+; v3 : [Ljava/lang/Object; , v3 : [Ljava/lang/Object;
+	invoke-static	{v4,v3},com/squareup/okhttp/internal/spdy/Http20Draft06$Reader/ioException	; ioException(Ljava/lang/String;[Ljava/lang/Object;)Ljava/io/IOException;
+; v4 : Ljava/lang/String; , v3 : [Ljava/lang/Object;
+	move-result-object	v3
+; v3 : Ljava/io/IOException;
+	throw	v3
+; v3 : Ljava/io/IOException;
+lf1b10:
+.line 234
+	iget-object	v4,v7,com/squareup/okhttp/internal/spdy/Http20Draft06$Reader.in Ljava/io/DataInputStream;
+; v4 : Ljava/io/DataInputStream; , v7 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Reader;
+	invoke-virtual	{v4},java/io/DataInputStream/readInt	; readInt()I
+; v4 : Ljava/io/DataInputStream;
+	move-result	v0
+; v0 : single-length
+.line 235
+	iget-object	v4,v7,com/squareup/okhttp/internal/spdy/Http20Draft06$Reader.in Ljava/io/DataInputStream;
+; v4 : Ljava/io/DataInputStream; , v7 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Reader;
+	invoke-virtual	{v4},java/io/DataInputStream/readInt	; readInt()I
+; v4 : Ljava/io/DataInputStream;
+	move-result	v1
+; v1 : single-length
+.line 236
+	and-int/lit8	v4,v9,1
+; v4 : single-length , v9 : single-length
+	if-eqz	v4,lf1b38
+; v4 : single-length
+lf1b30:
+.line 237
+	invoke-interface	{v8,v2,v0,v1},com/squareup/okhttp/internal/spdy/FrameReader$Handler/ping	; ping(ZII)V
+; v8 : Lcom/squareup/okhttp/internal/spdy/FrameReader$Handler; , v2 : single-length , v0 : single-length , v1 : single-length
+.line 238
+	return-void	
+lf1b38:
+	move	v2,v3
+; v2 : single-length , v3 : single-length
+.line 236
+	goto	lf1b30
+.end method
+
+.method private readPriority(Lcom/squareup/okhttp/internal/spdy/FrameReader$Handler;III)V
+.throws Ljava/io/IOException;
+.limit registers 11
+; this: v6 (Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Reader;)
+; parameter[0] : v7 (Lcom/squareup/okhttp/internal/spdy/FrameReader$Handler;)
+; parameter[1] : v8 (I)
+; parameter[2] : v9 (I)
+; parameter[3] : v10 (I)
+	const/4	v5,0
+; v5 : single-length
+.line 192
+	const/4	v2,4
+; v2 : single-length
+	if-eq	v9,v2,lf1b74
+; v9 : single-length , v2 : single-length
+	const-string	v2,"TYPE_PRIORITY length: %d != 4"
+; v2 : Ljava/lang/String;
+	const/4	v3,1
+; v3 : single-length
+	new-array	v3,v3,[Ljava/lang/Object;
+; v3 : [Ljava/lang/Object; , v3 : [Ljava/lang/Object;
+	invoke-static	{v9},java/lang/Integer/valueOf	; valueOf(I)Ljava/lang/Integer;
+; v9 : single-length
+	move-result-object	v4
+; v4 : Ljava/lang/Integer;
+	aput-object	v4,v3,v5
+; v4 : Ljava/lang/Integer; , v3 : [Ljava/lang/Object; , v5 : single-length
+	invoke-static	{v2,v3},com/squareup/okhttp/internal/spdy/Http20Draft06$Reader/ioException	; ioException(Ljava/lang/String;[Ljava/lang/Object;)Ljava/io/IOException;
+; v2 : Ljava/lang/String; , v3 : [Ljava/lang/Object;
+	move-result-object	v2
+; v2 : Ljava/io/IOException;
+	throw	v2
+; v2 : Ljava/io/IOException;
+lf1b74:
+.line 193
+	if-nez	v10,lf1b8a
+; v10 : single-length
+	const-string	v2,"TYPE_PRIORITY streamId == 0"
+; v2 : Ljava/lang/String;
+	new-array	v3,v5,[Ljava/lang/Object;
+; v3 : [Ljava/lang/Object; , v5 : single-length
+	invoke-static	{v2,v3},com/squareup/okhttp/internal/spdy/Http20Draft06$Reader/ioException	; ioException(Ljava/lang/String;[Ljava/lang/Object;)Ljava/io/IOException;
+; v2 : Ljava/lang/String; , v3 : [Ljava/lang/Object;
+	move-result-object	v2
+; v2 : Ljava/io/IOException;
+	throw	v2
+; v2 : Ljava/io/IOException;
+lf1b8a:
+.line 194
+	iget-object	v2,v6,com/squareup/okhttp/internal/spdy/Http20Draft06$Reader.in Ljava/io/DataInputStream;
+; v2 : Ljava/io/DataInputStream; , v6 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Reader;
+	invoke-virtual	{v2},java/io/DataInputStream/readInt	; readInt()I
+; v2 : Ljava/io/DataInputStream;
+	move-result	v1
+; v1 : single-length
+.line 196
+	const	v2,2147483647	; 0x7fffffff
+; v2 : single-length
+	and-int	v0,v1,v2
+; v0 : single-length , v1 : single-length , v2 : single-length
+.line 197
+	invoke-interface	{v7,v10,v0},com/squareup/okhttp/internal/spdy/FrameReader$Handler/priority	; priority(II)V
+; v7 : Lcom/squareup/okhttp/internal/spdy/FrameReader$Handler; , v10 : single-length , v0 : single-length
+.line 198
+	return-void	
+.end method
+
+.method private readPushPromise(Lcom/squareup/okhttp/internal/spdy/FrameReader$Handler;III)V
+.limit registers 5
+; this: v0 (Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Reader;)
+; parameter[0] : v1 (Lcom/squareup/okhttp/internal/spdy/FrameReader$Handler;)
+; parameter[1] : v2 (I)
+; parameter[2] : v3 (I)
+; parameter[3] : v4 (I)
+.line 229
+	return-void	
+.end method
+
+.method private readRstStream(Lcom/squareup/okhttp/internal/spdy/FrameReader$Handler;III)V
+.throws Ljava/io/IOException;
+.limit registers 11
+; this: v6 (Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Reader;)
+; parameter[0] : v7 (Lcom/squareup/okhttp/internal/spdy/FrameReader$Handler;)
+; parameter[1] : v8 (I)
+; parameter[2] : v9 (I)
+; parameter[3] : v10 (I)
+	const/4	v3,1
+; v3 : single-length
+	const/4	v5,0
+; v5 : single-length
+.line 202
+	const/4	v2,4
+; v2 : single-length
+	if-eq	v9,v2,lf1bf4
+; v9 : single-length , v2 : single-length
+	const-string	v2,"TYPE_RST_STREAM length: %d != 4"
+; v2 : Ljava/lang/String;
+	new-array	v3,v3,[Ljava/lang/Object;
+; v3 : [Ljava/lang/Object; , v3 : [Ljava/lang/Object;
+	invoke-static	{v9},java/lang/Integer/valueOf	; valueOf(I)Ljava/lang/Integer;
+; v9 : single-length
+	move-result-object	v4
+; v4 : Ljava/lang/Integer;
+	aput-object	v4,v3,v5
+; v4 : Ljava/lang/Integer; , v3 : [Ljava/lang/Object; , v5 : single-length
+	invoke-static	{v2,v3},com/squareup/okhttp/internal/spdy/Http20Draft06$Reader/ioException	; ioException(Ljava/lang/String;[Ljava/lang/Object;)Ljava/io/IOException;
+; v2 : Ljava/lang/String; , v3 : [Ljava/lang/Object;
+	move-result-object	v2
+; v2 : Ljava/io/IOException;
+	throw	v2
+; v2 : Ljava/io/IOException;
+lf1bf4:
+.line 203
+	if-nez	v10,lf1c0a
+; v10 : single-length
+	const-string	v2,"TYPE_RST_STREAM streamId == 0"
+; v2 : Ljava/lang/String;
+	new-array	v3,v5,[Ljava/lang/Object;
+; v3 : [Ljava/lang/Object; , v5 : single-length
+	invoke-static	{v2,v3},com/squareup/okhttp/internal/spdy/Http20Draft06$Reader/ioException	; ioException(Ljava/lang/String;[Ljava/lang/Object;)Ljava/io/IOException;
+; v2 : Ljava/lang/String; , v3 : [Ljava/lang/Object;
+	move-result-object	v2
+; v2 : Ljava/io/IOException;
+	throw	v2
+; v2 : Ljava/io/IOException;
+lf1c0a:
+.line 204
+	iget-object	v2,v6,com/squareup/okhttp/internal/spdy/Http20Draft06$Reader.in Ljava/io/DataInputStream;
+; v2 : Ljava/io/DataInputStream; , v6 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Reader;
+	invoke-virtual	{v2},java/io/DataInputStream/readInt	; readInt()I
+; v2 : Ljava/io/DataInputStream;
+	move-result	v1
+; v1 : single-length
+.line 205
+	invoke-static	{v1},com/squareup/okhttp/internal/spdy/ErrorCode/fromHttp2	; fromHttp2(I)Lcom/squareup/okhttp/internal/spdy/ErrorCode;
+; v1 : single-length
+	move-result-object	v0
+; v0 : Lcom/squareup/okhttp/internal/spdy/ErrorCode;
+.line 206
+	if-nez	v0,lf1c40
+; v0 : Lcom/squareup/okhttp/internal/spdy/ErrorCode;
+.line 207
+	const-string	v2,"TYPE_RST_STREAM unexpected error code: %d"
+; v2 : Ljava/lang/String;
+	new-array	v3,v3,[Ljava/lang/Object;
+; v3 : [Ljava/lang/Object; , v3 : [Ljava/lang/Object;
+	invoke-static	{v1},java/lang/Integer/valueOf	; valueOf(I)Ljava/lang/Integer;
+; v1 : single-length
+	move-result-object	v4
+; v4 : Ljava/lang/Integer;
+	aput-object	v4,v3,v5
+; v4 : Ljava/lang/Integer; , v3 : [Ljava/lang/Object; , v5 : single-length
+	invoke-static	{v2,v3},com/squareup/okhttp/internal/spdy/Http20Draft06$Reader/ioException	; ioException(Ljava/lang/String;[Ljava/lang/Object;)Ljava/io/IOException;
+; v2 : Ljava/lang/String; , v3 : [Ljava/lang/Object;
+	move-result-object	v2
+; v2 : Ljava/io/IOException;
+	throw	v2
+; v2 : Ljava/io/IOException;
+lf1c40:
+.line 209
+	invoke-interface	{v7,v10,v0},com/squareup/okhttp/internal/spdy/FrameReader$Handler/rstStream	; rstStream(ILcom/squareup/okhttp/internal/spdy/ErrorCode;)V
+; v7 : Lcom/squareup/okhttp/internal/spdy/FrameReader$Handler; , v10 : single-length , v0 : Lcom/squareup/okhttp/internal/spdy/ErrorCode;
+.line 210
+	return-void	
+.end method
+
+.method private readSettings(Lcom/squareup/okhttp/internal/spdy/FrameReader$Handler;III)V
+.throws Ljava/io/IOException;
+.limit registers 14
+; this: v9 (Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Reader;)
+; parameter[0] : v10 (Lcom/squareup/okhttp/internal/spdy/FrameReader$Handler;)
+; parameter[1] : v11 (I)
+; parameter[2] : v12 (I)
+; parameter[3] : v13 (I)
+.var 1 is id I from lf1cca to lf1cd6
+.var 3 is value I from lf1cc0 to lf1cd6
+.var 4 is w1 I from lf1cb4 to lf1cd6
+	const/4	v8,0
+; v8 : single-length
+.line 214
+	rem-int/lit8	v5,v12,8
+; v5 : single-length , v12 : single-length
+	if-eqz	v5,lf1c82
+; v5 : single-length
+	const-string	v5,"TYPE_SETTINGS length %% 8 != 0: %s"
+; v5 : Ljava/lang/String;
+	const/4	v6,1
+; v6 : single-length
+	new-array	v6,v6,[Ljava/lang/Object;
+; v6 : [Ljava/lang/Object; , v6 : [Ljava/lang/Object;
+	invoke-static	{v12},java/lang/Integer/valueOf	; valueOf(I)Ljava/lang/Integer;
+; v12 : single-length
+	move-result-object	v7
+; v7 : Ljava/lang/Integer;
+	aput-object	v7,v6,v8
+; v7 : Ljava/lang/Integer; , v6 : [Ljava/lang/Object; , v8 : single-length
+	invoke-static	{v5,v6},com/squareup/okhttp/internal/spdy/Http20Draft06$Reader/ioException	; ioException(Ljava/lang/String;[Ljava/lang/Object;)Ljava/io/IOException;
+; v5 : Ljava/lang/String; , v6 : [Ljava/lang/Object;
+	move-result-object	v5
+; v5 : Ljava/io/IOException;
+	throw	v5
+; v5 : Ljava/io/IOException;
+lf1c82:
+.line 215
+	if-eqz	v13,lf1c98
+; v13 : single-length
+	const-string	v5,"TYPE_SETTINGS streamId != 0"
+; v5 : Ljava/lang/String;
+	new-array	v6,v8,[Ljava/lang/Object;
+; v6 : [Ljava/lang/Object; , v8 : single-length
+	invoke-static	{v5,v6},com/squareup/okhttp/internal/spdy/Http20Draft06$Reader/ioException	; ioException(Ljava/lang/String;[Ljava/lang/Object;)Ljava/io/IOException;
+; v5 : Ljava/lang/String; , v6 : [Ljava/lang/Object;
+	move-result-object	v5
+; v5 : Ljava/io/IOException;
+	throw	v5
+; v5 : Ljava/io/IOException;
+lf1c98:
+.line 216
+	new-instance	v2,com/squareup/okhttp/internal/spdy/Settings
+; v2 : Lcom/squareup/okhttp/internal/spdy/Settings;
+	invoke-direct	{v2},com/squareup/okhttp/internal/spdy/Settings/<init>	; <init>()V
+; v2 : Lcom/squareup/okhttp/internal/spdy/Settings;
+.line 217
+	const/4	v0,0
+; v0 : single-length
+lf1ca4:
+	if-ge	v0,v12,lf1cd6
+; v0 : single-length , v12 : single-length
+.line 218
+	iget-object	v5,v9,com/squareup/okhttp/internal/spdy/Http20Draft06$Reader.in Ljava/io/DataInputStream;
+; v5 : Ljava/io/DataInputStream; , v9 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Reader;
+	invoke-virtual	{v5},java/io/DataInputStream/readInt	; readInt()I
+; v5 : Ljava/io/DataInputStream;
+	move-result	v4
+; v4 : single-length
+.line 219
+	iget-object	v5,v9,com/squareup/okhttp/internal/spdy/Http20Draft06$Reader.in Ljava/io/DataInputStream;
+; v5 : Ljava/io/DataInputStream; , v9 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Reader;
+	invoke-virtual	{v5},java/io/DataInputStream/readInt	; readInt()I
+; v5 : Ljava/io/DataInputStream;
+	move-result	v3
+; v3 : single-length
+.line 221
+	const	v5,16777215	; 0xffffff
+; v5 : single-length
+	and-int	v1,v4,v5
+; v1 : single-length , v4 : single-length , v5 : single-length
+.line 222
+	invoke-virtual	{v2,v1,v8,v3},com/squareup/okhttp/internal/spdy/Settings/set	; set(III)V
+; v2 : Lcom/squareup/okhttp/internal/spdy/Settings; , v1 : single-length , v8 : single-length , v3 : single-length
+.line 217
+	add-int/lit8	v0,v0,8
+; v0 : single-length , v0 : single-length
+	goto	lf1ca4
+lf1cd6:
+.line 224
+	invoke-interface	{v10,v8,v2},com/squareup/okhttp/internal/spdy/FrameReader$Handler/settings	; settings(ZLcom/squareup/okhttp/internal/spdy/Settings;)V
+; v10 : Lcom/squareup/okhttp/internal/spdy/FrameReader$Handler; , v8 : single-length , v2 : Lcom/squareup/okhttp/internal/spdy/Settings;
+.line 225
+	return-void	
+.end method
+
+.method private readWindowUpdate(Lcom/squareup/okhttp/internal/spdy/FrameReader$Handler;III)V
+.throws Ljava/io/IOException;
+.limit registers 9
+; this: v4 (Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Reader;)
+; parameter[0] : v5 (Lcom/squareup/okhttp/internal/spdy/FrameReader$Handler;)
+; parameter[1] : v6 (I)
+; parameter[2] : v7 (I)
+; parameter[3] : v8 (I)
+.var 0 is endFlowControl Z from lf1d10 to lf1d18
+.line 258
+	iget-object	v3,v4,com/squareup/okhttp/internal/spdy/Http20Draft06$Reader.in Ljava/io/DataInputStream;
+; v3 : Ljava/io/DataInputStream; , v4 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Reader;
+	invoke-virtual	{v3},java/io/DataInputStream/readInt	; readInt()I
+; v3 : Ljava/io/DataInputStream;
+	move-result	v1
+; v1 : single-length
+.line 260
+	const	v3,2147483647	; 0x7fffffff
+; v3 : single-length
+	and-int	v2,v1,v3
+; v2 : single-length , v1 : single-length , v3 : single-length
+.line 261
+	and-int/lit8	v3,v6,1
+; v3 : single-length , v6 : single-length
+	if-eqz	v3,lf1d18
+; v3 : single-length
+	const/4	v0,1
+; v0 : single-length
+lf1d10:
+.line 262
+	invoke-interface	{v5,v8,v2,v0},com/squareup/okhttp/internal/spdy/FrameReader$Handler/windowUpdate	; windowUpdate(IIZ)V
+; v5 : Lcom/squareup/okhttp/internal/spdy/FrameReader$Handler; , v8 : single-length , v2 : single-length , v0 : single-length
+.line 263
+	return-void	
+lf1d18:
+.line 261
+	const/4	v0,0
+; v0 : single-length
+	goto	lf1d10
+.end method
+
+.method public close()V
+.throws Ljava/io/IOException;
+.limit registers 2
+; this: v1 (Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Reader;)
+.line 270
+	iget-object	v0,v1,com/squareup/okhttp/internal/spdy/Http20Draft06$Reader.in Ljava/io/DataInputStream;
+; v0 : Ljava/io/DataInputStream; , v1 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Reader;
+	invoke-virtual	{v0},java/io/DataInputStream/close	; close()V
+; v0 : Ljava/io/DataInputStream;
+.line 271
+	return-void	
+.end method
+
+.method public nextFrame(Lcom/squareup/okhttp/internal/spdy/FrameReader$Handler;)Z
+.throws Ljava/io/IOException;
+.limit registers 11
+; this: v9 (Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Reader;)
+; parameter[0] : v10 (Lcom/squareup/okhttp/internal/spdy/FrameReader$Handler;)
+.catch java/io/IOException from lf1d4a to lf1d54 using lf1d9c
+.var 1 is flags I from lf1d7c to lf1d9c
+.var 2 is length I from lf1d6c to lf1d9c
+.var 3 is streamId I from lf1d86 to lf1d9c
+.var 4 is type I from lf1d78 to lf1d9c
+.var 5 is w1 I from lf1d56 to lf1d9c
+.var 6 is w2 I from lf1d62 to lf1d9c
+.var 0 is e Ljava/io/IOException; from lf1d9e to lf1da0
+	const/4	v7,1
+; v7 : single-length
+lf1d4a:
+.line 93
+	iget-object	v8,v9,com/squareup/okhttp/internal/spdy/Http20Draft06$Reader.in Ljava/io/DataInputStream;
+; v8 : Ljava/io/DataInputStream; , v9 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Reader;
+	invoke-virtual	{v8},java/io/DataInputStream/readInt	; readInt()I
+; v8 : Ljava/io/DataInputStream;
+lf1d54:
+	move-result	v5
+; v5 : single-length
+.line 97
+	iget-object	v8,v9,com/squareup/okhttp/internal/spdy/Http20Draft06$Reader.in Ljava/io/DataInputStream;
+; v8 : Ljava/io/DataInputStream; , v9 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Reader;
+	invoke-virtual	{v8},java/io/DataInputStream/readInt	; readInt()I
+; v8 : Ljava/io/DataInputStream;
+	move-result	v6
+; v6 : single-length
+.line 99
+	const/high16	v8,65535
+; v8 : single-length
+	and-int/2addr	v8,v5
+; v8 : single-length , v5 : single-length
+	shr-int/lit8	v2,v8,16
+; v2 : single-length , v8 : single-length
+.line 100
+	const	v8,65280	; 0xff00
+; v8 : single-length
+	and-int/2addr	v8,v5
+; v8 : single-length , v5 : single-length
+	shr-int/lit8	v4,v8,8
+; v4 : single-length , v8 : single-length
+.line 101
+	and-int/lit16	v1,v5,255
+; v1 : single-length , v5 : single-length
+.line 103
+	const	v8,2147483647	; 0x7fffffff
+; v8 : single-length
+	and-int	v3,v6,v8
+; v3 : single-length , v6 : single-length , v8 : single-length
+.line 105
+	packed-switch	v4,0
+		psf1d86_f1da2	; case 0
+		psf1d86_f1daa	; case 1
+		psf1d86_f1db2	; case 2
+		psf1d86_f1dba	; case 3
+		psf1d86_f1dc2	; case 4
+		psf1d86_f1dca	; case 5
+		psf1d86_f1dd2	; case 6
+		psf1d86_f1dda	; case 7
+		psf1d86_f1d8c	; case 8
+		psf1d86_f1de2	; case 9
+		default: psf1d86_default
+; v4 : single-length
+psf1d86_default:
+.line 143
+	new-instance	v7,java/lang/UnsupportedOperationException
+; v7 : Ljava/lang/UnsupportedOperationException;
+	const-string	v8,"TODO"
+; v8 : Ljava/lang/String;
+	invoke-direct	{v7,v8},java/lang/UnsupportedOperationException/<init>	; <init>(Ljava/lang/String;)V
+; v7 : Ljava/lang/UnsupportedOperationException; , v8 : Ljava/lang/String;
+	throw	v7
+; v7 : Ljava/lang/UnsupportedOperationException;
+lf1d9c:
+.line 94
+	move-exception	v0
+; v0 : java/io/IOException
+.line 95
+	const/4	v7,0
+; v7 : single-length
+lf1da0:
+.line 140
+	return	v7
+; v7 : single-length
+psf1d86_f1da2:
+.line 107
+	invoke-direct	{v9,v10,v1,v2,v3},com/squareup/okhttp/internal/spdy/Http20Draft06$Reader/readData	; readData(Lcom/squareup/okhttp/internal/spdy/FrameReader$Handler;III)V
+; v9 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Reader; , v10 : Lcom/squareup/okhttp/internal/spdy/FrameReader$Handler; , v1 : single-length , v2 : single-length , v3 : single-length
+	goto	lf1da0
+psf1d86_f1daa:
+.line 111
+	invoke-direct	{v9,v10,v1,v2,v3},com/squareup/okhttp/internal/spdy/Http20Draft06$Reader/readHeaders	; readHeaders(Lcom/squareup/okhttp/internal/spdy/FrameReader$Handler;III)V
+; v9 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Reader; , v10 : Lcom/squareup/okhttp/internal/spdy/FrameReader$Handler; , v1 : single-length , v2 : single-length , v3 : single-length
+	goto	lf1da0
+psf1d86_f1db2:
+.line 115
+	invoke-direct	{v9,v10,v1,v2,v3},com/squareup/okhttp/internal/spdy/Http20Draft06$Reader/readPriority	; readPriority(Lcom/squareup/okhttp/internal/spdy/FrameReader$Handler;III)V
+; v9 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Reader; , v10 : Lcom/squareup/okhttp/internal/spdy/FrameReader$Handler; , v1 : single-length , v2 : single-length , v3 : single-length
+	goto	lf1da0
+psf1d86_f1dba:
+.line 119
+	invoke-direct	{v9,v10,v1,v2,v3},com/squareup/okhttp/internal/spdy/Http20Draft06$Reader/readRstStream	; readRstStream(Lcom/squareup/okhttp/internal/spdy/FrameReader$Handler;III)V
+; v9 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Reader; , v10 : Lcom/squareup/okhttp/internal/spdy/FrameReader$Handler; , v1 : single-length , v2 : single-length , v3 : single-length
+	goto	lf1da0
+psf1d86_f1dc2:
+.line 123
+	invoke-direct	{v9,v10,v1,v2,v3},com/squareup/okhttp/internal/spdy/Http20Draft06$Reader/readSettings	; readSettings(Lcom/squareup/okhttp/internal/spdy/FrameReader$Handler;III)V
+; v9 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Reader; , v10 : Lcom/squareup/okhttp/internal/spdy/FrameReader$Handler; , v1 : single-length , v2 : single-length , v3 : single-length
+	goto	lf1da0
+psf1d86_f1dca:
+.line 127
+	invoke-direct	{v9,v10,v1,v2,v3},com/squareup/okhttp/internal/spdy/Http20Draft06$Reader/readPushPromise	; readPushPromise(Lcom/squareup/okhttp/internal/spdy/FrameReader$Handler;III)V
+; v9 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Reader; , v10 : Lcom/squareup/okhttp/internal/spdy/FrameReader$Handler; , v1 : single-length , v2 : single-length , v3 : single-length
+	goto	lf1da0
+psf1d86_f1dd2:
+.line 131
+	invoke-direct	{v9,v10,v1,v2,v3},com/squareup/okhttp/internal/spdy/Http20Draft06$Reader/readPing	; readPing(Lcom/squareup/okhttp/internal/spdy/FrameReader$Handler;III)V
+; v9 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Reader; , v10 : Lcom/squareup/okhttp/internal/spdy/FrameReader$Handler; , v1 : single-length , v2 : single-length , v3 : single-length
+	goto	lf1da0
+psf1d86_f1dda:
+.line 135
+	invoke-direct	{v9,v10,v1,v2,v3},com/squareup/okhttp/internal/spdy/Http20Draft06$Reader/readGoAway	; readGoAway(Lcom/squareup/okhttp/internal/spdy/FrameReader$Handler;III)V
+; v9 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Reader; , v10 : Lcom/squareup/okhttp/internal/spdy/FrameReader$Handler; , v1 : single-length , v2 : single-length , v3 : single-length
+	goto	lf1da0
+psf1d86_f1de2:
+.line 139
+	invoke-direct	{v9,v10,v1,v2,v3},com/squareup/okhttp/internal/spdy/Http20Draft06$Reader/readWindowUpdate	; readWindowUpdate(Lcom/squareup/okhttp/internal/spdy/FrameReader$Handler;III)V
+; v9 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Reader; , v10 : Lcom/squareup/okhttp/internal/spdy/FrameReader$Handler; , v1 : single-length , v2 : single-length , v3 : single-length
+	goto	lf1da0
+.line 105
+lf1dea:	data-array
+		0x00, 0x00
+	end data-array
+.end method
+
+.method public readConnectionHeader()V
+.throws Ljava/io/IOException;
+.limit registers 4
+; this: v3 (Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Reader;)
+.line 81
+	iget-boolean	v1,v3,com/squareup/okhttp/internal/spdy/Http20Draft06$Reader.client Z
+; v1 : single-length , v3 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Reader;
+	if-eqz	v1,lf1e46
+; v1 : single-length
+lf1e44:
+.line 88
+	return-void	
+lf1e46:
+.line 82
+	invoke-static	{},com/squareup/okhttp/internal/spdy/Http20Draft06/access$000	; access$000()[B
+; 
+	nop	
+	move-result-object	v1
+; v1 : [B
+	array-length	v1,v1
+; v1 : single-length , v1 : single-length
+	new-array	v0,v1,[B
+; v0 : [B , v1 : single-length
+.line 83
+	iget-object	v1,v3,com/squareup/okhttp/internal/spdy/Http20Draft06$Reader.in Ljava/io/DataInputStream;
+; v1 : Ljava/io/DataInputStream; , v3 : Lcom/squareup/okhttp/internal/spdy/Http20Draft06$Reader;
+	invoke-virtual	{v1,v0},java/io/DataInputStream/readFully	; readFully([B)V
+; v1 : Ljava/io/DataInputStream; , v0 : [B
+.line 84
+	invoke-static	{},com/squareup/okhttp/internal/spdy/Http20Draft06/access$000	; access$000()[B
+; 
+	nop	
+	move-result-object	v1
+; v1 : [B
+	invoke-static	{v0,v1},java/util/Arrays/equals	; equals([B[B)Z
+; v0 : [B , v1 : [B
+	move-result	v1
+; v1 : single-length
+	if-nez	v1,lf1e44
+; v1 : single-length
+.line 85
+	new-instance	v1,java/lang/StringBuilder
+; v1 : Ljava/lang/StringBuilder;
+	invoke-direct	{v1},java/lang/StringBuilder/<init>	; <init>()V
+; v1 : Ljava/lang/StringBuilder;
+	const-string	v2,"Expected a connection header but was "
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	invoke-static	{v0},java/util/Arrays/toString	; toString([B)Ljava/lang/String;
+; v0 : [B
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-virtual	{v1,v2},java/lang/StringBuilder/append	; append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	move-result-object	v1
+; v1 : Ljava/lang/StringBuilder;
+	invoke-virtual	{v1},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v1 : Ljava/lang/StringBuilder;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	const/4	v2,0
+; v2 : single-length
+	new-array	v2,v2,[Ljava/lang/Object;
+; v2 : [Ljava/lang/Object; , v2 : [Ljava/lang/Object;
+	invoke-static	{v1,v2},com/squareup/okhttp/internal/spdy/Http20Draft06$Reader/ioException	; ioException(Ljava/lang/String;[Ljava/lang/Object;)Ljava/io/IOException;
+; v1 : Ljava/lang/String; , v2 : [Ljava/lang/Object;
+	move-result-object	v1
+; v1 : Ljava/io/IOException;
+	throw	v1
+; v1 : Ljava/io/IOException;
+.end method
+
+

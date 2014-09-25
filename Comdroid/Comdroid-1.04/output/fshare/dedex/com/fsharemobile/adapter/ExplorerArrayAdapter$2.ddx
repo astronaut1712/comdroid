@@ -1,0 +1,68 @@
+.class com/fsharemobile/adapter/ExplorerArrayAdapter$2
+.super java/lang/Object
+.source ExplorerArrayAdapter.java
+.implements android/widget/PopupWindow$OnDismissListener
+
+.enclosing method com/getView(ILandroid/view/View;Landroid/view/ViewGroup;)Landroid/view/View;
+.field final this$0 Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+
+.method <init>(Lcom/fsharemobile/adapter/ExplorerArrayAdapter;)V
+.limit registers 2
+; this: v0 (Lcom/fsharemobile/adapter/ExplorerArrayAdapter$2;)
+; parameter[0] : v1 (Lcom/fsharemobile/adapter/ExplorerArrayAdapter;)
+.line 1
+	iput-object	v1,v0,com/fsharemobile/adapter/ExplorerArrayAdapter$2.this$0 Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+; v1 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$2;
+.line 258
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$2;
+	return-void	
+.end method
+
+.method public onDismiss()V
+.limit registers 4
+; this: v3 (Lcom/fsharemobile/adapter/ExplorerArrayAdapter$2;)
+.line 263
+	const-string	v0,"ViewHolderTemp_Position_Fisrt"
+; v0 : Ljava/lang/String;
+	new-instance	v1,java/lang/StringBuilder
+; v1 : Ljava/lang/StringBuilder;
+	iget-object	v2,v3,com/fsharemobile/adapter/ExplorerArrayAdapter$2.this$0 Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+; v2 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v3 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$2;
+	invoke-static	{v2},com/fsharemobile/adapter/ExplorerArrayAdapter/access$2	; access$2(Lcom/fsharemobile/adapter/ExplorerArrayAdapter;)Lcom/fsharemobile/adapter/ExplorerArrayAdapter$ViewHolder;
+; v2 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	move-result-object	v2
+; v2 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$ViewHolder;
+	iget	v2,v2,com/fsharemobile/adapter/ExplorerArrayAdapter$ViewHolder.position I
+; v2 : single-length , v2 : single-length
+	invoke-static	{v2},java/lang/String/valueOf	; valueOf(I)Ljava/lang/String;
+; v2 : single-length
+	move-result-object	v2
+; v2 : Ljava/lang/String;
+	invoke-direct	{v1,v2},java/lang/StringBuilder/<init>	; <init>(Ljava/lang/String;)V
+; v1 : Ljava/lang/StringBuilder; , v2 : Ljava/lang/String;
+	invoke-virtual	{v1},java/lang/StringBuilder/toString	; toString()Ljava/lang/String;
+; v1 : Ljava/lang/StringBuilder;
+	move-result-object	v1
+; v1 : Ljava/lang/String;
+	invoke-static	{v0,v1},android/util/Log/i	; i(Ljava/lang/String;Ljava/lang/String;)I
+; v0 : Ljava/lang/String; , v1 : Ljava/lang/String;
+.line 268
+	iget-object	v0,v3,com/fsharemobile/adapter/ExplorerArrayAdapter$2.this$0 Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter; , v3 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$2;
+	invoke-static	{v0},com/fsharemobile/adapter/ExplorerArrayAdapter/access$2	; access$2(Lcom/fsharemobile/adapter/ExplorerArrayAdapter;)Lcom/fsharemobile/adapter/ExplorerArrayAdapter$ViewHolder;
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter;
+	move-result-object	v0
+; v0 : Lcom/fsharemobile/adapter/ExplorerArrayAdapter$ViewHolder;
+	iget-object	v0,v0,com/fsharemobile/adapter/ExplorerArrayAdapter$ViewHolder.button Landroid/widget/ImageView;
+; v0 : Landroid/widget/ImageView; , v0 : Landroid/widget/ImageView;
+.line 269
+	const	v1,2130837538	; 0x7f020022
+; v1 : single-length
+	invoke-virtual	{v0,v1},android/widget/ImageView/setImageResource	; setImageResource(I)V
+; v0 : Landroid/widget/ImageView; , v1 : single-length
+.line 270
+	return-void	
+.end method
+
+

@@ -1,0 +1,29 @@
+.class com/google/tagmanager/NoopResolvedPropertyBuilder
+.super java/lang/Object
+.source NoopResolvedPropertyBuilder.java
+.implements com/google/tagmanager/ResolvedPropertyBuilder
+
+
+.method <init>()V
+.limit registers 1
+; this: v0 (Lcom/google/tagmanager/NoopResolvedPropertyBuilder;)
+.line 9
+	invoke-direct	{v0},java/lang/Object/<init>	; <init>()V
+; v0 : Lcom/google/tagmanager/NoopResolvedPropertyBuilder;
+	return-void	
+.end method
+
+.method public createPropertyValueBuilder(Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;)Lcom/google/tagmanager/ValueBuilder;
+.limit registers 3
+; this: v1 (Lcom/google/tagmanager/NoopResolvedPropertyBuilder;)
+; parameter[0] : v2 (Lcom/google/analytics/midtier/proto/containertag/TypeSystem$Value;)
+.line 13
+	new-instance	v0,com/google/tagmanager/NoopValueBuilder
+; v0 : Lcom/google/tagmanager/NoopValueBuilder;
+	invoke-direct	{v0},com/google/tagmanager/NoopValueBuilder/<init>	; <init>()V
+; v0 : Lcom/google/tagmanager/NoopValueBuilder;
+	return-object	v0
+; v0 : Lcom/google/tagmanager/NoopValueBuilder;
+.end method
+
+

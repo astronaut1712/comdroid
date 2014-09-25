@@ -1,0 +1,62 @@
+.class final com/squareup/okhttp/Request$Body$1
+.super com/squareup/okhttp/Request$Body
+.source Request.java
+
+.enclosing method com/create(Lcom/squareup/okhttp/MediaType;[B)Lcom/squareup/okhttp/Request$Body;
+.field final val$content [B
+.field final val$contentType Lcom/squareup/okhttp/MediaType;
+
+.method <init>(Lcom/squareup/okhttp/MediaType;[B)V
+.limit registers 3
+; this: v0 (Lcom/squareup/okhttp/Request$Body$1;)
+; parameter[0] : v1 (Lcom/squareup/okhttp/MediaType;)
+; parameter[1] : v2 ([B)
+.line 144
+	iput-object	v1,v0,com/squareup/okhttp/Request$Body$1.val$contentType Lcom/squareup/okhttp/MediaType;
+; v1 : Lcom/squareup/okhttp/MediaType; , v0 : Lcom/squareup/okhttp/Request$Body$1;
+	iput-object	v2,v0,com/squareup/okhttp/Request$Body$1.val$content [B
+; v2 : [B , v0 : Lcom/squareup/okhttp/Request$Body$1;
+	invoke-direct	{v0},com/squareup/okhttp/Request$Body/<init>	; <init>()V
+; v0 : Lcom/squareup/okhttp/Request$Body$1;
+	return-void	
+.end method
+
+.method public contentLength()J
+.limit registers 3
+; this: v2 (Lcom/squareup/okhttp/Request$Body$1;)
+.line 150
+	iget-object	v0,v2,com/squareup/okhttp/Request$Body$1.val$content [B
+; v0 : [B , v2 : Lcom/squareup/okhttp/Request$Body$1;
+	array-length	v0,v0
+; v0 : single-length , v0 : single-length
+	int-to-long	v0,v0
+; v0 : double-length , v0 : double-length
+	return-wide	v0
+; v0 : double-length
+.end method
+
+.method public contentType()Lcom/squareup/okhttp/MediaType;
+.limit registers 2
+; this: v1 (Lcom/squareup/okhttp/Request$Body$1;)
+.line 146
+	iget-object	v0,v1,com/squareup/okhttp/Request$Body$1.val$contentType Lcom/squareup/okhttp/MediaType;
+; v0 : Lcom/squareup/okhttp/MediaType; , v1 : Lcom/squareup/okhttp/Request$Body$1;
+	return-object	v0
+; v0 : Lcom/squareup/okhttp/MediaType;
+.end method
+
+.method public writeTo(Ljava/io/OutputStream;)V
+.throws Ljava/io/IOException;
+.limit registers 3
+; this: v1 (Lcom/squareup/okhttp/Request$Body$1;)
+; parameter[0] : v2 (Ljava/io/OutputStream;)
+.line 154
+	iget-object	v0,v1,com/squareup/okhttp/Request$Body$1.val$content [B
+; v0 : [B , v1 : Lcom/squareup/okhttp/Request$Body$1;
+	invoke-virtual	{v2,v0},java/io/OutputStream/write	; write([B)V
+; v2 : Ljava/io/OutputStream; , v0 : [B
+.line 155
+	return-void	
+.end method
+
+
