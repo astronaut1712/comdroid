@@ -48,6 +48,6 @@ then
     mkdir -p $LOC/IntentResults/actionStats/
     mkdir -p $LOC/log
 fi
-ruby intentanalysis.rb -civ "app" $LOC/dedex $LOC/AndroidManifest.xml $LOC/IntentResults > $LOC/log/details.log
+ruby intentanalysis.rb -civsm "app" $LOC/dedex $LOC/AndroidManifest.xml $LOC/IntentResults > $LOC/log/details.log
  # intentanalysis.rb -civ "app" $LOC/dedex $LOC/AndroidManifest.xml $LOC/IntentResults
 python filter.py $2/IntentResults
