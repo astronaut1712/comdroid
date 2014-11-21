@@ -10,7 +10,7 @@
 
 require "rexml/document"
 include REXML
-
+#$cur_path = File.dirname(__FILE__)
 
 class Component
 attr_accessor :name, :visibility, :type, :permission, :attack, :ifAlias, :strength, :uses, :hasProtectedBC, :hasAnyProtectedBC, :isMain, :isLauncher, :actions, :hasExportedFlag, :hasExportedFlagTrue, :hasData, :categories, :target
@@ -41,7 +41,7 @@ end
 end
 
 def getProtectedBroadcasts()
-	f = File.new("Resources/protectedbroadcast.txt")
+	f = File.new("#$cur_path/Resources/protectedbroadcast.txt")
 	protected_Broadcasts = []
 	begin
 		while (line = f.readline)

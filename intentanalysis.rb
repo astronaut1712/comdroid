@@ -7,14 +7,15 @@
 #  Copyright (c) 2010. All rights reserved.
 #
 
-#$:<< '/home/astronaut/Works/android/tools/comdroid/Comdroid/Comdroid-1.04'
+#$:<< '/home/astronaut/Works/android/tools/comdroid'
+$cur_path = File.dirname(__FILE__)
 require 'optparse'
 require 'rexml/document'
-require './IntentObj'
-require './FieldObj'
-require './SinkObj'
-require './ParseManifest'
-require './Register'
+require "#$cur_path/IntentObj"
+require "#$cur_path/FieldObj"
+require "#$cur_path/SinkObj"
+require "#$cur_path/ParseManifest"
+require "#$cur_path/Register"
 
 $options = {}
 $vulnerabilityTypes = ['activityhijacking', 'activityhijackingresult', 'servicehijacking',
@@ -2064,11 +2065,11 @@ def main()
 
 
   if $options[:comdroid]
-    File.open('Resources/permmap') do |f|
+    File.open("#$cur_path/Resources/permmap") do |f|
         @protection_levels=Marshal.load(f)
     end
 
-    @knownAndroidIntents = get_file_list("Resources/IntentList.txt")
+    @knownAndroidIntents = get_file_list("#$cur_path/Resources/IntentList.txt")
 
       banner("Examining #{@appname} manifest...")
       @protected_Broadcasts, @app_perm, @defined_permissions, @has_permission, @component_names, @components, @requires_permissions, @package_name = processManifest(@manifestfile)
