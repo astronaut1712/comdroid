@@ -2,7 +2,7 @@
 
 # Runs intentanalysis tool on an apk
 LOC=$1
-INSTALLDIR="/home/astronaut/Works/android/tools/comdroid"
+INSTALLDIR=`dirname $(realpath $0)`
 if [ -z $1 ]
 then
     echo "Correct usage: runComDroid.sh [path to apk].apk [path to output]"
